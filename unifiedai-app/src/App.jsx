@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 
 // ── Design tokens ──
 const T = {
@@ -61,6 +61,10 @@ const i18n = {
     addClass: "Add Class",
     scanQR: "Scan a Class QR Code",
     uploadQR: "Upload QR Code",
+    classCode: "Class Code",
+    classCodeDesc: "Ask your teacher for the class code to join",
+    classCodePlaceholder: "e.g., MATH10A",
+    confirm: "Confirm",
     classJoined: "Class Joined!",
     classJoinedDesc: "You've successfully joined",
     redirecting: "Redirecting...",
@@ -114,6 +118,10 @@ const i18n = {
     addClass: "クラスを追加",
     scanQR: "クラスQRコードをスキャン",
     uploadQR: "QRコードをアップロード",
+    classCode: "クラスコード",
+    classCodeDesc: "参加するクラスコードを先生に聞いてください",
+    classCodePlaceholder: "例: MATH10A",
+    confirm: "確認",
     classJoined: "クラスに参加しました！",
     classJoinedDesc: "参加しました",
     redirecting: "リダイレクト中...",
@@ -511,6 +519,88 @@ const AddClassScreen = ({ t, onClassJoined }) => (
     </button>
   </div>
 );
+
+const ClassCodeScreen = ({ t, onClassJoined }) => {
+  const [code, setCode] = useState("");
+  return (
+    <div
+      className="scrollable"
+      style={{
+        flex: 1,
+        background: T.bg,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "0 24px",
+      }}
+    >
+      {/* Key icon */}
+      <div style={{ marginTop: 48, marginBottom: 20, textAlign: "center" }}>
+        <div
+          style={{
+            width: 80,
+            height: 80,
+            borderRadius: 22,
+            background: "#EDE9FE",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "0 auto 18px",
+          }}
+        >
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+            <circle cx="8" cy="15" r="4" stroke="#4F46E5" strokeWidth="1.8" />
+            <path d="M12 11L18 5" stroke="#4F46E5" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M17 4L20 7" stroke="#4F46E5" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M15 9L18 6" stroke="#4F46E5" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        </div>
+        <div style={{ fontSize: 22, fontWeight: 800, color: T.text, marginBottom: 8 }}>{t.classCode}</div>
+        <div style={{ fontSize: 14, color: T.textSec, lineHeight: 1.5 }}>{t.classCodeDesc}</div>
+      </div>
+
+      {/* Code input */}
+      <input
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+        placeholder={t.classCodePlaceholder}
+        style={{
+          width: "100%",
+          padding: "16px 18px",
+          fontSize: 16,
+          borderRadius: 14,
+          border: `1.5px solid ${T.border}`,
+          background: T.card,
+          color: T.text,
+          outline: "none",
+          marginTop: 12,
+          boxSizing: "border-box",
+        }}
+      />
+
+      {/* Confirm button pinned to bottom */}
+      <div style={{ flex: 1 }} />
+      <button
+        onClick={() => code.trim() && onClassJoined && onClassJoined(CLASSES[0])}
+        style={{
+          width: "100%",
+          padding: "16px",
+          borderRadius: 28,
+          border: "none",
+          background: code.trim() ? T.primary : T.border,
+          color: code.trim() ? "#fff" : T.textSec,
+          fontSize: 16,
+          fontWeight: 700,
+          cursor: code.trim() ? "pointer" : "default",
+          marginBottom: 32,
+          transition: "background 0.2s",
+        }}
+      >
+        {t.confirm}
+      </button>
+    </div>
+  );
+};
 
 const ClassJoinedScreen = ({ t, className }) => (
   <div
@@ -1257,6 +1347,7 @@ export default function App() {
   const titles = {
     class_selection: t.myClasses,
     add_class:       t.addClass,
+    class_code:      t.addClass,
     class_joined:    "",
     grading:         t.testsAssignments,
     grading_test:    t.assignmentDetails,
@@ -1285,6 +1376,7 @@ export default function App() {
         onLangToggle={() => setLang((l) => (l === "en" ? "ja" : "en"))}
         rightIcon={screen === "add_class" ? (
           <button
+            onClick={() => push("class_code")}
             style={{
               background: "none",
               border: "none",
@@ -1316,6 +1408,9 @@ export default function App() {
       )}
       {screen === "add_class" && (
         <AddClassScreen t={t} onClassJoined={handleClassJoined} />
+      )}
+      {screen === "class_code" && (
+        <ClassCodeScreen t={t} onClassJoined={handleClassJoined} />
       )}
       {screen === "class_joined" && (
         <ClassJoinedScreen t={t} className={joinedClassName} />
