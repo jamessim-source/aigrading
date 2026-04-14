@@ -1,11 +1,11 @@
 name: aigrading
 static_sites:
   - name: aigrading
-    source_dir: /unifiedai-app
-    build_command: npm run build
-    output_dir: dist
-    environment_slug: node-js
     github:
       repo: jamessim-source/aigrading
       branch: main
       deploy_on_push: true
+    source_dir: unifiedai-app
+    build_command: npm run build
+    output_dir: dist
+    environment_slug: node-js
