@@ -321,7 +321,7 @@ const ClassDocIcon = ({ color }) => (
   </svg>
 );
 
-const ClassSelectionScreen = ({ t, selectedClassId, onSelectClass, onAddClass }) => (
+const ClassSelectionScreen = ({ t, selectedClassId, onSelectClass, onAddClass, classes }) => (
   <div className="scrollable" style={{ flex: 1, background: T.bg }}>
     {/* Header row */}
     <div
@@ -333,7 +333,7 @@ const ClassSelectionScreen = ({ t, selectedClassId, onSelectClass, onAddClass })
       }}
     >
       <span style={{ fontSize: 17, fontWeight: 700, color: T.text }}>
-        {t.myClasses} ({CLASSES.length})
+        {t.myClasses} ({classes.length})
       </span>
       <button
         onClick={onAddClass}
@@ -358,8 +358,8 @@ const ClassSelectionScreen = ({ t, selectedClassId, onSelectClass, onAddClass })
 
     {/* Class list */}
     <div style={{ padding: "4px 16px" }}>
-      {CLASSES.map((cls, i) => {
-        const color = CLASS_COLORS[i % CLASS_COLORS.length];
+      {classes.map((cls, i) => {
+        const color = CLASS_COLORS[CLASSES.findIndex(c => c.id === cls.id) % CLASS_COLORS.length];
         const isSelected = cls.id === selectedClassId;
         return (
           <div
@@ -429,7 +429,7 @@ const ClassSelectionScreen = ({ t, selectedClassId, onSelectClass, onAddClass })
   </div>
 );
 
-const AddClassScreen = ({ t }) => (
+const AddClassScreen = ({ t, onClassJoined }) => (
   <div className="scrollable" style={{ flex: 1, background: T.bg, display: "flex", flexDirection: "column", alignItems: "center" }}>
     {/* QR icon header */}
     <div style={{ marginTop: 32, marginBottom: 16, textAlign: "center" }}>
@@ -460,8 +460,13 @@ const AddClassScreen = ({ t }) => (
 
     {/* Camera viewfinder */}
     <div style={{ position: "relative", width: "80%", maxWidth: 300, aspectRatio: "1 / 1", margin: "0 auto" }}>
-      {/* Black background */}
-      <div style={{ width: "100%", height: "100%", background: "#000", borderRadius: 4 }} />
+      {/* Background with sample QR code */}
+      <div style={{ width: "100%", height: "100%", background: "#000", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {/* Sample QR code */}
+        <svg xmlns="http://www.w3.org/2000/svg" width="72%" height="72%" viewBox="0 0 296 296" fill="white">
+          <path d="M32,236v-28h56v56H32V236L32,236z M80,236v-20H40v40h40V236L80,236z M48,236v-12h24v24H48V236L48,236z M104,260v-4h-8v-16h8v-24h8v-8H96v-8H64v-8h8v-8H56v16h-8v-8H32v-8h16v-16h-8v8h-8v-16h16v8h8v8h8v-8h8v8h16v-8h-8v-8H56v-8h24v-8H56v-8h-8v8H32v-24h8v8h48v-8h-8v-8H64v8h-8v-8H40V96h16v16h8v-8h16v-8h8v8h-8v8h8v8h8v-16h8v-8h-8V72h16v8h8v8h-8v8h8v48h-16v-8h-8v8h-8v8h-8v8h8v8h8v8h16v-8h-8v-8h-8v-8h16v16h8v-16h8v16h8v-24h8v-8h8v8h-8v8h8v8h24v-8h-8v-8h-8v-16h-8v-8h8v-8h8v-8h-8v-8h-8v16h-8v-8h-8v8h-8v-8h8v-8h-8V72h-8v-8h8v8h8V40h8v16h16v-8h-8V32h16v8h-8v8h16v-8h8v-8h16v24h-16v-8h-8v16h8v24h8v-8h8v40h16v-8h-8V96h16v24h16v-8h-8V96h8v16h8v-8h16v16h-8v-8h-8v8h-8v24h8v8h-8v8h-16v8h-8v8h-16v-8h-8v-8h-8v16h8v8h24v8h16v-8h-8v-8h8v-8h8v8h8v8h8v-16h-8v-8h16v24h-8v16h8v16h-8v24h8v8h-24v16h-24v-8h16v-8h-16v-16h-8v16h-8v8h8v8h-16v-24h-8v16h-8v-8h-8v-32h8v24h8v-24h8v-16h-8v-8h-8v-8h8v-8h-8v-8h-8v32h8v8h-16v16h-8v16h8v8h-8v8h16v8h-16v-8h-8v-8h-8v16h-32V260L104,260z M128,248v-8h8v-24h-16v8h8v8h-16v8h-8v8h8v8h16V248L128,248z M240,240v-8h8v-16h8v-8h-8v-24h-8v24h8v8h-8v8h-8v24h8V240L240,240z M200,236v-4h-8v8h8V236L200,236z M152,220v-4h-8v8h8V220L152,220z M224,212v-12h-24v24h24V212L224,212z M208,212v-4h8v8h-8V212L208,212z M144,204v-4h16v-8h-16v-8h-8v8h8v8h-16v-8h-8v8h-8v-8h-8v-8h-8v-8h-8v8h-8v8h8v-8h8v8h8v8h8v8h32V204L144,204z M120,180v-4h-8v8h8V180L120,180z M160,176v-8h-16v8h8v8h8V176L160,176z M208,164v-4h-8v8h8V164L208,164z M224,156v-4h8v-24h-8v8h-8v8h-8v-8h-16v-8h-8v-8h8V96h-8v-8h-8v-8h-8v8h-8V64h8v8h8v-8h-8v-8h-8v8h-8v24h8v8h8v-8h8v24h-8v8h-8v8h8v16h8v-8h16v8h8v8h16v8h8V156L224,156z M216,148v-4h8v8h-8V148L216,148z M88,140v-4h8v-8h-8v8h-8v8h8V140L88,140z M112,124v-4h-8v8h8V124L112,124z M112,84v-4h-8v8h8V84L112,84z M144,80v-8h-8v16h8V80L144,80z M192,44v-4h-8v8h8V44L192,44z M256,260v-4h8v8h-8V260L256,260z M256,144v-8h-8v-8h8v8h8v16h-8V144L256,144z M32,60V32h56v56H32V60L32,60zM80,60V40H40v40h40V60L80,60z M48,60V48h24v24H48V60L48,60z M208,60V32h56v56h-56V60L208,60z M256,60V40h-40v40h40V60L256,60zM224,60V48h24v24h-24V60L224,60z M96,60v-4h8v8h-8V60L96,60z M112,52v-4h-8V32h8v8h8v-8h8v8h-8v16h-8V52L112,52z"/>
+        </svg>
+      </div>
       {/* Corner brackets */}
       {[
         { top: -3, left: -3, borderTop: `3px solid #A5B4FC`, borderLeft: `3px solid #A5B4FC` },
@@ -490,6 +495,7 @@ const AddClassScreen = ({ t }) => (
 
     {/* Upload button */}
     <button
+      onClick={() => onClassJoined && onClassJoined(CLASSES[0])}
       style={{
         padding: "12px 32px",
         borderRadius: 24,
@@ -1212,6 +1218,7 @@ export default function App() {
   const [selectedDoc, setSelectedDoc] = useState(IMG_DOC);
   const [selectedClass, setSelectedClass] = useState(CLASSES[0]);
   const [joinedClassName, setJoinedClassName] = useState("");
+  const [unlockedClassIds, setUnlockedClassIds] = useState(CLASSES.filter(c => c.id !== 1).map(c => c.id));
 
   const t = i18n[lang];
   const isJa = lang === "ja";
@@ -1238,6 +1245,7 @@ export default function App() {
   // Simulate joining a class from the QR screen
   const handleClassJoined = (cls) => {
     setJoinedClassName(cls.name);
+    setUnlockedClassIds((ids) => ids.includes(cls.id) ? ids : [...ids, cls.id]);
     push("class_joined");
     setTimeout(() => {
       setSelectedClass(cls);
@@ -1303,6 +1311,7 @@ export default function App() {
           selectedClassId={selectedClass?.id}
           onSelectClass={handleSelectClass}
           onAddClass={handleAddClass}
+          classes={CLASSES.filter(c => unlockedClassIds.includes(c.id))}
         />
       )}
       {screen === "add_class" && (
