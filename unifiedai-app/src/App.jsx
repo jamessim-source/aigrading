@@ -57,6 +57,13 @@ const IMG_DOC = {
 const i18n = {
   en: {
     appTitle: "AI Grading",
+    myClasses: "My Classes",
+    addClass: "Add Class",
+    scanQR: "Scan a Class QR Code",
+    uploadQR: "Upload QR Code",
+    classJoined: "Class Joined!",
+    classJoinedDesc: "You've successfully joined",
+    redirecting: "Redirecting...",
     testsAssignments: "Tests & Assignments",
     assignmentDetails: "Assignment Details",
     results: "Results",
@@ -94,9 +101,22 @@ const i18n = {
     mistake: "×",
     langToggle: "🇯🇵 日本語",
     noAssignments: "No assignments found",
+    mathematics: "Mathematics",
+    english: "English",
+    chemistry: "Chemistry",
+    history: "History",
+    biology: "Biology",
+    physics: "Physics",
   },
   ja: {
     appTitle: "AI採点",
+    myClasses: "クラス一覧",
+    addClass: "クラスを追加",
+    scanQR: "クラスQRコードをスキャン",
+    uploadQR: "QRコードをアップロード",
+    classJoined: "クラスに参加しました！",
+    classJoinedDesc: "参加しました",
+    redirecting: "リダイレクト中...",
     testsAssignments: "テスト・課題",
     assignmentDetails: "課題の詳細",
     results: "結果",
@@ -134,12 +154,18 @@ const i18n = {
     mistake: "×",
     langToggle: "🇺🇸 English",
     noAssignments: "課題が見つかりません",
+    mathematics: "数学",
+    english: "英語",
+    chemistry: "化学",
+    history: "歴史",
+    biology: "生物",
+    physics: "物理",
   },
 };
 
 // ── Shared Components ──
 
-const NavBar = ({ title, onBack, lang, onLangToggle }) => (
+const NavBar = ({ title, onBack, lang, onLangToggle, rightIcon }) => (
   <div style={{ background: "#fff", borderBottom: `1px solid ${T.border}`, flexShrink: 0 }}>
     <div
       style={{
@@ -194,23 +220,25 @@ const NavBar = ({ title, onBack, lang, onLangToggle }) => (
         {title}
       </span>
 
-      <button
-        onClick={onLangToggle}
-        style={{
-          background: T.primaryLight,
-          border: "none",
-          borderRadius: 20,
-          padding: "6px 11px",
-          cursor: "pointer",
-          fontSize: 12,
-          fontWeight: 700,
-          color: T.primary,
-          flexShrink: 0,
-          whiteSpace: "nowrap",
-        }}
-      >
-        {i18n[lang].langToggle}
-      </button>
+      {rightIcon ?? (
+        <button
+          onClick={onLangToggle}
+          style={{
+            background: T.primaryLight,
+            border: "none",
+            borderRadius: 20,
+            padding: "6px 11px",
+            cursor: "pointer",
+            fontSize: 12,
+            fontWeight: 700,
+            color: T.primary,
+            flexShrink: 0,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {i18n[lang].langToggle}
+        </button>
+      )}
     </div>
   </div>
 );
@@ -267,9 +295,264 @@ const Pill = ({ children, active, onClick }) => (
   </button>
 );
 
+// ── Class data ──
+const CLASS_COLORS = ["#4F46E5", "#10B981", "#F59E0B", "#EF4444", "#06B6D4", "#7C3AED", "#3B82F6", "#6366F1"];
+
+const CLASSES = [
+  { id: 1, name: "Class 10A", teacher: "Ms. Tanaka", subjectKey: "mathematics" },
+  { id: 2, name: "Class 10B", teacher: "Ms. Tanaka", subjectKey: "english" },
+  { id: 3, name: "Class 10C", teacher: "Ms. Tanaka", subjectKey: "english" },
+  { id: 4, name: "Class 10D", teacher: "Ms. Tanaka", subjectKey: "chemistry" },
+  { id: 5, name: "Class 10E", teacher: "Ms. Tanaka", subjectKey: "mathematics" },
+  { id: 6, name: "Class 10F", teacher: "Ms. Tanaka", subjectKey: "history" },
+  { id: 7, name: "Class 10G", teacher: "Ms. Tanaka", subjectKey: "biology" },
+  { id: 8, name: "Class 10H", teacher: "Ms. Tanaka", subjectKey: "physics" },
+];
+
 // ── SCREENS ──
 
-const GradingListScreen = ({ onNav, t }) => {
+// ── ClassDocIcon — small document icon used in class tiles ──
+const ClassDocIcon = ({ color }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <rect x="4" y="2" width="12" height="16" rx="2" fill="white" fillOpacity="0.9" />
+    <path d="M7 7H13M7 10H13M7 13H11" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M14 2L18 6V20H6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M14 2V6H18" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const ClassSelectionScreen = ({ t, selectedClassId, onSelectClass, onAddClass }) => (
+  <div className="scrollable" style={{ flex: 1, background: T.bg }}>
+    {/* Header row */}
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "16px 16px 8px",
+      }}
+    >
+      <span style={{ fontSize: 17, fontWeight: 700, color: T.text }}>
+        {t.myClasses} ({CLASSES.length})
+      </span>
+      <button
+        onClick={onAddClass}
+        style={{
+          width: 32,
+          height: 32,
+          borderRadius: "50%",
+          background: T.primary,
+          border: "none",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#fff",
+          fontSize: 22,
+          lineHeight: 1,
+        }}
+      >
+        +
+      </button>
+    </div>
+
+    {/* Class list */}
+    <div style={{ padding: "4px 16px" }}>
+      {CLASSES.map((cls, i) => {
+        const color = CLASS_COLORS[i % CLASS_COLORS.length];
+        const isSelected = cls.id === selectedClassId;
+        return (
+          <div
+            key={cls.id}
+            onClick={() => onSelectClass(cls)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 14,
+              background: T.card,
+              borderRadius: T.radius,
+              boxShadow: isSelected
+                ? `0 0 0 2px ${T.primary}, ${T.shadow}`
+                : T.shadow,
+              padding: "12px 14px",
+              marginBottom: 10,
+              cursor: "pointer",
+            }}
+          >
+            {/* Colored icon tile */}
+            <div
+              style={{
+                width: 46,
+                height: 46,
+                borderRadius: 12,
+                background: color,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}
+            >
+              <ClassDocIcon color={color} />
+            </div>
+
+            {/* Text */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div
+                style={{
+                  fontSize: 15,
+                  fontWeight: 700,
+                  color: T.text,
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {cls.name}
+              </div>
+              <div style={{ fontSize: 12, color: T.textSec, marginTop: 2 }}>
+                {cls.teacher} · {t[cls.subjectKey]}
+              </div>
+            </div>
+
+            {/* Selected checkmark */}
+            {isSelected && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" fill={T.primary} />
+                <path d="M7 12L10.5 15.5L17 8.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </div>
+        );
+      })}
+    </div>
+    <div style={{ height: 20 }} />
+  </div>
+);
+
+const AddClassScreen = ({ t }) => (
+  <div className="scrollable" style={{ flex: 1, background: T.bg, display: "flex", flexDirection: "column", alignItems: "center" }}>
+    {/* QR icon header */}
+    <div style={{ marginTop: 32, marginBottom: 16, textAlign: "center" }}>
+      <div
+        style={{
+          width: 72,
+          height: 72,
+          borderRadius: 20,
+          background: "#EDE9FE",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "0 auto 14px",
+        }}
+      >
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="2" width="8" height="8" rx="1.5" stroke="#7C3AED" strokeWidth="1.8" />
+          <rect x="14" y="2" width="8" height="8" rx="1.5" stroke="#7C3AED" strokeWidth="1.8" />
+          <rect x="2" y="14" width="8" height="8" rx="1.5" stroke="#7C3AED" strokeWidth="1.8" />
+          <rect x="4.5" y="4.5" width="3" height="3" fill="#7C3AED" />
+          <rect x="16.5" y="4.5" width="3" height="3" fill="#7C3AED" />
+          <rect x="4.5" y="16.5" width="3" height="3" fill="#7C3AED" />
+          <path d="M14 14H16M18 14H22M14 16V18M14 20V22M16 22H18M20 20H22M20 22H22" stroke="#7C3AED" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      </div>
+      <div style={{ fontSize: 17, fontWeight: 700, color: T.text }}>{t.scanQR}</div>
+    </div>
+
+    {/* Camera viewfinder */}
+    <div style={{ position: "relative", width: "80%", maxWidth: 300, aspectRatio: "1 / 1", margin: "0 auto" }}>
+      {/* Black background */}
+      <div style={{ width: "100%", height: "100%", background: "#000", borderRadius: 4 }} />
+      {/* Corner brackets */}
+      {[
+        { top: -3, left: -3, borderTop: `3px solid #A5B4FC`, borderLeft: `3px solid #A5B4FC` },
+        { top: -3, right: -3, borderTop: `3px solid #A5B4FC`, borderRight: `3px solid #A5B4FC` },
+        { bottom: -3, left: -3, borderBottom: `3px solid #A5B4FC`, borderLeft: `3px solid #A5B4FC` },
+        { bottom: -3, right: -3, borderBottom: `3px solid #A5B4FC`, borderRight: `3px solid #A5B4FC` },
+      ].map((style, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            width: 24,
+            height: 24,
+            ...style,
+          }}
+        />
+      ))}
+    </div>
+
+    {/* Divider */}
+    <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "20px 0", width: "80%" }}>
+      <div style={{ flex: 1, height: 1, background: T.border, borderStyle: "dashed" }} />
+      <span style={{ fontSize: 13, color: T.textSec }}>or</span>
+      <div style={{ flex: 1, height: 1, background: T.border, borderStyle: "dashed" }} />
+    </div>
+
+    {/* Upload button */}
+    <button
+      style={{
+        padding: "12px 32px",
+        borderRadius: 24,
+        border: `1.5px solid ${T.primary}`,
+        background: "transparent",
+        color: T.primary,
+        fontSize: 14,
+        fontWeight: 600,
+        cursor: "pointer",
+      }}
+    >
+      {t.uploadQR}
+    </button>
+  </div>
+);
+
+const ClassJoinedScreen = ({ t, className }) => (
+  <div
+    style={{
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      background: T.bg,
+      gap: 12,
+      padding: "0 40px",
+      textAlign: "center",
+    }}
+  >
+    {/* Green doc icon */}
+    <div
+      style={{
+        width: 72,
+        height: 72,
+        borderRadius: 20,
+        background: "#10B981",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 8,
+      }}
+    >
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="2" width="12" height="18" rx="2" fill="white" fillOpacity="0.9" />
+        <path d="M7 8H13M7 11H13M7 14H10" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M15 2L19 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+        {/* pencil */}
+        <path d="M17 13L20 10L22 12L19 15Z" fill="white" />
+        <path d="M17 13L16 16L19 15Z" fill="white" />
+      </svg>
+    </div>
+    <div style={{ fontSize: 22, fontWeight: 800, color: T.text }}>{t.classJoined}</div>
+    <div style={{ fontSize: 14, color: T.textSec, lineHeight: 1.6 }}>
+      {t.classJoinedDesc}
+      <br />
+      <span style={{ fontWeight: 700, color: T.text }}>{className}</span>
+    </div>
+    <div style={{ fontSize: 13, color: T.textTer, marginTop: 12 }}>{t.redirecting}</div>
+  </div>
+);
+
+const GradingListScreen = ({ onNav, onSwitchClass, selectedClass, t }) => {
   const [filter, setFilter] = useState("all");
 
   const assignments = [
@@ -304,10 +587,11 @@ const GradingListScreen = ({ onNav, t }) => {
           <div>
             <div style={{ fontSize: 11, color: T.textSec }}>{t.currentClass}</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: T.text }}>
-              Tanaka先生 • Class A
+              {selectedClass ? `${selectedClass.teacher} • ${selectedClass.name} · ${t[selectedClass.subjectKey]}` : "Tanaka先生 • Class A"}
             </div>
           </div>
           <button
+            onClick={onSwitchClass}
             style={{
               padding: "8px 14px",
               borderRadius: 8,
@@ -922,10 +1206,12 @@ const GradingResultScreen = ({ t, doc }) => {
 
 // ── MAIN APP ──
 export default function App() {
-  const [screen, setScreen] = useState("grading");
+  const [screen, setScreen] = useState("class_selection");
   const [history, setHistory] = useState([]);
   const [lang, setLang] = useState("en");
   const [selectedDoc, setSelectedDoc] = useState(IMG_DOC);
+  const [selectedClass, setSelectedClass] = useState(CLASSES[0]);
+  const [joinedClassName, setJoinedClassName] = useState("");
 
   const t = i18n[lang];
   const isJa = lang === "ja";
@@ -941,10 +1227,32 @@ export default function App() {
     setScreen(prev);
   };
 
+  const handleSelectClass = (cls) => {
+    setSelectedClass(cls);
+    setHistory(["class_selection"]);
+    setScreen("grading");
+  };
+
+  const handleAddClass = () => push("add_class");
+
+  // Simulate joining a class from the QR screen
+  const handleClassJoined = (cls) => {
+    setJoinedClassName(cls.name);
+    push("class_joined");
+    setTimeout(() => {
+      setSelectedClass(cls);
+      setHistory([]);
+      setScreen("grading");
+    }, 2000);
+  };
+
   const titles = {
-    grading:        t.testsAssignments,
-    grading_test:   t.assignmentDetails,
-    grading_result: t.results,
+    class_selection: t.myClasses,
+    add_class:       t.addClass,
+    class_joined:    "",
+    grading:         t.testsAssignments,
+    grading_test:    t.assignmentDetails,
+    grading_result:  t.results,
   };
 
   return (
@@ -964,14 +1272,50 @@ export default function App() {
     >
       <NavBar
         title={titles[screen] || ""}
-        onBack={screen !== "grading" ? pop : null}
+        onBack={screen !== "grading" && screen !== "class_selection" ? pop : null}
         lang={lang}
         onLangToggle={() => setLang((l) => (l === "en" ? "ja" : "en"))}
+        rightIcon={screen === "add_class" ? (
+          <button
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px 10px",
+              display: "flex",
+              alignItems: "center",
+              color: T.textSec,
+            }}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="8" cy="15" r="4" stroke={T.textSec} strokeWidth="1.8" />
+              <path d="M12 11L18 5" stroke={T.textSec} strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M17 4L20 7" stroke={T.textSec} strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M15 9L18 6" stroke={T.textSec} strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          </button>
+        ) : null}
       />
 
+      {screen === "class_selection" && (
+        <ClassSelectionScreen
+          t={t}
+          selectedClassId={selectedClass?.id}
+          onSelectClass={handleSelectClass}
+          onAddClass={handleAddClass}
+        />
+      )}
+      {screen === "add_class" && (
+        <AddClassScreen t={t} onClassJoined={handleClassJoined} />
+      )}
+      {screen === "class_joined" && (
+        <ClassJoinedScreen t={t} className={joinedClassName} />
+      )}
       {screen === "grading" && (
         <GradingListScreen
           onNav={(s, doc) => { setSelectedDoc(doc ?? IMG_DOC); push(s); }}
+          onSwitchClass={() => push("class_selection")}
+          selectedClass={selectedClass}
           t={t}
         />
       )}
