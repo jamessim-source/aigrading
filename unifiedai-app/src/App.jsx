@@ -93,6 +93,7 @@ const i18n = {
     aiScore: "AI Analysis Score",
     aiMarked: "AI Marked",
     questionBreakdown: "Question Breakdown",
+    reviewBanner: "Review your work and score each question honestly. Your teacher will review your self-assessment.",
     reviewAIMarking: "Review AI marking?",
     reviewDesc: "You can override scores before submitting to your teacher.",
     submitToTeacher: "Submit to Teacher →",
@@ -150,6 +151,7 @@ const i18n = {
     aiScore: "AI採点スコア",
     aiMarked: "AI採点済み",
     questionBreakdown: "問題別内訳",
+    reviewBanner: "各問題を正直に採点してください。先生があなたの自己採点を確認します。",
     reviewAIMarking: "AI採点を確認しますか？",
     reviewDesc: "先生に提出する前にスコアを修正できます。",
     submitToTeacher: "先生に提出 →",
@@ -884,6 +886,89 @@ const GradingTestScreen = ({ t, doc }) => {
     return (
       <div className="scrollable" style={{ flex: 1, background: T.bg }}>
         <div style={{ padding: "12px 16px" }}>
+          {/* Instruction banner */}
+          <div
+            style={{
+              background: "#FFFBEB",
+              border: "1px solid #FCD34D",
+              borderRadius: 10,
+              padding: "10px 12px",
+              fontSize: 12,
+              color: "#92400E",
+              lineHeight: 1.6,
+              marginBottom: 10,
+            }}
+          >
+            {t.reviewBanner}
+          </div>
+
+          {/* Assignment image — camera snapshot */}
+          <div style={{ marginBottom: 12 }}>
+            {/* Page navigator */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: 6,
+                padding: "0 2px",
+              }}
+            >
+              <span style={{ fontSize: 12, color: T.textSec }}>Page 1 of 1</span>
+              <div style={{ display: "flex", gap: 4 }}>
+                {["‹", "›"].map((arrow, i) => (
+                  <button
+                    key={i}
+                    disabled
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: 6,
+                      border: `1px solid ${T.border}`,
+                      background: T.card,
+                      color: T.textSec,
+                      fontSize: 16,
+                      cursor: "default",
+                      opacity: 0.4,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {arrow}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Camera snapshot frame */}
+            <div
+              style={{
+                position: "relative",
+                borderRadius: 4,
+                overflow: "hidden",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.25), 0 1px 4px rgba(0,0,0,0.15)",
+                transform: "rotate(-0.6deg)",
+              }}
+            >
+              <img
+                src="/assignment-sample.png"
+                alt="Assignment"
+                style={{ width: "100%", display: "block" }}
+              />
+              {/* Lens vignette overlay */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.18) 100%)",
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
+          </div>
+
           {/* Score card */}
           <Card
             style={{
