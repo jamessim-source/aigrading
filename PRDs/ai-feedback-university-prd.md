@@ -21,7 +21,8 @@
 ### Change log
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
-| 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents + today's AI direction discussion; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
+| 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
+| 2026-09-17 | v0.2 | James Sim (drafted with Claude) | Added the **Weekly AI Direction Discussion of 17 Sep** (Gemini notes — the session that decides AI Feedback's place in the learner app: error/LO type with its own To-do icon, start/end-date layer over the LO, January V1 excludes AI Feedback) and the **11 Sep AI Feedback trials grooming** (Oct preprod trial, rubric-overwrite defect, rubric weights removed). Added the blocking scoring contradiction (U15), six new C3 behaviour rows, U15–U19, and the PC-first vs mobile-first design conflict | Draft | — |
 
 ---
 
@@ -114,9 +115,64 @@ What is true and can be said today: Manabie has AI Feedback shipping as a studen
 
 ## 1.5 Confirmed — today's AI direction discussion and adjacent product meetings (17 Sep 2026)
 
-> **Naming note:** the recurring Circleback meeting titled **"Weekly AI Direction Discussion"** has no instance recorded for today — its last recorded instances are **2 Jul 2026** and **18 Jun 2026**. Today's AI direction conversation is the **Takuya Homma / James Sim 1:1, 17 Sep 2026** (Circleback `zZo5BHAbqxVjjutrqFeRy`). Facts below are attributed accordingly. If the PM meant a different session, it is not in Circleback as of this draft.
+> **Where the notes live.** The **Weekly AI Direction Discussion of 17 Sep 2026, 10:00 GMT+8** ran in Google Meet and was minuted by **Gemini, not Circleback** — [Notes by Gemini](https://docs.google.com/document/d/1pzUZxU-vZbiNQGfSRBRvu-cqq2uwoweHm9hhTaIO9Is/edit) (quick notes + full notes + full transcript). Attendees: **James Sim, Bunsuke Itamura, Koki Misawa, Trieu Le Hong. Takuya Homma was invited but did not attend** (struck through on the invite). A separate **Takuya / James 1:1** ran the same day at 15:00 GMT+8 and *was* captured by Circleback (`zZo5BHAbqxVjjutrqFeRy`); it covers university GTM rather than app architecture. Both are recorded below and cited separately.
 
-**Takuya / James, 17 Sep 2026 — AI feedback direction:**
+### 1.5.1 Weekly AI Direction Discussion, 17 Sep 2026 — **this is the session that decides how AI Feedback sits in the learner app**
+
+> Source: **[S8a]** Notes by Gemini, as above. Quotes are from the verbatim transcript.
+
+**The unifying decision.** The meeting was an app-redesign review of Koki Misawa's demo, whose stated purpose was merging LMS, AI Tutor, AI Feedback and the J-Prep/study-plan app into **one application navigation**: an **assignment tab**, a **to-do tab** (based on Takuya's B2C app 1.0), and a **course tab**. Koki: *"how we can merge the all the experience into one app… as well as how we can beat the Monoxa."*
+
+**AI Feedback is an error/LO type in the learner app, and it needs its own icon.** Koki: *"we need to divide the error type further like PDF errors, video errors, quiz errors, you know, AI feedback, you know, AI flash card… so that we can visually see on the to-do list what student needs to be done."* This is the concrete form of the "everything under the LO/error structure" position from 2 Jul.
+
+**The load-bearing problem raised, and the decision taken — how AI Feedback reaches the student's To-do.**
+- Koki stated the problem: *"AI feedback like whenever teacher create should move into [to-do] but… all of things are preset, right? In this case it can be weird — you have all the AI feedback as a to-do, it seems weird."* And more precisely: *"if you do that you have whole semester AI feedback here when teacher publish before the semester, then you have like let's say 20 set of the AI feedback it comes here, it gets too messy. To-do list is something that you want to define what you do right now."*
+- Koki also noted the gap: *"we don't have like due functionality on errors."*
+- James proposed the mechanism: *"the due date for this specific to-do page should probably be kind of like our customization over the LO. So we don't use the whatever existing LO functions. We have to build on top of that for AI feedback."* And: *"we'll still have the due date function on the AI feedback, it's just only used for this to-do page."*
+- Landed on **start + end dates**: James — *"if it's a start date then it will show here based on when it already has passed the start date."* Koki — *"start date is something it shows up on to-do"*, plus an **overdue state**: *"if over should have red color here. Overdue design."*
+- **Recorded as an aligned decision in the Gemini notes:** *"Integration of Start and Due Dates for To-Do Populating — the team aligned on utilizing start and due date parameters for AI feedback items to control when tasks populate the student's to-do list."*
+
+**Why the To-do matters more than it looks.** Koki: *"in Japan the most important thing for kids is get them follow the to-dos… whenever kids maintain their schedule they can get good grades… So KPI is pretty simple. You get them follow the to-dos."* And on the teacher's changed role: *"teacher work is set up the curriculum and then get the student to follow that's it"* — question-answering and correct/incorrect marking *"already replaced by AI"*.
+
+**The due-date design problem that is explicitly unsolved.** Koki: *"due date is different per person… you come on Monday and [another student] comes on Tuesday, then your due date is Monday, theirs is Tuesday"*, and per-class variation for group teaching. He was blunt that this has failed before: *"previously we have this idea, study plan is meant to be built for that, and we fail… we couldn't design well, it's not easy."* Provisional lean: *"it's easier that teacher can just set it on the spot for targeted student."* James: *"I think simpler the better. Yeah, even though it's more work."* Teacher's own view of due dates to come from the course dashboard / study plan, not a new screen.
+
+**Other decisions aligned in the same session:**
+- **V1 launch in January covers PDF-based practice functionality only.** AI Feedback is *not* in that V1 scope.
+- **Self-snap course** for ad-hoc snaps, with subject filters from a predefined subject master list plus AI auto-mapping — chosen over forcing students to pick a course (Bunsuke objected to the added friction; Koki wanted categorisation so a maths teacher's dashboard isn't a mixed-subject feed).
+- **This initiative is UI/UX information-hierarchy reorganisation, not backend change.** Bunsuke, on the study-stats page: *"I already got feedback from many clients that they never use this because they don't care about the amount of time they spend."*
+- Duolingo-style cards and logo across all age groups; mastery **crowns** (silver >80%, gold 100%) with dynamic progress-bar colour.
+- Notifications move to the top/home page; study record reorganised into filterable course stats plus one unified activity timeline, with hints, solutions and practice questions given distinct icons.
+- Remote schools will not use TOC; their AI activities default to the timeline view.
+- Back-office course names (e.g. "Middle School Grade 1 Mathematics") to be distinct from student-facing names (e.g. "Mathematics").
+
+**PC/web requirement stated for AI Feedback specifically.** Koki: *"most important thing is you need to be able to upload PDF and such kind of stuff for AI feedback, because most of the university student they use PC, they never use smartphone to upload… most of the AI feedback should come from PDF document."* Plus web snap via screenshot or local-file upload (attributed to Takuya). **Note this cuts against the existing V1.1 PRD's mobile-first framing — see C9.**
+
+**Action items from this meeting:**
+| Owner | Action |
+|---|---|
+| Koki Misawa | **Create demo of the start/due-date functionality**, showing how the parameters affect the student to-do list |
+| Bunsuke Itamura | **Propose LO structure** — refactor LO types into distinct categories (dedicated PDF and video LO types) |
+| Koki Misawa | Update self-snap course structure + subject filtering; finalise back-office mock (EOD); push changes to GitHub |
+| Trieu Le Hong | Push the team to finalise domain setup (company business risk) |
+| The group | Reorganise study record; build subject mapping system; implement flash cards with AI-generated practice questions |
+| JPE | Convert design to Duolingo style |
+
+### 1.5.2 AI Feedback trials grooming, 11 Sep 2026 — current build state
+
+> Source: **[S15]** [Notes by Gemini](https://docs.google.com/document/d/1G_fvpln_a_oLdxXyD6XBRIBKTIxZViwEvuP1DRD76HQ/edit). Attendees: James Sim, John Paoletto, Thi Thu Giang Nguyen, Cuong Hoang.
+
+- **The AI Feedback trial is confirmed to proceed in the pre-release (preprod) environment in October** — bug fixes locked down ahead of a **trial starting 1 October**, with the **release targeted 5 October**.
+- **Open defect — teacher rubrics are being destroyed.** Teacher-created rubrics are passed through the **rubric agent** instead of going straight to the **feedback agent**; the agent restructures categories and wording into its own UI format, **erasing the teacher's original work**. Agreed fix: teacher-generated rubrics bypass the rubric agent entirely. *This is the single most important open item for anything claiming a "rubric lifecycle" differentiator.*
+- **Rubric weights are being removed because AI Feedback does not use scoring.** *(See the contradiction flagged in C2 — Kindai's rubric is a scored 0–5 across six dimensions.)*
+- Open defect: AI-generated feedback **number bubbles appear out of sequence, overlapped, or mid-word** on small PDFs; referenced words should be fully underlined and numbers sequential.
+- Feedback-generation validation errors involve LangSmith technical/logic issues that **could take up to a month** to resolve.
+- Drag-and-drop UI latency causing jumping — fix is optimistic rendering. The non-functional "current questions" bar to be removed.
+- Formatting + rubric display fixes estimated at **1 developer day + 0.5 QA days**.
+- **AI Feedback dashboard responsibilities moved back to the AI Grading team** (James's decision).
+- Trial content delivery is limited to **one page of content from Takuya**, to be delivered by sales/PS. Resource concern raised by Cuong for the October release involving Kindai.
+- Image quality issue: artifact-design compression degrades images below RAG usability; resolution is to embed via plain HTML without compression.
+
+### 1.5.3 Takuya / James 1:1, 17 Sep 2026 — university GTM and product direction
 - "AI feedback is getting traction across multiple universities; the priority is building a **standardized, versatile workflow that can serve different use cases without rebuilding from scratch each time**." (meeting summary; Takuya in transcript: *"we want to make it as versatile as possible… as general, but like specific about this AI feedback workflow as possible"*)
 - Kindai has **two separate tracks**: a small social studies pilot targeting **mid-October** start, and the correspondence course (~**9,000** students) **focused on grading**; the correspondence meeting is **18 Sep**.
 - On **the learner app / unified app**: James — *"that topic came up when discussing the unified app… putting everything underneath should be built purposefully for just that use case, the simple block. Everything else is just a front end layer of UI/UX."* Takuya asks whether grading/feedback will be part of the unified app experience; James: *"grading and feedback should be part of it."*
@@ -165,6 +221,11 @@ What is true and can be said today: Manabie has AI Feedback shipping as a studen
 | U12 | Kindai correspondence wants grading, not feedback | Takuya/James 17 Sep | James: *"so far what you shared is mostly gearing towards grading"* — an inference from translated meeting notes, with the clarifying meeting on 18 Sep. | James Sim |
 | U13 | Artifacts [S6] and [S7] are Manabie-authored | Artifact tool | Returned marked "created outside your organization". | James Sim |
 | U14 | Uploaded file `overall_ranking_en.html` content | User upload | **The file is a Slack application shell with no recoverable content** — text extraction yields only the word "Slack". Nothing from it has been used. Re-share as a Slack permalink or export. | James Sim |
+| U15 | AI Feedback does not use scoring | [S15] 11 Sep | Rubric weights were removed on this basis, but Kindai's rubric is a scored 0–5 across six dimensions [S1 §3] and both [S3] and the AI Grading convergence assume scoring. **See C2 — this is a blocking contradiction, not a detail.** | James Sim + John Paoletto |
+| U16 | Start/end-date layer over the LO is the agreed mechanism for To-do population | [S8a] 17 Sep | Aligned in the meeting as a direction; the demo that makes it concrete is an open action on Koki, and per-student/per-class due dates are explicitly unsolved. | Koki Misawa → James Sim |
+| U17 | AI Feedback dashboard sits with the AI Grading team | [S15] 11 Sep | James's decision, recorded in grooming notes. Needs confirming against the Kindai pilot's dashboard need and against the 17 Sep "consolidated group/individual dashboard" position. | James Sim |
+| U18 | Rubric-overwrite fix (teacher rubrics bypass the rubric agent) is implemented | [S15] 11 Sep | Agreed in the meeting; no ticket status confirmed as done in any source read. Blocks the "rubric lifecycle" differentiator. | Cuong Hoang |
+| U19 | January V1 excludes AI Feedback | [S8a] 17 Sep | Aligned that V1 is "PDF practice only" — but the AI Feedback preprod trial starts 1 Oct and Kindai goes live 6 Nov. Confirm these are three separate vehicles, not a conflict. | James Sim |
 
 ---
 
@@ -308,10 +369,11 @@ Section 1 is what we were told. B5 is what the PM decides actually proves the pr
 One AI Feedback engine — rubric in, submission in, criterion-level assessment plus instructor-voiced draft feedback out — consumed by three surfaces:
 1. **AI Grading feedback** — feedback attached to an AI-graded submission.
 2. **AI Marking feedback** — feedback attached to a photo/paper-based marked submission.
-3. **A Feedback LO in the learner app** — feedback as a learning-object type inside the existing LO submission flow, so it appears in the student's To-do and returns through the same channel as everything else.
+3. **A Feedback LO in the learner app** — feedback as a distinct **error/LO type** inside the existing LO submission flow, carrying **its own icon** on the To-do list alongside PDF, video, quiz and AI flash-card types, and populating the To-do via **start and end dates layered over the LO** (the aligned decision of 17 Sep).
 
 **Open at the level of the summary itself:**
-- Today's direction discussion says *"grading and feedback should be part of"* the unified app experience, and 2 Jul set Q3 = merge AI Grading + AI Feedback into one flow, Q4 = plug into the LMS LO submission flow. **Is this PRD the Q3 merge, the Q4 LO integration, or both?** They are different releases with different risk.
+- The 17 Sep AI Direction Discussion says *"grading and feedback should be part of"* the unified app experience, and 2 Jul set Q3 = merge AI Grading + AI Feedback into one flow, Q4 = plug into the LMS LO submission flow. **Is this PRD the Q3 merge, the Q4 LO integration, or both?** They are different releases with different risk.
+- **The January V1 does not include AI Feedback.** The 17 Sep session aligned that V1 in January is *PDF-based practice functionality only*. Meanwhile the AI Feedback trial runs in preprod from **1 October** with a **5 October** release [S15], and Kindai Applied Sociology expects live use from **6 November**. **Three different timelines are in play and this PRD must say which one it serves.**
 - Today James also noted the current prototype returns feedback straight to the student with no teacher in the loop and *"I don't think it's meant to be this way"*. **Is teacher-in-the-loop mandatory, optional per assignment, or per tenant?** This single answer changes C3, C4, C6 and A3 simultaneously.
 - The existing **AI Feedback V1.1** PRD (`PRDs/ai feedback.pdf`) lists **teacher dashboard** and **iterative feedback / re-upload** as *out of scope*. Kindai Applied Sociology needs a teacher dashboard by late October (Takuya/James, 17 Sep) and its whole loop is submit → feedback → revise → resubmit [S1 §2.1]. **This PRD either supersedes those exclusions or it does not — say which, explicitly.**
 
@@ -333,6 +395,13 @@ One AI Feedback engine — rubric in, submission in, criterion-level assessment 
 - **AI Red-Pen Grading for university submissions** — James, 17 Sep: *"not for Kindai… most of the submissions gonna be PDF"*.
 - **Auto-return without instructor confirmation** — [S4]/[S5] both state pilots assume instructor confirmation of every item, with auto-return a separate workflow configured after administrators confirm responsibility.
 - **DOCX** — out in V1.1; [S3 ch.9] assumes Word is accepted. **Contradiction — resolve.**
+
+**A third contradiction, and it is the most consequential: does AI Feedback score or not?**
+- On 11 Sep the team **removed rubric weights on the grounds that "AI feedback does not use scoring"** [S15].
+- Kindai Applied Sociology's rubric is **explicitly scored — six dimensions on a 0–5 scale** [S1 §3], and its whole institutional case rests on rubric-based assessment records.
+- [S3]'s entire design — trial grading, QWK agreement, distribution correction, criterion-level scores on the approval card — **presupposes scoring**.
+- The convergence with AI Grading presupposes scoring.
+**If AI Feedback genuinely does not score, then it cannot serve Kindai Applied Sociology as specified, cannot be the engine behind AI grading feedback, and most of [S3] does not apply. If it does score, the 11 Sep weight removal needs revisiting. This must be settled before anything else in Part C.**
 
 **Phasing & end-state — the specific trap to avoid.** [S3]'s flow only works as a whole: inferred rubric without trial grading gives the instructor no reason to trust it; trial grading without correction-diff learning means it never improves; an approval queue without confidence routing is just a list. **A phase that ships two of these three is the "2 of 3 settings = nothing" case.** If phasing is chosen, describe the end state and state which phase is independently useful.
 
@@ -367,6 +436,12 @@ The table below is **the list of cells that must not be empty**, not a specifica
 | Attention-audit item injected and **not** detected | *UNDEFINED* | [S3 ch.6] proposes 1–2% injection, ≥80% detection, auto-exclusion of detected cases. Does an undetected injected item ever reach a student? **Answer this one before anything else in this table** |
 | Model is replaced | *UNDEFINED* | [S3 ch.6] proposes model-agnostic schema + re-validation via the same trial-grading procedure |
 | Pre-submission self-check: student keeps submitting until clean | *UNDEFINED* | Is there a cap? [S6] shows 36% of resubmissions were avoidable — what stops gaming? |
+| **Teacher publishes a whole semester of AI Feedback items at once** | *UNDEFINED — mechanism agreed 17 Sep, semantics not* | Aligned: start + end dates layered over the LO, used **only** by the To-do page. Undefined: what a blank start date does; whether the item is visible in the course tab before its start date; whether end date means hidden, overdue, or locked |
+| **AI Feedback item passes its start date** | *UNDEFINED* | Appears on To-do. Does it notify? Does it order against other error types? |
+| **AI Feedback item passes its due date without submission** | *UNDEFINED* | Koki: overdue shows in red. Still submittable? Still gradeable? |
+| **Due date differs per student or per class** | *UNDEFINED — and this has failed before* | Koki: *"study plan is meant to be built for that, and we fail."* Provisional lean is teacher sets on the spot for targeted students. **Do not let this be inferred by engineering** |
+| **Teacher-created rubric is saved** | **Currently broken** — routed through the rubric agent, which restructures it and erases the teacher's work [S15] | Agreed fix: teacher rubrics bypass the rubric agent and go straight to the feedback agent. Needs an AC |
+| **Student-generated rubric exists alongside a teacher rubric** | *UNDEFINED* | This collision is what produced the overwrite defect |
 
 **Mandatory edge-case checklist — none of these can be ticked yet:**
 - [ ] Empty / no-data / first-use state
@@ -415,7 +490,9 @@ Cannot be written before C2 and C3. QA builds the test plan directly from this s
 This section cannot remain blank. Known integration surfaces:
 
 - **Systems involved:** Manabie LMS (LO submission flow, book/topic/LO, study plan); learner app (To-do, submission, result display); Back Office (rubric creation, approval queue); AI Grading pipeline; AI Marking pipeline + OCR; university LMS — **Kindai Correspondence runs a fully in-house LMS (KULeD) requiring API ingest and write-back with no manual file movement** [S7]; Canvas / Moodle / Manaba / Google Classroom via **LTI 1.3** as proposed in [S3 ch.9]; Onigroup webview + asymmetric JWT per the existing SOW (`PRDs/ai grading.pdf`).
-- **Learner app integration points** — the three named in the AI Marking Weekly discussion (Trieu Le Hong / Ming Yew Lee) and reinforced by today's direction discussion: **(1)** teacher/student registration and class association, **(2)** how the student accesses the assignment on the learner app, **(3)** how the returned result and feedback are displayed back to the student. *All three are undefined for this scope.* Trieu's position on ownership: the LMS team owns the API and everything behind it; consumers integrate at the API level only.
+- **Learner app integration points** — the three named in the AI Marking Weekly discussion (Trieu Le Hong / Ming Yew Lee): **(1)** teacher/student registration and class association, **(2)** how the student accesses the assignment on the learner app, **(3)** how the returned result and feedback are displayed back to the student. *All three are undefined for this scope.* Trieu's position on ownership: the LMS team owns the API and everything behind it; consumers integrate at the API level only.
+- **Learner app — what the 17 Sep AI Direction Discussion actually settled and what it left open.** Settled: AI Feedback is a distinct **error/LO type** with its own To-do icon, and the To-do page gets a **custom due-date layer built on top of existing LO functions** (start + end dates, used only by the To-do page) rather than reusing LO due-date behaviour. Open and needing a spec: the data model for that layer, whether it lives with the LO or beside it, how it interacts with study plan, and how per-student/per-class variation is expressed. **Bunsuke owes a proposal on LO type refactoring (dedicated PDF and video LO types); Koki owes a demo of start/due-date behaviour.** Both are inputs this PRD depends on.
+- **Web/PC path.** University students submit from PC, not phone [S8a], which means PDF/file upload on web is a first-class path for AI Feedback, not a fallback.
 - **Data flow:** *UNDEFINED*
 - **Auth / token behavior:** *UNDEFINED* for the university case. Asymmetric JWT exists for the Onigroup webview; SSO is a Tier-1 assumption in [S3].
 - **State fields:** submission_status, assessment_status, approval_status, rubric_version — *none defined*
@@ -436,7 +513,8 @@ Flag every one of these to the Tech Lead **before** commitment:
 
 - [ ] All user-facing strings have confirmed translations — **not started**. Feedback itself is generated in Japanese (400–600 JP characters for Kindai [S1]); AI Tutor Product Catchup (12 May) required both Japanese and English base prompts.
 - [ ] JP / long-text overflow checked — **not checked**. 400–600 Japanese characters of feedback plus quoted passages plus criterion scores on a mobile-first card is a real overflow risk; V1.1 is explicitly mobile-first.
-- [ ] Design exists and is linked for every flow in C4 — **no designs exist for this scope.**
+- [ ] Design exists and is linked for every flow in C4 — **no designs exist for this scope.** Koki's redesign demo and back-office mock (17 Sep) are the nearest thing; they are a demo, not a spec, and the Duolingo-style visual direction is a separate track owned by JPE.
+- **Mobile-first vs PC.** V1.1 is built mobile-first on desktop parity. The 17 Sep session states the opposite for this segment: *"most of the university student they use PC, they never use smartphone to upload… most of the AI feedback should come from PDF document."* **Resolve: is the university AI Feedback flow PC-first?** This changes the design brief, not just a breakpoint.
 - Terminology to align JP↔EN before strings are cut: 添削 (marking/red-pen) vs feedback vs grading; ルーブリック; 仮評価 (preliminary AI assessment).
 
 ---
@@ -449,10 +527,15 @@ Flag every one of these to the Tech Lead **before** commitment:
 - [ ] **Part A not authored** — no business goal, no primary metric, no applicability decision, no named Business owner.
 - [ ] **Part B not authored** — five candidate jobs, no chosen core job, no desired outcomes.
 - [ ] **Part C3 has no defined cells.** Every row is undefined and the edge-case checklist is empty. This alone blocks sprint planning.
-- [ ] **Two live contradictions in the source material must be resolved by the PM, not absorbed:**
-      (a) theses/seminar papers are excluded by [S3] and sold by [S4];
-      (b) DOCX is out of scope in V1.1 and assumed in [S3 ch.9].
-      A third, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
+- [ ] **Does AI Feedback score? (U15)** Rubric weights were removed on 11 Sep because "AI feedback does not use scoring", while Kindai's rubric is a scored 0–5 across six dimensions and both the design paper and the AI Grading convergence assume scoring. **This is the first question to answer — it determines whether the rest of Part C is even the right shape.**
+- [ ] **Four live contradictions in the source material must be resolved by the PM, not absorbed:**
+      (a) scoring — as above;
+      (b) theses/seminar papers are excluded by [S3] and sold by [S4];
+      (c) DOCX is out of scope in V1.1 and assumed in [S3 ch.9];
+      (d) mobile-first (V1.1) vs PC-first for university submissions ([S8a]).
+      A fifth, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
+- [ ] **Open defects that gate the October trial:** teacher rubrics destroyed by the rubric agent (U18), feedback number bubbles out of sequence on small PDFs, LangSmith validation errors with a possible one-month tail [S15].
+- [ ] **Dependencies owed by others before C3 and C7 can be completed:** Bunsuke's LO-type refactoring proposal and Koki's start/due-date demo, both actioned on 17 Sep.
 - [ ] **No acceptance criteria.**
 - [ ] **C7 blank while at least five integrations exist**, including a hard API-only requirement against a client-built LMS.
 - [ ] **No TL feasibility review**, no T-shirt size, no latency or cost budget.
@@ -461,11 +544,13 @@ Flag every one of these to the Tech Lead **before** commitment:
 - [ ] **Relationship to AI Feedback V1.1 undeclared** — does this supersede its out-of-scope list (teacher dashboard, iterative feedback/re-upload)?
 
 **Shortest path to Ready:**
-1. James Sim: confirm U1, U3, U12 at the 18 Sep correspondence meeting and from Hinano on the Applied Sociology budget outcome.
-2. James Sim: answer the single question in C1 — is teacher-in-the-loop mandatory? Then decide C2's "one feature or two".
-3. James Sim + Takuya Homma: fix A1's primary metric and A2's applicability, and take A3 to the Business owner.
-4. James Sim: fill C3 completely. Start with the attention-audit row and the "student sees nothing before approval" row — both are policy, and both cascade.
-5. Tech Lead: size the rubric-version batch re-run and the feedback-generation latency before any commitment.
+1. James Sim + John Paoletto: settle U15 — **does AI Feedback score?** Everything else in Part C is downstream of this.
+2. James Sim: confirm U1, U3, U12 at the 18 Sep correspondence meeting and from Hinano on the Applied Sociology budget outcome.
+3. James Sim: answer the single question in C1 — is teacher-in-the-loop mandatory? Then decide C2's "one feature or two", and which of the three timelines (Oct trial / Jan V1 / Nov Kindai) this PRD serves.
+4. James Sim + Takuya Homma: fix A1's primary metric and A2's applicability, and take A3 to the Business owner.
+5. James Sim: fill C3 completely. Start with the scoring row, the attention-audit row, the "student sees nothing before approval" row and the four new To-do/due-date rows — all are policy or cross-cutting, and all cascade.
+6. Koki Misawa / Bunsuke Itamura: deliver the start/due-date demo and the LO-type refactoring proposal, which C3 and C7 depend on.
+7. Tech Lead: size the rubric-version batch re-run and the feedback-generation latency before any commitment.
 
 ---
 
@@ -487,9 +572,9 @@ Flag every one of these to the Tech Lead **before** commitment:
 | Field | Value |
 |---|---|
 | **Feature flag name** | *Not created — **flag naming and the registry are Carlo's; ask, do not invent*** |
-| **Preproduction tenants** | *TBC* |
+| **Preproduction tenants** | *TBC — but note the **AI Feedback trial runs in pre-release (preprod) from 1 Oct 2026** [S15]; name the tenant* |
 | **Production tenants** | *TBC — note Kindai Applied Sociology needs production access before 6 Nov 2026* |
-| **Target release train** | *TBC. Adjacent fixed dates: AI marking UI preprod 21 Sep, prod 5 Oct; AI 添削 evaluation 12–16 Oct, client review from 19 Oct* |
+| **Target release train** | *TBC. Known dates: **AI Feedback trial starts 1 Oct, release targeted 5 Oct** [S15]; AI marking UI preprod 21 Sep, prod 5 Oct; AI 添削 evaluation 12–16 Oct, client review from 19 Oct; **unified-app V1 (PDF practice only) January** [S8a]* |
 | **Flag default at release** | *TBC — likely off pending client go-ahead, given U1* |
 
 ### E3 — Release note copy
@@ -522,7 +607,9 @@ Flag every one of these to the Tech Lead **before** commitment:
 | S5 | [Juku proposal deck — Manabie LMS × AI](https://docs.google.com/presentation/d/1tR4TP07-QMEkflpVng4dSA1CDGwbVCPuxK7N-f9_x1M/edit) | Sales collateral | Sep 2026 |
 | S6 | [Kindai University AI Report Check Trial](https://claude.ai/artifact/1VdG3L8ugcshJ9G9Fq8fkT) | Artifact — ownership unconfirmed (U13) | — |
 | S7 | [Kindai University AI Grading Partnership Brief](https://claude.ai/artifact/Hps1jD7gThUXSTu5ACUDZL) | Artifact — ownership unconfirmed (U13) | — |
-| S8 | Takuya / James 1:1, Circleback `zZo5BHAbqxVjjutrqFeRy` | Meeting — **today's AI direction discussion** | 17 Sep 2026 |
+| **S8a** | [**Weekly AI Direction Discussion — Notes by Gemini**](https://docs.google.com/document/d/1pzUZxU-vZbiNQGfSRBRvu-cqq2uwoweHm9hhTaIO9Is/edit) (Google Meet; quick notes + full notes + transcript) | Meeting — **the AI direction meeting; decides AI Feedback's place in the learner app** | 17 Sep 2026, 10:00 GMT+8 |
+| S8b | Takuya / James 1:1, Circleback `zZo5BHAbqxVjjutrqFeRy`; also [Notes by Gemini](https://docs.google.com/document/d/1hHnUhG7w-MJfa33LdfZocGV4PaI00EktgqqzbLVs6gM/edit) | Meeting — university GTM | 17 Sep 2026, 15:00 GMT+8 |
+| S15 | [AI Feedback trials grooming — Notes by Gemini](https://docs.google.com/document/d/1G_fvpln_a_oLdxXyD6XBRIBKTIxZViwEvuP1DRD76HQ/edit) | Meeting — current build state, October trial | 11 Sep 2026 |
 | S9 | Weekly AI Grading/Marking, `Mkezgcg7nclYlfkKwUau3` | Meeting | 17 Sep 2026 |
 | S10 | Content Weekly `KllJcZHljvv2nMfKhkmr0`; Weekly_Content `b4yz0CcxF6iKw6XU7cOjt` | Meetings | 17 Sep 2026 |
 | S11 | Weekly AI Direction Discussion, `H6gDlmhD6x4FeJo9QTQ5Q` / `Mp8WpM7zD470xd6Upo4lN` | Meetings | 2 Jul / 18 Jun 2026 |
