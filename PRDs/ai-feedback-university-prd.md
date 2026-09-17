@@ -22,6 +22,7 @@
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
 | 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
+| 2026-09-17 | v0.5 | James Sim (drafted with Claude) | **C9.1 added — device priority decided.** The university AI Feedback flow is **PC-first with mobile at genuine parity**, split by surface, with **weekly 300-character reflections as a named mobile exception** because submission rate is the trial's first-order risk. Reasoning rests on the artefact (Excel/PowerPoint/PDF exports are desktop artefacts), not on a claim about student device habits, plus the falsification check to run with Prof. Yasumoto. Readiness gate down to two source contradictions | Draft | — |
 | 2026-09-17 | v0.4 | James Sim (drafted with Claude) | **Architecture corrected on PM confirmation:** AI Grading and AI Marking are always about scoring; **AI Feedback is the feedback engine** they and the learner app call when additional feedback is warranted on top of a score. v0.2–v0.3 wrongly framed this as a blocking contradiction. **U15 closed.** The 11 Sep rubric-weight removal is correct and settled; [S3]'s scoring apparatus describes AI Grading, not AI Feedback; Kindai's 0–5 rubric supplies criteria, not an AI score. The open work moves to **C7 — the engine contract** (inputs, outputs, and the rule for when a scored submission also gets feedback) | Draft | — |
 | 2026-09-17 | v0.3 | James Sim (drafted with Claude) | Added **§1.6 (dashboard background)** and **C10 (Kindai dashboard showcase)** from the AI Feedback handover page, the handover prototype zip and the 17 Sep Slack thread. Records the manual-not-Back-Office decision, the encoded design rules, the four production preconditions, and the confirmed showcase subject (地域環境統計学 weekly submissions). Flags that the prototype's dataset is middle-school English/Science and does not fit the showcase. **U15 largely resolved** — the handover confirms AI Feedback does not score. Added U20–U25 and the tenant matrix to E2 | Draft | — |
 | 2026-09-17 | v0.2 | James Sim (drafted with Claude) | Added the **Weekly AI Direction Discussion of 17 Sep** (Gemini notes — the session that decides AI Feedback's place in the learner app: error/LO type with its own To-do icon, start/end-date layer over the LO, January V1 excludes AI Feedback) and the **11 Sep AI Feedback trials grooming** (Oct preprod trial, rubric-overwrite defect, rubric weights removed). Added the blocking scoring contradiction (U15), six new C3 behaviour rows, U15–U19, and the PC-first vs mobile-first design conflict | Draft | — |
@@ -595,9 +596,34 @@ Flag every one of these to the Tech Lead **before** commitment:
 ## C9. Localization & design
 
 - [ ] All user-facing strings have confirmed translations — **not started**. Feedback itself is generated in Japanese (400–600 JP characters for Kindai [S1]); AI Tutor Product Catchup (12 May) required both Japanese and English base prompts.
-- [ ] JP / long-text overflow checked — **not checked**. 400–600 Japanese characters of feedback plus quoted passages plus criterion scores on a mobile-first card is a real overflow risk; V1.1 is explicitly mobile-first.
+- [ ] JP / long-text overflow checked — **not checked**. 400–600 Japanese characters of feedback plus quoted passages on a narrow card is a real overflow risk. Per C9.1 this must now be checked at BOTH mobile and desktop widths.
 - [ ] Design exists and is linked for every flow in C4 — **no designs exist for this scope.** Koki's redesign demo and back-office mock (17 Sep) are the nearest thing; they are a demo, not a spec, and the Duolingo-style visual direction is a separate track owned by JPE.
-- **Mobile-first vs PC.** V1.1 is built mobile-first on desktop parity. The 17 Sep session states the opposite for this segment: *"most of the university student they use PC, they never use smartphone to upload… most of the AI feedback should come from PDF document."* **Resolve: is the university AI Feedback flow PC-first?** This changes the design brief, not just a breakpoint.
+### C9.1 Device priority for the university segment — **DECIDED**
+
+> *Decision requested by the PM on 17 Sep and recorded here. It is a Part C decision, so it stands as the PM's; the reasoning and the one assumption it rests on are set out below so it can be overturned on evidence rather than re-argued.*
+
+**Decision: the Kindai / university AI Feedback flow is PC-first, with mobile kept at genuine parity — not PC-only — and one named exception.**
+
+Per surface:
+
+| Surface | Priority | Why |
+|---|---|---|
+| **Faculty: rubric creation, distribution, review, dashboard** | **PC only, in practice** | Nobody works an approval queue at 30 s/item, or reads a consistency report, on a phone. Back Office is already desktop |
+| **Student: coursework submission** (Excel workbooks, PowerPoint deliverables, reports) | **PC-first** | The artefact is *authored* on a PC and the submission path is an **export step** — PowerPoint → PDF [S16]. The device that made the file is the device that should submit it |
+| **Student: reading feedback and deciding what to change** | **Both, genuinely** | Reading 400–600 JP characters of criterion-linked feedback is fine on a phone and often *better* — students read between classes. Acting on it is not |
+| **Student: revising and resubmitting** | **PC-first** | You cannot rework a regression chart or a slide deck on a phone |
+| **Student: weekly 300-character reflections** (the showcase use case) | **Mobile must work — this is the exception** | See below |
+| **AI Tutor snap (sold alongside)** | **Mobile-first, unchanged** | Photographing a problem is a phone action. Kindai buys both products; each should play to its device |
+
+**The evidence for PC-first is about the artefact, not the user.** Kindai's course is Excel exercises (AVERAGEIF, CORREL, T.TEST), analytical outputs and a final PowerPoint product proposal [S1 §2.1, §4]. [S16] confirms there is **no direct PowerPoint or document upload** — students export to PDF. James on 17 Sep: *"red pen is more for elementary, junior high… not for Kindai. Kindai is, I think most of the submissions gonna be PDF."* [S3 ch.9] lists PDF, Word and text as the accepted inputs. Every one of those is a desktop artefact. This holds for the Correspondence Division too — written reports, and a learner population [S8b] describes as *"past 22 years old… some of them can be in their 40s or 50s."*
+
+**The exception, and why it matters more than it looks.** The showcase use case Hinano confirmed is **weekly class reflections** — ~300 characters, every lecture, 150–300 students [S16 §2, S18]. That is a phone-shaped interaction: written in or just after class, short enough to thumb-type. **If a weekly reflection requires opening a laptop, submission rate falls — and submission rate is the trial's first-order risk**, since a formative-feedback product with no submissions has nothing to demonstrate and the dashboard has nothing to show. Mobile submission for short free-text is therefore not "parity", it is a requirement of the use case that C10 depends on.
+
+**What this actually costs.** Less than "PC-first" sounds. V1.1 already promises desktop *functional* parity; what it does not promise is desktop *design*. Koki named the real gap on 17 Sep — *"current PC version very weird because you have PC but you have like a smartphone style"* — a stretched phone layout, plus the missing web upload path (*"you can take a screenshot and then you put it here… or you can just upload your local file"*). So the work is: **(1)** file/PDF upload on web, **(2)** a desktop layout for the feedback-reading view that uses the width instead of centring a phone column, **(3)** keep the existing mobile submission path intact for short text and photos. It is not a rebuild and it does not invert the whole product — it inverts it **for this segment's document flow only**.
+
+**The assumption this rests on, and how to falsify it.** The strongest statement in the sources — Koki's *"most of the university student they use PC, they never use smartphone to upload"* — is an assertion, not a measurement, and "never" is doing a lot of work. The artefact argument above stands independently of it, which is why the decision holds either way. But the exception does depend on the opposite being true for short reflections. **Cheapest check: ask Prof. Yasumoto how last year's cohort submitted the lecture-10 and lecture-16 exercises, and whether minute papers today are paper, LMS or phone.** One question to Hinano, and it settles both halves. If it comes back "students do everything on their phones", the reflection exception widens; it does not overturn PC-first for the PowerPoint and Excel deliverables.
+
+**Consequences to carry into the rest of the PRD:** C4 needs a desktop journey for the faculty flows and the student coursework flow, and a mobile journey for reflections and feedback-reading. The JP long-string overflow check above must be run at **both** widths. And the design brief for this segment is no longer the V1.1 mobile-first brief — say so when commissioning it.
 - Terminology to align JP↔EN before strings are cut: 添削 (marking/red-pen) vs feedback vs grading; ルーブリック; 仮評価 (preliminary AI assessment).
 
 ## C10. Learning-log dashboard — the Kindai showcase
@@ -673,11 +699,11 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 - [ ] **Part B not authored** — five candidate jobs, no chosen core job, no desired outcomes.
 - [ ] **Part C3 has no defined cells.** Every row is undefined and the edge-case checklist is empty. This alone blocks sprint planning.
 - [ ] **Define the engine contract (C7).** Scoring vs feedback is settled — AI Grading and AI Marking score, AI Feedback is the engine they and the learner app call. What is *not* written is the contract: what the scoring products pass in, what comes back, and **the rule that decides when additional feedback is warranted** rather than firing on every scored submission.
-- [ ] **Three live contradictions in the source material must be resolved by the PM, not absorbed:**
+- [ ] **Two live contradictions in the source material must be resolved by the PM, not absorbed:**
       (a) theses/seminar papers are excluded by [S3] and sold by [S4];
-      (b) DOCX is out of scope in V1.1 and assumed in [S3 ch.9];
-      (c) mobile-first (V1.1) vs PC-first for university submissions ([S8a]).
-      A fourth, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
+      (b) DOCX is out of scope in V1.1 and assumed in [S3 ch.9] — **note C9.1 makes this more pressing, not less: a PC-first document flow raises the odds students arrive with .docx**.
+      ~~(c) mobile-first vs PC-first~~ — **closed by C9.1.**
+      A third, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
 - [ ] **Open defects that gate the October trial:** teacher rubrics destroyed by the rubric agent (U18), feedback number bubbles out of sequence on small PDFs, LangSmith validation errors with a possible one-month tail [S15].
 - [ ] **Dependencies owed by others before C3 and C7 can be completed:** Bunsuke's LO-type refactoring proposal and Koki's start/due-date demo, both actioned on 17 Sep.
 
