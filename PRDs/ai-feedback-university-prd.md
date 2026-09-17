@@ -22,6 +22,7 @@
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
 | 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
+| 2026-09-17 | v0.4 | James Sim (drafted with Claude) | **Architecture corrected on PM confirmation:** AI Grading and AI Marking are always about scoring; **AI Feedback is the feedback engine** they and the learner app call when additional feedback is warranted on top of a score. v0.2–v0.3 wrongly framed this as a blocking contradiction. **U15 closed.** The 11 Sep rubric-weight removal is correct and settled; [S3]'s scoring apparatus describes AI Grading, not AI Feedback; Kindai's 0–5 rubric supplies criteria, not an AI score. The open work moves to **C7 — the engine contract** (inputs, outputs, and the rule for when a scored submission also gets feedback) | Draft | — |
 | 2026-09-17 | v0.3 | James Sim (drafted with Claude) | Added **§1.6 (dashboard background)** and **C10 (Kindai dashboard showcase)** from the AI Feedback handover page, the handover prototype zip and the 17 Sep Slack thread. Records the manual-not-Back-Office decision, the encoded design rules, the four production preconditions, and the confirmed showcase subject (地域環境統計学 weekly submissions). Flags that the prototype's dataset is middle-school English/Science and does not fit the showcase. **U15 largely resolved** — the handover confirms AI Feedback does not score. Added U20–U25 and the tenant matrix to E2 | Draft | — |
 | 2026-09-17 | v0.2 | James Sim (drafted with Claude) | Added the **Weekly AI Direction Discussion of 17 Sep** (Gemini notes — the session that decides AI Feedback's place in the learner app: error/LO type with its own To-do icon, start/end-date layer over the LO, January V1 excludes AI Feedback) and the **11 Sep AI Feedback trials grooming** (Oct preprod trial, rubric-overwrite defect, rubric weights removed). Added the blocking scoring contradiction (U15), six new C3 behaviour rows, U15–U19, and the PC-first vs mobile-first design conflict | Draft | — |
 
@@ -265,7 +266,7 @@ A student whose improvements are *all* "copied + no dialogue" gets **one quiet l
 
 ### 1.6.7 Other facts from [S16] that correct or sharpen earlier sections
 
-- **AI Feedback does not score.** Stated three times in [S16]: *"It gives feedback only — no grading or scoring happens"*; *"feedback only, no grades or scores"*; *"Any scoring would stay with the teacher."* Agreed long-term direction (AI Q2 priorities alignment, 9 Jul): it **merges into AI Grading as the feedback-only mode** rather than staying standalone. **This resolves U15 — see the updated entry.**
+- **AI Feedback does not score.** Stated three times in [S16]: *"It gives feedback only — no grading or scoring happens"*; *"feedback only, no grades or scores"*; *"Any scoring would stay with the teacher."* Agreed long-term direction (AI Q2 priorities alignment, 9 Jul): it **merges into AI Grading as the feedback-only mode** rather than staying standalone. **U15 is closed by this plus the PM's confirmation (17 Sep) that scoring belongs to AI Grading and AI Marking — see C1/C2.**
 - **The rubric defect, in more detail than [S15] gave.** Today the teacher's saved rubric is *"only one of three inputs (with the student's request and what the AI thinks the document needs), gets rewritten into a handful of one-line criteria per submission, and silently falls back to a generic accuracy/completeness/clarity rubric if the rewrite fails."* Required: no rewriting, re-weighting, merging or dropping; no silent fallback where a saved rubric exists; AI-generated rubrics only when none is saved; the rubric actually used visible to the teacher or at least in logs/QA. Tracked as **PBT-3845** (which also covers **chat-prompt tuning — the AI Feedback chat prompt has most likely never been tuned**) and **PBT-3839**.
 - **Tenant enablement as of 4 Sep** — directly usable for Part E: `lmsv2` pre-prod **ON** (full set: AI Feedback, Assignment, Assignment Feedback, Class Assignment, ToC, Similar Question); `aidemo2` prod **ON** (current sales demo tenant; ToC had to be enabled to make AI Feedback History work); `lmspsai` / `aidemo` prod **OFF** (turned on 3 Sep for a demo, reversed 4 Sep — *"aidemo is for trials, use aidemo2 only"*); `sankogakuen` pre-prod **testable** (AI添削 since 21 Aug, prod not configured); `demo-lms` prod **not available**. Enablement is a config change by the AI Tutor tech team (Cuong Hoang) — ask in `#ai-tutor-tech` naming tenant, environment and whether Class Assignment comes with it.
 - **Submission path:** students **export to PDF** (e.g. PowerPoint → PDF). There is **no direct PowerPoint or document upload**, and [S16] flags this must be framed to the professors as the workflow before the October hands-on *"so it is framed as the workflow, not discovered as a limitation."*
@@ -292,7 +293,7 @@ A student whose improvements are *all* "copied + no dialogue" gets **one quiet l
 | U12 | Kindai correspondence wants grading, not feedback | Takuya/James 17 Sep | James: *"so far what you shared is mostly gearing towards grading"* — an inference from translated meeting notes, with the clarifying meeting on 18 Sep. | James Sim |
 | U13 | Artifacts [S6] and [S7] are Manabie-authored | Artifact tool | Returned marked "created outside your organization". | James Sim |
 | U14 | Uploaded file `overall_ranking_en.html` content | User upload | **The file is a Slack application shell with no recoverable content** — text extraction yields only the word "Slack". Nothing from it has been used. Re-share as a Slack permalink or export. | James Sim |
-| U15 | AI Feedback does not use scoring | [S15] 11 Sep; **[S16] confirms it** | **Largely resolved.** [S16] states it three times — feedback only, no grades or scores, any scoring stays with the teacher — and the agreed direction (9 Jul) is that AI Feedback becomes the **feedback-only mode of AI Grading**. Residual question, still the PM's: **how is Kindai's six-dimension 0–5 rubric honoured by a product that does not score** [S1 §3], and does [S3]'s scoring apparatus (trial grading, QWK, distribution correction) therefore describe AI *Grading* rather than AI Feedback? | James Sim |
+| ~~U15~~ | ~~AI Feedback does not use scoring~~ | [S15]; [S16]; **PM confirmation 17 Sep** | **CLOSED — moved to Part C as settled architecture.** AI Grading and AI Marking are always about scoring; AI Feedback is the feedback engine they and the learner app call when additional feedback is warranted on top of a score. Kindai's 0–5 rubric supplies criteria, not an AI score; [S3]'s scoring apparatus describes AI Grading. See C1 and C2. | — (closed) |
 | U20 | Kindai trial start date | [S1] vs [S16] | [S1]: from class session 8 on **6 Nov 2026**. [S16]: *"AI Feedback from lecture 10 onward… late Nov/Dec to early Feb."* **These do not agree**, and the earlier date is the one in the quotation. | Hinano Matsushita |
 | U21 | Which tenant hosts the Kindai trial | [S16 §2] | Open item in the handover: `aidemo` was described as "for trials" but is being retired; a Kindai tenant needs AI Feedback + Class Assignment + ToC enabled in time for October. | James Sim → Cuong Hoang |
 | U22 | The showcase dashboard can be produced from data collectable today | [S18] claims it; [S17 §7] contradicts it | John's stated goal is "data we can actually collect today", but [S17 §7] lists **four hard preconditions** — criterion keys drift per run, the comment a conversation hung off is discarded, the roster join is unconfirmed, marking config is never persisted. **Fixtures matching the row shape is not the same as the data existing in production.** | James Sim → Cuong Hoang |
@@ -443,9 +444,9 @@ Section 1 is what we were told. B5 is what the PM decides actually proves the pr
 
 **The shape the sources point at**, to be accepted, rejected or rewritten by the PM:
 
-One AI Feedback engine — rubric in, submission in, criterion-level assessment plus instructor-voiced draft feedback out — consumed by three surfaces:
-1. **AI Grading feedback** — feedback attached to an AI-graded submission.
-2. **AI Marking feedback** — feedback attached to a photo/paper-based marked submission.
+**AI Feedback is the feedback engine** — rubric/criteria in, submission in, criterion-linked instructor-voiced feedback out, **no score** — called by three surfaces. Scoring stays with AI Grading and AI Marking, which call the engine when additional feedback is warranted on top of the score:
+1. **AI Grading feedback** — feedback attached to an AI-graded submission (AI Grading owns the score).
+2. **AI Marking feedback** — feedback attached to a photo/paper-based marked submission (AI Marking owns the score).
 3. **A Feedback LO in the learner app** — feedback as a distinct **error/LO type** inside the existing LO submission flow, carrying **its own icon** on the To-do list alongside PDF, video, quiz and AI flash-card types, and populating the To-do via **start and end dates layered over the LO** (the aligned decision of 17 Sep).
 
 **Open at the level of the summary itself:**
@@ -473,12 +474,12 @@ One AI Feedback engine — rubric in, submission in, criterion-level assessment 
 - **Auto-return without instructor confirmation** — [S4]/[S5] both state pilots assume instructor confirmation of every item, with auto-return a separate workflow configured after administrators confirm responsibility.
 - **DOCX** — out in V1.1; [S3 ch.9] assumes Word is accepted. **Contradiction — resolve.**
 
-**A third contradiction, and it is the most consequential: does AI Feedback score or not?**
-- On 11 Sep the team **removed rubric weights on the grounds that "AI feedback does not use scoring"** [S15].
-- Kindai Applied Sociology's rubric is **explicitly scored — six dimensions on a 0–5 scale** [S1 §3], and its whole institutional case rests on rubric-based assessment records.
-- [S3]'s entire design — trial grading, QWK agreement, distribution correction, criterion-level scores on the approval card — **presupposes scoring**.
-- The convergence with AI Grading presupposes scoring.
-**If AI Feedback genuinely does not score, then it cannot serve Kindai Applied Sociology as specified, cannot be the engine behind AI grading feedback, and most of [S3] does not apply. If it does score, the 11 Sep weight removal needs revisiting. This must be settled before anything else in Part C.**
+**Scoring is not in scope here, and that is the architecture rather than a gap.** *(Confirmed by the PM, 17 Sep.)* **AI Grading and AI Marking are always about scoring; AI Feedback is the feedback engine those two call, and the learner app calls, when additional feedback is warranted on top of a score.** Consequences to hold to throughout this PRD:
+- The 11 Sep removal of rubric weights [S15] is **correct and settled** — weights belong to a scoring product, and AI Feedback is not one.
+- Kindai Applied Sociology's six-dimension 0–5 rubric [S1 §3] is not a counter-example. The rubric supplies the **criteria** AI Feedback writes against; the **score** stays with Prof. Yasumoto, exactly as [S16] records (*"Any scoring would stay with the teacher"*).
+- [S3]'s scoring apparatus — trial grading, QWK agreement, distribution correction, criterion-level scores on the approval card — describes **AI Grading**, not AI Feedback. Do not import it into this PRD's acceptance criteria.
+- "Merging into AI Grading" means AI Feedback becomes the **feedback-only mode** of that product [S16 §5], not that it acquires scoring.
+**What this PRD must still state precisely (C3/C7):** the contract between the scoring products and the feedback engine — what AI Grading/Marking pass in (rubric, criteria, the score already assigned, the flagged spans), what comes back, and **the rule that decides when additional feedback is warranted** rather than generating it on every scored submission.
 
 **Phasing & end-state — the specific trap to avoid.** [S3]'s flow only works as a whole: inferred rubric without trial grading gives the instructor no reason to trust it; trial grading without correction-diff learning means it never improves; an approval queue without confidence routing is just a list. **A phase that ships two of these three is the "2 of 3 settings = nothing" case.** If phasing is chosen, describe the end state and state which phase is independently useful.
 
@@ -566,7 +567,12 @@ Cannot be written before C2 and C3. QA builds the test plan directly from this s
 
 This section cannot remain blank. Known integration surfaces:
 
-- **Systems involved:** Manabie LMS (LO submission flow, book/topic/LO, study plan); learner app (To-do, submission, result display); Back Office (rubric creation, approval queue); AI Grading pipeline; AI Marking pipeline + OCR; university LMS — **Kindai Correspondence runs a fully in-house LMS (KULeD) requiring API ingest and write-back with no manual file movement** [S7]; Canvas / Moodle / Manaba / Google Classroom via **LTI 1.3** as proposed in [S3 ch.9]; Onigroup webview + asymmetric JWT per the existing SOW (`PRDs/ai grading.pdf`).
+- **The engine contract — the most important thing missing from this section.** AI Feedback is called by AI Grading, AI Marking and the learner app. That makes it an internal service with three consumers, and none of its contract is written:
+  - **Inputs** from a scoring consumer: which rubric/criteria, the score already assigned, the flagged spans or per-question verdicts, the submission artefact, the instructor's voice model — and which of these are required vs. optional.
+  - **Outputs:** criterion-linked feedback with quoted passages, and what the consumer is expected to do with it (store, display, route for approval).
+  - **The trigger rule.** Feedback is warranted *in some* scenarios on top of a score, not all. **What decides?** Candidates the sources hint at: score band, low confidence, question type, per-assignment setting, teacher request. This is a business rule (A3) as much as a technical one, and it drives cost directly — generating feedback on every scored submission at 62,000 reports/year [S7] is a very different bill from generating it on an exception basis.
+  - **Ownership and versioning:** one engine with three consumers needs a stated owner and a compatibility policy. Trieu's standing position applies — the owning team owns the API and everything behind it; consumers integrate at the API level only.
+- **Systems involved:** Manabie LMS (LO submission flow, book/topic/LO, study plan); learner app (To-do, submission, result display); Back Office (rubric creation, approval queue); AI Grading pipeline (owns scoring); AI Marking pipeline + OCR (owns scoring); university LMS — **Kindai Correspondence runs a fully in-house LMS (KULeD) requiring API ingest and write-back with no manual file movement** [S7]; Canvas / Moodle / Manaba / Google Classroom via **LTI 1.3** as proposed in [S3 ch.9]; Onigroup webview + asymmetric JWT per the existing SOW (`PRDs/ai grading.pdf`).
 - **Learner app integration points** — the three named in the AI Marking Weekly discussion (Trieu Le Hong / Ming Yew Lee): **(1)** teacher/student registration and class association, **(2)** how the student accesses the assignment on the learner app, **(3)** how the returned result and feedback are displayed back to the student. *All three are undefined for this scope.* Trieu's position on ownership: the LMS team owns the API and everything behind it; consumers integrate at the API level only.
 - **Learner app — what the 17 Sep AI Direction Discussion actually settled and what it left open.** Settled: AI Feedback is a distinct **error/LO type** with its own To-do icon, and the To-do page gets a **custom due-date layer built on top of existing LO functions** (start + end dates, used only by the To-do page) rather than reusing LO due-date behaviour. Open and needing a spec: the data model for that layer, whether it lives with the LO or beside it, how it interacts with study plan, and how per-student/per-class variation is expressed. **Bunsuke owes a proposal on LO type refactoring (dedicated PDF and video LO types); Koki owes a demo of start/due-date behaviour.** Both are inputs this PRD depends on.
 - **Web/PC path.** University students submit from PC, not phone [S8a], which means PDF/file upload on web is a first-class path for AI Feedback, not a fallback.
@@ -606,7 +612,7 @@ Hinano needs a dashboard she can put in front of Kindai, aligned on **final visu
 
 The design rules in §1.6.4 are the one part of this work that is already decided and reasoned. **Ratify them as written or overturn them explicitly** — they should not be quietly relaxed while "simplifying". The two most load-bearing for a client showcase:
 - **Never show chat transcripts.** This is a deliberate differentiator against Turnitin Clarity, not a gap, and it will be the thing a client asks about.
-- **No per-student score and no leaderboard.** This dashboard produces *evidence for a teacher's judgement*. It also keeps the artefact consistent with the fact that AI Feedback does not score (U15).
+- **No per-student score and no leaderboard.** This dashboard produces *evidence for a teacher's judgement*. It also keeps the artefact consistent with the architecture: scoring belongs to AI Grading and AI Marking, and this dashboard reports on the feedback engine.
 
 ### C10.3 The gap that blocks the showcase — *decision required now*
 
@@ -666,13 +672,12 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 - [ ] **Part A not authored** — no business goal, no primary metric, no applicability decision, no named Business owner.
 - [ ] **Part B not authored** — five candidate jobs, no chosen core job, no desired outcomes.
 - [ ] **Part C3 has no defined cells.** Every row is undefined and the edge-case checklist is empty. This alone blocks sprint planning.
-- [ ] **Does AI Feedback score? (U15)** Rubric weights were removed on 11 Sep because "AI feedback does not use scoring", while Kindai's rubric is a scored 0–5 across six dimensions and both the design paper and the AI Grading convergence assume scoring. **This is the first question to answer — it determines whether the rest of Part C is even the right shape.**
-- [ ] **Four live contradictions in the source material must be resolved by the PM, not absorbed:**
-      (a) scoring — as above;
-      (b) theses/seminar papers are excluded by [S3] and sold by [S4];
-      (c) DOCX is out of scope in V1.1 and assumed in [S3 ch.9];
-      (d) mobile-first (V1.1) vs PC-first for university submissions ([S8a]).
-      A fifth, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
+- [ ] **Define the engine contract (C7).** Scoring vs feedback is settled — AI Grading and AI Marking score, AI Feedback is the engine they and the learner app call. What is *not* written is the contract: what the scoring products pass in, what comes back, and **the rule that decides when additional feedback is warranted** rather than firing on every scored submission.
+- [ ] **Three live contradictions in the source material must be resolved by the PM, not absorbed:**
+      (a) theses/seminar papers are excluded by [S3] and sold by [S4];
+      (b) DOCX is out of scope in V1.1 and assumed in [S3 ch.9];
+      (c) mobile-first (V1.1) vs PC-first for university submissions ([S8a]).
+      A fourth, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
 - [ ] **Open defects that gate the October trial:** teacher rubrics destroyed by the rubric agent (U18), feedback number bubbles out of sequence on small PDFs, LangSmith validation errors with a possible one-month tail [S15].
 - [ ] **Dependencies owed by others before C3 and C7 can be completed:** Bunsuke's LO-type refactoring proposal and Koki's start/due-date demo, both actioned on 17 Sep.
 
@@ -691,7 +696,7 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 - [ ] **Relationship to AI Feedback V1.1 undeclared** — does this supersede its out-of-scope list (teacher dashboard, iterative feedback/re-upload)?
 
 **Shortest path to Ready:**
-1. James Sim + John Paoletto: settle U15 — **does AI Feedback score?** Everything else in Part C is downstream of this.
+1. James Sim: write the **engine contract** in C7 — inputs, outputs, and the rule for when a scored submission also gets feedback. It is the one thing all three surfaces depend on.
 2. James Sim: confirm U1, U3, U12 at the 18 Sep correspondence meeting and from Hinano on the Applied Sociology budget outcome.
 3. James Sim: answer the single question in C1 — is teacher-in-the-loop mandatory? Then decide C2's "one feature or two", and which of the three timelines (Oct trial / Jan V1 / Nov Kindai) this PRD serves.
 4. James Sim + Takuya Homma: fix A1's primary metric and A2's applicability, and take A3 to the Business owner.
