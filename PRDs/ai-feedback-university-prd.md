@@ -22,6 +22,7 @@
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
 | 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
+| 2026-09-17 | v0.6 | James Sim (drafted with Claude) | **C10.3 decided:** Kindai's weekly class submission is **both** the ~300-character reflection **and** the Excel/statistics exercise, so the dashboard carries **two views** — a week grid for triaging reflections (new) and the existing revision trail for exercises. Scopes the copied-wording signal to exercises only. Surfaces two new dependencies: a 2–3 criterion **reflection rubric Prof. Yasumoto must author**, and the step up from 2 exercise submissions last year to weekly. Adds the trial volume to C8 (~2,000–2,500 generations, in bursts of ~140). **U24 closed**; C9.1's device split now evidenced | Draft | — |
 | 2026-09-17 | v0.5 | James Sim (drafted with Claude) | **C9.1 added — device priority decided.** The university AI Feedback flow is **PC-first with mobile at genuine parity**, split by surface, with **weekly 300-character reflections as a named mobile exception** because submission rate is the trial's first-order risk. Reasoning rests on the artefact (Excel/PowerPoint/PDF exports are desktop artefacts), not on a claim about student device habits, plus the falsification check to run with Prof. Yasumoto. Readiness gate down to two source contradictions | Draft | — |
 | 2026-09-17 | v0.4 | James Sim (drafted with Claude) | **Architecture corrected on PM confirmation:** AI Grading and AI Marking are always about scoring; **AI Feedback is the feedback engine** they and the learner app call when additional feedback is warranted on top of a score. v0.2–v0.3 wrongly framed this as a blocking contradiction. **U15 closed.** The 11 Sep rubric-weight removal is correct and settled; [S3]'s scoring apparatus describes AI Grading, not AI Feedback; Kindai's 0–5 rubric supplies criteria, not an AI score. The open work moves to **C7 — the engine contract** (inputs, outputs, and the rule for when a scored submission also gets feedback) | Draft | — |
 | 2026-09-17 | v0.3 | James Sim (drafted with Claude) | Added **§1.6 (dashboard background)** and **C10 (Kindai dashboard showcase)** from the AI Feedback handover page, the handover prototype zip and the 17 Sep Slack thread. Records the manual-not-Back-Office decision, the encoded design rules, the four production preconditions, and the confirmed showcase subject (地域環境統計学 weekly submissions). Flags that the prototype's dataset is middle-school English/Science and does not fit the showcase. **U15 largely resolved** — the handover confirms AI Feedback does not score. Added U20–U25 and the tenant matrix to E2 | Draft | — |
@@ -299,7 +300,7 @@ A student whose improvements are *all* "copied + no dialogue" gets **one quiet l
 | U21 | Which tenant hosts the Kindai trial | [S16 §2] | Open item in the handover: `aidemo` was described as "for trials" but is being retired; a Kindai tenant needs AI Feedback + Class Assignment + ToC enabled in time for October. | James Sim → Cuong Hoang |
 | U22 | The showcase dashboard can be produced from data collectable today | [S18] claims it; [S17 §7] contradicts it | John's stated goal is "data we can actually collect today", but [S17 §7] lists **four hard preconditions** — criterion keys drift per run, the comment a conversation hung off is discarded, the roster join is unconfirmed, marking config is never persisted. **Fixtures matching the row shape is not the same as the data existing in production.** | James Sim → Cuong Hoang |
 | U23 | The demo dataset suits the Kindai showcase | [S17 §9] vs [S18] | The prototype's dataset is a **middle-school class (中学2年, 25 students, English + Science)**. The showcase is a **university course, 地域環境統計学, weekly reflections, ~140 students**. Wrong level, wrong subject, wrong scale, wrong assignment shape. | James Sim |
-| U24 | Minute-paper / weekly-reflection use case is scoped | [S16 §2] | [S16] records it as *"Idea raised by both professors; not scoped yet"* — yet it is the subject Hinano confirmed for the showcase. | James Sim + Hinano Matsushita |
+| ~~U24~~ | ~~Minute-paper / weekly-reflection use case is scoped~~ | [S16 §2]; **PM confirmation 17 Sep** | **CLOSED.** Both the weekly reflection and the weekly exercise are in scope for the trial — see C10.3. [S16]'s *"not scoped yet"* is superseded. **New dependency it creates:** the reflection needs its own 2–3 criterion rubric, which Prof. Yasumoto must author and nobody has requested. | — (closed; rubric dependency open) |
 | U25 | Who owns the AI Feedback dashboard | [S15] vs [S16 §4] | [S15] 11 Sep: responsibilities moved back to the **AI Grading team**. [S16]: the RISO-funded AI Dashboard is the natural home once the products merge, and PBT-3450 / PBT-3356 teacher-dashboard AI Feedback counts are marked done on the roadmap but were **still in Tech Review with metrics definitions under review on 4 Sep**. | James Sim |
 | U16 | Start/end-date layer over the LO is the agreed mechanism for To-do population | [S8a] 17 Sep | Aligned in the meeting as a direction; the demo that makes it concrete is an open action on Koki, and per-student/per-class due dates are explicitly unsolved. | Koki Misawa → James Sim |
 | U17 | AI Feedback dashboard sits with the AI Grading team | [S15] 11 Sep | James's decision, recorded in grooming notes. Needs confirming against the Kindai pilot's dashboard need and against the 17 Sep "consolidated group/individual dashboard" position. | James Sim |
@@ -587,7 +588,8 @@ This section cannot remain blank. Known integration surfaces:
 
 Flag every one of these to the Tech Lead **before** commitment:
 - **Latency.** No budget stated anywhere for feedback generation. For comparison, the AI Tutor pipeline runs ~62,000 input tokens per question and diagram generation was 2–3 minutes on easy problems (AI Tutor calls, 17 Sep). A 30-second approval card is worthless if generation takes minutes.
-- **Volume.** 62,000 reports/year [S7] and a proposed batch re-run of 240 historical reports [S6][S7]. Batch re-grading on rubric version change is a **re-run of an entire corpus** — this is the load-bearing cost question and nobody has sized it.
+- **Volume — Kindai trial, now sizeable (confirmed 17 Sep).** Both submission types run weekly (C10.3): ~140 students × **2 submissions/week** × 7–9 remaining sessions ≈ **2,000–2,500 feedback generations** across the three-month trial, arriving in **bursts of ~140 within hours of each lecture**. The reflection half is expected *"immediately on submission"* [S16 §2], i.e. synchronous. **Nobody has sized the burst, the latency budget or the cost.** This is the first real volume number the trial produces and it should drive the trigger rule in C7.
+- **Volume — correspondence track.** 62,000 reports/year [S7] and a proposed batch re-run of 240 historical reports [S6][S7]. Batch re-grading on rubric version change is a **re-run of an entire corpus** — this is the load-bearing cost question and nobody has sized it.
 - **Cost per submission.** Not calculated. [S7] notes the client prefers per-student flat pricing, which puts all volume risk on Manabie. The API-vs-subscription cost gap is live in the org (~$5,000 per 70 questions on API vs $20/month subscription — Daily AI Tutor x AI Harness, 17 Sep).
 - **OCR.** V1.1 sets ≥97%; Eishinkan measured 93% average with 70% of samples ≥95% (Weekly AI Grading, 17 Sep). **Reconcile the target with the measurement.**
 - **Evaluation at scale.** James, 17 Sep: for a signed client launching in April, evaluation has to be ≥95% automated up front. What is the evaluation harness for feedback quality, and who owns it?
@@ -623,6 +625,8 @@ Per surface:
 
 **The assumption this rests on, and how to falsify it.** The strongest statement in the sources — Koki's *"most of the university student they use PC, they never use smartphone to upload"* — is an assertion, not a measurement, and "never" is doing a lot of work. The artefact argument above stands independently of it, which is why the decision holds either way. But the exception does depend on the opposite being true for short reflections. **Cheapest check: ask Prof. Yasumoto how last year's cohort submitted the lecture-10 and lecture-16 exercises, and whether minute papers today are paper, LMS or phone.** One question to Hinano, and it settles both halves. If it comes back "students do everything on their phones", the reflection exception widens; it does not overturn PC-first for the PowerPoint and Excel deliverables.
 
+**Confirmed on 17 Sep.** Kindai runs *both* submission types weekly (C10.3), which is exactly the split this decision assumes: the reflection is the phone path, the exercise is the PC path. The device decision is therefore evidenced rather than inferred, and the mobile exception is load-bearing rather than defensive.
+
 **Consequences to carry into the rest of the PRD:** C4 needs a desktop journey for the faculty flows and the student coursework flow, and a mobile journey for reflections and feedback-reading. The JP long-string overflow check above must be run at **both** widths. And the design brief for this segment is no longer the V1.1 mobile-first brief — say so when commissioning it.
 - Terminology to align JP↔EN before strings are cut: 添削 (marking/red-pen) vs feedback vs grading; ルーブリック; 仮評価 (preliminary AI assessment).
 
@@ -640,14 +644,32 @@ The design rules in §1.6.4 are the one part of this work that is already decide
 - **Never show chat transcripts.** This is a deliberate differentiator against Turnitin Clarity, not a gap, and it will be the thing a client asks about.
 - **No per-student score and no leaderboard.** This dashboard produces *evidence for a teacher's judgement*. It also keeps the artefact consistent with the architecture: scoring belongs to AI Grading and AI Marking, and this dashboard reports on the feedback engine.
 
-### C10.3 The gap that blocks the showcase — *decision required now*
+### C10.3 Two kinds of weekly submission, two views — **DECIDED**
 
-**The prototype's dataset is the wrong dataset.** It is a middle-school class of 25 doing English and Science essays across six weeks. The showcase is a university statistics course, ~140 students, weekly 300-character reflections. Every narrative in the demo (佐藤 陽菜's four drafts, 中村 悠真's independent resolution, 吉田 芽依 as the sole 要確認) was authored backwards from a claim about **multi-draft essay revision** — which is not obviously what a weekly 300-character reflection produces at all.
+> *Confirmed by the PM on 17 Sep: Kindai's "weekly class submission" is **both** the short written reflection **and** the Excel/statistics exercise output. The earlier three-way option list is resolved in favour of two views.*
 
-**The question the PM must answer before any visual work:** does the revision-trail thesis — *"the essay is worthless as evidence; the trail of revision is not"* — even hold for a 300-character weekly reflection? If students submit once per week and do not revise, the dashboard's central measure (uptake across drafts) has nothing to measure, and the showcase needs a different spine: most likely **which rubric criteria the class misses most this week** and **which reflections are worth the professor's reading time**, which is what Prof. Yasumoto actually asked for. Options:
-- **(a)** Re-author the fixtures for 地域環境統計学 weekly reflections and keep the uptake thesis, if the trial's workflow genuinely includes resubmission.
-- **(b)** Build a second view for the reflection use case and show the revision view only for the statistics *exercises* (lecture 10 / lecture 16 PowerPoint deliverables), where multi-draft revision does apply.
-- **(c)** Showcase the existing middle-school demo as an illustration of the method and set expectations that Kindai's own views will differ. *Weakest — it invites the client to evaluate the wrong artefact.*
+**Kindai students submit two different things each week, and they behave differently.** Trying to show both in one view is what would make the dashboard unreadable.
+
+| | **Weekly reflection** | **Weekly exercise** |
+|---|---|---|
+| What the student submits | ~300 characters of written reflection [S16 §2] | Excel workbook / analytical output / slides, exported to **PDF** [S16] |
+| Where from | Phone, in or just after class — the C9.1 mobile exception | PC, where the file was made |
+| Revision | **Expected to be one-shot.** The professor wants feedback on submission and *"a way to pick out the comments worth reading"* [S16 §2] — no revision loop is described | **Revision is the point.** Submit → feedback → revise → resubmit is the loop Kindai signed up for [S1 §2.1] |
+| Rubric | The course's six 0–5 dimensions **do not fit** — "Excel skills" and "visual clarity" are meaningless on a reflection. **Needs its own small rubric, 2–3 criteria** | The six-dimension course rubric applies as written [S1 §3] |
+| What the professor needs | Triage: which criteria the class missed this week, and which of ~140 reflections are worth his time | Progress: did this student act on the feedback, and in whose words |
+
+**So the dashboard carries two views, not one.**
+
+1. **Reflection view — a week grid.** Students down the side, weeks across the top, ~140 × 7–9 cells. Answers "who submitted", "what did the class as a whole get wrong this week", and "which five reflections should I actually read". This is **new** — the prototype has nothing like it, and it is the view the showcase is being asked for.
+2. **Exercise view — the revision trail.** This is what the existing prototype already does well, and what it was built for: one piece of work across several drafts, showing whether the student fixed the flagged problem and whether they used their own words. Keep it, aimed at the exercises.
+
+**Two consequences that are easy to miss:**
+- **The "copied the AI's wording" signal only belongs in the exercise view.** On 300 characters there is too little text for it to mean anything, and running it there would produce noise and, worse, unfair 要確認 flags. Scope it to exercises explicitly.
+- **Someone has to write the reflection rubric.** It does not exist, it is not the course rubric, and it is Prof. Yasumoto's to author. **Nobody has asked him.** That is a dependency on the October hands-on, not a design task.
+
+**On the demo data.** The prototype ships with an invented middle-school class (25 students, English and Science essays) whose stories were written to show off multi-draft revision. That data fits the *exercise* view and not the reflection view, and it is the wrong level and scale for either. Rebuilding it as a Kindai class — ~140 students, 地域環境統計学, both submission types — is the mechanical part of the work; the reflection view's design is the real part.
+
+**One thing worth raising with Hinano, not re-deciding here:** last year students submitted exercises at **lecture 10 and lecture 16 only** [S16]. Weekly exercises is a step up in what the professor himself has to review, even with AI doing the first pass. Worth confirming he has planned for that rather than discovering it in week two.
 
 ### C10.4 Candidate contents — *a menu, per [S16], not a spec*
 
@@ -708,8 +730,10 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 - [ ] **Dependencies owed by others before C3 and C7 can be completed:** Bunsuke's LO-type refactoring proposal and Koki's start/due-date demo, both actioned on 17 Sep.
 
 **The dashboard showcase (C10) runs on its own clock and is NOT gated by the above.** It is a manual sales artefact, not a build. Its own blockers, in order:
-- [ ] **C10.3 — the dataset does not match the showcase.** Middle-school English/Science vs university 地域環境統計学 weekly reflections. Decide (a), (b) or (c) before any visual work.
-- [ ] **Does the revision-trail thesis hold for a 300-character weekly reflection?** If not, the showcase needs a different spine.
+- [x] ~~C10.3 — which submission type the showcase covers~~ — **closed 17 Sep: both. Two views, per C10.3.**
+- [ ] **The reflection view does not exist.** It is the view the showcase is actually being asked for, and the prototype has nothing like it. Design it first; the revision view already works for exercises.
+- [ ] **The reflection rubric does not exist** and is Prof. Yasumoto's to author — a dependency on the October hands-on, not a design task.
+- [ ] **Demo data must be rebuilt** as a Kindai class (~140 students, both submission types). Mechanical, but it gates any client-facing version.
 - [ ] **U22 — four production preconditions unmet** (§1.6.5), against a stated goal of "data we can actually collect today".
 - [ ] **No mechanism to capture teacher reactions** — which is the entire purpose of the exercise.
 - [ ] **Manual production effort uncosted** across a three-month trial with weekly submissions.
