@@ -22,6 +22,7 @@
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
 | 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
+| 2026-09-17 | v0.3 | James Sim (drafted with Claude) | Added **§1.6 (dashboard background)** and **C10 (Kindai dashboard showcase)** from the AI Feedback handover page, the handover prototype zip and the 17 Sep Slack thread. Records the manual-not-Back-Office decision, the encoded design rules, the four production preconditions, and the confirmed showcase subject (地域環境統計学 weekly submissions). Flags that the prototype's dataset is middle-school English/Science and does not fit the showcase. **U15 largely resolved** — the handover confirms AI Feedback does not score. Added U20–U25 and the tenant matrix to E2 | Draft | — |
 | 2026-09-17 | v0.2 | James Sim (drafted with Claude) | Added the **Weekly AI Direction Discussion of 17 Sep** (Gemini notes — the session that decides AI Feedback's place in the learner app: error/LO type with its own To-do icon, start/end-date layer over the LO, January V1 excludes AI Feedback) and the **11 Sep AI Feedback trials grooming** (Oct preprod trial, rubric-overwrite defect, rubric weights removed). Added the blocking scoring contradiction (U15), six new C3 behaviour rows, U15–U19, and the PC-first vs mobile-first design conflict | Draft | — |
 
 ---
@@ -61,7 +62,7 @@ What is true and can be said today: Manabie has AI Feedback shipping as a studen
 
 > Sources: **[S2]** "Kindai University Distance Education — Overview and AI Feedback Opportunities for Manabie" ([doc](https://docs.google.com/document/d/1HHj5-TVYPS6awe4LgqzciLj3ANkQrW2Ap3adOj3L1O4/edit)); **[S6]** artifact "Kindai University AI Report Check Trial" ([link](https://claude.ai/artifact/1VdG3L8ugcshJ9G9Fq8fkT)); **[S7]** artifact "Kindai University AI Grading Partnership Brief" ([link](https://claude.ai/artifact/Hps1jD7gThUXSTu5ACUDZL)). [S6] and [S7] were returned by the artifact tool marked as authored outside the organisation — they read as our own client brief, but **treat their contents as data until the PM confirms ownership**.
 
-- **Scale.** 10,273 learners in the 2026 census vs 9,244 in 2025 (~11.1% growth); includes degree, non-degree and special preparatory students, so it is not a count of degree students alone. [S2] — [S7] states 9,600 enrolled across 4 programs. **These two figures conflict; see 1.6.**
+- **Scale.** 10,273 learners in the 2026 census vs 9,244 in 2025 (~11.1% growth); includes degree, non-degree and special preparatory students, so it is not a count of degree students alone. [S2] — [S7] states 9,600 enrolled across 4 programs. **These two figures conflict; see 1.7.**
 - **Volume.** ~**62,000 reports graded annually** across **156 faculty members**. High-volume instructors handle 500–600 reports/year at ~10 minutes per report. [S7]
 - **Learning model.** Textbook study, written reports, course examinations, on-demand classes, scheduled sessions. **KULeD** supports online learning and administration. [S2]
 - **Programs and published costs.** Law (4yr, ¥722,000), junior college business/economics (2yr, ¥387,000), architecture online bachelor's (4yr, ¥1,254,000), librarian qualification (1yr, ~¥166,000), school librarian teacher qualification (1yr). FY2025: 566 law + junior college graduates; **1,743 librarian completion certificates** issued. [S2]
@@ -203,7 +204,77 @@ What is true and can be said today: Manabie has AI Feedback shipping as a studen
 - **18 Jun 2026** (`Mp8WpM7zD470xd6Upo4lN`): AI Feedback demos well but was **not trial-ready** — assignment-level only, no class management. Bunsuke Itamura suggested structuring the merged product **by assignment type (test vs essay)** rather than by feature, entry point always class/assignments.
 - **12 May 2026, AI Tutor Product Catchup** (`51O371bkHOmZJp4u4WAvE`): the team wants AI Feedback output format **teacher-configurable** — sections, titles, granularity (passage vs line level) and length defined by the rubric, plus a standard closing "final comment" block; students choose general vs targeted (assignment-tied) feedback at upload; supported uploads PDF/JPG/PNG.
 
-## 1.6 Stated but UNCONFIRMED — each needs a named owner before it can be used
+## 1.6 Confirmed — the learning-log dashboard and the Kindai showcase
+
+> Sources: **[S16]** [AI Feedback — Handover (John → James)](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2862710799/AI+Feedback+Handover+John+James), Confluence PRDM, created 7 Sep 2026, **explicitly a draft**; **[S17]** the handover zip `ai-feedback-dashboard-handover.zip` (prototype + fixtures + competitor research); **[S18]** Slack thread in `#C0BPM7T182C`, 17 Sep 2026, John Paoletto → James Sim, cc Hinano Matsushita.
+
+### 1.6.1 Why the dashboard exists, and the decision already taken
+
+- **The client did not ask for it.** [S16] is explicit: *"Learning-log visibility is not a client expectation either."* It exists because on 17 Aug Hinano made the point that AI Feedback has **no learning-log visualisation** and she needs something to show.
+- **Takuya's position:** any dashboard built now is **prototype-grade**, because it will be rebuilt when AI Feedback merges into AI Grading.
+- **The decision taken:** John builds a **dummy-data mock**, reviews it with Hinano, and during the trial Kindai is shown **manually created dashboards** rather than anything built into the product. [S16 §4]
+- **The strategy:** use the trial to find out **which views teachers actually value**, and put only those on the roadmap. *"So the mock is a menu of what could be shown, not a spec."* [S16 §4]
+- **John's three goals, restated on 17 Sep** [S18]: (1) create a manual dashboard **rather than developing one in Back Office**, (2) show it to clients through sales and trials **using data we can actually collect today**, (3) put what resonates with clients into the backlog.
+
+### 1.6.2 The showcase itself — what Hinano confirmed on 17 Sep
+
+- **Hinano wants to start showing the dashboard to clients ASAP, and wants to align on the final visuals and content for the manual dashboard *this month*.** [S18]
+- James asked which subject to showcase. **Hinano: *"Yes weekly class submission and the subject will be Regional Environmental Statistics (地域環境統計学)."*** [S18]
+- **This maps to the use case [S16] records as *not scoped*** — "Per-class mini reports (minute papers)": every-lecture **300-character reflections for 150–300 students**, where *"the professor wants rubric-based feedback immediately on submission and a way to pick out the comments worth reading. Any scoring would stay with the teacher — AI Feedback does not score."* [S16 §2]
+- Current state per [S18]: dummy data matching what can be collected today, plus *"an idea-board of what we could show using that data (not even a mock/prototype, mostly like let's-clean-from-here ideas)"*. Remaining steps John listed: **look at competitors (stopped here) → distill & simplify → surface what it means clearly**.
+
+### 1.6.3 What the prototype in [S17] actually is
+
+- `dashboard.html` — one self-contained file, no server, no build, no dependencies. Japanese UI on the school-portal-admin design system (`manabieV5` tokens: Roboto 14px, `#2196F3`, `#F4F6F9`, 4px cards).
+- Fixtures are **complete `sessions` row envelopes** that load into the real table unreshaped, following the live service contracts (`STATE_KEYS` from the migrate scripts, field shapes from `ai_feedback_svc/models.py`, `ChatMessage` from `chat_bot_svc/models.py`, chat→submission link via `state.ref_thread_id`). Tenant `-2147483622` (staging) is the only real identifier.
+- `build.py` is deterministic (no RNG, no wall-clock, ids from `uuid5`). Reported state: **1578–1655 structural checks, 0 failed; 161–162 objects validated against the live Pydantic models; ruff clean.**
+- **The product thesis in one line, from [S17]:** *"the essay is worthless as evidence; the trail of revision is not."* It measures **uptake** — what the student did with the feedback and in whose words — not provenance.
+- **Two judgement calls encoded in code**, both flagged by John as the heart of the product and both previously wrong: `rewrite_quality()` (own / rephrased / copied verbatim, token containment ≥ 0.55 — *"works on authored data, needs tuning on real text"*) and `student_turns()` (asking vs. putting their own view forward — regex, *"should become a cheap LLM classification"*).
+- **Demo dataset:** one class — みどり市立第一中学校 2年B組, **25 middle-school students**, six weeks, **two assignments (English + Science)**, 19 of 25 submitting. Everything fictional.
+
+### 1.6.4 Design rules already encoded — stated as constraints, not preferences
+
+[S17 §8] says each exists "because the obvious alternative actively misleads":
+
+| Rule | Reason given |
+|---|---|
+| **Counts and names, never rates** | A denominator that depends on who chose to use the tool swings on adoption, not learning. Ratios only where the denominator is intrinsic to one student's own work |
+| **Never show chat transcripts** — not raw, not AI-summarised. Only the student's *own* question text renders; the AI's replies never do | *"If students suspect a teacher reads their conversations, they stop thinking out loud and start performing."* Deliberately the opposite of Turnitin Clarity |
+| **No leaderboards, no per-student score** | Produces evidence for a teacher's judgement, not a mark. *"Anything you rank, someone games"* |
+| **「一度きり」/「未提出」, never "not trying"** | The system cannot distinguish disengagement from confusion, illness or overload |
+| **Never compare raw comment counts between drafts** | Count varies with document length and model run-to-run variation |
+| **Read improvement and engagement together** | High resolution with zero engagement is what pasting the AI's fix looks like |
+| **Explicitly not building: AI detection** | — |
+| Colour language | green = own words · light green = rephrased · grey = verbatim · blue = submissions and plain questions · orange = own opinion/proposal and still-open issues |
+
+A student whose improvements are *all* "copied + no dialogue" gets **one quiet line suggesting a verbal check — never an accusation, never a per-comment flag**.
+
+### 1.6.5 Four hard preconditions before the dashboard can touch real data [S17 §7]
+
+1. **Criterion keys must be assigned at the assignment, not re-derived per run.** The live service regenerates them every submission, so keys drift (`evidence` → `use_of_evidence`) and silently split any grouping. Called *"a hard precondition"*.
+2. **Persist which comment a conversation was about.** Production discards it; the timeline needs it, and the alternative is reading transcripts, which the design forbids.
+3. **Confirm the class roster join** — rosters live in the backend Go service, not the ai-tutor database. `roster.json` is a stand-in.
+4. **Stamp the marking config onto each record.** Model and prompt live in `temp:assistant_config` and are never persisted, so today you cannot tell student improvement from a mid-term model change.
+
+### 1.6.6 Competitive position and the 観点別評価 finding [S17]
+
+- **Turnitin Clarity** is the closest product (drafting process, pasted text, writing time, version playback, per-assignment AI policy) and **exposes the student–AI chat to teachers** — the opposite call. **Turnitin Draft Coach** deliberately hides student version history from teachers, which is precedent for our position. **Grammarly Authorship** classifies spans by provenance. **Packback's Writing Process Report** is closest in philosophy and warns it *"should never act as a single indictment of student behavior."* **atama+** tracks 理解度 on problem sets, not writing process.
+- Research cited: *"Generative AI offers more, but students revise less"* (2026) — if it generalises, the scarce resource is **uptake**, not feedback volume.
+- **The 観点別評価 opportunity:** Japan's 主体的に学習に取り組む態度 requires evidencing 粘り強い取組 and 自らの学習を調整, and prefectural guidance asks for 文章記録等のエビデンス. [S17] argues the dashboard already computes both under different names, and recommends relabelling plus a printable evidence sheet — *"evidence for a grade they are already required to assign and currently struggle to justify."*
+- **Note the segment mismatch:** 観点別評価 is a Japanese **K-12** framework. It does not apply to Kindai, a university. This finding is strong for the **Juku/school secondary market**, not for the showcase in hand.
+
+### 1.6.7 Other facts from [S16] that correct or sharpen earlier sections
+
+- **AI Feedback does not score.** Stated three times in [S16]: *"It gives feedback only — no grading or scoring happens"*; *"feedback only, no grades or scores"*; *"Any scoring would stay with the teacher."* Agreed long-term direction (AI Q2 priorities alignment, 9 Jul): it **merges into AI Grading as the feedback-only mode** rather than staying standalone. **This resolves U15 — see the updated entry.**
+- **The rubric defect, in more detail than [S15] gave.** Today the teacher's saved rubric is *"only one of three inputs (with the student's request and what the AI thinks the document needs), gets rewritten into a handful of one-line criteria per submission, and silently falls back to a generic accuracy/completeness/clarity rubric if the rewrite fails."* Required: no rewriting, re-weighting, merging or dropping; no silent fallback where a saved rubric exists; AI-generated rubrics only when none is saved; the rubric actually used visible to the teacher or at least in logs/QA. Tracked as **PBT-3845** (which also covers **chat-prompt tuning — the AI Feedback chat prompt has most likely never been tuned**) and **PBT-3839**.
+- **Tenant enablement as of 4 Sep** — directly usable for Part E: `lmsv2` pre-prod **ON** (full set: AI Feedback, Assignment, Assignment Feedback, Class Assignment, ToC, Similar Question); `aidemo2` prod **ON** (current sales demo tenant; ToC had to be enabled to make AI Feedback History work); `lmspsai` / `aidemo` prod **OFF** (turned on 3 Sep for a demo, reversed 4 Sep — *"aidemo is for trials, use aidemo2 only"*); `sankogakuen` pre-prod **testable** (AI添削 since 21 Aug, prod not configured); `demo-lms` prod **not available**. Enablement is a config change by the AI Tutor tech team (Cuong Hoang) — ask in `#ai-tutor-tech` naming tenant, environment and whether Class Assignment comes with it.
+- **Submission path:** students **export to PDF** (e.g. PowerPoint → PDF). There is **no direct PowerPoint or document upload**, and [S16] flags this must be framed to the professors as the workflow before the October hands-on *"so it is framed as the workflow, not discovered as a limitation."*
+- **Out of scope for the trial:** RAG over lecture materials for AI Tutor — Takuya's call, workflow fit unproven.
+- **Pricing detail:** ¥900 + ¥700 = ~¥1,600 per student per month; 140 students × 3 months ≈ ¥672,000 untaxed; **pricing holds under 1,000 students**.
+- **Open student-side bugs** (all Must-have, raised 15 Jul): highlight spans break on maths notation (LT-108239, Ready for QA); reference text spaces collapsed / double-delimited (LT-108240, Ready for QA); number bubbles land inside words (LT-108241, In Product Refinement); generation fails when the snap contains no detectable question (LT-108798). Plus unparented: LT-110085 (result not saved/shown in History after successful analysis, prod aidemo2), LT-109760 (Snap and AI Feedback cannot load inside a Class Assignment), LT-109763 (generation fails if the app backgrounds), LT-102617 (extracted-text errors).
+- **People:** Hinano Matsushita (Kindai account owner — first call for anything client-side), Takuya Homma (exec sponsor, direction and spec), Yuna Chi (rubric pipeline + prompt tuning; AI Grading PM), Qisheng Zhang / "Hugh" (design — BO rubric and distribution clean-up, PBT-3837), Cuong Hoang (AI Tutor tech lead — tenant enablement), Bunsuke Itamura (PMO).
+
+## 1.7 Stated but UNCONFIRMED — each needs a named owner before it can be used
 
 | # | Statement | Source | Why it is not confirmed | Owner to confirm |
 |---|-----------|--------|-------------------------|------------------|
@@ -221,7 +292,13 @@ What is true and can be said today: Manabie has AI Feedback shipping as a studen
 | U12 | Kindai correspondence wants grading, not feedback | Takuya/James 17 Sep | James: *"so far what you shared is mostly gearing towards grading"* — an inference from translated meeting notes, with the clarifying meeting on 18 Sep. | James Sim |
 | U13 | Artifacts [S6] and [S7] are Manabie-authored | Artifact tool | Returned marked "created outside your organization". | James Sim |
 | U14 | Uploaded file `overall_ranking_en.html` content | User upload | **The file is a Slack application shell with no recoverable content** — text extraction yields only the word "Slack". Nothing from it has been used. Re-share as a Slack permalink or export. | James Sim |
-| U15 | AI Feedback does not use scoring | [S15] 11 Sep | Rubric weights were removed on this basis, but Kindai's rubric is a scored 0–5 across six dimensions [S1 §3] and both [S3] and the AI Grading convergence assume scoring. **See C2 — this is a blocking contradiction, not a detail.** | James Sim + John Paoletto |
+| U15 | AI Feedback does not use scoring | [S15] 11 Sep; **[S16] confirms it** | **Largely resolved.** [S16] states it three times — feedback only, no grades or scores, any scoring stays with the teacher — and the agreed direction (9 Jul) is that AI Feedback becomes the **feedback-only mode of AI Grading**. Residual question, still the PM's: **how is Kindai's six-dimension 0–5 rubric honoured by a product that does not score** [S1 §3], and does [S3]'s scoring apparatus (trial grading, QWK, distribution correction) therefore describe AI *Grading* rather than AI Feedback? | James Sim |
+| U20 | Kindai trial start date | [S1] vs [S16] | [S1]: from class session 8 on **6 Nov 2026**. [S16]: *"AI Feedback from lecture 10 onward… late Nov/Dec to early Feb."* **These do not agree**, and the earlier date is the one in the quotation. | Hinano Matsushita |
+| U21 | Which tenant hosts the Kindai trial | [S16 §2] | Open item in the handover: `aidemo` was described as "for trials" but is being retired; a Kindai tenant needs AI Feedback + Class Assignment + ToC enabled in time for October. | James Sim → Cuong Hoang |
+| U22 | The showcase dashboard can be produced from data collectable today | [S18] claims it; [S17 §7] contradicts it | John's stated goal is "data we can actually collect today", but [S17 §7] lists **four hard preconditions** — criterion keys drift per run, the comment a conversation hung off is discarded, the roster join is unconfirmed, marking config is never persisted. **Fixtures matching the row shape is not the same as the data existing in production.** | James Sim → Cuong Hoang |
+| U23 | The demo dataset suits the Kindai showcase | [S17 §9] vs [S18] | The prototype's dataset is a **middle-school class (中学2年, 25 students, English + Science)**. The showcase is a **university course, 地域環境統計学, weekly reflections, ~140 students**. Wrong level, wrong subject, wrong scale, wrong assignment shape. | James Sim |
+| U24 | Minute-paper / weekly-reflection use case is scoped | [S16 §2] | [S16] records it as *"Idea raised by both professors; not scoped yet"* — yet it is the subject Hinano confirmed for the showcase. | James Sim + Hinano Matsushita |
+| U25 | Who owns the AI Feedback dashboard | [S15] vs [S16 §4] | [S15] 11 Sep: responsibilities moved back to the **AI Grading team**. [S16]: the RISO-funded AI Dashboard is the natural home once the products merge, and PBT-3450 / PBT-3356 teacher-dashboard AI Feedback counts are marked done on the roadmap but were **still in Tech Review with metrics definitions under review on 4 Sep**. | James Sim |
 | U16 | Start/end-date layer over the LO is the agreed mechanism for To-do population | [S8a] 17 Sep | Aligned in the meeting as a direction; the demo that makes it concrete is an open action on Koki, and per-student/per-class due dates are explicitly unsolved. | Koki Misawa → James Sim |
 | U17 | AI Feedback dashboard sits with the AI Grading team | [S15] 11 Sep | James's decision, recorded in grooming notes. Needs confirming against the Kindai pilot's dashboard need and against the 17 Sep "consolidated group/individual dashboard" position. | James Sim |
 | U18 | Rubric-overwrite fix (teacher rubrics bypass the rubric agent) is implemented | [S15] 11 Sep | Agreed in the meeting; no ticket status confirmed as done in any source read. Blocks the "rubric lifecycle" differentiator. | Cuong Hoang |
@@ -517,6 +594,68 @@ Flag every one of these to the Tech Lead **before** commitment:
 - **Mobile-first vs PC.** V1.1 is built mobile-first on desktop parity. The 17 Sep session states the opposite for this segment: *"most of the university student they use PC, they never use smartphone to upload… most of the AI feedback should come from PDF document."* **Resolve: is the university AI Feedback flow PC-first?** This changes the design brief, not just a breakpoint.
 - Terminology to align JP↔EN before strings are cut: 添削 (marking/red-pen) vs feedback vs grading; ルーブリック; 仮評価 (preliminary AI assessment).
 
+## C10. Learning-log dashboard — the Kindai showcase
+
+> **This is a separate deliverable from the product build above, and it should stay separate.** It is a **manually produced artefact for sales and trials**, explicitly *not* a Back Office feature [S16 §4, S18]. Do not let it acquire engineering scope by sitting in the same PRD — its purpose is to discover which views teachers value so that *those* become backlog items.
+
+### C10.1 What is actually being asked for — *confirmed*
+
+Hinano needs a dashboard she can put in front of Kindai, aligned on **final visuals and content this month** [S18], for **weekly class submissions in 地域環境統計学** — i.e. the minute-paper / weekly-reflection use case, ~300-character reflections, 150–300 students, feedback immediately on submission, plus *"a way to pick out the comments worth reading"* [S16 §2].
+
+### C10.2 Constraints inherited from the prototype — *PM to ratify, not re-derive*
+
+The design rules in §1.6.4 are the one part of this work that is already decided and reasoned. **Ratify them as written or overturn them explicitly** — they should not be quietly relaxed while "simplifying". The two most load-bearing for a client showcase:
+- **Never show chat transcripts.** This is a deliberate differentiator against Turnitin Clarity, not a gap, and it will be the thing a client asks about.
+- **No per-student score and no leaderboard.** This dashboard produces *evidence for a teacher's judgement*. It also keeps the artefact consistent with the fact that AI Feedback does not score (U15).
+
+### C10.3 The gap that blocks the showcase — *decision required now*
+
+**The prototype's dataset is the wrong dataset.** It is a middle-school class of 25 doing English and Science essays across six weeks. The showcase is a university statistics course, ~140 students, weekly 300-character reflections. Every narrative in the demo (佐藤 陽菜's four drafts, 中村 悠真's independent resolution, 吉田 芽依 as the sole 要確認) was authored backwards from a claim about **multi-draft essay revision** — which is not obviously what a weekly 300-character reflection produces at all.
+
+**The question the PM must answer before any visual work:** does the revision-trail thesis — *"the essay is worthless as evidence; the trail of revision is not"* — even hold for a 300-character weekly reflection? If students submit once per week and do not revise, the dashboard's central measure (uptake across drafts) has nothing to measure, and the showcase needs a different spine: most likely **which rubric criteria the class misses most this week** and **which reflections are worth the professor's reading time**, which is what Prof. Yasumoto actually asked for. Options:
+- **(a)** Re-author the fixtures for 地域環境統計学 weekly reflections and keep the uptake thesis, if the trial's workflow genuinely includes resubmission.
+- **(b)** Build a second view for the reflection use case and show the revision view only for the statistics *exercises* (lecture 10 / lecture 16 PowerPoint deliverables), where multi-draft revision does apply.
+- **(c)** Showcase the existing middle-school demo as an illustration of the method and set expectations that Kindai's own views will differ. *Weakest — it invites the client to evaluate the wrong artefact.*
+
+### C10.4 Candidate contents — *a menu, per [S16], not a spec*
+
+[S16 §4] names the natural contents to test with the professors: **who has submitted**, **feedback rounds per student**, **which rubric criteria students miss most**, and **a per-student view of each submission and the feedback it received** — framed around the improvement process from first submission through feedback to resubmission. Plus the rule carried over from the RISO AI Dashboard PRD: **report learning rather than engagement, and make every number traceable to the underlying submission.**
+
+The prototype's own backlog of unbuilt items, in John's priority order [S17 §6]:
+
+| # | Item | Note |
+|---|---|---|
+| 1 | **Simplify the visuals and surface the meaning** | *"a design problem, not a data problem"* — see C10.5 |
+| 2 | Reflection prompt at submission | *"cheap, and the strongest evidence for 観点別評価"* — **but 観点別評価 is K-12; see §1.6.6. Re-justify for a university** |
+| 3 | Map the summary onto 粘り強さ / 自己調整 + printable evidence sheet | Same caveat — this is a **Juku/school** play, not a Kindai one |
+| 4 | Assignment-level AI policy tier | Aligns with AIAS / Missouri scales |
+| 5 | Feedback issued vs. acted on | |
+| 6 | Term view | |
+| 7 | Time between feedback and return | |
+
+### C10.5 The actual outstanding work — *design, and it has explicit targets*
+
+[S17] is unusually clear that engineering is not the blocker: *"The data layer is solid and the structure is right, but the visuals still need simplifying and the meaningful insights need surfacing — a teacher should get the point without studying the screen."* Its targets, in payoff order:
+- **Say the finding, don't just plot it.** The chart has four series and a legend; what a teacher needs is one sentence — *"9 of the 10 students who revised did it in their own words"* — with the chart as supporting evidence.
+- **Give each student a one-line "so what".** Today the header shows three numbers and a focus line; the teacher still has to assemble "4 drafts + own words + still open" into a judgement.
+- **Thin the timeline rows.** 提案どおり / 自分の言葉 / 質問4往復 / 意見・提案 is four pieces of metadata on one line; some belongs in the expanded detail.
+- **Reduce the colour vocabulary** if possible without losing meaning — five is already at the limit.
+- Guiding principle to keep applying: **colour and number carry the meaning; prose appears only on demand.**
+- Benchmark to design against: *"A busy 塾 teacher should learn something true in about three seconds, without reading a legend or comparing bars."* **For the Kindai showcase, substitute the professor — and confirm that is the same bar.**
+
+### C10.6 Open questions the showcase cannot ship without
+
+1. **Who produces each manual dashboard, from what, at what cadence, and how long does one take?** "Manual" is a commitment to recurring human effort across a three-month trial with weekly submissions. Nobody has costed it. [S16] leaves it as a checklist item: *"agree how the manually created dashboards get produced during the trial."*
+2. **What is genuinely collectable during the Kindai trial?** U22 — the four preconditions in §1.6.5 are unmet in production today. A showcase built on fixtures that production cannot reproduce sells something we cannot deliver.
+3. **How do teacher reactions get captured?** This is the entire stated purpose of the exercise and it has no mechanism. Without it the trial produces a nice PDF and no roadmap input.
+4. **Are `rewrite_quality()` and `student_turns()` trustworthy on real Japanese university text?** Both are flagged as tuned on authored data only. If the showcase asserts "own words vs. copied" to a professor, that claim must survive his own reading of the submissions.
+5. **Does the showcase claim anything the trial will not deliver?** Everything in the dashboard is fictional [S17 §11]. Confirm with Hinano how it is labelled to the client.
+6. **Does it stay manual for the whole trial, or is there a trigger to productise?** U25 — dashboard ownership currently sits with the AI Grading team, and Takuya's position is that anything built now is rebuilt on merge.
+
+### C10.7 Acceptance criteria — *none written*
+
+The showcase is a document, not a build, so ACs in the QA sense may not apply. What does need writing is a **content sign-off checklist with Hinano before it goes to a client**: every number traceable to a submission, nothing claimed that production cannot collect, fictional data clearly labelled, and no view that breaks a §1.6.4 rule.
+
 ---
 
 ## D. Readiness gate (before sprint planning)
@@ -536,6 +675,14 @@ Flag every one of these to the Tech Lead **before** commitment:
       A fifth, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
 - [ ] **Open defects that gate the October trial:** teacher rubrics destroyed by the rubric agent (U18), feedback number bubbles out of sequence on small PDFs, LangSmith validation errors with a possible one-month tail [S15].
 - [ ] **Dependencies owed by others before C3 and C7 can be completed:** Bunsuke's LO-type refactoring proposal and Koki's start/due-date demo, both actioned on 17 Sep.
+
+**The dashboard showcase (C10) runs on its own clock and is NOT gated by the above.** It is a manual sales artefact, not a build. Its own blockers, in order:
+- [ ] **C10.3 — the dataset does not match the showcase.** Middle-school English/Science vs university 地域環境統計学 weekly reflections. Decide (a), (b) or (c) before any visual work.
+- [ ] **Does the revision-trail thesis hold for a 300-character weekly reflection?** If not, the showcase needs a different spine.
+- [ ] **U22 — four production preconditions unmet** (§1.6.5), against a stated goal of "data we can actually collect today".
+- [ ] **No mechanism to capture teacher reactions** — which is the entire purpose of the exercise.
+- [ ] **Manual production effort uncosted** across a three-month trial with weekly submissions.
+- [ ] Hinano wants visuals and content aligned **this month** — that is the binding date, not any release train.
 - [ ] **No acceptance criteria.**
 - [ ] **C7 blank while at least five integrations exist**, including a hard API-only requirement against a client-built LMS.
 - [ ] **No TL feasibility review**, no T-shirt size, no latency or cost budget.
@@ -572,8 +719,8 @@ Flag every one of these to the Tech Lead **before** commitment:
 | Field | Value |
 |---|---|
 | **Feature flag name** | *Not created — **flag naming and the registry are Carlo's; ask, do not invent*** |
-| **Preproduction tenants** | *TBC — but note the **AI Feedback trial runs in pre-release (preprod) from 1 Oct 2026** [S15]; name the tenant* |
-| **Production tenants** | *TBC — note Kindai Applied Sociology needs production access before 6 Nov 2026* |
+| **Preproduction tenants** | Known state at 4 Sep [S16]: `lmsv2` **ON** (full set incl. Class Assignment + ToC), `sankogakuen` testable (AI添削 since 21 Aug). The **AI Feedback trial runs in pre-release from 1 Oct 2026** [S15] — name the tenant |
+| **Production tenants** | Known state at 4 Sep [S16]: `aidemo2` **ON** (current sales demo tenant; ToC required for AI Feedback History to work), `lmspsai` / `aidemo` **OFF** (`aidemo` being retired), `demo-lms` not available. **Kindai trial tenant is an open item (U21)** and needs AI Feedback + Class Assignment + ToC enabled before October; enablement is a config change by Cuong Hoang via `#ai-tutor-tech` |
 | **Target release train** | *TBC. Known dates: **AI Feedback trial starts 1 Oct, release targeted 5 Oct** [S15]; AI marking UI preprod 21 Sep, prod 5 Oct; AI 添削 evaluation 12–16 Oct, client review from 19 Oct; **unified-app V1 (PDF practice only) January** [S8a]* |
 | **Flag default at release** | *TBC — likely off pending client go-ahead, given U1* |
 
@@ -610,6 +757,9 @@ Flag every one of these to the Tech Lead **before** commitment:
 | **S8a** | [**Weekly AI Direction Discussion — Notes by Gemini**](https://docs.google.com/document/d/1pzUZxU-vZbiNQGfSRBRvu-cqq2uwoweHm9hhTaIO9Is/edit) (Google Meet; quick notes + full notes + transcript) | Meeting — **the AI direction meeting; decides AI Feedback's place in the learner app** | 17 Sep 2026, 10:00 GMT+8 |
 | S8b | Takuya / James 1:1, Circleback `zZo5BHAbqxVjjutrqFeRy`; also [Notes by Gemini](https://docs.google.com/document/d/1hHnUhG7w-MJfa33LdfZocGV4PaI00EktgqqzbLVs6gM/edit) | Meeting — university GTM | 17 Sep 2026, 15:00 GMT+8 |
 | S15 | [AI Feedback trials grooming — Notes by Gemini](https://docs.google.com/document/d/1G_fvpln_a_oLdxXyD6XBRIBKTIxZViwEvuP1DRD76HQ/edit) | Meeting — current build state, October trial | 11 Sep 2026 |
+| S16 | [AI Feedback — Handover (John → James)](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2862710799/AI+Feedback+Handover+John+James), Confluence PRDM | **Handover page — explicitly a draft**; Kindai trial, open bugs, dashboard mock, tenant matrix | created 7 Sep 2026 |
+| S17 | `ai-feedback-dashboard-handover.zip` — `dashboard.html`, `HANDOVER.md`, `COMPETITOR-FINDINGS.md`, `dataset/` | Prototype + fixtures + competitor research. **Confidential / 社外秘; all data fictional** | Sep 2026 |
+| S18 | Slack thread, `#C0BPM7T182C`, John Paoletto → James Sim cc Hinano ([link](https://manabiebiz.slack.com/archives/C0BPM7T182C/p1789620239541629?thread_ts=1789620229.644139&cid=C0BPM7T182C)) | The showcase ask; Hinano confirms 地域環境統計学 weekly submissions | 17 Sep 2026 |
 | S9 | Weekly AI Grading/Marking, `Mkezgcg7nclYlfkKwUau3` | Meeting | 17 Sep 2026 |
 | S10 | Content Weekly `KllJcZHljvv2nMfKhkmr0`; Weekly_Content `b4yz0CcxF6iKw6XU7cOjt` | Meetings | 17 Sep 2026 |
 | S11 | Weekly AI Direction Discussion, `H6gDlmhD6x4FeJo9QTQ5Q` / `Mp8WpM7zD470xd6Upo4lN` | Meetings | 2 Jul / 18 Jun 2026 |
