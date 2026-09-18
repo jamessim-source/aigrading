@@ -218,7 +218,7 @@ What is true and can be said today: Manabie has AI Feedback shipping as a studen
 - **AI 添削 (marking) test: tech-side bulk generation and evaluation 12–16 Oct; client review from 19 Oct.**
 - Top Q4 content priority is fixing scoring gaps in the handwriting question types (math and language) before Sanko QA.
 
-**Prior AI Direction Discussions (for continuity, not today):**
+**Prior AI Direction Discussions (for continuity, not 17 Sep):**
 - **2 Jul 2026** (`H6gDlmhD6x4FeJo9QTQ5Q`): AI Feedback and AI Grading have separate back ends but **are converging into one unified flow** — Q3 milestone is integrating AI Grading and AI Feedback into a single flow; **Q4 is plugging that into the LMS LO submission flow**. Koki Misawa: AI Feedback as a standalone student-initiated feature is hard to sell — *"students won't proactively use it"*; the more useful model is batch processing with submissions auto-returned. Koki also: feedback and grading should both operate **under the LO structure**, with HQ pre-building curriculum because juku teachers won't create assignments on the spot. AI Grading should be sold **with LMS** so the grading agent references LMS LOs instead of requiring answer-key upload.
 - **18 Jun 2026** (`Mp8WpM7zD470xd6Upo4lN`): AI Feedback demos well but was **not trial-ready** — assignment-level only, no class management. Bunsuke Itamura suggested structuring the merged product **by assignment type (test vs essay)** rather than by feature, entry point always class/assignments.
 - **12 May 2026, AI Tutor Product Catchup** (`51O371bkHOmZJp4u4WAvE`): the team wants AI Feedback output format **teacher-configurable** — sections, titles, granularity (passage vs line level) and length defined by the rubric, plus a standard closing "final comment" block; students choose general vs targeted (assignment-tied) feedback at upload; supported uploads PDF/JPG/PNG.
@@ -490,7 +490,7 @@ Section 1 is what we were told. B5 is what the PM decides actually proves the pr
 **Candidate out-of-scope, with the reason each is a candidate:**
 - **Graduation theses, seminar theses, specialised open-ended writing** — [S3 ch.5] excludes them: ambiguous criteria, few anchors, high stakes. **But [S4] slide 18 sells exactly this** ("draft guidance for graduation theses, seminar papers, research proposals", 4th-years, 200 students). **This is a live contradiction between the design paper and the sales deck and the PM must resolve it here.**
 - **Oral viva** — U10; no capability exists, and the client is shopping it to competitors [S7].
-- **AI Red-Pen Grading (the paper/photo flow) for university submissions** — James, 17 Sep: *"not for Kindai… most of the submissions gonna be PDF"*. Kindai submits digital documents, so the paper/photo path is not its route in. *(Check this against the naming conflict flagged in C6 before quoting it to a client.)*
+- **AI Red-Pen Grading (the paper/photo flow) for university submissions** — James, 17 Sep: *"not for Kindai… most of the submissions gonna be PDF"*. Kindai submits digital documents, so the paper/photo path is not its route in. *(Check this against the naming conflict flagged in C5 before quoting it to a client.)*
 - **Auto-return without instructor confirmation** — [S4]/[S5] both state pilots assume instructor confirmation of every item, with auto-return a separate workflow configured after administrators confirm responsibility.
 - ~~**DOCX**~~ — **not out of scope.** [S19] shows v1 already accepts `.docx` and `.pdf`; V1.1's exclusion refers to its mobile/image additions. Word stays in for the web document flow.
 
@@ -557,7 +557,7 @@ Journeys needed, one per persona chosen in B4. Candidate set:
 - TA: first-pass review handoff
 - Academic affairs: rubric governance, audit log, consistency report
 
-**Design status: no Figma exists for this scope.** The Kindai teacher dashboard is wanted by late October and today's direction discussion resolved it should be *integrated into the existing group/individual dashboards*, not built ad hoc — which means the design dependency is on the existing dashboard, not a new screen. Qisheng Zhang is finalising Figma for AI grading US1–US4 (Weekly AI Grading, 17 Sep); **confirm whether that work covers this flow before commissioning more.**
+**Design status: no Figma exists for this scope.** The Kindai teacher dashboard is wanted by late October and the 17 Sep direction discussion resolved it should be *integrated into the existing group/individual dashboards*, not built ad hoc — which means the design dependency is on the existing dashboard, not a new screen. Qisheng Zhang is finalising Figma for AI grading US1–US4 (Weekly AI Grading, 17 Sep); **confirm whether that work covers this flow before commissioning more.**
 
 ## C5. Terminology / glossary — *PM to complete; several genuine collisions*
 
@@ -611,7 +611,7 @@ Flag every one of these to the Tech Lead **before** commitment:
 - **Volume — Kindai trial, now sizeable (confirmed 17 Sep).** Both submission types run weekly (C10.3): ~140 students × **2 submissions/week** × 7–9 remaining sessions ≈ **2,000–2,500 feedback generations** across the three-month trial, arriving in **bursts of ~140 within hours of each lecture**. The reflection half is expected *"immediately on submission"* [S16 §2], i.e. synchronous. **Nobody has sized the burst, the latency budget or the cost.** This is the first real volume number the trial produces and it should drive the trigger rule in C7.
 - **Volume — correspondence track.** 62,000 reports/year [S7] and a proposed batch re-run of 240 historical reports [S6][S7]. Batch re-grading on rubric version change is a **re-run of an entire corpus** — this is the load-bearing cost question and nobody has sized it.
 - **Cost per submission.** Not calculated. [S7] notes the client prefers per-student flat pricing, which puts all volume risk on Manabie. The API-vs-subscription cost gap is live in the org (~$5,000 per 70 questions on API vs $20/month subscription — Daily AI Tutor x AI Harness, 17 Sep).
-- **OCR.** V1.1 sets ≥97%; Eishinkan measured 93% average with 70% of samples ≥95% (Weekly AI Grading, 17 Sep). **Reconcile the target with the measurement.**
+- **OCR.** V1.1 sets ≥97%; Eishinkan measured 93% average with 70% of samples ≥95% (Weekly AI Grading, 17 Sep). **Reconcile the target with the measurement.** Note this bar binds the **AI Grading** path specifically, since that is the paper/photo one.
 - **Evaluation at scale.** James, 17 Sep: for a signed client launching in April, evaluation has to be ≥95% automated up front. What is the evaluation harness for feedback quality, and who owns it?
 - **The 30-minute setup and 30-second approval budgets [S3] have never been validated by anyone who would have to build them.**
 
@@ -650,7 +650,7 @@ Per surface:
 **Confirmed on 17 Sep.** Kindai runs *both* submission types weekly (C10.3), which is exactly the split this decision assumes: the reflection is the phone path, the exercise is the PC path. The device decision is therefore evidenced rather than inferred, and the mobile exception is load-bearing rather than defensive.
 
 **Consequences to carry into the rest of the PRD:** C4 needs a desktop journey for the faculty flows and the student coursework flow, and a mobile journey for reflections and feedback-reading. The JP long-string overflow check above must be run at **both** widths. And the design brief for this segment is no longer the V1.1 mobile-first brief — say so when commissioning it.
-- Terminology to align JP↔EN before strings are cut: 添削 (marking/red-pen) vs feedback vs grading; ルーブリック; 仮評価 (preliminary AI assessment).
+- Terminology to align JP↔EN before strings are cut: 添削 (marking/red-pen) vs feedback vs grading; ルーブリック; 仮評価 (preliminary AI assessment). **See the naming conflict in C5 — this is now a live item, not a tidy-up.**
 
 ## C10. Learning-log dashboard — the Kindai showcase
 
