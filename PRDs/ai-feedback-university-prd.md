@@ -1,8 +1,18 @@
 # PRD: AI Feedback — Universities (primary) / Juku (secondary)
 
 > **Authorship status — read this before using this document.**
-> Section 1 (Background) is populated from client meetings, internal strategy documents, market decks and today's AI direction discussion. Every line carries its source.
+> Section 1 (Background) is populated from client meetings, internal strategy documents, market decks and the 17 Sep AI direction discussion. Every line carries its source.
 > **Parts A, B and C are NOT authored.** They contain *candidates and questions* drawn from those sources, each clearly labelled. Product scope discussed in a meeting or asserted in a business deck is not a specification. The PM converts each candidate into a decision — or rejects it — before this PRD goes to review. Nothing in Parts A–C may be treated as committed behaviour until that happens.
+
+> **Canonical source.** This file (`PRDs/ai-feedback-university-prd.md`) is the source of truth. It is published to Confluence as a page tree under [PRD: AI Feedback v1](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2361622595):
+> - [PRD: AI Feedback — Universities & Juku](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2897018905) *(landing page)*
+> - [1. Background and client context](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2896724023) — Section 1
+> - [2. Parts A & B — Business and Problem](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2896166944)
+> - [3. Part C — Solution (C1–C9)](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2896887861)
+> - [4. C10 — Learning-log dashboard and Kindai showcase](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2896396337)
+> - [5. Parts D & E — Readiness gate, delivery record and sources](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2896363589)
+>
+> Edit here, then republish. Confluence edits made directly on those pages will be overwritten.
 
 | | |
 |---|---|
@@ -22,6 +32,7 @@
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
 | 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
+| 2026-09-18 | v0.9 | James Sim (drafted with Claude) | **Published to Confluence** as a five-page tree under [S19], the v1 parent — links in the banner above. Fixed a structural bug from an earlier edit: six general readiness-gate blockers (no ACs, C7 blank, no TL review, no designs, no Business sign-off, V1.1 relationship undeclared) had been mis-nested inside the **dashboard's** blocker list, which is explicitly *not* gated by the main list. Also fixed four stale cross-references ("today's direction discussion" → 17 Sep; "1.6 list" → "1.7 list"; a §1.5.2 pointer to a C2 contradiction that v0.4 closed; a C2 DOCX out-of-scope line that v0.8 closed) | Draft | — |
 | 2026-09-18 | v0.8 | James Sim (drafted with Claude) | Reconciled against **[S19] the parent v1 PRD**. **DOCX contradiction closed** — v1 already accepts `.docx`/`.pdf`; V1.1's exclusion refers to its mobile/image additions. **C9.1 corroborated** — v1 is stated to be web-only, so PC-first is what the product already is for documents. **C7 feature control resolved** — a tenant-level flag exists. **C8 gains a real conflict** — v1 explicitly excludes latency ("3-5min, doesn't matter"), which does not survive 140 reflections wanting feedback immediately on submission. Readiness gate down to one source contradiction | Draft | — |
 | 2026-09-18 | v0.7 | James Sim (drafted with Claude) | **C10.3a added — the reflection view specified as a reading queue.** Confirms *"comments worth reading"* means the **students' reflections**, not AI feedback awaiting approval. Splits three jobs that v0.6 wrongly bundled: the reading queue (the actual ask), what to re-teach, and who submitted. Proposes four triage signals — question asked, said something no-one else said, misunderstanding split by shared vs unique, changed direction — each marked **inferred, not sourced**, each required to state why it surfaced. Ranks submissions not students to stay clear of the no-leaderboard rule, and makes mark-as-read the built-in capture of teacher reaction. Notes week one is realistically signal 1 only | Draft | — |
 | 2026-09-17 | v0.6 | James Sim (drafted with Claude) | **C10.3 decided:** Kindai's weekly class submission is **both** the ~300-character reflection **and** the Excel/statistics exercise, so the dashboard carries **two views** — a week grid for triaging reflections (new) and the existing revision trail for exercises. Scopes the copied-wording signal to exercises only. Surfaces two new dependencies: a 2–3 criterion **reflection rubric Prof. Yasumoto must author**, and the step up from 2 exercise submissions last year to weekly. Adds the trial volume to C8 (~2,000–2,500 generations, in bursts of ~140). **U24 closed**; C9.1's device split now evidenced | Draft | — |
@@ -119,7 +130,7 @@ What is true and can be said today: Manabie has AI Feedback shipping as a studen
 - Deck model case (hypothetical): 120 students' personal statements across 3 branches / 3 instructors. 30 min → **8 min** per review; 1 week → **next day**; **1 → 3** revisions. Second case: EIKEN writing, 150 students / 20 student-instructors, unified on EIKEN's four aspects (Content · Organization · Vocabulary · Grammar), instructor check 3 min/essay.
 - Juku-specific control asserted: **headquarters registers grading criteria, evaluation points and materials once**, so red-pen standards stay consistent as branches increase; change history retained in an audit log.
 
-## 1.5 Confirmed — today's AI direction discussion and adjacent product meetings (17 Sep 2026)
+## 1.5 Confirmed — the 17 Sep AI direction discussion and adjacent product meetings
 
 > **Where the notes live.** The **Weekly AI Direction Discussion of 17 Sep 2026, 10:00 GMT+8** ran in Google Meet and was minuted by **Gemini, not Circleback** — [Notes by Gemini](https://docs.google.com/document/d/1pzUZxU-vZbiNQGfSRBRvu-cqq2uwoweHm9hhTaIO9Is/edit) (quick notes + full notes + full transcript). Attendees: **James Sim, Bunsuke Itamura, Koki Misawa, Trieu Le Hong. Takuya Homma was invited but did not attend** (struck through on the invite). A separate **Takuya / James 1:1** ran the same day at 15:00 GMT+8 and *was* captured by Circleback (`zZo5BHAbqxVjjutrqFeRy`); it covers university GTM rather than app architecture. Both are recorded below and cited separately.
 
@@ -169,7 +180,7 @@ What is true and can be said today: Manabie has AI Feedback shipping as a studen
 
 - **The AI Feedback trial is confirmed to proceed in the pre-release (preprod) environment in October** — bug fixes locked down ahead of a **trial starting 1 October**, with the **release targeted 5 October**.
 - **Open defect — teacher rubrics are being destroyed.** Teacher-created rubrics are passed through the **rubric agent** instead of going straight to the **feedback agent**; the agent restructures categories and wording into its own UI format, **erasing the teacher's original work**. Agreed fix: teacher-generated rubrics bypass the rubric agent entirely. *This is the single most important open item for anything claiming a "rubric lifecycle" differentiator.*
-- **Rubric weights are being removed because AI Feedback does not use scoring.** *(See the contradiction flagged in C2 — Kindai's rubric is a scored 0–5 across six dimensions.)*
+- **Rubric weights are being removed because AI Feedback does not use scoring.** *Correct and settled — see C2: scoring belongs to AI Grading and AI Marking, and weights belong to a scoring product.*
 - Open defect: AI-generated feedback **number bubbles appear out of sequence, overlapped, or mid-word** on small PDFs; referenced words should be fully underlined and numbers sequential.
 - Feedback-generation validation errors involve LangSmith technical/logic issues that **could take up to a month** to resolve.
 - Drag-and-drop UI latency causing jumping — fix is optimistic rendering. The non-functional "current questions" bar to be removed.
@@ -337,7 +348,7 @@ A student whose improvements are *all* "copied + no dialogue" gets **one quiet l
 ## A2. Scope of applicability — *PM decision required*
 
 - This feature is: **General / Tenant-configurable / Partner-specific** — **not decided.**
-- **Candidate (strongly evidenced, still the PM's call): Tenant-configurable, built general.** The direction stated today is a *"standardized, versatile workflow that can serve different use cases without rebuilding from scratch each time"* (Takuya, 17 Sep) and *"built purposefully for just that use case… everything else is just a front end layer of UI/UX"* (James, 17 Sep).
+- **Candidate (strongly evidenced, still the PM's call): Tenant-configurable, built general.** The direction stated on 17 Sep is a *"standardized, versatile workflow that can serve different use cases without rebuilding from scratch each time"* (Takuya, 17 Sep) and *"built purposefully for just that use case… everything else is just a front end layer of UI/UX"* (James, 17 Sep).
 - **The specific values that must NOT be hardcoded to Kindai**, each of which appears in the sources as a concrete number and each of which needs an explicit Env-level / Tenant-level decision in C3:
   - feedback length ~400–600 Japanese characters [S1]
   - three-part feedback structure (recognition / reflective question / actionable guidance) [S1]
@@ -426,7 +437,7 @@ Raw material exists to trace the job, but the trace itself is the PM's work. Wha
 
 **The buyer's financial outcomes must be stated separately.** University: faculty capacity without headcount, under-enrolment pressure and the Feb 2025 Central Council report's learning-outcome evidence requirement [S4]. Juku: correction labour-hours per branch, and "unlimited revisions until application" as a course selling point [S5]. Kindai Applied Sociology's buyer is a **faculty budget meeting**, not the professor — a solution Prof. Yasumoto loves but the faculty won't fund does not ship.
 
-**Note on the executor split, from today's direction discussion and 2 Jul:** Koki's position is that a student-initiated feature will not be used — *"students won't proactively use it"*. The current V1.1 product **is** student-initiated. If B4 lands on "the instructor is the executor", that contradicts the shipped product's flow and C2 must say so explicitly.
+**Note on the executor split, from the 17 Sep direction discussion and 2 Jul:** Koki's position is that a student-initiated feature will not be used — *"students won't proactively use it"*. The current V1.1 product **is** student-initiated. If B4 lands on "the instructor is the executor", that contradicts the shipped product's flow and C2 must say so explicitly.
 
 ## B5. Evidence — *PM to promote from Section 1 with judgement*
 
@@ -456,7 +467,7 @@ Section 1 is what we were told. B5 is what the PM decides actually proves the pr
 **Open at the level of the summary itself:**
 - The 17 Sep AI Direction Discussion says *"grading and feedback should be part of"* the unified app experience, and 2 Jul set Q3 = merge AI Grading + AI Feedback into one flow, Q4 = plug into the LMS LO submission flow. **Is this PRD the Q3 merge, the Q4 LO integration, or both?** They are different releases with different risk.
 - **The January V1 does not include AI Feedback.** The 17 Sep session aligned that V1 in January is *PDF-based practice functionality only*. Meanwhile the AI Feedback trial runs in preprod from **1 October** with a **5 October** release [S15], and Kindai Applied Sociology expects live use from **6 November**. **Three different timelines are in play and this PRD must say which one it serves.**
-- Today James also noted the current prototype returns feedback straight to the student with no teacher in the loop and *"I don't think it's meant to be this way"*. **Is teacher-in-the-loop mandatory, optional per assignment, or per tenant?** This single answer changes C3, C4, C6 and A3 simultaneously.
+- On 17 Sep James also noted the current prototype returns feedback straight to the student with no teacher in the loop and *"I don't think it's meant to be this way"*. **Is teacher-in-the-loop mandatory, optional per assignment, or per tenant?** This single answer changes C3, C4, C6 and A3 simultaneously.
 - The existing **AI Feedback V1.1** PRD (`PRDs/ai feedback.pdf`) lists **teacher dashboard** and **iterative feedback / re-upload** as *out of scope*. Kindai Applied Sociology needs a teacher dashboard by late October (Takuya/James, 17 Sep) and its whole loop is submit → feedback → revise → resubmit [S1 §2.1]. **This PRD either supersedes those exclusions or it does not — say which, explicitly.**
 
 ## C2. Scope — in and out — *PM decision required*
@@ -476,7 +487,7 @@ Section 1 is what we were told. B5 is what the PM decides actually proves the pr
 - **Oral viva** — U10; no capability exists, and the client is shopping it to competitors [S7].
 - **AI Red-Pen Grading for university submissions** — James, 17 Sep: *"not for Kindai… most of the submissions gonna be PDF"*.
 - **Auto-return without instructor confirmation** — [S4]/[S5] both state pilots assume instructor confirmation of every item, with auto-return a separate workflow configured after administrators confirm responsibility.
-- **DOCX** — out in V1.1; [S3 ch.9] assumes Word is accepted. **Contradiction — resolve.**
+- ~~**DOCX**~~ — **not out of scope.** [S19] shows v1 already accepts `.docx` and `.pdf`; V1.1's exclusion refers to its mobile/image additions. Word stays in for the web document flow.
 
 **Scoring is not in scope here, and that is the architecture rather than a gap.** *(Confirmed by the PM, 17 Sep.)* **AI Grading and AI Marking are always about scoring; AI Feedback is the feedback engine those two call, and the learner app calls, when additional feedback is warranted on top of a score.** Consequences to hold to throughout this PRD:
 - The 11 Sep removal of rubric weights [S15] is **correct and settled** — weights belong to a scoring product, and AI Feedback is not one.
@@ -755,7 +766,7 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 
 **Verdict: NOT READY.** Not close. Blockers, in the order they must be closed:
 
-- [ ] **Section 1 unconfirmed list is still live.** U1 (is the Kindai trial even approved?) and U3 (which subject the 240 reports come from) gate everything downstream. **Nothing on the 1.6 list has been used in Parts A–C, and nothing may be until its named owner confirms it.**
+- [ ] **Section 1 unconfirmed list is still live.** U1 (is the Kindai trial even approved?) and U3 (which subject the 240 reports come from) gate everything downstream. **Nothing on the 1.7 list has been used in Parts A–C, and nothing may be until its named owner confirms it.**
 - [ ] **Part A not authored** — no business goal, no primary metric, no applicability decision, no named Business owner.
 - [ ] **Part B not authored** — five candidate jobs, no chosen core job, no desired outcomes.
 - [ ] **Part C3 has no defined cells.** Every row is undefined and the edge-case checklist is empty. This alone blocks sprint planning.
@@ -767,6 +778,12 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
       A third, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
 - [ ] **Open defects that gate the October trial:** teacher rubrics destroyed by the rubric agent (U18), feedback number bubbles out of sequence on small PDFs, LangSmith validation errors with a possible one-month tail [S15].
 - [ ] **Dependencies owed by others before C3 and C7 can be completed:** Bunsuke's LO-type refactoring proposal and Koki's start/due-date demo, both actioned on 17 Sep.
+- [ ] **No acceptance criteria.**
+- [ ] **C7 blank while at least five integrations exist**, including a hard API-only requirement against a client-built LMS.
+- [ ] **No TL feasibility review**, no T-shirt size, no latency or cost budget.
+- [ ] **No designs**, no translations.
+- [ ] **No Business sign-off** on Part A — and Part A does not yet exist to sign off.
+- [ ] **Relationship to AI Feedback V1.1 undeclared** — does this supersede its out-of-scope list (teacher dashboard, iterative feedback/re-upload)?
 
 **The dashboard showcase (C10) runs on its own clock and is NOT gated by the above.** It is a manual sales artefact, not a build. Its own blockers, in order:
 - [x] ~~C10.3 — which submission type the showcase covers~~ — **closed 17 Sep: both. Two views, per C10.3.**
@@ -778,12 +795,6 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 - [ ] **No mechanism to capture teacher reactions** — which is the entire purpose of the exercise.
 - [ ] **Manual production effort uncosted** across a three-month trial with weekly submissions.
 - [ ] Hinano wants visuals and content aligned **this month** — that is the binding date, not any release train.
-- [ ] **No acceptance criteria.**
-- [ ] **C7 blank while at least five integrations exist**, including a hard API-only requirement against a client-built LMS.
-- [ ] **No TL feasibility review**, no T-shirt size, no latency or cost budget.
-- [ ] **No designs**, no translations.
-- [ ] **No Business sign-off** on Part A — and Part A does not yet exist to sign off.
-- [ ] **Relationship to AI Feedback V1.1 undeclared** — does this supersede its out-of-scope list (teacher dashboard, iterative feedback/re-upload)?
 
 **Shortest path to Ready:**
 1. James Sim: write the **engine contract** in C7 — inputs, outputs, and the rule for when a scored submission also gets feedback. It is the one thing all three surfaces depend on.
