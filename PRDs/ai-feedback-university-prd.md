@@ -22,6 +22,7 @@
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
 | 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
+| 2026-09-18 | v0.7 | James Sim (drafted with Claude) | **C10.3a added — the reflection view specified as a reading queue.** Confirms *"comments worth reading"* means the **students' reflections**, not AI feedback awaiting approval. Splits three jobs that v0.6 wrongly bundled: the reading queue (the actual ask), what to re-teach, and who submitted. Proposes four triage signals — question asked, said something no-one else said, misunderstanding split by shared vs unique, changed direction — each marked **inferred, not sourced**, each required to state why it surfaced. Ranks submissions not students to stay clear of the no-leaderboard rule, and makes mark-as-read the built-in capture of teacher reaction. Notes week one is realistically signal 1 only | Draft | — |
 | 2026-09-17 | v0.6 | James Sim (drafted with Claude) | **C10.3 decided:** Kindai's weekly class submission is **both** the ~300-character reflection **and** the Excel/statistics exercise, so the dashboard carries **two views** — a week grid for triaging reflections (new) and the existing revision trail for exercises. Scopes the copied-wording signal to exercises only. Surfaces two new dependencies: a 2–3 criterion **reflection rubric Prof. Yasumoto must author**, and the step up from 2 exercise submissions last year to weekly. Adds the trial volume to C8 (~2,000–2,500 generations, in bursts of ~140). **U24 closed**; C9.1's device split now evidenced | Draft | — |
 | 2026-09-17 | v0.5 | James Sim (drafted with Claude) | **C9.1 added — device priority decided.** The university AI Feedback flow is **PC-first with mobile at genuine parity**, split by surface, with **weekly 300-character reflections as a named mobile exception** because submission rate is the trial's first-order risk. Reasoning rests on the artefact (Excel/PowerPoint/PDF exports are desktop artefacts), not on a claim about student device habits, plus the falsification check to run with Prof. Yasumoto. Readiness gate down to two source contradictions | Draft | — |
 | 2026-09-17 | v0.4 | James Sim (drafted with Claude) | **Architecture corrected on PM confirmation:** AI Grading and AI Marking are always about scoring; **AI Feedback is the feedback engine** they and the learner app call when additional feedback is warranted on top of a score. v0.2–v0.3 wrongly framed this as a blocking contradiction. **U15 closed.** The 11 Sep rubric-weight removal is correct and settled; [S3]'s scoring apparatus describes AI Grading, not AI Feedback; Kindai's 0–5 rubric supplies criteria, not an AI score. The open work moves to **C7 — the engine contract** (inputs, outputs, and the rule for when a scored submission also gets feedback) | Draft | — |
@@ -660,8 +661,42 @@ The design rules in §1.6.4 are the one part of this work that is already decide
 
 **So the dashboard carries two views, not one.**
 
-1. **Reflection view — a week grid.** Students down the side, weeks across the top, ~140 × 7–9 cells. Answers "who submitted", "what did the class as a whole get wrong this week", and "which five reflections should I actually read". This is **new** — the prototype has nothing like it, and it is the view the showcase is being asked for.
-2. **Exercise view — the revision trail.** This is what the existing prototype already does well, and what it was built for: one piece of work across several drafts, showing whether the student fixed the flagged problem and whether they used their own words. Keep it, aimed at the exercises.
+**Exercise view — the revision trail.** This is what the existing prototype already does well and what it was built for: one piece of work across several drafts, showing whether the student fixed the flagged problem and whether they used their own words. Keep it, aimed at the exercises.
+
+**Reflection view — a reading queue.** New, and the view the showcase is actually being asked for. Specified below.
+
+#### C10.3a The reflection view — what the professor asked for
+
+> **Provenance, stated plainly.** *"A way to pick out the comments worth reading"* is Prof. Yasumoto's own request [S16 §2], and **"the comments" means the students' reflections** (confirmed by the PM, 17 Sep) — not the AI's feedback awaiting approval. *"Who has submitted"* and *"which rubric criteria students miss most"* are from John's menu of candidate contents [S16 §4]. **The triage signals in the table below are inferred, not sourced** — they are my proposal for how the professor's request could actually be served, and they are the part to test with him in October.
+
+**The problem in one line:** 140 reflections land within hours of each lecture, and the professor has minutes. He is not going to read them all, and a list of 140 rows helps him no more than the pile does.
+
+**Three distinct jobs, deliberately not blurred into one view.** An earlier draft of this PRD bundled them and it was wrong: "who submitted" and "what the class missed" do not answer "what should I read" — the first is compliance, the second is an aggregate that by construction averages away the individual reflection.
+
+| Job | What it answers | Shape | Size on screen |
+|---|---|---|---|
+| **A. The reading queue** — *the actual ask* | Which reflections deserve my attention this week | A short ranked list of **submissions**, each with the reason it surfaced | The main event. **Target 5–10 items out of ~140** |
+| **B. What to re-teach** | What did the class as a whole get wrong | One sentence plus the criteria the class missed most | One line. Feeds the five-minute recap at the start of the next lecture |
+| **C. Who submitted** | Who do I chase | A count and a list of names | Smallest element. Counts and names, never rates (§1.6.4) |
+
+**Candidate signals for the queue — each must state why it surfaced:**
+
+| Signal | Why it earns the professor's time | Confidence |
+|---|---|---|
+| **The student asked a question** in their reflection | A direct request for his attention, already written down. Cheapest and least arguable signal there is | High — trivially computable |
+| **Said something no-one else said** | The insight worth reading aloud next class. This is what professors actually mine minute papers for | Medium — needs semantic novelty across the week's cohort; untested |
+| **Shows a misunderstanding, split by how many share it** | Shared → job B, re-teach it. **Unique → this student, now.** The split is what makes it actionable rather than interesting | Medium — depends on the reflection rubric existing |
+| **Changed direction** — steady for weeks, suddenly confused or disengaged | The one thing reading all 140 in a sitting would *not* reveal. **Only the weekly cadence makes it computable** — the exercise view cannot do this at two submissions a term | Medium — needs ≥3–4 weeks of history before it says anything |
+
+**Design rules this must respect (§1.6.4), and how:**
+- **The queue ranks submissions, not students.** That keeps it clear of *"no leaderboards, no per-student score."* A teacher's work queue is not a ranking of people, and students never see it.
+- **Reading all 140 stays one click away.** The queue is a suggestion, not a gate.
+- **Showing the reflection text is fine** — it is the student's own submitted work, not a chat transcript. The rule against transcripts still binds anything from the follow-up conversation.
+- **「一度きり」/「未提出」, never "not trying."** Job C names who hasn't submitted and stops there.
+
+**The failure mode to design against.** If the professor reads the five surfaced items in week one and they are dull, he stops opening the view by week three. Two mitigations: **every item says why it surfaced**, so he can calibrate rather than guess; and he can **mark an item read or irrelevant**, which is both a courtesy and the only honest way to learn whether the triage works. That feedback is also the answer to C10.6's open question about capturing teacher reactions — for this view, it is built in rather than bolted on.
+
+**What is still missing before this can be designed:** the reflection rubric (see above — Prof. Yasumoto's to author). Signals 2, 3 and 4 all depend on it or on having several weeks of history, so **the week-one version of this view is realistically signal 1 plus jobs B and C.** Say that out loud in the showcase rather than demonstrating a maturity the trial will not have in its first fortnight.
 
 **Two consequences that are easy to miss:**
 - **The "copied the AI's wording" signal only belongs in the exercise view.** On 300 characters there is too little text for it to mean anything, and running it there would produce noise and, worse, unfair 要確認 flags. Scope it to exercises explicitly.
@@ -673,7 +708,7 @@ The design rules in §1.6.4 are the one part of this work that is already decide
 
 ### C10.4 Candidate contents — *a menu, per [S16], not a spec*
 
-[S16 §4] names the natural contents to test with the professors: **who has submitted**, **feedback rounds per student**, **which rubric criteria students miss most**, and **a per-student view of each submission and the feedback it received** — framed around the improvement process from first submission through feedback to resubmission. Plus the rule carried over from the RISO AI Dashboard PRD: **report learning rather than engagement, and make every number traceable to the underlying submission.**
+**For the reflection view, C10.3a supersedes this menu** — the menu's items map onto jobs B and C there, with the reading queue as job A. The menu still stands as the candidate list for the exercise view. [S16 §4] names the natural contents to test with the professors: **who has submitted**, **feedback rounds per student**, **which rubric criteria students miss most**, and **a per-student view of each submission and the feedback it received** — framed around the improvement process from first submission through feedback to resubmission. Plus the rule carried over from the RISO AI Dashboard PRD: **report learning rather than engagement, and make every number traceable to the underlying submission.**
 
 The prototype's own backlog of unbuilt items, in John's priority order [S17 §6]:
 
@@ -701,7 +736,7 @@ The prototype's own backlog of unbuilt items, in John's priority order [S17 §6]
 
 1. **Who produces each manual dashboard, from what, at what cadence, and how long does one take?** "Manual" is a commitment to recurring human effort across a three-month trial with weekly submissions. Nobody has costed it. [S16] leaves it as a checklist item: *"agree how the manually created dashboards get produced during the trial."*
 2. **What is genuinely collectable during the Kindai trial?** U22 — the four preconditions in §1.6.5 are unmet in production today. A showcase built on fixtures that production cannot reproduce sells something we cannot deliver.
-3. **How do teacher reactions get captured?** This is the entire stated purpose of the exercise and it has no mechanism. Without it the trial produces a nice PDF and no roadmap input.
+3. **How do teacher reactions get captured?** This is the entire stated purpose of the exercise. For the reflection view C10.3a builds it in — mark-as-read / mark-as-irrelevant on each queued item is the cheapest honest signal of whether the triage works. **For every other view there is still no mechanism**, and without one the trial produces a nice PDF and no roadmap input.
 4. **Are `rewrite_quality()` and `student_turns()` trustworthy on real Japanese university text?** Both are flagged as tuned on authored data only. If the showcase asserts "own words vs. copied" to a professor, that claim must survive his own reading of the submissions.
 5. **Does the showcase claim anything the trial will not deliver?** Everything in the dashboard is fictional [S17 §11]. Confirm with Hinano how it is labelled to the client.
 6. **Does it stay manual for the whole trial, or is there a trigger to productise?** U25 — dashboard ownership currently sits with the AI Grading team, and Takuya's position is that anything built now is rebuilt on merge.
@@ -731,7 +766,8 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 
 **The dashboard showcase (C10) runs on its own clock and is NOT gated by the above.** It is a manual sales artefact, not a build. Its own blockers, in order:
 - [x] ~~C10.3 — which submission type the showcase covers~~ — **closed 17 Sep: both. Two views, per C10.3.**
-- [ ] **The reflection view does not exist.** It is the view the showcase is actually being asked for, and the prototype has nothing like it. Design it first; the revision view already works for exercises.
+- [ ] **The reflection view does not exist.** Specified in C10.3a as a reading queue; the prototype has nothing like it. Design it first; the revision view already works for exercises.
+- [ ] **Week-one honesty.** Three of the four queue signals need the reflection rubric or several weeks of history, so the first fortnight is realistically "student asked a question" plus the class-level and submitted views. Frame the showcase accordingly.
 - [ ] **The reflection rubric does not exist** and is Prof. Yasumoto's to author — a dependency on the October hands-on, not a design task.
 - [ ] **Demo data must be rebuilt** as a Kindai class (~140 students, both submission types). Mechanical, but it gates any client-facing version.
 - [ ] **U22 — four production preconditions unmet** (§1.6.5), against a stated goal of "data we can actually collect today".
