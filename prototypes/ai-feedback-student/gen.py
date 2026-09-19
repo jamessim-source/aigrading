@@ -1933,7 +1933,7 @@ TJA = dict(
              ("有意性の検定が記載されている", "課題説明 p.2"), ("参照した講義資料の記載", "評価基準 2.(3)"),
              ("ページ数 2枚程度", "課題説明 p.1")],
     t_add_cond="条件を追加", t_s_crit="コメントの観点（ルーブリック）",
-    t_crit_note="この観点に沿ってフィードバックが作られます。提出物は観点ごとに読まれ、各コメントには対応する観点が付き、先生が下書きを確認するときにも表示されます。コメントの内容を決めるもので、点数は付けません。",
+    t_crit_note="提出物はこの観点に沿って読まれ、各コメントには対応する観点が付きます。",
     t_crits=["Excelスキル", "図表の見やすさ", "統計処理", "解釈", "論理構成", "生成AIリテラシー"],
     t_regen="生成し直す", t_add_crit="観点を追加", t_preview="生徒に表示される画面を見る",
     # overview
@@ -1996,7 +1996,7 @@ TEN = dict(
              ("The test of significance is stated", "brief p.2"), ("The lecture material is cited", "criteria 2.(3)"),
              ("About 2 pages", "brief p.1")],
     t_add_cond="Add a requirement", t_s_crit="Comment criteria (rubric)",
-    t_crit_note="These criteria steer the feedback: each submission is read against them, every comment is tagged with the criterion it concerns, and you see them again when you review the draft. They shape the comments only — no levels, no score.",
+    t_crit_note="Each submission is read against these criteria, and every comment is tagged with the one it concerns.",
     t_crits=["Excel skills", "Clarity of charts", "Statistical processing", "Interpretation", "Logical structure", "Generative-AI literacy"],
     t_regen="Regenerate", t_add_crit="Add a criterion", t_preview="Preview what the student sees",
     t_s_status="Submissions", t_st1="Submitted", t_st1_n="12 / 30", t_st1_s="12 of 30 students have submitted",
