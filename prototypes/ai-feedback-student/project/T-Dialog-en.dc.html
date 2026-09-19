@@ -525,7 +525,6 @@ table.m tbody tr:last-child td{border-bottom:0}
           <div class="setting">
             <span class="setting-label" style="font-weight:500">Teacher review</span>
             <button class="switch {{rv}}" onClick="{{toggleRv}}"><span class="track"></span><span>I review the feedback before it is returned</span></button>
-            <sc-if value="{{rvOn}}" hint-placeholder-val="{{true}}"><p class="hint">The draft is written after the due date and stays hidden until you review, edit and return it. Students receive it as feedback from you.</p></sc-if>
             <sc-if value="{{rvOff}}" hint-placeholder-val="{{false}}"><div class="alert warn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#C77700" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg><span>Turn this off and feedback is returned automatically after the due date. No work for you, but it reaches students before you have read it.</span></div></sc-if>
           </div>
         </div>
@@ -544,7 +543,7 @@ class Component extends DCLogic {
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {
       menuOpen: this.state.menu, toggleMenu: t("menu"),
-      rv: this.state.review ? "on" : "", rvOn: this.state.review, rvOff: !this.state.review, toggleRv: t("review"),
+      rv: this.state.review ? "on" : "", rvOff: !this.state.review, toggleRv: t("review"),
       rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
       c0: this.state.m0 ? "on" : "", c1: this.state.m1 ? "on" : "", c2: this.state.m2 ? "on" : "",
       t0: t("m0"), t1: t("m1"), t2: t("m2"),

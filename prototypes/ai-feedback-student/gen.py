@@ -2151,7 +2151,7 @@ TDLG_LOGIC = """state = { menu: false, review: true, resub: true, m0: true, m1: 
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {
       menuOpen: this.state.menu, toggleMenu: t("menu"),
-      rv: this.state.review ? "on" : "", rvOn: this.state.review, rvOff: !this.state.review, toggleRv: t("review"),
+      rv: this.state.review ? "on" : "", rvOff: !this.state.review, toggleRv: t("review"),
       rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
       c0: this.state.m0 ? "on" : "", c1: this.state.m1 ? "on" : "", c2: this.state.m2 ? "on" : "",
       t0: t("m0"), t1: t("m1"), t2: t("m2"),
@@ -2215,7 +2215,6 @@ def t_dialog(S, L):
           <div class="setting">
             <span class="setting-label" style="font-weight:500">{S["t_s_review"]}</span>
             <button class="switch {{{{rv}}}}" onClick="{{{{toggleRv}}}}"><span class="track"></span><span>{S["t_review_on"]}</span></button>
-            <sc-if value="{{{{rvOn}}}}" hint-placeholder-val="{{{{true}}}}"><p class="hint">{S["t_review_body"]}</p></sc-if>
             <sc-if value="{{{{rvOff}}}}" hint-placeholder-val="{{{{false}}}}"><div class="alert warn">{mi("warning", 20, "#C77700")}<span>{S["t_review_off"]}</span></div></sc-if>
           </div>
         </div>
