@@ -1,11 +1,17 @@
-# Generates the AI Feedback student PC prototype: 8 screens × 2 languages (JA / EN) + canvas.json.
+# Generates the AI Feedback student prototype: 8 PC + 8 mobile screens × 2 languages (JA / EN).
+# Two outputs from the same builders:
+#   project/   — .dc.html artboards + canvas.json for the Claude Design canvas
+#   deploy/public/ — standalone pages for the Railway static site (see deploy/README.md)
 # Design language: Manabie "(Final) Learner app" Figma — Noto Sans JP, #f2f2f4 ground, white paper,
 # primary #395ad2 / light #eef1ff, text rgba(28,30,44,.87/.6), border rgba(28,30,44,.12),
 # 8px cards with 0 8px 16px rgba(0,0,0,.1), pill buttons, 72px header with 40px bordered icon button.
-import json, os, datetime
+import json, os, re, datetime
 
-ROOT = os.path.join(os.path.dirname(__file__), "project")
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.join(HERE, "project")
+SITE = os.path.join(HERE, "deploy", "public")
 os.makedirs(ROOT, exist_ok=True)
+os.makedirs(SITE, exist_ok=True)
 W, H, GAP = 1280, 800, 80
 
 # ---------- icons (inline stroke SVG, 24 viewBox) ----------
@@ -200,8 +206,8 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .mhdr .mav{width:36px;height:36px;border-radius:50%;background:#e4e8ff;border:1px solid rgba(28,30,44,.12);display:flex;align-items:center;justify-content:center;color:#395ad2;flex:0 0 36px}
 .mseg{display:inline-flex;align-items:center;border:1px solid rgba(28,30,44,.12);border-radius:1000px;padding:2px;background:#fff;height:30px;gap:1px;flex:0 0 auto}
 .mseg .seg-i{height:24px;padding:0 9px;font-size:11px}
-.mbody{flex:1 1 auto;overflow:auto;padding:16px 16px 24px;display:flex;flex-direction:column;gap:16px}
-.mbody.nav{padding-bottom:84px}
+.mbody{flex:1 1 auto;overflow:auto;padding:16px 16px 64px;display:flex;flex-direction:column;gap:16px}
+.mbody.nav{padding-bottom:124px}
 .mnav{position:absolute;left:0;right:0;bottom:0;height:58px;background:#fff;box-shadow:0 -5px 20px rgba(0,0,0,.05);display:flex;align-items:flex-start;padding-top:8px;z-index:20}
 .mnav .ni{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;line-height:12px;color:rgba(28,30,44,.48)}
 .mnav .ni.on{color:#395ad2}
@@ -266,7 +272,7 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .tool:hover{background:rgba(255,255,255,.18);color:#fff}
 .tool.on{background:#fff;color:#1c1e2c;border-color:#fff}
 .cnote{color:rgba(255,255,255,.72);font-size:12px;margin:0;flex:1 1 auto;text-align:right}
-.thumbs{position:absolute;left:16px;right:16px;top:664px;display:flex;align-items:flex-start;gap:14px}
+.thumbs{position:absolute;left:16px;right:16px;top:676px;display:flex;align-items:flex-start;gap:14px}
 .thumb-w{display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.9);font-size:12px}
 .thumb{width:56px;height:56px;border-radius:7px;overflow:hidden;border:2px solid rgba(255,255,255,.45);background:#111;position:relative;display:flex;align-items:center;justify-content:center}
 .thumb.on{border-color:#fff}
@@ -286,7 +292,7 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .preview .pg{position:absolute;right:10px;bottom:10px;background:rgba(28,30,44,.75);color:#fff;font-size:12px;font-weight:700;border-radius:1000px;padding:3px 10px}
 /* feedback: bottom sheet */
 .scrim{position:absolute;inset:0;background:rgba(28,30,44,.38);z-index:39;border:0;padding:0;cursor:pointer}
-.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.18);padding:8px 20px 20px;z-index:40;display:flex;flex-direction:column;gap:12px;max-height:74%;overflow:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.18);padding:8px 20px 56px;z-index:40;display:flex;flex-direction:column;gap:12px;max-height:74%;overflow:auto}
 .grab{width:40px;height:4px;border-radius:2px;background:rgba(28,30,44,.2);margin:0 auto 4px;flex:0 0 4px}
 .sheet .fbody{font-size:14px;line-height:1.8}
 .sheet-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:4px;border-top:1px solid rgba(28,30,44,.12)}
@@ -1357,7 +1363,7 @@ def m_crop(S, L):
   <button class="tool">{ic("rotate",15)}{S["m_crop_rotate"]}</button>
   <a class="tool" href="{fn("M-Camera",L)}">{ic("camera",15)}{S["m_crop_retake"]}</a>
 </div>
-<p class="cnote" style="position:absolute;left:16px;right:16px;top:656px;text-align:left">{S["m_crop_note"]}</p>
+<p class="cnote" style="position:absolute;left:16px;right:16px;top:652px;text-align:left">{S["m_crop_note"]}</p>
 <div class="thumbs">
   <span class="thumb-w"><span class="thumb on"><span class="no">1</span>{paper_inline(40, 52, False)}</span>{S["m_cam_page"]}</span>
   <span class="thumb-w"><a class="thumb add" href="{fn("M-Camera",L)}" aria-label="{S["m_add_page"]}">{ic("plus",24)}</a>{S["m_add_page"]}</span>
@@ -1600,3 +1606,115 @@ with open(os.path.join(ROOT, "canvas.json"), "w", encoding="utf-8") as f:
 print("wrote", len(order), "artboards")
 for n in order:
     print(n, os.path.getsize(os.path.join(ROOT, n)), "bytes")
+
+# ---------- standalone site for the prototype server (deploy/public) ----------
+# Same artboards, rendered by deploy/public/dc-shim.js instead of the canvas runtime.
+SITE_CSS = """
+html{background:#e9eaee}
+body{margin:0;background:#e9eaee;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 14px 48px}
+.sbar{display:flex;align-items:center;gap:10px;font-size:12px;line-height:16px;color:rgba(28,30,44,.6);max-width:100%}
+.sbar a{color:#395ad2;font-weight:700;text-decoration:none}
+.sbar a:hover{text-decoration:underline}
+.sbar b{font-weight:700;color:rgba(28,30,44,.87)}
+.stage{border-radius:10px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.18);background:#fff;flex:0 0 auto}
+"""
+
+def to_static(text, lang):
+    """Turn one .dc.html artboard into a standalone page served by deploy/public."""
+    title = re.search(r"<title>(.*?)</title>", text, re.S).group(1)
+    helmet = re.search(r"<helmet>(.*?)</helmet>", text, re.S).group(1)
+    markup = re.search(r"</helmet>\s*(.*?)\s*</x-dc>", text, re.S).group(1)
+    logic = re.search(r'<script type="text/x-dc"[^>]*>(.*?)</script>', text, re.S).group(1)
+    markup = markup.replace('.dc.html"', '.html"')      # links between screens
+    home = "一覧へ" if lang == "ja" else "All screens"
+    return f'''<!doctype html>
+<html lang="{lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>{title}</title>
+{helmet}
+<style>{SITE_CSS}</style>
+</head>
+<body>
+<p class="sbar"><a href="/">&larr; {home}</a><b>{title}</b></p>
+<div class="stage"><div id="dc-root"></div></div>
+<template id="dc-template">{markup}</template>
+<script src="/dc-shim.js"></script>
+<script>
+{logic}
+window.__dcBoot(Component);
+</script>
+</body>
+</html>
+'''
+
+def site_index():
+    def links(screens, lang, titles):
+        out = ""
+        for i, screen in enumerate(screens):
+            step, label = titles[i].split(" · ", 1)
+            out += (f'<a class="step" href="{fn(screen, lang)[:-8]}.html">'
+                    f'<span class="n">{step}</span><span class="l">{label}</span></a>')
+        return out
+    rows = [
+        ("PC ・ 日本語", "1280 × 800", links(SCREENS, "ja", titles)),
+        ("PC · English", "1280 × 800", links(SCREENS, "en", titles)),
+        ("モバイル ・ 日本語", "375 × 812", links(MSCREENS, "ja", mtitles)),
+        ("Mobile · English", "375 × 812", links(MSCREENS, "en", mtitles)),
+    ]
+    blocks = "".join(
+        f'<section class="row"><h2>{name}<span>{size}</span></h2><div class="steps">{body}</div></section>'
+        for name, size, body in rows)
+    return f'''<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>AI フィードバック — 生徒プロトタイプ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+*{{box-sizing:border-box}}
+body{{margin:0;padding:48px 20px 64px;background:#f2f2f4;color:rgba(28,30,44,.87);font-family:'Noto Sans JP',system-ui,sans-serif}}
+main{{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:28px}}
+h1{{font-size:24px;line-height:36px;margin:0}}
+.lead{{font-size:14px;line-height:22px;color:rgba(28,30,44,.6);margin:6px 0 0}}
+.row h2{{font-size:16px;line-height:24px;margin:0 0 12px;display:flex;align-items:center;gap:10px}}
+.row h2 span{{font-size:12px;font-weight:400;color:rgba(28,30,44,.6)}}
+.steps{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}}
+a.step{{display:flex;align-items:center;gap:12px;background:#fff;border-radius:8px;box-shadow:0 8px 16px rgba(0,0,0,.1);padding:14px 16px;text-decoration:none;color:inherit}}
+a.step:hover{{background:#fafbff;box-shadow:0 8px 16px rgba(57,90,210,.18)}}
+a.step .n{{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;padding:0 8px;border-radius:1000px;background:#eef1ff;color:#395ad2;font-size:12px;font-weight:700;flex:0 0 auto}}
+a.step .l{{font-size:14px;line-height:20px;font-weight:500}}
+footer{{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px solid rgba(28,30,44,.12);padding-top:16px}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>AI フィードバック — 生徒プロトタイプ</h1>
+    <p class="lead">近畿大学「地域環境統計学」の演習レポートを題材に、提出から先生の返却までの生徒側の流れを描いた試作です。実装ではありません。<br>
+    各画面のヘッダーで 日本語 / English、左下のピルで PC / モバイルを切り替えられます。待機画面の DEMO ピルは、先生が確認して返却したところまで進めます。<br>
+    <span lang="en">A prototype of the student side of AI Feedback, not an implementation. Every screen has a Japanese / English toggle in the header and a PC / Mobile switch in the bottom-left corner.</span></p>
+  </header>
+  {blocks}
+  <footer>社内検討用。外部への共有はご遠慮ください。 ・ 仕様は <code>PRDs/ai-feedback-university-prd.md</code>。<br>
+  <span lang="en">Internal review only. The specification is in the repository's PRD.</span></footer>
+</main>
+</body>
+</html>
+'''
+
+for lang in ("ja", "en"):
+    for screen in SCREENS + MSCREENS:
+        name = fn(screen, lang)
+        with open(os.path.join(ROOT, name), encoding="utf-8") as f:
+            src = f.read()
+        with open(os.path.join(SITE, name[:-8] + ".html"), "w", encoding="utf-8") as f:
+            f.write(to_static(src, lang))
+with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as f:
+    f.write(site_index())
+print("wrote", len(order) + 1, "pages to deploy/public")

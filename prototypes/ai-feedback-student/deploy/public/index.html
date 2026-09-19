@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>AI フィードバック — 生徒プロトタイプ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:48px 20px 64px;background:#f2f2f4;color:rgba(28,30,44,.87);font-family:'Noto Sans JP',system-ui,sans-serif}
+main{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1{font-size:24px;line-height:36px;margin:0}
+.lead{font-size:14px;line-height:22px;color:rgba(28,30,44,.6);margin:6px 0 0}
+.row h2{font-size:16px;line-height:24px;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.row h2 span{font-size:12px;font-weight:400;color:rgba(28,30,44,.6)}
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+a.step{display:flex;align-items:center;gap:12px;background:#fff;border-radius:8px;box-shadow:0 8px 16px rgba(0,0,0,.1);padding:14px 16px;text-decoration:none;color:inherit}
+a.step:hover{background:#fafbff;box-shadow:0 8px 16px rgba(57,90,210,.18)}
+a.step .n{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;padding:0 8px;border-radius:1000px;background:#eef1ff;color:#395ad2;font-size:12px;font-weight:700;flex:0 0 auto}
+a.step .l{font-size:14px;line-height:20px;font-weight:500}
+footer{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px solid rgba(28,30,44,.12);padding-top:16px}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>AI フィードバック — 生徒プロトタイプ</h1>
+    <p class="lead">近畿大学「地域環境統計学」の演習レポートを題材に、提出から先生の返却までの生徒側の流れを描いた試作です。実装ではありません。<br>
+    各画面のヘッダーで 日本語 / English、左下のピルで PC / モバイルを切り替えられます。待機画面の DEMO ピルは、先生が確認して返却したところまで進めます。<br>
+    <span lang="en">A prototype of the student side of AI Feedback, not an implementation. Every screen has a Japanese / English toggle in the header and a PC / Mobile switch in the bottom-left corner.</span></p>
+  </header>
+  <section class="row"><h2>PC ・ 日本語<span>1280 × 800</span></h2><div class="steps"><a class="step" href="Main.html"><span class="n">1</span><span class="l">Course — Feedback LO in the LO list</span></a><a class="step" href="02-Assignment.html"><span class="n">2</span><span class="l">Assignment — check & submit</span></a><a class="step" href="03-Pending.html"><span class="n">3</span><span class="l">Submitted — teacher reviewing</span></a><a class="step" href="04-Feedback.html"><span class="n">4</span><span class="l">Returned — approved feedback (draft 1)</span></a><a class="step" href="06-Resubmit.html"><span class="n">5</span><span class="l">Second submission — previous comments as checklist</span></a><a class="step" href="07-Pending2.html"><span class="n">6</span><span class="l">Second submission — teacher reviewing</span></a><a class="step" href="08-Feedback2.html"><span class="n">7</span><span class="l">Returned (draft 2) — what changed</span></a><a class="step" href="05-Todo.html"><span class="n">8</span><span class="l">To-do — awaiting resubmission</span></a></div></section><section class="row"><h2>PC · English<span>1280 × 800</span></h2><div class="steps"><a class="step" href="Main-en.html"><span class="n">1</span><span class="l">Course — Feedback LO in the LO list</span></a><a class="step" href="02-Assignment-en.html"><span class="n">2</span><span class="l">Assignment — check & submit</span></a><a class="step" href="03-Pending-en.html"><span class="n">3</span><span class="l">Submitted — teacher reviewing</span></a><a class="step" href="04-Feedback-en.html"><span class="n">4</span><span class="l">Returned — approved feedback (draft 1)</span></a><a class="step" href="06-Resubmit-en.html"><span class="n">5</span><span class="l">Second submission — previous comments as checklist</span></a><a class="step" href="07-Pending2-en.html"><span class="n">6</span><span class="l">Second submission — teacher reviewing</span></a><a class="step" href="08-Feedback2-en.html"><span class="n">7</span><span class="l">Returned (draft 2) — what changed</span></a><a class="step" href="05-Todo-en.html"><span class="n">8</span><span class="l">To-do — awaiting resubmission</span></a></div></section><section class="row"><h2>モバイル ・ 日本語<span>375 × 812</span></h2><div class="steps"><a class="step" href="M-Main.html"><span class="n">M1</span><span class="l">LO list under the topic</span></a><a class="step" href="M-Assignment.html"><span class="n">M2</span><span class="l">Assignment — how to submit</span></a><a class="step" href="M-Camera.html"><span class="n">M3</span><span class="l">Snap — camera</span></a><a class="step" href="M-Crop.html"><span class="n">M4</span><span class="l">Crop the page</span></a><a class="step" href="M-Pages.html"><span class="n">M5</span><span class="l">Pages — check & submit</span></a><a class="step" href="M-Pending.html"><span class="n">M6</span><span class="l">Submitted — teacher reviewing</span></a><a class="step" href="M-Feedback.html"><span class="n">M7</span><span class="l">Returned — tap an underline</span></a><a class="step" href="M-Sheet.html"><span class="n">M8</span><span class="l">Returned — comment sheet open</span></a></div></section><section class="row"><h2>Mobile · English<span>375 × 812</span></h2><div class="steps"><a class="step" href="M-Main-en.html"><span class="n">M1</span><span class="l">LO list under the topic</span></a><a class="step" href="M-Assignment-en.html"><span class="n">M2</span><span class="l">Assignment — how to submit</span></a><a class="step" href="M-Camera-en.html"><span class="n">M3</span><span class="l">Snap — camera</span></a><a class="step" href="M-Crop-en.html"><span class="n">M4</span><span class="l">Crop the page</span></a><a class="step" href="M-Pages-en.html"><span class="n">M5</span><span class="l">Pages — check & submit</span></a><a class="step" href="M-Pending-en.html"><span class="n">M6</span><span class="l">Submitted — teacher reviewing</span></a><a class="step" href="M-Feedback-en.html"><span class="n">M7</span><span class="l">Returned — tap an underline</span></a><a class="step" href="M-Sheet-en.html"><span class="n">M8</span><span class="l">Returned — comment sheet open</span></a></div></section>
+  <footer>社内検討用。外部への共有はご遠慮ください。 ・ 仕様は <code>PRDs/ai-feedback-university-prd.md</code>。<br>
+  <span lang="en">Internal review only. The specification is in the repository's PRD.</span></footer>
+</main>
+</body>
+</html>

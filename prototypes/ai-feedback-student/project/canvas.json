@@ -1,6 +1,14 @@
 {
   "v": 3,
-  "attachments": {},
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-09-19T01:01:11Z"
+  },
+  "title": "AI Feedback — Student PC Prototype",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
   "boards": {
     "Main.dc.html": {
       "x": 0,
@@ -259,93 +267,117 @@
       "is_interactive": true
     }
   },
-  "createdOnFiles": {
-    "at": "2026-09-18T11:02:16Z",
-    "v": 1
-  },
-  "designSystems": [],
-  "launch": {
-    "view": "canvas"
-  },
+  "order": [
+    "Main.dc.html",
+    "02-Assignment.dc.html",
+    "03-Pending.dc.html",
+    "04-Feedback.dc.html",
+    "06-Resubmit.dc.html",
+    "07-Pending2.dc.html",
+    "08-Feedback2.dc.html",
+    "05-Todo.dc.html",
+    "Main-en.dc.html",
+    "02-Assignment-en.dc.html",
+    "03-Pending-en.dc.html",
+    "04-Feedback-en.dc.html",
+    "06-Resubmit-en.dc.html",
+    "07-Pending2-en.dc.html",
+    "08-Feedback2-en.dc.html",
+    "05-Todo-en.dc.html",
+    "M-Main.dc.html",
+    "M-Assignment.dc.html",
+    "M-Camera.dc.html",
+    "M-Crop.dc.html",
+    "M-Pages.dc.html",
+    "M-Pending.dc.html",
+    "M-Feedback.dc.html",
+    "M-Sheet.dc.html",
+    "M-Main-en.dc.html",
+    "M-Assignment-en.dc.html",
+    "M-Camera-en.dc.html",
+    "M-Crop-en.dc.html",
+    "M-Pages-en.dc.html",
+    "M-Pending-en.dc.html",
+    "M-Feedback-en.dc.html",
+    "M-Sheet-en.dc.html"
+  ],
   "notes": {
-    "n1": {
-      "maxH": 260,
-      "text": "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →",
-      "w": 560,
-      "x": 0,
-      "y": 860
-    },
-    "n2": {
-      "maxH": 300,
-      "text": "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria: 'AI never writes your answer' — the L0 boundary made visible. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word or photos of handwritten pages (PM, 18 Sep) — several photos kept in page order; photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run.",
-      "w": 560,
-      "x": 1360,
-      "y": 860
-    },
-    "n3": {
-      "maxH": 280,
-      "text": "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →",
-      "w": 560,
-      "x": 2720,
-      "y": 860
-    },
-    "n4": {
-      "maxH": 300,
-      "text": "Draft-1 return. Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD.",
-      "w": 560,
-      "x": 4080,
-      "y": 860
-    },
-    "n5": {
-      "maxH": 300,
-      "text": "THE BIG ADDITION. Left: last time's comments as a checklist — the student ticks what they addressed; strengths are shown as 'check it still holds'. The teacher's note travels with it. Right: upload and the basic-requirements list. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission →",
-      "w": 560,
-      "x": 5440,
-      "y": 860
-    },
-    "n6": {
-      "maxH": 220,
-      "text": "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →",
-      "w": 560,
-      "x": 6800,
-      "y": 860
-    },
-    "n7": {
-      "maxH": 300,
-      "text": "Draft-2 return opens with 前回からの変化: which earlier points were fixed (③ test, ② causation) and that one new comment exists — this is the exercise-view revision trail from C10.3, in the student's own hands. The 'rewritten in your own words' line appears only in the positive case; there is no accusatory counterpart. New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep).",
-      "w": 560,
-      "x": 8160,
-      "y": 860
-    },
-    "n8": {
-      "maxH": 240,
-      "text": "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date.",
-      "w": 560,
-      "x": 9520,
-      "y": 860
-    },
-    "n_lang": {
-      "maxH": 220,
-      "text": "Language toggle: a segmented 日本語 / English control in the header, left of the bell. In the prototype it is a link to the twin screen, so the language holds as you click through (each artboard keeps its own state). In the product this would be the account's language setting.",
-      "w": 700,
-      "x": 0,
-      "y": 2260
-    },
     "title": {
-      "kind": "title1",
-      "maxW": 8000,
-      "text": "AI Feedback — student experience on PC (Kindai 地域環境統計学, teacher-in-the-loop, revise loop) · 日本語",
-      "w": 240,
       "x": 0,
-      "y": -300
+      "y": -300,
+      "text": "AI Feedback — student experience on PC (Kindai 地域環境統計学, teacher-in-the-loop, revise loop) · 日本語",
+      "kind": "title1",
+      "maxW": 10800
     },
     "title_en": {
-      "kind": "title1",
-      "maxW": 8000,
-      "text": "Same flow in English — the 日本語 / English toggle in every header jumps to the matching screen",
-      "w": 240,
       "x": 0,
-      "y": 1160
+      "y": 1160,
+      "text": "Same flow in English — the 日本語 / English toggle in every header jumps to the matching screen",
+      "kind": "title1",
+      "maxW": 10800
+    },
+    "n1": {
+      "x": 0,
+      "y": 860,
+      "w": 560,
+      "maxH": 260,
+      "text": "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →"
+    },
+    "n2": {
+      "x": 1360,
+      "y": 860,
+      "w": 560,
+      "maxH": 300,
+      "text": "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria: 'AI never writes your answer' — the L0 boundary made visible. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word or photos of handwritten pages (PM, 18 Sep) — several photos kept in page order; photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."
+    },
+    "n3": {
+      "x": 2720,
+      "y": 860,
+      "w": 560,
+      "maxH": 280,
+      "text": "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →"
+    },
+    "n4": {
+      "x": 4080,
+      "y": 860,
+      "w": 560,
+      "maxH": 300,
+      "text": "Draft-1 return. Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD."
+    },
+    "n5": {
+      "x": 5440,
+      "y": 860,
+      "w": 560,
+      "maxH": 300,
+      "text": "THE BIG ADDITION. Left: last time's comments as a checklist — the student ticks what they addressed; strengths are shown as 'check it still holds'. The teacher's note travels with it. Right: upload and the basic-requirements list. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission →"
+    },
+    "n6": {
+      "x": 6800,
+      "y": 860,
+      "w": 560,
+      "maxH": 220,
+      "text": "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →"
+    },
+    "n7": {
+      "x": 8160,
+      "y": 860,
+      "w": 560,
+      "maxH": 300,
+      "text": "Draft-2 return opens with 前回からの変化: which earlier points were fixed (③ test, ② causation) and that one new comment exists — this is the exercise-view revision trail from C10.3, in the student's own hands. The 'rewritten in your own words' line appears only in the positive case; there is no accusatory counterpart. New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."
+    },
+    "n8": {
+      "x": 9520,
+      "y": 860,
+      "w": 560,
+      "maxH": 240,
+      "text": "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date."
+    },
+    "n_lang": {
+      "x": 0,
+      "y": 2260,
+      "w": 700,
+      "maxH": 220,
+      "text": "Language toggle: a segmented 日本語 / English control in the header, left of the bell. In the prototype it is a link to the twin screen, so the language holds as you click through (each artboard keeps its own state). In the product this would be the account's language setting."
     },
     "n_dev": {
       "x": 760,
@@ -425,40 +457,5 @@
       "text": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close."
     }
   },
-  "order": [
-    "Main.dc.html",
-    "02-Assignment.dc.html",
-    "03-Pending.dc.html",
-    "04-Feedback.dc.html",
-    "06-Resubmit.dc.html",
-    "07-Pending2.dc.html",
-    "08-Feedback2.dc.html",
-    "05-Todo.dc.html",
-    "Main-en.dc.html",
-    "02-Assignment-en.dc.html",
-    "03-Pending-en.dc.html",
-    "04-Feedback-en.dc.html",
-    "06-Resubmit-en.dc.html",
-    "07-Pending2-en.dc.html",
-    "08-Feedback2-en.dc.html",
-    "05-Todo-en.dc.html",
-    "M-Main.dc.html",
-    "M-Assignment.dc.html",
-    "M-Camera.dc.html",
-    "M-Crop.dc.html",
-    "M-Pages.dc.html",
-    "M-Pending.dc.html",
-    "M-Feedback.dc.html",
-    "M-Sheet.dc.html",
-    "M-Main-en.dc.html",
-    "M-Assignment-en.dc.html",
-    "M-Camera-en.dc.html",
-    "M-Crop-en.dc.html",
-    "M-Pages-en.dc.html",
-    "M-Pending-en.dc.html",
-    "M-Feedback-en.dc.html",
-    "M-Sheet-en.dc.html"
-  ],
-  "pages": [],
-  "title": "AI Feedback — Student PC Prototype"
+  "designSystems": []
 }

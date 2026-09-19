@@ -1,0 +1,12 @@
+{
+  "name": "ai-feedback-student-prototype",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI Feedback student prototype (PC + mobile) — static prototype server",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

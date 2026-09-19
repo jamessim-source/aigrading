@@ -23,10 +23,15 @@ screens simulates the teacher approving and returning the feedback.
 ## Files
 
 - `gen.py` — the single source of truth. All copy (JA and EN), CSS, icons and
-  screen builders live here. Run `python3 gen.py` to regenerate `project/`.
+  screen builders live here. Run `python3 gen.py` to regenerate both outputs
+  below.
 - `project/*.dc.html` — one Design Component page per artboard (generated).
 - `project/canvas.json` — the canvas index: board frames, order, sticky notes
   (generated; the notes record the PM decisions behind each screen).
+- `deploy/` — the same screens as a standalone site for Railway: generated
+  `public/*.html`, a hand-written `public/dc-shim.js` that replaces the canvas
+  runtime, and a dependency-free Node server. See `deploy/README.md` for the
+  Railway setup (Root Directory `prototypes/ai-feedback-student/deploy`).
 
 Design language: Manabie Learner app Figma (`[Final] Learner app`), Noto Sans JP,
 `#f2f2f4` background, `#395ad2` primary, 8 px cards with `0 8px 16px rgba(0,0,0,.1)`.
