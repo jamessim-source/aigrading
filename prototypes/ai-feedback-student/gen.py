@@ -339,8 +339,8 @@ JA = dict(
     criteria=["Excelスキル","図表の見やすさ","統計処理","解釈","論理構成","生成AIリテラシー"],
     a_flow_h="提出してから返却まで",
     steps=[("提出する","ファイル・写真をアップロード、または直接入力"),("先生がフィードバック","期限のあとに返却"),("返却","お知らせが届きます")],
-    a_upload_h="答案を提出する", a_upload_meta="PDF ・ Word（.docx） ・ 写真（JPG / PNG / HEIC） ・ 20MB まで",
-    a_drop="ファイルや写真をここにドロップ", a_drop_s="Excel や PowerPoint は PDF に書き出してから。手書きの答案は1ページずつ撮影してアップロードできます",
+    a_upload_h="答案を提出する", a_upload_meta="PDF ・ Word（.docx） ・ Excel（.xlsx） ・ 写真（JPG / PNG / HEIC） ・ 20MB まで",
+    a_drop="ファイルや写真をここにドロップ", a_drop_s="Excel はそのまま提出できます。PowerPoint は PDF に書き出してから。手書きの答案は1ページずつ撮影してアップロードできます",
     a_photo="答案の写真を選ぶ", a_photo_s="複数枚はページ順に並びます",
     a_mode_file="ファイル・写真をアップロード", a_mode_text="直接入力する",
     a_ta_ph="ここに入力してください。週次リフレクションなど短い課題はファイルなしで提出できます。",
@@ -470,8 +470,8 @@ EN = dict(
     criteria=["Excel skills","Clarity of charts","Statistical processing","Interpretation","Logical structure","Generative-AI literacy"],
     a_flow_h="From submission to return",
     steps=[("Submit","Upload a file or photos, or type your answer"),("Teacher feedback","Returned after the due date"),("Returned","You get a notification")],
-    a_upload_h="Submit your work", a_upload_meta="PDF · Word (.docx) · Photos (JPG / PNG / HEIC) · up to 20 MB",
-    a_drop="Drop a file or photos here", a_drop_s="Export Excel or PowerPoint to PDF first. Handwritten work can be photographed one page at a time",
+    a_upload_h="Submit your work", a_upload_meta="PDF · Word (.docx) · Excel (.xlsx) · Photos (JPG / PNG / HEIC) · up to 20 MB",
+    a_drop="Drop a file or photos here", a_drop_s="Excel can be submitted as it is; export PowerPoint to PDF first. Handwritten work can be photographed one page at a time",
     a_photo="Choose photos of your work", a_photo_s="Several photos are kept in page order",
     a_mode_file="Upload a file or photos", a_mode_text="Type your answer",
     a_ta_ph="Write here. Short pieces such as weekly reflections can be submitted without a file.",
@@ -575,7 +575,7 @@ MJA = dict(
     m_crumb="地域環境統計学 › 第7回 データの分析と仮説検定", m_banner_n="3 / 4", m_banner_l="完了",
     m_nav=["コース", "メッセージ", "カレンダー"],
     m_opt_cam="撮影して提出", m_opt_cam_s="手書きの答案を1ページずつ撮影します",
-    m_opt_file="ファイル・写真を選ぶ", m_opt_file_s="PDF ・ Word ・ 写真（JPG / PNG / HEIC）",
+    m_opt_file="ファイル・写真を選ぶ", m_opt_file_s="PDF ・ Word ・ Excel ・ 写真（JPG / PNG / HEIC）",
     m_opt_text="直接入力する", m_opt_text_s="週次リフレクションなど短い課題に",
     m_cam_title="答案を撮影", m_cam_hint="答案全体が枠に入るように", m_cam_page="1ページ目", m_cam_gallery="写真から選ぶ", m_cam_shutter="撮る", m_cam_flash="フラッシュ",
     m_close="閉じる", m_back="もどる",
@@ -593,7 +593,7 @@ MEN = dict(
     m_crumb="Regional & Environmental Statistics › Session 7 Data analysis and hypothesis testing", m_banner_n="3 / 4", m_banner_l="Completed",
     m_nav=["Courses", "Message", "Calendar"],
     m_opt_cam="Snap and submit", m_opt_cam_s="Photograph handwritten pages one at a time",
-    m_opt_file="Choose a file or photos", m_opt_file_s="PDF · Word · Photos (JPG / PNG / HEIC)",
+    m_opt_file="Choose a file or photos", m_opt_file_s="PDF · Word · Excel · Photos (JPG / PNG / HEIC)",
     m_opt_text="Type your answer", m_opt_text_s="For short pieces such as weekly reflections",
     m_cam_title="Snap your work", m_cam_hint="Fit the whole page inside the frame", m_cam_page="Page 1", m_cam_gallery="From photos", m_cam_shutter="Take photo", m_cam_flash="Flash",
     m_close="Close", m_back="Back",
@@ -776,7 +776,6 @@ def course(S, L):
       <p class="cap" style="display:flex;align-items:center;gap:6px">{ic("book",12)}{S["book"]}</p>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-      <span class="chip review">{ic("sparkle",12,"#395ad2",2.4)}{S["ai_chip"]}</span>
       <span class="cap">{S["progress"]}</span>
     </div>
   </div>
@@ -1574,9 +1573,9 @@ notes = {
     "title": {"x": 0, "y": -300, "text": "AI Feedback — student experience on PC (Kindai 地域環境統計学, teacher-in-the-loop, revise loop) · 日本語", "kind": "title1", "maxW": 8 * W + 7 * GAP},
     "title_en": {"x": 0, "y": ROW_Y["en"] - 240, "text": "Same flow in English — the 日本語 / English toggle in every header jumps to the matching screen", "kind": "title1", "maxW": 8 * W + 7 * GAP},
     "n1": {"x": 0, "y": H + 60, "w": NW, "maxH": 260, "text":
-        "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →"},
+        "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. A course-level 'AI Feedback 対応' chip sat on the course card and was removed (PM, 19 Sep): the LO type chip already says which LOs have it. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →"},
     "n2": {"x": 1 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
-        "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria: 'AI never writes your answer' — the L0 boundary made visible. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word or photos of handwritten pages (PM, 18 Sep) — several photos kept in page order; photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."},
+        "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria: 'AI never writes your answer' — the L0 boundary made visible. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel and photos of handwritten pages (PM, 18–19 Sep) — the Kindai exercise is an Excel analysis, so .xlsx goes in as it is rather than being exported to PDF; several photos are kept in page order, and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."},
     "n3": {"x": 2 * (W + GAP), "y": H + 60, "w": NW, "maxH": 280, "text":
         "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →"},
     "n4": {"x": 3 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
