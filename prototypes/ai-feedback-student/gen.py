@@ -1934,7 +1934,9 @@ TJA = dict(
     t_conds=[("散布図が含まれている", "課題説明 p.1"), ("相関係数が記載されている", "課題説明 p.1"),
              ("有意性の検定が記載されている", "課題説明 p.2"), ("参照した講義資料の記載", "評価基準 2.(3)"),
              ("ページ数 2枚程度", "課題説明 p.1")],
-    t_add_cond="条件を追加", t_s_crit="コメントの観点（ルーブリック）",
+    t_add_cond="条件を追加", t_req_toggle="提出前に条件を確認する",
+    t_req_off="オフのとき、条件は生徒に表示されず、提出時の確認も行いません。",
+    t_s_crit="コメントの観点（ルーブリック）",
     t_crit_note="提出物はこの観点に沿って読まれ、各コメントには対応する観点が付きます。",
     t_rubric_h="評価基準",
     t_rubric=[("Excelスキル", "関数・数式を用いて相関係数を正しく算出している"), ("図表の見やすさ", "軸ラベル・単位・タイトルのある散布図になっている"),
@@ -2000,7 +2002,9 @@ TEN = dict(
     t_conds=[("A scatter plot is included", "brief p.1"), ("The correlation coefficient is stated", "brief p.1"),
              ("The test of significance is stated", "brief p.2"), ("The lecture material is cited", "criteria 2.(3)"),
              ("About 2 pages", "brief p.1")],
-    t_add_cond="Add a requirement", t_s_crit="Comment criteria (rubric)",
+    t_add_cond="Add a requirement", t_req_toggle="Check requirements before submission",
+    t_req_off="Off: the requirements are not shown to the student and nothing is checked at submission.",
+    t_s_crit="Comment criteria (rubric)",
     t_crit_note="Each submission is read against these criteria, and every comment is tagged with the one it concerns.",
     t_rubric_h="Rubric",
     t_rubric=[("Excel skills", "Computes the correlation coefficient correctly with functions and formulas"), ("Clarity of charts", "A scatter plot with labelled axes, units and a title"),
@@ -2246,6 +2250,12 @@ def lo_head(S, L, screen, tab, pub):
   </div>
   <div class="tabs">{tabs}</div>'''
 
+TMAT_LOGIC = """state = { req: true };
+  renderVals() {
+    return { rq: this.state.req ? "on" : "", rqOn: this.state.req, rqOff: !this.state.req,
+             toggleRq: () => this.setState({ req: !this.state.req }) };
+  }"""
+
 def t_material(S, L):
     conds = "".join(f'<div class="titem">{mi("checkCircle", 20, "#4CAF50")}<span>{c}</span><span class="src">{s}</span><span class="ticon sm">{mi("close", 16)}</span></div>'
                     for c, s in S["t_conds"])
@@ -2267,8 +2277,13 @@ def t_material(S, L):
       </div>
     </div>
     <div class="tpaper">
-      <div class="ph"><h3>{S["t_s_cond"]}</h3><span class="tbtn sm">{mi("add", 18)}{S["t_add_cond"]}</span></div>
-      <div class="pb" style="padding-top:8px"><p class="helper" style="margin:0 0 6px">{S["t_cond_note"]}</p>{conds}</div>
+      <div class="ph"><h3>{S["t_s_cond"]}</h3>
+        <span style="display:flex;align-items:center;gap:16px">
+          <button class="switch {{{{rq}}}}" onClick="{{{{toggleRq}}}}"><span class="track"></span><span>{S["t_req_toggle"]}</span></button>
+          <sc-if value="{{{{rqOn}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tbtn sm">{mi("add", 18)}{S["t_add_cond"]}</span></sc-if>
+        </span></div>
+      <sc-if value="{{{{rqOn}}}}" hint-placeholder-val="{{{{true}}}}"><div class="pb" style="padding-top:8px"><p class="helper" style="margin:0 0 6px">{S["t_cond_note"]}</p>{conds}</div></sc-if>
+      <sc-if value="{{{{rqOff}}}}" hint-placeholder-val="{{{{false}}}}"><div class="pb"><p class="helper" style="margin:0">{S["t_req_off"]}</p></div></sc-if>
     </div>
     <div class="tpaper">
       <div class="ph"><h3>{S["t_s_crit"]}</h3><span style="display:flex;gap:4px"><span class="tbtn sm">{mi("autorenew", 18)}{S["t_regen"]}</span><span class="tbtn sm">{mi("edit", 18)}{S["t_edit_rubric"]}</span></span></div>
@@ -2283,7 +2298,7 @@ def t_material(S, L):
   <span style="display:flex;gap:8px"><a class="tbtn" href="{tfn("T-Created", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Detail", L)}">{S["t_save"]}</a></span>
 </div>
 </div>'''
-    return tpage(S, "T-Material", S["t_titles"]["mat"], body)
+    return tpage(S, "T-Material", S["t_titles"]["mat"], body, logic=TMAT_LOGIC)
 
 def t_detail(S, L):
     def metric(icon, label, n, desc, hot=False, cta=""):
@@ -2436,7 +2451,7 @@ TNW = 640
 TNOTES = {
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
     "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
-    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
+    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
     "t4": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3.",
     "t5": "The same LO page once published, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog.",
     "t6": "Submissions tab: the Back Office table (index column, header dividers, pagination). One row per student with the submission time and state; 確認する opens the review. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, deliberately outlined not contained, with a note recommending they look first — the whole point of the switch on T2 is that the teacher, not the model, returns the feedback.",
