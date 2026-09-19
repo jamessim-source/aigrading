@@ -16,7 +16,7 @@ https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE
 | PC · English | same, `-en` suffix | 1280 × 800 |
 | Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
 | Mobile · English | same, `-en` suffix | 375 × 812 |
-| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Created` → `T-Material` → `T-Detail` → `T-List` → `T-Review` | 1440 × 900 |
+| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` → `T-Created` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` | 1440 × 900 |
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
@@ -93,6 +93,10 @@ already builds the course.
 - **Teacher in the loop**: a toggle. On, the draft waits for the teacher to
   review, edit and return it. Off, feedback is returned automatically after the
   due date. Either way the student is never told AI was involved.
+- **Two homes**: Book Management sets the LO up (tree, dialog, content page).
+  Processing submissions — the queue across LOs, an LO's overview, its
+  submissions, review and return — lives under **Course › AI Feedback**, beside
+  To Review and AI Grading, where production keeps submission work.
 
 ## Publishing
 

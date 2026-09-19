@@ -1,6 +1,6 @@
 # Deploying the prototype on Railway
 
-This folder is a self-contained static site: the 50 prototype screens plus a
+This folder is a self-contained static site: the 52 prototype screens plus a
 dependency-free Node server. Nothing is built or installed at deploy time, so a
 deploy is just "clone the repo and run `node server.js`".
 
@@ -48,7 +48,7 @@ pill.
 
 | Path | Screen |
 |---|---|
-| `/` | index of all 50 screens |
+| `/` | index of all 52 screens |
 | `/Main.html` … `/05-Todo.html` | student PC flow, Japanese |
 | `/Main-en.html` … `/05-Todo-en.html` | student PC flow, English |
 | `/M-Main.html` … `/M-Sheet.html` | student mobile flow, Japanese |
