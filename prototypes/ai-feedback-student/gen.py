@@ -2022,7 +2022,7 @@ TEN = dict(
 )
 JA.update(TJA); EN.update(TEN)
 
-TSCREENS = ["T-Book", "T-Dialog", "T-Created", "T-Material", "T-Detail", "T-List", "T-Review"]
+TSCREENS = ["T-Book", "T-Dialog", "T-Material", "T-Created", "T-Detail", "T-List", "T-Review"]
 
 def tfn(screen, lang):
     return f"{screen}.dc.html" if lang == "ja" else f"{screen}-en.dc.html"
@@ -2143,8 +2143,7 @@ def t_book(S, L):
     return tpage(S, "T-Book", S["t_titles"]["book"], book_page(S, L, "T-Book", add_href=tfn("T-Dialog", L)))
 
 def t_created(S, L):
-    snack = f'<div class="snack" role="status">{mi("checkCircle", 20)}{S["t_snack"]}</div>'
-    return tpage(S, "T-Created", S["t_titles"]["created"], book_page(S, L, "T-Created", created=True, add_href=tfn("T-Dialog", L), extra=snack))
+    return tpage(S, "T-Created", S["t_titles"]["created"], book_page(S, L, "T-Created", created=True, add_href=tfn("T-Dialog", L)))
 
 TDLG_LOGIC = """state = { menu: false, review: true, resub: true, m0: true, m1: true, m2: true };
   renderVals() {
@@ -2220,7 +2219,7 @@ def t_dialog(S, L):
         </div>
       </div>
     </div>
-    <div class="dlg-foot"><a class="tbtn" href="{tfn("T-Book", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Created", L)}">{S["t_confirm"]}</a></div>
+    <div class="dlg-foot"><a class="tbtn" href="{tfn("T-Book", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Material", L)}">{S["t_confirm"]}</a></div>
   </div>
 </div>'''
     return tpage(S, "T-Dialog", S["t_titles"]["dialog"], book_page(S, L, "T-Dialog", extra=dialog), logic=TDLG_LOGIC)
@@ -2269,6 +2268,7 @@ def t_material(S, L):
     </div>
   </div>
 </div>
+<div class="snack" role="status">{mi("checkCircle", 20)}{S["t_snack"]}</div>
 <div class="tbar">
   <a class="tbtn" href="{fn("02-Assignment", L)}">{mi("eye", 18)}{S["t_preview"]}</a>
   <span style="display:flex;gap:8px"><a class="tbtn" href="{tfn("T-Created", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Detail", L)}">{S["t_save"]}</a></span>
@@ -2409,7 +2409,7 @@ for lang, S in (("ja", JA), ("en", EN)):
 TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
-           "T3 · Created — Unpublished, highlighted in the tree", "T4 · LO content — material, requirements, criteria",
+           "T3 · Created → LO content — material, requirements, criteria", "T4 · Back in the tree — Unpublished until published",
            "T5 · LO overview — who has submitted", "T6 · Submissions — pick one to review", "T7 · Review and return — the teacher in the loop"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
@@ -2427,8 +2427,8 @@ TNW = 640
 TNOTES = {
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
     "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
-    "t3": "What Confirm does in production, and so here: the dialog closes, the tree re-renders with the new row highlighted (just-created), the snackbar says so, and the LO is UNPUBLISHED — a new learning material always starts that way, and publishing is a separate action on the row's ⋮ menu or the LO page. The old design's 'save and publish' at creation is gone. The type tile is a distinct review-comment icon, not the sparkle: on this tree the sparkle means AI Tutor. Click the new row →",
-    "t4": "The LO's own page, reached from the tree exactly as a regular LO is opened to author its questions. Content tab, still Unpublished, Publish top-right. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 教材から抽出する, and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate: conditions gate the submission, criteria shape the comments, neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen.",
+    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 教材から抽出する, and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate: conditions gate the submission, criteria shape the comments, neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen.",
+    "t4": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3.",
     "t5": "The same LO page once published, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog.",
     "t6": "Submissions tab: the Back Office table (index column, header dividers, pagination). One row per student with the submission time and state; 確認する opens the review. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, deliberately outlined not contained, with a note recommending they look first — the whole point of the switch on T2 is that the teacher, not the model, returns the feedback.",
     "t7": "The teacher in the loop, the screen the review switch leads to. Left: what the student submitted. Right: the draft comments, each with its criterion, the passage it points at, and Edit / Delete — an edited one is marked and the count at the bottom says how much the teacher changed — then the teacher's own ひとこと, which the student sees at the top of the returned screen. 生徒には未公開 is stated in the header so there is no doubt about what has gone out. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off, this screen is skipped and the draft is returned as it is.",

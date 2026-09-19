@@ -306,20 +306,20 @@
       "title": "T2 · Add Learning Objective — AI Feedback type, its settings (JA)",
       "is_interactive": true
     },
-    "T-Created.dc.html": {
+    "T-Material.dc.html": {
       "x": 3040,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T3 · Created — Unpublished, highlighted in the tree (JA)",
+      "title": "T3 · Created → LO content — material, requirements, criteria (JA)",
       "is_interactive": true
     },
-    "T-Material.dc.html": {
+    "T-Created.dc.html": {
       "x": 4560,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T4 · LO content — material, requirements, criteria (JA)",
+      "title": "T4 · Back in the tree — Unpublished until published (JA)",
       "is_interactive": true
     },
     "T-Detail.dc.html": {
@@ -362,20 +362,20 @@
       "title": "T2 · Add Learning Objective — AI Feedback type, its settings (EN)",
       "is_interactive": true
     },
-    "T-Created-en.dc.html": {
+    "T-Material-en.dc.html": {
       "x": 3040,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T3 · Created — Unpublished, highlighted in the tree (EN)",
+      "title": "T3 · Created → LO content — material, requirements, criteria (EN)",
       "is_interactive": true
     },
-    "T-Material-en.dc.html": {
+    "T-Created-en.dc.html": {
       "x": 4560,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T4 · LO content — material, requirements, criteria (EN)",
+      "title": "T4 · Back in the tree — Unpublished until published (EN)",
       "is_interactive": true
     },
     "T-Detail-en.dc.html": {
@@ -624,14 +624,14 @@
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "What Confirm does in production, and so here: the dialog closes, the tree re-renders with the new row highlighted (just-created), the snackbar says so, and the LO is UNPUBLISHED — a new learning material always starts that way, and publishing is a separate action on the row's ⋮ menu or the LO page. The old design's 'save and publish' at creation is gone. The type tile is a distinct review-comment icon, not the sparkle: on this tree the sparkle means AI Tutor. Click the new row →"
+      "text": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 教材から抽出する, and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate: conditions gate the submission, criteria shape the comments, neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen."
     },
     "t4": {
       "x": 4560,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "The LO's own page, reached from the tree exactly as a regular LO is opened to author its questions. Content tab, still Unpublished, Publish top-right. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 教材から抽出する, and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate: conditions gate the submission, criteria shape the comments, neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen."
+      "text": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3."
     },
     "t5": {
       "x": 6080,
@@ -694,15 +694,15 @@
     "M-Sheet-en.dc.html",
     "T-Book.dc.html",
     "T-Dialog.dc.html",
-    "T-Created.dc.html",
     "T-Material.dc.html",
+    "T-Created.dc.html",
     "T-Detail.dc.html",
     "T-List.dc.html",
     "T-Review.dc.html",
     "T-Book-en.dc.html",
     "T-Dialog-en.dc.html",
-    "T-Created-en.dc.html",
     "T-Material-en.dc.html",
+    "T-Created-en.dc.html",
     "T-Detail-en.dc.html",
     "T-List-en.dc.html",
     "T-Review-en.dc.html"
