@@ -32,6 +32,16 @@ Set both variables in **Settings → Variables**:
 With both set the whole site asks for Basic auth; with either missing it is
 open. Do not commit the password — set it in Railway only.
 
+## How the pages behave
+
+Each page is the screen itself, filling the window — no frame, no backdrop, no
+caption bar. The PC screens take the whole viewport and keep a 1024 px minimum
+width, scrolling sideways below that like any desktop web app. The mobile
+screens fill the height and take the width up to 520 px, centred, the way a
+mobile-first site looks on a large monitor; the artboards' drawn iOS status bar
+is hidden here, since a live page sits under the real one. The only added
+control is the index link folded into the prototype's own PC / Mobile pill.
+
 ## What gets served
 
 | Path | Screen |

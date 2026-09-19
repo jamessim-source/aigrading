@@ -246,6 +246,7 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .paper svg{display:block;width:100%;height:100%}
 .cam-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0 13%,transparent 26% 60%,rgba(0,0,0,.62) 76%,rgba(0,0,0,.78));pointer-events:none}
 .ctop{position:absolute;left:0;right:0;top:44px;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;z-index:30;color:#fff}
+.ctop.flow{position:static;flex:0 0 56px}
 .ctop .t{font-size:16px;font-weight:700;flex:1 1 auto;text-align:center}
 .cbtn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);border:0;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;padding:0;flex:0 0 40px}
 .cbtn:hover{background:rgba(255,255,255,.22);color:#fff}
@@ -254,32 +255,33 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .guide i{position:absolute;width:28px;height:28px;border:3px solid #fff;border-radius:3px}
 .guide i.tl{left:-2px;top:-2px;border-right:0;border-bottom:0}.guide i.tr{right:-2px;top:-2px;border-left:0;border-bottom:0}
 .guide i.bl{left:-2px;bottom:-2px;border-right:0;border-top:0}.guide i.br{right:-2px;bottom:-2px;border-left:0;border-top:0}
-.chint{position:absolute;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:600;text-shadow:0 1px 6px rgba(0,0,0,.6);z-index:25;margin:0}
+.chint{position:absolute;left:0;right:0;bottom:184px;text-align:center;color:#fff;font-size:14px;font-weight:600;text-shadow:0 1px 6px rgba(0,0,0,.6);z-index:25;margin:0}
 .shutter-row{position:absolute;left:0;right:0;bottom:64px;height:72px;display:flex;align-items:center;justify-content:center;z-index:30}
 .shutter{width:68px;height:68px;border-radius:50%;background:#395ad2;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(57,90,210,.55),0 0 0 4px rgba(255,255,255,.9);color:#fff}
 .shutter:hover{background:#2c48ae;color:#fff}
 .gbtn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.14);border:0;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .gbtn.l{left:64px}.gbtn.r{right:64px}
 .gbtn .b{position:absolute;right:-4px;top:-4px;min-width:18px;height:18px;border-radius:9px;background:#ffc20a;color:#1c1e2c;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px}
-.photo{position:absolute;left:16px;top:112px;width:343px;height:452px;background:#1c1c1e;border-radius:6px;overflow:hidden}
+.photo{position:relative;flex:1 1 auto;min-height:0;margin:12px 16px 0;background:#1c1c1e;border-radius:6px;overflow:hidden}
 .veil{position:absolute;background:rgba(20,20,22,.78);pointer-events:none}
 .band{position:absolute;border:2px solid #395ad2;border-radius:5px;box-shadow:0 0 0 2px rgba(255,255,255,.85)}
 .hd{position:absolute;width:16px;height:16px;border-radius:50%;background:#395ad2;border:2px solid #fff;z-index:4}
 .hd.tl{top:-9px;left:-9px}.hd.tr{top:-9px;right:-9px}.hd.bl{bottom:-9px;left:-9px}.hd.br{bottom:-9px;right:-9px}
-.crop-cap{position:absolute;left:16px;right:16px;top:576px;text-align:center;color:#fff;font-size:15px;font-weight:600;margin:0;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-.ctools{position:absolute;left:16px;right:16px;top:612px;display:flex;align-items:center;gap:8px}
+.cctl{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;padding:14px 16px 20px}
+.crop-cap{text-align:center;color:#fff;font-size:15px;font-weight:600;margin:0;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.ctools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tool{height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .tool:hover{background:rgba(255,255,255,.18);color:#fff}
 .tool.on{background:#fff;color:#1c1e2c;border-color:#fff}
-.cnote{color:rgba(255,255,255,.72);font-size:12px;margin:0;flex:1 1 auto;text-align:right}
-.thumbs{position:absolute;left:16px;right:16px;top:676px;display:flex;align-items:flex-start;gap:14px}
+.cnote{color:rgba(255,255,255,.72);font-size:12px;margin:0}
+.thumbs{display:flex;align-items:flex-start;gap:14px}
 .thumb-w{display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.9);font-size:12px}
 .thumb{width:56px;height:56px;border-radius:7px;overflow:hidden;border:2px solid rgba(255,255,255,.45);background:#111;position:relative;display:flex;align-items:center;justify-content:center}
 .thumb.on{border-color:#fff}
 .thumb .no{position:absolute;left:2px;top:2px;background:#395ad2;color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:1px 5px}
 .thumb.add{border:2px dashed rgba(255,255,255,.75);background:none;color:#fff}
 .thumb.add:hover{background:rgba(255,255,255,.1);color:#fff}
-.crop-next{position:absolute;right:16px;bottom:24px;height:52px;padding:0 24px;border-radius:26px;border:0;background:#395ad2;color:#fff;font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(57,90,210,.45);z-index:30}
+.crop-next{align-self:flex-end;height:52px;padding:0 24px;border-radius:26px;border:0;background:#395ad2;color:#fff;font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(57,90,210,.45)}
 .crop-next:hover{background:#2c48ae;color:#fff}
 /* pages review (light) */
 .pstrip{display:flex;gap:12px;align-items:flex-start;overflow-x:auto;padding:2px}
@@ -1216,8 +1218,11 @@ def paper_svg():
     return f'<svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">{"".join(parts)}</svg>'
 PAPER = paper_svg()
 
-def paper(w, h, left, top, rot=-3):
-    return f'<div class="paper" style="left:{left}px;top:{top}px;width:{w}px;height:{h}px;transform:rotate({rot}deg)">{PAPER}</div>'
+def paper(w, h, left, top, rot=-3, box=(375, 812)):
+    """Placed as a share of its box, so the same markup holds at any viewport size."""
+    bw, bh = box
+    return (f'<div class="paper" style="left:{left / bw:.2%};top:{top / bh:.2%};'
+            f'width:{w / bw:.2%};height:{h / bh:.2%};transform:rotate({rot}deg)">{PAPER}</div>')
 
 def paper_inline(w, h, shadow=True):
     sh = "" if shadow else "box-shadow:none;"
@@ -1324,8 +1329,8 @@ def m_camera(S, L):
 {paper(250, 340, 62, 215, -3)}
 <div class="cam-scrim"></div>
 <div class="ctop"><a class="cbtn" href="{fn("M-Assignment",L)}" aria-label="{S["m_close"]}">{ic("x",22)}</a><span class="t">{S["m_cam_title"]}</span><span class="cpill">{ic("filetext",14)}{S["m_cam_page"]}</span></div>
-<div class="guide" style="left:34px;top:178px;width:307px;height:418px"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
-<p class="chint" style="top:608px">{S["m_cam_hint"]}</p>
+<div class="guide" style="left:9.07%;top:21.92%;width:81.87%;height:51.48%"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+<p class="chint">{S["m_cam_hint"]}</p>
 <div class="shutter-row">
   <button class="gbtn l" aria-label="{S["m_cam_gallery"]}">{ic("image",22)}</button>
   <a class="shutter" href="{fn("M-Crop",L)}" aria-label="{S["m_cam_shutter"]}">{ic("camera",30,"#fff",2)}</a>
@@ -1333,42 +1338,47 @@ def m_camera(S, L):
 </div>'''
     return mpage(S, "M-Camera", S["m_titles"]["cam"], body, dark=True)
 
+# The band is a share of the photo box, so it holds at any viewport size.
 CROP_LOGIC = """state = { fit: false };
   renderVals() {
-    const r = this.state.fit ? { l: 48, t: 62, w: 247, h: 328 } : { l: 26, t: 30, w: 291, h: 392 };
     const W = 343, H = 452;
+    const r = this.state.fit ? { l: 48, t: 62, w: 247, h: 328 } : { l: 26, t: 30, w: 291, h: 392 };
+    const x = (v) => (100 * v / W).toFixed(3) + "%";
+    const y = (v) => (100 * v / H).toFixed(3) + "%";
     return {
       fitOn: this.state.fit ? "on" : "",
       toggle: () => this.setState({ fit: !this.state.fit }),
-      bl: r.l + "px", bt: r.t + "px", bw: r.w + "px", bh: r.h + "px",
-      vt: r.t + "px", vb: (H - r.t - r.h) + "px", vl: r.l + "px", vr: (W - r.l - r.w) + "px",
+      bl: x(r.l), bt: y(r.t), bw: x(r.w), bh: y(r.h),
+      vt: y(r.t), vb: y(H - r.t - r.h), vl: x(r.l), vr: x(W - r.l - r.w),
     };
   }"""
 
 def m_crop(S, L):
     body = f'''
-<div class="ctop"><a class="cbtn" href="{fn("M-Camera",L)}" aria-label="{S["m_close"]}">{ic("x",22)}</a><span class="t">{S["m_crop_title"]}</span><span class="cpill">{S["m_cam_page"]}</span></div>
+<div class="ctop flow"><a class="cbtn" href="{fn("M-Camera",L)}" aria-label="{S["m_close"]}">{ic("x",22)}</a><span class="t">{S["m_crop_title"]}</span><span class="cpill">{S["m_cam_page"]}</span></div>
 <div class="photo">
   <div class="desk"></div>
-  {paper(230, 315, 56, 68, -3)}
+  {paper(230, 315, 56, 68, -3, box=(343, 452))}
   <div class="veil" style="left:0;right:0;top:0;height:{{{{vt}}}}"></div>
   <div class="veil" style="left:0;right:0;bottom:0;height:{{{{vb}}}}"></div>
   <div class="veil" style="left:0;top:{{{{vt}}}};height:{{{{bh}}}};width:{{{{vl}}}}"></div>
   <div class="veil" style="right:0;top:{{{{vt}}}};height:{{{{bh}}}};width:{{{{vr}}}}"></div>
   <div class="band" style="left:{{{{bl}}}};top:{{{{bt}}}};width:{{{{bw}}}};height:{{{{bh}}}}"><span class="hd tl"></span><span class="hd tr"></span><span class="hd bl"></span><span class="hd br"></span></div>
 </div>
-<p class="crop-cap">{S["m_crop_cap"]}</p>
-<div class="ctools">
-  <button class="tool {{{{fitOn}}}}" onClick="{{{{toggle}}}}">{ic("scan",15)}{S["m_crop_auto"]}</button>
-  <button class="tool">{ic("rotate",15)}{S["m_crop_rotate"]}</button>
-  <a class="tool" href="{fn("M-Camera",L)}">{ic("camera",15)}{S["m_crop_retake"]}</a>
-</div>
-<p class="cnote" style="position:absolute;left:16px;right:16px;top:652px;text-align:left">{S["m_crop_note"]}</p>
-<div class="thumbs">
-  <span class="thumb-w"><span class="thumb on"><span class="no">1</span>{paper_inline(40, 52, False)}</span>{S["m_cam_page"]}</span>
-  <span class="thumb-w"><a class="thumb add" href="{fn("M-Camera",L)}" aria-label="{S["m_add_page"]}">{ic("plus",24)}</a>{S["m_add_page"]}</span>
-</div>
-<a class="crop-next" href="{fn("M-Pages",L)}">{S["m_next"]}{ic("right",18,"#fff",2.4)}</a>'''
+<div class="cctl">
+  <p class="crop-cap">{S["m_crop_cap"]}</p>
+  <div class="ctools">
+    <button class="tool {{{{fitOn}}}}" onClick="{{{{toggle}}}}">{ic("scan",15)}{S["m_crop_auto"]}</button>
+    <button class="tool">{ic("rotate",15)}{S["m_crop_rotate"]}</button>
+    <a class="tool" href="{fn("M-Camera",L)}">{ic("camera",15)}{S["m_crop_retake"]}</a>
+  </div>
+  <p class="cnote">{S["m_crop_note"]}</p>
+  <div class="thumbs">
+    <span class="thumb-w"><span class="thumb on"><span class="no">1</span>{paper_inline(40, 52, False)}</span>{S["m_cam_page"]}</span>
+    <span class="thumb-w"><a class="thumb add" href="{fn("M-Camera",L)}" aria-label="{S["m_add_page"]}">{ic("plus",24)}</a>{S["m_add_page"]}</span>
+  </div>
+  <a class="crop-next" href="{fn("M-Pages",L)}">{S["m_next"]}{ic("right",18,"#fff",2.4)}</a>
+</div>'''
     return mpage(S, "M-Crop", S["m_titles"]["crop"], body, logic=CROP_LOGIC, dark=True)
 
 def m_pages(S, L):
@@ -1609,15 +1619,24 @@ for n in order:
 
 # ---------- standalone site for the prototype server (deploy/public) ----------
 # Same artboards, rendered by deploy/public/dc-shim.js instead of the canvas runtime.
+# The pages run as the app itself: the artboard fills the window, with no frame
+# around it. The PC screens keep a desktop minimum width and scroll sideways
+# below it, the way a desktop web app does on a narrow window.
 SITE_CSS = """
-html{background:#e9eaee}
-body{margin:0;background:#e9eaee;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 14px 48px}
-.sbar{display:flex;align-items:center;gap:10px;font-size:12px;line-height:16px;color:rgba(28,30,44,.6);max-width:100%}
-.sbar a{color:#395ad2;font-weight:700;text-decoration:none}
-.sbar a:hover{text-decoration:underline}
-.sbar b{font-weight:700;color:rgba(28,30,44,.87)}
-.stage{border-radius:10px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.18);background:#fff;flex:0 0 auto}
+html,body{height:100%}
+body{margin:0;padding:0;display:block;overflow:hidden}
+.root{width:100%;min-width:1024px;height:100vh;height:100dvh}
+.mroot{width:100%;max-width:520px;height:100vh;height:100dvh;margin:0 auto}
+@media (max-width:1023px){body{overflow-x:auto}}
+/* the drawn iOS status bar belongs to the artboard, not to a live page */
+.sb{display:none}
+.ctop{top:0}
 """
+
+HOME_ICON = ('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+             'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block">'
+             '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>'
+             '<rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>')
 
 def to_static(text, lang):
     """Turn one .dc.html artboard into a standalone page served by deploy/public."""
@@ -1626,20 +1645,27 @@ def to_static(text, lang):
     markup = re.search(r"</helmet>\s*(.*?)\s*</x-dc>", text, re.S).group(1)
     logic = re.search(r'<script type="text/x-dc"[^>]*>(.*?)</script>', text, re.S).group(1)
     markup = markup.replace('.dc.html"', '.html"')      # links between screens
-    home = "一覧へ" if lang == "ja" else "All screens"
+    # Drop the artboard's fixed size; the stylesheet gives it the window instead.
+    markup = re.sub(r'\s*style="width: (?:1280|375)px; height: (?:800|812)px;"', "", markup, count=1)
+    # Fold an index link into the prototype-only device pill, so no page chrome is needed.
+    home = "一覧" if lang == "ja" else "All"
+    markup = re.sub(r'(<div class="dev[^"]*" role="group"[^>]*>)',
+                    r'\1' + f'<a class="dev-i" href="/">{HOME_ICON}{home}</a>', markup, count=1)
+    dark = "mroot dark" in markup
     return f'''<!doctype html>
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="{"#000000" if dark else "#ffffff"}">
 <link rel="icon" href="data:,">
 <title>{title}</title>
 {helmet}
-<style>{SITE_CSS}</style>
+<style>{SITE_CSS}
+body{{background:{"#000" if dark else "#f2f2f4"}}}</style>
 </head>
 <body>
-<p class="sbar"><a href="/">&larr; {home}</a><b>{title}</b></p>
-<div class="stage"><div id="dc-root"></div></div>
+<div id="dc-root"></div>
 <template id="dc-template">{markup}</template>
 <script src="/dc-shim.js"></script>
 <script>

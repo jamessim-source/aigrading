@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:,">
 <title>Mobile — LO list</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"><style>
@@ -193,6 +194,7 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .paper svg{display:block;width:100%;height:100%}
 .cam-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0 13%,transparent 26% 60%,rgba(0,0,0,.62) 76%,rgba(0,0,0,.78));pointer-events:none}
 .ctop{position:absolute;left:0;right:0;top:44px;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;z-index:30;color:#fff}
+.ctop.flow{position:static;flex:0 0 56px}
 .ctop .t{font-size:16px;font-weight:700;flex:1 1 auto;text-align:center}
 .cbtn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);border:0;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;padding:0;flex:0 0 40px}
 .cbtn:hover{background:rgba(255,255,255,.22);color:#fff}
@@ -201,32 +203,33 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .guide i{position:absolute;width:28px;height:28px;border:3px solid #fff;border-radius:3px}
 .guide i.tl{left:-2px;top:-2px;border-right:0;border-bottom:0}.guide i.tr{right:-2px;top:-2px;border-left:0;border-bottom:0}
 .guide i.bl{left:-2px;bottom:-2px;border-right:0;border-top:0}.guide i.br{right:-2px;bottom:-2px;border-left:0;border-top:0}
-.chint{position:absolute;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:600;text-shadow:0 1px 6px rgba(0,0,0,.6);z-index:25;margin:0}
+.chint{position:absolute;left:0;right:0;bottom:184px;text-align:center;color:#fff;font-size:14px;font-weight:600;text-shadow:0 1px 6px rgba(0,0,0,.6);z-index:25;margin:0}
 .shutter-row{position:absolute;left:0;right:0;bottom:64px;height:72px;display:flex;align-items:center;justify-content:center;z-index:30}
 .shutter{width:68px;height:68px;border-radius:50%;background:#395ad2;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(57,90,210,.55),0 0 0 4px rgba(255,255,255,.9);color:#fff}
 .shutter:hover{background:#2c48ae;color:#fff}
 .gbtn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.14);border:0;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .gbtn.l{left:64px}.gbtn.r{right:64px}
 .gbtn .b{position:absolute;right:-4px;top:-4px;min-width:18px;height:18px;border-radius:9px;background:#ffc20a;color:#1c1e2c;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px}
-.photo{position:absolute;left:16px;top:112px;width:343px;height:452px;background:#1c1c1e;border-radius:6px;overflow:hidden}
+.photo{position:relative;flex:1 1 auto;min-height:0;margin:12px 16px 0;background:#1c1c1e;border-radius:6px;overflow:hidden}
 .veil{position:absolute;background:rgba(20,20,22,.78);pointer-events:none}
 .band{position:absolute;border:2px solid #395ad2;border-radius:5px;box-shadow:0 0 0 2px rgba(255,255,255,.85)}
 .hd{position:absolute;width:16px;height:16px;border-radius:50%;background:#395ad2;border:2px solid #fff;z-index:4}
 .hd.tl{top:-9px;left:-9px}.hd.tr{top:-9px;right:-9px}.hd.bl{bottom:-9px;left:-9px}.hd.br{bottom:-9px;right:-9px}
-.crop-cap{position:absolute;left:16px;right:16px;top:576px;text-align:center;color:#fff;font-size:15px;font-weight:600;margin:0;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-.ctools{position:absolute;left:16px;right:16px;top:612px;display:flex;align-items:center;gap:8px}
+.cctl{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;padding:14px 16px 20px}
+.crop-cap{text-align:center;color:#fff;font-size:15px;font-weight:600;margin:0;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.ctools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tool{height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .tool:hover{background:rgba(255,255,255,.18);color:#fff}
 .tool.on{background:#fff;color:#1c1e2c;border-color:#fff}
-.cnote{color:rgba(255,255,255,.72);font-size:12px;margin:0;flex:1 1 auto;text-align:right}
-.thumbs{position:absolute;left:16px;right:16px;top:676px;display:flex;align-items:flex-start;gap:14px}
+.cnote{color:rgba(255,255,255,.72);font-size:12px;margin:0}
+.thumbs{display:flex;align-items:flex-start;gap:14px}
 .thumb-w{display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.9);font-size:12px}
 .thumb{width:56px;height:56px;border-radius:7px;overflow:hidden;border:2px solid rgba(255,255,255,.45);background:#111;position:relative;display:flex;align-items:center;justify-content:center}
 .thumb.on{border-color:#fff}
 .thumb .no{position:absolute;left:2px;top:2px;background:#395ad2;color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:1px 5px}
 .thumb.add{border:2px dashed rgba(255,255,255,.75);background:none;color:#fff}
 .thumb.add:hover{background:rgba(255,255,255,.1);color:#fff}
-.crop-next{position:absolute;right:16px;bottom:24px;height:52px;padding:0 24px;border-radius:26px;border:0;background:#395ad2;color:#fff;font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(57,90,210,.45);z-index:30}
+.crop-next{align-self:flex-end;height:52px;padding:0 24px;border-radius:26px;border:0;background:#395ad2;color:#fff;font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(57,90,210,.45)}
 .crop-next:hover{background:#2c48ae;color:#fff}
 /* pages review (light) */
 .pstrip{display:flex;gap:12px;align-items:flex-start;overflow-x:auto;padding:2px}
@@ -253,19 +256,20 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .pt.hit{border-color:#395ad2;background:#eef1ff}
 </style>
 <style>
-html{background:#e9eaee}
-body{margin:0;background:#e9eaee;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 14px 48px}
-.sbar{display:flex;align-items:center;gap:10px;font-size:12px;line-height:16px;color:rgba(28,30,44,.6);max-width:100%}
-.sbar a{color:#395ad2;font-weight:700;text-decoration:none}
-.sbar a:hover{text-decoration:underline}
-.sbar b{font-weight:700;color:rgba(28,30,44,.87)}
-.stage{border-radius:10px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.18);background:#fff;flex:0 0 auto}
-</style>
+html,body{height:100%}
+body{margin:0;padding:0;display:block;overflow:hidden}
+.root{width:100%;min-width:1024px;height:100vh;height:100dvh}
+.mroot{width:100%;max-width:520px;height:100vh;height:100dvh;margin:0 auto}
+@media (max-width:1023px){body{overflow-x:auto}}
+/* the drawn iOS status bar belongs to the artboard, not to a live page */
+.sb{display:none}
+.ctop{top:0}
+
+body{background:#f2f2f4}</style>
 </head>
 <body>
-<p class="sbar"><a href="/">&larr; All screens</a><b>Mobile — LO list</b></p>
-<div class="stage"><div id="dc-root"></div></div>
-<template id="dc-template"><div class="mroot" style="width: 375px; height: 812px;">
+<div id="dc-root"></div>
+<template id="dc-template"><div class="mroot">
 <div class="sb" style="color:#000"><span>9:41</span><span class="si">
       <svg width="18" height="12" viewBox="0 0 18 12" fill="#000" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
       <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M1.5 4.2a9.5 9.5 0 0 1 13 0M4 7a6 6 0 0 1 8 0M6.5 9.7a2.5 2.5 0 0 1 3 0"/></svg>
@@ -289,7 +293,7 @@ body{margin:0;background:#e9eaee;min-height:100vh;display:flex;flex-direction:co
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></a>
 </div>
 <nav class="mnav"><span class="ni on"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Courses</span><span class="ni"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>Message</span><span class="ni"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</span></nav>
-<div class="dev m nav" role="group" aria-label="Device"><a class="dev-i" href="Main-en.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>PC</a><span class="dev-i on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Mobile</span></div>
+<div class="dev m nav" role="group" aria-label="Device"><a class="dev-i" href="/"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>All</a><a class="dev-i" href="Main-en.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>PC</a><span class="dev-i on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Mobile</span></div>
 </div></template>
 <script src="/dc-shim.js"></script>
 <script>
