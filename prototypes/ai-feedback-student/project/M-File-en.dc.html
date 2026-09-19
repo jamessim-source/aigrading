@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
-<link rel="icon" href="data:,">
-<title>Second submission</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"><style>
+<title>Mobile — Choose a file or photos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"><style>
 body{margin:0;background:#f2f2f4;font-family:'Noto Sans JP',system-ui,sans-serif;color:rgba(28,30,44,.87);-webkit-font-smoothing:antialiased}
 a{color:#395ad2;text-decoration:none}a:hover{color:#2c48ae}
 *{box-sizing:border-box}
@@ -260,50 +261,19 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .pt{height:30px;padding:0 10px;border-radius:1000px;border:1px solid rgba(28,30,44,.12);background:#fff;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;color:rgba(28,30,44,.87)}
 .pt:hover{background:#f2f2f4}
 .pt.hit{border-color:#395ad2;background:#eef1ff}
-</style>
-<style>
-html,body{height:100%}
-body{margin:0;padding:0;display:block;overflow:hidden}
-.root{width:100%;min-width:1024px;height:100vh;height:100dvh}
-.mroot{width:100%;max-width:520px;height:100vh;height:100dvh;margin:0 auto}
-@media (max-width:1023px){body{overflow-x:auto}}
-/* the drawn iOS status bar belongs to the artboard, not to a live page */
-.sb{display:none}
-.ctop{top:0}
-
-body{background:#f2f2f4}</style>
-</head>
-<body>
-<div id="dc-root"></div>
-<template id="dc-template"><div class="root">
-<header class="hdr">
-  <div class="hdr-l"><a class="ibtn" href="04-Feedback-en.html" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 12H5m7-7-7 7 7 7"/></svg></a><div style="min-width:0"><p class="crumb">Regional & Environmental Statistics / Session 7</p><h1 class="h4">Feedback · Session 7 exercise — Second submission</h1></div></div>
-  <div class="hdr-r"><span class="chip wait" style="height:28px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg>Second submission ・ Due Nov 20, 23:59</span><div class="seg" role="group" aria-label="Language"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(28,30,44,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><a class="seg-i" href="06-Resubmit.html" lang="ja">日本語</a><span class="seg-i on">English</span></div>
-    <button class="bell" aria-label="6 notifications"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="n">6</span></button>
-    <button class="acct"><span class="av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span>Hanako Yamada</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(28,30,44,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m6 9 6 6 6-6"/></svg></button>
-  </div>
-</header>
-<div class="body" style="display:flex;gap:16px;overflow:hidden">
-  <section class="pane" style="flex:0.95 1 0">
-    <div class="pane-h"><p class="sub1">Last time's comments</p><span class="cap">Tick what you've addressed</span></div>
-    <div class="pane-b" style="display:flex;flex-direction:column;gap:12px">
-      <div><div class="chk" style="cursor:default"><span class="st" style="width:22px;height:22px;border-radius:50%;background:#e6f5ee;color:#1f7a4d;display:flex;align-items:center;justify-content:center;flex:0 0 22px;margin-top:1px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg></span>
-        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#1f7a4d;color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">1</i>Strength ・ Statistical processing</b><span class="cap">Check it still holds</span></div></div><button class="chk {{k2}}" onClick="{{tk2}}"><span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg></span>
-        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#395ad2;color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">2</i>Question ・ Interpretation</b><span class="cap">From this result it can be said that the denser a region's population, the higher its income.</span></div></button><button class="chk {{k3}}" onClick="{{tk3}}"><span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg></span>
-        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#d13842;color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">3</i>To improve ・ Statistical processing</b><span class="cap">To check significance I ran the T.TEST function, which gave a p-value of 0.03.</span></div></button></div>
-      <div class="fb-card" style="background:#eef1ff;border-color:#dfe4ff;flex-direction:row;gap:14px;align-items:flex-start">
-        <span class="tav" style="background:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
-        <p class="b2" style="line-height:22px">Good catch recalculating without Tokyo. We'll pick up point ② in the next class, so have your own view ready.</p>
-      </div>
-    </div>
-  </section>
-  <section style="flex:1.05 1 0;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:16px">
-    <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <p class="sub1">Submit your work</p>
-        <span class="cap">PDF · Word · Excel · PowerPoint · Photos (JPG / PNG / HEIC) · up to 20 MB</span>
-      </div>
-      <sc-if value="{{empty}}" hint-placeholder-val="{{true}}">
+</style></helmet>
+<div class="mroot" style="width: 375px; height: 812px;">
+<div class="sb" style="color:#000"><span>9:41</span><span class="si">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="#000" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M1.5 4.2a9.5 9.5 0 0 1 13 0M4 7a6 6 0 0 1 8 0M6.5 9.7a2.5 2.5 0 0 1 3 0"/></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13" fill="none" aria-hidden="true"><rect x=".5" y=".5" width="23" height="12" rx="3" stroke="#000" opacity=".5"/><rect x="2" y="2" width="18" height="9" rx="1.6" fill="#000"/><path d="M25.5 4.5v4" stroke="#000" opacity=".5" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </span></div>
+<header class="mhdr"><a class="mib" href="M-Assignment-en.dc.html" aria-label="Back"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m15 6-6 6 6 6"/></svg></a><h1 class="mt">Choose a file or photos</h1><div class="mseg" role="group" aria-label="Language"><a class="seg-i" href="M-File.dc.html" lang="ja">日本語</a><span class="seg-i on">EN</span></div></header>
+<div class="mbody">
+  <div class="mcard">
+    <p class="sub1" style="font-size:14px">Submit your work</p>
+    <p class="cap">PDF · Word · Excel · PowerPoint · Photos (JPG / PNG / HEIC) · up to 20 MB</p>
+    <sc-if value="{{empty}}" hint-placeholder-val="{{true}}">
       <div class="drop">
         <span style="width:56px;height:56px;border-radius:50%;background:#eef1ff;display:flex;align-items:center;justify-content:center;color:#395ad2"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></span>
         <p class="b1" style="font-weight:700">Drop a file or photos here</p>
@@ -319,8 +289,8 @@ body{background:#f2f2f4}</style>
       <div class="filerow">
         <span class="ficon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></span>
         <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px">
-          <p class="b2" style="font-weight:700">Session7_Exercise_HanakoYamada_v2.pdf</p>
-          <p class="cap">3 pages · 1.3 MB · just selected</p>
+          <p class="b2" style="font-weight:700">Session7_Exercise_HanakoYamada.pdf</p>
+          <p class="cap">3 pages · 1.2 MB · just selected</p>
         </div>
         <button class="ibtn" style="border:0" onClick="{{clear}}" aria-label="Remove file"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
@@ -340,37 +310,27 @@ body{background:#f2f2f4}</style>
         <button class="ibtn" style="border:0" onClick="{{clear}}" aria-label="Remove file"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
     </sc-if>
-    </div>
-    <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:8px">
+  </div>
+  <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:8px">
     <div style="display:flex;align-items:center;justify-content:space-between"><p class="sub1">Basic requirements</p><span class="cap">What this submission must include</span></div>
     <sc-if value="{{empty}}" hint-placeholder-val="{{true}}"><div class="pc pend"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M5 12h14"/></svg></span><div class="tt muted">Scatter plot included</div></div><div class="pc pend"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M5 12h14"/></svg></span><div class="tt muted">Correlation coefficient stated</div></div><div class="pc pend"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M5 12h14"/></svg></span><div class="tt muted">Significance test stated</div></div><div class="pc pend"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M5 12h14"/></svg></span><div class="tt muted">Lecture material referenced</div></div><div class="pc pend"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M5 12h14"/></svg></span><div class="tt muted">3 pages (guide: about 2)</div></div></sc-if>
     <sc-if value="{{picked}}" hint-placeholder-val="{{false}}"><div class="pc ok"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg></span><div class="tt"><b>Scatter plot included</b></div></div><div class="pc ok"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg></span><div class="tt"><b>Correlation coefficient stated</b></div></div><div class="pc ok"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg></span><div class="tt"><b>Significance test stated</b></div></div><div class="pc warn"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 9v4m0 4h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><div class="tt"><b>Lecture material referenced</b><br><span class=cap>Not found. Check before you submit</span></div></div><div class="pc ok"><span class="st"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg></span><div class="tt"><b>3 pages (guide: about 2)</b></div></div></sc-if>
   </div>
-    
-    <div class="card" style="padding:16px 24px">
-      <sc-if value="{{empty}}" hint-placeholder-val="{{true}}">
-      <div style="display:flex;align-items:center;justify-content:flex-end;gap:16px">
-        <span class="cap" style="text-align:right">Your submission goes to your teacher, who will also see whether last time's comments were addressed.</span>
-        <span class="btn dis"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(28,30,44,.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg>Submit second draft</span>
-      </div>
-    </sc-if>
-    <sc-if value="{{picked}}" hint-placeholder-val="{{false}}">
-      <div style="display:flex;align-items:center;justify-content:flex-end;gap:16px">
-        <span class="cap" style="text-align:right">Your submission goes to your teacher, who will also see whether last time's comments were addressed.</span>
-        <a class="btn primary" href="07-Pending2-en.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg>Submit second draft</a>
-      </div>
-    </sc-if>
-    </div>
-    <div style="height:4px"></div>
-  </section>
+  <sc-if value="{{empty}}" hint-placeholder-val="{{true}}">
+    <span class="mbtn dis"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(28,30,44,.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg>Submit this work</span>
+  </sc-if>
+  <sc-if value="{{picked}}" hint-placeholder-val="{{false}}">
+    <a class="mbtn primary" href="M-Pending-en.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg>Submit this work</a>
+  </sc-if>
+  <p class="cap" style="text-align:center">Your submission goes to your teacher. Feedback is returned after the due date.</p>
+  <div style="height:8px"></div>
 </div>
-<div class="dev" role="group" aria-label="Device"><a class="dev-i" href="/"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>All</a><span class="dev-i on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>PC</span><a class="dev-i" href="M-Assignment-en.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Mobile</a></div>
-</div></template>
-<script src="/dc-shim.js"></script>
-<script>
-
+<div class="dev m" role="group" aria-label="Device"><a class="dev-i" href="02-Assignment-en.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>PC</a><span class="dev-i on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Mobile</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":375,"height":812}}'>
 class Component extends DCLogic {
-  state = { picked: "", k2: false, k3: false, s0: true, s1: false, d0: false, d1: false, d2: false, d3: false };
+  state = { picked: "" };
   renderVals() {
     return {
       picked: this.state.picked !== "",
@@ -380,22 +340,9 @@ class Component extends DCLogic {
       pick: () => this.setState({ picked: "file" }),
       pickPhotos: () => this.setState({ picked: "photos" }),
       clear: () => this.setState({ picked: "" }),
-      k2: this.state.k2 ? "on" : "", k3: this.state.k3 ? "on" : "",
-      tk2: () => this.setState({ k2: !this.state.k2 }),
-      tk3: () => this.setState({ k3: !this.state.k3 }),
-      s0: this.state.s0 ? "sel" : "", s1: this.state.s1 ? "sel" : "",
-      ts0: () => this.setState({ s0: true, s1: false }),
-      ts1: () => this.setState({ s0: false, s1: true }),
-      d0: this.state.d0 ? "sel" : "", d1: this.state.d1 ? "sel" : "", d2: this.state.d2 ? "sel" : "", d3: this.state.d3 ? "sel" : "",
-      t0: () => this.setState({ d0: !this.state.d0, d1: false, d2: false, d3: false }),
-      t1: () => this.setState({ d0: false, d1: !this.state.d1 }),
-      t2: () => this.setState({ d0: false, d2: !this.state.d2 }),
-      t3: () => this.setState({ d0: false, d3: !this.state.d3 }),
     };
   }
 }
-
-window.__dcBoot(Component);
 </script>
 </body>
 </html>

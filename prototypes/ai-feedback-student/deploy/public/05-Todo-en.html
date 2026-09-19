@@ -86,6 +86,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .filerow{display:flex;align-items:center;gap:12px;border:1px solid rgba(28,30,44,.12);border-radius:8px;padding:12px 16px;background:#fff}
 .filerow .ficon{width:40px;height:40px;border-radius:8px;background:#fbe7e9;color:#d13842;display:flex;align-items:center;justify-content:center;flex:0 0 40px}
 .shot{position:relative;display:block;border-radius:6px;overflow:hidden;border:1px solid rgba(28,30,44,.12);background:#f2f2f4}
+/* on the phone the thumbnails keep the first line and the detail wraps under them */
+.mroot .shots{flex-wrap:wrap}
+.mroot .shots .shots-txt{order:3;flex:1 1 100%}
+.mroot .shots .ibtn{order:2;margin-left:auto}
 .shot i{position:absolute;left:2px;top:2px;z-index:1;background:#395ad2;color:#fff;font-size:10px;font-weight:700;font-style:normal;border-radius:4px;padding:0 5px;line-height:15px}
 .fb-card{background:#fff;border-radius:8px;border:1px solid rgba(28,30,44,.12);padding:16px;position:relative;display:flex;flex-direction:column;gap:10px}
 .fb-card.next{background:#fffbea;border-color:#f2dc8f}

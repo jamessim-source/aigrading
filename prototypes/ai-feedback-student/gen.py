@@ -138,6 +138,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .filerow{display:flex;align-items:center;gap:12px;border:1px solid rgba(28,30,44,.12);border-radius:8px;padding:12px 16px;background:#fff}
 .filerow .ficon{width:40px;height:40px;border-radius:8px;background:#fbe7e9;color:#d13842;display:flex;align-items:center;justify-content:center;flex:0 0 40px}
 .shot{position:relative;display:block;border-radius:6px;overflow:hidden;border:1px solid rgba(28,30,44,.12);background:#f2f2f4}
+/* on the phone the thumbnails keep the first line and the detail wraps under them */
+.mroot .shots{flex-wrap:wrap}
+.mroot .shots .shots-txt{order:3;flex:1 1 100%}
+.mroot .shots .ibtn{order:2;margin-left:auto}
 .shot i{position:absolute;left:2px;top:2px;z-index:1;background:#395ad2;color:#fff;font-size:10px;font-weight:700;font-style:normal;border-radius:4px;padding:0 5px;line-height:15px}
 .fb-card{background:#fff;border-radius:8px;border:1px solid rgba(28,30,44,.12);padding:16px;position:relative;display:flex;flex-direction:column;gap:10px}
 .fb-card.next{background:#fffbea;border-color:#f2dc8f}
@@ -584,11 +588,13 @@ MJA = dict(
     m_crop_title="範囲を切り取る", m_crop_cap="答案の端に合わせて切り取ろう", m_crop_auto="自動で合わせる", m_crop_rotate="回転", m_crop_retake="撮り直す",
     m_crop_note="角を動かして範囲を変えられます", m_add_page="ページを追加", m_next="次へ", m_page1="1", m_page2="2",
     m_pages_title="提出するページ", m_pages_hint="長押しで並べ替え ・ タップで確認", m_pages_count="1 / 2", m_pc_pages="ページ数 2（目安は 2 枚程度）",
+    m_file_title="ファイル・写真を選ぶ", m_type_title="直接入力する",
     m_pending_pages="2ページ ・ 写真 ・ 11月11日 14:32", m_pending_replace="差し替える",
     m_fb_doc_h="提出した答案（読み取ったテキスト）", m_fb_points="コメント 3件 ・ 下線をタップすると開きます",
     m_prev="前へ", m_next_pt="次へ", m_lang_ja="日本語", m_lang_en="EN",
     m_dev_pc="PC", m_dev_mobile="モバイル", m_dev_aria="表示デバイス",
     m_titles={"main": "モバイル — LO一覧", "assign": "モバイル — 課題", "cam": "モバイル — 撮影", "crop": "モバイル — 切り取り", "pages": "モバイル — 提出するページ",
+              "file": "モバイル — ファイル・写真を選ぶ", "type": "モバイル — 直接入力",
               "pending": "モバイル — 提出済み", "fb": "モバイル — 返却済み", "sheet": "モバイル — 返却済み（コメントを開いた状態）"},
 )
 MEN = dict(
@@ -602,22 +608,25 @@ MEN = dict(
     m_crop_title="Crop the page", m_crop_cap="Crop to the edges of the page", m_crop_auto="Auto-fit", m_crop_rotate="Rotate", m_crop_retake="Retake",
     m_crop_note="Drag a corner to adjust", m_add_page="Add page", m_next="Next", m_page1="1", m_page2="2",
     m_pages_title="Pages to submit", m_pages_hint="Hold to reorder · tap to preview", m_pages_count="1 / 2", m_pc_pages="2 pages (guide: about 2)",
+    m_file_title="Choose a file or photos", m_type_title="Type your answer",
     m_pending_pages="2 pages · Photos · Nov 11, 14:32", m_pending_replace="Replace",
     m_fb_doc_h="Your submission (recognised text)", m_fb_points="3 comments · tap an underline to open one",
     m_prev="Previous", m_next_pt="Next", m_lang_ja="日本語", m_lang_en="EN",
     m_dev_pc="PC", m_dev_mobile="Mobile", m_dev_aria="Device",
     m_titles={"main": "Mobile — LO list", "assign": "Mobile — Assignment", "cam": "Mobile — Snap", "crop": "Mobile — Crop", "pages": "Mobile — Pages to submit",
+              "file": "Mobile — Choose a file or photos", "type": "Mobile — Type your answer",
               "pending": "Mobile — Submitted", "fb": "Mobile — Returned", "sheet": "Mobile — Returned (comment sheet open)"},
 )
 JA.update(MJA); EN.update(MEN)
 
 DECL = False  # AI-use declaration removed on PM decision (18 Sep): student self-report is not evidence
 SCREENS = ["Main", "02-Assignment", "03-Pending", "04-Feedback", "06-Resubmit", "07-Pending2", "08-Feedback2", "05-Todo"]
-MSCREENS = ["M-Main", "M-Assignment", "M-Camera", "M-Crop", "M-Pages", "M-Pending", "M-Feedback", "M-Sheet"]
+MSCREENS = ["M-Main", "M-Assignment", "M-Camera", "M-Crop", "M-Pages", "M-File", "M-Type", "M-Pending", "M-Feedback", "M-Sheet"]
 # PC <-> mobile counterparts for the bottom-left device switch
 TO_MOBILE = {"Main": "M-Main", "02-Assignment": "M-Assignment", "03-Pending": "M-Pending", "04-Feedback": "M-Feedback",
              "06-Resubmit": "M-Assignment", "07-Pending2": "M-Pending", "08-Feedback2": "M-Feedback", "05-Todo": "M-Main"}
 TO_PC = {"M-Main": "Main", "M-Assignment": "02-Assignment", "M-Camera": "02-Assignment", "M-Crop": "02-Assignment", "M-Pages": "02-Assignment",
+         "M-File": "02-Assignment", "M-Type": "02-Assignment",
          "M-Pending": "03-Pending", "M-Feedback": "04-Feedback", "M-Sheet": "04-Feedback"}
 CUR = "Main"  # screen being built (set by the write loop) so page() can place the device switch
 def fn(screen, lang):
@@ -752,13 +761,13 @@ def upload_block(S, submit_label, file_name, file_meta, note, href):
       </div>
     </sc-if>
     <sc-if value="{{{{pickedPhotos}}}}" hint-placeholder-val="{{{{false}}}}">
-      <div class="filerow" style="align-items:flex-start">
+      <div class="filerow shots" style="align-items:flex-start">
         <span style="display:flex;gap:8px;flex:0 0 auto">
           <span class="shot"><i>1</i>{paper_inline(44, 58, False)}</span>
           <span class="shot"><i>2</i>{paper_inline(44, 58, False)}</span>
           <span class="shot"><i>3</i>{paper_inline(44, 58, False)}</span>
         </span>
-        <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px">
+        <div class="shots-txt" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px">
           <p class="b2" style="font-weight:700">{S["a_photos_name"]}</p>
           <p class="cap">{S["a_photos_meta"]}</p>
           <button class="btn ghost" style="height:30px;align-self:flex-start;padding:0 8px">{ic("plus",16)}{S["a_photos_add"]}</button>
@@ -1330,8 +1339,8 @@ def m_assignment(S, L):
   <div class="mcard">
     <p class="sub1" style="font-size:14px">{S["a_upload_h"]}</p>
     <a class="opt pri" href="{fn("M-Camera",L)}"><span class="oi">{ic("camera",24)}</span><span class="ot"><b>{S["m_opt_cam"]}</b><span>{S["m_opt_cam_s"]}</span></span>{ic("right",20,"#395ad2",2.4)}</a>
-    <button class="opt"><span class="oi">{ic("upload",24)}</span><span class="ot"><b>{S["m_opt_file"]}</b><span>{S["m_opt_file_s"]}</span></span>{ic("right",20,"#c7c7cc",2.4)}</button>
-    <button class="opt"><span class="oi">{ic("filetext",24)}</span><span class="ot"><b>{S["m_opt_text"]}</b><span>{S["m_opt_text_s"]}</span></span>{ic("right",20,"#c7c7cc",2.4)}</button>
+    <a class="opt" href="{fn("M-File",L)}"><span class="oi">{ic("upload",24)}</span><span class="ot"><b>{S["m_opt_file"]}</b><span>{S["m_opt_file_s"]}</span></span>{ic("right",20,"#c7c7cc",2.4)}</a>
+    <a class="opt" href="{fn("M-Type",L)}"><span class="oi">{ic("filetext",24)}</span><span class="ot"><b>{S["m_opt_text"]}</b><span>{S["m_opt_text_s"]}</span></span>{ic("right",20,"#c7c7cc",2.4)}</a>
     <p class="cap">{S["a_note"]}</p>
   </div>
   <div class="mcard" style="gap:4px">
@@ -1398,6 +1407,91 @@ def m_crop(S, L):
   <a class="crop-next" href="{fn("M-Pages",L)}">{S["m_next"]}{ic("right",18,"#fff",2.4)}</a>
 </div>'''
     return mpage(S, "M-Crop", S["m_titles"]["crop"], body, logic=CROP_LOGIC, dark=True)
+
+def m_submit_row(S, href):
+    """Disabled until something is picked or confirmed, then the real submit."""
+    return f'''<sc-if value="{{{{empty}}}}" hint-placeholder-val="{{{{true}}}}">
+    <span class="mbtn dis">{ic("sparkle",18,"rgba(28,30,44,.38)")}{S["a_submit"]}</span>
+  </sc-if>
+  <sc-if value="{{{{picked}}}}" hint-placeholder-val="{{{{false}}}}">
+    <a class="mbtn primary" href="{href}">{ic("sparkle",18,"#fff")}{S["a_submit"]}</a>
+  </sc-if>
+  <p class="cap" style="text-align:center">{S["a_note"]}</p>'''
+
+def m_file(S, L):
+    """The file / photos path on the phone: same upload block and checks as PC."""
+    body = mheader(S, "M-File", S["m_file_title"], back_href=fn("M-Assignment",L)) + f'''
+<div class="mbody">
+  <div class="mcard">
+    <p class="sub1" style="font-size:14px">{S["a_upload_h"]}</p>
+    <p class="cap">{S["a_upload_meta"]}</p>
+    {upload_block(S, S["a_submit"], S["a_file"], S["a_file_meta"], S["a_note"], fn("M-Pending",L))}
+  </div>
+  {precheck_block(S)}
+  {m_submit_row(S, fn("M-Pending",L))}
+  <div style="height:8px"></div>
+</div>'''
+    logic = """state = { picked: "" };
+  renderVals() {
+    return {
+      picked: this.state.picked !== "",
+      empty: this.state.picked === "",
+      pickedFile: this.state.picked === "file",
+      pickedPhotos: this.state.picked === "photos",
+      pick: () => this.setState({ picked: "file" }),
+      pickPhotos: () => this.setState({ picked: "photos" }),
+      clear: () => this.setState({ picked: "" }),
+    };
+  }"""
+    return mpage(S, "M-File", S["m_titles"]["file"], body, logic=logic)
+
+def m_type(S, L):
+    """The typed-answer path on the phone: 500-character limit, confirm, then the checks."""
+    body = mheader(S, "M-Type", S["m_type_title"], back_href=fn("M-Assignment",L)) + f'''
+<div class="mbody">
+  <div class="mcard">
+    <p class="sub1" style="font-size:14px">{S["a_upload_h"]}</p>
+    <sc-if value="{{{{isTyping}}}}" hint-placeholder-val="{{{{true}}}}">
+      <label class="cap" for="ta-answer" style="display:none">{S["m_type_title"]}</label>
+      <textarea id="ta-answer" class="ta" style="min-height:220px" placeholder="{S["a_ta_ph"]}" maxlength="500" defaultValue="{{{{ttext}}}}" onInput="{{{{onType}}}}"></textarea>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span class="cap">{S["a_ta_note"]}</span>
+        <span class="cap" style="white-space:nowrap;font-weight:700">{{{{tcount}}}} / 500 {S["a_ta_unit"]}</span>
+      </div>
+      <sc-if value="{{{{noText}}}}" hint-placeholder-val="{{{{true}}}}"><span class="mbtn dis">{ic("check",18,"rgba(28,30,44,.38)")}{S["a_ta_confirm"]}</span></sc-if>
+      <sc-if value="{{{{hasText}}}}" hint-placeholder-val="{{{{false}}}}"><button class="mbtn neutral" onClick="{{{{confirm}}}}">{ic("check",18)}{S["a_ta_confirm"]}</button></sc-if>
+    </sc-if>
+    <sc-if value="{{{{isConfirmed}}}}" hint-placeholder-val="{{{{false}}}}">
+      <div class="filerow" style="align-items:flex-start">
+        <span class="ficon" style="background:#eef1ff;color:#395ad2">{ic("filetext",22)}</span>
+        <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <p class="b2" style="font-weight:700;display:flex;align-items:center;gap:6px">{ic("check",14,"#1f7a4d",3)}{S["a_ta_confirmed"]} ・ {{{{tcount}}}} {S["a_ta_unit"]}</p>
+          <p class="b2 muted" style="white-space:pre-wrap;max-height:110px;overflow:hidden">{{{{ttext}}}}</p>
+        </div>
+      </div>
+      <button class="mbtn neutral" onClick="{{{{edit}}}}">{S["a_ta_edit"]}</button>
+    </sc-if>
+  </div>
+  {precheck_block(S)}
+  {m_submit_row(S, fn("M-Pending",L))}
+  <div style="height:8px"></div>
+</div>'''
+    logic = """state = { tlen: 0, ttext: "", confirmed: false };
+  renderVals() {
+    return {
+      picked: this.state.confirmed,
+      empty: !this.state.confirmed,
+      isTyping: !this.state.confirmed,
+      isConfirmed: this.state.confirmed,
+      noText: this.state.tlen === 0, hasText: this.state.tlen > 0,
+      onType: (e) => { const v = e.target.value || ""; this.setState({ tlen: v.length, ttext: v }); },
+      confirm: () => this.setState({ confirmed: true }),
+      edit: () => this.setState({ confirmed: false }),
+      ttext: this.state.ttext,
+      tcount: String(this.state.tlen),
+    };
+  }"""
+    return mpage(S, "M-Type", S["m_titles"]["type"], body, logic=logic)
 
 def m_pages(S, L):
     items = ""
@@ -1543,6 +1637,7 @@ def m_feedback(S, L, init=0):
     return mpage(S, screen, S["m_titles"]["fb" if init == 0 else "sheet"], body, logic=logic)
 
 MBUILDERS = {"M-Main": m_main, "M-Assignment": m_assignment, "M-Camera": m_camera, "M-Crop": m_crop, "M-Pages": m_pages,
+             "M-File": m_file, "M-Type": m_type,
              "M-Pending": m_pending, "M-Feedback": lambda S, L: m_feedback(S, L, 0), "M-Sheet": lambda S, L: m_feedback(S, L, 2)}
 
 # ---------- write ----------
@@ -1565,7 +1660,8 @@ for lang, S in (("ja", JA), ("en", EN)):
 MW, MH, MGAP = 375, 812, 80
 MROW_Y = {"ja": 2900, "en": 4100}
 mtitles = ["M1 · LO list under the topic", "M2 · Assignment — how to submit", "M3 · Snap — camera", "M4 · Crop the page",
-           "M5 · Pages — check & submit", "M6 · Submitted — teacher reviewing", "M7 · Returned — tap an underline", "M8 · Returned — comment sheet open"]
+           "M5 · Pages — check & submit", "M6 · File or photos — check & submit", "M7 · Typed answer — confirm & submit",
+           "M8 · Submitted — teacher reviewing", "M9 · Returned — tap an underline", "M10 · Returned — comment sheet open"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(MSCREENS):
         CUR = screen
@@ -1584,9 +1680,11 @@ MNOTES = {
     "m3": "Camera, as in the unifiedapp Snap tab: full-bleed dark viewfinder, scrim, blue 68-px shutter with gallery (left) and flash (right), close top-left. New here: a corner-bracket page guide and a page counter (1ページ目), because a handwritten answer is photographed one page at a time. Tap the shutter →",
     "m4": "Crop, the unifiedapp CropScreen adapted: dark stage, the photo with veils outside the frame, a blue band with four corner handles. For a paper answer the band is a rectangle that should hug the page edges, so 自動で合わせる snaps it to the paper (tap it — works in the prototype; handles are static here, draggable in the product). Thumbs strip below with ページを追加 → back to the camera for page 2. 次へ →",
     "m5": "Pages review (unifiedapp ReviewScreen shape, light theme): thumbnails in page order, hold to reorder, add a page, big preview. The basic-requirements check runs on the photographed pages (via the AI Grading OCR path, PRD C1) exactly as it does on a file or typed answer on PC. Submit →",
-    "m6": "Waiting state on the phone: identical rules to PC — no AI mentioned, teacher gives the feedback after the due date, notification when returned, pages viewable / replaceable until the due date. Steps are vertical for the narrow screen. DEMO pill →",
-    "m7": "Returned, on the phone: teacher's note, summary, then the recognised text of the answer with the same underlines. One layout for every submission type (PM, 18 Sep). Tapping an underline — or one of the three comment chips — opens the bottom sheet for that point (PM, 18 Sep) and highlights the passage. Resubmit and PDF export at the end.",
-    "m8": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close.",
+    "m6": "The file / photos path, reached from ファイル・写真を選ぶ on M2. Same upload block as PC: choose a file, or choose several photos at once — the picked state shows them as numbered thumbnails in page order (tap 答案の写真を選ぶ to see it). The 提出の基本条件 list fills in against whatever was picked, exactly as on PC, and only then does the submit button go live.",
+    "m7": "The typed-answer path, reached from 直接入力する on M2, for short pieces like the weekly reflection. Type into the box (it counts up to the 500-character limit), then 回答を確定する — the checks run on the confirmed text, not while typing (PM, 18 Sep), and 編集する reopens the box. Which of the three paths an assignment offers is a Back Office setting on the Feedback LO.",
+    "m8": "Waiting state on the phone: identical rules to PC — no AI mentioned, teacher gives the feedback after the due date, notification when returned, pages viewable / replaceable until the due date. Steps are vertical for the narrow screen. DEMO pill →",
+    "m9": "Returned, on the phone: teacher's note, summary, then the recognised text of the answer with the same underlines. One layout for every submission type (PM, 18 Sep). Tapping an underline — or one of the three comment chips — opens the bottom sheet for that point (PM, 18 Sep) and highlights the passage. Resubmit and PDF export at the end.",
+    "m10": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close.",
 }
 notes = {
     "title": {"x": 0, "y": -300, "text": "AI Feedback — student experience on PC (Kindai 地域環境統計学, teacher-in-the-loop, revise loop) · 日本語", "kind": "title1", "maxW": 8 * W + 7 * GAP},
@@ -1614,7 +1712,7 @@ notes = {
     "title_m": {"x": 0, "y": MROW_Y["ja"] - 300, "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
     "title_m_en": {"x": 0, "y": MROW_Y["en"] - 240, "text": "Same mobile flow in English", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
 }
-for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8"]):
+for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "m10"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
 
 canvas = {

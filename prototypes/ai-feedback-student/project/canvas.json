@@ -170,28 +170,44 @@
       "title": "M5 · Pages — check & submit (JA)",
       "is_interactive": true
     },
-    "M-Pending.dc.html": {
+    "M-File.dc.html": {
       "x": 2275,
       "y": 2900,
       "w": 375,
       "h": 812,
-      "title": "M6 · Submitted — teacher reviewing (JA)",
+      "title": "M6 · File or photos — check & submit (JA)",
       "is_interactive": true
     },
-    "M-Feedback.dc.html": {
+    "M-Type.dc.html": {
       "x": 2730,
       "y": 2900,
       "w": 375,
       "h": 812,
-      "title": "M7 · Returned — tap an underline (JA)",
+      "title": "M7 · Typed answer — confirm & submit (JA)",
       "is_interactive": true
     },
-    "M-Sheet.dc.html": {
+    "M-Pending.dc.html": {
       "x": 3185,
       "y": 2900,
       "w": 375,
       "h": 812,
-      "title": "M8 · Returned — comment sheet open (JA)",
+      "title": "M8 · Submitted — teacher reviewing (JA)",
+      "is_interactive": true
+    },
+    "M-Feedback.dc.html": {
+      "x": 3640,
+      "y": 2900,
+      "w": 375,
+      "h": 812,
+      "title": "M9 · Returned — tap an underline (JA)",
+      "is_interactive": true
+    },
+    "M-Sheet.dc.html": {
+      "x": 4095,
+      "y": 2900,
+      "w": 375,
+      "h": 812,
+      "title": "M10 · Returned — comment sheet open (JA)",
       "is_interactive": true
     },
     "M-Main-en.dc.html": {
@@ -234,28 +250,44 @@
       "title": "M5 · Pages — check & submit (EN)",
       "is_interactive": true
     },
-    "M-Pending-en.dc.html": {
+    "M-File-en.dc.html": {
       "x": 2275,
       "y": 4100,
       "w": 375,
       "h": 812,
-      "title": "M6 · Submitted — teacher reviewing (EN)",
+      "title": "M6 · File or photos — check & submit (EN)",
       "is_interactive": true
     },
-    "M-Feedback-en.dc.html": {
+    "M-Type-en.dc.html": {
       "x": 2730,
       "y": 4100,
       "w": 375,
       "h": 812,
-      "title": "M7 · Returned — tap an underline (EN)",
+      "title": "M7 · Typed answer — confirm & submit (EN)",
       "is_interactive": true
     },
-    "M-Sheet-en.dc.html": {
+    "M-Pending-en.dc.html": {
       "x": 3185,
       "y": 4100,
       "w": 375,
       "h": 812,
-      "title": "M8 · Returned — comment sheet open (EN)",
+      "title": "M8 · Submitted — teacher reviewing (EN)",
+      "is_interactive": true
+    },
+    "M-Feedback-en.dc.html": {
+      "x": 3640,
+      "y": 4100,
+      "w": 375,
+      "h": 812,
+      "title": "M9 · Returned — tap an underline (EN)",
+      "is_interactive": true
+    },
+    "M-Sheet-en.dc.html": {
+      "x": 4095,
+      "y": 4100,
+      "w": 375,
+      "h": 812,
+      "title": "M10 · Returned — comment sheet open (EN)",
       "is_interactive": true
     }
   },
@@ -269,60 +301,60 @@
   },
   "notes": {
     "m1": {
-      "maxH": 420,
-      "text": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →",
-      "w": 375,
       "x": 0,
-      "y": 3772
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →"
     },
     "m2": {
-      "maxH": 420,
-      "text": "Assignment on the phone: same criteria chips, same 提出条件 list, and three ways to submit. 撮影して提出 is the primary option — the snap flow from unifiedapp (Snap → Crop → Review), adapted from 'ask about a question' to 'submit a handwritten answer'. File / photos and typed input are the other two (per the PC decisions of 18 Sep). Tap 撮影して提出 →",
-      "w": 375,
       "x": 455,
-      "y": 3772
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Assignment on the phone: same criteria chips, same 提出条件 list, and three ways to submit. 撮影して提出 is the primary option — the snap flow from unifiedapp (Snap → Crop → Review), adapted from 'ask about a question' to 'submit a handwritten answer'. File / photos and typed input are the other two (per the PC decisions of 18 Sep). Tap 撮影して提出 →"
     },
     "m3": {
-      "maxH": 420,
-      "text": "Camera, as in the unifiedapp Snap tab: full-bleed dark viewfinder, scrim, blue 68-px shutter with gallery (left) and flash (right), close top-left. New here: a corner-bracket page guide and a page counter (1ページ目), because a handwritten answer is photographed one page at a time. Tap the shutter →",
-      "w": 375,
       "x": 910,
-      "y": 3772
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Camera, as in the unifiedapp Snap tab: full-bleed dark viewfinder, scrim, blue 68-px shutter with gallery (left) and flash (right), close top-left. New here: a corner-bracket page guide and a page counter (1ページ目), because a handwritten answer is photographed one page at a time. Tap the shutter →"
     },
     "m4": {
-      "maxH": 420,
-      "text": "Crop, the unifiedapp CropScreen adapted: dark stage, the photo with veils outside the frame, a blue band with four corner handles. For a paper answer the band is a rectangle that should hug the page edges, so 自動で合わせる snaps it to the paper (tap it — works in the prototype; handles are static here, draggable in the product). Thumbs strip below with ページを追加 → back to the camera for page 2. 次へ →",
-      "w": 375,
       "x": 1365,
-      "y": 3772
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Crop, the unifiedapp CropScreen adapted: dark stage, the photo with veils outside the frame, a blue band with four corner handles. For a paper answer the band is a rectangle that should hug the page edges, so 自動で合わせる snaps it to the paper (tap it — works in the prototype; handles are static here, draggable in the product). Thumbs strip below with ページを追加 → back to the camera for page 2. 次へ →"
     },
     "m5": {
-      "maxH": 420,
-      "text": "Pages review (unifiedapp ReviewScreen shape, light theme): thumbnails in page order, hold to reorder, add a page, big preview. The basic-requirements check runs on the photographed pages (via the AI Grading OCR path, PRD C1) exactly as it does on a file or typed answer on PC. Submit →",
-      "w": 375,
       "x": 1820,
-      "y": 3772
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Pages review (unifiedapp ReviewScreen shape, light theme): thumbnails in page order, hold to reorder, add a page, big preview. The basic-requirements check runs on the photographed pages (via the AI Grading OCR path, PRD C1) exactly as it does on a file or typed answer on PC. Submit →"
     },
     "m6": {
-      "maxH": 420,
-      "text": "Waiting state on the phone: identical rules to PC — no AI mentioned, teacher gives the feedback after the due date, notification when returned, pages viewable / replaceable until the due date. Steps are vertical for the narrow screen. DEMO pill →",
-      "w": 375,
       "x": 2275,
-      "y": 3772
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "The file / photos path, reached from ファイル・写真を選ぶ on M2. Same upload block as PC: choose a file, or choose several photos at once — the picked state shows them as numbered thumbnails in page order (tap 答案の写真を選ぶ to see it). The 提出の基本条件 list fills in against whatever was picked, exactly as on PC, and only then does the submit button go live."
     },
     "m7": {
-      "maxH": 420,
-      "text": "Returned, on the phone: teacher's note, summary, then the recognised text of the answer with the same underlines. One layout for every submission type (PM, 18 Sep). Tapping an underline — or one of the three comment chips — opens the bottom sheet for that point (PM, 18 Sep) and highlights the passage. Resubmit and PDF export at the end.",
-      "w": 375,
       "x": 2730,
-      "y": 3772
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "The typed-answer path, reached from 直接入力する on M2, for short pieces like the weekly reflection. Type into the box (it counts up to the 500-character limit), then 回答を確定する — the checks run on the confirmed text, not while typing (PM, 18 Sep), and 編集する reopens the box. Which of the three paths an assignment offers is a Back Office setting on the Feedback LO."
     },
     "m8": {
-      "maxH": 420,
-      "text": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close.",
-      "w": 375,
       "x": 3185,
-      "y": 3772
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Waiting state on the phone: identical rules to PC — no AI mentioned, teacher gives the feedback after the due date, notification when returned, pages viewable / replaceable until the due date. Steps are vertical for the narrow screen. DEMO pill →"
     },
     "n1": {
       "maxH": 260,
@@ -425,6 +457,20 @@
       "w": 240,
       "x": 0,
       "y": 3860
+    },
+    "m9": {
+      "x": 3640,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Returned, on the phone: teacher's note, summary, then the recognised text of the answer with the same underlines. One layout for every submission type (PM, 18 Sep). Tapping an underline — or one of the three comment chips — opens the bottom sheet for that point (PM, 18 Sep) and highlights the passage. Resubmit and PDF export at the end."
+    },
+    "m10": {
+      "x": 4095,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close."
     }
   },
   "order": [
@@ -449,6 +495,8 @@
     "M-Camera.dc.html",
     "M-Crop.dc.html",
     "M-Pages.dc.html",
+    "M-File.dc.html",
+    "M-Type.dc.html",
     "M-Pending.dc.html",
     "M-Feedback.dc.html",
     "M-Sheet.dc.html",
@@ -457,6 +505,8 @@
     "M-Camera-en.dc.html",
     "M-Crop-en.dc.html",
     "M-Pages-en.dc.html",
+    "M-File-en.dc.html",
+    "M-Type-en.dc.html",
     "M-Pending-en.dc.html",
     "M-Feedback-en.dc.html",
     "M-Sheet-en.dc.html"
