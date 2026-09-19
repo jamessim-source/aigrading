@@ -20,8 +20,8 @@ https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
-PC / Mobile switch (bottom-left pill) that jumps to the twin screen; the Back
-Office boards carry a 先生 / 生徒 switch in the left nav that jumps to the
+PC / Mobile / 先生（BO） pill (bottom-left) that jumps to the twin screen or into
+the Back Office; the Back Office boards carry a 先生 / 生徒 switch in the left nav that jumps to the
 student's screen, so a setting can be read from both sides. The DEMO pill on the
 waiting screens simulates the teacher approving and returning the feedback.
 
@@ -95,8 +95,11 @@ already builds the course.
   due date. Either way the student is never told AI was involved.
 - **Two homes**: Book Management sets the LO up (tree, dialog, content page).
   Processing submissions — the queue across LOs, an LO's overview, its
-  submissions, review and return — lives under **Course › To Review**, production's existing home for
-  submissions waiting on the teacher, filtered to the AI Feedback type.
+  submissions, review and return — lives under **Course › Submission Grading** (`ToReviewListPage`), production's
+  existing home for submissions waiting on the teacher, in its format: tabs, filter
+  bar, status segments with counts, the wide table, and the grading-detail layout.
+  AI Feedback statuses use the marking tones: Not Reviewed / In Review / Returned /
+  Sent Back, plus a secondary chip (Auto-returned, Resubmitted).
 
 ## Publishing
 

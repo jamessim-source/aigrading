@@ -1657,6 +1657,7 @@ MBUILDERS = {"M-Main": m_main, "M-Assignment": m_assignment, "M-Camera": m_camer
 # MUI filled icon paths (24 viewBox), as the Back Office renders them.
 MI = {
     "dashboard": "M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z",
+    "search": "M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z",
     "aiTutor": "M17 1.01 7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-5-2.5 1.09-2.41L15.5 13l-2.41-1.09L12 9.5l-1.09 2.41L8.5 13l2.41 1.09L12 16.5z",
     "library": "M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z",
     "reader": "M13 12h7v1.5h-7zm0-2.5h7V11h-7zm0 5h7V16h-7zM21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15h-9V6h9v13z",
@@ -1898,6 +1899,45 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tdacts{display:flex;align-items:center;gap:4px;margin-top:2px}
 .tbar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 32px 16px;border-top:1px solid #E0E0E0;background:#fff}
 .tbody-flex{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding:24px 32px 16px;overflow:hidden}
+/* Submission Grading (To Review): status tones, filter bar, segments, wide table, grading layout */
+.tchip.st-default{background:#EEEEEE;border-color:transparent;color:#424242}
+.tchip.st-warning{background:rgba(255,152,0,.16);border-color:transparent;color:#C77700}
+.tchip.st-secondary{background:#FBDCE7;border-color:transparent;color:#C2185B}
+.tchip.st-success{background:rgba(76,175,80,.16);border-color:transparent;color:#3B873E}
+.tchip.st-error{background:#FEEBEE;border-color:transparent;color:#E31B0C}
+.tchip .tx{width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.26);display:inline-flex;align-items:center;justify-content:center;margin-left:2px}
+.tfilterbar{display:flex;align-items:center;gap:16px}
+.tfilterbar .left{display:flex;align-items:center;gap:8px;flex:1 1 320px;min-width:0}
+.tfilterbar .right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.tsearch{position:relative;flex:1 1 240px;max-width:600px;height:40px;border:1px solid #BDBDBD;border-radius:4px;background:#fff;display:flex;align-items:center;gap:10px;padding:0 14px 0 12px;color:#9E9E9E;font-size:14px}
+.tapplied{display:flex;align-items:center;gap:8px;font-size:13px;color:#757575;white-space:nowrap}
+.tseg{display:inline-flex;border:1px solid #BDBDBD;border-radius:4px;overflow:hidden;align-self:flex-start}
+.tseg span{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
+.tseg span+span{border-left:1px solid #BDBDBD}
+.tseg span.on{background:#1976D21F;color:#0B79D0}
+.table-scroll{overflow-x:auto}
+table.m thead th.idx,table.m tbody td.idx{width:56px;color:#757575;padding-right:0}
+table.m thead th.idx::after{display:none}
+table.m thead th.cb,table.m tbody td.cb{width:52px;padding-right:0}
+table.m thead th.cb::after{display:none}
+.cbx-th,.cbx-td{display:inline-block;width:18px;height:18px;border:2px solid #9E9E9E;border-radius:2px;background:#fff;vertical-align:middle}
+.cell-link{color:#2196F3}.cell-muted{color:#757575}.num{font-variant-numeric:tabular-nums}.dd{color:#9E9E9E}
+table.m tbody td{vertical-align:top;white-space:nowrap}
+.grade-layout{display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start}
+.info-panel{border:1px solid #E0E0E0;border-radius:4px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:22px}
+.info-sec h3{margin:0 0 12px;font-size:16px;font-weight:500}
+.info-rows{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:10px 16px;font-size:14px;align-items:baseline;margin:0}
+.info-rows dt{color:#757575;margin:0}.info-rows dd{margin:0;overflow-wrap:anywhere}
+.report{border:1px solid #E0E0E0;border-radius:4px;background:#fff;overflow:hidden}
+.report-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;border-bottom:1px solid #E0E0E0}
+.q-item{padding:20px;border-bottom:1px solid #E0E0E0}.q-item:last-child{border-bottom:0}
+.q-item.edited{background:#F7FBFF;box-shadow:inset 3px 0 0 #2196F3}
+.q-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.q-top .q-no{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#757575}
+.q-top .q-title{font-weight:500;flex:1 1 200px;min-width:0}
+.q-prompt{margin:0 0 12px;color:#212121;line-height:1.7;white-space:pre-wrap}
+.q-answer{background:#FAFAFA;border:1px solid #E0E0E0;border-radius:4px;padding:12px 14px;margin-bottom:12px;line-height:1.7;font-size:14px}
+.q-answer .who{display:block;font-size:12px;color:#757575;margin-bottom:6px}
 """
 
 THELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
@@ -1933,7 +1973,7 @@ TJA = dict(
     t_cancel="キャンセル", t_confirm="確定",
     # LO page
     t_lo_tabs=["内容", "設定"], t_course_tabs=["概要", "提出一覧"], t_publish="公開する", t_edit="設定を編集", t_save="保存",
-    t_nav_course=["コース管理", "学習計画管理", "要確認", "AIグレーディング"], t_toreview="要確認", t_f_type="種類",
+    t_nav_course=["コース管理", "学習計画管理", "提出物の採点", "AIグレーディング"], t_toreview="提出物の採点", t_f_type="種類",
     t_course="コース", t_course_name="地域環境統計学（2026年度）", t_view_subs="提出状況を見る", t_edit_in_bm="ブック管理で編集",
     t_queue_sub="確認が必要な提出の一覧です。AIフィードバックの下書きは、先生の確認を待ってここに並びます。",
     t_queue_cols=["LO", "コース", "締切", "提出", "確認待ち", "返却済み", ""], t_open="開く", t_f_course="コース", t_filters="フィルター",
@@ -1958,27 +1998,46 @@ TJA = dict(
     t_regen="生成し直す", t_edit_rubric="編集", t_preview="生徒に表示される画面を見る",
     # overview
     t_s_status="提出状況", t_st1="提出済み", t_st1_n="12 / 30", t_st1_s="30人中12人が提出しました",
-    t_st2="確認待ち", t_st2_n="12", t_st2_s="下書きができています。確認して返却してください", t_st3="返却済み", t_st3_n="9 / 30", t_st3_s="30人中9人に返却しました",
-    t_open_list="確認する（12件）",
+    t_st2="未確認", t_st2_n="8", t_st2_s="下書きができています。確認して返却してください", t_st3="返却済み", t_st3_n="3 / 30", t_st3_s="30人中3人に返却しました",
+    t_open_list="確認する（8件）",
     t_s_sum="設定", t_sum=[("提出期間", "11月6日 09:00 — 11月13日 23:59"), ("再提出", "11月20日 23:59 まで"),
                             ("提出方法", "ファイル ・ 写真 ・ 直接入力"), ("先生の確認", "あり（返却前に確認）"),
                             ("提出条件", "5件"), ("コメントの観点", "6件")],
     # submissions
-    t_cols=["生徒", "提出", "状態", ""], t_bulk="すべて承認して返却", t_bulk_note="内容を見てから返却することをおすすめします",
+    t_cols=["生徒", "提出", "状態", ""], t_bulk="一括操作", t_bulk_note="内容を見てから返却することをおすすめします",
     t_rows=[("山田 花子", "11月11日 14:32", "wait", "確認待ち"), ("佐藤 太郎", "11月11日 18:05", "wait", "確認待ち"),
             ("鈴木 一郎", "11月12日 08:12", "wait", "確認待ち"), ("田中 美咲", "11月12日 21:40", "done", "返却済み"),
             ("高橋 健", "—", "none", "未提出")],
     t_review_btn="確認する", t_view="見る", t_rows_of="1-5 / 30", t_rows_pp="表示件数:",
+    # Submission Grading (ToReviewListPage) — the AI Feedback statuses in the marking tones
+    t_sg_invalid="無効な確認者", t_sg_tabs=["提出物", "学習目標"], t_sg_search="提出ID・生徒名・LO名で検索", t_applied="絞り込み:", t_lo_type="LOタイプ", t_all="すべて",
+    t_status={"nr": ("未確認", "st-default"), "ir": ("確認中", "st-warning"), "ret": ("返却済み", "st-success"), "back": ("差し戻し", "st-error")},
+    t_sec={"auto": "自動返却", "resub": "再提出"},
+    t_sg_cols=["提出ID", "LO名", "生徒名", "ユーザー名", "外部ID", "コース", "ブック", "確認者", "状態", "コメント", "提出日時", "確認日時", "返却日時"],
+    t_sg_cols_lo=["提出ID", "生徒名", "ユーザー名", "外部ID", "確認者", "状態", "コメント", "提出日時", "確認日時", "返却日時"],
+    t_teacher="安本 正義",
+    t_subs=[dict(id="FB-260911", lo="第7回 演習レポート", student="山田 花子", user="hanako.yamada", ext="KU-2041", reviewer="安本 正義", st="ir", sec="", n=3, sub="2026/11/14 09:12", rev="--", ret="--"),
+            dict(id="FB-260912", lo="第7回 演習レポート", student="佐藤 太郎", user="taro.sato", ext="KU-2042", reviewer="--", st="nr", sec="", n=3, sub="2026/11/11 18:05", rev="--", ret="--"),
+            dict(id="FB-260913", lo="第7回 演習レポート", student="鈴木 一郎", user="ichiro.suzuki", ext="KU-2043", reviewer="--", st="nr", sec="", n=3, sub="2026/11/12 08:12", rev="--", ret="--"),
+            dict(id="FB-260914", lo="第7回 演習レポート", student="田中 美咲", user="misaki.tanaka", ext="KU-2044", reviewer="安本 正義", st="ret", sec="", n=3, sub="2026/11/12 21:40", rev="2026/11/14 10:05", ret="2026/11/14 10:05"),
+            dict(id="FB-260915", lo="第7週 週次リフレクション", student="山田 花子", user="hanako.yamada", ext="KU-2041", reviewer="--", st="ret", sec="auto", n=2, sub="2026/11/15 20:11", rev="--", ret="2026/11/16 00:05"),
+            dict(id="FB-260916", lo="第7週 週次リフレクション", student="高橋 健", user="ken.takahashi", ext="KU-2045", reviewer="--", st="ret", sec="auto", n=2, sub="2026/11/15 22:47", rev="--", ret="2026/11/16 00:05"),
+            dict(id="FB-260917", lo="第6回 演習レポート", student="佐藤 太郎", user="taro.sato", ext="KU-2042", reviewer="安本 正義", st="back", sec="", n=3, sub="2026/11/04 17:20", rev="2026/11/07 09:30", ret="--"),
+            dict(id="FB-260918", lo="第6回 演習レポート", student="佐藤 太郎", user="taro.sato", ext="KU-2042", reviewer="--", st="nr", sec="resub", n=3, sub="2026/11/09 13:02", rev="--", ret="--")],
+    t_subs_extra=[dict(id="FB-260919", lo="第7回 演習レポート", student="伊藤 さくら", user="sakura.ito", ext="KU-2046", reviewer="--", st="nr", sec="", n=3, sub="2026/11/13 22:58", rev="--", ret="--")],
+    t_comment="コメント", t_passage="該当箇所（生徒の提出物より）", t_recognised="読み取ったテキスト",
+    t_reviewer_info="確認者情報", t_reviewer="確認者", t_auto_return="自動返却", t_off="オフ", t_sub_info="提出情報", t_student_name="生徒名", t_submitted="提出日時", t_file="ファイル",
+    t_comments_h="コメント", t_drafts="下書き", t_criteria="観点",
     # review
     t_rev_title="確認して返却 ・ 山田 花子", t_rev_meta="11月11日 14:32 提出",
     t_rev_hidden="生徒には未公開", t_rev_left="提出物", t_rev_right="フィードバックの下書き",
-    t_rev_right_n="3件 ・ 観点つき", t_rev_note_h="先生からのひとこと（任意）",
+    t_rev_right_n="3件 ・ 観点 6", t_rev_note_h="先生からのひとこと（任意）",
     t_rev_note="東京都を除いて再計算したところ、よく気づきました。②の点は次回の授業でも取り上げるので、自分の考えを用意しておいてください。",
     t_rev_edited="編集済み", t_rev_edit="編集", t_rev_drop="削除", t_rev_back="差し戻す", t_rev_send="承認して返却する",
     t_rev_count="3件のうち1件を編集しました",
     t_role_t="先生（BO）", t_role_s="生徒画面", t_role_aria="表示する役割",
     t_titles={"book": "BO — ブック管理（ブック詳細）", "dialog": "BO — LOを追加（AIフィードバック）", "created": "BO — 作成後のツリー",
-              "mat": "BO — LO 内容（教材と提出条件）", "queue": "BO — コース › 要確認", "det": "BO — 提出状況 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却"},
+              "mat": "BO — LO 内容（教材と提出条件）", "queue": "BO — コース › 提出物の採点", "det": "BO — 提出状況 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却"},
 )
 TEN = dict(
     t_lang="en", t_org="LMS 2.0",
@@ -2007,7 +2066,7 @@ TEN = dict(
     t_review_off="Feedback is returned to students automatically after the due date, without a review step.",
     t_cancel="Cancel", t_confirm="Confirm",
     t_lo_tabs=["Content", "Settings"], t_course_tabs=["Overview", "Submissions"], t_publish="Publish", t_edit="Edit settings", t_save="Save",
-    t_nav_course=["Course Management", "Study Plan Management", "To Review", "AI Grading"], t_toreview="To Review", t_f_type="Type",
+    t_nav_course=["Course Management", "Study Plan Management", "Submission Grading", "AI Grading"], t_toreview="Submission Grading", t_f_type="Type",
     t_course="Course", t_course_name="Regional & Environmental Statistics (2026)", t_view_subs="View submissions", t_edit_in_bm="Edit in Book Management",
     t_queue_sub="Submissions waiting on you. AI Feedback drafts queue here until you review them, alongside manual grading.",
     t_queue_cols=["LO", "Course", "Due", "Submitted", "Waiting for you", "Returned", ""], t_open="Open", t_f_course="Course", t_filters="Filters",
@@ -2031,25 +2090,43 @@ TEN = dict(
               ("Logical structure", "Purpose, method, results and discussion follow in sequence"), ("Generative-AI literacy", "Handles any use of generative AI appropriately and writes in their own words")],
     t_regen="Regenerate", t_edit_rubric="Edit", t_preview="Preview what the student sees",
     t_s_status="Submissions", t_st1="Submitted", t_st1_n="12 / 30", t_st1_s="12 of 30 students have submitted",
-    t_st2="Waiting for you", t_st2_n="12", t_st2_s="Drafts are ready. Review them and return", t_st3="Returned", t_st3_n="9 / 30", t_st3_s="Returned to 9 of 30 students",
-    t_open_list="Review (12)",
+    t_st2="Not Reviewed", t_st2_n="8", t_st2_s="Drafts are ready. Review them and return", t_st3="Returned", t_st3_n="3 / 30", t_st3_s="Returned to 3 of 30 students",
+    t_open_list="Review (8)",
     t_s_sum="Settings", t_sum=[("Window", "6 Nov 09:00 — 13 Nov 23:59"), ("Resubmission", "until 20 Nov 23:59"),
                                ("Submission", "File · Photos · Typed"), ("Teacher review", "On — before it is returned"),
                                ("Requirements", "5"), ("Criteria", "6")],
-    t_cols=["Student", "Submitted", "Status", ""], t_bulk="Approve and return all", t_bulk_note="Reading them first is the safer habit",
+    t_cols=["Student", "Submitted", "Status", ""], t_bulk="Bulk Action", t_bulk_note="Reading them first is the safer habit",
     t_rows=[("Hanako Yamada", "11 Nov, 14:32", "wait", "Waiting for you"), ("Taro Sato", "11 Nov, 18:05", "wait", "Waiting for you"),
             ("Ichiro Suzuki", "12 Nov, 08:12", "wait", "Waiting for you"), ("Misaki Tanaka", "12 Nov, 21:40", "done", "Returned"),
             ("Ken Takahashi", "—", "none", "Not submitted")],
     t_review_btn="Review", t_view="View", t_rows_of="1-5 of 30", t_rows_pp="Rows per page:",
+    t_sg_invalid="Invalid Reviewers", t_sg_tabs=["Submissions", "Learning Objectives"], t_sg_search="Enter Submission ID, Student Name or LO Name", t_applied="You filter by", t_lo_type="LO Type", t_all="All",
+    t_status={"nr": ("Not Reviewed", "st-default"), "ir": ("In Review", "st-warning"), "ret": ("Returned", "st-success"), "back": ("Sent Back", "st-error")},
+    t_sec={"auto": "Auto-returned", "resub": "Resubmitted"},
+    t_sg_cols=["Submission ID", "LO Name", "Student Name", "Username", "Ext. ID", "Course", "Book", "Reviewer", "Status", "Comments", "Submitted", "Reviewed Date", "Returned Date"],
+    t_sg_cols_lo=["Submission ID", "Student Name", "Username", "Ext. ID", "Reviewer", "Status", "Comments", "Submitted", "Reviewed Date", "Returned Date"],
+    t_teacher="Masayoshi Yasumoto",
+    t_subs=[dict(id="FB-260911", lo="Session 7 exercise report", student="Hanako Yamada", user="hanako.yamada", ext="KU-2041", reviewer="Masayoshi Yasumoto", st="ir", sec="", n=3, sub="2026/11/14, 09:12", rev="--", ret="--"),
+            dict(id="FB-260912", lo="Session 7 exercise report", student="Taro Sato", user="taro.sato", ext="KU-2042", reviewer="--", st="nr", sec="", n=3, sub="2026/11/11, 18:05", rev="--", ret="--"),
+            dict(id="FB-260913", lo="Session 7 exercise report", student="Ichiro Suzuki", user="ichiro.suzuki", ext="KU-2043", reviewer="--", st="nr", sec="", n=3, sub="2026/11/12, 08:12", rev="--", ret="--"),
+            dict(id="FB-260914", lo="Session 7 exercise report", student="Misaki Tanaka", user="misaki.tanaka", ext="KU-2044", reviewer="Masayoshi Yasumoto", st="ret", sec="", n=3, sub="2026/11/12, 21:40", rev="2026/11/14, 10:05", ret="2026/11/14, 10:05"),
+            dict(id="FB-260915", lo="Week 7 weekly reflection", student="Hanako Yamada", user="hanako.yamada", ext="KU-2041", reviewer="--", st="ret", sec="auto", n=2, sub="2026/11/15, 20:11", rev="--", ret="2026/11/16, 00:05"),
+            dict(id="FB-260916", lo="Week 7 weekly reflection", student="Ken Takahashi", user="ken.takahashi", ext="KU-2045", reviewer="--", st="ret", sec="auto", n=2, sub="2026/11/15, 22:47", rev="--", ret="2026/11/16, 00:05"),
+            dict(id="FB-260917", lo="Session 6 exercise report", student="Taro Sato", user="taro.sato", ext="KU-2042", reviewer="Masayoshi Yasumoto", st="back", sec="", n=3, sub="2026/11/04, 17:20", rev="2026/11/07, 09:30", ret="--"),
+            dict(id="FB-260918", lo="Session 6 exercise report", student="Taro Sato", user="taro.sato", ext="KU-2042", reviewer="--", st="nr", sec="resub", n=3, sub="2026/11/09, 13:02", rev="--", ret="--")],
+    t_subs_extra=[dict(id="FB-260919", lo="Session 7 exercise report", student="Sakura Ito", user="sakura.ito", ext="KU-2046", reviewer="--", st="nr", sec="", n=3, sub="2026/11/13, 22:58", rev="--", ret="--")],
+    t_comment="Comment", t_passage="The passage it refers to (from the submission)", t_recognised="Recognised text",
+    t_reviewer_info="Reviewer Info", t_reviewer="Reviewer", t_auto_return="Auto-return", t_off="Off", t_sub_info="Submission Info", t_student_name="Student Name", t_submitted="Submitted", t_file="File",
+    t_comments_h="Comments", t_drafts="Drafts", t_criteria="Criteria",
     t_rev_title="Review and return · Hanako Yamada", t_rev_meta="submitted 11 Nov, 14:32",
     t_rev_hidden="Not visible to the student", t_rev_left="Submission", t_rev_right="Draft feedback",
-    t_rev_right_n="3 comments · with criteria", t_rev_note_h="A word from you (optional)",
+    t_rev_right_n="3 comments · 6 criteria", t_rev_note_h="A word from you (optional)",
     t_rev_note="Good catch recalculating without Tokyo. We will come back to point ② in the next class, so have your own view ready.",
     t_rev_edited="Edited", t_rev_edit="Edit", t_rev_drop="Delete", t_rev_back="Send back", t_rev_send="Approve and return",
     t_rev_count="1 of 3 comments edited",
     t_role_t="Teacher (BO)", t_role_s="Student", t_role_aria="Role shown",
     t_titles={"book": "BO — Book Management (book detail)", "dialog": "BO — Add LO (AI Feedback)", "created": "BO — Tree after creating",
-              "mat": "BO — LO content (material and requirements)", "queue": "BO — Course › To Review", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return"},
+              "mat": "BO — LO content (material and requirements)", "queue": "BO — Course › Submission Grading", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return"},
 )
 JA.update(TJA); EN.update(TEN)
 
@@ -2366,31 +2443,73 @@ def t_material(S, L):
 </div>'''
     return tpage(S, "T-Material", S["t_titles"]["mat"], body, logic=TMAT_LOGIC)
 
-def t_queue(S, L):
-    """Course › To Review, production's home for submissions waiting on the teacher, filtered
-    to the AI Feedback type: every AI Feedback LO with its counts, in the Back Office
-    list-page pattern (filter bar, table, pagination). Open → the LO's overview."""
+def st_chip(S, key):
+    """A grading-status chip in the Back Office's tone families (st-default / warning /
+    secondary / success / error), with the AI Feedback statuses in place of the marking ones."""
+    label, tone = S["t_status"][key]
+    return f'<span class="tchip {tone}">{label}</span>'
+
+def sg_filterbar(S, applied=None, bulk=True):
+    """Submission Grading filter bar: search, Filters, the applied-filter chips, Bulk Action."""
+    chips = "".join(f'<span class="tchip" style="padding-right:4px">{c}<span class="tx">{mi("close", 12, "#fff")}</span></span>' for c in (applied or []))
+    app = f'<span class="tapplied">{S["t_applied"]} {chips}</span>' if applied else ""
+    right = f'<span class="tbtn contained dis">{S["t_bulk"]}{mi("expandMore", 18)}</span>' if bulk else ""
+    return f'''<div class="tfilterbar">
+    <div class="left"><span class="tsearch">{mi("search", 20, "#757575")}<span>{S["t_sg_search"]}</span></span>
+      <span class="tbtn neutral">{mi("shuffle", 18)}{S["t_filters"]}</span>{app}</div>
+    <div class="right">{right}</div>
+  </div>'''
+
+def sg_segments(S, counts, active="all"):
+    keys = ["all", "nr", "ir", "ret", "back"]
+    labels = {"all": S["t_all"], **{k: S["t_status"][k][0] for k in ("nr", "ir", "ret", "back")}}
+    return '<div class="tseg" role="group">' + "".join(
+        f'<span class="{"on" if k == active else ""}">{labels[k]} ({counts[k]})</span>' for k in keys) + "</div>"
+
+def sg_table(S, L, rows, cols, lo_col=True, minw=1560):
+    """The Submission Grading table: select column, index, then the columns the reference
+    renders, with the AI Feedback status (and a secondary chip) where the marking status sits."""
+    head = f'<th class="cb"><span class="cbx-th"></span></th><th class="idx">#</th>' + "".join(f"<th>{c}</th>" for c in cols)
     trs = ""
-    for i, (name, due, sub, wait, ret) in enumerate(S["t_queue"]):
-        first = (i == 0)
-        nm = f'<a href="{tfn("T-Detail", L)}">{name}</a>' if first else f'<span style="color:#2196F3">{name}</span>'
-        w = f'<span class="tchip wait">{wait}</span>' if wait != "0" else f'<span style="color:#757575">{wait}</span>'
-        act = f'<a class="tbtn contained sm" href="{tfn("T-Detail", L)}">{S["t_open"]}</a>' if first else f'<span class="tbtn outlined sm">{S["t_open"]}</span>'
-        trs += f'''<tr><td style="width:56px;color:#757575">{i+1}</td><td><span class="name-cell"><span class="lm-type">{mi("rateReview", 14)}</span>{nm}</span></td>
-      <td style="color:#757575">{S["t_course_name"]}</td><td>{due}</td><td>{sub}</td><td>{w}</td><td>{ret}</td><td style="text-align:right;width:110px">{act}</td></tr>'''
+    for i, r in enumerate(rows):
+        sec = f'<span class="tchip st-secondary">{S["t_sec"][r["sec"]]}</span>' if r.get("sec") else ""
+        dd = lambda v: f'<span class="dd">--</span>' if v == "--" else v
+        cells = [f'<a class="cell-link num" href="{tfn("T-Review", L)}">{r["id"]}</a>']
+        if lo_col:
+            cells.append(f'<a class="cell-link" href="{tfn("T-Detail", L)}">{r["lo"]}</a>')
+        cells += [r["student"], f'<span class="cell-muted">{r["user"]}</span>', f'<span class="cell-muted num">{r["ext"]}</span>']
+        if lo_col:
+            cells += [S["t_course_name"], f'<span class="cell-muted">{S["t_book"]}</span>']
+        cells += [dd(r["reviewer"]), f'<span style="display:flex;gap:6px;flex-wrap:nowrap">{st_chip(S, r["st"])}{sec}</span>',
+                  f'<span class="num">{r["n"]}</span>', f'<span class="num">{r["sub"]}</span>', f'<span class="num">{dd(r["rev"])}</span>', f'<span class="num">{dd(r["ret"])}</span>']
+        trs += f'<tr><td class="cb"><span class="cbx-td"></span></td><td class="idx num">{i+1}</td>' + "".join(f"<td>{c}</td>" for c in cells) + "</tr>"
+    return f'''<div class="tpaper" style="overflow:hidden">
+    <div class="table-scroll"><table class="m" style="min-width:{minw}px"><thead><tr>{head}</tr></thead><tbody>{trs}</tbody></table></div>
+    <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-{len(rows)} / {len(rows)}</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
+  </div>'''
+
+def t_queue(S, L):
+    """Course › Submission Grading (ToReviewListPage), production's home for submissions
+    waiting on the teacher: Submissions and Learning Objectives tabs, the filter bar, the
+    grading-status segments with counts, and the wide table — here with an LO Type filter
+    applied, so it reads as the existing queue filtered to AI Feedback, and with the AI
+    Feedback statuses in the same tone families as the marking ones."""
+    rows = S["t_subs"]
+    counts = {"all": len(rows)}
+    for k in ("nr", "ir", "ret", "back"):
+        counts[k] = sum(1 for r in rows if r["st"] == k)
     body = tnav(S, "course") + f'''<div class="tmain">
 <div class="tscroll">
   {tcrumbs(S, "T-Queue", [(S["t_course"], "#"), (S["t_toreview"], None)])}
-  <div class="tphead"><h1>{S["t_toreview"]}</h1></div>
-  <p class="helper" style="margin:-16px 0 20px;font-size:13px">{S["t_queue_sub"]}</p>
-  <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
-    <div style="flex:0 0 360px">{field(S["t_f_course"], S["t_course_name"], icon="expandMore")}</div>
-    <div style="flex:0 0 260px">{field(S["t_f_type"], S["t_type_fb"], icon="expandMore")}</div>
-    <span class="tbtn neutral">{S["t_filters"]}</span>
+  <div class="tphead">
+    <h1>{S["t_toreview"]}</h1>
+    <div class="acts"><span class="tbtn neutral">{mi("cloudUp", 18)}{S["t_sg_invalid"]}</span><span class="ticon">{mi("more", 24)}</span></div>
   </div>
-  <div class="tpaper" style="overflow:hidden">
-    <table class="m"><thead><tr><th style="width:56px">#</th>{"".join(f"<th>{c}</th>" for c in S["t_queue_cols"])}</tr></thead><tbody>{trs}</tbody></table>
-    <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-3 / 3</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
+  <div class="tabs">{"".join(f'<span class="tab{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(S["t_sg_tabs"]))}</div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    {sg_filterbar(S, applied=[f'{S["t_lo_type"]}: {S["t_type_fb"]}'])}
+    {sg_segments(S, counts)}
+    {sg_table(S, L, rows, S["t_sg_cols"])}
   </div>
 </div>
 </div>'''
@@ -2423,69 +2542,79 @@ def t_detail(S, L):
     return tpage(S, "T-Detail", S["t_titles"]["det"], body)
 
 def t_list(S, L):
-    trs = ""
-    for i, (name, when, st, label) in enumerate(S["t_rows"]):
-        chip = {"wait": "wait", "done": "published", "none": "filled"}[st]
-        act = (f'<a class="tbtn contained sm" href="{tfn("T-Review", L)}">{S["t_review_btn"]}</a>' if st == "wait"
-               else f'<span class="tbtn outlined sm">{S["t_view"]}</span>' if st == "done" else "")
-        trs += f'''<tr><td style="width:56px;color:#757575">{i+1}</td><td><span class="name-cell"><span class="avatar">{name[0]}</span>{name}</span></td>
-      <td style="color:{"#757575" if when == "—" else "inherit"}">{when}</td><td><span class="tchip {chip}">{label}</span></td><td style="text-align:right;width:140px">{act}</td></tr>'''
+    """The LO's Submissions tab: the same Submission Grading table, scoped to one LO (no LO,
+    course or book columns), with its own status counts."""
+    rows = [r for r in S["t_subs"] if r["lo"] == S["t_new_lo"]] + S["t_subs_extra"]
+    counts = {"all": len(rows)}
+    for k in ("nr", "ir", "ret", "back"):
+        counts[k] = sum(1 for r in rows if r["st"] == k)
     body = tnav(S, "course") + f'''<div class="tmain">
 <div class="tscroll">
   {lo_head(S, L, "T-List", 1, pub=True, side="course")}
-  <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-bottom:16px">
-    <span class="helper" style="margin:0">{S["t_bulk_note"]}</span><span class="tbtn outlined">{S["t_bulk"]}</span>
-  </div>
-  <div class="tpaper" style="overflow:hidden">
-    <table class="m"><thead><tr><th style="width:56px">#</th>{"".join(f"<th>{c}</th>" for c in S["t_cols"])}</tr></thead><tbody>{trs}</tbody></table>
-    <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>{S["t_rows_of"]}</span><span style="display:flex">{tools("expandMore!", "expandMore")}</span></div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    {sg_filterbar(S)}
+    {sg_segments(S, counts)}
+    {sg_table(S, L, rows, S["t_sg_cols_lo"], lo_col=False, minw=1180)}
   </div>
 </div>
 </div>'''
     return tpage(S, "T-List", S["t_titles"]["list"], body)
 
 def t_review(S, L):
-    raw = "".join(f'<p class="traw">{p}</p>' for p in S["raw"])
-    drafts = ""
+    """GradingScorePage's layout for one AI Feedback submission: the info panel on the left
+    (submission id and secondary chip, reviewer, submission info, the teacher's note, the
+    comment counts), the report on the right — the recognised submission, then the draft
+    comments as items, each with its criterion, the passage it points at, and Edit / Delete."""
+    sub = S["t_subs"][0]
+    items = ""
     for i, (kind, crit, quote, bodytext, ref) in enumerate(S["cards"]):
         n = i + 1
         edited = (n == 3)
-        drafts += f'''<div class="tdraft{" edited" if edited else ""}">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="ctag">{crit}</span>
-        {f'<span class="tchip type">{S["t_rev_edited"]}</span>' if edited else ""}
-      </div>
-      <blockquote class="tdq">“{quote}”</blockquote>
-      <p class="tdb">{bodytext}</p>
+        items += f'''<div class="q-item{" edited" if edited else ""}">
+      <div class="q-top"><span class="q-no">{S["t_comment"]} {n}</span><span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="tchip">{crit}</span>
+        {f'<span class="tchip type">{S["t_rev_edited"]}</span>' if edited else ""}</div>
+      <div class="q-answer"><span class="who">{S["t_passage"]}</span>{quote}</div>
+      <p class="q-prompt">{bodytext}</p>
       <div class="tdacts"><span class="tbtn sm">{mi("edit", 16)}{S["t_rev_edit"]}</span><span class="tbtn sm danger">{mi("del", 16)}{S["t_rev_drop"]}</span></div>
     </div>'''
+    raw = "".join(f'<p style="margin:0 0 10px">{p}</p>' for p in S["raw"])
     body = tnav(S, "course") + f'''<div class="tmain">
-<div class="tbody-flex">
-  {tcrumbs(S, "T-Review", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_new_lo"], tfn("T-List", L)), (S["t_rows"][0][0], None)])}
-  <div class="tphead" style="margin-bottom:16px">
-    <h1>{S["t_rev_title"]}<span class="helper" style="margin:0;font-size:14px">{S["t_rev_meta"]}</span></h1>
-    <span class="tchip red">{mi("eyeOff", 14)}{S["t_rev_hidden"]}</span>
+<div class="tscroll">
+  {tcrumbs(S, "T-Review", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_new_lo"], None)])}
+  <div class="tphead">
+    <h1>{S["t_new_lo"]}{st_chip(S, "ir")}</h1>
+    <div class="acts"><a class="tbtn outlined" href="{tfn("T-List", L)}">{S["t_rev_back"]}</a><a class="tbtn contained" href="{tfn("T-List", L)}">{S["t_rev_send"]}</a><span class="ticon">{mi("more", 24)}</span></div>
   </div>
-  <div class="tpanes">
-    <section class="tpane">
-      <div class="thd"><span style="display:flex;align-items:center;gap:8px">{mi("description", 18, "rgba(0,0,0,.54)")}{S["t_rev_left"]}</span><span class="helper" style="margin:0">{S["a_file"]}</span></div>
-      <div class="tbd">{raw}</div>
-    </section>
-    <section class="tpane">
-      <div class="thd"><span>{S["t_rev_right"]}</span><span class="helper" style="margin:0">{S["t_rev_right_n"]}</span></div>
-      <div class="tbd">
-        {drafts}
-        <div class="tpaper" style="padding:14px 16px;display:flex;flex-direction:column;gap:12px">
-          <span class="setting-label" style="font-weight:500">{S["t_rev_note_h"]}</span>
-          {field("", S["t_rev_note"], area=True)}
-        </div>
+  <div class="grade-layout">
+    <div class="info-panel">
+      <div class="info-sec"><div style="display:flex;align-items:center;gap:8px"><span class="helper num" style="margin:0">{sub["id"]}</span><span class="tchip st-error">{mi("eyeOff", 12)}{S["t_rev_hidden"]}</span></div></div>
+      <div class="info-sec">
+        <h3>{S["t_reviewer_info"]}</h3>
+        <dl class="info-rows"><dt>{S["t_reviewer"]}</dt><dd>{S["t_teacher"]}</dd><dt>{S["t_auto_return"]}</dt><dd>{S["t_off"]}</dd></dl>
       </div>
-    </section>
+      <div class="info-sec">
+        <h3>{S["t_sub_info"]}</h3>
+        <dl class="info-rows"><dt>{S["t_student_name"]}</dt><dd>{sub["student"]}</dd><dt>{S["t_course"]}</dt><dd>{S["t_course_name"]}</dd>
+          <dt>{S["t_submitted"]}</dt><dd class="num">{sub["sub"]}</dd><dt>{S["t_file"]}</dt><dd>{S["a_file"]}</dd></dl>
+      </div>
+      <div class="info-sec">
+        <h3>{S["t_rev_note_h"]}</h3>
+        {field("", S["t_rev_note"], area=True)}
+      </div>
+      <div class="info-sec">
+        <h3>{S["t_comments_h"]}</h3>
+        <dl class="info-rows"><dt>{S["t_drafts"]}</dt><dd class="num">3</dd><dt>{S["t_rev_edited"]}</dt><dd class="num">1</dd><dt>{S["t_criteria"]}</dt><dd class="num">6</dd></dl>
+      </div>
+    </div>
+    <div class="report">
+      <div class="report-head"><strong style="font-weight:500">{S["t_rev_right"]}</strong><span class="helper" style="margin:0">{S["t_rev_right_n"]}</span></div>
+      <div class="q-item">
+        <div class="q-top"><span class="q-no">{S["t_rev_left"]}</span><span class="q-title">{S["a_file"]}</span><span class="tchip">{S["t_recognised"]}</span></div>
+        <div class="q-answer" style="margin-bottom:0">{raw}</div>
+      </div>
+      {items}
+    </div>
   </div>
-</div>
-<div class="tbar">
-  <a class="tbtn outlined" href="{tfn("T-List", L)}">{mi("back", 18)}{S["t_rev_back"]}</a>
-  <span style="display:flex;gap:12px;align-items:center"><span class="helper" style="margin:0">{S["t_rev_count"]}</span><a class="tbtn contained" href="{tfn("T-List", L)}">{mi("check", 18, "#fff")}{S["t_rev_send"]}</a></span>
 </div>
 </div>'''
     return tpage(S, "T-Review", S["t_titles"]["rev"], body)
@@ -2530,7 +2659,7 @@ TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
            "T3 · Created → LO content — material, requirements, criteria", "T4 · Back in the tree — Unpublished until published",
-           "T5 · Course › To Review — AI Feedback LOs waiting on the teacher", "T6 · Overview — who has submitted", "T7 · Submissions — pick one to review", "T8 · Review and return — the teacher in the loop"]
+           "T5 · Submission Grading — the queue, filtered to AI Feedback", "T6 · Overview — who has submitted", "T7 · The LO's submissions — same table, one LO", "T8 · Review and return — the grading layout"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -2547,12 +2676,12 @@ TNW = 640
 TNOTES = {
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
     "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
-    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › To Review, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
+    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › Submission Grading, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
     "t4": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3.",
-    "t5": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 要確認 (To Review), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep). Filtered to the AI Feedback type: every AI Feedback LO with due date and the three counts, in the Back Office list-page pattern (filter bar, table, pagination). 開く on a row →",
+    "t5": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs, search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview.",
     "t6": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree.",
-    "t7": "Submissions tab: the Back Office table (index column, header dividers, pagination). One row per student with the submission time and state; 確認する opens the review. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, deliberately outlined not contained, with a note recommending they look first — the whole point of the switch on T2 is that the teacher, not the model, returns the feedback.",
-    "t8": "The teacher in the loop, the screen the review switch leads to. Left: what the student submitted. Right: the draft comments, each with its criterion, the passage it points at, and Edit / Delete — an edited one is marked and the count at the bottom says how much the teacher changed — then the teacher's own ひとこと, which the student sees at the top of the returned screen. 生徒には未公開 is stated in the header so there is no doubt about what has gone out. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off, this screen is skipped and the draft is returned as it is.",
+    "t7": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows.",
+    "t8": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (差し戻す outlined, 承認して返却する contained, ⋮). Left, the info panel: submission ID with the 生徒には未公開 chip, Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), the teacher's own ひとこと — which the student sees at the top of the returned screen — and the comment counts. Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却.",
 }
 MNOTES = {
     "m1": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →",
@@ -2591,7 +2720,7 @@ notes = {
         "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Since 19 Sep it also carries 先生（BO）, which opens the teacher's Back Office (the row at the bottom of the canvas), so the two sides of the same setting can be read against each other. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened."},
     "title_m": {"x": 0, "y": MROW_Y["ja"] - 300, "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
     "title_m_en": {"x": 0, "y": MROW_Y["en"] - 240, "text": "Same mobile flow in English", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
-    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › To Review: queue → overview → submissions → review and return · 日本語", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
+    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › Submission Grading: queue → overview → submissions → review and return · 日本語", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
     "title_t_en": {"x": 0, "y": TROW_Y["en"] - 240, "text": "Same Back Office flow in English", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
     "n_role": {"x": 1520, "y": MROW_Y["en"] + MH + 60, "w": 700, "maxH": 240, "text":
         "Teacher / student switch (19 Sep): the bottom-left pill on the Back Office boards flips to the student's screen, so the same setting can be read from both sides — the dates on T2 against the waiting copy on screen 3, the checklist on T3 against 提出前チェック on screen 2. Prototype-only, like the DEMO and PC / Mobile pills."},

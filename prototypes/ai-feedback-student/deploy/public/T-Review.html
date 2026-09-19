@@ -454,6 +454,45 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tdacts{display:flex;align-items:center;gap:4px;margin-top:2px}
 .tbar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 32px 16px;border-top:1px solid #E0E0E0;background:#fff}
 .tbody-flex{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding:24px 32px 16px;overflow:hidden}
+/* Submission Grading (To Review): status tones, filter bar, segments, wide table, grading layout */
+.tchip.st-default{background:#EEEEEE;border-color:transparent;color:#424242}
+.tchip.st-warning{background:rgba(255,152,0,.16);border-color:transparent;color:#C77700}
+.tchip.st-secondary{background:#FBDCE7;border-color:transparent;color:#C2185B}
+.tchip.st-success{background:rgba(76,175,80,.16);border-color:transparent;color:#3B873E}
+.tchip.st-error{background:#FEEBEE;border-color:transparent;color:#E31B0C}
+.tchip .tx{width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.26);display:inline-flex;align-items:center;justify-content:center;margin-left:2px}
+.tfilterbar{display:flex;align-items:center;gap:16px}
+.tfilterbar .left{display:flex;align-items:center;gap:8px;flex:1 1 320px;min-width:0}
+.tfilterbar .right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.tsearch{position:relative;flex:1 1 240px;max-width:600px;height:40px;border:1px solid #BDBDBD;border-radius:4px;background:#fff;display:flex;align-items:center;gap:10px;padding:0 14px 0 12px;color:#9E9E9E;font-size:14px}
+.tapplied{display:flex;align-items:center;gap:8px;font-size:13px;color:#757575;white-space:nowrap}
+.tseg{display:inline-flex;border:1px solid #BDBDBD;border-radius:4px;overflow:hidden;align-self:flex-start}
+.tseg span{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
+.tseg span+span{border-left:1px solid #BDBDBD}
+.tseg span.on{background:#1976D21F;color:#0B79D0}
+.table-scroll{overflow-x:auto}
+table.m thead th.idx,table.m tbody td.idx{width:56px;color:#757575;padding-right:0}
+table.m thead th.idx::after{display:none}
+table.m thead th.cb,table.m tbody td.cb{width:52px;padding-right:0}
+table.m thead th.cb::after{display:none}
+.cbx-th,.cbx-td{display:inline-block;width:18px;height:18px;border:2px solid #9E9E9E;border-radius:2px;background:#fff;vertical-align:middle}
+.cell-link{color:#2196F3}.cell-muted{color:#757575}.num{font-variant-numeric:tabular-nums}.dd{color:#9E9E9E}
+table.m tbody td{vertical-align:top;white-space:nowrap}
+.grade-layout{display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start}
+.info-panel{border:1px solid #E0E0E0;border-radius:4px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:22px}
+.info-sec h3{margin:0 0 12px;font-size:16px;font-weight:500}
+.info-rows{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:10px 16px;font-size:14px;align-items:baseline;margin:0}
+.info-rows dt{color:#757575;margin:0}.info-rows dd{margin:0;overflow-wrap:anywhere}
+.report{border:1px solid #E0E0E0;border-radius:4px;background:#fff;overflow:hidden}
+.report-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;border-bottom:1px solid #E0E0E0}
+.q-item{padding:20px;border-bottom:1px solid #E0E0E0}.q-item:last-child{border-bottom:0}
+.q-item.edited{background:#F7FBFF;box-shadow:inset 3px 0 0 #2196F3}
+.q-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.q-top .q-no{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#757575}
+.q-top .q-title{font-weight:500;flex:1 1 200px;min-width:0}
+.q-prompt{margin:0 0 12px;color:#212121;line-height:1.7;white-space:pre-wrap}
+.q-answer{background:#FAFAFA;border:1px solid #E0E0E0;border-radius:4px;padding:12px 14px;margin-bottom:12px;line-height:1.7;font-size:14px}
+.q-answer .who{display:block;font-size:12px;color:#757575;margin-bottom:6px}
 </style>
 <style>
 html,body{height:100%}
@@ -474,60 +513,64 @@ body{background:#fff}</style>
 <template id="dc-template"><div class="troot">
 <nav class="tnav">
   <div class="torg"><div class="id"><span class="mark">m</span><span class="name">LMS 2.0</span></div><span class="ticon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4-9h-6V8l-4 4 4 4v-3h6v-2z"/></svg></span></div>
-  <div class="tmenu-b"><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg></span><span class="lb">ダッシュボード</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M17 1.01 7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-5-2.5 1.09-2.41L15.5 13l-2.41-1.09L12 9.5l-1.09 2.41L8.5 13l2.41 1.09L12 16.5z"/></svg></span><span class="lb">AIチューター</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></span><span class="lb">生徒</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></div><div class="tn branch"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg></span><span class="lb">コース</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg></span></div><div class="tn child"><span class="mi"></span><span class="lb">コース管理</span></div><div class="tn child"><span class="mi"></span><span class="lb">学習計画管理</span></div><div class="tn child on"><span class="mi"></span><a class="lb" href="T-Queue.html" style="color:inherit">要確認</a></div><div class="tn child"><span class="mi"></span><span class="lb">AIグレーディング</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M13 12h7v1.5h-7zm0-2.5h7V11h-7zm0 5h7V16h-7zM21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15h-9V6h9v13z"/></svg></span><span class="lb">教材</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg></span></div><div class="tn child"><span class="mi"></span><a class="lb" href="T-Book.html" style="color:inherit">ブック管理</a></div><div class="tn child"><span class="mi"></span><span class="lb">学習計画の統計</span></div><div class="tn child"><span class="mi"></span><span class="lb">コンテンツバンク</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-5-6-7 4V7z"/></svg></span><span class="lb">レッスン</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></span><span class="lb">カレンダー</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></span><span class="lb">お知らせ</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span><span class="lb">スタッフ</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></div></div>
+  <div class="tmenu-b"><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg></span><span class="lb">ダッシュボード</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M17 1.01 7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-5-2.5 1.09-2.41L15.5 13l-2.41-1.09L12 9.5l-1.09 2.41L8.5 13l2.41 1.09L12 16.5z"/></svg></span><span class="lb">AIチューター</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></span><span class="lb">生徒</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></div><div class="tn branch"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg></span><span class="lb">コース</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg></span></div><div class="tn child"><span class="mi"></span><span class="lb">コース管理</span></div><div class="tn child"><span class="mi"></span><span class="lb">学習計画管理</span></div><div class="tn child on"><span class="mi"></span><a class="lb" href="T-Queue.html" style="color:inherit">提出物の採点</a></div><div class="tn child"><span class="mi"></span><span class="lb">AIグレーディング</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M13 12h7v1.5h-7zm0-2.5h7V11h-7zm0 5h7V16h-7zM21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15h-9V6h9v13z"/></svg></span><span class="lb">教材</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg></span></div><div class="tn child"><span class="mi"></span><a class="lb" href="T-Book.html" style="color:inherit">ブック管理</a></div><div class="tn child"><span class="mi"></span><span class="lb">学習計画の統計</span></div><div class="tn child"><span class="mi"></span><span class="lb">コンテンツバンク</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-5-6-7 4V7z"/></svg></span><span class="lb">レッスン</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></span><span class="lb">カレンダー</span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></span><span class="lb">お知らせ</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></div><div class="tn"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span><span class="lb">スタッフ</span><span class="caret"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></div></div>
   <div class="dev" role="group" aria-label="表示する役割"><a class="dev-i" href="/" aria-label="一覧"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="dl">一覧</span></a><span class="dev-i on">先生（BO）</span><a class="dev-i" href="Main.html">生徒画面</a></div>
   <div class="tuser"><span class="tav">H</span><span style="min-width:0"><b style="font-size:13px;display:block;font-weight:500">HTN Admin（LMS 2.0）</b><i style="font-style:normal;font-size:11px;color:#757575">LMS 2.0 ・ 集団（+6）・ 東京</i></span></div>
 </nav><div class="tmain">
-<div class="tbody-flex">
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px"><div class="tcrumbs"><a href="#">コース</a><span class="sep">/</span><a href="T-Queue.html">要確認</a><span class="sep">/</span><a href="T-List.html">第7回 演習レポート</a><span class="sep">/</span><span>山田 花子</span></div><div class="tright"><div class="seg" role="group" aria-label="言語"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(28,30,44,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span class="seg-i on">日本語</span><a class="seg-i" href="T-Review-en.html" lang="en">English</a></div><span class="testing">FOR TESTING</span></div></div>
-  <div class="tphead" style="margin-bottom:16px">
-    <h1>確認して返却 ・ 山田 花子<span class="helper" style="margin:0;font-size:14px">11月11日 14:32 提出</span></h1>
-    <span class="tchip red"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78 3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>生徒には未公開</span>
+<div class="tscroll">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px"><div class="tcrumbs"><a href="#">コース</a><span class="sep">/</span><a href="T-Queue.html">提出物の採点</a><span class="sep">/</span><span>第7回 演習レポート</span></div><div class="tright"><div class="seg" role="group" aria-label="言語"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(28,30,44,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span class="seg-i on">日本語</span><a class="seg-i" href="T-Review-en.html" lang="en">English</a></div><span class="testing">FOR TESTING</span></div></div>
+  <div class="tphead">
+    <h1>第7回 演習レポート<span class="tchip st-warning">確認中</span></h1>
+    <div class="acts"><a class="tbtn outlined" href="T-List.html">差し戻す</a><a class="tbtn contained" href="T-List.html">承認して返却する</a><span class="ticon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></div>
   </div>
-  <div class="tpanes">
-    <section class="tpane">
-      <div class="thd"><span style="display:flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(0,0,0,.54)" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>提出物</span><span class="helper" style="margin:0">第7回_演習_山田花子.pdf</span></div>
-      <div class="tbd"><p class="traw">本演習では、総務省「社会生活統計指標」から47都道府県の人口密度と一人当たり県民所得のデータを取得し、両者の関係を分析した。Excel の CORREL 関数を用いて相関係数を算出したところ、r = 0.62 となり、正の相関が確認された。</p><p class="traw">散布図を作成した結果、東京都が他の道府県から大きく離れた位置にあることが分かった。そこで東京都を除いて再計算すると r = 0.41 に低下し、東京都の値が相関係数を押し上げていることが確認できた。</p><p class="traw">この結果から、人口密度が高い地域ほど所得が高くなるといえる。都市部に企業が集中し、雇用機会が多いためだと考えられる。</p><p class="traw">有意性を確認するため T.TEST 関数を実行したところ、p 値は 0.03 であった。したがって帰無仮説は棄却され、2つの変数の間には統計的に有意な関係があるといえる。</p><p class="traw">今後は、第三の変数として高齢化率を加えた分析を行い、地域差の背景をより多角的に捉えたい。</p></div>
-    </section>
-    <section class="tpane">
-      <div class="thd"><span>フィードバックの下書き</span><span class="helper" style="margin:0">3件 ・ 観点つき</span></div>
-      <div class="tbd">
-        <div class="tdraft">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span class="badge good"><i class="n">1</i>優れた点</span><span class="ctag">統計処理</span>
-        
+  <div class="grade-layout">
+    <div class="info-panel">
+      <div class="info-sec"><div style="display:flex;align-items:center;gap:8px"><span class="helper num" style="margin:0">FB-260911</span><span class="tchip st-error"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78 3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>生徒には未公開</span></div></div>
+      <div class="info-sec">
+        <h3>確認者情報</h3>
+        <dl class="info-rows"><dt>確認者</dt><dd>安本 正義</dd><dt>自動返却</dt><dd>オフ</dd></dl>
       </div>
-      <blockquote class="tdq">“そこで東京都を除いて再計算すると r = 0.41 に低下し、東京都の値が相関係数を押し上げていることが確認できた。”</blockquote>
-      <p class="tdb">外れ値の影響を疑い、除外前後の相関係数を並べて示した点がとても良いです。数値がどう変わったかを具体的に書いているので、読む側も判断の根拠を追うことができます。第6回で扱った「外れ値の扱い」がしっかり生かされています。</p>
+      <div class="info-sec">
+        <h3>提出情報</h3>
+        <dl class="info-rows"><dt>生徒名</dt><dd>山田 花子</dd><dt>コース</dt><dd>地域環境統計学（2026年度）</dd>
+          <dt>提出日時</dt><dd class="num">2026/11/14 09:12</dd><dt>ファイル</dt><dd>第7回_演習_山田花子.pdf</dd></dl>
+      </div>
+      <div class="info-sec">
+        <h3>先生からのひとこと（任意）</h3>
+        <label class="field"><span class="lbl"></span><span class="in area">東京都を除いて再計算したところ、よく気づきました。②の点は次回の授業でも取り上げるので、自分の考えを用意しておいてください。</span></label>
+      </div>
+      <div class="info-sec">
+        <h3>コメント</h3>
+        <dl class="info-rows"><dt>下書き</dt><dd class="num">3</dd><dt>編集済み</dt><dd class="num">1</dd><dt>観点</dt><dd class="num">6</dd></dl>
+      </div>
+    </div>
+    <div class="report">
+      <div class="report-head"><strong style="font-weight:500">フィードバックの下書き</strong><span class="helper" style="margin:0">3件 ・ 観点 6</span></div>
+      <div class="q-item">
+        <div class="q-top"><span class="q-no">提出物</span><span class="q-title">第7回_演習_山田花子.pdf</span><span class="tchip">読み取ったテキスト</span></div>
+        <div class="q-answer" style="margin-bottom:0"><p style="margin:0 0 10px">本演習では、総務省「社会生活統計指標」から47都道府県の人口密度と一人当たり県民所得のデータを取得し、両者の関係を分析した。Excel の CORREL 関数を用いて相関係数を算出したところ、r = 0.62 となり、正の相関が確認された。</p><p style="margin:0 0 10px">散布図を作成した結果、東京都が他の道府県から大きく離れた位置にあることが分かった。そこで東京都を除いて再計算すると r = 0.41 に低下し、東京都の値が相関係数を押し上げていることが確認できた。</p><p style="margin:0 0 10px">この結果から、人口密度が高い地域ほど所得が高くなるといえる。都市部に企業が集中し、雇用機会が多いためだと考えられる。</p><p style="margin:0 0 10px">有意性を確認するため T.TEST 関数を実行したところ、p 値は 0.03 であった。したがって帰無仮説は棄却され、2つの変数の間には統計的に有意な関係があるといえる。</p><p style="margin:0 0 10px">今後は、第三の変数として高齢化率を加えた分析を行い、地域差の背景をより多角的に捉えたい。</p></div>
+      </div>
+      <div class="q-item">
+      <div class="q-top"><span class="q-no">コメント 1</span><span class="badge good"><i class="n">1</i>優れた点</span><span class="tchip">統計処理</span>
+        </div>
+      <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>そこで東京都を除いて再計算すると r = 0.41 に低下し、東京都の値が相関係数を押し上げていることが確認できた。</div>
+      <p class="q-prompt">外れ値の影響を疑い、除外前後の相関係数を並べて示した点がとても良いです。数値がどう変わったかを具体的に書いているので、読む側も判断の根拠を追うことができます。第6回で扱った「外れ値の扱い」がしっかり生かされています。</p>
       <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>削除</span></div>
-    </div><div class="tdraft">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span class="badge ask"><i class="n">2</i>問いかけ</span><span class="ctag">解釈</span>
-        
-      </div>
-      <blockquote class="tdq">“この結果から、人口密度が高い地域ほど所得が高くなるといえる。”</blockquote>
-      <p class="tdb">相関係数が正だったことから「人口密度が高いほど所得が高くなる」と述べていますが、これは因果関係の主張になっています。逆に「所得が高い地域に人が集まる」という説明も、同じデータから成り立ちませんか。相関と因果のちがいを、この文の前後で一度整理してみてください。</p>
+    </div><div class="q-item">
+      <div class="q-top"><span class="q-no">コメント 2</span><span class="badge ask"><i class="n">2</i>問いかけ</span><span class="tchip">解釈</span>
+        </div>
+      <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>この結果から、人口密度が高い地域ほど所得が高くなるといえる。</div>
+      <p class="q-prompt">相関係数が正だったことから「人口密度が高いほど所得が高くなる」と述べていますが、これは因果関係の主張になっています。逆に「所得が高い地域に人が集まる」という説明も、同じデータから成り立ちませんか。相関と因果のちがいを、この文の前後で一度整理してみてください。</p>
       <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>削除</span></div>
-    </div><div class="tdraft edited">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span class="badge todo"><i class="n">3</i>改善点</span><span class="ctag">統計処理</span>
-        <span class="tchip type">編集済み</span>
-      </div>
-      <blockquote class="tdq">“有意性を確認するため T.TEST 関数を実行したところ、p 値は 0.03 であった。”</blockquote>
-      <p class="tdb">T.TEST は2つのグループの平均の差を検定する関数です。2つの変数の相関が有意かどうかを調べたい場合は、相関係数の検定（t = r√(n−2) ／ √(1−r²)）を用います。どの検定が何を調べているのかを講義資料の表で確認してから、計算式を書き直してみましょう。</p>
+    </div><div class="q-item edited">
+      <div class="q-top"><span class="q-no">コメント 3</span><span class="badge todo"><i class="n">3</i>改善点</span><span class="tchip">統計処理</span>
+        <span class="tchip type">編集済み</span></div>
+      <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>有意性を確認するため T.TEST 関数を実行したところ、p 値は 0.03 であった。</div>
+      <p class="q-prompt">T.TEST は2つのグループの平均の差を検定する関数です。2つの変数の相関が有意かどうかを調べたい場合は、相関係数の検定（t = r√(n−2) ／ √(1−r²)）を用います。どの検定が何を調べているのかを講義資料の表で確認してから、計算式を書き直してみましょう。</p>
       <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>削除</span></div>
     </div>
-        <div class="tpaper" style="padding:14px 16px;display:flex;flex-direction:column;gap:12px">
-          <span class="setting-label" style="font-weight:500">先生からのひとこと（任意）</span>
-          <label class="field"><span class="lbl"></span><span class="in area">東京都を除いて再計算したところ、よく気づきました。②の点は次回の授業でも取り上げるので、自分の考えを用意しておいてください。</span></label>
-        </div>
-      </div>
-    </section>
+    </div>
   </div>
-</div>
-<div class="tbar">
-  <a class="tbtn outlined" href="T-List.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>差し戻す</a>
-  <span style="display:flex;gap:12px;align-items:center"><span class="helper" style="margin:0">3件のうち1件を編集しました</span><a class="tbtn contained" href="T-List.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>承認して返却する</a></span>
 </div>
 </div>
 </div></template>
