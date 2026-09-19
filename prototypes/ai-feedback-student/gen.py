@@ -202,6 +202,8 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .dev-i.on{background:#fff;color:#1c1e2c}
 .dev.m{left:12px;bottom:14px}
+.dev.m .dev-i:not(.on) .dl{display:none}
+.dev.m .dev-i:not(.on){padding:0 9px}
 .dev.m.nav{bottom:70px}
 /* ---------- mobile (375 x 812, Figma [Mobile-View]) ---------- */
 .mroot{width:375px;height:812px;display:flex;flex-direction:column;overflow:hidden;background:#f2f2f4;position:relative}
@@ -595,7 +597,7 @@ MJA = dict(
     m_pending_pages="2ページ ・ 写真 ・ 11月11日 14:32", m_pending_replace="差し替える",
     m_fb_doc_h="提出した答案（読み取ったテキスト）", m_fb_points="コメント 3件 ・ 下線をタップすると開きます",
     m_prev="前へ", m_next_pt="次へ", m_lang_ja="日本語", m_lang_en="EN",
-    m_dev_pc="PC", m_dev_mobile="モバイル", m_dev_aria="表示デバイス",
+    m_dev_pc="PC", m_dev_mobile="モバイル", m_dev_teacher="先生（BO）", m_dev_aria="表示デバイス",
     m_titles={"main": "モバイル — LO一覧", "assign": "モバイル — 課題", "cam": "モバイル — 撮影", "crop": "モバイル — 切り取り", "pages": "モバイル — 提出するページ",
               "file": "モバイル — ファイル・写真を選ぶ", "type": "モバイル — 直接入力",
               "pending": "モバイル — 提出済み", "fb": "モバイル — 返却済み", "sheet": "モバイル — 返却済み（コメントを開いた状態）"},
@@ -615,7 +617,7 @@ MEN = dict(
     m_pending_pages="2 pages · Photos · Nov 11, 14:32", m_pending_replace="Replace",
     m_fb_doc_h="Your submission (recognised text)", m_fb_points="3 comments · tap an underline to open one",
     m_prev="Previous", m_next_pt="Next", m_lang_ja="日本語", m_lang_en="EN",
-    m_dev_pc="PC", m_dev_mobile="Mobile", m_dev_aria="Device",
+    m_dev_pc="PC", m_dev_mobile="Mobile", m_dev_teacher="Teacher (BO)", m_dev_aria="Device",
     m_titles={"main": "Mobile — LO list", "assign": "Mobile — Assignment", "cam": "Mobile — Snap", "crop": "Mobile — Crop", "pages": "Mobile — Pages to submit",
               "file": "Mobile — Choose a file or photos", "type": "Mobile — Type your answer",
               "pending": "Mobile — Submitted", "fb": "Mobile — Returned", "sheet": "Mobile — Returned (comment sheet open)"},
@@ -638,13 +640,15 @@ def fn(screen, lang):
 def device_toggle(S, screen, mobile=False, over_nav=False):
     L = S["lang"]
     if mobile:
-        pc = f'<a class="dev-i" href="{fn(TO_PC[screen], L)}">{ic("monitor",14)}{S["m_dev_pc"]}</a>'
-        mb = f'<span class="dev-i on">{ic("phone",14)}{S["m_dev_mobile"]}</span>'
+        pc = f'<a class="dev-i" href="{fn(TO_PC[screen], L)}" aria-label="{S["m_dev_pc"]}">{ic("monitor",14)}<span class="dl">{S["m_dev_pc"]}</span></a>'
+        mb = f'<span class="dev-i on">{ic("phone",14)}<span class="dl">{S["m_dev_mobile"]}</span></span>'
     else:
-        pc = f'<span class="dev-i on">{ic("monitor",14)}{S["m_dev_pc"]}</span>'
-        mb = f'<a class="dev-i" href="{fn(TO_MOBILE[screen], L)}">{ic("phone",14)}{S["m_dev_mobile"]}</a>'
+        pc = f'<span class="dev-i on">{ic("monitor",14)}<span class="dl">{S["m_dev_pc"]}</span></span>'
+        mb = f'<a class="dev-i" href="{fn(TO_MOBILE[screen], L)}" aria-label="{S["m_dev_mobile"]}">{ic("phone",14)}<span class="dl">{S["m_dev_mobile"]}</span></a>'
+    # prototype-only: the teacher's Back Office is one hop away from every student screen
+    tc = f'<a class="dev-i" href="{tfn("T-Book", L)}" aria-label="{S["m_dev_teacher"]}">{mi("person", 14)}<span class="dl">{S["m_dev_teacher"]}</span></a>'
     cls = "dev" + (" m" if mobile else "") + (" nav" if over_nav else "")
-    return f'<div class="{cls}" role="group" aria-label="{S["m_dev_aria"]}">{pc}{mb}</div>'
+    return f'<div class="{cls}" role="group" aria-label="{S["m_dev_aria"]}">{pc}{mb}{tc}</div>'
 
 # ---------- chrome ----------
 def lang_toggle(S, screen):
@@ -2584,7 +2588,7 @@ notes = {
     "n_lang": {"x": 0, "y": ROW_Y["en"] + H + 60, "w": 700, "maxH": 220, "text":
         "Language toggle: a segmented 日本語 / English control in the header, left of the bell. In the prototype it is a link to the twin screen, so the language holds as you click through (each artboard keeps its own state). In the product this would be the account's language setting."},
     "n_dev": {"x": 760, "y": ROW_Y["en"] + H + 60, "w": 700, "maxH": 220, "text":
-        "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened."},
+        "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Since 19 Sep it also carries 先生（BO）, which opens the teacher's Back Office (the row at the bottom of the canvas), so the two sides of the same setting can be read against each other. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened."},
     "title_m": {"x": 0, "y": MROW_Y["ja"] - 300, "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
     "title_m_en": {"x": 0, "y": MROW_Y["en"] - 240, "text": "Same mobile flow in English", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
     "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › To Review: queue → overview → submissions → review and return · 日本語", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
@@ -2650,7 +2654,7 @@ def to_static(text, lang):
     # Fold an index link into the prototype-only device pill, so no page chrome is needed.
     home = "一覧" if lang == "ja" else "All"
     markup = re.sub(r'(<div class="dev[^"]*" role="group"[^>]*>)',
-                    r'\1' + f'<a class="dev-i" href="/">{HOME_ICON}{home}</a>', markup, count=1)
+                    r'\1' + f'<a class="dev-i" href="/" aria-label="{home}">{HOME_ICON}<span class="dl">{home}</span></a>', markup, count=1)
     dark = "mroot dark" in markup
     bg = "#000" if dark else ("#fff" if 'class="troot"' in markup else "#f2f2f4")
     return f'''<!doctype html>
