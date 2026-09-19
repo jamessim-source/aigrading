@@ -337,7 +337,6 @@ JA = dict(
     a_meta="安本 正義 先生 ・ 11月6日 出題", a_due="11月13日 23:59 まで",
     a_desc="総務省「社会生活統計指標」の都道府県別データから2つの変数を選び、Excel で相関係数を求めて散布図を作成してください。結果の解釈と、有意性の確認までを A4 2枚程度のレポートにまとめて提出します。",
     a_crit_h="コメントの観点",
-    a_boundary="答えそのものは示されません。質問と気づきのためのコメントが返ります。",
     criteria=["Excelスキル","図表の見やすさ","統計処理","解釈","論理構成","生成AIリテラシー"],
     a_flow_h="提出してから返却まで",
     steps=[("提出する","ファイル・写真をアップロード、または直接入力"),("先生がフィードバック","期限のあとに返却"),("返却","お知らせが届きます")],
@@ -469,7 +468,6 @@ EN = dict(
     a_meta="Prof. Masayoshi Yasumoto · Set Nov 6", a_due="Due Nov 13, 23:59",
     a_desc="Choose two variables from the Statistics Bureau's prefectural social indicators, compute the correlation coefficient in Excel and draw a scatter plot. Submit a report of about two A4 pages covering your interpretation and a check of statistical significance.",
     a_crit_h="What the comments cover",
-    a_boundary="Your answer is never written for you. You get questions and comments.",
     criteria=["Excel skills","Clarity of charts","Statistical processing","Interpretation","Logical structure","Generative-AI literacy"],
     a_flow_h="From submission to return",
     steps=[("Submit","Upload a file or photos, or type your answer"),("Teacher feedback","Returned after the due date"),("Returned","You get a notification")],
@@ -834,11 +832,8 @@ def assignment(S, L):
     <p class="b1">{S["a_desc"]}</p>
     <div class="divider"></div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <p class="sub1">{S["a_crit_h"]}</p>
-      </div>
+      <p class="sub1">{S["a_crit_h"]}</p>
       <div class="crit">{crit}</div>
-      <p class="cap" style="display:flex;align-items:center;gap:6px">{ic("lock",12)}{S["a_boundary"]}</p>
     </div>
   </div>
   <div class="card" style="padding:24px 24px 20px">
@@ -1331,7 +1326,6 @@ def m_assignment(S, L):
     <div class="divider"></div>
     <p class="sub1" style="font-size:14px">{S["a_crit_h"]}</p>
     <div class="crit">{crit}</div>
-    <p class="cap" style="display:flex;align-items:center;gap:6px">{ic("lock",12)}{S["a_boundary"]}</p>
   </div>
   <div class="mcard">
     <p class="sub1" style="font-size:14px">{S["a_upload_h"]}</p>
@@ -1600,7 +1594,7 @@ notes = {
     "n1": {"x": 0, "y": H + 60, "w": NW, "maxH": 260, "text":
         "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. A course-level 'AI Feedback 対応' chip sat on the course card and was removed (PM, 19 Sep): the LO type chip already says which LOs have it. NAMING (PM, 19 Sep): 'AI' is gone from every student-facing label — the LO type reads フィードバック / Feedback, as do the screen titles and To-do rows — because the teacher may review the draft and return it as their own endorsed feedback. AI Feedback stays the internal / Back Office name. The two AI words a student still sees are the 生成AIリテラシー rubric criterion (Kindai's own, about the student's AI use) and AI演習 / AI Practice, a different product. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →"},
     "n2": {"x": 1 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
-        "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria — 'your answer is never written for you; you get questions and comments' — the L0 boundary made visible, reworded on 19 Sep to keep the promise without naming AI. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel / PowerPoint and photos (PM, 18–19 Sep) — office files go in as they are rather than being exported to PDF, which matters for the Kindai exercise because the Excel-skill criterion is judged on the workbook itself; photos are picked several at a time and kept in page order (click 答案の写真を選ぶ to see that state), and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."},
+        "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) A lock line under the criteria stated the L0 boundary ('AI never writes your answer'); it was reworded on 19 Sep to drop the AI mention and then removed entirely (PM): once the student is not told AI is involved, the line answers a question nobody asked. The boundary itself is unchanged — it belongs in the teacher's brief and the PRD, not on the submit screen. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel / PowerPoint and photos (PM, 18–19 Sep) — office files go in as they are rather than being exported to PDF, which matters for the Kindai exercise because the Excel-skill criterion is judged on the workbook itself; photos are picked several at a time and kept in page order (click 答案の写真を選ぶ to see that state), and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."},
     "n3": {"x": 2 * (W + GAP), "y": H + 60, "w": NW, "maxH": 280, "text":
         "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →"},
     "n4": {"x": 3 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
