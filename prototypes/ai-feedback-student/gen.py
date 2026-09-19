@@ -1920,7 +1920,7 @@ TJA = dict(
     t_how_limit="文字数の上限 500字",
     t_s_review="先生の確認", t_review_on="返却前に先生が確認する",
     t_review_body="下書きは締切のあとに作成され、先生が確認・編集して返却するまで生徒には表示されません。生徒には先生からのフィードバックとして届きます。",
-    t_review_off="オフにすると、締切のあと自動で返却されます。確認の手間はなくなりますが、内容を見る前に生徒へ届きます。",
+    t_review_off="締切のあと、先生の確認なしに自動で返却されます。",
     t_cancel="キャンセル", t_confirm="確定",
     # LO page
     t_lo_tabs=["内容", "概要", "提出一覧", "設定"], t_publish="公開する", t_edit="設定を編集", t_save="保存",
@@ -1984,7 +1984,7 @@ TEN = dict(
     t_how_limit="500-character limit",
     t_s_review="Teacher review", t_review_on="I review the feedback before it is returned",
     t_review_body="The draft is written after the due date and stays hidden until you review, edit and return it. Students receive it as feedback from you.",
-    t_review_off="Turn this off and feedback is returned automatically after the due date. No work for you, but it reaches students before you have read it.",
+    t_review_off="Feedback is returned to students automatically after the due date, without a review step.",
     t_cancel="Cancel", t_confirm="Confirm",
     t_lo_tabs=["Content", "Overview", "Submissions", "Settings"], t_publish="Publish", t_edit="Edit settings", t_save="Save",
     t_s_mat="Material for this assignment", t_mat_note="The submission requirements and the comment criteria are extracted from what you upload.",
@@ -2215,7 +2215,7 @@ def t_dialog(S, L):
           <div class="setting">
             <span class="setting-label" style="font-weight:500">{S["t_s_review"]}</span>
             <button class="switch {{{{rv}}}}" onClick="{{{{toggleRv}}}}"><span class="track"></span><span>{S["t_review_on"]}</span></button>
-            <sc-if value="{{{{rvOff}}}}" hint-placeholder-val="{{{{false}}}}"><div class="alert warn">{mi("warning", 20, "#C77700")}<span>{S["t_review_off"]}</span></div></sc-if>
+            <sc-if value="{{{{rvOff}}}}" hint-placeholder-val="{{{{false}}}}"><div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["t_review_off"]}</span></div></sc-if>
           </div>
         </div>
       </div>
@@ -2426,7 +2426,7 @@ MNW = 375
 TNW = 640
 TNOTES = {
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
-    "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, the amber alert says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
+    "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
     "t3": "What Confirm does in production, and so here: the dialog closes, the tree re-renders with the new row highlighted (just-created), the snackbar says so, and the LO is UNPUBLISHED — a new learning material always starts that way, and publishing is a separate action on the row's ⋮ menu or the LO page. The old design's 'save and publish' at creation is gone. The type tile is a distinct review-comment icon, not the sparkle: on this tree the sparkle means AI Tutor. Click the new row →",
     "t4": "The LO's own page, reached from the tree exactly as a regular LO is opened to author its questions. Content tab, still Unpublished, Publish top-right. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 教材から抽出する, and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate: conditions gate the submission, criteria shape the comments, neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen.",
     "t5": "The same LO page once published, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog.",

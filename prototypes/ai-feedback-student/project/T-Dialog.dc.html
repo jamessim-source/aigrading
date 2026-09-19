@@ -525,7 +525,7 @@ table.m tbody tr:last-child td{border-bottom:0}
           <div class="setting">
             <span class="setting-label" style="font-weight:500">先生の確認</span>
             <button class="switch {{rv}}" onClick="{{toggleRv}}"><span class="track"></span><span>返却前に先生が確認する</span></button>
-            <sc-if value="{{rvOff}}" hint-placeholder-val="{{false}}"><div class="alert warn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#C77700" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg><span>オフにすると、締切のあと自動で返却されます。確認の手間はなくなりますが、内容を見る前に生徒へ届きます。</span></div></sc-if>
+            <sc-if value="{{rvOff}}" hint-placeholder-val="{{false}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>締切のあと、先生の確認なしに自動で返却されます。</span></div></sc-if>
           </div>
         </div>
       </div>
