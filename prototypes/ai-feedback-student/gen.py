@@ -137,6 +137,8 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .drop{border:2px dashed rgba(57,90,210,.45);background:#fafbff;border-radius:8px;padding:28px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
 .filerow{display:flex;align-items:center;gap:12px;border:1px solid rgba(28,30,44,.12);border-radius:8px;padding:12px 16px;background:#fff}
 .filerow .ficon{width:40px;height:40px;border-radius:8px;background:#fbe7e9;color:#d13842;display:flex;align-items:center;justify-content:center;flex:0 0 40px}
+.shot{position:relative;display:block;border-radius:6px;overflow:hidden;border:1px solid rgba(28,30,44,.12);background:#f2f2f4}
+.shot i{position:absolute;left:2px;top:2px;z-index:1;background:#395ad2;color:#fff;font-size:10px;font-weight:700;font-style:normal;border-radius:4px;padding:0 5px;line-height:15px}
 .fb-card{background:#fff;border-radius:8px;border:1px solid rgba(28,30,44,.12);padding:16px;position:relative;display:flex;flex-direction:column;gap:10px}
 .fb-card.next{background:#fffbea;border-color:#f2dc8f}
 .badge{display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 11px;border-radius:8px;font-size:13px;font-weight:700;align-self:flex-start}
@@ -339,9 +341,10 @@ JA = dict(
     criteria=["Excelスキル","図表の見やすさ","統計処理","解釈","論理構成","生成AIリテラシー"],
     a_flow_h="提出してから返却まで",
     steps=[("提出する","ファイル・写真をアップロード、または直接入力"),("先生がフィードバック","期限のあとに返却"),("返却","お知らせが届きます")],
-    a_upload_h="答案を提出する", a_upload_meta="PDF ・ Word（.docx） ・ Excel（.xlsx） ・ 写真（JPG / PNG / HEIC） ・ 20MB まで",
-    a_drop="ファイルや写真をここにドロップ", a_drop_s="Excel はそのまま提出できます。PowerPoint は PDF に書き出してから。手書きの答案は1ページずつ撮影してアップロードできます",
-    a_photo="答案の写真を選ぶ", a_photo_s="複数枚はページ順に並びます",
+    a_upload_h="答案を提出する", a_upload_meta="PDF ・ Word ・ Excel ・ PowerPoint ・ 写真（JPG / PNG / HEIC） ・ 20MB まで",
+    a_drop="ファイルや写真をここにドロップ", a_drop_s="Excel も PowerPoint もそのまま提出できます。手書きの答案は撮影した写真をまとめてアップロードできます",
+    a_photo="答案の写真を選ぶ", a_photo_s="複数枚まとめて選べます。ページ順に並びます",
+    a_photos_name="答案の写真 3枚", a_photos_meta="JPG ・ 合計 4.1 MB ・ ページ順 ・ いま選択", a_photos_add="写真を追加",
     a_mode_file="ファイル・写真をアップロード", a_mode_text="直接入力する",
     a_ta_ph="ここに入力してください。週次リフレクションなど短い課題はファイルなしで提出できます。",
     a_ta_target="目安 300字", a_ta_unit="文字", a_ta_note="入力内容はそのまま先生に届きます。提出後も期限までは書き直せます。",
@@ -470,9 +473,10 @@ EN = dict(
     criteria=["Excel skills","Clarity of charts","Statistical processing","Interpretation","Logical structure","Generative-AI literacy"],
     a_flow_h="From submission to return",
     steps=[("Submit","Upload a file or photos, or type your answer"),("Teacher feedback","Returned after the due date"),("Returned","You get a notification")],
-    a_upload_h="Submit your work", a_upload_meta="PDF · Word (.docx) · Excel (.xlsx) · Photos (JPG / PNG / HEIC) · up to 20 MB",
-    a_drop="Drop a file or photos here", a_drop_s="Excel can be submitted as it is; export PowerPoint to PDF first. Handwritten work can be photographed one page at a time",
-    a_photo="Choose photos of your work", a_photo_s="Several photos are kept in page order",
+    a_upload_h="Submit your work", a_upload_meta="PDF · Word · Excel · PowerPoint · Photos (JPG / PNG / HEIC) · up to 20 MB",
+    a_drop="Drop a file or photos here", a_drop_s="Excel and PowerPoint can be submitted as they are. Handwritten work can be photographed and uploaded as a set of photos",
+    a_photo="Choose photos of your work", a_photo_s="Pick several at once; they are kept in page order",
+    a_photos_name="3 photos of your work", a_photos_meta="JPG · 4.1 MB total · in page order · just selected", a_photos_add="Add photos",
     a_mode_file="Upload a file or photos", a_mode_text="Type your answer",
     a_ta_ph="Write here. Short pieces such as weekly reflections can be submitted without a file.",
     a_ta_target="Target about 300 characters", a_ta_unit="characters", a_ta_note="Your text goes to your teacher as written. You can edit it until the due date.",
@@ -575,7 +579,7 @@ MJA = dict(
     m_crumb="地域環境統計学 › 第7回 データの分析と仮説検定", m_banner_n="3 / 4", m_banner_l="完了",
     m_nav=["コース", "メッセージ", "カレンダー"],
     m_opt_cam="撮影して提出", m_opt_cam_s="手書きの答案を1ページずつ撮影します",
-    m_opt_file="ファイル・写真を選ぶ", m_opt_file_s="PDF ・ Word ・ Excel ・ 写真（JPG / PNG / HEIC）",
+    m_opt_file="ファイル・写真を選ぶ", m_opt_file_s="PDF ・ Word ・ Excel ・ PowerPoint ・ 写真（複数枚まとめて）",
     m_opt_text="直接入力する", m_opt_text_s="週次リフレクションなど短い課題に",
     m_cam_title="答案を撮影", m_cam_hint="答案全体が枠に入るように", m_cam_page="1ページ目", m_cam_gallery="写真から選ぶ", m_cam_shutter="撮る", m_cam_flash="フラッシュ",
     m_close="閉じる", m_back="もどる",
@@ -593,7 +597,7 @@ MEN = dict(
     m_crumb="Regional & Environmental Statistics › Session 7 Data analysis and hypothesis testing", m_banner_n="3 / 4", m_banner_l="Completed",
     m_nav=["Courses", "Message", "Calendar"],
     m_opt_cam="Snap and submit", m_opt_cam_s="Photograph handwritten pages one at a time",
-    m_opt_file="Choose a file or photos", m_opt_file_s="PDF · Word · Excel · Photos (JPG / PNG / HEIC)",
+    m_opt_file="Choose a file or photos", m_opt_file_s="PDF · Word · Excel · PowerPoint · Photos (several at once)",
     m_opt_text="Type your answer", m_opt_text_s="For short pieces such as weekly reflections",
     m_cam_title="Snap your work", m_cam_hint="Fit the whole page inside the frame", m_cam_page="Page 1", m_cam_gallery="From photos", m_cam_shutter="Take photo", m_cam_flash="Flash",
     m_close="Close", m_back="Back",
@@ -734,17 +738,32 @@ def upload_block(S, submit_label, file_name, file_meta, note, href):
         <p class="b2 muted" style="max-width:520px;text-align:center">{S["a_drop_s"]}</p>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center">
           <button class="btn neutral" onClick="{{{{pick}}}}">{ic("file",18)}{S["a_pick"]}</button>
-          <button class="btn neutral" onClick="{{{{pick}}}}">{ic("camera",18)}{S["a_photo"]}</button>
+          <button class="btn neutral" onClick="{{{{pickPhotos}}}}">{ic("camera",18)}{S["a_photo"]}</button>
         </div>
         <p class="cap" style="display:flex;align-items:center;gap:6px">{ic("image",14)}{S["a_photo_s"]}</p>
       </div>
     </sc-if>
-    <sc-if value="{{{{picked}}}}" hint-placeholder-val="{{{{false}}}}">
+    <sc-if value="{{{{pickedFile}}}}" hint-placeholder-val="{{{{false}}}}">
       <div class="filerow">
         <span class="ficon">{ic("filetext",22)}</span>
         <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px">
           <p class="b2" style="font-weight:700">{file_name}</p>
           <p class="cap">{file_meta}</p>
+        </div>
+        <button class="ibtn" style="border:0" onClick="{{{{clear}}}}" aria-label="{S["a_remove"]}">{ic("x",20)}</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{{{pickedPhotos}}}}" hint-placeholder-val="{{{{false}}}}">
+      <div class="filerow" style="align-items:flex-start">
+        <span style="display:flex;gap:8px;flex:0 0 auto">
+          <span class="shot"><i>1</i>{paper_inline(44, 58, False)}</span>
+          <span class="shot"><i>2</i>{paper_inline(44, 58, False)}</span>
+          <span class="shot"><i>3</i>{paper_inline(44, 58, False)}</span>
+        </span>
+        <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px">
+          <p class="b2" style="font-weight:700">{S["a_photos_name"]}</p>
+          <p class="cap">{S["a_photos_meta"]}</p>
+          <button class="btn ghost" style="height:30px;align-self:flex-start;padding:0 8px">{ic("plus",16)}{S["a_photos_add"]}</button>
         </div>
         <button class="ibtn" style="border:0" onClick="{{{{clear}}}}" aria-label="{S["a_remove"]}">{ic("x",20)}</button>
       </div>
@@ -868,13 +887,15 @@ def assignment(S, L):
   </div>
   <div style="height:8px"></div>
 </div></div>'''
-    logic = """state = { picked: false, mode: "file", tlen: 0, ttext: "", confirmed: false, d0: false, d1: false, d2: false, d3: false };
+    logic = """state = { picked: "", mode: "file", tlen: 0, ttext: "", confirmed: false, d0: false, d1: false, d2: false, d3: false };
   renderVals() {
     const isText = this.state.mode === "text";
-    const ready = isText ? this.state.confirmed : this.state.picked;
+    const ready = isText ? this.state.confirmed : this.state.picked !== "";
     return {
       picked: ready,
       empty: !ready,
+      pickedFile: !isText && this.state.picked === "file",
+      pickedPhotos: !isText && this.state.picked === "photos",
       isFile: !isText, isText: isText,
       isTyping: isText && !this.state.confirmed,
       isConfirmed: isText && this.state.confirmed,
@@ -887,8 +908,9 @@ def assignment(S, L):
       edit: () => this.setState({ confirmed: false }),
       ttext: this.state.ttext,
       tcount: String(this.state.tlen),
-      pick: () => this.setState({ picked: true }),
-      clear: () => this.setState({ picked: false }),""" + DECL_LOGIC + """
+      pick: () => this.setState({ picked: "file" }),
+      pickPhotos: () => this.setState({ picked: "photos" }),
+      clear: () => this.setState({ picked: "" }),""" + DECL_LOGIC + """
     };
   }"""
     return page(S, S["titles"]["assign"], body, logic)
@@ -1086,13 +1108,16 @@ def resubmit(S, L):
     <div style="height:4px"></div>
   </section>
 </div>'''
-    logic = """state = { picked: false, k2: false, k3: false, s0: true, s1: false, d0: false, d1: false, d2: false, d3: false };
+    logic = """state = { picked: "", k2: false, k3: false, s0: true, s1: false, d0: false, d1: false, d2: false, d3: false };
   renderVals() {
     return {
-      picked: this.state.picked,
-      empty: !this.state.picked,
-      pick: () => this.setState({ picked: true }),
-      clear: () => this.setState({ picked: false }),
+      picked: this.state.picked !== "",
+      empty: this.state.picked === "",
+      pickedFile: this.state.picked === "file",
+      pickedPhotos: this.state.picked === "photos",
+      pick: () => this.setState({ picked: "file" }),
+      pickPhotos: () => this.setState({ picked: "photos" }),
+      clear: () => this.setState({ picked: "" }),
       k2: this.state.k2 ? "on" : "", k3: this.state.k3 ? "on" : "",
       tk2: () => this.setState({ k2: !this.state.k2 }),
       tk3: () => this.setState({ k3: !this.state.k3 }),
@@ -1575,7 +1600,7 @@ notes = {
     "n1": {"x": 0, "y": H + 60, "w": NW, "maxH": 260, "text":
         "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. A course-level 'AI Feedback 対応' chip sat on the course card and was removed (PM, 19 Sep): the LO type chip already says which LOs have it. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →"},
     "n2": {"x": 1 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
-        "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria: 'AI never writes your answer' — the L0 boundary made visible. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel and photos of handwritten pages (PM, 18–19 Sep) — the Kindai exercise is an Excel analysis, so .xlsx goes in as it is rather than being exported to PDF; several photos are kept in page order, and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."},
+        "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria: 'AI never writes your answer' — the L0 boundary made visible. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel / PowerPoint and photos (PM, 18–19 Sep) — office files go in as they are rather than being exported to PDF, which matters for the Kindai exercise because the Excel-skill criterion is judged on the workbook itself; photos are picked several at a time and kept in page order (click 答案の写真を選ぶ to see that state), and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."},
     "n3": {"x": 2 * (W + GAP), "y": H + 60, "w": NW, "maxH": 280, "text":
         "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →"},
     "n4": {"x": 3 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":

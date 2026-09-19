@@ -1,6 +1,14 @@
 {
   "v": 3,
-  "attachments": {},
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-09-19T01:42:45Z"
+  },
+  "title": "AI Feedback — Student PC Prototype",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
   "boards": {
     "Main.dc.html": {
       "x": 0,
@@ -259,174 +267,6 @@
       "is_interactive": true
     }
   },
-  "createdOnFiles": {
-    "at": "2026-09-18T11:02:16Z",
-    "v": 1
-  },
-  "designSystems": [],
-  "launch": {
-    "view": "canvas"
-  },
-  "notes": {
-    "m1": {
-      "maxH": 420,
-      "text": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →",
-      "w": 375,
-      "x": 0,
-      "y": 3772
-    },
-    "m2": {
-      "maxH": 420,
-      "text": "Assignment on the phone: same criteria chips, same 提出条件 list, and three ways to submit. 撮影して提出 is the primary option — the snap flow from unifiedapp (Snap → Crop → Review), adapted from 'ask about a question' to 'submit a handwritten answer'. File / photos and typed input are the other two (per the PC decisions of 18 Sep). Tap 撮影して提出 →",
-      "w": 375,
-      "x": 455,
-      "y": 3772
-    },
-    "m3": {
-      "maxH": 420,
-      "text": "Camera, as in the unifiedapp Snap tab: full-bleed dark viewfinder, scrim, blue 68-px shutter with gallery (left) and flash (right), close top-left. New here: a corner-bracket page guide and a page counter (1ページ目), because a handwritten answer is photographed one page at a time. Tap the shutter →",
-      "w": 375,
-      "x": 910,
-      "y": 3772
-    },
-    "m4": {
-      "maxH": 420,
-      "text": "Crop, the unifiedapp CropScreen adapted: dark stage, the photo with veils outside the frame, a blue band with four corner handles. For a paper answer the band is a rectangle that should hug the page edges, so 自動で合わせる snaps it to the paper (tap it — works in the prototype; handles are static here, draggable in the product). Thumbs strip below with ページを追加 → back to the camera for page 2. 次へ →",
-      "w": 375,
-      "x": 1365,
-      "y": 3772
-    },
-    "m5": {
-      "maxH": 420,
-      "text": "Pages review (unifiedapp ReviewScreen shape, light theme): thumbnails in page order, hold to reorder, add a page, big preview. The basic-requirements check runs on the photographed pages (via the AI Grading OCR path, PRD C1) exactly as it does on a file or typed answer on PC. Submit →",
-      "w": 375,
-      "x": 1820,
-      "y": 3772
-    },
-    "m6": {
-      "maxH": 420,
-      "text": "Waiting state on the phone: identical rules to PC — no AI mentioned, teacher gives the feedback after the due date, notification when returned, pages viewable / replaceable until the due date. Steps are vertical for the narrow screen. DEMO pill →",
-      "w": 375,
-      "x": 2275,
-      "y": 3772
-    },
-    "m7": {
-      "maxH": 420,
-      "text": "Returned, on the phone: teacher's note, summary, then the recognised text of the answer with the same underlines. One layout for every submission type (PM, 18 Sep). Tapping an underline — or one of the three comment chips — opens the bottom sheet for that point (PM, 18 Sep) and highlights the passage. Resubmit and PDF export at the end.",
-      "w": 375,
-      "x": 2730,
-      "y": 3772
-    },
-    "m8": {
-      "maxH": 420,
-      "text": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close.",
-      "w": 375,
-      "x": 3185,
-      "y": 3772
-    },
-    "n1": {
-      "maxH": 260,
-      "text": "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. A course-level 'AI Feedback 対応' chip sat on the course card and was removed (PM, 19 Sep): the LO type chip already says which LOs have it. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →",
-      "w": 560,
-      "x": 0,
-      "y": 860
-    },
-    "n2": {
-      "maxH": 300,
-      "text": "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria: 'AI never writes your answer' — the L0 boundary made visible. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel and photos of handwritten pages (PM, 18–19 Sep) — the Kindai exercise is an Excel analysis, so .xlsx goes in as it is rather than being exported to PDF; several photos are kept in page order, and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run.",
-      "w": 560,
-      "x": 1360,
-      "y": 860
-    },
-    "n3": {
-      "maxH": 280,
-      "text": "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →",
-      "w": 560,
-      "x": 2720,
-      "y": 860
-    },
-    "n4": {
-      "maxH": 300,
-      "text": "Draft-1 return. Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD.",
-      "w": 560,
-      "x": 4080,
-      "y": 860
-    },
-    "n5": {
-      "maxH": 300,
-      "text": "THE BIG ADDITION. Left: last time's comments as a checklist — the student ticks what they addressed; strengths are shown as 'check it still holds'. The teacher's note travels with it. Right: upload and the basic-requirements list. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission →",
-      "w": 560,
-      "x": 5440,
-      "y": 860
-    },
-    "n6": {
-      "maxH": 220,
-      "text": "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →",
-      "w": 560,
-      "x": 6800,
-      "y": 860
-    },
-    "n7": {
-      "maxH": 300,
-      "text": "Draft-2 return opens with 前回からの変化: which earlier points were fixed (③ test, ② causation) and that one new comment exists — this is the exercise-view revision trail from C10.3, in the student's own hands. The 'rewritten in your own words' line appears only in the positive case; there is no accusatory counterpart. New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep).",
-      "w": 560,
-      "x": 8160,
-      "y": 860
-    },
-    "n8": {
-      "maxH": 240,
-      "text": "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date.",
-      "w": 560,
-      "x": 9520,
-      "y": 860
-    },
-    "n_dev": {
-      "maxH": 220,
-      "text": "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened.",
-      "w": 700,
-      "x": 760,
-      "y": 2260
-    },
-    "n_lang": {
-      "maxH": 220,
-      "text": "Language toggle: a segmented 日本語 / English control in the header, left of the bell. In the prototype it is a link to the twin screen, so the language holds as you click through (each artboard keeps its own state). In the product this would be the account's language setting.",
-      "w": 700,
-      "x": 0,
-      "y": 2260
-    },
-    "title": {
-      "kind": "title1",
-      "maxW": 8000,
-      "text": "AI Feedback — student experience on PC (Kindai 地域環境統計学, teacher-in-the-loop, revise loop) · 日本語",
-      "w": 240,
-      "x": 0,
-      "y": -300
-    },
-    "title_en": {
-      "kind": "title1",
-      "maxW": 8000,
-      "text": "Same flow in English — the 日本語 / English toggle in every header jumps to the matching screen",
-      "w": 240,
-      "x": 0,
-      "y": 1160
-    },
-    "title_m": {
-      "kind": "title1",
-      "maxW": 3560,
-      "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語",
-      "w": 240,
-      "x": 0,
-      "y": 2600
-    },
-    "title_m_en": {
-      "kind": "title1",
-      "maxW": 3560,
-      "text": "Same mobile flow in English",
-      "w": 240,
-      "x": 0,
-      "y": 3860
-    }
-  },
   "order": [
     "Main.dc.html",
     "02-Assignment.dc.html",
@@ -461,6 +301,161 @@
     "M-Feedback-en.dc.html",
     "M-Sheet-en.dc.html"
   ],
-  "pages": [],
-  "title": "AI Feedback — Student PC Prototype"
+  "notes": {
+    "title": {
+      "x": 0,
+      "y": -300,
+      "text": "AI Feedback — student experience on PC (Kindai 地域環境統計学, teacher-in-the-loop, revise loop) · 日本語",
+      "kind": "title1",
+      "maxW": 10800
+    },
+    "title_en": {
+      "x": 0,
+      "y": 1160,
+      "text": "Same flow in English — the 日本語 / English toggle in every header jumps to the matching screen",
+      "kind": "title1",
+      "maxW": 10800
+    },
+    "n1": {
+      "x": 0,
+      "y": 860,
+      "w": 560,
+      "maxH": 260,
+      "text": "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. A course-level 'AI Feedback 対応' chip sat on the course card and was removed (PM, 19 Sep): the LO type chip already says which LOs have it. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →"
+    },
+    "n2": {
+      "x": 1360,
+      "y": 860,
+      "w": 560,
+      "maxH": 300,
+      "text": "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) The lock line under the criteria: 'AI never writes your answer' — the L0 boundary made visible. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel / PowerPoint and photos (PM, 18–19 Sep) — office files go in as they are rather than being exported to PDF, which matters for the Kindai exercise because the Excel-skill criterion is judged on the workbook itself; photos are picked several at a time and kept in page order (click 答案の写真を選ぶ to see that state), and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."
+    },
+    "n3": {
+      "x": 2720,
+      "y": 860,
+      "w": 560,
+      "maxH": 280,
+      "text": "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →"
+    },
+    "n4": {
+      "x": 4080,
+      "y": 860,
+      "w": 560,
+      "maxH": 300,
+      "text": "Draft-1 return. Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD."
+    },
+    "n5": {
+      "x": 5440,
+      "y": 860,
+      "w": 560,
+      "maxH": 300,
+      "text": "THE BIG ADDITION. Left: last time's comments as a checklist — the student ticks what they addressed; strengths are shown as 'check it still holds'. The teacher's note travels with it. Right: upload and the basic-requirements list. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission →"
+    },
+    "n6": {
+      "x": 6800,
+      "y": 860,
+      "w": 560,
+      "maxH": 220,
+      "text": "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →"
+    },
+    "n7": {
+      "x": 8160,
+      "y": 860,
+      "w": 560,
+      "maxH": 300,
+      "text": "Draft-2 return opens with 前回からの変化: which earlier points were fixed (③ test, ② causation) and that one new comment exists — this is the exercise-view revision trail from C10.3, in the student's own hands. The 'rewritten in your own words' line appears only in the positive case; there is no accusatory counterpart. New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."
+    },
+    "n8": {
+      "x": 9520,
+      "y": 860,
+      "w": 560,
+      "maxH": 240,
+      "text": "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date."
+    },
+    "n_lang": {
+      "x": 0,
+      "y": 2260,
+      "w": 700,
+      "maxH": 220,
+      "text": "Language toggle: a segmented 日本語 / English control in the header, left of the bell. In the prototype it is a link to the twin screen, so the language holds as you click through (each artboard keeps its own state). In the product this would be the account's language setting."
+    },
+    "n_dev": {
+      "x": 760,
+      "y": 2260,
+      "w": 700,
+      "maxH": 220,
+      "text": "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened."
+    },
+    "title_m": {
+      "x": 0,
+      "y": 2600,
+      "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語",
+      "kind": "title1",
+      "maxW": 3560
+    },
+    "title_m_en": {
+      "x": 0,
+      "y": 3860,
+      "text": "Same mobile flow in English",
+      "kind": "title1",
+      "maxW": 3560
+    },
+    "m1": {
+      "x": 0,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →"
+    },
+    "m2": {
+      "x": 455,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Assignment on the phone: same criteria chips, same 提出条件 list, and three ways to submit. 撮影して提出 is the primary option — the snap flow from unifiedapp (Snap → Crop → Review), adapted from 'ask about a question' to 'submit a handwritten answer'. File / photos and typed input are the other two (per the PC decisions of 18 Sep). Tap 撮影して提出 →"
+    },
+    "m3": {
+      "x": 910,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Camera, as in the unifiedapp Snap tab: full-bleed dark viewfinder, scrim, blue 68-px shutter with gallery (left) and flash (right), close top-left. New here: a corner-bracket page guide and a page counter (1ページ目), because a handwritten answer is photographed one page at a time. Tap the shutter →"
+    },
+    "m4": {
+      "x": 1365,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Crop, the unifiedapp CropScreen adapted: dark stage, the photo with veils outside the frame, a blue band with four corner handles. For a paper answer the band is a rectangle that should hug the page edges, so 自動で合わせる snaps it to the paper (tap it — works in the prototype; handles are static here, draggable in the product). Thumbs strip below with ページを追加 → back to the camera for page 2. 次へ →"
+    },
+    "m5": {
+      "x": 1820,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Pages review (unifiedapp ReviewScreen shape, light theme): thumbnails in page order, hold to reorder, add a page, big preview. The basic-requirements check runs on the photographed pages (via the AI Grading OCR path, PRD C1) exactly as it does on a file or typed answer on PC. Submit →"
+    },
+    "m6": {
+      "x": 2275,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Waiting state on the phone: identical rules to PC — no AI mentioned, teacher gives the feedback after the due date, notification when returned, pages viewable / replaceable until the due date. Steps are vertical for the narrow screen. DEMO pill →"
+    },
+    "m7": {
+      "x": 2730,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Returned, on the phone: teacher's note, summary, then the recognised text of the answer with the same underlines. One layout for every submission type (PM, 18 Sep). Tapping an underline — or one of the three comment chips — opens the bottom sheet for that point (PM, 18 Sep) and highlights the passage. Resubmit and PDF export at the end."
+    },
+    "m8": {
+      "x": 3185,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close."
+    }
+  },
+  "designSystems": []
 }
