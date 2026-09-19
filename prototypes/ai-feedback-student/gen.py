@@ -322,7 +322,7 @@ HELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
 
 # ---------- strings ----------
 JA = dict(
-    lang="ja", student="山田 花子", back="もどる", menu="メニュー", notif="お知らせ 6件", lang_aria="言語",
+    lang="ja", student="山田 花子", back="もどる", menu="メニュー", notif="お知らせ 6件", lang_aria="言語", sep="・",
     crumb_course="コース", crumb_study="学習", todo="やること",
     course="地域環境統計学", course_meta="応用社会学部 2年 ・ 安本 正義 先生 ・ 木曜 3限",
     progress="全16回 ・ 第7回まで公開", book="教材：地域環境統計学 テキスト（2026年度）",
@@ -453,7 +453,7 @@ JA = dict(
 )
 
 EN = dict(
-    lang="en", student="Hanako Yamada", back="Back", menu="Menu", notif="6 notifications", lang_aria="Language",
+    lang="en", student="Hanako Yamada", back="Back", menu="Menu", notif="6 notifications", lang_aria="Language", sep="·",
     crumb_course="Courses", crumb_study="Learning", todo="To-do",
     course="Regional & Environmental Statistics", course_meta="Faculty of Applied Sociology, Year 2 · Prof. Masayoshi Yasumoto · Thu, 3rd period",
     progress="16 sessions · through Session 7 published", book="Book: Regional & Environmental Statistics — Textbook (2026)",
@@ -880,7 +880,7 @@ def assignment(S, L):
       <div class="filerow" style="align-items:flex-start">
         <span class="ficon">{ic("filetext",22)}</span>
         <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px">
-          <p class="b2" style="font-weight:700;display:flex;align-items:center;gap:6px">{ic("check",14,"#1f7a4d",3)}{S["a_ta_confirmed"]} ・ {{{{tcount}}}} {S["a_ta_unit"]}</p>
+          <p class="b2" style="font-weight:700;display:flex;align-items:center;gap:6px">{ic("check",14,"#1f7a4d",3)}{S["a_ta_confirmed"]} {S["sep"]} {{{{tcount}}}} {S["a_ta_unit"]}</p>
           <p class="b2 muted" style="white-space:pre-wrap;max-height:88px;overflow:hidden">{{{{ttext}}}}</p>
         </div>
         <button class="btn neutral" style="height:36px;font-size:13px" onClick="{{{{edit}}}}">{S["a_ta_edit"]}</button>
@@ -1081,13 +1081,13 @@ def resubmit(S, L):
         n = i + 1
         if kind == "good":
             prev += f'''<div class="chk" style="cursor:default"><span class="st" style="width:22px;height:22px;border-radius:50%;background:#e6f5ee;color:#1f7a4d;display:flex;align-items:center;justify-content:center;flex:0 0 22px;margin-top:1px">{ic("check",13,"currentColor",3)}</span>
-        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#1f7a4d;color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">{n}</i>{S["labels"][kind]} ・ {crit}</b><span class="cap">{S["r_keep"]}</span></div></div>'''
+        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#1f7a4d;color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">{n}</i>{S["labels"][kind]} {S["sep"]} {crit}</b><span class="cap">{S["r_keep"]}</span></div></div>'''
         else:
             prev += f'''<button class="chk {{{{k{n}}}}}" onClick="{{{{tk{n}}}}}"><span class="box">{ic("check",13,"#fff",3)}</span>
-        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:{"#395ad2" if kind=="ask" else "#d13842"};color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">{n}</i>{S["labels"][kind]} ・ {crit}</b><span class="cap">{quote}</span></div></button>'''
+        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:{"#395ad2" if kind=="ask" else "#d13842"};color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">{n}</i>{S["labels"][kind]} {S["sep"]} {crit}</b><span class="cap">{quote}</span></div></button>'''
     selfchips = "".join(f'<button class="chip pick {{{{s{i}}}}}" onClick="{{{{ts{i}}}}}">{lbl}</button>' for i, lbl in enumerate(S["r_self"]))
     body = header(S, "06-Resubmit", S["r_title"], crumb=S["a_crumb"], back_href=fn("04-Feedback",L),
-                  right_extra=f'<span class="chip wait" style="height:28px">{ic("refresh",14)}{S["r_h"]} ・ {S["r_due"]}</span>') + f'''
+                  right_extra=f'<span class="chip wait" style="height:28px">{ic("refresh",14)}{S["r_h"]} {S["sep"]} {S["r_due"]}</span>') + f'''
 <div class="body" style="display:flex;gap:16px;overflow:hidden">
   <section class="pane" style="flex:0.95 1 0">
     <div class="pane-h"><p class="sub1">{S["r_prev_h"]}</p><span class="cap">{S["r_prev_sub"]}</span></div>
@@ -1468,7 +1468,7 @@ def m_type(S, L):
       <div class="filerow" style="align-items:flex-start">
         <span class="ficon" style="background:#eef1ff;color:#395ad2">{ic("filetext",22)}</span>
         <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px">
-          <p class="b2" style="font-weight:700;display:flex;align-items:center;gap:6px">{ic("check",14,"#1f7a4d",3)}{S["a_ta_confirmed"]} ・ {{{{tcount}}}} {S["a_ta_unit"]}</p>
+          <p class="b2" style="font-weight:700;display:flex;align-items:center;gap:6px">{ic("check",14,"#1f7a4d",3)}{S["a_ta_confirmed"]} {S["sep"]} {{{{tcount}}}} {S["a_ta_unit"]}</p>
           <p class="b2 muted" style="white-space:pre-wrap;max-height:110px;overflow:hidden">{{{{ttext}}}}</p>
         </div>
       </div>
@@ -1667,6 +1667,8 @@ TCSS = """
 .tuser .av{width:34px;height:34px;border-radius:50%;background:#e2e4ea;color:#5a5f70;display:flex;align-items:center;justify-content:center;font-weight:700;flex:0 0 34px}
 .tmain{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;background:#fff}
 .thead{flex:0 0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 32px 8px}
+.thright{flex:0 0 auto;display:flex;align-items:center;gap:12px}
+.troot .seg{flex:0 0 auto}
 .th1{font-size:22px;line-height:30px;font-weight:700;margin:0}
 .tcrumb{font-size:12px;line-height:16px;color:rgba(28,30,44,.6);margin:0 0 4px}
 .testing{border:1px solid #d13842;color:#d13842;border-radius:1000px;font-size:11px;font-weight:700;padding:3px 12px;letter-spacing:.04em}
@@ -1837,7 +1839,7 @@ TEN = dict(
     t_lang="en",
     t_nav=["Dashboard", "AI Tutor", "Student", "Course", "Learning Material", "Lesson", "Calendar", "Notification", "Staff"],
     t_nav_sub=["Book Management", "Study Plan Stats", "Content bank"],
-    t_user="HTN Admin (LMS 2.0)", t_user_sub="LMS 2.0 · 集団 (+6) · Tokyo", t_testing="FOR TESTING",
+    t_user="HTN Admin (LMS 2.0)", t_user_sub="LMS 2.0 · Group (+6) · Tokyo", t_testing="FOR TESTING",
     t_book="Regional & Environmental Statistics — Textbook (2026)", t_crumb="Learning Material / Book Management",
     t_chapter="Session 7 · Data analysis and hypothesis testing", t_topic="7-1 · Correlation analysis",
     t_lo_video="Session 7 lecture video", t_lo_doc="Session 7 lecture slides (PDF)", t_lo_fb="Session 7 exercise report",
@@ -1876,7 +1878,7 @@ TEN = dict(
     t_det_title="Session 7 exercise report", t_det_type="AI Feedback",
     t_tabs=["Overview", "Submissions", "Settings"],
     t_s_sum="Settings", t_sum=[("Window", "6 Nov 09:00 — 13 Nov 23:59"), ("Resubmission", "until 20 Nov 23:59"),
-                               ("Submission", "File · Photos · Typed"), ("Teacher review", "On (before返却 is sent)"),
+                               ("Submission", "File · Photos · Typed"), ("Teacher review", "On — before it is returned"),
                                ("Requirements", "5"), ("Criteria", "6")],
     t_s_status="Submissions", t_st1="Submitted", t_st1_n="12 / 30", t_st1_s="12 of 30 students have submitted",
     t_st2="Waiting for you", t_st2_n="12", t_st2_s="Drafts are ready. Review them and return", t_st3="Returned", t_st3_n="9 / 30", t_st3_s="Returned to 9 of 30 students",
@@ -1930,10 +1932,12 @@ def tnav(S, active_sub=0):
   <div class="tuser"><span class="av">H</span><span style="min-width:0"><b style="font-size:13px;display:block">{S["t_user"]}</b><i style="font-style:normal;font-size:11px;color:rgba(28,30,44,.6)">{S["t_user_sub"]}</i></span></div>
 </nav>'''
 
-def thead(S, title, crumb=None, right=""):
+def thead(S, screen, title, crumb=None, right=""):
     c = f'<p class="tcrumb">{crumb}</p>' if crumb else ""
     r = right or f'<span class="testing">{S["t_testing"]}</span>'
-    return f'<div class="thead"><div style="min-width:0">{c}<h1 class="th1">{title}</h1></div>{r}</div>'
+    # 日本語 / English sits top-right, ahead of whatever else the screen puts there.
+    return (f'<div class="thead"><div style="min-width:0">{c}<h1 class="th1">{title}</h1></div>'
+            f'<div class="thright">{lang_toggle(S, screen)}{r}</div></div>')
 
 def tpage(S, screen, title, body, logic="renderVals(){ return {}; }"):
     return f'''<!doctype html>
@@ -1962,7 +1966,7 @@ class Component extends DCLogic {{
 def t_book(S, L):
     types = "".join(f'<div class="tmi{" hl" if i == 0 else ""}">{t}</div>' for i, t in enumerate(S["t_types"]))
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, S["t_book"], crumb=S["t_crumb"])}
+{thead(S, "T-Book", S["t_book"], crumb=S["t_crumb"])}
 <div class="tbody">
   <div class="tbox tree">
     <div class="trow"><span class="nm">{ic("down",18,"rgba(28,30,44,.45)")}<b>{S["t_chapter"]}</b></span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
@@ -2008,7 +2012,7 @@ def t_form(S, L):
         + (f'<br><span class="thint">{S["t_how_limit"]}</span>' if i == 2 else "") + '</span></button>'
         for i, label in enumerate(S["t_how"]))
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, S["t_form_title"], crumb=S["t_form_crumb"])}
+{thead(S, "T-Form", S["t_form_title"], crumb=S["t_form_crumb"])}
 <div class="tbody">
   <div class="tcard">
     <p class="tsec">{S["t_s_basic"]}</p>
@@ -2036,7 +2040,7 @@ def t_form(S, L):
     <div class="tswrow">
       <button class="tsw {{{{rv}}}}" onClick="{{{{toggleRv}}}}" aria-label="{S["t_review_on"]}"><i></i></button>
       <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 auto">
-        <p class="tsec">{S["t_s_review"]} ・ {S["t_review_on"]}</p>
+        <p class="tsec">{S["t_s_review"]} {S["sep"]} {S["t_review_on"]}</p>
         <sc-if value="{{{{rvOn}}}}" hint-placeholder-val="{{{{true}}}}"><p class="thint">{S["t_review_body"]}</p></sc-if>
         <sc-if value="{{{{rvOff}}}}" hint-placeholder-val="{{{{false}}}}"><p class="thint" style="color:#8a6400;display:flex;gap:6px">{ic("alert",14,"#8a6400")}{S["t_review_off"]}</p></sc-if>
       </div>
@@ -2057,12 +2061,12 @@ def t_material(S, L):
         f'<span class="x">{ic("x",16)}</span></div>' for c, src in S["t_conds"])
     crits = "".join(f'<span class="tst grey" style="height:28px;font-size:12px;padding:0 12px">{c}<span style="color:rgba(28,30,44,.35)">{ic("x",12)}</span></span>' for c in S["t_crits"])
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, S["t_mat_title"], crumb=S["t_form_crumb"])}
+{thead(S, "T-Material", S["t_mat_title"], crumb=S["t_form_crumb"])}
 <div class="tbody">
   <div class="tcard">
     <p class="tsec">{S["t_s_mat"]}</p>
     <p class="thint">{S["t_mat_note"]}</p>
-    <div class="tdrop">{ic("upload",18)}{S["t_drop"]}<span style="color:rgba(28,30,44,.5);font-weight:400">・ {S["t_drop_types"]}</span></div>
+    <div class="tdrop">{ic("upload",18)}{S["t_drop"]}<span style="color:rgba(28,30,44,.5);font-weight:400">{S["sep"]} {S["t_drop_types"]}</span></div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       <span class="tfile"><span class="ic" style="background:#fbe7e9;color:#d13842">{ic("filetext",16)}</span>{S["t_file1"]}<span style="color:rgba(28,30,44,.4)">{ic("x",14)}</span></span>
       <span class="tfile"><span class="ic" style="background:#e3edfb;color:#1976d2">{ic("filetext",16)}</span>{S["t_file2"]}<span style="color:rgba(28,30,44,.4)">{ic("x",14)}</span></span>
@@ -2100,7 +2104,7 @@ def t_detail(S, L):
     tabs = f'<span class="on">{S["t_tabs"][0]}</span><a href="{tfn("T-List",L)}">{S["t_tabs"][1]}</a><a href="{tfn("T-Form",L)}">{S["t_tabs"][2]}</a>'
     rows = "".join(f'<div class="titem"><span style="flex:0 0 190px;color:rgba(28,30,44,.6)">{k}</span><b style="font-weight:500">{v}</b></div>' for k, v in S["t_sum"])
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, S["t_det_title"], crumb=S["t_form_crumb"],
+{thead(S, "T-Detail", S["t_det_title"], crumb=S["t_form_crumb"],
        right=f'<span style="display:flex;gap:12px;align-items:center"><span class="tst amber">{ic("sparkle",12)}{S["t_det_type"]}</span><span class="tst green">{S["t_pub"]}</span><a class="tbtn out" href="{tfn("T-Form",L)}">{S["t_edit"]}</a></span>')}
 <div class="tbody">
   <div class="ttab">{tabs}</div>
@@ -2133,7 +2137,7 @@ def t_list(S, L):
                  f'<span class="c3"><span class="tst {tone[st]}">{label}</span></span>'
                  f'<span class="c4">{act}</span></div>')
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, S["t_list_title"], crumb=S["t_form_crumb"],
+{thead(S, "T-List", S["t_list_title"], crumb=S["t_form_crumb"],
        right=f'<span style="display:flex;gap:12px;align-items:center"><span class="thint">{S["t_bulk_note"]}</span><span class="tbtn out">{S["t_bulk"]}</span></span>')}
 <div class="tbody">
   <div class="ttab"><a href="{tfn("T-Detail",L)}">{S["t_tabs"][0]}</a><span class="on">{S["t_tabs"][1]}</span><a href="{tfn("T-Form",L)}">{S["t_tabs"][2]}</a></div>
@@ -2164,7 +2168,7 @@ def t_review(S, L):
       <div class="tdacts"><span class="tbtn ghost sm">{ic("filetext",14)}{S["t_rev_edit"]}</span><span class="tbtn ghost sm" style="color:#d13842">{ic("x",14)}{S["t_rev_drop"]}</span></div>
     </div>'''
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, S["t_rev_title"], crumb=S["t_rev_meta"],
+{thead(S, "T-Review", S["t_rev_title"], crumb=S["t_rev_meta"],
        right=f'<span class="tst red">{ic("eye",12)}{S["t_rev_hidden"]}</span>')}
 <div class="tbody" style="padding-bottom:16px">
   <div class="tpanes">
