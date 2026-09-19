@@ -1803,6 +1803,9 @@ TCSS = """
 .field .in .gr{margin-left:auto;color:rgba(0,0,0,.54);flex:0 0 auto}
 .field.focus .in{border-color:#2196F3;box-shadow:inset 0 0 0 1px #2196F3}
 .helper{font-size:12px;color:#757575;margin-top:4px;display:block;line-height:1.5}
+.tinput{height:40px;padding:0 14px;border:1px solid #BDBDBD;border-radius:4px;font:inherit;font-size:14px;color:#212121;flex:1 1 auto;min-width:0;background:#fff}
+.tinput:focus{outline:0;border-color:#2196F3;box-shadow:inset 0 0 0 1px #2196F3}
+.tinput::placeholder{color:#9E9E9E}
 /* settings list */
 .settings-list{display:flex;flex-direction:column}
 .settings-list>.setting+.setting{margin-top:12px;padding-top:12px;border-top:1px dashed #E0E0E0}
@@ -1934,7 +1937,7 @@ TJA = dict(
     t_conds=[("散布図が含まれている", "課題説明 p.1"), ("相関係数が記載されている", "課題説明 p.1"),
              ("有意性の検定が記載されている", "課題説明 p.2"), ("参照した講義資料の記載", "評価基準 2.(3)"),
              ("ページ数 2枚程度", "課題説明 p.1")],
-    t_add_cond="条件を追加", t_req_toggle="提出前に条件を確認する",
+    t_add_cond="条件を追加", t_req_ph="例：データの出典が記載されている", t_req_src_me="先生が追加", t_add="追加", t_req_toggle="提出前に条件を確認する",
     t_req_off="オフのとき、条件は生徒に表示されず、提出時の確認も行いません。",
     t_s_crit="コメントの観点（ルーブリック）",
     t_crit_note="提出物はこの観点に沿って読まれ、各コメントには対応する観点が付きます。",
@@ -2002,7 +2005,7 @@ TEN = dict(
     t_conds=[("A scatter plot is included", "brief p.1"), ("The correlation coefficient is stated", "brief p.1"),
              ("The test of significance is stated", "brief p.2"), ("The lecture material is cited", "criteria 2.(3)"),
              ("About 2 pages", "brief p.1")],
-    t_add_cond="Add a requirement", t_req_toggle="Check requirements before submission",
+    t_add_cond="Add a requirement", t_req_ph="e.g. The data source is cited", t_req_src_me="Added by you", t_add="Add", t_req_toggle="Check requirements before submission",
     t_req_off="Off: the requirements are not shown to the student and nothing is checked at submission.",
     t_s_crit="Comment criteria (rubric)",
     t_crit_note="Each submission is read against these criteria, and every comment is tagged with the one it concerns.",
@@ -2250,15 +2253,38 @@ def lo_head(S, L, screen, tab, pub):
   </div>
   <div class="tabs">{tabs}</div>'''
 
-TMAT_LOGIC = """state = { req: true };
+TMAT_LOGIC = """state = { req: true, adding: false, draft: "", r: [true, true, true, true, true], a: ["", "", ""] };
   renderVals() {
-    return { rq: this.state.req ? "on" : "", rqOn: this.state.req, rqOff: !this.state.req,
-             toggleRq: () => this.setState({ req: !this.state.req }) };
+    const v = { rq: this.state.req ? "on" : "", rqOn: this.state.req, rqOff: !this.state.req,
+                toggleRq: () => this.setState({ req: !this.state.req }),
+                adding: this.state.adding, draft: this.state.draft,
+                addDis: this.state.draft.trim() ? "" : "dis",
+                startAdd: () => this.setState({ adding: true }),
+                cancelAdd: () => this.setState({ adding: false, draft: "" }),
+                onDraft: (e) => this.setState({ draft: e.target.value || "" }),
+                commitAdd: () => {
+                  const t = this.state.draft.trim(); if (!t) return;
+                  const a = this.state.a.slice(); const i = a.indexOf("");
+                  if (i >= 0) a[i] = t;
+                  this.setState({ a, adding: false, draft: "" });
+                } };
+    this.state.r.forEach((on, i) => { v["r" + i] = on; v["d" + i] = () => { const r = this.state.r.slice(); r[i] = false; this.setState({ r }); }; });
+    this.state.a.forEach((t, j) => { v["a" + j + "on"] = !!t; v["a" + j] = t; v["da" + j] = () => { const a = this.state.a.slice(); a[j] = ""; this.setState({ a }); }; });
+    return v;
   }"""
 
 def t_material(S, L):
-    conds = "".join(f'<div class="titem">{mi("checkCircle", 20, "#4CAF50")}<span>{c}</span><span class="src">{s}</span><span class="ticon sm">{mi("close", 16)}</span></div>'
-                    for c, s in S["t_conds"])
+    conds = "".join(f'<sc-if value="{{{{r{i}}}}}" hint-placeholder-val="{{{{true}}}}"><div class="titem">{mi("checkCircle", 20, "#4CAF50")}<span>{c}</span><span class="src">{s}</span>'
+                    f'<button class="ticon sm" onClick="{{{{d{i}}}}}" aria-label="{S["t_rev_drop"]}">{mi("close", 16)}</button></div></sc-if>'
+                    for i, (c, s) in enumerate(S["t_conds"]))
+    # rows the teacher adds by hand, up to three in the prototype
+    conds += "".join(f'<sc-if value="{{{{a{j}on}}}}" hint-placeholder-val="{{{{false}}}}"><div class="titem">{mi("checkCircle", 20, "#4CAF50")}<span>{{{{a{j}}}}}</span><span class="src">{S["t_req_src_me"]}</span>'
+                     f'<button class="ticon sm" onClick="{{{{da{j}}}}}" aria-label="{S["t_rev_drop"]}">{mi("close", 16)}</button></div></sc-if>' for j in range(3))
+    conds += f'''<sc-if value="{{{{adding}}}}" hint-placeholder-val="{{{{false}}}}"><div class="titem" style="gap:8px;border-bottom:0;padding-top:12px">
+            <input id="req-new" class="tinput" placeholder="{S["t_req_ph"]}" defaultValue="{{{{draft}}}}" onInput="{{{{onDraft}}}}">
+            <button class="tbtn contained sm {{{{addDis}}}}" onClick="{{{{commitAdd}}}}">{S["t_add"]}</button>
+            <button class="tbtn sm" onClick="{{{{cancelAdd}}}}">{S["t_cancel"]}</button>
+          </div></sc-if>'''
     rubric = "".join(f"<li><b>{n}</b> — {d}</li>" for n, d in S["t_rubric"])
     body = tnav(S) + f'''<div class="tmain">
 <div class="tscroll" style="padding-bottom:20px">
@@ -2280,7 +2306,7 @@ def t_material(S, L):
       <div class="ph"><h3>{S["t_s_cond"]}</h3>
         <span style="display:flex;align-items:center;gap:16px">
           <button class="switch {{{{rq}}}}" onClick="{{{{toggleRq}}}}"><span class="track"></span><span>{S["t_req_toggle"]}</span></button>
-          <sc-if value="{{{{rqOn}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tbtn sm">{mi("add", 18)}{S["t_add_cond"]}</span></sc-if>
+          <sc-if value="{{{{rqOn}}}}" hint-placeholder-val="{{{{true}}}}"><button class="tbtn sm" onClick="{{{{startAdd}}}}">{mi("add", 18)}{S["t_add_cond"]}</button></sc-if>
         </span></div>
       <sc-if value="{{{{rqOn}}}}" hint-placeholder-val="{{{{true}}}}"><div class="pb" style="padding-top:8px"><p class="helper" style="margin:0 0 6px">{S["t_cond_note"]}</p>{conds}</div></sc-if>
       <sc-if value="{{{{rqOff}}}}" hint-placeholder-val="{{{{false}}}}"><div class="pb"><p class="helper" style="margin:0">{S["t_req_off"]}</p></div></sc-if>
