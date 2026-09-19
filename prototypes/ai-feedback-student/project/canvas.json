@@ -295,47 +295,55 @@
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T1 · Book Management — add the Feedback LO type (JA)",
+      "title": "T1 · Book detail — the tree, Add LO (JA)",
       "is_interactive": true
     },
-    "T-Form.dc.html": {
+    "T-Dialog.dc.html": {
       "x": 1520,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T2 · LO settings — dates, submission, teacher review (JA)",
+      "title": "T2 · Add Learning Objective — AI Feedback type, its settings (JA)",
       "is_interactive": true
     },
-    "T-Material.dc.html": {
+    "T-Created.dc.html": {
       "x": 3040,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T3 · Material — extract the checklist and the criteria (JA)",
+      "title": "T3 · Created — Unpublished, highlighted in the tree (JA)",
       "is_interactive": true
     },
-    "T-Detail.dc.html": {
+    "T-Material.dc.html": {
       "x": 4560,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T4 · LO overview — who has submitted (JA)",
+      "title": "T4 · LO content — material, requirements, criteria (JA)",
       "is_interactive": true
     },
-    "T-List.dc.html": {
+    "T-Detail.dc.html": {
       "x": 6080,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T5 · Submissions — pick one to review (JA)",
+      "title": "T5 · LO overview — who has submitted (JA)",
       "is_interactive": true
     },
-    "T-Review.dc.html": {
+    "T-List.dc.html": {
       "x": 7600,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T6 · Review and return — the teacher in the loop (JA)",
+      "title": "T6 · Submissions — pick one to review (JA)",
+      "is_interactive": true
+    },
+    "T-Review.dc.html": {
+      "x": 9120,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "T7 · Review and return — the teacher in the loop (JA)",
       "is_interactive": true
     },
     "T-Book-en.dc.html": {
@@ -343,47 +351,55 @@
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T1 · Book Management — add the Feedback LO type (EN)",
+      "title": "T1 · Book detail — the tree, Add LO (EN)",
       "is_interactive": true
     },
-    "T-Form-en.dc.html": {
+    "T-Dialog-en.dc.html": {
       "x": 1520,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T2 · LO settings — dates, submission, teacher review (EN)",
+      "title": "T2 · Add Learning Objective — AI Feedback type, its settings (EN)",
       "is_interactive": true
     },
-    "T-Material-en.dc.html": {
+    "T-Created-en.dc.html": {
       "x": 3040,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T3 · Material — extract the checklist and the criteria (EN)",
+      "title": "T3 · Created — Unpublished, highlighted in the tree (EN)",
       "is_interactive": true
     },
-    "T-Detail-en.dc.html": {
+    "T-Material-en.dc.html": {
       "x": 4560,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T4 · LO overview — who has submitted (EN)",
+      "title": "T4 · LO content — material, requirements, criteria (EN)",
       "is_interactive": true
     },
-    "T-List-en.dc.html": {
+    "T-Detail-en.dc.html": {
       "x": 6080,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T5 · Submissions — pick one to review (EN)",
+      "title": "T5 · LO overview — who has submitted (EN)",
       "is_interactive": true
     },
-    "T-Review-en.dc.html": {
+    "T-List-en.dc.html": {
       "x": 7600,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T6 · Review and return — the teacher in the loop (EN)",
+      "title": "T6 · Submissions — pick one to review (EN)",
+      "is_interactive": true
+    },
+    "T-Review-en.dc.html": {
+      "x": 9120,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "T7 · Review and return — the teacher in the loop (EN)",
       "is_interactive": true
     }
   },
@@ -499,20 +515,18 @@
       "y": 3860
     },
     "title_t": {
-      "kind": "title1",
-      "maxW": 6000,
-      "text": "Back Office — the teacher sets this up inside Book Management: add the Feedback LO type → dates, submission and review → material and checklist → overview → review and return · 日本語",
-      "w": 240,
       "x": 0,
-      "y": 5100
+      "y": 5100,
+      "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → created, Unpublished → LO content → overview → submissions → review and return · 日本語",
+      "kind": "title1",
+      "maxW": 7520
     },
     "title_t_en": {
-      "kind": "title1",
-      "maxW": 6000,
-      "text": "Same Back Office flow in English",
-      "w": 240,
       "x": 0,
-      "y": 6760
+      "y": 6760,
+      "text": "Same Back Office flow in English",
+      "kind": "title1",
+      "maxW": 7520
     },
     "n_role": {
       "maxH": 240,
@@ -592,46 +606,53 @@
       "y": 3772
     },
     "t1": {
-      "maxH": 460,
-      "text": "TEACHER, BACK OFFICE. This is the live LMS 2.0 Back Office screen the PM sent: 教材 ／ ブック管理, the chapter → topic → LO tree, and the Add Learning Objective dialog. The override (PM, 19 Sep) is here: AI Feedback is no longer a separate class-and-assignment area, it is one more LO TYPE in this list, created where the teacher already builds the course. Everything the old teacher dashboard did (assignment title, message, files, rubric) becomes the settings of this LO, on the next two screens. The six existing types are unchanged; the highlighted NEW row is the addition. Click it →",
-      "w": 640,
       "x": 0,
-      "y": 6360
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →"
     },
     "t2": {
-      "maxH": 460,
-      "text": "The settings the PM named, in the order the teacher fills them. (a) 公開と提出期間: a start date — the LO appears in the student's To-do then — and a due date; until the due date the student submits and replaces, and only after it does the teacher review, which is exactly what the student screens promise (see the student row above). 再提出を許可する is the toggle behind the resubmission loop (default off in the product; shown on here so the flow is visible). (b) 提出方法: which of file / photos / typed the assignment accepts — the Back Office setting the student screens M6 / M7 depend on; the 500-character limit rides with 直接入力. (c) 先生の確認: the teacher-in-the-loop toggle. On, the draft waits for the teacher (T6). Off, it is returned automatically after the due date, and the amber note says so plainly — toggle it to see. Nothing in either case tells the student that AI was involved. Toggles and checkboxes work in the prototype.",
-      "w": 640,
       "x": 1520,
-      "y": 6360
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, the amber alert says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →"
     },
     "t3": {
-      "maxH": 460,
-      "text": "Where the pre-submission checklist comes from (PM, 19 Sep: 'based on what was setup/extracted from teacher's content'). The teacher uploads the material they already have — the assignment brief, the marking criteria — and 教材から抽出する reads them. 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)), so the teacher can see why a condition is there and delete or add one. These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate from the conditions: conditions gate the submission, criteria shape the comments; neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen.",
-      "w": 640,
       "x": 3040,
-      "y": 6360
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "What Confirm does in production, and so here: the dialog closes, the tree re-renders with the new row highlighted (just-created), the snackbar says so, and the LO is UNPUBLISHED — a new learning material always starts that way, and publishing is a separate action on the row's ⋮ menu or the LO page. The old design's 'save and publish' at creation is gone. The type tile is a distinct review-comment icon, not the sparkle: on this tree the sparkle means AI Tutor. Click the new row →"
     },
     "t4": {
-      "maxH": 460,
-      "text": "The LO once it is published, which is where the old Figma 'assignment detail' lands after the override: not a page in a separate assignments area but the LO's own overview inside the book. The three cards are the Figma Started / Snaps / Completed analysis cards, re-cut for this flow: 提出済み, 確認待ち (the queue the teacher-in-the-loop toggle creates), 返却済み. Below them, the settings as a summary so the teacher can check the dates and the review setting without reopening the form.",
-      "w": 640,
       "x": 4560,
-      "y": 6360
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "The LO's own page, reached from the tree exactly as a regular LO is opened to author its questions. Content tab, still Unpublished, Publish top-right. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 教材から抽出する, and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate: conditions gate the submission, criteria shape the comments, neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen."
     },
     "t5": {
-      "maxH": 460,
-      "text": "The queue. One row per student with the submission time and the state; 確認する opens the review screen. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, with a note recommending they look first — it is deliberately a secondary action, because the whole point of the toggle on T2 is that the teacher, not the model, returns the feedback.",
-      "w": 640,
       "x": 6080,
-      "y": 6360
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "The same LO page once published, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog."
     },
     "t6": {
-      "maxH": 460,
-      "text": "The teacher in the loop, the screen the review toggle leads to. Left: what the student submitted. Right: the draft comments, each with its criterion, the passage it points at, and 編集 / 削除 — an edited one is marked, and the count at the bottom says how much the teacher changed. Plus the teacher's own ひとこと, which is what the student sees at the top of the returned screen. 生徒には未公開 is stated on the pane so there is no doubt about what has gone out. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the toggle off, this screen is skipped entirely and the draft is returned as it is.",
-      "w": 640,
       "x": 7600,
-      "y": 6360
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "Submissions tab: the Back Office table (index column, header dividers, pagination). One row per student with the submission time and state; 確認する opens the review. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, deliberately outlined not contained, with a note recommending they look first — the whole point of the switch on T2 is that the teacher, not the model, returns the feedback."
+    },
+    "t7": {
+      "x": 9120,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "The teacher in the loop, the screen the review switch leads to. Left: what the student submitted. Right: the draft comments, each with its criterion, the passage it points at, and Edit / Delete — an edited one is marked and the count at the bottom says how much the teacher changed — then the teacher's own ひとこと, which the student sees at the top of the returned screen. 生徒には未公開 is stated in the header so there is no doubt about what has gone out. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off, this screen is skipped and the draft is returned as it is."
     }
   },
   "order": [
@@ -672,13 +693,15 @@
     "M-Feedback-en.dc.html",
     "M-Sheet-en.dc.html",
     "T-Book.dc.html",
-    "T-Form.dc.html",
+    "T-Dialog.dc.html",
+    "T-Created.dc.html",
     "T-Material.dc.html",
     "T-Detail.dc.html",
     "T-List.dc.html",
     "T-Review.dc.html",
     "T-Book-en.dc.html",
-    "T-Form-en.dc.html",
+    "T-Dialog-en.dc.html",
+    "T-Created-en.dc.html",
     "T-Material-en.dc.html",
     "T-Detail-en.dc.html",
     "T-List-en.dc.html",

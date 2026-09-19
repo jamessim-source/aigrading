@@ -16,7 +16,7 @@ https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE
 | PC · English | same, `-en` suffix | 1280 × 800 |
 | Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
 | Mobile · English | same, `-en` suffix | 375 × 812 |
-| Back Office · 日本語 | `T-Book` → `T-Form` → `T-Material` → `T-Detail` → `T-List` → `T-Review` | 1440 × 900 |
+| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Created` → `T-Material` → `T-Detail` → `T-List` → `T-Review` | 1440 × 900 |
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
@@ -71,18 +71,25 @@ overridden: AI Feedback is set up inside **Book Management**, where the teacher
 already builds the course.
 
 - **AI Feedback is one more LO type** in the Add Learning Objective dialog,
-  alongside Learning Objective / Flashcard / Recording / Practice / External
-  Content / Paper Submission. Everything the old dashboard held — title, message
-  to the student, files, rubric — becomes settings on that LO.
+  alongside Random Activity / Learning Objective / Flash Card / Recording
+  Assignment / Practice Submission / External Content. As in production
+  (`DialogCreateLearningMaterial`, fields per type via `getVisibleFieldsByLMType`),
+  the whole LO is created inside that one dialog — General Info, then Settings —
+  and Confirm creates it **Unpublished**, highlighted in the tree. Publishing is
+  a separate action; there is no "save and publish" at creation.
+- The Back Office chrome follows the `manabieV5` theme and the `BookDetail`
+  accordion tree from `school-portal-admin` (checked on 2026-09-19 against the
+  prototype generated from that code); the nav follows the live LMS 2.0 tenant.
 - **Dates**: a start date (the LO appears in the student's To-do then) and a due
   date. The student submits and replaces until the due date; the teacher reviews
   after it. Resubmission is a separate toggle with its own date, default off.
 - **Submission methods**: which of file / photos / typed the LO accepts, with the
   500-character limit attached to typed.
-- **Pre-submission checklist**: extracted from the teacher's own material (the
-  brief, the marking criteria) and editable, every condition carrying the source
-  it came from. Conditions gate the submission; the rubric criteria shape the
-  comments. Neither carries a score.
+- **Pre-submission checklist**: on the LO's own page (opened from the tree, as a
+  regular LO is opened to author its questions), extracted from the teacher's own
+  material (the brief, the marking criteria) and editable, every condition
+  carrying the source it came from. Conditions gate the submission; the rubric
+  criteria shape the comments. Neither carries a score.
 - **Teacher in the loop**: a toggle. On, the draft waits for the teacher to
   review, edit and return it. Off, feedback is returned automatically after the
   due date. Either way the student is never told AI was involved.

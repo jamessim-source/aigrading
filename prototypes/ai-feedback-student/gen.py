@@ -1644,145 +1644,273 @@ MBUILDERS = {"M-Main": m_main, "M-Assignment": m_assignment, "M-Camera": m_camer
              "M-Pending": m_pending, "M-Feedback": lambda S, L: m_feedback(S, L, 0), "M-Sheet": lambda S, L: m_feedback(S, L, 2)}
 
 # ======================= TEACHER / BACK OFFICE (1440 x 900) =======================
-# Chrome recreated from the live LMS 2.0 Back Office (Learning Material → Book Management),
-# with the AI Feedback flow from the Teacher dashboard Figma folded into the LO, instead of
-# the separate class + assignment it used to live in.
+# Layout, labels and components follow the production Back Office (school-portal-admin,
+# syllabus squad): the manabieV5 theme tokens, the Book detail accordion tree, and
+# DialogCreateLearningMaterial, whose fields are chosen per LO type. AI Feedback is one
+# more LO type in that dialog; its settings are the new part. The nav follows the live
+# LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one.
+
+# MUI filled icon paths (24 viewBox), as the Back Office renders them.
+MI = {
+    "dashboard": "M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z",
+    "aiTutor": "M17 1.01 7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-5-2.5 1.09-2.41L15.5 13l-2.41-1.09L12 9.5l-1.09 2.41L8.5 13l2.41 1.09L12 16.5z",
+    "library": "M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z",
+    "reader": "M13 12h7v1.5h-7zm0-2.5h7V11h-7zm0 5h7V16h-7zM21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15h-9V6h9v13z",
+    "people": "M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z",
+    "video": "M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-5-6-7 4V7z",
+    "event": "M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z",
+    "bell": "M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z",
+    "person": "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z",
+    "more": "M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z",
+    "add": "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z",
+    "up": "M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z",
+    "down": "M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z",
+    "expandMore": "M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z",
+    "expandLess": "M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+    "collapseL": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4-9h-6V8l-4 4 4 4v-3h6v-2z",
+    "close": "M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z",
+    "lo": "M12 3 1 9l11 6 9-4.91V17h2V9L12 3z",
+    "link": "M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z",
+    "flash": "M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10-4h2v2h-2zm-6 0h4v2h-4z",
+    "mic": "M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z",
+    "checks": "M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.09 12L7.5 9.59 8.91 8.18l3 3 5.59-5.59L18.91 7 11.91 14zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z",
+    "shuffle": "M10.59 9.17 5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z",
+    "spark": "M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z",
+    # the AI Feedback type: MUI RateReview, distinct from the AI Tutor sparkle
+    "rateReview": "M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z",
+    "lock": "M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z",
+    "info": "M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z",
+    "warning": "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z",
+    "calendar": "M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z",
+    "cloudUp": "M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z",
+    "eye": "M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z",
+    "eyeOff": "M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78 3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z",
+    "check": "M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z",
+    "checkCircle": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z",
+    "schedule": "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z",
+    "description": "M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z",
+    "back": "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
+    "autorenew": "M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z",
+    "edit": "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
+    "del": "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z",
+    "send": "M2.01 21 23 12 2.01 3 2 10l15 2-15 2z",
+    "assignment": "M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z",
+    "globe": "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z",
+}
+def mi(name, size=24, color="currentColor"):
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="{color}" aria-hidden="true" '
+            f'style="flex-shrink:0;display:block"><path d="{MI[name]}"/></svg>')
+
+# manabieV5 tokens: src/styles/themes/variants/manabieV5.ts
 TCSS = """
-.troot{width:1440px;height:900px;display:flex;overflow:hidden;background:#fff;font-family:'Noto Sans JP',system-ui,sans-serif;color:rgba(28,30,44,.87);position:relative}
-.tnav{width:256px;flex:0 0 256px;border-right:1px solid rgba(28,30,44,.1);display:flex;flex-direction:column;background:#fff}
-.tlogo{height:64px;flex:0 0 64px;display:flex;align-items:center;gap:10px;padding:0 16px;font-size:17px;font-weight:700}
-.tlogo .m{width:32px;height:32px;border-radius:8px;background:#1976d2;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;flex:0 0 32px}
-.tlogo .c{margin-left:auto;color:rgba(28,30,44,.38)}
-.tnav-b{flex:1 1 auto;overflow:auto;padding:6px 0}
-.tn{display:flex;align-items:center;gap:12px;padding:9px 16px;font-size:13px;line-height:18px;color:rgba(28,30,44,.72);white-space:nowrap}
-.tn .ch{margin-left:auto;color:rgba(28,30,44,.38)}
-.tn.sub{padding:7px 16px 7px 46px;font-size:13px;position:relative}
-.tn.sub::before{content:"";position:absolute;left:30px;top:15px;width:4px;height:4px;border-radius:50%;background:rgba(28,30,44,.32)}
-.tn.on{background:#eceef3;font-weight:700;color:rgba(28,30,44,.87)}
-.tn.on::before{background:#1976d2}
-.tuser{flex:0 0 auto;border-top:1px solid rgba(28,30,44,.1);padding:10px 16px;display:flex;align-items:center;gap:10px}
-/* prototype-only role pill: in the nav column, in flow, so it covers nothing */
+.troot{width:1440px;height:900px;display:flex;overflow:hidden;background:#fff;color:#212121;position:relative;
+  font-family:Roboto,'Noto Sans JP',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.43;letter-spacing:.15px}
+.troot a{color:#2196F3;text-decoration:none}
+/* drawer */
+.tnav{width:260px;flex:0 0 260px;background:#FAFAFA;border-right:1px solid #E0E0E0;display:flex;flex-direction:column;min-height:0}
+.torg{height:64px;flex:0 0 64px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;gap:8px}
+.torg .id{display:flex;align-items:center;gap:12px;min-width:0}
+.torg .mark{width:32px;height:32px;border-radius:8px;background:#2196F3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex:0 0 32px}
+.torg .name{font-weight:600;font-size:18px;color:rgba(0,0,0,.87);white-space:nowrap}
+.ticon{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:rgba(0,0,0,.54);flex:0 0 auto;background:transparent;border:0;padding:0;cursor:pointer}
+.ticon.sm{width:30px;height:30px}
+.ticon.primary{color:#2196F3}
+.ticon.dis{color:#BDBDBD}
+.tmenu-b{flex:1 1 auto;overflow:auto;padding-bottom:8px;min-height:0}
+.tn{display:flex;align-items:center;min-height:48px;padding:4px 0;color:#424242;position:relative}
+.tn .mi{width:60px;flex:0 0 60px;display:flex;align-items:center;justify-content:center;color:#9E9E9E}
+.tn .lb{font-size:14px;line-height:1.43;padding-right:28px}
+.tn .caret{position:absolute;right:16px;color:rgba(0,0,0,.54)}
+.tn.child{min-height:36px}
+.tn.child .mi::before{content:"";width:6px;height:6px;border-radius:50%;background:#9E9E9E}
+.tn.on{background:#1976D21F}
+.tn.on .lb,.tn.branch .lb{color:rgba(0,0,0,.87)}
+.tn.on .mi,.tn.branch .mi{color:#0B79D0}
+.tn.on.child .mi::before{background:#0B79D0}
+.tuser{flex:0 0 auto;border-top:1px solid #E0E0E0;padding:10px 16px;display:flex;align-items:center;gap:10px}
+.tuser .tav{width:32px;height:32px;border-radius:50%;background:#E3F2FD;color:#0B79D0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex:0 0 32px}
+/* prototype-only pills: the role switch sits in the drawer, in flow, so it covers nothing */
 .troot .dev{position:static;flex:0 0 auto;margin:0 10px 10px;display:flex;justify-content:center;flex-wrap:wrap;gap:2px;box-shadow:none}
 .troot .dev-i{height:24px;padding:0 8px;font-size:11px;gap:4px}
-.tuser .av{width:34px;height:34px;border-radius:50%;background:#e2e4ea;color:#5a5f70;display:flex;align-items:center;justify-content:center;font-weight:700;flex:0 0 34px}
-.tmain{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;background:#fff}
-.thead{flex:0 0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 32px 8px}
-.thright{flex:0 0 auto;display:flex;align-items:center;gap:12px}
-.troot .seg{flex:0 0 auto}
-.th1{font-size:22px;line-height:30px;font-weight:700;margin:0}
-.tcrumb{font-size:12px;line-height:16px;color:rgba(28,30,44,.6);margin:0 0 4px}
-.testing{border:1px solid #d13842;color:#d13842;border-radius:1000px;font-size:11px;font-weight:700;padding:3px 12px;letter-spacing:.04em}
-.tbody{flex:1 1 auto;overflow:auto;padding:8px 32px 22px;display:flex;flex-direction:column;gap:14px}
-.tbox{border:1px solid rgba(28,30,44,.14);border-radius:6px;background:#fff;overflow:hidden}
-.tbox.tree{border-left:3px solid #1976d2}
-.trow{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid rgba(28,30,44,.08);font-size:14px}
-.trow:last-child{border-bottom:0}
-.trow .nm{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:10px}
-.trow .acts{display:flex;align-items:center;gap:14px;color:rgba(28,30,44,.45);flex:0 0 auto}
-.trow.ind{padding-left:46px}.trow.ind2{padding-left:80px}
-.tcirc{width:28px;height:28px;border-radius:50%;background:#e8f2e9;display:flex;align-items:center;justify-content:center;color:#3c8c4e;flex:0 0 28px}
-.tsq{width:28px;height:28px;border-radius:6px;background:#e3edfb;display:flex;align-items:center;justify-content:center;color:#1976d2;flex:0 0 28px}
-.tsq.fb{background:#fff3cc;color:#8a6400}
-.tadd{padding:10px 16px 12px;display:flex;align-items:center;gap:8px;color:#1976d2;font-size:14px;font-weight:700}
-.tadd.out{border:1px dashed rgba(28,30,44,.24);border-radius:6px;justify-content:center;padding:14px}
-.tst{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
-.tst.grey{background:#eceef3;color:rgba(28,30,44,.6)}
-.tst.blue{background:#e3edfb;color:#1976d2}
-.tst.green{background:#e8f5ec;color:#2e7d43}
-.tst.amber{background:#fff3cc;color:#8a6400}
-.tst.red{background:#fbe7e9;color:#d13842}
-.tbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 18px;border-radius:4px;border:0;background:#1976d2;color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap}
-.tbtn:hover{background:#155fa8;color:#fff}
-.tbtn.out{background:#fff;border:1px solid rgba(28,30,44,.24);color:rgba(28,30,44,.87)}
-.tbtn.out:hover{background:#f5f5f7;color:rgba(28,30,44,.87)}
-.tbtn.ghost{background:none;color:#1976d2;padding:0 10px}
-.tbtn.ghost:hover{background:#e3edfb;color:#1976d2}
-.tbtn.dis{background:rgba(28,30,44,.12);color:rgba(28,30,44,.38);cursor:default}
-.tbtn.sm{height:30px;padding:0 12px;font-size:12px}
-.tcard{background:#fff;border:1px solid rgba(28,30,44,.14);border-radius:8px;padding:16px 24px;display:flex;flex-direction:column;gap:12px}
-.tsec{font-size:15px;line-height:22px;font-weight:700;margin:0}
-.thint{font-size:12px;line-height:18px;color:rgba(28,30,44,.6);margin:0}
-.tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.tf{display:flex;flex-direction:column;gap:6px;min-width:0}
-.tf label{font-size:12px;line-height:16px;color:rgba(28,30,44,.6)}
-.tin{border:1px solid rgba(28,30,44,.24);border-radius:4px;min-height:42px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px;background:#fff}
-.tin.area{min-height:72px;align-items:flex-start;padding:10px 12px;line-height:22px;display:block}
-.tin .ph{color:rgba(28,30,44,.4)}
-.tin .gr{margin-left:auto;color:rgba(28,30,44,.45);flex:0 0 auto}
-.tsw{width:42px;height:24px;border-radius:12px;background:#c7c7cc;position:relative;flex:0 0 42px;border:0;padding:0;cursor:pointer}
-.tsw.on{background:#1976d2}
-.tsw i{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;display:block}
-.tsw.on i{left:21px}
-.tswrow{display:flex;align-items:flex-start;gap:14px}
-.tck{width:18px;height:18px;border-radius:3px;border:2px solid rgba(28,30,44,.32);display:flex;align-items:center;justify-content:center;color:#fff;flex:0 0 18px;margin-top:1px}
-.tck.on{background:#1976d2;border-color:#1976d2}
-.tchk{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:20px;background:none;border:0;padding:0;font-family:inherit;color:inherit;text-align:left;cursor:pointer}
-.titem{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid rgba(28,30,44,.08);font-size:14px;line-height:20px}
+.troot .seg{flex:0 0 auto;border-color:#E0E0E0;font-family:inherit}
+.troot .seg-i{color:#757575;font-weight:500}
+.troot .seg-i.on{background:#EDF7FE;color:#0B79D0}
+/* main */
+.tmain{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;overflow:hidden;background:#fff;position:relative}
+.tmain>.tscroll{flex:1 1 auto;overflow:auto;padding:24px 32px 28px}
+.tcrumbs{display:flex;align-items:center;gap:8px;font-size:14px;color:#757575;margin-bottom:8px;flex-wrap:wrap}
+.tcrumbs .sep{color:#BDBDBD}
+.tcrumbs a{color:#757575}
+.tphead{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:24px}
+.tphead h1{font-size:24px;font-weight:500;line-height:1.334;letter-spacing:0;margin:0;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tphead .acts{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.tright{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.testing{display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:11px;border:1px solid #F44336;color:#E31B0C;font-size:11px;font-weight:700;letter-spacing:.06em}
+/* buttons (MUI) */
+.tbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:4px;border:1px solid transparent;
+  background:transparent;font-size:14px;font-weight:500;letter-spacing:.4px;white-space:nowrap;color:#2196F3;cursor:pointer;font-family:inherit}
+.tbtn.contained{background:#2196F3;color:#fff;box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px rgba(0,0,0,.14),0 1px 5px rgba(0,0,0,.12)}
+.tbtn.outlined{border-color:rgba(33,150,243,.5)}
+.tbtn.neutral{color:#757575;border-color:#E0E0E0}
+.tbtn.sm{height:30px;padding:0 10px;font-size:13px}
+.tbtn.dis{color:#BDBDBD;background:#EEEEEE;box-shadow:none;cursor:default}
+.tbtn.danger{color:#E31B0C}
+/* chips */
+.tchip{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:12px;font-size:12px;line-height:1;border:1px solid #E0E0E0;color:#212121;background:#fff;white-space:nowrap}
+.tchip.filled{border-color:transparent;background:#EEEEEE}
+.tchip.published{background:rgba(76,175,80,.14);border-color:transparent;color:#3B873E}
+.tchip.unpublished{background:#EEEEEE;border-color:transparent;color:#616161}
+.tchip.wait{background:rgba(255,152,0,.16);border-color:transparent;color:#C77700}
+.tchip.type{background:#E3F2FD;border-color:transparent;color:#0B79D0}
+.tchip.new{background:#FFF4E5;border-color:transparent;color:#663C00;font-weight:700;height:18px;padding:0 6px;font-size:10px}
+.tchip.red{background:#FEEBEE;border-color:transparent;color:#C62828}
+/* accordion tree (BookDetail) */
+.acc{border:1px solid rgba(0,0,0,.12);margin-bottom:10px;background:#fff}
+.acc.open{border-left:4px solid #2196F3}
+.acc-sum{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#fff}
+.acc.open>.acc-sum{background:#F5F5F5}
+.acc-sum .title{flex:1 1 auto;font-size:14px;font-weight:500;color:#212121;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acc-sum .tools{display:flex;align-items:center;gap:2px;flex:0 0 auto}
+.acc-body{padding:8px 0 12px}
+.acc.tp{margin:8px 16px 8px 32px}
+.acc.tp.open{border-left:4px solid #64B6F7}
+.acc.tp>.acc-sum{padding:8px 16px}
+.lm-list{list-style:none;margin:0;padding:0 0 0 32px}
+.lm{display:flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:4px}
+.lm .nm{color:#2196F3;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lm-type{width:24px;height:24px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:#E3F2FD;color:#0B79D0}
+.lm .spc{flex:1 1 auto}
+.lm.just-created{background:#EDF7FE;box-shadow:inset 3px 0 0 #2196F3}
+/* dialog */
+.tscrim{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:80;display:flex;align-items:center;justify-content:center;padding:12px}
+.dlg{background:#fff;border-radius:4px;width:100%;max-width:900px;max-height:calc(100% - 24px);display:flex;flex-direction:column;
+  box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)}
+.dlg-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px;border-bottom:1px solid #E0E0E0}
+.dlg-head h2{margin:0;font-size:20px;font-weight:500}
+.dlg-body{padding:20px 24px 16px;overflow:auto;display:flex;flex-direction:column;gap:16px;min-height:0}
+.dlg-foot{display:flex;justify-content:flex-end;gap:8px;padding:8px 24px;border-top:1px solid #E0E0E0}
+.sec-head{font-size:16px;font-weight:500;margin:0 0 14px}
+.lm-section+.lm-section{padding-top:16px;border-top:1px solid #E0E0E0}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 48px}
+.lm-grid .span2{grid-column:1 / -1}
+/* MUI outlined field */
+.field{position:relative;display:block}
+.field>.lbl{position:absolute;left:9px;top:-8px;padding:0 5px;background:#fff;font-size:12px;color:#757575;pointer-events:none;z-index:1;line-height:16px}
+.field>.lbl .req{color:#F44336}
+.field .in{width:100%;height:40px;padding:0 14px;border-radius:4px;border:1px solid #BDBDBD;background:#fff;font-size:14px;color:#212121;display:flex;align-items:center;gap:8px}
+.field .in.ph{color:#9E9E9E}
+.field .in.area{height:auto;min-height:60px;padding:10px 14px;align-items:flex-start;line-height:1.5;display:block}
+.field .in .gr{margin-left:auto;color:rgba(0,0,0,.54);flex:0 0 auto}
+.field.focus .in{border-color:#2196F3;box-shadow:inset 0 0 0 1px #2196F3}
+.helper{font-size:12px;color:#757575;margin-top:4px;display:block;line-height:1.5}
+/* settings list */
+.settings-list{display:flex;flex-direction:column}
+.settings-list>.setting+.setting{margin-top:12px;padding-top:12px;border-top:1px dashed #E0E0E0}
+.setting{display:flex;flex-direction:column;gap:6px}
+.setting .hint{font-size:12px;line-height:1.5;color:#757575;margin:0}
+.setting .eyebrow{font-size:12px;color:#757575}
+.setting-label{font-size:14px;color:#212121}
+/* MUI switch */
+.switch{display:inline-flex;align-items:center;gap:12px;font-size:14px;cursor:pointer;background:none;border:0;padding:4px 0;color:#212121;font-family:inherit;text-align:left}
+.switch .track{position:relative;width:34px;height:14px;border-radius:7px;background:rgba(0,0,0,.38);flex:0 0 auto;margin:0 3px}
+.switch .track::after{content:"";position:absolute;left:-3px;top:-3px;width:20px;height:20px;border-radius:50%;background:#fafafa;
+  box-shadow:0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px rgba(0,0,0,.14),0 1px 3px rgba(0,0,0,.12)}
+.switch.on .track{background:#64B6F7}
+.switch.on .track::after{transform:translateX(17px);background:#2196F3}
+/* MUI checkbox */
+.check{display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;background:none;border:0;padding:3px 0;color:#212121;font-family:inherit;text-align:left}
+.check .cbx{width:18px;height:18px;border:2px solid #9E9E9E;border-radius:2px;background:#fff;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:#fff}
+.check .cbx svg{display:none}
+.check.on .cbx{background:#2196F3;border-color:#2196F3}
+.check.on .cbx svg{display:block}
+/* alert */
+.alert{display:flex;gap:12px;padding:10px 16px;border-radius:4px;font-size:14px;align-items:flex-start;line-height:1.45}
+.alert.info{background:#EDF7FE;color:#0d3c61}
+.alert.warn{background:#FFF4E5;color:#663C00}
+.alert svg{flex:0 0 auto;margin-top:1px}
+/* select menu (MUI Menu paper) */
+.tpop{position:absolute;z-index:90;background:#fff;border-radius:4px;padding:8px 0;min-width:320px;
+  box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}
+.tpop .it{display:flex;align-items:center;gap:10px;padding:8px 16px;font-size:14px;color:#212121;min-height:36px}
+.tpop .it.sel{background:#1976D21F}
+/* snackbar */
+.snack{position:absolute;left:24px;bottom:24px;z-index:120;background:#2E7D32;color:#fff;border-radius:4px;padding:12px 16px;font-size:14px;
+  box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);display:flex;gap:12px;align-items:center;max-width:480px}
+/* tabs */
+.tabs{display:flex;border-bottom:1px solid #E0E0E0;margin-bottom:24px}
+.tab{position:relative;padding:12px 16px;font-size:14px;font-weight:500;letter-spacing:.4px;color:#757575;white-space:nowrap}
+.tab.on{color:#2196F3}
+.tab.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#2196F3}
+/* paper, tables, kv */
+.tpaper{background:#fff;border:1px solid #E0E0E0;border-radius:4px}
+.tpaper .ph{padding:16px 20px;border-bottom:1px solid #E0E0E0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tpaper .ph h3{margin:0;font-size:16px;font-weight:500}
+.tpaper .pb{padding:20px}
+table.m{width:100%;border-collapse:collapse;font-size:14px}
+table.m thead th{position:relative;text-align:left;font-weight:500;color:#212121;padding:12px 16px;border-bottom:1px solid #E0E0E0;white-space:nowrap;background:#fff}
+table.m thead th:not(:last-child)::after{content:"";position:absolute;width:2px;height:14px;right:0;top:50%;transform:translateY(-50%);background:#E0E0E0}
+table.m tbody td{padding:12px 16px;border-bottom:1px solid #E0E0E0;vertical-align:middle;background:#fff}
+table.m tbody tr:last-child td{border-bottom:0}
+.name-cell{display:flex;align-items:center;gap:10px}
+.avatar{width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#E3F2FD;color:#0B79D0;font-size:12px;font-weight:500;flex:0 0 auto}
+.pagination{display:flex;align-items:center;justify-content:flex-end;gap:24px;padding:8px 16px;border-top:1px solid #E0E0E0;font-size:13px;color:#757575}
+.tkv{display:grid;grid-template-columns:200px 1fr;gap:14px 24px;max-width:760px;margin:0}
+.tkv dt{color:#757575;font-size:14px;margin:0}
+.tkv dd{margin:0;font-size:14px}
+/* analysis cards (AI Tutor assignment detail) */
+.analysis{border:1px solid #E0E0E0;border-radius:8px;background:#FAFAFA;padding:16px 20px}
+.analysis h4{margin:0 0 12px;font-size:20px;font-weight:700}
+.analysis .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.metric{background:#fff;border:1px solid #E0E0E0;border-radius:8px;padding:16px}
+.metric.hot{border-color:#FF9800;background:#FFFBF2}
+.metric .m-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.metric .m-lbl{display:flex;align-items:center;gap:6px;font-size:16px;font-weight:700}
+.metric .m-lbl svg{color:rgba(0,0,0,.54)}
+.metric .m-val{background:#424242;color:#fff;border-radius:4px;min-width:32px;text-align:center;padding:2px 8px;font-size:12px;font-variant-numeric:tabular-nums}
+.metric .m-desc{font-size:14px;color:#212121;margin:0 0 12px}
+/* material page bits */
+.tdrop{border:1px dashed #90CAF9;border-radius:4px;background:#EDF7FE;padding:18px 20px;display:flex;align-items:center;justify-content:center;gap:10px;color:#0B79D0;font-weight:500;font-size:14px}
+.tfile{display:inline-flex;align-items:center;gap:10px;border:1px solid #E0E0E0;border-radius:4px;padding:8px 12px 8px 10px;font-size:14px;background:#fff}
+.tfile .fi{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 28px}
+.titem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #E0E0E0;font-size:14px}
 .titem:last-child{border-bottom:0}
-.titem .x{margin-left:auto;color:rgba(28,30,44,.4);flex:0 0 auto}
-.tsrc{font-size:11px;color:rgba(28,30,44,.5);background:#f5f5f7;border-radius:4px;padding:1px 6px;white-space:nowrap}
-.tfile{display:flex;align-items:center;gap:10px;border:1px solid rgba(28,30,44,.14);border-radius:4px;padding:8px 12px;font-size:13px}
-.tfile .ic{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 28px}
-.tdrop{border:1px dashed rgba(25,118,210,.5);background:#f5f9ff;border-radius:6px;padding:18px;display:flex;align-items:center;justify-content:center;gap:10px;color:#1976d2;font-size:13px;font-weight:700}
-.tstat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.tstat .s{border:1px solid rgba(28,30,44,.14);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:6px}
-.tstat .s b{font-size:13px;display:flex;align-items:center;gap:8px}
-.tstat .s .n{font-size:26px;line-height:32px;font-weight:700}
-.tstat .s span{font-size:12px;line-height:17px;color:rgba(28,30,44,.6)}
-.ttab{display:flex;gap:24px;border-bottom:1px solid rgba(28,30,44,.14);padding:0 2px}
-.ttab a,.ttab span{padding:10px 2px;font-size:14px;font-weight:700;color:rgba(28,30,44,.55);border-bottom:2px solid transparent}
-.ttab .on{color:#1976d2;border-bottom-color:#1976d2}
-.tth{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#f7f8fa;border-bottom:1px solid rgba(28,30,44,.12);font-size:12px;font-weight:700;color:rgba(28,30,44,.6)}
-.c1{flex:1 1 auto;min-width:0}.c2{flex:0 0 150px}.c3{flex:0 0 130px}.c4{flex:0 0 120px;text-align:right}
-.tav{width:30px;height:30px;border-radius:50%;background:#e3edfb;color:#1976d2;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 30px}
-/* dialog over the page */
-.tdlg{position:absolute;inset:0;background:rgba(28,30,44,.42);display:flex;align-items:flex-start;justify-content:center;padding-top:96px;z-index:40}
-.tdlg .box{width:880px;background:#fff;border-radius:6px;box-shadow:0 16px 40px rgba(0,0,0,.3);display:flex;flex-direction:column;overflow:hidden}
-.tdlg .h{padding:18px 24px;font-size:18px;font-weight:700;border-bottom:1px solid rgba(28,30,44,.1)}
-.tdlg .b{padding:20px 24px;display:flex;flex-direction:column;gap:14px}
-.tdlg .f{padding:14px 24px;display:flex;align-items:center;justify-content:flex-end;gap:12px;border-top:1px solid rgba(28,30,44,.1)}
-.tsel{border:1px solid #1976d2;border-radius:4px;height:46px;display:flex;align-items:center;padding:0 12px;position:relative}
-.tsel .lb{position:absolute;top:-8px;left:10px;background:#fff;padding:0 4px;font-size:11px;color:#1976d2}
-.tmenu{border:1px solid rgba(28,30,44,.12);border-radius:4px;box-shadow:0 8px 20px rgba(0,0,0,.14);background:#fff;overflow:hidden}
-.tmi{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:14px}
-.tmi.hl{background:#f2f4f8}
-.tmi.new{background:#fffdf5}
-/* two-pane review */
+.titem .src{margin-left:auto;font-size:12px;color:#616161;background:#F5F5F5;border-radius:4px;padding:2px 8px;white-space:nowrap}
+.tcrit{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 6px 0 12px;border-radius:16px;font-size:13px;border:1px solid #E0E0E0;background:#fff;font-weight:500}
+/* review two-pane */
 .tpanes{display:flex;gap:16px;flex:1 1 auto;min-height:0}
-.tpane{flex:1 1 0;border:1px solid rgba(28,30,44,.14);border-radius:8px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
-.tpane .ph{padding:11px 16px;border-bottom:1px solid rgba(28,30,44,.12);display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;font-weight:700;background:#fafbfc}
-.tpane .pb{padding:16px 18px;overflow:auto;flex:1 1 auto}
+.tpane{flex:1 1 0;border:1px solid #E0E0E0;border-radius:4px;display:flex;flex-direction:column;min-height:0;overflow:hidden;background:#fff}
+.tpane .thd{padding:11px 16px;border-bottom:1px solid #E0E0E0;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;font-weight:500;background:#FAFAFA}
+.tpane .tbd{padding:16px 18px;overflow:auto;flex:1 1 auto}
 .traw{font-size:14px;line-height:2;margin:0 0 14px}
-.tdraft{border:1px solid rgba(28,30,44,.14);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:9px;margin-bottom:12px}
-.tdraft.edited{border-color:#1976d2;background:#f7fbff}
-.tdq{margin:0;padding:2px 0 2px 10px;border-left:3px solid #d5d7dd;font-size:13px;line-height:20px;color:rgba(28,30,44,.6)}
+.tdraft{border:1px solid #E0E0E0;border-radius:4px;padding:14px;display:flex;flex-direction:column;gap:9px;margin-bottom:12px}
+.tdraft.edited{border-color:#2196F3;background:#EDF7FE}
+.tdq{margin:0;padding:2px 0 2px 10px;border-left:3px solid #E0E0E0;font-size:13px;line-height:20px;color:#616161}
 .tdb{margin:0;font-size:14px;line-height:1.8;white-space:pre-wrap}
-.tdacts{display:flex;align-items:center;gap:8px;margin-top:2px}
-.tbar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:4px}
+.tdacts{display:flex;align-items:center;gap:4px;margin-top:2px}
+.tbar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 32px 16px;border-top:1px solid #E0E0E0;background:#fff}
+.tbody-flex{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding:24px 32px 16px;overflow:hidden}
 """
 
-# The Back Office boards need the student stylesheet too (shared tokens, the
-# .dev pill, the icons) plus the Back Office rules on top.
 THELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
-           '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">'
+           '<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">'
            f'<style>{CSS}{TCSS}</style></helmet>')
 
 TJA = dict(
-    t_lang="ja",
+    t_lang="ja", t_org="LMS 2.0",
     t_nav=["ダッシュボード", "AIチューター", "生徒", "コース", "教材", "レッスン", "カレンダー", "お知らせ", "スタッフ"],
     t_nav_sub=["ブック管理", "学習計画の統計", "コンテンツバンク"],
     t_user="HTN Admin（LMS 2.0）", t_user_sub="LMS 2.0 ・ 集団（+6）・ 東京", t_testing="FOR TESTING",
-    t_book="地域環境統計学 テキスト（2026年度）", t_crumb="教材 ／ ブック管理",
-    t_chapter="第7回　データの分析と仮説検定", t_topic="7-1　相関分析",
-    t_lo_video="第7回 講義動画", t_lo_doc="第7回 講義資料（PDF）", t_lo_fb="第7回 演習レポート",
-    t_unpub="未公開", t_pub="公開中", t_addlo="LOを追加", t_addtopic="トピックを追加", t_addchapter="チャプターを追加",
-    t_dlg_title="学習目標（LO）を追加", t_dlg_general="基本情報", t_dlg_select="LOタイプを選択 *",
+    t_bm="ブック管理", t_book="地域環境統計学 テキスト（2026年度）", t_pub="公開中", t_unpub="未公開",
+    t_topics="トピック", t_add_chapter="チャプターを追加", t_add_topic="トピックを追加", t_add_lo="LOを追加",
+    t_ch6="第6回　データの整理と代表値", t_ch7="第7回　データの分析と仮説検定", t_ch8="第8回　回帰分析",
+    t_tp71="7-1　相関分析", t_tp72="7-2　仮説検定",
+    t_los=[("第7回 講義動画", "link", False), ("第7回 講義資料", "lo", False), ("第7回 確認クイズ", "lo", True)],
+    t_new_lo="第7回 演習レポート", t_snack="LOを作成しました。",
+    # Add Learning Objective dialog
+    t_dlg_title="学習目標（LO）を追加", t_dlg_general="基本情報", t_dlg_settings="設定", t_dlg_select="LOタイプを選択",
     t_types=["ランダム学習", "学習目標", "フラッシュカード", "録音課題", "演習提出", "外部コンテンツ"],
     t_type_fb="AIフィードバック", t_new="NEW",
-    t_cancel="キャンセル", t_confirm="確定",
-    # create form
-    t_form_title="AIフィードバック LO の設定", t_form_crumb="教材 ／ ブック管理 ／ 第7回 ／ 7-1 相関分析",
-    t_s_basic="基本情報", t_f_name="LO名", t_v_name="第7回 演習レポート",
+    t_f_name="学習目標", t_ph_name="LO名を入力", t_f_ext="外部LO ID", t_ph_ext="英数字のみ",
     t_f_desc="課題の説明（生徒に表示）",
     t_v_desc="総務省「社会生活統計指標」の都道府県別データから2つの変数を選び、Excel で相関係数を求めて散布図を作成してください。結果の解釈と、有意性の確認までを A4 2枚程度にまとめて提出します。",
     t_s_when="公開と提出期間", t_f_start="開始日時", t_v_start="2026/11/06 09:00", t_f_due="締切日時", t_v_due="2026/11/13 23:59",
@@ -1793,9 +1921,10 @@ TJA = dict(
     t_s_review="先生の確認", t_review_on="返却前に先生が確認する",
     t_review_body="下書きは締切のあとに作成され、先生が確認・編集して返却するまで生徒には表示されません。生徒には先生からのフィードバックとして届きます。",
     t_review_off="オフにすると、締切のあと自動で返却されます。確認の手間はなくなりますが、内容を見る前に生徒へ届きます。",
-    t_back="戻る", t_next="保存して次へ：教材と提出条件",
-    # material / checklist
-    t_mat_title="教材と提出条件", t_s_mat="この課題の教材", t_mat_note="アップロードした教材から、提出条件とコメントの観点を抽出します。",
+    t_cancel="キャンセル", t_confirm="確定",
+    # LO page
+    t_lo_tabs=["内容", "概要", "提出一覧", "設定"], t_publish="公開する", t_edit="設定を編集", t_save="保存",
+    t_s_mat="この課題の教材", t_mat_note="アップロードした教材から、提出条件とコメントの観点を抽出します。",
     t_drop="ファイルをドラッグ＆ドロップ、またはファイルを選ぶ", t_drop_types="PDF ・ Word ・ PNG ・ JPG",
     t_file1="第7回_課題説明.pdf", t_file2="評価基準_2026.docx",
     t_extract="教材から抽出する", t_extracted="抽出済み",
@@ -1806,50 +1935,46 @@ TJA = dict(
     t_add_cond="条件を追加", t_s_crit="コメントの観点（ルーブリック）",
     t_crit_note="観点ごとにコメントが付きます。点数は付けません。採点は先生が行います。",
     t_crits=["Excelスキル", "図表の見やすさ", "統計処理", "解釈", "論理構成", "生成AIリテラシー"],
-    t_gen="AIで生成", t_regen="生成し直す", t_add_crit="観点を追加",
-    t_preview="生徒に表示される画面を見る", t_save_pub="保存して公開する",
-    # LO detail
-    t_det_title="第7回 演習レポート", t_det_type="AIフィードバック",
-    t_tabs=["概要", "提出一覧", "設定"],
-    t_s_sum="設定の概要", t_sum=[("提出期間", "11月6日 09:00 — 11月13日 23:59"), ("再提出", "11月20日 23:59 まで"),
-                                 ("提出方法", "ファイル ・ 写真 ・ 直接入力"), ("先生の確認", "あり（返却前に確認）"),
-                                 ("提出条件", "5件"), ("コメントの観点", "6件")],
+    t_regen="生成し直す", t_add_crit="観点を追加", t_preview="生徒に表示される画面を見る",
+    # overview
     t_s_status="提出状況", t_st1="提出済み", t_st1_n="12 / 30", t_st1_s="30人中12人が提出しました",
     t_st2="確認待ち", t_st2_n="12", t_st2_s="下書きができています。確認して返却してください", t_st3="返却済み", t_st3_n="9 / 30", t_st3_s="30人中9人に返却しました",
-    t_open_list="確認する（12件）", t_edit="設定を編集",
-    # submissions list
-    t_list_title="提出一覧 ・ 第7回 演習レポート", t_cols=["生徒", "提出", "状態", ""],
-    t_bulk="すべて承認して返却", t_bulk_note="内容を見てから返却することをおすすめします",
+    t_open_list="確認する（12件）",
+    t_s_sum="設定", t_sum=[("提出期間", "11月6日 09:00 — 11月13日 23:59"), ("再提出", "11月20日 23:59 まで"),
+                            ("提出方法", "ファイル ・ 写真 ・ 直接入力"), ("先生の確認", "あり（返却前に確認）"),
+                            ("提出条件", "5件"), ("コメントの観点", "6件")],
+    # submissions
+    t_cols=["生徒", "提出", "状態", ""], t_bulk="すべて承認して返却", t_bulk_note="内容を見てから返却することをおすすめします",
     t_rows=[("山田 花子", "11月11日 14:32", "wait", "確認待ち"), ("佐藤 太郎", "11月11日 18:05", "wait", "確認待ち"),
             ("鈴木 一郎", "11月12日 08:12", "wait", "確認待ち"), ("田中 美咲", "11月12日 21:40", "done", "返却済み"),
             ("高橋 健", "—", "none", "未提出")],
-    t_review_btn="確認する", t_view="見る",
-    # review one
-    t_rev_title="確認して返却 ・ 山田 花子", t_rev_meta="第7回 演習レポート ・ 11月11日 14:32 提出",
+    t_review_btn="確認する", t_view="見る", t_rows_of="1-5 / 30", t_rows_pp="表示件数:",
+    # review
+    t_rev_title="確認して返却 ・ 山田 花子", t_rev_meta="11月11日 14:32 提出",
     t_rev_hidden="生徒には未公開", t_rev_left="提出物", t_rev_right="フィードバックの下書き",
     t_rev_right_n="3件 ・ 観点つき", t_rev_note_h="先生からのひとこと（任意）",
     t_rev_note="東京都を除いて再計算したところ、よく気づきました。②の点は次回の授業でも取り上げるので、自分の考えを用意しておいてください。",
     t_rev_edited="編集済み", t_rev_edit="編集", t_rev_drop="削除", t_rev_back="差し戻す", t_rev_send="承認して返却する",
     t_rev_count="3件のうち1件を編集しました",
     t_role_t="先生（BO）", t_role_s="生徒画面", t_role_aria="表示する役割",
-    t_titles={"book": "BO — ブック管理（LOタイプ）", "form": "BO — AIフィードバック LO の設定", "mat": "BO — 教材と提出条件",
-              "det": "BO — LO 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却"},
+    t_titles={"book": "BO — ブック管理（ブック詳細）", "dialog": "BO — LOを追加（AIフィードバック）", "created": "BO — 作成後のツリー",
+              "mat": "BO — LO 内容（教材と提出条件）", "det": "BO — LO 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却"},
 )
 TEN = dict(
-    t_lang="en",
+    t_lang="en", t_org="LMS 2.0",
     t_nav=["Dashboard", "AI Tutor", "Student", "Course", "Learning Material", "Lesson", "Calendar", "Notification", "Staff"],
-    t_nav_sub=["Book Management", "Study Plan Stats", "Content bank"],
+    t_nav_sub=["Book", "Study Plan Stats", "Content Bank"],
     t_user="HTN Admin (LMS 2.0)", t_user_sub="LMS 2.0 · Group (+6) · Tokyo", t_testing="FOR TESTING",
-    t_book="Regional & Environmental Statistics — Textbook (2026)", t_crumb="Learning Material / Book Management",
-    t_chapter="Session 7 · Data analysis and hypothesis testing", t_topic="7-1 · Correlation analysis",
-    t_lo_video="Session 7 lecture video", t_lo_doc="Session 7 lecture slides (PDF)", t_lo_fb="Session 7 exercise report",
-    t_unpub="Unpublished", t_pub="Published", t_addlo="Add LO", t_addtopic="Add Topic", t_addchapter="Add Chapter",
-    t_dlg_title="Add Learning Objective", t_dlg_general="General Info", t_dlg_select="Select LO Type *",
+    t_bm="Book Management", t_book="Regional & Environmental Statistics — Textbook (2026)", t_pub="Published", t_unpub="Unpublished",
+    t_topics="Topic(s)", t_add_chapter="Add chapter", t_add_topic="Add topic", t_add_lo="Add LO",
+    t_ch6="Session 6 · Organising data and averages", t_ch7="Session 7 · Data analysis and hypothesis testing", t_ch8="Session 8 · Regression analysis",
+    t_tp71="7-1 · Correlation analysis", t_tp72="7-2 · Hypothesis testing",
+    t_los=[("Session 7 lecture video", "link", False), ("Session 7 lecture slides", "lo", False), ("Session 7 check-up quiz", "lo", True)],
+    t_new_lo="Session 7 exercise report", t_snack="You have created a new LO successfully.",
+    t_dlg_title="Add Learning Objective", t_dlg_general="General Info", t_dlg_settings="Settings", t_dlg_select="Select LO Type",
     t_types=["Random Activity", "Learning Objective", "Flash Card", "Recording Assignment", "Practice Submission", "External Content"],
     t_type_fb="AI Feedback", t_new="NEW",
-    t_cancel="Cancel", t_confirm="Confirm",
-    t_form_title="AI Feedback LO settings", t_form_crumb="Learning Material / Book Management / Session 7 / 7-1 Correlation analysis",
-    t_s_basic="General info", t_f_name="LO name", t_v_name="Session 7 exercise report",
+    t_f_name="Learning Objective", t_ph_name="Enter LO Name", t_f_ext="External LO ID", t_ph_ext="Alphanumeric characters only",
     t_f_desc="Assignment description (shown to students)",
     t_v_desc="Choose two variables from the Statistics Bureau's prefectural social indicators, compute the correlation coefficient in Excel and draw a scatter plot. Submit about two A4 pages covering your interpretation and the test of significance.",
     t_s_when="Availability and submission window", t_f_start="Opens", t_v_start="6 Nov 2026, 09:00", t_f_due="Due", t_v_due="13 Nov 2026, 23:59",
@@ -1860,9 +1985,9 @@ TEN = dict(
     t_s_review="Teacher review", t_review_on="I review the feedback before it is returned",
     t_review_body="The draft is written after the due date and stays hidden until you review, edit and return it. Students receive it as feedback from you.",
     t_review_off="Turn this off and feedback is returned automatically after the due date. No work for you, but it reaches students before you have read it.",
-    t_back="Back", t_next="Save and continue: material and requirements",
-    t_mat_title="Material and requirements", t_s_mat="Material for this assignment",
-    t_mat_note="The submission requirements and the comment criteria are extracted from what you upload.",
+    t_cancel="Cancel", t_confirm="Confirm",
+    t_lo_tabs=["Content", "Overview", "Submissions", "Settings"], t_publish="Publish", t_edit="Edit settings", t_save="Save",
+    t_s_mat="Material for this assignment", t_mat_note="The submission requirements and the comment criteria are extracted from what you upload.",
     t_drop="Drag and drop a file, or choose one", t_drop_types="PDF · Word · PNG · JPG",
     t_file1="Session7_assignment_brief.pdf", t_file2="Marking_criteria_2026.docx",
     t_extract="Extract from the material", t_extracted="Extracted",
@@ -1873,71 +1998,72 @@ TEN = dict(
     t_add_cond="Add a requirement", t_s_crit="Comment criteria (rubric)",
     t_crit_note="Comments are tagged with these criteria. No levels, no score — you do the grading.",
     t_crits=["Excel skills", "Clarity of charts", "Statistical processing", "Interpretation", "Logical structure", "Generative-AI literacy"],
-    t_gen="Generate with AI", t_regen="Regenerate", t_add_crit="Add a criterion",
-    t_preview="Preview what the student sees", t_save_pub="Save and publish",
-    t_det_title="Session 7 exercise report", t_det_type="AI Feedback",
-    t_tabs=["Overview", "Submissions", "Settings"],
+    t_regen="Regenerate", t_add_crit="Add a criterion", t_preview="Preview what the student sees",
+    t_s_status="Submissions", t_st1="Submitted", t_st1_n="12 / 30", t_st1_s="12 of 30 students have submitted",
+    t_st2="Waiting for you", t_st2_n="12", t_st2_s="Drafts are ready. Review them and return", t_st3="Returned", t_st3_n="9 / 30", t_st3_s="Returned to 9 of 30 students",
+    t_open_list="Review (12)",
     t_s_sum="Settings", t_sum=[("Window", "6 Nov 09:00 — 13 Nov 23:59"), ("Resubmission", "until 20 Nov 23:59"),
                                ("Submission", "File · Photos · Typed"), ("Teacher review", "On — before it is returned"),
                                ("Requirements", "5"), ("Criteria", "6")],
-    t_s_status="Submissions", t_st1="Submitted", t_st1_n="12 / 30", t_st1_s="12 of 30 students have submitted",
-    t_st2="Waiting for you", t_st2_n="12", t_st2_s="Drafts are ready. Review them and return", t_st3="Returned", t_st3_n="9 / 30", t_st3_s="Returned to 9 of 30 students",
-    t_open_list="Review (12)", t_edit="Edit settings",
-    t_list_title="Submissions · Session 7 exercise report", t_cols=["Student", "Submitted", "Status", ""],
-    t_bulk="Approve and return all", t_bulk_note="Reading them first is the safer habit",
+    t_cols=["Student", "Submitted", "Status", ""], t_bulk="Approve and return all", t_bulk_note="Reading them first is the safer habit",
     t_rows=[("Hanako Yamada", "11 Nov, 14:32", "wait", "Waiting for you"), ("Taro Sato", "11 Nov, 18:05", "wait", "Waiting for you"),
             ("Ichiro Suzuki", "12 Nov, 08:12", "wait", "Waiting for you"), ("Misaki Tanaka", "12 Nov, 21:40", "done", "Returned"),
             ("Ken Takahashi", "—", "none", "Not submitted")],
-    t_review_btn="Review", t_view="View",
-    t_rev_title="Review and return · Hanako Yamada", t_rev_meta="Session 7 exercise report · submitted 11 Nov, 14:32",
+    t_review_btn="Review", t_view="View", t_rows_of="1-5 of 30", t_rows_pp="Rows per page:",
+    t_rev_title="Review and return · Hanako Yamada", t_rev_meta="submitted 11 Nov, 14:32",
     t_rev_hidden="Not visible to the student", t_rev_left="Submission", t_rev_right="Draft feedback",
     t_rev_right_n="3 comments · with criteria", t_rev_note_h="A word from you (optional)",
     t_rev_note="Good catch recalculating without Tokyo. We will come back to point ② in the next class, so have your own view ready.",
     t_rev_edited="Edited", t_rev_edit="Edit", t_rev_drop="Delete", t_rev_back="Send back", t_rev_send="Approve and return",
     t_rev_count="1 of 3 comments edited",
-    t_role_t="Teacher (BO)", t_role_s="Student",
-    t_role_aria="Role",
-    t_titles={"book": "BO — Book Management (LO type)", "form": "BO — AI Feedback LO settings", "mat": "BO — Material and requirements",
-              "det": "BO — LO overview", "list": "BO — Submissions", "rev": "BO — Review and return"},
+    t_role_t="Teacher (BO)", t_role_s="Student", t_role_aria="Role shown",
+    t_titles={"book": "BO — Book Management (book detail)", "dialog": "BO — Add LO (AI Feedback)", "created": "BO — Tree after creating",
+              "mat": "BO — LO content (material and requirements)", "det": "BO — LO overview", "list": "BO — Submissions", "rev": "BO — Review and return"},
 )
 JA.update(TJA); EN.update(TEN)
 
-TSCREENS = ["T-Book", "T-Form", "T-Material", "T-Detail", "T-List", "T-Review"]
+TSCREENS = ["T-Book", "T-Dialog", "T-Created", "T-Material", "T-Detail", "T-List", "T-Review"]
 
 def tfn(screen, lang):
     return f"{screen}.dc.html" if lang == "ja" else f"{screen}-en.dc.html"
 
 def role_toggle(S):
     """Prototype-only: jump between the teacher's Back Office and the student's screen.
-    It sits in the left nav rather than floating, so it never covers the page's own
-    buttons the way the student screens' PC / Mobile pill can afford to."""
+    It sits in the drawer, in flow, so it never covers the page's own controls."""
     L = S["t_lang"]
     student = f'<a class="dev-i" href="{fn("Main", L)}">{S["t_role_s"]}</a>'
     teacher = f'<span class="dev-i on">{S["t_role_t"]}</span>'
     return f'<div class="dev" role="group" aria-label="{S["t_role_aria"]}">{teacher}{student}</div>'
 
-def tnav(S, active_sub=0):
-    icons = ["grid", "sparkle", "person", "book", "filetext", "play", "calendar", "bell", "person"]
+def tnav(S):
+    """The drawer, as the live LMS 2.0 tenant shows it; 教材 › ブック管理 is the active branch."""
+    icons = ["dashboard", "aiTutor", "people", "library", "reader", "video", "event", "bell", "person"]
+    groups = {2, 3, 4, 5, 7, 8}
     out = ""
     for i, label in enumerate(S["t_nav"]):
-        chev = f'<span class="ch">{ic("down",14)}</span>' if i in (2, 3, 4, 5, 7, 8) else ""
-        out += f'<div class="tn">{ic(icons[i],20,"rgba(28,30,44,.55)",1.7)}{label}{chev}</div>'
+        branch = " branch" if i == 4 else ""
+        caret = f'<span class="caret">{mi("expandLess" if i == 4 else "expandMore", 20)}</span>' if i in groups else ""
+        out += f'<div class="tn{branch}"><span class="mi">{mi(icons[i], 22)}</span><span class="lb">{label}</span>{caret}</div>'
         if i == 4:
             for j, sub in enumerate(S["t_nav_sub"]):
-                out += f'<div class="tn sub{" on" if j == active_sub else ""}">{sub}</div>'
+                out += f'<div class="tn child{" on" if j == 0 else ""}"><span class="mi"></span><span class="lb">{sub}</span></div>'
     return f'''<nav class="tnav">
-  <div class="tlogo"><span class="m">m</span>LMS 2.0<span class="c">{ic("left",18)}</span></div>
-  <div class="tnav-b">{out}</div>
+  <div class="torg"><div class="id"><span class="mark">m</span><span class="name">{S["t_org"]}</span></div><span class="ticon">{mi("collapseL", 24)}</span></div>
+  <div class="tmenu-b">{out}</div>
   {role_toggle(S)}
-  <div class="tuser"><span class="av">H</span><span style="min-width:0"><b style="font-size:13px;display:block">{S["t_user"]}</b><i style="font-style:normal;font-size:11px;color:rgba(28,30,44,.6)">{S["t_user_sub"]}</i></span></div>
+  <div class="tuser"><span class="tav">H</span><span style="min-width:0"><b style="font-size:13px;display:block;font-weight:500">{S["t_user"]}</b><i style="font-style:normal;font-size:11px;color:#757575">{S["t_user_sub"]}</i></span></div>
 </nav>'''
 
-def thead(S, screen, title, crumb=None, right=""):
-    c = f'<p class="tcrumb">{crumb}</p>' if crumb else ""
-    r = right or f'<span class="testing">{S["t_testing"]}</span>'
-    # 日本語 / English sits top-right, ahead of whatever else the screen puts there.
-    return (f'<div class="thead"><div style="min-width:0">{c}<h1 class="th1">{title}</h1></div>'
-            f'<div class="thright">{lang_toggle(S, screen)}{r}</div></div>')
+def tcrumbs(S, screen, parts):
+    """Breadcrumb as the Back Office renders it (Book Management / Book / …), with the
+    日本語 / English toggle and the tenant's FOR TESTING chip on the right."""
+    items = []
+    for i, (label, href) in enumerate(parts):
+        if i: items.append('<span class="sep">/</span>')
+        items.append(f'<a href="{href}">{label}</a>' if href else f'<span>{label}</span>')
+    return (f'<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">'
+            f'<div class="tcrumbs">{"".join(items)}</div>'
+            f'<div class="tright">{lang_toggle(S, screen)}<span class="testing">{S["t_testing"]}</span></div></div>')
 
 def tpage(S, screen, title, body, logic="renderVals(){ return {}; }"):
     return f'''<!doctype html>
@@ -1963,194 +2089,241 @@ class Component extends DCLogic {{
 </html>
 '''
 
-def t_book(S, L):
-    types = "".join(f'<div class="tmi{" hl" if i == 0 else ""}">{t}</div>' for i, t in enumerate(S["t_types"]))
-    body = tnav(S) + f'''<div class="tmain">
-{thead(S, "T-Book", S["t_book"], crumb=S["t_crumb"])}
-<div class="tbody">
-  <div class="tbox tree">
-    <div class="trow"><span class="nm">{ic("down",18,"rgba(28,30,44,.45)")}<b>{S["t_chapter"]}</b></span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
-    <div class="trow ind"><span class="nm">{ic("down",18,"rgba(28,30,44,.45)")}<span class="tcirc">{ic("book",16)}</span>{S["t_topic"]}</span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
-    <div class="trow ind2"><span class="nm"><span class="tsq">{ic("play",16)}</span>{S["t_lo_video"]}<span class="tst green">{S["t_pub"]}</span></span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
-    <div class="trow ind2"><span class="nm"><span class="tsq">{ic("filetext",16)}</span>{S["t_lo_doc"]}<span class="tst green">{S["t_pub"]}</span></span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
-    <div class="tadd" style="padding-left:80px">{ic("plus",18)}{S["t_addlo"]}</div>
-    <div class="tadd" style="padding-left:46px">{ic("plus",18)}{S["t_addtopic"]}</div>
-  </div>
-  <div class="tadd out">{ic("plus",18)}{S["t_addchapter"]}</div>
-</div>
-</div>
-<div class="tdlg">
-  <div class="box">
-    <div class="h">{S["t_dlg_title"]}</div>
-    <div class="b">
-      <p class="tsec">{S["t_dlg_general"]}</p>
-      <div class="tsel"><span class="lb">{S["t_dlg_select"]}</span><span class="gr" style="margin-left:auto">{ic("down",18,"rgba(28,30,44,.5)")}</span></div>
-      <div class="tmenu">
-        {types}
-        <a class="tmi new" href="{tfn("T-Form",L)}"><span class="tsq fb" style="width:24px;height:24px">{ic("sparkle",14)}</span><b>{S["t_type_fb"]}</b><span class="tst amber">{S["t_new"]}</span>{ic("right",16,"#1976d2",2.4)}</a>
-      </div>
-    </div>
-    <div class="f"><span class="tbtn ghost">{S["t_cancel"]}</span><span class="tbtn dis">{S["t_confirm"]}</span></div>
-  </div>
-</div>'''
-    return tpage(S, "T-Book", S["t_titles"]["book"], body)
+def tools(*names):
+    return "".join(f'<span class="ticon sm{" dis" if n.endswith("!") else ""}">{mi(n.rstrip("!"), 18)}</span>' for n in names)
 
-TFORM_LOGIC = """state = { review: true, m0: true, m1: true, m2: true, resub: true };
+def lm_row(S, L, name, kind, ai=False, pub="published", created=False, href=None):
+    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview"}[kind]
+    nm = f'<a class="nm" href="{href}">{name}</a>' if href else f'<span class="nm">{name}</span>'
+    spark = f'<span class="ticon sm primary" title="AI Tutor">{mi("spark", 16)}</span>' if ai else ""
+    chip = f'<span class="tchip {pub}">{S["t_pub"] if pub == "published" else S["t_unpub"]}</span>'
+    return (f'<li class="lm{" just-created" if created else ""}"><span class="lm-type">{mi(icon, 16)}</span>{nm}{spark}{chip}'
+            f'<span class="spc"></span><span class="ticon sm">{mi("more", 18)}</span></li>')
+
+def book_tree(S, L, created=False, add_href=None):
+    """BookDetail: chapter accordions → topic accordions → learning-material rows."""
+    rows = "".join(lm_row(S, L, n, k, ai) for n, k, ai in S["t_los"])
+    if created:
+        rows += lm_row(S, L, S["t_new_lo"], "fb", False, "unpublished", created=True, href=tfn("T-Material", L))
+    add_lo = (f'<a class="tbtn sm" href="{add_href}">{mi("add", 18)}{S["t_add_lo"]}</a>' if add_href
+              else f'<span class="tbtn sm">{mi("add", 18)}{S["t_add_lo"]}</span>')
+    def chapter(name, n, open_, body=""):
+        return f'''<div class="acc{" open" if open_ else ""}">
+      <div class="acc-sum"><span class="title">{name}</span><span class="tools"><span class="tchip filled">{n} {S["t_topics"]}</span>{tools("up", "down", "more")}</span></div>
+      {f'<div class="acc-body">{body}</div>' if open_ else ""}
+    </div>'''
+    topic_open = f'''<div class="acc tp open">
+        <div class="acc-sum"><span class="title">{S["t_tp71"]}</span><span class="tools">{tools("up!", "down", "more")}</span></div>
+        <div class="acc-body">
+          <ul class="lm-list">{rows}</ul>
+          <div style="padding:4px 0 0 40px">{add_lo}</div>
+        </div>
+      </div>
+      <div class="acc tp">
+        <div class="acc-sum"><span class="title">{S["t_tp72"]}</span><span class="tools">{tools("up", "down!", "more")}</span></div>
+      </div>
+      <div style="padding:4px 0 0 32px"><span class="tbtn sm">{mi("add", 18)}{S["t_add_topic"]}</span></div>'''
+    return chapter(S["t_ch6"], 2, False) + chapter(S["t_ch7"], 2, True, topic_open) + chapter(S["t_ch8"], 1, False)
+
+def book_page(S, L, screen, created=False, add_href=None, extra=""):
+    body = tnav(S) + f'''<div class="tmain">
+<div class="tscroll">
+  {tcrumbs(S, screen, [(S["t_bm"], "#"), (S["t_book"], None)])}
+  <div class="tphead">
+    <h1>{S["t_book"]}<span class="tchip published">{S["t_pub"]}</span></h1>
+    <div class="acts"><span class="tbtn contained">{mi("add", 18)}{S["t_add_chapter"]}</span><span class="ticon">{mi("more", 24)}</span></div>
+  </div>
+  {book_tree(S, L, created=created, add_href=add_href)}
+</div>
+{extra}
+</div>'''
+    return body
+
+def t_book(S, L):
+    return tpage(S, "T-Book", S["t_titles"]["book"], book_page(S, L, "T-Book", add_href=tfn("T-Dialog", L)))
+
+def t_created(S, L):
+    snack = f'<div class="snack" role="status">{mi("checkCircle", 20)}{S["t_snack"]}</div>'
+    return tpage(S, "T-Created", S["t_titles"]["created"], book_page(S, L, "T-Created", created=True, add_href=tfn("T-Dialog", L), extra=snack))
+
+TDLG_LOGIC = """state = { menu: false, review: true, resub: true, m0: true, m1: true, m2: true };
   renderVals() {
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {
+      menuOpen: this.state.menu, toggleMenu: t("menu"),
       rv: this.state.review ? "on" : "", rvOn: this.state.review, rvOff: !this.state.review, toggleRv: t("review"),
+      rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
       c0: this.state.m0 ? "on" : "", c1: this.state.m1 ? "on" : "", c2: this.state.m2 ? "on" : "",
       t0: t("m0"), t1: t("m1"), t2: t("m2"),
-      rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
     };
   }"""
 
-def t_form(S, L):
+def field(label, value, required=False, placeholder=False, area=False, icon=None, extra=""):
+    req = ' <span class="req">*</span>' if required else ""
+    gr = f'<span class="gr">{mi(icon, 20)}</span>' if icon else ""
+    cls = "in" + (" ph" if placeholder else "") + (" area" if area else "")
+    return f'<label class="field"><span class="lbl">{label}{req}</span><span class="{cls}"{extra}>{value}{gr}</span></label>'
+
+def t_dialog(S, L):
+    # the type select: MUI Select rendered closed with AI Feedback chosen; click opens the option list
+    types = "".join(f'<div class="it">{t}</div>' for t in S["t_types"])
+    menu = f'''<sc-if value="{{{{menuOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tpop" style="left:0;top:44px;width:100%">
+        {types}
+        <div class="it sel"><span class="lm-type" style="width:22px;height:22px">{mi("rateReview", 14)}</span><b>{S["t_type_fb"]}</b><span class="tchip new">{S["t_new"]}</span></div>
+      </div></sc-if>'''
+    select = f'''<div style="position:relative">
+      <button class="field" style="width:100%;text-align:left;background:none;border:0;padding:0;font:inherit;cursor:pointer" onClick="{{{{toggleMenu}}}}">
+        <span class="lbl" style="color:#2196F3">{S["t_dlg_select"]} <span class="req">*</span></span>
+        <span class="in" style="border-color:#2196F3;box-shadow:inset 0 0 0 1px #2196F3">{S["t_type_fb"]}<span class="gr">{mi("expandMore", 22)}</span></span>
+      </button>{menu}</div>'''
     how = "".join(
-        f'<button class="tchk" onClick="{{{{t{i}}}}}"><span class="tck {{{{c{i}}}}}">{ic("check",12,"currentColor",3)}</span><span>{label}'
-        + (f'<br><span class="thint">{S["t_how_limit"]}</span>' if i == 2 else "") + '</span></button>'
+        f'<button class="check {{{{c{i}}}}}" onClick="{{{{t{i}}}}}"><span class="cbx">{mi("check", 14, "#fff")}</span><span>{label}'
+        + (f'<span class="helper" style="margin:0">{S["t_how_limit"]}</span>' if i == 2 else "") + '</span></button>'
         for i, label in enumerate(S["t_how"]))
-    body = tnav(S) + f'''<div class="tmain">
-{thead(S, "T-Form", S["t_form_title"], crumb=S["t_form_crumb"])}
-<div class="tbody">
-  <div class="tcard">
-    <p class="tsec">{S["t_s_basic"]}</p>
-    <div class="tf"><label>{S["t_f_name"]}</label><div class="tin">{S["t_v_name"]}</div></div>
-    <div class="tf"><label>{S["t_f_desc"]}</label><div class="tin area">{S["t_v_desc"]}</div></div>
-  </div>
-  <div class="tcard">
-    <p class="tsec">{S["t_s_when"]}</p>
-    <div class="tgrid">
-      <div class="tf"><label>{S["t_f_start"]}</label><div class="tin">{S["t_v_start"]}<span class="gr">{ic("calendar",18)}</span></div></div>
-      <div class="tf"><label>{S["t_f_due"]}</label><div class="tin">{S["t_v_due"]}<span class="gr">{ic("calendar",18)}</span></div></div>
-    </div>
-    <p class="thint">{S["t_when_note"]}</p>
-    <div class="tswrow" style="align-items:center">
-      <button class="tsw {{{{rs}}}}" onClick="{{{{toggleRs}}}}" aria-label="{S["t_f_resub"]}"><i></i></button>
-      <span style="font-size:14px">{S["t_f_resub"]}</span>
-      <sc-if value="{{{{rsOn}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tin" style="height:34px;min-height:34px;font-size:13px">{S["t_v_resub"]}<span class="gr">{ic("calendar",16)}</span></span></sc-if>
-    </div>
-  </div>
-  <div class="tcard">
-    <p class="tsec">{S["t_s_how"]}</p>
-    <div style="display:flex;flex-direction:column;gap:12px">{how}</div>
-  </div>
-  <div class="tcard">
-    <div class="tswrow">
-      <button class="tsw {{{{rv}}}}" onClick="{{{{toggleRv}}}}" aria-label="{S["t_review_on"]}"><i></i></button>
-      <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 auto">
-        <p class="tsec">{S["t_s_review"]} {S["sep"]} {S["t_review_on"]}</p>
-        <sc-if value="{{{{rvOn}}}}" hint-placeholder-val="{{{{true}}}}"><p class="thint">{S["t_review_body"]}</p></sc-if>
-        <sc-if value="{{{{rvOff}}}}" hint-placeholder-val="{{{{false}}}}"><p class="thint" style="color:#8a6400;display:flex;gap:6px">{ic("alert",14,"#8a6400")}{S["t_review_off"]}</p></sc-if>
+    dialog = f'''<div class="tscrim">
+  <div class="dlg">
+    <div class="dlg-head"><h2>{S["t_dlg_title"]}</h2><a class="ticon" href="{tfn("T-Book", L)}" aria-label="{S["t_cancel"]}">{mi("close", 24)}</a></div>
+    <div class="dlg-body">
+      <div class="lm-section">
+        <h3 class="sec-head">{S["t_dlg_general"]}</h3>
+        <div class="lm-grid">
+          {select}
+          {field(S["t_f_name"], S["t_new_lo"], required=True)}
+          <div class="span2">{field(S["t_f_desc"], S["t_v_desc"], area=True)}</div>
+          {field(S["t_f_ext"], S["t_ph_ext"], placeholder=True)}
+        </div>
+      </div>
+      <div class="lm-section">
+        <h3 class="sec-head">{S["t_dlg_settings"]}</h3>
+        <div class="settings-list">
+          <div class="setting">
+            <span class="setting-label" style="font-weight:500">{S["t_s_when"]}</span>
+            <div class="lm-grid" style="margin-top:10px">
+              {field(S["t_f_start"], S["t_v_start"], icon="calendar")}
+              {field(S["t_f_due"], S["t_v_due"], icon="calendar")}
+            </div>
+            <p class="hint">{S["t_when_note"]}</p>
+            <div style="display:flex;align-items:center;gap:16px;margin-top:4px">
+              <button class="switch {{{{rs}}}}" onClick="{{{{toggleRs}}}}"><span class="track"></span><span>{S["t_f_resub"]}</span></button>
+              <sc-if value="{{{{rsOn}}}}" hint-placeholder-val="{{{{true}}}}"><span class="in" style="display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid #BDBDBD;border-radius:4px;font-size:13px">{S["t_v_resub"]}{mi("calendar", 16, "rgba(0,0,0,.54)")}</span></sc-if>
+            </div>
+          </div>
+          <div class="setting">
+            <span class="setting-label" style="font-weight:500">{S["t_s_how"]}</span>
+            <div style="display:flex;flex-direction:column;gap:2px;margin-top:4px">{how}</div>
+          </div>
+          <div class="setting">
+            <span class="setting-label" style="font-weight:500">{S["t_s_review"]}</span>
+            <button class="switch {{{{rv}}}}" onClick="{{{{toggleRv}}}}"><span class="track"></span><span>{S["t_review_on"]}</span></button>
+            <sc-if value="{{{{rvOn}}}}" hint-placeholder-val="{{{{true}}}}"><p class="hint">{S["t_review_body"]}</p></sc-if>
+            <sc-if value="{{{{rvOff}}}}" hint-placeholder-val="{{{{false}}}}"><div class="alert warn">{mi("warning", 20, "#C77700")}<span>{S["t_review_off"]}</span></div></sc-if>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="dlg-foot"><a class="tbtn" href="{tfn("T-Book", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Created", L)}">{S["t_confirm"]}</a></div>
   </div>
-  <div class="tbar">
-    <a class="tbtn out" href="{tfn("T-Book",L)}">{S["t_back"]}</a>
-    <a class="tbtn" href="{tfn("T-Material",L)}">{S["t_next"]}{ic("right",18,"#fff",2.4)}</a>
-  </div>
-</div>
 </div>'''
-    return tpage(S, "T-Form", S["t_titles"]["form"], body, logic=TFORM_LOGIC)
+    return tpage(S, "T-Dialog", S["t_titles"]["dialog"], book_page(S, L, "T-Dialog", extra=dialog), logic=TDLG_LOGIC)
+
+def lo_head(S, L, screen, tab, pub):
+    """The LO's own page: crumbs, title with type and status, tabs. Publish is an action
+    here, as it is on the tree row's menu; it is never part of creation."""
+    tabs = "".join(f'<span class="tab{" on" if i == tab else ""}">{t}</span>' for i, t in enumerate(S["t_lo_tabs"]))
+    status = f'<span class="tchip {"published" if pub else "unpublished"}">{S["t_pub"] if pub else S["t_unpub"]}</span>'
+    acts = (f'<span class="tbtn outlined">{mi("edit", 18)}{S["t_edit"]}</span>' +
+            ("" if pub else f'<span class="tbtn contained">{S["t_publish"]}</span>'))
+    return f'''{tcrumbs(S, screen, [(S["t_bm"], "#"), (S["t_book"], tfn("T-Created" if not pub else "T-Book", L)), (S["t_new_lo"], None)])}
+  <div class="tphead">
+    <h1>{S["t_new_lo"]}<span class="tchip type">{mi("rateReview", 14)}{S["t_type_fb"]}</span>{status}</h1>
+    <div class="acts">{acts}<span class="ticon">{mi("more", 24)}</span></div>
+  </div>
+  <div class="tabs">{tabs}</div>'''
 
 def t_material(S, L):
-    conds = "".join(
-        f'<div class="titem"><span style="color:#2e7d43;margin-top:2px">{ic("check",16,"currentColor",3)}</span>'
-        f'<span style="flex:1 1 auto;min-width:0">{c}</span><span class="tsrc">{src}</span>'
-        f'<span class="x">{ic("x",16)}</span></div>' for c, src in S["t_conds"])
-    crits = "".join(f'<span class="tst grey" style="height:28px;font-size:12px;padding:0 12px">{c}<span style="color:rgba(28,30,44,.35)">{ic("x",12)}</span></span>' for c in S["t_crits"])
+    conds = "".join(f'<div class="titem">{mi("checkCircle", 20, "#4CAF50")}<span>{c}</span><span class="src">{s}</span><span class="ticon sm">{mi("close", 16)}</span></div>'
+                    for c, s in S["t_conds"])
+    crits = "".join(f'<span class="tcrit">{c}<span class="ticon sm" style="width:24px;height:24px">{mi("close", 14)}</span></span>' for c in S["t_crits"])
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, "T-Material", S["t_mat_title"], crumb=S["t_form_crumb"])}
-<div class="tbody">
-  <div class="tcard">
-    <p class="tsec">{S["t_s_mat"]}</p>
-    <p class="thint">{S["t_mat_note"]}</p>
-    <div class="tdrop">{ic("upload",18)}{S["t_drop"]}<span style="color:rgba(28,30,44,.5);font-weight:400">{S["sep"]} {S["t_drop_types"]}</span></div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <span class="tfile"><span class="ic" style="background:#fbe7e9;color:#d13842">{ic("filetext",16)}</span>{S["t_file1"]}<span style="color:rgba(28,30,44,.4)">{ic("x",14)}</span></span>
-      <span class="tfile"><span class="ic" style="background:#e3edfb;color:#1976d2">{ic("filetext",16)}</span>{S["t_file2"]}<span style="color:rgba(28,30,44,.4)">{ic("x",14)}</span></span>
-      <span class="tbtn out sm" style="height:38px">{ic("sparkle",16)}{S["t_extract"]}</span>
-      <span class="tst green" style="height:38px;padding:0 12px">{ic("check",14,"currentColor",3)}{S["t_extracted"]}</span>
+<div class="tscroll" style="padding-bottom:20px">
+  {lo_head(S, L, "T-Material", 0, pub=False)}
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tpaper">
+      <div class="ph"><h3>{S["t_s_mat"]}</h3><span class="helper" style="margin:0">{S["t_mat_note"]}</span></div>
+      <div class="pb" style="display:flex;flex-direction:column;gap:14px">
+        <div class="tdrop">{mi("cloudUp", 22)}{S["t_drop"]}<span style="color:#757575;font-weight:400">{S["sep"]} {S["t_drop_types"]}</span></div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="tfile"><span class="fi" style="background:#FEEBEE;color:#C62828">{mi("description", 18)}</span>{S["t_file1"]}<span class="ticon sm">{mi("close", 16)}</span></span>
+          <span class="tfile"><span class="fi" style="background:#E3F2FD;color:#0B79D0">{mi("description", 18)}</span>{S["t_file2"]}<span class="ticon sm">{mi("close", 16)}</span></span>
+          <span class="tbtn outlined" style="margin-left:6px">{mi("spark", 18)}{S["t_extract"]}</span>
+          <span class="tchip published">{mi("check", 14)}{S["t_extracted"]}</span>
+        </div>
+      </div>
+    </div>
+    <div class="tpaper">
+      <div class="ph"><h3>{S["t_s_cond"]}</h3><span class="tbtn sm">{mi("add", 18)}{S["t_add_cond"]}</span></div>
+      <div class="pb" style="padding-top:8px"><p class="helper" style="margin:0 0 6px">{S["t_cond_note"]}</p>{conds}</div>
+    </div>
+    <div class="tpaper">
+      <div class="ph"><h3>{S["t_s_crit"]}</h3><span style="display:flex;gap:4px"><span class="tbtn sm">{mi("autorenew", 18)}{S["t_regen"]}</span><span class="tbtn sm">{mi("add", 18)}{S["t_add_crit"]}</span></span></div>
+      <div class="pb"><p class="helper" style="margin:0 0 12px">{S["t_crit_note"]}</p><div style="display:flex;gap:8px;flex-wrap:wrap">{crits}</div></div>
     </div>
   </div>
-  <div class="tcard">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-      <p class="tsec">{S["t_s_cond"]}</p><span class="tbtn ghost sm">{ic("plus",16)}{S["t_add_cond"]}</span>
-    </div>
-    <p class="thint">{S["t_cond_note"]}</p>
-    <div>{conds}</div>
-  </div>
-  <div class="tcard">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-      <p class="tsec">{S["t_s_crit"]}</p>
-      <span style="display:flex;gap:8px"><span class="tbtn ghost sm">{ic("refresh",16)}{S["t_regen"]}</span><span class="tbtn ghost sm">{ic("plus",16)}{S["t_add_crit"]}</span></span>
-    </div>
-    <p class="thint">{S["t_crit_note"]}</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">{crits}</div>
-  </div>
-  <div class="tbar">
-    <a class="tbtn out" href="{tfn("T-Form",L)}">{S["t_back"]}</a>
-    <span style="display:flex;gap:12px;align-items:center">
-      <a class="tbtn out" href="{fn("02-Assignment",L)}">{ic("eye",18)}{S["t_preview"]}</a>
-      <a class="tbtn" href="{tfn("T-Detail",L)}">{S["t_save_pub"]}</a>
-    </span>
-  </div>
+</div>
+<div class="tbar">
+  <a class="tbtn" href="{fn("02-Assignment", L)}">{mi("eye", 18)}{S["t_preview"]}</a>
+  <span style="display:flex;gap:8px"><a class="tbtn" href="{tfn("T-Created", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Detail", L)}">{S["t_save"]}</a></span>
 </div>
 </div>'''
     return tpage(S, "T-Material", S["t_titles"]["mat"], body)
 
 def t_detail(S, L):
-    tabs = f'<span class="on">{S["t_tabs"][0]}</span><a href="{tfn("T-List",L)}">{S["t_tabs"][1]}</a><a href="{tfn("T-Form",L)}">{S["t_tabs"][2]}</a>'
-    rows = "".join(f'<div class="titem"><span style="flex:0 0 190px;color:rgba(28,30,44,.6)">{k}</span><b style="font-weight:500">{v}</b></div>' for k, v in S["t_sum"])
+    def metric(icon, label, n, desc, hot=False, cta=""):
+        return f'''<div class="metric{" hot" if hot else ""}">
+      <div class="m-top"><span class="m-lbl">{mi(icon, 20)}{label}</span><span class="m-val"><b>{n}</b></span></div>
+      <p class="m-desc">{desc}</p>{cta}
+    </div>'''
+    cta = f'<a class="tbtn contained sm" href="{tfn("T-List", L)}">{S["t_open_list"]}</a>'
+    kv = "".join(f'<dt>{k}</dt><dd>{v}</dd>' for k, v in S["t_sum"])
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, "T-Detail", S["t_det_title"], crumb=S["t_form_crumb"],
-       right=f'<span style="display:flex;gap:12px;align-items:center"><span class="tst amber">{ic("sparkle",12)}{S["t_det_type"]}</span><span class="tst green">{S["t_pub"]}</span><a class="tbtn out" href="{tfn("T-Form",L)}">{S["t_edit"]}</a></span>')}
-<div class="tbody">
-  <div class="ttab">{tabs}</div>
-  <div class="tcard">
-    <p class="tsec">{S["t_s_status"]}</p>
-    <div class="tstat">
-      <div class="s"><b>{ic("filetext",16,"#1976d2")}{S["t_st1"]}</b><span class="n">{S["t_st1_n"]}</span><span>{S["t_st1_s"]}</span></div>
-      <div class="s" style="border-color:#f0c33c;background:#fffdf5"><b>{ic("clock",16,"#8a6400")}{S["t_st2"]}</b><span class="n">{S["t_st2_n"]}</span><span>{S["t_st2_s"]}</span>
-        <a class="tbtn sm" style="align-self:flex-start;margin-top:4px" href="{tfn("T-List",L)}">{S["t_open_list"]}</a></div>
-      <div class="s"><b>{ic("check",16,"#2e7d43",3)}{S["t_st3"]}</b><span class="n">{S["t_st3_n"]}</span><span>{S["t_st3_s"]}</span></div>
+<div class="tscroll">
+  {lo_head(S, L, "T-Detail", 1, pub=True)}
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="analysis">
+      <h4>{S["t_s_status"]}</h4>
+      <div class="grid">
+        {metric("description", S["t_st1"], S["t_st1_n"], S["t_st1_s"])}
+        {metric("schedule", S["t_st2"], S["t_st2_n"], S["t_st2_s"], hot=True, cta=cta)}
+        {metric("checkCircle", S["t_st3"], S["t_st3_n"], S["t_st3_s"])}
+      </div>
     </div>
-  </div>
-  <div class="tcard">
-    <p class="tsec">{S["t_s_sum"]}</p>
-    <div>{rows}</div>
+    <div class="tpaper"><div class="ph"><h3>{S["t_s_sum"]}</h3><span class="tbtn sm">{mi("edit", 18)}{S["t_edit"]}</span></div><div class="pb"><dl class="tkv">{kv}</dl></div></div>
   </div>
 </div>
 </div>'''
     return tpage(S, "T-Detail", S["t_titles"]["det"], body)
 
 def t_list(S, L):
-    tone = {"wait": "amber", "done": "green", "none": "grey"}
-    rows = ""
-    for name, when, st, label in S["t_rows"]:
-        initial = name.strip()[0]
-        act = (f'<a class="tbtn sm" href="{tfn("T-Review",L)}">{S["t_review_btn"]}</a>' if st == "wait"
-               else (f'<span class="tbtn out sm">{S["t_view"]}</span>' if st == "done" else ""))
-        rows += (f'<div class="trow"><span class="c1" style="display:flex;align-items:center;gap:10px"><span class="tav">{initial}</span>{name}</span>'
-                 f'<span class="c2" style="color:rgba(28,30,44,.6);font-size:13px">{when}</span>'
-                 f'<span class="c3"><span class="tst {tone[st]}">{label}</span></span>'
-                 f'<span class="c4">{act}</span></div>')
+    trs = ""
+    for i, (name, when, st, label) in enumerate(S["t_rows"]):
+        chip = {"wait": "wait", "done": "published", "none": "filled"}[st]
+        act = (f'<a class="tbtn contained sm" href="{tfn("T-Review", L)}">{S["t_review_btn"]}</a>' if st == "wait"
+               else f'<span class="tbtn outlined sm">{S["t_view"]}</span>' if st == "done" else "")
+        trs += f'''<tr><td style="width:56px;color:#757575">{i+1}</td><td><span class="name-cell"><span class="avatar">{name[0]}</span>{name}</span></td>
+      <td style="color:{"#757575" if when == "—" else "inherit"}">{when}</td><td><span class="tchip {chip}">{label}</span></td><td style="text-align:right;width:140px">{act}</td></tr>'''
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, "T-List", S["t_list_title"], crumb=S["t_form_crumb"],
-       right=f'<span style="display:flex;gap:12px;align-items:center"><span class="thint">{S["t_bulk_note"]}</span><span class="tbtn out">{S["t_bulk"]}</span></span>')}
-<div class="tbody">
-  <div class="ttab"><a href="{tfn("T-Detail",L)}">{S["t_tabs"][0]}</a><span class="on">{S["t_tabs"][1]}</span><a href="{tfn("T-Form",L)}">{S["t_tabs"][2]}</a></div>
-  <div class="tbox">
-    <div class="tth"><span class="c1">{S["t_cols"][0]}</span><span class="c2">{S["t_cols"][1]}</span><span class="c3">{S["t_cols"][2]}</span><span class="c4"></span></div>
-    {rows}
+<div class="tscroll">
+  {lo_head(S, L, "T-List", 2, pub=True)}
+  <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-bottom:16px">
+    <span class="helper" style="margin:0">{S["t_bulk_note"]}</span><span class="tbtn outlined">{S["t_bulk"]}</span>
+  </div>
+  <div class="tpaper" style="overflow:hidden">
+    <table class="m"><thead><tr><th style="width:56px">#</th>{"".join(f"<th>{c}</th>" for c in S["t_cols"])}</tr></thead><tbody>{trs}</tbody></table>
+    <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>{S["t_rows_of"]}</span><span style="display:flex">{tools("expandMore!", "expandMore")}</span></div>
   </div>
 </div>
 </div>'''
     return tpage(S, "T-List", S["t_titles"]["list"], body)
-
-TREV_LOGIC = """state = { edited: 1 };
-  renderVals() { return {}; }"""
 
 def t_review(S, L):
     raw = "".join(f'<p class="traw">{p}</p>' for p in S["raw"])
@@ -2161,44 +2334,44 @@ def t_review(S, L):
         drafts += f'''<div class="tdraft{" edited" if edited else ""}">
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="ctag">{crit}</span>
-        {f'<span class="tst blue">{S["t_rev_edited"]}</span>' if edited else ""}
+        {f'<span class="tchip type">{S["t_rev_edited"]}</span>' if edited else ""}
       </div>
       <blockquote class="tdq">“{quote}”</blockquote>
       <p class="tdb">{bodytext}</p>
-      <div class="tdacts"><span class="tbtn ghost sm">{ic("filetext",14)}{S["t_rev_edit"]}</span><span class="tbtn ghost sm" style="color:#d13842">{ic("x",14)}{S["t_rev_drop"]}</span></div>
+      <div class="tdacts"><span class="tbtn sm">{mi("edit", 16)}{S["t_rev_edit"]}</span><span class="tbtn sm danger">{mi("del", 16)}{S["t_rev_drop"]}</span></div>
     </div>'''
     body = tnav(S) + f'''<div class="tmain">
-{thead(S, "T-Review", S["t_rev_title"], crumb=S["t_rev_meta"],
-       right=f'<span class="tst red">{ic("eye",12)}{S["t_rev_hidden"]}</span>')}
-<div class="tbody" style="padding-bottom:16px">
+<div class="tbody-flex">
+  {tcrumbs(S, "T-Review", [(S["t_bm"], "#"), (S["t_book"], tfn("T-Book", L)), (S["t_new_lo"], tfn("T-List", L)), (S["t_rows"][0][0], None)])}
+  <div class="tphead" style="margin-bottom:16px">
+    <h1>{S["t_rev_title"]}<span class="helper" style="margin:0;font-size:14px">{S["t_rev_meta"]}</span></h1>
+    <span class="tchip red">{mi("eyeOff", 14)}{S["t_rev_hidden"]}</span>
+  </div>
   <div class="tpanes">
     <section class="tpane">
-      <div class="ph"><span>{ic("filetext",16,"#404564")} {S["t_rev_left"]}</span><span class="thint">{S["a_file"]}</span></div>
-      <div class="pb">{raw}</div>
+      <div class="thd"><span style="display:flex;align-items:center;gap:8px">{mi("description", 18, "rgba(0,0,0,.54)")}{S["t_rev_left"]}</span><span class="helper" style="margin:0">{S["a_file"]}</span></div>
+      <div class="tbd">{raw}</div>
     </section>
     <section class="tpane">
-      <div class="ph"><span>{S["t_rev_right"]}</span><span class="thint">{S["t_rev_right_n"]}</span></div>
-      <div class="pb">
+      <div class="thd"><span>{S["t_rev_right"]}</span><span class="helper" style="margin:0">{S["t_rev_right_n"]}</span></div>
+      <div class="tbd">
         {drafts}
-        <div class="tcard" style="padding:14px 16px;gap:8px">
-          <p class="tsec" style="font-size:14px">{S["t_rev_note_h"]}</p>
-          <div class="tin area" style="min-height:70px">{S["t_rev_note"]}</div>
+        <div class="tpaper" style="padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+          <span class="setting-label" style="font-weight:500">{S["t_rev_note_h"]}</span>
+          {field("", S["t_rev_note"], area=True)}
         </div>
       </div>
     </section>
   </div>
-  <div class="tbar">
-    <a class="tbtn out" href="{tfn("T-List",L)}">{ic("left",18)}{S["t_rev_back"]}</a>
-    <span style="display:flex;gap:12px;align-items:center">
-      <span class="thint">{S["t_rev_count"]}</span>
-      <a class="tbtn" href="{tfn("T-List",L)}">{ic("check",18,"#fff",3)}{S["t_rev_send"]}</a>
-    </span>
-  </div>
+</div>
+<div class="tbar">
+  <a class="tbtn outlined" href="{tfn("T-List", L)}">{mi("back", 18)}{S["t_rev_back"]}</a>
+  <span style="display:flex;gap:12px;align-items:center"><span class="helper" style="margin:0">{S["t_rev_count"]}</span><a class="tbtn contained" href="{tfn("T-List", L)}">{mi("check", 18, "#fff")}{S["t_rev_send"]}</a></span>
 </div>
 </div>'''
     return tpage(S, "T-Review", S["t_titles"]["rev"], body)
 
-TBUILDERS = {"T-Book": t_book, "T-Form": t_form, "T-Material": t_material,
+TBUILDERS = {"T-Book": t_book, "T-Dialog": t_dialog, "T-Created": t_created, "T-Material": t_material,
              "T-Detail": t_detail, "T-List": t_list, "T-Review": t_review}
 
 # ---------- write ----------
@@ -2236,9 +2409,9 @@ for lang, S in (("ja", JA), ("en", EN)):
 # teacher (Back Office) rows
 TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
-ttitles = ["T1 · Book Management — add the Feedback LO type", "T2 · LO settings — dates, submission, teacher review",
-           "T3 · Material — extract the checklist and the criteria", "T4 · LO overview — who has submitted",
-           "T5 · Submissions — pick one to review", "T6 · Review and return — the teacher in the loop"]
+ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
+           "T3 · Created — Unpublished, highlighted in the tree", "T4 · LO content — material, requirements, criteria",
+           "T5 · LO overview — who has submitted", "T6 · Submissions — pick one to review", "T7 · Review and return — the teacher in the loop"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -2253,12 +2426,13 @@ NW = 560
 MNW = 375
 TNW = 640
 TNOTES = {
-    "t1": "TEACHER, BACK OFFICE. This is the live LMS 2.0 Back Office screen the PM sent: 教材 ／ ブック管理, the chapter → topic → LO tree, and the Add Learning Objective dialog. The override (PM, 19 Sep) is here: AI Feedback is no longer a separate class-and-assignment area, it is one more LO TYPE in this list, created where the teacher already builds the course. Everything the old teacher dashboard did (assignment title, message, files, rubric) becomes the settings of this LO, on the next two screens. The six existing types are unchanged; the highlighted NEW row is the addition. Click it →",
-    "t2": "The settings the PM named, in the order the teacher fills them. (a) 公開と提出期間: a start date — the LO appears in the student's To-do then — and a due date; until the due date the student submits and replaces, and only after it does the teacher review, which is exactly what the student screens promise (see the student row above). 再提出を許可する is the toggle behind the resubmission loop (default off in the product; shown on here so the flow is visible). (b) 提出方法: which of file / photos / typed the assignment accepts — the Back Office setting the student screens M6 / M7 depend on; the 500-character limit rides with 直接入力. (c) 先生の確認: the teacher-in-the-loop toggle. On, the draft waits for the teacher (T6). Off, it is returned automatically after the due date, and the amber note says so plainly — toggle it to see. Nothing in either case tells the student that AI was involved. Toggles and checkboxes work in the prototype.",
-    "t3": "Where the pre-submission checklist comes from (PM, 19 Sep: 'based on what was setup/extracted from teacher's content'). The teacher uploads the material they already have — the assignment brief, the marking criteria — and 教材から抽出する reads them. 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)), so the teacher can see why a condition is there and delete or add one. These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate from the conditions: conditions gate the submission, criteria shape the comments; neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen.",
-    "t4": "The LO once it is published, which is where the old Figma 'assignment detail' lands after the override: not a page in a separate assignments area but the LO's own overview inside the book. The three cards are the Figma Started / Snaps / Completed analysis cards, re-cut for this flow: 提出済み, 確認待ち (the queue the teacher-in-the-loop toggle creates), 返却済み. Below them, the settings as a summary so the teacher can check the dates and the review setting without reopening the form.",
-    "t5": "The queue. One row per student with the submission time and the state; 確認する opens the review screen. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, with a note recommending they look first — it is deliberately a secondary action, because the whole point of the toggle on T2 is that the teacher, not the model, returns the feedback.",
-    "t6": "The teacher in the loop, the screen the review toggle leads to. Left: what the student submitted. Right: the draft comments, each with its criterion, the passage it points at, and 編集 / 削除 — an edited one is marked, and the count at the bottom says how much the teacher changed. Plus the teacher's own ひとこと, which is what the student sees at the top of the returned screen. 生徒には未公開 is stated on the pane so there is no doubt about what has gone out. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the toggle off, this screen is skipped entirely and the draft is returned as it is.",
+    "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
+    "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, the amber alert says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
+    "t3": "What Confirm does in production, and so here: the dialog closes, the tree re-renders with the new row highlighted (just-created), the snackbar says so, and the LO is UNPUBLISHED — a new learning material always starts that way, and publishing is a separate action on the row's ⋮ menu or the LO page. The old design's 'save and publish' at creation is gone. The type tile is a distinct review-comment icon, not the sparkle: on this tree the sparkle means AI Tutor. Click the new row →",
+    "t4": "The LO's own page, reached from the tree exactly as a regular LO is opened to author its questions. Content tab, still Unpublished, Publish top-right. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 教材から抽出する, and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate: conditions gate the submission, criteria shape the comments, neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen.",
+    "t5": "The same LO page once published, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog.",
+    "t6": "Submissions tab: the Back Office table (index column, header dividers, pagination). One row per student with the submission time and state; 確認する opens the review. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, deliberately outlined not contained, with a note recommending they look first — the whole point of the switch on T2 is that the teacher, not the model, returns the feedback.",
+    "t7": "The teacher in the loop, the screen the review switch leads to. Left: what the student submitted. Right: the draft comments, each with its criterion, the passage it points at, and Edit / Delete — an edited one is marked and the count at the bottom says how much the teacher changed — then the teacher's own ひとこと, which the student sees at the top of the returned screen. 生徒には未公開 is stated in the header so there is no doubt about what has gone out. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off, this screen is skipped and the draft is returned as it is.",
 }
 MNOTES = {
     "m1": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →",
@@ -2297,14 +2471,14 @@ notes = {
         "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened."},
     "title_m": {"x": 0, "y": MROW_Y["ja"] - 300, "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
     "title_m_en": {"x": 0, "y": MROW_Y["en"] - 240, "text": "Same mobile flow in English", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
-    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — the teacher sets this up inside Book Management: add the Feedback LO type → dates, submission and review → material and checklist → overview → review and return · 日本語", "kind": "title1", "maxW": 4 * TW + 3 * TGAP},
-    "title_t_en": {"x": 0, "y": TROW_Y["en"] - 240, "text": "Same Back Office flow in English", "kind": "title1", "maxW": 4 * TW + 3 * TGAP},
+    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → created, Unpublished → LO content → overview → submissions → review and return · 日本語", "kind": "title1", "maxW": 5 * TW + 4 * TGAP},
+    "title_t_en": {"x": 0, "y": TROW_Y["en"] - 240, "text": "Same Back Office flow in English", "kind": "title1", "maxW": 5 * TW + 4 * TGAP},
     "n_role": {"x": 1520, "y": MROW_Y["en"] + MH + 60, "w": 700, "maxH": 240, "text":
         "Teacher / student switch (19 Sep): the bottom-left pill on the Back Office boards flips to the student's screen, so the same setting can be read from both sides — the dates on T2 against the waiting copy on screen 3, the checklist on T3 against 提出前チェック on screen 2. Prototype-only, like the DEMO and PC / Mobile pills."},
 }
 for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "m10"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
-for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "t6"]):
+for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "t6", "t7"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
 
 canvas = {
