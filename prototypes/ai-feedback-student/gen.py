@@ -52,6 +52,9 @@ def ic(name, size=20, color="currentColor", sw=2):
         "calendar": '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
         "grip": '<circle cx="9" cy="6" r="1.2"/><circle cx="15" cy="6" r="1.2"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><circle cx="9" cy="18" r="1.2"/><circle cx="15" cy="18" r="1.2"/>',
         "image": '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m21 16-5-5-9 9"/>',
+        "grid": '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+        "trash": '<path d="M4 7h16M10 11v6M14 11v6"/><path d="M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M9 7V4h6v3"/>',
+        "pencil": '<path d="M4 20h4L20 8a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M14 6l4 4"/>',
     }[name]
     return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="{color}" '
             f'stroke-width="{sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" '
@@ -1640,6 +1643,560 @@ MBUILDERS = {"M-Main": m_main, "M-Assignment": m_assignment, "M-Camera": m_camer
              "M-File": m_file, "M-Type": m_type,
              "M-Pending": m_pending, "M-Feedback": lambda S, L: m_feedback(S, L, 0), "M-Sheet": lambda S, L: m_feedback(S, L, 2)}
 
+# ======================= TEACHER / BACK OFFICE (1440 x 900) =======================
+# Chrome recreated from the live LMS 2.0 Back Office (Learning Material → Book Management),
+# with the AI Feedback flow from the Teacher dashboard Figma folded into the LO, instead of
+# the separate class + assignment it used to live in.
+TCSS = """
+.troot{width:1440px;height:900px;display:flex;overflow:hidden;background:#fff;font-family:'Noto Sans JP',system-ui,sans-serif;color:rgba(28,30,44,.87);position:relative}
+.tnav{width:256px;flex:0 0 256px;border-right:1px solid rgba(28,30,44,.1);display:flex;flex-direction:column;background:#fff}
+.tlogo{height:64px;flex:0 0 64px;display:flex;align-items:center;gap:10px;padding:0 16px;font-size:17px;font-weight:700}
+.tlogo .m{width:32px;height:32px;border-radius:8px;background:#1976d2;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;flex:0 0 32px}
+.tlogo .c{margin-left:auto;color:rgba(28,30,44,.38)}
+.tnav-b{flex:1 1 auto;overflow:auto;padding:6px 0}
+.tn{display:flex;align-items:center;gap:12px;padding:9px 16px;font-size:13px;line-height:18px;color:rgba(28,30,44,.72);white-space:nowrap}
+.tn .ch{margin-left:auto;color:rgba(28,30,44,.38)}
+.tn.sub{padding:7px 16px 7px 46px;font-size:13px;position:relative}
+.tn.sub::before{content:"";position:absolute;left:30px;top:15px;width:4px;height:4px;border-radius:50%;background:rgba(28,30,44,.32)}
+.tn.on{background:#eceef3;font-weight:700;color:rgba(28,30,44,.87)}
+.tn.on::before{background:#1976d2}
+.tuser{flex:0 0 auto;border-top:1px solid rgba(28,30,44,.1);padding:10px 16px;display:flex;align-items:center;gap:10px}
+/* prototype-only role pill: in the nav column, in flow, so it covers nothing */
+.troot .dev{position:static;flex:0 0 auto;margin:0 10px 10px;display:flex;justify-content:center;flex-wrap:wrap;gap:2px;box-shadow:none}
+.troot .dev-i{height:24px;padding:0 8px;font-size:11px;gap:4px}
+.tuser .av{width:34px;height:34px;border-radius:50%;background:#e2e4ea;color:#5a5f70;display:flex;align-items:center;justify-content:center;font-weight:700;flex:0 0 34px}
+.tmain{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;background:#fff}
+.thead{flex:0 0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 32px 8px}
+.th1{font-size:22px;line-height:30px;font-weight:700;margin:0}
+.tcrumb{font-size:12px;line-height:16px;color:rgba(28,30,44,.6);margin:0 0 4px}
+.testing{border:1px solid #d13842;color:#d13842;border-radius:1000px;font-size:11px;font-weight:700;padding:3px 12px;letter-spacing:.04em}
+.tbody{flex:1 1 auto;overflow:auto;padding:8px 32px 22px;display:flex;flex-direction:column;gap:14px}
+.tbox{border:1px solid rgba(28,30,44,.14);border-radius:6px;background:#fff;overflow:hidden}
+.tbox.tree{border-left:3px solid #1976d2}
+.trow{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid rgba(28,30,44,.08);font-size:14px}
+.trow:last-child{border-bottom:0}
+.trow .nm{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:10px}
+.trow .acts{display:flex;align-items:center;gap:14px;color:rgba(28,30,44,.45);flex:0 0 auto}
+.trow.ind{padding-left:46px}.trow.ind2{padding-left:80px}
+.tcirc{width:28px;height:28px;border-radius:50%;background:#e8f2e9;display:flex;align-items:center;justify-content:center;color:#3c8c4e;flex:0 0 28px}
+.tsq{width:28px;height:28px;border-radius:6px;background:#e3edfb;display:flex;align-items:center;justify-content:center;color:#1976d2;flex:0 0 28px}
+.tsq.fb{background:#fff3cc;color:#8a6400}
+.tadd{padding:10px 16px 12px;display:flex;align-items:center;gap:8px;color:#1976d2;font-size:14px;font-weight:700}
+.tadd.out{border:1px dashed rgba(28,30,44,.24);border-radius:6px;justify-content:center;padding:14px}
+.tst{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.tst.grey{background:#eceef3;color:rgba(28,30,44,.6)}
+.tst.blue{background:#e3edfb;color:#1976d2}
+.tst.green{background:#e8f5ec;color:#2e7d43}
+.tst.amber{background:#fff3cc;color:#8a6400}
+.tst.red{background:#fbe7e9;color:#d13842}
+.tbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 18px;border-radius:4px;border:0;background:#1976d2;color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap}
+.tbtn:hover{background:#155fa8;color:#fff}
+.tbtn.out{background:#fff;border:1px solid rgba(28,30,44,.24);color:rgba(28,30,44,.87)}
+.tbtn.out:hover{background:#f5f5f7;color:rgba(28,30,44,.87)}
+.tbtn.ghost{background:none;color:#1976d2;padding:0 10px}
+.tbtn.ghost:hover{background:#e3edfb;color:#1976d2}
+.tbtn.dis{background:rgba(28,30,44,.12);color:rgba(28,30,44,.38);cursor:default}
+.tbtn.sm{height:30px;padding:0 12px;font-size:12px}
+.tcard{background:#fff;border:1px solid rgba(28,30,44,.14);border-radius:8px;padding:16px 24px;display:flex;flex-direction:column;gap:12px}
+.tsec{font-size:15px;line-height:22px;font-weight:700;margin:0}
+.thint{font-size:12px;line-height:18px;color:rgba(28,30,44,.6);margin:0}
+.tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tf{display:flex;flex-direction:column;gap:6px;min-width:0}
+.tf label{font-size:12px;line-height:16px;color:rgba(28,30,44,.6)}
+.tin{border:1px solid rgba(28,30,44,.24);border-radius:4px;min-height:42px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:14px;background:#fff}
+.tin.area{min-height:72px;align-items:flex-start;padding:10px 12px;line-height:22px;display:block}
+.tin .ph{color:rgba(28,30,44,.4)}
+.tin .gr{margin-left:auto;color:rgba(28,30,44,.45);flex:0 0 auto}
+.tsw{width:42px;height:24px;border-radius:12px;background:#c7c7cc;position:relative;flex:0 0 42px;border:0;padding:0;cursor:pointer}
+.tsw.on{background:#1976d2}
+.tsw i{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;display:block}
+.tsw.on i{left:21px}
+.tswrow{display:flex;align-items:flex-start;gap:14px}
+.tck{width:18px;height:18px;border-radius:3px;border:2px solid rgba(28,30,44,.32);display:flex;align-items:center;justify-content:center;color:#fff;flex:0 0 18px;margin-top:1px}
+.tck.on{background:#1976d2;border-color:#1976d2}
+.tchk{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:20px;background:none;border:0;padding:0;font-family:inherit;color:inherit;text-align:left;cursor:pointer}
+.titem{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid rgba(28,30,44,.08);font-size:14px;line-height:20px}
+.titem:last-child{border-bottom:0}
+.titem .x{margin-left:auto;color:rgba(28,30,44,.4);flex:0 0 auto}
+.tsrc{font-size:11px;color:rgba(28,30,44,.5);background:#f5f5f7;border-radius:4px;padding:1px 6px;white-space:nowrap}
+.tfile{display:flex;align-items:center;gap:10px;border:1px solid rgba(28,30,44,.14);border-radius:4px;padding:8px 12px;font-size:13px}
+.tfile .ic{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 28px}
+.tdrop{border:1px dashed rgba(25,118,210,.5);background:#f5f9ff;border-radius:6px;padding:18px;display:flex;align-items:center;justify-content:center;gap:10px;color:#1976d2;font-size:13px;font-weight:700}
+.tstat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tstat .s{border:1px solid rgba(28,30,44,.14);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.tstat .s b{font-size:13px;display:flex;align-items:center;gap:8px}
+.tstat .s .n{font-size:26px;line-height:32px;font-weight:700}
+.tstat .s span{font-size:12px;line-height:17px;color:rgba(28,30,44,.6)}
+.ttab{display:flex;gap:24px;border-bottom:1px solid rgba(28,30,44,.14);padding:0 2px}
+.ttab a,.ttab span{padding:10px 2px;font-size:14px;font-weight:700;color:rgba(28,30,44,.55);border-bottom:2px solid transparent}
+.ttab .on{color:#1976d2;border-bottom-color:#1976d2}
+.tth{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#f7f8fa;border-bottom:1px solid rgba(28,30,44,.12);font-size:12px;font-weight:700;color:rgba(28,30,44,.6)}
+.c1{flex:1 1 auto;min-width:0}.c2{flex:0 0 150px}.c3{flex:0 0 130px}.c4{flex:0 0 120px;text-align:right}
+.tav{width:30px;height:30px;border-radius:50%;background:#e3edfb;color:#1976d2;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 30px}
+/* dialog over the page */
+.tdlg{position:absolute;inset:0;background:rgba(28,30,44,.42);display:flex;align-items:flex-start;justify-content:center;padding-top:96px;z-index:40}
+.tdlg .box{width:880px;background:#fff;border-radius:6px;box-shadow:0 16px 40px rgba(0,0,0,.3);display:flex;flex-direction:column;overflow:hidden}
+.tdlg .h{padding:18px 24px;font-size:18px;font-weight:700;border-bottom:1px solid rgba(28,30,44,.1)}
+.tdlg .b{padding:20px 24px;display:flex;flex-direction:column;gap:14px}
+.tdlg .f{padding:14px 24px;display:flex;align-items:center;justify-content:flex-end;gap:12px;border-top:1px solid rgba(28,30,44,.1)}
+.tsel{border:1px solid #1976d2;border-radius:4px;height:46px;display:flex;align-items:center;padding:0 12px;position:relative}
+.tsel .lb{position:absolute;top:-8px;left:10px;background:#fff;padding:0 4px;font-size:11px;color:#1976d2}
+.tmenu{border:1px solid rgba(28,30,44,.12);border-radius:4px;box-shadow:0 8px 20px rgba(0,0,0,.14);background:#fff;overflow:hidden}
+.tmi{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:14px}
+.tmi.hl{background:#f2f4f8}
+.tmi.new{background:#fffdf5}
+/* two-pane review */
+.tpanes{display:flex;gap:16px;flex:1 1 auto;min-height:0}
+.tpane{flex:1 1 0;border:1px solid rgba(28,30,44,.14);border-radius:8px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.tpane .ph{padding:11px 16px;border-bottom:1px solid rgba(28,30,44,.12);display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;font-weight:700;background:#fafbfc}
+.tpane .pb{padding:16px 18px;overflow:auto;flex:1 1 auto}
+.traw{font-size:14px;line-height:2;margin:0 0 14px}
+.tdraft{border:1px solid rgba(28,30,44,.14);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:9px;margin-bottom:12px}
+.tdraft.edited{border-color:#1976d2;background:#f7fbff}
+.tdq{margin:0;padding:2px 0 2px 10px;border-left:3px solid #d5d7dd;font-size:13px;line-height:20px;color:rgba(28,30,44,.6)}
+.tdb{margin:0;font-size:14px;line-height:1.8;white-space:pre-wrap}
+.tdacts{display:flex;align-items:center;gap:8px;margin-top:2px}
+.tbar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:4px}
+"""
+
+# The Back Office boards need the student stylesheet too (shared tokens, the
+# .dev pill, the icons) plus the Back Office rules on top.
+THELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
+           '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">'
+           f'<style>{CSS}{TCSS}</style></helmet>')
+
+TJA = dict(
+    t_lang="ja",
+    t_nav=["ダッシュボード", "AIチューター", "生徒", "コース", "教材", "レッスン", "カレンダー", "お知らせ", "スタッフ"],
+    t_nav_sub=["ブック管理", "学習計画の統計", "コンテンツバンク"],
+    t_user="HTN Admin（LMS 2.0）", t_user_sub="LMS 2.0 ・ 集団（+6）・ 東京", t_testing="FOR TESTING",
+    t_book="地域環境統計学 テキスト（2026年度）", t_crumb="教材 ／ ブック管理",
+    t_chapter="第7回　データの分析と仮説検定", t_topic="7-1　相関分析",
+    t_lo_video="第7回 講義動画", t_lo_doc="第7回 講義資料（PDF）", t_lo_fb="第7回 演習レポート",
+    t_unpub="未公開", t_pub="公開中", t_addlo="LOを追加", t_addtopic="トピックを追加", t_addchapter="チャプターを追加",
+    t_dlg_title="学習目標（LO）を追加", t_dlg_general="基本情報", t_dlg_select="LOタイプを選択 *",
+    t_types=["ランダム学習", "学習目標", "フラッシュカード", "録音課題", "演習提出", "外部コンテンツ"],
+    t_type_fb="AIフィードバック", t_new="NEW",
+    t_cancel="キャンセル", t_confirm="確定",
+    # create form
+    t_form_title="AIフィードバック LO の設定", t_form_crumb="教材 ／ ブック管理 ／ 第7回 ／ 7-1 相関分析",
+    t_s_basic="基本情報", t_f_name="LO名", t_v_name="第7回 演習レポート",
+    t_f_desc="課題の説明（生徒に表示）",
+    t_v_desc="総務省「社会生活統計指標」の都道府県別データから2つの変数を選び、Excel で相関係数を求めて散布図を作成してください。結果の解釈と、有意性の確認までを A4 2枚程度にまとめて提出します。",
+    t_s_when="公開と提出期間", t_f_start="開始日時", t_v_start="2026/11/06 09:00", t_f_due="締切日時", t_v_due="2026/11/13 23:59",
+    t_when_note="開始日時に生徒の「やること」に表示されます。締切までは提出と差し替えができ、締切のあとに先生が確認します。",
+    t_f_resub="再提出を許可する", t_v_resub="2026/11/20 23:59 まで",
+    t_s_how="提出方法", t_how=["ファイル（PDF ・ Word ・ Excel ・ PowerPoint）", "写真（複数枚まとめて）", "直接入力"],
+    t_how_limit="文字数の上限 500字",
+    t_s_review="先生の確認", t_review_on="返却前に先生が確認する",
+    t_review_body="下書きは締切のあとに作成され、先生が確認・編集して返却するまで生徒には表示されません。生徒には先生からのフィードバックとして届きます。",
+    t_review_off="オフにすると、締切のあと自動で返却されます。確認の手間はなくなりますが、内容を見る前に生徒へ届きます。",
+    t_back="戻る", t_next="保存して次へ：教材と提出条件",
+    # material / checklist
+    t_mat_title="教材と提出条件", t_s_mat="この課題の教材", t_mat_note="アップロードした教材から、提出条件とコメントの観点を抽出します。",
+    t_drop="ファイルをドラッグ＆ドロップ、またはファイルを選ぶ", t_drop_types="PDF ・ Word ・ PNG ・ JPG",
+    t_file1="第7回_課題説明.pdf", t_file2="評価基準_2026.docx",
+    t_extract="教材から抽出する", t_extracted="抽出済み",
+    t_s_cond="提出の基本条件", t_cond_note="生徒の提出画面に表示され、ファイルを選んだ時点で確認されます。",
+    t_conds=[("散布図が含まれている", "課題説明 p.1"), ("相関係数が記載されている", "課題説明 p.1"),
+             ("有意性の検定が記載されている", "課題説明 p.2"), ("参照した講義資料の記載", "評価基準 2.(3)"),
+             ("ページ数 2枚程度", "課題説明 p.1")],
+    t_add_cond="条件を追加", t_s_crit="コメントの観点（ルーブリック）",
+    t_crit_note="観点ごとにコメントが付きます。点数は付けません。採点は先生が行います。",
+    t_crits=["Excelスキル", "図表の見やすさ", "統計処理", "解釈", "論理構成", "生成AIリテラシー"],
+    t_gen="AIで生成", t_regen="生成し直す", t_add_crit="観点を追加",
+    t_preview="生徒に表示される画面を見る", t_save_pub="保存して公開する",
+    # LO detail
+    t_det_title="第7回 演習レポート", t_det_type="AIフィードバック",
+    t_tabs=["概要", "提出一覧", "設定"],
+    t_s_sum="設定の概要", t_sum=[("提出期間", "11月6日 09:00 — 11月13日 23:59"), ("再提出", "11月20日 23:59 まで"),
+                                 ("提出方法", "ファイル ・ 写真 ・ 直接入力"), ("先生の確認", "あり（返却前に確認）"),
+                                 ("提出条件", "5件"), ("コメントの観点", "6件")],
+    t_s_status="提出状況", t_st1="提出済み", t_st1_n="12 / 30", t_st1_s="30人中12人が提出しました",
+    t_st2="確認待ち", t_st2_n="12", t_st2_s="下書きができています。確認して返却してください", t_st3="返却済み", t_st3_n="9 / 30", t_st3_s="30人中9人に返却しました",
+    t_open_list="確認する（12件）", t_edit="設定を編集",
+    # submissions list
+    t_list_title="提出一覧 ・ 第7回 演習レポート", t_cols=["生徒", "提出", "状態", ""],
+    t_bulk="すべて承認して返却", t_bulk_note="内容を見てから返却することをおすすめします",
+    t_rows=[("山田 花子", "11月11日 14:32", "wait", "確認待ち"), ("佐藤 太郎", "11月11日 18:05", "wait", "確認待ち"),
+            ("鈴木 一郎", "11月12日 08:12", "wait", "確認待ち"), ("田中 美咲", "11月12日 21:40", "done", "返却済み"),
+            ("高橋 健", "—", "none", "未提出")],
+    t_review_btn="確認する", t_view="見る",
+    # review one
+    t_rev_title="確認して返却 ・ 山田 花子", t_rev_meta="第7回 演習レポート ・ 11月11日 14:32 提出",
+    t_rev_hidden="生徒には未公開", t_rev_left="提出物", t_rev_right="フィードバックの下書き",
+    t_rev_right_n="3件 ・ 観点つき", t_rev_note_h="先生からのひとこと（任意）",
+    t_rev_note="東京都を除いて再計算したところ、よく気づきました。②の点は次回の授業でも取り上げるので、自分の考えを用意しておいてください。",
+    t_rev_edited="編集済み", t_rev_edit="編集", t_rev_drop="削除", t_rev_back="差し戻す", t_rev_send="承認して返却する",
+    t_rev_count="3件のうち1件を編集しました",
+    t_role_t="先生（BO）", t_role_s="生徒画面", t_role_aria="表示する役割",
+    t_titles={"book": "BO — ブック管理（LOタイプ）", "form": "BO — AIフィードバック LO の設定", "mat": "BO — 教材と提出条件",
+              "det": "BO — LO 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却"},
+)
+TEN = dict(
+    t_lang="en",
+    t_nav=["Dashboard", "AI Tutor", "Student", "Course", "Learning Material", "Lesson", "Calendar", "Notification", "Staff"],
+    t_nav_sub=["Book Management", "Study Plan Stats", "Content bank"],
+    t_user="HTN Admin (LMS 2.0)", t_user_sub="LMS 2.0 · 集団 (+6) · Tokyo", t_testing="FOR TESTING",
+    t_book="Regional & Environmental Statistics — Textbook (2026)", t_crumb="Learning Material / Book Management",
+    t_chapter="Session 7 · Data analysis and hypothesis testing", t_topic="7-1 · Correlation analysis",
+    t_lo_video="Session 7 lecture video", t_lo_doc="Session 7 lecture slides (PDF)", t_lo_fb="Session 7 exercise report",
+    t_unpub="Unpublished", t_pub="Published", t_addlo="Add LO", t_addtopic="Add Topic", t_addchapter="Add Chapter",
+    t_dlg_title="Add Learning Objective", t_dlg_general="General Info", t_dlg_select="Select LO Type *",
+    t_types=["Random Activity", "Learning Objective", "Flash Card", "Recording Assignment", "Practice Submission", "External Content"],
+    t_type_fb="AI Feedback", t_new="NEW",
+    t_cancel="Cancel", t_confirm="Confirm",
+    t_form_title="AI Feedback LO settings", t_form_crumb="Learning Material / Book Management / Session 7 / 7-1 Correlation analysis",
+    t_s_basic="General info", t_f_name="LO name", t_v_name="Session 7 exercise report",
+    t_f_desc="Assignment description (shown to students)",
+    t_v_desc="Choose two variables from the Statistics Bureau's prefectural social indicators, compute the correlation coefficient in Excel and draw a scatter plot. Submit about two A4 pages covering your interpretation and the test of significance.",
+    t_s_when="Availability and submission window", t_f_start="Opens", t_v_start="6 Nov 2026, 09:00", t_f_due="Due", t_v_due="13 Nov 2026, 23:59",
+    t_when_note="It appears in the student's To-do when it opens. They can submit and replace their work until the due date; you review after it.",
+    t_f_resub="Allow resubmission", t_v_resub="until 20 Nov 2026, 23:59",
+    t_s_how="How students submit", t_how=["File (PDF · Word · Excel · PowerPoint)", "Photos (several at once)", "Typed answer"],
+    t_how_limit="500-character limit",
+    t_s_review="Teacher review", t_review_on="I review the feedback before it is returned",
+    t_review_body="The draft is written after the due date and stays hidden until you review, edit and return it. Students receive it as feedback from you.",
+    t_review_off="Turn this off and feedback is returned automatically after the due date. No work for you, but it reaches students before you have read it.",
+    t_back="Back", t_next="Save and continue: material and requirements",
+    t_mat_title="Material and requirements", t_s_mat="Material for this assignment",
+    t_mat_note="The submission requirements and the comment criteria are extracted from what you upload.",
+    t_drop="Drag and drop a file, or choose one", t_drop_types="PDF · Word · PNG · JPG",
+    t_file1="Session7_assignment_brief.pdf", t_file2="Marking_criteria_2026.docx",
+    t_extract="Extract from the material", t_extracted="Extracted",
+    t_s_cond="Basic requirements", t_cond_note="Shown on the student's submit screen and checked as soon as they choose a file.",
+    t_conds=[("A scatter plot is included", "brief p.1"), ("The correlation coefficient is stated", "brief p.1"),
+             ("The test of significance is stated", "brief p.2"), ("The lecture material is cited", "criteria 2.(3)"),
+             ("About 2 pages", "brief p.1")],
+    t_add_cond="Add a requirement", t_s_crit="Comment criteria (rubric)",
+    t_crit_note="Comments are tagged with these criteria. No levels, no score — you do the grading.",
+    t_crits=["Excel skills", "Clarity of charts", "Statistical processing", "Interpretation", "Logical structure", "Generative-AI literacy"],
+    t_gen="Generate with AI", t_regen="Regenerate", t_add_crit="Add a criterion",
+    t_preview="Preview what the student sees", t_save_pub="Save and publish",
+    t_det_title="Session 7 exercise report", t_det_type="AI Feedback",
+    t_tabs=["Overview", "Submissions", "Settings"],
+    t_s_sum="Settings", t_sum=[("Window", "6 Nov 09:00 — 13 Nov 23:59"), ("Resubmission", "until 20 Nov 23:59"),
+                               ("Submission", "File · Photos · Typed"), ("Teacher review", "On (before返却 is sent)"),
+                               ("Requirements", "5"), ("Criteria", "6")],
+    t_s_status="Submissions", t_st1="Submitted", t_st1_n="12 / 30", t_st1_s="12 of 30 students have submitted",
+    t_st2="Waiting for you", t_st2_n="12", t_st2_s="Drafts are ready. Review them and return", t_st3="Returned", t_st3_n="9 / 30", t_st3_s="Returned to 9 of 30 students",
+    t_open_list="Review (12)", t_edit="Edit settings",
+    t_list_title="Submissions · Session 7 exercise report", t_cols=["Student", "Submitted", "Status", ""],
+    t_bulk="Approve and return all", t_bulk_note="Reading them first is the safer habit",
+    t_rows=[("Hanako Yamada", "11 Nov, 14:32", "wait", "Waiting for you"), ("Taro Sato", "11 Nov, 18:05", "wait", "Waiting for you"),
+            ("Ichiro Suzuki", "12 Nov, 08:12", "wait", "Waiting for you"), ("Misaki Tanaka", "12 Nov, 21:40", "done", "Returned"),
+            ("Ken Takahashi", "—", "none", "Not submitted")],
+    t_review_btn="Review", t_view="View",
+    t_rev_title="Review and return · Hanako Yamada", t_rev_meta="Session 7 exercise report · submitted 11 Nov, 14:32",
+    t_rev_hidden="Not visible to the student", t_rev_left="Submission", t_rev_right="Draft feedback",
+    t_rev_right_n="3 comments · with criteria", t_rev_note_h="A word from you (optional)",
+    t_rev_note="Good catch recalculating without Tokyo. We will come back to point ② in the next class, so have your own view ready.",
+    t_rev_edited="Edited", t_rev_edit="Edit", t_rev_drop="Delete", t_rev_back="Send back", t_rev_send="Approve and return",
+    t_rev_count="1 of 3 comments edited",
+    t_role_t="Teacher (BO)", t_role_s="Student",
+    t_role_aria="Role",
+    t_titles={"book": "BO — Book Management (LO type)", "form": "BO — AI Feedback LO settings", "mat": "BO — Material and requirements",
+              "det": "BO — LO overview", "list": "BO — Submissions", "rev": "BO — Review and return"},
+)
+JA.update(TJA); EN.update(TEN)
+
+TSCREENS = ["T-Book", "T-Form", "T-Material", "T-Detail", "T-List", "T-Review"]
+
+def tfn(screen, lang):
+    return f"{screen}.dc.html" if lang == "ja" else f"{screen}-en.dc.html"
+
+def role_toggle(S):
+    """Prototype-only: jump between the teacher's Back Office and the student's screen.
+    It sits in the left nav rather than floating, so it never covers the page's own
+    buttons the way the student screens' PC / Mobile pill can afford to."""
+    L = S["t_lang"]
+    student = f'<a class="dev-i" href="{fn("Main", L)}">{S["t_role_s"]}</a>'
+    teacher = f'<span class="dev-i on">{S["t_role_t"]}</span>'
+    return f'<div class="dev" role="group" aria-label="{S["t_role_aria"]}">{teacher}{student}</div>'
+
+def tnav(S, active_sub=0):
+    icons = ["grid", "sparkle", "person", "book", "filetext", "play", "calendar", "bell", "person"]
+    out = ""
+    for i, label in enumerate(S["t_nav"]):
+        chev = f'<span class="ch">{ic("down",14)}</span>' if i in (2, 3, 4, 5, 7, 8) else ""
+        out += f'<div class="tn">{ic(icons[i],20,"rgba(28,30,44,.55)",1.7)}{label}{chev}</div>'
+        if i == 4:
+            for j, sub in enumerate(S["t_nav_sub"]):
+                out += f'<div class="tn sub{" on" if j == active_sub else ""}">{sub}</div>'
+    return f'''<nav class="tnav">
+  <div class="tlogo"><span class="m">m</span>LMS 2.0<span class="c">{ic("left",18)}</span></div>
+  <div class="tnav-b">{out}</div>
+  {role_toggle(S)}
+  <div class="tuser"><span class="av">H</span><span style="min-width:0"><b style="font-size:13px;display:block">{S["t_user"]}</b><i style="font-style:normal;font-size:11px;color:rgba(28,30,44,.6)">{S["t_user_sub"]}</i></span></div>
+</nav>'''
+
+def thead(S, title, crumb=None, right=""):
+    c = f'<p class="tcrumb">{crumb}</p>' if crumb else ""
+    r = right or f'<span class="testing">{S["t_testing"]}</span>'
+    return f'<div class="thead"><div style="min-width:0">{c}<h1 class="th1">{title}</h1></div>{r}</div>'
+
+def tpage(S, screen, title, body, logic="renderVals(){ return {}; }"):
+    return f'''<!doctype html>
+<html lang="{S["t_lang"]}">
+<head>
+<meta charset="utf-8">
+<title>{title}</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+{THELMET}
+<div class="troot" style="width: 1440px; height: 900px;">
+{body}
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{{"$preview":{{"width":1440,"height":900}}}}'>
+class Component extends DCLogic {{
+  {logic}
+}}
+</script>
+</body>
+</html>
+'''
+
+def t_book(S, L):
+    types = "".join(f'<div class="tmi{" hl" if i == 0 else ""}">{t}</div>' for i, t in enumerate(S["t_types"]))
+    body = tnav(S) + f'''<div class="tmain">
+{thead(S, S["t_book"], crumb=S["t_crumb"])}
+<div class="tbody">
+  <div class="tbox tree">
+    <div class="trow"><span class="nm">{ic("down",18,"rgba(28,30,44,.45)")}<b>{S["t_chapter"]}</b></span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
+    <div class="trow ind"><span class="nm">{ic("down",18,"rgba(28,30,44,.45)")}<span class="tcirc">{ic("book",16)}</span>{S["t_topic"]}</span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
+    <div class="trow ind2"><span class="nm"><span class="tsq">{ic("play",16)}</span>{S["t_lo_video"]}<span class="tst green">{S["t_pub"]}</span></span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
+    <div class="trow ind2"><span class="nm"><span class="tsq">{ic("filetext",16)}</span>{S["t_lo_doc"]}<span class="tst green">{S["t_pub"]}</span></span><span class="acts">{ic("down",18)}{ic("upload",18)}{ic("grip",18)}</span></div>
+    <div class="tadd" style="padding-left:80px">{ic("plus",18)}{S["t_addlo"]}</div>
+    <div class="tadd" style="padding-left:46px">{ic("plus",18)}{S["t_addtopic"]}</div>
+  </div>
+  <div class="tadd out">{ic("plus",18)}{S["t_addchapter"]}</div>
+</div>
+</div>
+<div class="tdlg">
+  <div class="box">
+    <div class="h">{S["t_dlg_title"]}</div>
+    <div class="b">
+      <p class="tsec">{S["t_dlg_general"]}</p>
+      <div class="tsel"><span class="lb">{S["t_dlg_select"]}</span><span class="gr" style="margin-left:auto">{ic("down",18,"rgba(28,30,44,.5)")}</span></div>
+      <div class="tmenu">
+        {types}
+        <a class="tmi new" href="{tfn("T-Form",L)}"><span class="tsq fb" style="width:24px;height:24px">{ic("sparkle",14)}</span><b>{S["t_type_fb"]}</b><span class="tst amber">{S["t_new"]}</span>{ic("right",16,"#1976d2",2.4)}</a>
+      </div>
+    </div>
+    <div class="f"><span class="tbtn ghost">{S["t_cancel"]}</span><span class="tbtn dis">{S["t_confirm"]}</span></div>
+  </div>
+</div>'''
+    return tpage(S, "T-Book", S["t_titles"]["book"], body)
+
+TFORM_LOGIC = """state = { review: true, m0: true, m1: true, m2: true, resub: true };
+  renderVals() {
+    const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
+    return {
+      rv: this.state.review ? "on" : "", rvOn: this.state.review, rvOff: !this.state.review, toggleRv: t("review"),
+      c0: this.state.m0 ? "on" : "", c1: this.state.m1 ? "on" : "", c2: this.state.m2 ? "on" : "",
+      t0: t("m0"), t1: t("m1"), t2: t("m2"),
+      rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
+    };
+  }"""
+
+def t_form(S, L):
+    how = "".join(
+        f'<button class="tchk" onClick="{{{{t{i}}}}}"><span class="tck {{{{c{i}}}}}">{ic("check",12,"currentColor",3)}</span><span>{label}'
+        + (f'<br><span class="thint">{S["t_how_limit"]}</span>' if i == 2 else "") + '</span></button>'
+        for i, label in enumerate(S["t_how"]))
+    body = tnav(S) + f'''<div class="tmain">
+{thead(S, S["t_form_title"], crumb=S["t_form_crumb"])}
+<div class="tbody">
+  <div class="tcard">
+    <p class="tsec">{S["t_s_basic"]}</p>
+    <div class="tf"><label>{S["t_f_name"]}</label><div class="tin">{S["t_v_name"]}</div></div>
+    <div class="tf"><label>{S["t_f_desc"]}</label><div class="tin area">{S["t_v_desc"]}</div></div>
+  </div>
+  <div class="tcard">
+    <p class="tsec">{S["t_s_when"]}</p>
+    <div class="tgrid">
+      <div class="tf"><label>{S["t_f_start"]}</label><div class="tin">{S["t_v_start"]}<span class="gr">{ic("calendar",18)}</span></div></div>
+      <div class="tf"><label>{S["t_f_due"]}</label><div class="tin">{S["t_v_due"]}<span class="gr">{ic("calendar",18)}</span></div></div>
+    </div>
+    <p class="thint">{S["t_when_note"]}</p>
+    <div class="tswrow" style="align-items:center">
+      <button class="tsw {{{{rs}}}}" onClick="{{{{toggleRs}}}}" aria-label="{S["t_f_resub"]}"><i></i></button>
+      <span style="font-size:14px">{S["t_f_resub"]}</span>
+      <sc-if value="{{{{rsOn}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tin" style="height:34px;min-height:34px;font-size:13px">{S["t_v_resub"]}<span class="gr">{ic("calendar",16)}</span></span></sc-if>
+    </div>
+  </div>
+  <div class="tcard">
+    <p class="tsec">{S["t_s_how"]}</p>
+    <div style="display:flex;flex-direction:column;gap:12px">{how}</div>
+  </div>
+  <div class="tcard">
+    <div class="tswrow">
+      <button class="tsw {{{{rv}}}}" onClick="{{{{toggleRv}}}}" aria-label="{S["t_review_on"]}"><i></i></button>
+      <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 auto">
+        <p class="tsec">{S["t_s_review"]} ・ {S["t_review_on"]}</p>
+        <sc-if value="{{{{rvOn}}}}" hint-placeholder-val="{{{{true}}}}"><p class="thint">{S["t_review_body"]}</p></sc-if>
+        <sc-if value="{{{{rvOff}}}}" hint-placeholder-val="{{{{false}}}}"><p class="thint" style="color:#8a6400;display:flex;gap:6px">{ic("alert",14,"#8a6400")}{S["t_review_off"]}</p></sc-if>
+      </div>
+    </div>
+  </div>
+  <div class="tbar">
+    <a class="tbtn out" href="{tfn("T-Book",L)}">{S["t_back"]}</a>
+    <a class="tbtn" href="{tfn("T-Material",L)}">{S["t_next"]}{ic("right",18,"#fff",2.4)}</a>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-Form", S["t_titles"]["form"], body, logic=TFORM_LOGIC)
+
+def t_material(S, L):
+    conds = "".join(
+        f'<div class="titem"><span style="color:#2e7d43;margin-top:2px">{ic("check",16,"currentColor",3)}</span>'
+        f'<span style="flex:1 1 auto;min-width:0">{c}</span><span class="tsrc">{src}</span>'
+        f'<span class="x">{ic("x",16)}</span></div>' for c, src in S["t_conds"])
+    crits = "".join(f'<span class="tst grey" style="height:28px;font-size:12px;padding:0 12px">{c}<span style="color:rgba(28,30,44,.35)">{ic("x",12)}</span></span>' for c in S["t_crits"])
+    body = tnav(S) + f'''<div class="tmain">
+{thead(S, S["t_mat_title"], crumb=S["t_form_crumb"])}
+<div class="tbody">
+  <div class="tcard">
+    <p class="tsec">{S["t_s_mat"]}</p>
+    <p class="thint">{S["t_mat_note"]}</p>
+    <div class="tdrop">{ic("upload",18)}{S["t_drop"]}<span style="color:rgba(28,30,44,.5);font-weight:400">・ {S["t_drop_types"]}</span></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <span class="tfile"><span class="ic" style="background:#fbe7e9;color:#d13842">{ic("filetext",16)}</span>{S["t_file1"]}<span style="color:rgba(28,30,44,.4)">{ic("x",14)}</span></span>
+      <span class="tfile"><span class="ic" style="background:#e3edfb;color:#1976d2">{ic("filetext",16)}</span>{S["t_file2"]}<span style="color:rgba(28,30,44,.4)">{ic("x",14)}</span></span>
+      <span class="tbtn out sm" style="height:38px">{ic("sparkle",16)}{S["t_extract"]}</span>
+      <span class="tst green" style="height:38px;padding:0 12px">{ic("check",14,"currentColor",3)}{S["t_extracted"]}</span>
+    </div>
+  </div>
+  <div class="tcard">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <p class="tsec">{S["t_s_cond"]}</p><span class="tbtn ghost sm">{ic("plus",16)}{S["t_add_cond"]}</span>
+    </div>
+    <p class="thint">{S["t_cond_note"]}</p>
+    <div>{conds}</div>
+  </div>
+  <div class="tcard">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <p class="tsec">{S["t_s_crit"]}</p>
+      <span style="display:flex;gap:8px"><span class="tbtn ghost sm">{ic("refresh",16)}{S["t_regen"]}</span><span class="tbtn ghost sm">{ic("plus",16)}{S["t_add_crit"]}</span></span>
+    </div>
+    <p class="thint">{S["t_crit_note"]}</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">{crits}</div>
+  </div>
+  <div class="tbar">
+    <a class="tbtn out" href="{tfn("T-Form",L)}">{S["t_back"]}</a>
+    <span style="display:flex;gap:12px;align-items:center">
+      <a class="tbtn out" href="{fn("02-Assignment",L)}">{ic("eye",18)}{S["t_preview"]}</a>
+      <a class="tbtn" href="{tfn("T-Detail",L)}">{S["t_save_pub"]}</a>
+    </span>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-Material", S["t_titles"]["mat"], body)
+
+def t_detail(S, L):
+    tabs = f'<span class="on">{S["t_tabs"][0]}</span><a href="{tfn("T-List",L)}">{S["t_tabs"][1]}</a><a href="{tfn("T-Form",L)}">{S["t_tabs"][2]}</a>'
+    rows = "".join(f'<div class="titem"><span style="flex:0 0 190px;color:rgba(28,30,44,.6)">{k}</span><b style="font-weight:500">{v}</b></div>' for k, v in S["t_sum"])
+    body = tnav(S) + f'''<div class="tmain">
+{thead(S, S["t_det_title"], crumb=S["t_form_crumb"],
+       right=f'<span style="display:flex;gap:12px;align-items:center"><span class="tst amber">{ic("sparkle",12)}{S["t_det_type"]}</span><span class="tst green">{S["t_pub"]}</span><a class="tbtn out" href="{tfn("T-Form",L)}">{S["t_edit"]}</a></span>')}
+<div class="tbody">
+  <div class="ttab">{tabs}</div>
+  <div class="tcard">
+    <p class="tsec">{S["t_s_status"]}</p>
+    <div class="tstat">
+      <div class="s"><b>{ic("filetext",16,"#1976d2")}{S["t_st1"]}</b><span class="n">{S["t_st1_n"]}</span><span>{S["t_st1_s"]}</span></div>
+      <div class="s" style="border-color:#f0c33c;background:#fffdf5"><b>{ic("clock",16,"#8a6400")}{S["t_st2"]}</b><span class="n">{S["t_st2_n"]}</span><span>{S["t_st2_s"]}</span>
+        <a class="tbtn sm" style="align-self:flex-start;margin-top:4px" href="{tfn("T-List",L)}">{S["t_open_list"]}</a></div>
+      <div class="s"><b>{ic("check",16,"#2e7d43",3)}{S["t_st3"]}</b><span class="n">{S["t_st3_n"]}</span><span>{S["t_st3_s"]}</span></div>
+    </div>
+  </div>
+  <div class="tcard">
+    <p class="tsec">{S["t_s_sum"]}</p>
+    <div>{rows}</div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-Detail", S["t_titles"]["det"], body)
+
+def t_list(S, L):
+    tone = {"wait": "amber", "done": "green", "none": "grey"}
+    rows = ""
+    for name, when, st, label in S["t_rows"]:
+        initial = name.strip()[0]
+        act = (f'<a class="tbtn sm" href="{tfn("T-Review",L)}">{S["t_review_btn"]}</a>' if st == "wait"
+               else (f'<span class="tbtn out sm">{S["t_view"]}</span>' if st == "done" else ""))
+        rows += (f'<div class="trow"><span class="c1" style="display:flex;align-items:center;gap:10px"><span class="tav">{initial}</span>{name}</span>'
+                 f'<span class="c2" style="color:rgba(28,30,44,.6);font-size:13px">{when}</span>'
+                 f'<span class="c3"><span class="tst {tone[st]}">{label}</span></span>'
+                 f'<span class="c4">{act}</span></div>')
+    body = tnav(S) + f'''<div class="tmain">
+{thead(S, S["t_list_title"], crumb=S["t_form_crumb"],
+       right=f'<span style="display:flex;gap:12px;align-items:center"><span class="thint">{S["t_bulk_note"]}</span><span class="tbtn out">{S["t_bulk"]}</span></span>')}
+<div class="tbody">
+  <div class="ttab"><a href="{tfn("T-Detail",L)}">{S["t_tabs"][0]}</a><span class="on">{S["t_tabs"][1]}</span><a href="{tfn("T-Form",L)}">{S["t_tabs"][2]}</a></div>
+  <div class="tbox">
+    <div class="tth"><span class="c1">{S["t_cols"][0]}</span><span class="c2">{S["t_cols"][1]}</span><span class="c3">{S["t_cols"][2]}</span><span class="c4"></span></div>
+    {rows}
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-List", S["t_titles"]["list"], body)
+
+TREV_LOGIC = """state = { edited: 1 };
+  renderVals() { return {}; }"""
+
+def t_review(S, L):
+    raw = "".join(f'<p class="traw">{p}</p>' for p in S["raw"])
+    drafts = ""
+    for i, (kind, crit, quote, bodytext, ref) in enumerate(S["cards"]):
+        n = i + 1
+        edited = (n == 3)
+        drafts += f'''<div class="tdraft{" edited" if edited else ""}">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="ctag">{crit}</span>
+        {f'<span class="tst blue">{S["t_rev_edited"]}</span>' if edited else ""}
+      </div>
+      <blockquote class="tdq">“{quote}”</blockquote>
+      <p class="tdb">{bodytext}</p>
+      <div class="tdacts"><span class="tbtn ghost sm">{ic("filetext",14)}{S["t_rev_edit"]}</span><span class="tbtn ghost sm" style="color:#d13842">{ic("x",14)}{S["t_rev_drop"]}</span></div>
+    </div>'''
+    body = tnav(S) + f'''<div class="tmain">
+{thead(S, S["t_rev_title"], crumb=S["t_rev_meta"],
+       right=f'<span class="tst red">{ic("eye",12)}{S["t_rev_hidden"]}</span>')}
+<div class="tbody" style="padding-bottom:16px">
+  <div class="tpanes">
+    <section class="tpane">
+      <div class="ph"><span>{ic("filetext",16,"#404564")} {S["t_rev_left"]}</span><span class="thint">{S["a_file"]}</span></div>
+      <div class="pb">{raw}</div>
+    </section>
+    <section class="tpane">
+      <div class="ph"><span>{S["t_rev_right"]}</span><span class="thint">{S["t_rev_right_n"]}</span></div>
+      <div class="pb">
+        {drafts}
+        <div class="tcard" style="padding:14px 16px;gap:8px">
+          <p class="tsec" style="font-size:14px">{S["t_rev_note_h"]}</p>
+          <div class="tin area" style="min-height:70px">{S["t_rev_note"]}</div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="tbar">
+    <a class="tbtn out" href="{tfn("T-List",L)}">{ic("left",18)}{S["t_rev_back"]}</a>
+    <span style="display:flex;gap:12px;align-items:center">
+      <span class="thint">{S["t_rev_count"]}</span>
+      <a class="tbtn" href="{tfn("T-List",L)}">{ic("check",18,"#fff",3)}{S["t_rev_send"]}</a>
+    </span>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-Review", S["t_titles"]["rev"], body)
+
+TBUILDERS = {"T-Book": t_book, "T-Form": t_form, "T-Material": t_material,
+             "T-Detail": t_detail, "T-List": t_list, "T-Review": t_review}
+
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
@@ -1672,8 +2229,33 @@ for lang, S in (("ja", JA), ("en", EN)):
                         "title": mtitles[i] + (" (EN)" if lang == "en" else " (JA)"), "is_interactive": True}
         order.append(name)
 
+# teacher (Back Office) rows
+TW, TH, TGAP = 1440, 900, 80
+TROW_Y = {"ja": 5400, "en": 7000}
+ttitles = ["T1 · Book Management — add the Feedback LO type", "T2 · LO settings — dates, submission, teacher review",
+           "T3 · Material — extract the checklist and the criteria", "T4 · LO overview — who has submitted",
+           "T5 · Submissions — pick one to review", "T6 · Review and return — the teacher in the loop"]
+for lang, S in (("ja", JA), ("en", EN)):
+    for i, screen in enumerate(TSCREENS):
+        CUR = screen
+        name = tfn(screen, lang)
+        with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+            f.write(TBUILDERS[screen](S, lang))
+        boards[name] = {"x": i * (TW + TGAP), "y": TROW_Y[lang], "w": TW, "h": TH,
+                        "title": ttitles[i] + (" (EN)" if lang == "en" else " (JA)"), "is_interactive": True}
+        order.append(name)
+
 NW = 560
 MNW = 375
+TNW = 640
+TNOTES = {
+    "t1": "TEACHER, BACK OFFICE. This is the live LMS 2.0 Back Office screen the PM sent: 教材 ／ ブック管理, the chapter → topic → LO tree, and the Add Learning Objective dialog. The override (PM, 19 Sep) is here: AI Feedback is no longer a separate class-and-assignment area, it is one more LO TYPE in this list, created where the teacher already builds the course. Everything the old teacher dashboard did (assignment title, message, files, rubric) becomes the settings of this LO, on the next two screens. The six existing types are unchanged; the highlighted NEW row is the addition. Click it →",
+    "t2": "The settings the PM named, in the order the teacher fills them. (a) 公開と提出期間: a start date — the LO appears in the student's To-do then — and a due date; until the due date the student submits and replaces, and only after it does the teacher review, which is exactly what the student screens promise (see the student row above). 再提出を許可する is the toggle behind the resubmission loop (default off in the product; shown on here so the flow is visible). (b) 提出方法: which of file / photos / typed the assignment accepts — the Back Office setting the student screens M6 / M7 depend on; the 500-character limit rides with 直接入力. (c) 先生の確認: the teacher-in-the-loop toggle. On, the draft waits for the teacher (T6). Off, it is returned automatically after the due date, and the amber note says so plainly — toggle it to see. Nothing in either case tells the student that AI was involved. Toggles and checkboxes work in the prototype.",
+    "t3": "Where the pre-submission checklist comes from (PM, 19 Sep: 'based on what was setup/extracted from teacher's content'). The teacher uploads the material they already have — the assignment brief, the marking criteria — and 教材から抽出する reads them. 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)), so the teacher can see why a condition is there and delete or add one. These are the structural checks the student sees on the submit screen and that run when a file is chosen. コメントの観点 (the rubric) is extracted the same way and stays separate from the conditions: conditions gate the submission, criteria shape the comments; neither carries a score. 生徒に表示される画面を見る jumps to the student's assignment screen.",
+    "t4": "The LO once it is published, which is where the old Figma 'assignment detail' lands after the override: not a page in a separate assignments area but the LO's own overview inside the book. The three cards are the Figma Started / Snaps / Completed analysis cards, re-cut for this flow: 提出済み, 確認待ち (the queue the teacher-in-the-loop toggle creates), 返却済み. Below them, the settings as a summary so the teacher can check the dates and the review setting without reopening the form.",
+    "t5": "The queue. One row per student with the submission time and the state; 確認する opens the review screen. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, with a note recommending they look first — it is deliberately a secondary action, because the whole point of the toggle on T2 is that the teacher, not the model, returns the feedback.",
+    "t6": "The teacher in the loop, the screen the review toggle leads to. Left: what the student submitted. Right: the draft comments, each with its criterion, the passage it points at, and 編集 / 削除 — an edited one is marked, and the count at the bottom says how much the teacher changed. Plus the teacher's own ひとこと, which is what the student sees at the top of the returned screen. 生徒には未公開 is stated on the pane so there is no doubt about what has gone out. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the toggle off, this screen is skipped entirely and the draft is returned as it is.",
+}
 MNOTES = {
     "m1": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →",
     "m2": "Assignment on the phone: same criteria chips, same 提出条件 list, and three ways to submit. 撮影して提出 is the primary option — the snap flow from unifiedapp (Snap → Crop → Review), adapted from 'ask about a question' to 'submit a handwritten answer'. File / photos and typed input are the other two (per the PC decisions of 18 Sep). Tap 撮影して提出 →",
@@ -1711,14 +2293,20 @@ notes = {
         "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened."},
     "title_m": {"x": 0, "y": MROW_Y["ja"] - 300, "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
     "title_m_en": {"x": 0, "y": MROW_Y["en"] - 240, "text": "Same mobile flow in English", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
+    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — the teacher sets this up inside Book Management: add the Feedback LO type → dates, submission and review → material and checklist → overview → review and return · 日本語", "kind": "title1", "maxW": 4 * TW + 3 * TGAP},
+    "title_t_en": {"x": 0, "y": TROW_Y["en"] - 240, "text": "Same Back Office flow in English", "kind": "title1", "maxW": 4 * TW + 3 * TGAP},
+    "n_role": {"x": 1520, "y": MROW_Y["en"] + MH + 60, "w": 700, "maxH": 240, "text":
+        "Teacher / student switch (19 Sep): the bottom-left pill on the Back Office boards flips to the student's screen, so the same setting can be read from both sides — the dates on T2 against the waiting copy on screen 3, the checklist on T3 against 提出前チェック on screen 2. Prototype-only, like the DEMO and PC / Mobile pills."},
 }
 for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "m10"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
+for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "t6"]):
+    notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
 
 canvas = {
     "v": 3,
     "createdOnFiles": {"v": 1, "at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")},
-    "title": "AI Feedback — Student PC Prototype",
+    "title": "AI Feedback — Back Office + Student Prototype",
     "launch": {"view": "canvas"},
     "pages": [],
     "boards": boards,
@@ -1742,8 +2330,10 @@ SITE_CSS = """
 html,body{height:100%}
 body{margin:0;padding:0;display:block;overflow:hidden}
 .root{width:100%;min-width:1024px;height:100vh;height:100dvh}
+.troot{width:100%;min-width:1180px;height:100vh;height:100dvh}
 .mroot{width:100%;max-width:520px;height:100vh;height:100dvh;margin:0 auto}
 @media (max-width:1023px){body{overflow-x:auto}}
+@media (max-width:1179px){body:has(.troot){overflow-x:auto}}
 /* the drawn iOS status bar belongs to the artboard, not to a live page */
 .sb{display:none}
 .ctop{top:0}
@@ -1762,12 +2352,13 @@ def to_static(text, lang):
     logic = re.search(r'<script type="text/x-dc"[^>]*>(.*?)</script>', text, re.S).group(1)
     markup = markup.replace('.dc.html"', '.html"')      # links between screens
     # Drop the artboard's fixed size; the stylesheet gives it the window instead.
-    markup = re.sub(r'\s*style="width: (?:1280|375)px; height: (?:800|812)px;"', "", markup, count=1)
+    markup = re.sub(r'\s*style="width: (?:1280|375|1440)px; height: (?:800|812|900)px;"', "", markup, count=1)
     # Fold an index link into the prototype-only device pill, so no page chrome is needed.
     home = "一覧" if lang == "ja" else "All"
     markup = re.sub(r'(<div class="dev[^"]*" role="group"[^>]*>)',
                     r'\1' + f'<a class="dev-i" href="/">{HOME_ICON}{home}</a>', markup, count=1)
     dark = "mroot dark" in markup
+    bg = "#000" if dark else ("#fff" if 'class="troot"' in markup else "#f2f2f4")
     return f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -1778,7 +2369,7 @@ def to_static(text, lang):
 <title>{title}</title>
 {helmet}
 <style>{SITE_CSS}
-body{{background:{"#000" if dark else "#f2f2f4"}}}</style>
+body{{background:{bg}}}</style>
 </head>
 <body>
 <div id="dc-root"></div>
@@ -1805,6 +2396,8 @@ def site_index():
         ("PC · English", "1280 × 800", links(SCREENS, "en", titles)),
         ("モバイル ・ 日本語", "375 × 812", links(MSCREENS, "ja", mtitles)),
         ("Mobile · English", "375 × 812", links(MSCREENS, "en", mtitles)),
+        ("先生（バックオフィス）・ 日本語", "1440 × 900", links(TSCREENS, "ja", ttitles)),
+        ("Teacher (Back Office) · English", "1440 × 900", links(TSCREENS, "en", ttitles)),
     ]
     blocks = "".join(
         f'<section class="row"><h2>{name}<span>{size}</span></h2><div class="steps">{body}</div></section>'
@@ -1837,10 +2430,10 @@ footer{{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px s
 <body>
 <main>
   <header>
-    <h1>AI フィードバック — 生徒プロトタイプ</h1>
-    <p class="lead">近畿大学「地域環境統計学」の演習レポートを題材に、提出から先生の返却までの生徒側の流れを描いた試作です。実装ではありません。<br>
-    各画面のヘッダーで 日本語 / English、左下のピルで PC / モバイルを切り替えられます。待機画面の DEMO ピルは、先生が確認して返却したところまで進めます。<br>
-    <span lang="en">A prototype of the student side of AI Feedback, not an implementation. Every screen has a Japanese / English toggle in the header and a PC / Mobile switch in the bottom-left corner.</span></p>
+    <h1>AI フィードバック — プロトタイプ</h1>
+    <p class="lead">近畿大学「地域環境統計学」の演習レポートを題材に、先生がバックオフィスで課題を設定し、生徒が提出し、先生が確認して返却するまでの流れを描いた試作です。実装ではありません。<br>
+    各画面のヘッダーで 日本語 / English、左下のピルで PC / モバイル、バックオフィスでは 先生 / 生徒 を切り替えられます。待機画面の DEMO ピルは、先生が確認して返却したところまで進めます。<br>
+    <span lang="en">A prototype of AI Feedback — the teacher's Back Office setup and the student's submission and return — not an implementation. Every screen has a Japanese / English toggle in the header and a device or role switch in the bottom-left corner.</span></p>
   </header>
   {blocks}
   <footer>社内検討用。外部への共有はご遠慮ください。 ・ 仕様は <code>PRDs/ai-feedback-university-prd.md</code>。<br>
@@ -1851,7 +2444,7 @@ footer{{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px s
 '''
 
 for lang in ("ja", "en"):
-    for screen in SCREENS + MSCREENS:
+    for screen in SCREENS + MSCREENS + TSCREENS:
         name = fn(screen, lang)
         with open(os.path.join(ROOT, name), encoding="utf-8") as f:
             src = f.read()

@@ -265,8 +265,10 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 html,body{height:100%}
 body{margin:0;padding:0;display:block;overflow:hidden}
 .root{width:100%;min-width:1024px;height:100vh;height:100dvh}
+.troot{width:100%;min-width:1180px;height:100vh;height:100dvh}
 .mroot{width:100%;max-width:520px;height:100vh;height:100dvh;margin:0 auto}
 @media (max-width:1023px){body{overflow-x:auto}}
+@media (max-width:1179px){body:has(.troot){overflow-x:auto}}
 /* the drawn iOS status bar belongs to the artboard, not to a live page */
 .sb{display:none}
 .ctop{top:0}

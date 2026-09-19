@@ -1,6 +1,6 @@
 # Deploying the prototype on Railway
 
-This folder is a self-contained static site: the 32 prototype screens plus a
+This folder is a self-contained static site: the 48 prototype screens plus a
 dependency-free Node server. Nothing is built or installed at deploy time, so a
 deploy is just "clone the repo and run `node server.js`".
 
@@ -39,18 +39,22 @@ caption bar. The PC screens take the whole viewport and keep a 1024 px minimum
 width, scrolling sideways below that like any desktop web app. The mobile
 screens fill the height and take the width up to 520 px, centred, the way a
 mobile-first site looks on a large monitor; the artboards' drawn iOS status bar
-is hidden here, since a live page sits under the real one. The only added
-control is the index link folded into the prototype's own PC / Mobile pill.
+is hidden here, since a live page sits under the real one. The Back Office
+screens behave like the PC ones with a 1180 px minimum. The only added control
+is the index link folded into the prototype's own PC / Mobile (or 先生 / 生徒)
+pill.
 
 ## What gets served
 
 | Path | Screen |
 |---|---|
-| `/` | index of all 32 screens |
-| `/Main.html` … `/05-Todo.html` | PC flow, Japanese |
-| `/Main-en.html` … `/05-Todo-en.html` | PC flow, English |
-| `/M-Main.html` … `/M-Sheet.html` | mobile flow, Japanese |
-| `/M-Main-en.html` … `/M-Sheet-en.html` | mobile flow, English |
+| `/` | index of all 48 screens |
+| `/Main.html` … `/05-Todo.html` | student PC flow, Japanese |
+| `/Main-en.html` … `/05-Todo-en.html` | student PC flow, English |
+| `/M-Main.html` … `/M-Sheet.html` | student mobile flow, Japanese |
+| `/M-Main-en.html` … `/M-Sheet-en.html` | student mobile flow, English |
+| `/T-Book.html` … `/T-Review.html` | teacher Back Office flow, Japanese |
+| `/T-Book-en.html` … `/T-Review-en.html` | teacher Back Office flow, English |
 
 The extension is optional: `/M-Crop` serves `M-Crop.html`.
 

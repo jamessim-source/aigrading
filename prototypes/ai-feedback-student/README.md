@@ -1,8 +1,9 @@
-# AI Feedback — student prototype (PC + mobile)
+# AI Feedback — prototype (Back Office + student PC + student mobile)
 
-Clickable prototype of the student side of AI Feedback for universities (Kindai
-地域環境統計学 exercise, teacher-in-the-loop, revise loop). It accompanies
-`PRDs/ai-feedback-university-prd.md`.
+Clickable prototype of AI Feedback for universities (Kindai 地域環境統計学
+exercise, teacher-in-the-loop, revise loop): the teacher sets the assignment up
+in the Back Office, the student submits on PC or phone, the teacher reviews and
+returns. It accompanies `PRDs/ai-feedback-university-prd.md`.
 
 Live canvas (Claude Design artifact, comments live there):
 https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE
@@ -15,10 +16,14 @@ https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE
 | PC · English | same, `-en` suffix | 1280 × 800 |
 | Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
 | Mobile · English | same, `-en` suffix | 375 × 812 |
+| Back Office · 日本語 | `T-Book` → `T-Form` → `T-Material` → `T-Detail` → `T-List` → `T-Review` | 1440 × 900 |
+| Back Office · English | same, `-en` suffix | 1440 × 900 |
 
-Every board has a 日本語 / English toggle (header) and a PC / Mobile switch
-(bottom-left pill) that jump to the twin screen. The DEMO pill on the waiting
-screens simulates the teacher approving and returning the feedback.
+Every board has a 日本語 / English toggle (header). The student boards carry a
+PC / Mobile switch (bottom-left pill) that jumps to the twin screen; the Back
+Office boards carry a 先生 / 生徒 switch in the left nav that jumps to the
+student's screen, so a setting can be read from both sides. The DEMO pill on the
+waiting screens simulates the teacher approving and returning the feedback.
 
 ## Files
 
@@ -57,6 +62,30 @@ Mobile snap → crop → pages flow follows the unifiedapp student mock
   on the tapped underline; PC highlights and centres both sides.
 - AI Feedback is a new LO type; the assignment is created at the LO level in
   Book → Chapter → Topic → LO.
+
+## Back Office direction (2026-09-19, PM — overrides the V1.1 design)
+
+The V1.1 PRD and the teacher-dashboard Figma had teachers creating classes and
+assignments in a separate area, outside the LMS book/course structure. That is
+overridden: AI Feedback is set up inside **Book Management**, where the teacher
+already builds the course.
+
+- **AI Feedback is one more LO type** in the Add Learning Objective dialog,
+  alongside Learning Objective / Flashcard / Recording / Practice / External
+  Content / Paper Submission. Everything the old dashboard held — title, message
+  to the student, files, rubric — becomes settings on that LO.
+- **Dates**: a start date (the LO appears in the student's To-do then) and a due
+  date. The student submits and replaces until the due date; the teacher reviews
+  after it. Resubmission is a separate toggle with its own date, default off.
+- **Submission methods**: which of file / photos / typed the LO accepts, with the
+  500-character limit attached to typed.
+- **Pre-submission checklist**: extracted from the teacher's own material (the
+  brief, the marking criteria) and editable, every condition carrying the source
+  it came from. Conditions gate the submission; the rubric criteria shape the
+  comments. Neither carries a score.
+- **Teacher in the loop**: a toggle. On, the draft waits for the teacher to
+  review, edit and return it. Off, feedback is returned automatically after the
+  due date. Either way the student is never told AI was involved.
 
 ## Publishing
 
