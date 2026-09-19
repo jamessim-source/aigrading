@@ -1929,9 +1929,9 @@ TJA = dict(
     t_cancel="キャンセル", t_confirm="確定",
     # LO page
     t_lo_tabs=["内容", "設定"], t_course_tabs=["概要", "提出一覧"], t_publish="公開する", t_edit="設定を編集", t_save="保存",
-    t_nav_course=["コース管理", "学習計画管理", "要確認", "AIグレーディング", "AIフィードバック"],
+    t_nav_course=["コース管理", "学習計画管理", "要確認", "AIグレーディング"], t_toreview="要確認", t_f_type="種類",
     t_course="コース", t_course_name="地域環境統計学（2026年度）", t_view_subs="提出状況を見る", t_edit_in_bm="ブック管理で編集",
-    t_queue_sub="AIフィードバックのLOと提出状況の一覧です。確認と返却はここから行います。",
+    t_queue_sub="確認が必要な提出の一覧です。AIフィードバックの下書きは、先生の確認を待ってここに並びます。",
     t_queue_cols=["LO", "コース", "締切", "提出", "確認待ち", "返却済み", ""], t_open="開く", t_f_course="コース", t_filters="フィルター",
     t_queue=[("第7回 演習レポート", "11月13日 23:59", "12 / 30", "12", "9"), ("第7週 週次リフレクション", "11月15日 23:59", "21 / 30", "0", "21"),
              ("第6回 演習レポート", "11月6日 23:59", "30 / 30", "0", "30")],
@@ -1974,7 +1974,7 @@ TJA = dict(
     t_rev_count="3件のうち1件を編集しました",
     t_role_t="先生（BO）", t_role_s="生徒画面", t_role_aria="表示する役割",
     t_titles={"book": "BO — ブック管理（ブック詳細）", "dialog": "BO — LOを追加（AIフィードバック）", "created": "BO — 作成後のツリー",
-              "mat": "BO — LO 内容（教材と提出条件）", "queue": "BO — コース › AIフィードバック", "det": "BO — 提出状況 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却"},
+              "mat": "BO — LO 内容（教材と提出条件）", "queue": "BO — コース › 要確認", "det": "BO — 提出状況 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却"},
 )
 TEN = dict(
     t_lang="en", t_org="LMS 2.0",
@@ -2003,9 +2003,9 @@ TEN = dict(
     t_review_off="Feedback is returned to students automatically after the due date, without a review step.",
     t_cancel="Cancel", t_confirm="Confirm",
     t_lo_tabs=["Content", "Settings"], t_course_tabs=["Overview", "Submissions"], t_publish="Publish", t_edit="Edit settings", t_save="Save",
-    t_nav_course=["Course Management", "Study Plan Management", "To Review", "AI Grading", "AI Feedback"],
+    t_nav_course=["Course Management", "Study Plan Management", "To Review", "AI Grading"], t_toreview="To Review", t_f_type="Type",
     t_course="Course", t_course_name="Regional & Environmental Statistics (2026)", t_view_subs="View submissions", t_edit_in_bm="Edit in Book Management",
-    t_queue_sub="Your AI Feedback LOs and their submissions. Review and return from here.",
+    t_queue_sub="Submissions waiting on you. AI Feedback drafts queue here until you review them, alongside manual grading.",
     t_queue_cols=["LO", "Course", "Due", "Submitted", "Waiting for you", "Returned", ""], t_open="Open", t_f_course="Course", t_filters="Filters",
     t_queue=[("Session 7 exercise report", "13 Nov, 23:59", "12 / 30", "12", "9"), ("Week 7 weekly reflection", "15 Nov, 23:59", "21 / 30", "0", "21"),
              ("Session 6 exercise report", "6 Nov, 23:59", "30 / 30", "0", "30")],
@@ -2045,7 +2045,7 @@ TEN = dict(
     t_rev_count="1 of 3 comments edited",
     t_role_t="Teacher (BO)", t_role_s="Student", t_role_aria="Role shown",
     t_titles={"book": "BO — Book Management (book detail)", "dialog": "BO — Add LO (AI Feedback)", "created": "BO — Tree after creating",
-              "mat": "BO — LO content (material and requirements)", "queue": "BO — Course › AI Feedback", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return"},
+              "mat": "BO — LO content (material and requirements)", "queue": "BO — Course › To Review", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return"},
 )
 JA.update(TJA); EN.update(TEN)
 
@@ -2065,7 +2065,7 @@ def role_toggle(S):
 def tnav(S, side="book"):
     """The drawer, as the live LMS 2.0 tenant shows it. Course and Learning Material stay
     open, as production keeps its open groups; the active child is ブック管理 on the
-    set-up boards and コース › AIフィードバック on the submission boards."""
+    set-up boards and コース › 要確認 (To Review) on the submission boards."""
     L = S["t_lang"]
     icons = ["dashboard", "aiTutor", "people", "library", "reader", "video", "event", "bell", "person"]
     groups = {2, 3, 4, 5, 7, 8}
@@ -2077,8 +2077,8 @@ def tnav(S, side="book"):
         out += f'<div class="tn{branch}"><span class="mi">{mi(icons[i], 22)}</span><span class="lb">{label}</span>{caret}</div>'
         if i == 3:
             for j, sub in enumerate(S["t_nav_course"]):
-                on = " on" if (j == 4 and side == "course") else ""
-                lb = f'<a class="lb" href="{tfn("T-Queue", L)}" style="color:inherit">{sub}</a>' if j == 4 else f'<span class="lb">{sub}</span>'
+                on = " on" if (j == 2 and side == "course") else ""
+                lb = f'<a class="lb" href="{tfn("T-Queue", L)}" style="color:inherit">{sub}</a>' if j == 2 else f'<span class="lb">{sub}</span>'
                 out += f'<div class="tn child{on}"><span class="mi"></span>{lb}</div>'
         if i == 4:
             for j, sub in enumerate(S["t_nav_sub"]):
@@ -2264,8 +2264,8 @@ def t_dialog(S, L):
 
 def lo_head(S, L, screen, tab, pub, side="book"):
     """The LO's page header. Book Management (side="book") sets the LO up: Content and
-    Settings tabs, Publish as an action, a link out to its submissions. Course › AI
-    Feedback (side="course") processes them: Overview and Submissions tabs, a link back
+    Settings tabs, Publish as an action, a link out to its submissions. Course › To
+    Review (side="course") processes them: Overview and Submissions tabs, a link back
     to Book Management to edit (PM, 19 Sep: Book Management is for setting up LOs, not
     for the student submission flows)."""
     status = f'<span class="tchip {"published" if pub else "unpublished"}">{S["t_pub"] if pub else S["t_unpub"]}</span>'
@@ -2277,7 +2277,7 @@ def lo_head(S, L, screen, tab, pub, side="book"):
                 ("" if pub else f'<span class="tbtn contained">{S["t_publish"]}</span>'))
         sub = ""
     else:
-        crumbs = [(S["t_course"], "#"), (S["t_type_fb"], tfn("T-Queue", L)), (S["t_new_lo"], None)]
+        crumbs = [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_new_lo"], None)]
         tabs_src = S["t_course_tabs"]
         acts = f'<a class="tbtn outlined" href="{tfn("T-Created", L)}">{mi("edit", 18)}{S["t_edit_in_bm"]}</a>'
         sub = f'<p class="helper" style="margin:-16px 0 20px;font-size:13px">{S["t_course_name"]} {S["sep"]} {S["t_book"]} {S["sep"]} {S["t_ch7"]}</p>'
@@ -2363,9 +2363,9 @@ def t_material(S, L):
     return tpage(S, "T-Material", S["t_titles"]["mat"], body, logic=TMAT_LOGIC)
 
 def t_queue(S, L):
-    """Course › AI Feedback: the landing for processing submissions — every AI Feedback LO
-    the teacher has, with its counts, in the Back Office list-page pattern (filter bar,
-    table, pagination). Open → the LO's overview."""
+    """Course › To Review, production's home for submissions waiting on the teacher, filtered
+    to the AI Feedback type: every AI Feedback LO with its counts, in the Back Office
+    list-page pattern (filter bar, table, pagination). Open → the LO's overview."""
     trs = ""
     for i, (name, due, sub, wait, ret) in enumerate(S["t_queue"]):
         first = (i == 0)
@@ -2376,11 +2376,12 @@ def t_queue(S, L):
       <td style="color:#757575">{S["t_course_name"]}</td><td>{due}</td><td>{sub}</td><td>{w}</td><td>{ret}</td><td style="text-align:right;width:110px">{act}</td></tr>'''
     body = tnav(S, "course") + f'''<div class="tmain">
 <div class="tscroll">
-  {tcrumbs(S, "T-Queue", [(S["t_course"], "#"), (S["t_type_fb"], None)])}
-  <div class="tphead"><h1>{S["t_type_fb"]}</h1></div>
+  {tcrumbs(S, "T-Queue", [(S["t_course"], "#"), (S["t_toreview"], None)])}
+  <div class="tphead"><h1>{S["t_toreview"]}</h1></div>
   <p class="helper" style="margin:-16px 0 20px;font-size:13px">{S["t_queue_sub"]}</p>
   <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
     <div style="flex:0 0 360px">{field(S["t_f_course"], S["t_course_name"], icon="expandMore")}</div>
+    <div style="flex:0 0 260px">{field(S["t_f_type"], S["t_type_fb"], icon="expandMore")}</div>
     <span class="tbtn neutral">{S["t_filters"]}</span>
   </div>
   <div class="tpaper" style="overflow:hidden">
@@ -2456,7 +2457,7 @@ def t_review(S, L):
     </div>'''
     body = tnav(S, "course") + f'''<div class="tmain">
 <div class="tbody-flex">
-  {tcrumbs(S, "T-Review", [(S["t_course"], "#"), (S["t_type_fb"], tfn("T-Queue", L)), (S["t_new_lo"], tfn("T-List", L)), (S["t_rows"][0][0], None)])}
+  {tcrumbs(S, "T-Review", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_new_lo"], tfn("T-List", L)), (S["t_rows"][0][0], None)])}
   <div class="tphead" style="margin-bottom:16px">
     <h1>{S["t_rev_title"]}<span class="helper" style="margin:0;font-size:14px">{S["t_rev_meta"]}</span></h1>
     <span class="tchip red">{mi("eyeOff", 14)}{S["t_rev_hidden"]}</span>
@@ -2525,7 +2526,7 @@ TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
            "T3 · Created → LO content — material, requirements, criteria", "T4 · Back in the tree — Unpublished until published",
-           "T5 · Course › AI Feedback — every LO with submissions", "T6 · Overview — who has submitted", "T7 · Submissions — pick one to review", "T8 · Review and return — the teacher in the loop"]
+           "T5 · Course › To Review — AI Feedback LOs waiting on the teacher", "T6 · Overview — who has submitted", "T7 · Submissions — pick one to review", "T8 · Review and return — the teacher in the loop"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -2542,10 +2543,10 @@ TNW = 640
 TNOTES = {
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
     "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
-    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › AI Feedback, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
+    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › To Review, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
     "t4": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3.",
-    "t5": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course, as production keeps To Review and AI Grading there — AI Feedback is their sibling. This is its landing: every AI Feedback LO the teacher has, with due date and the three counts, in the Back Office list-page pattern (filter bar, table, pagination). 開く on a row →",
-    "t6": "The LO's submission page under Course › AI Feedback, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree.",
+    "t5": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 要確認 (To Review), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep). Filtered to the AI Feedback type: every AI Feedback LO with due date and the three counts, in the Back Office list-page pattern (filter bar, table, pagination). 開く on a row →",
+    "t6": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree.",
     "t7": "Submissions tab: the Back Office table (index column, header dividers, pagination). One row per student with the submission time and state; 確認する opens the review. すべて承認して返却 exists for the teacher who trusts the drafts on a large class, deliberately outlined not contained, with a note recommending they look first — the whole point of the switch on T2 is that the teacher, not the model, returns the feedback.",
     "t8": "The teacher in the loop, the screen the review switch leads to. Left: what the student submitted. Right: the draft comments, each with its criterion, the passage it points at, and Edit / Delete — an edited one is marked and the count at the bottom says how much the teacher changed — then the teacher's own ひとこと, which the student sees at the top of the returned screen. 生徒には未公開 is stated in the header so there is no doubt about what has gone out. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off, this screen is skipped and the draft is returned as it is.",
 }
@@ -2586,7 +2587,7 @@ notes = {
         "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened."},
     "title_m": {"x": 0, "y": MROW_Y["ja"] - 300, "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
     "title_m_en": {"x": 0, "y": MROW_Y["en"] - 240, "text": "Same mobile flow in English", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
-    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › AI Feedback: queue → overview → submissions → review and return · 日本語", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
+    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › To Review: queue → overview → submissions → review and return · 日本語", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
     "title_t_en": {"x": 0, "y": TROW_Y["en"] - 240, "text": "Same Back Office flow in English", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
     "n_role": {"x": 1520, "y": MROW_Y["en"] + MH + 60, "w": 700, "maxH": 240, "text":
         "Teacher / student switch (19 Sep): the bottom-left pill on the Back Office boards flips to the student's screen, so the same setting can be read from both sides — the dates on T2 against the waiting copy on screen 3, the checklist on T3 against 提出前チェック on screen 2. Prototype-only, like the DEMO and PC / Mobile pills."},

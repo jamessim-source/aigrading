@@ -95,8 +95,8 @@ already builds the course.
   due date. Either way the student is never told AI was involved.
 - **Two homes**: Book Management sets the LO up (tree, dialog, content page).
   Processing submissions — the queue across LOs, an LO's overview, its
-  submissions, review and return — lives under **Course › AI Feedback**, beside
-  To Review and AI Grading, where production keeps submission work.
+  submissions, review and return — lives under **Course › To Review**, production's existing home for
+  submissions waiting on the teacher, filtered to the AI Feedback type.
 
 ## Publishing
 
