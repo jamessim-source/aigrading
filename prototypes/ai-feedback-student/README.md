@@ -105,7 +105,8 @@ already builds the course.
   own. Group: AI Feedback tiles at the top of the paper, in place of production's
   Questions Solved via AI tile (removed, PM: not required) — submissions,
   waiting for review → Submission Grading, returned with auto-returns,
-  resubmissions, average time to return; in the LO matrix an AI Feedback LO shows
+  resubmissions (an average-time-to-return tile was removed, PM: not required);
+  in the LO matrix an AI Feedback LO shows
   the submission status per student in the marking tones with the comment count,
   and its header reads Submitted / Waiting / Returned; below, comments by rubric
   criterion and the requirements that stopped a submission at the pre-check.
