@@ -105,7 +105,7 @@ already builds the course.
   own. Group: no tile row (production's Questions Solved via AI and a set of AI
   Feedback overview tiles were tried and removed, PM: not required); in the LO
   matrix an AI Feedback LO shows
-  the submission status per student in the marking tones with the comment count,
+  the submission status per student in the marking tones,
   and its header reads Submitted / Waiting / Returned plus a ★ count of
   submissions the teacher highlighted as examples for the class (set from the
   review screen's "Highlight for class"; the Submission Grading tables mark
