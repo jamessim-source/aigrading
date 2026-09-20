@@ -102,9 +102,10 @@ already builds the course.
   Sent Back, plus a secondary chip (Auto-returned, Resubmitted).
 - **Dashboard** (2026-09-20, PM): the AI Feedback overview is fitted into
   production's `GroupDashboard` and `StudentDashboard`, not given a page of its
-  own. Group: AI Feedback tiles beside Questions Solved via AI (submissions,
+  own. Group: AI Feedback tiles at the top of the paper, in place of production's
+  Questions Solved via AI tile (removed, PM: not required) — submissions,
   waiting for review → Submission Grading, returned with auto-returns,
-  resubmissions, average time to return); in the LO matrix an AI Feedback LO shows
+  resubmissions, average time to return; in the LO matrix an AI Feedback LO shows
   the submission status per student in the marking tones with the comment count,
   and its header reads Submitted / Waiting / Returned; below, comments by rubric
   criterion and the requirements that stopped a submission at the pre-check.
