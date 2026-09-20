@@ -127,9 +127,10 @@ already builds the course.
   card). Two insight panels below the matrix (comments by rubric criterion,
   requirements that stopped a submission) were removed (PM: not required).
   Student: AI Feedback LOs sit in the expanded LO rows with their status where a
-  score would be; below the table, the student's AI Feedback tiles (including
-  points fixed on resubmission), the submission rows into the review, and the
-  returned comments grouped by criterion.
+  score would be, and each carries a detail line — submitted / returned times,
+  attempt, comment counts (strengths, to improve, fixed on resubmission), the
+  criteria touched, the ★ reason, and a link into the review (a separate AI
+  Feedback paper below the table was merged into these rows, PM).
 
 ## Publishing
 
