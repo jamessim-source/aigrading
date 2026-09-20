@@ -16,7 +16,7 @@ https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE
 | PC · English | same, `-en` suffix | 1280 × 800 |
 | Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
 | Mobile · English | same, `-en` suffix | 375 × 812 |
-| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` → `T-Created` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` | 1440 × 900 |
+| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` → `T-Created` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashGroup` ↔ `T-DashStudent` | 1440 × 900 |
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
@@ -100,6 +100,18 @@ already builds the course.
   bar, status segments with counts, the wide table, and the grading-detail layout.
   AI Feedback statuses use the marking tones: Not Reviewed / In Review / Returned /
   Sent Back, plus a secondary chip (Auto-returned, Resubmitted).
+- **Dashboard** (2026-09-20, PM): the AI Feedback overview is fitted into
+  production's `GroupDashboard` and `StudentDashboard`, not given a page of its
+  own. Group: AI Feedback tiles beside Questions Solved via AI (submissions,
+  waiting for review → Submission Grading, returned with auto-returns,
+  resubmissions, average time to return); in the LO matrix an AI Feedback LO shows
+  the submission status per student in the marking tones with the comment count,
+  and its header reads Submitted / Waiting / Returned; below, comments by rubric
+  criterion and the requirements that stopped a submission at the pre-check.
+  Student: AI Feedback LOs sit in the expanded LO rows with their status where a
+  score would be; below the table, the student's AI Feedback tiles (including
+  points fixed on resubmission), the submission rows into the review, and the
+  returned comments grouped by criterion.
 
 ## Publishing
 

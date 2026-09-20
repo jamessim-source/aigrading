@@ -1701,6 +1701,9 @@ MI = {
     "send": "M2.01 21 23 12 2.01 3 2 10l15 2-15 2z",
     "assignment": "M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z",
     "globe": "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z",
+    "filter": "M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z",
+    "history": "M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z",
+    "personAdd": "M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z",
 }
 def mi(name, size=24, color="currentColor"):
     return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="{color}" aria-hidden="true" '
@@ -1938,6 +1941,71 @@ table.m tbody td{vertical-align:top;white-space:nowrap}
 .q-prompt{margin:0 0 12px;color:#212121;line-height:1.7;white-space:pre-wrap}
 .q-answer{background:#FAFAFA;border:1px solid #E0E0E0;border-radius:4px;padding:12px 14px;margin-bottom:12px;line-height:1.7;font-size:14px}
 .q-answer .who{display:block;font-size:12px;color:#757575;margin-bottom:6px}
+/* Dashboard (GroupDashboard / StudentDashboard): filter row, overview cards, toggle group, progress, LO matrix, split */
+.dash-filter{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.dash-filter .fld{flex:1 1 220px;min-width:180px;max-width:360px}
+.dash-filter .vr{width:1px;align-self:stretch;min-height:28px;background:#E0E0E0}
+.chiplist{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+.ov-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.ov-card{display:flex;align-items:center;gap:14px;border:1px solid #E0E0E0;border-radius:8px;background:#fff;padding:12px 20px 12px 14px;width:fit-content;min-width:200px}
+.ov-card .ic{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:#F5F5F5;color:#757575}
+.ov-card .ic.blue{background:#EDF7FE;color:#2196F3}
+.ov-card .ic.orange{background:#FFF4E5;color:#ED6C02}
+.ov-card .ic.green{background:#E8F5E9;color:#4CAF50}
+.ov-card .ic.red{background:#FEEBEE;color:#F44336}
+.ov-card .lbl-sm{font-size:14px;color:#757575;display:block;white-space:nowrap}
+.ov-card .val{font-size:24px;line-height:1.2;font-variant-numeric:tabular-nums;display:block}
+.ov-card .val small{font-size:14px;color:#757575;margin-left:6px}
+.ov-card .sub{font-size:12px;color:#757575;display:block;white-space:nowrap}
+.ov-card.hot{border-color:#FF9800;background:#FFFBF2}
+.toggle-group{display:inline-flex;border:1px solid rgba(33,150,243,.5);border-radius:4px;overflow:hidden;flex:0 0 auto}
+.toggle-group span{color:#2196F3;padding:0 14px;height:34px;display:inline-flex;align-items:center;font-size:14px;font-weight:500;white-space:nowrap}
+.toggle-group span+span{border-left:1px solid rgba(33,150,243,.5)}
+.toggle-group span.on{background:#1976D21F;color:#0B79D0}
+.progress{display:flex;align-items:center;gap:8px;width:100%;min-width:140px}
+.progress .pct{min-width:38px;font-size:14px;font-variant-numeric:tabular-nums}
+.progress .bar{flex:1 1 auto;height:4px;border-radius:2px;background:#EEEEEE;overflow:hidden}
+.progress .bar i{display:block;height:100%;border-radius:2px;background:#2196F3}
+.progress .bar i.good{background:#4CAF50}.progress .bar i.warn{background:#FF9800}
+.matrix{border:1px solid #E0E0E0;border-radius:4px;overflow:auto;background:#fff;max-height:560px}
+.matrix table{border-collapse:separate;border-spacing:0;font-size:14px}
+.matrix th,.matrix td{padding:0;vertical-align:top;text-align:left}
+.matrix .stu-col{position:sticky;left:0;z-index:2;background:#fff;width:210px;min-width:210px;max-width:210px;border-right:1px solid #E0E0E0}
+.matrix thead .stu-col{z-index:4}
+.matrix thead th{position:sticky;top:0;z-index:3;background:#fff;border-bottom:1px solid #E0E0E0}
+.matrix .stu-head{padding:16px 10px;font-weight:500}
+.matrix .stu-cell{padding:16px 10px;height:52px;box-sizing:border-box;display:flex;align-items:center}
+.lo-col{width:200px;min-width:200px;max-width:200px;border-right:1px solid #E0E0E0;padding:6px 10px;box-sizing:border-box}
+.lo-col .lo-name{display:flex;align-items:center;gap:6px;color:#2196F3;font-weight:500;overflow:hidden;white-space:nowrap;margin-bottom:2px}
+.lo-col .lo-name span{overflow:hidden;text-overflow:ellipsis}
+.lo-col .kv-line{font-size:12px;color:#757575;display:flex;gap:4px;line-height:1.5}
+.lo-col .kv-line b{font-weight:400;color:#212121;font-variant-numeric:tabular-nums}
+.matrix tbody td{border-bottom:1px solid #E0E0E0}
+.matrix tbody tr:last-child td{border-bottom:0}
+.stat-cell{display:flex;align-items:center;gap:8px;padding:0 10px;height:52px;box-sizing:border-box;border-right:1px solid #F5F5F5}
+.stat-cell.miss{background:rgba(239,83,80,.1);color:#E31B0C}
+.stat-cell .score{font-variant-numeric:tabular-nums}
+.stat-cell .grow{margin-left:auto;color:#2196F3;display:flex;align-items:center;gap:6px}
+.stat-cell .grow .cnt{font-size:12px;color:#757575;display:inline-flex;align-items:center;gap:2px;font-variant-numeric:tabular-nums}
+.split{display:grid;grid-template-columns:240px minmax(0,1fr);gap:24px;align-items:start}
+.stu-list{border:1px solid #E0E0E0;border-radius:4px;background:#fff;overflow:hidden}
+.stu-list .sl-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;border-bottom:1px solid #E0E0E0;font-weight:500}
+.stu-list a.sl-item{display:block;padding:12px 16px;border-bottom:1px solid #E0E0E0;color:#212121}
+.stu-list a.sl-item:last-child{border-bottom:0}
+.stu-list a.sl-item.on{background:#EDF7FE;box-shadow:inset 3px 0 0 #2196F3}
+.stu-list .sl-sub{font-size:12px;color:#757575;display:block}
+table.m.tight thead th,table.m.tight tbody td{padding:12px 10px}
+.dash-filter .field .in>.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.dash-h2{font-size:20px;font-weight:500;margin:0}
+.insight{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.insight .tpaper .ph h3{font-size:15px}
+.insight .tpaper .ph .helper{margin:2px 0 0}
+.crit-row{display:grid;grid-template-columns:minmax(120px,1fr) 2fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #F5F5F5;font-size:14px}
+.crit-row:last-child{border-bottom:0}
+.crit-row .n{font-variant-numeric:tabular-nums;color:#757575;font-size:13px;white-space:nowrap}
+table.m tbody tr.sub td{background:#FAFAFA;padding:0 16px 16px 54px;border-bottom:1px solid #E0E0E0}
+table.m table.inner{border:1px solid #E0E0E0;border-radius:4px;background:#fff;width:100%}
+table.m table.inner thead th{background:#fff}
 """
 
 THELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
@@ -2036,8 +2104,59 @@ TJA = dict(
     t_rev_edited="編集済み", t_rev_edit="編集", t_rev_drop="削除", t_rev_back="差し戻す", t_rev_send="承認して返却する",
     t_rev_count="3件のうち1件を編集しました",
     t_role_t="先生（BO）", t_role_s="生徒画面", t_role_aria="表示する役割",
+    # Dashboard (GroupDashboard / StudentDashboard) with the AI Feedback overview fitted in
+    t_dash_tabs=["グループダッシュボード", "生徒ダッシュボード", "リアルタイムダッシュボード", "AIダッシュボード"],
+    t_f_book="ブック", t_apply="適用", t_dash_chips=["在籍: 在籍中", "期間: 有効"], t_reset="初期設定に戻す",
+    t_ai_solved="AIで解決した質問", t_ai_solved_n="1,284",
+    t_ov=[("rateReview", "blue", "AIフィードバック 提出", "41", "/ 90", "3 LO ・ 30人", "T-Queue"),
+          ("schedule", "orange", "確認待ち", "9", "", "先生の確認を待つ下書き", "T-Queue"),
+          ("checkCircle", "green", "返却済み", "27", "", "うち自動返却 21", None),
+          ("autorenew", "", "再提出", "4", "", "差し戻し 1 を含む", None),
+          ("event", "", "返却までの平均", "1.8", "日", "締切から返却まで", None)],
+    t_dash_search="生徒名で検索", t_dash_modes=["トピックダッシュボード", "LOダッシュボード"], t_topic_lbl="トピック:",
+    t_score_modes=["最新スコア", "最高スコア"], t_stu_name="生徒名",
+    t_lo_kv=["平均スコア", "完了率", "AIが回答した質問"], t_fb_kv=["提出", "確認待ち", "返却済み"],
+    t_completed="完了", t_marking="採点中",
+    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。",
+    t_mx_los=[("第7回 講義動画", "comp", ("--", "28/30", "0")), ("第7回 確認クイズ", "score", ("74", "26/30", "38")),
+              ("第7回 演習レポート", "fb", ("12/30", "8", "3")), ("第7週 週次リフレクション", "fb", ("21/30", "0", "21"))],
+    t_mx_students=[("山田 花子", [("comp",), ("score", "9/10", False, False), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto")]),
+                   ("佐藤 太郎", [("comp",), ("score", "6/10", True, False), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto")]),
+                   ("鈴木 一郎", [("comp",), ("score", "7/10", False, False), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto")]),
+                   ("田中 美咲", [("comp",), ("score", "10/10", False, False), ("fb", "ret", 3, ""), ("fb", "ret", 2, "auto")]),
+                   ("高橋 健", [("none",), ("score", "4/10", False, True), ("none",), ("fb", "ret", 2, "auto")]),
+                   ("伊藤 さくら", [("comp",), ("score", "8/10", True, False), ("fb", "nr", 3, ""), ("none",)]),
+                   ("渡辺 大輝", [("comp",), ("score", "5/10", False, True), ("none",), ("fb", "ret", 2, "auto")])],
+    t_crit_h="観点別の指摘 ・ 第7回 演習レポート", t_crit_sub="下書き12件のうち、改善点のコメントが付いた割合",
+    t_crit_rows=[("統計処理", 8), ("解釈", 6), ("図表の見やすさ", 4), ("論理構成", 3), ("Excelスキル", 2), ("生成AIリテラシー", 1)], t_crit_of=12,
+    t_reqf_h="提出前チェックで止まった条件", t_reqf_sub="ファイル選択時に満たされていなかった回数（提出前に修正）",
+    t_reqf_rows=[("有意性の検定が記載されている", 9), ("散布図が含まれている", 4), ("ページ数 2枚程度", 3), ("参照した講義資料の記載", 2), ("相関係数が記載されている", 0)],
+    t_times="回",
+    # Student Dashboard
+    t_stu_list="生徒リスト",
+    t_students=[("山田 花子", "3年 ・ KU-2041"), ("佐藤 太郎", "3年 ・ KU-2042"), ("鈴木 一郎", "3年 ・ KU-2043"), ("田中 美咲", "2年 ・ KU-2044"), ("高橋 健", "3年 ・ KU-2045")],
+    t_ind_cols=["チャプター名", "トピック名", "学習日", "平均スコア", "完了"], t_sub_cols=["学習目標", "最終提出", "最新スコア", "最高スコア"],
+    t_ind_rows=[("第6回　データの整理と代表値", "6-1　度数分布とヒストグラム", "2026/10/23", 85, "3/3", False, []),
+                ("第6回　データの整理と代表値", "6-2　代表値と散布度", "2026/11/09", 80, "3/3", True,
+                 [("第6回 講義動画", "2026/10/28", "comp", "comp"), ("第6回 確認クイズ", "2026/10/29", "8/10", "8/10"), ("第6回 演習レポート", "2026/11/09", "fb:ret", "resub")]),
+                ("第7回　データの分析と仮説検定", "7-1　相関分析", "2026/11/14", 90, "3/4", True,
+                 [("第7回 講義動画", "2026/11/08", "comp", "comp"), ("第7回 講義資料", "2026/11/08", "comp", "comp"), ("第7回 確認クイズ", "2026/11/10", "9/10", "9/10"), ("第7回 演習レポート", "2026/11/14", "fb:ir", "--")]),
+                ("第7回　データの分析と仮説検定", "7-2　仮説検定", "2026/11/15", -1, "1/2", False, []),
+                ("第8回　回帰分析", "8-1　単回帰分析", "--", -1, "0/3", False, [])],
+    t_resub_n="再提出 1回",
+    t_stu_fb_h="AIフィードバックの提出", t_stu_fb_sub="この生徒のAIフィードバックLOの提出と返却",
+    t_stu_ov=[("rateReview", "blue", "提出", "3", "/ 3 LO", ""), ("checkCircle", "green", "返却済み", "2", "", "うち自動返却 1"), ("schedule", "orange", "確認待ち", "1", "", ""),
+              ("autorenew", "", "再提出", "1", "回", "第6回 演習レポート"), ("description", "", "受けたコメント", "8", "", "良い点 3 ・ 改善点 5"), ("checks", "", "再提出で修正した指摘", "2", "/ 3", "第6回 1回目 → 2回目")],
+    t_stu_fb_cols=["LO名", "状態", "提出日時", "返却日時", "コメント", ""],
+    t_stu_fb_rows=[("第7回 演習レポート", "2026/11/14 09:12", "ir", "", "3", "--", "--", "確認する"),
+                   ("第7週 週次リフレクション", "2026/11/15 20:11", "ret", "auto", "2", "--", "2026/11/16 00:05", "見る"),
+                   ("第6回 演習レポート", "2026/11/09 13:02", "ret", "resub", "3", "2回目", "2026/11/10 17:40", "見る")],
+    t_prof_h="観点別の傾向", t_prof_sub="返却済みコメントの観点ごとの内訳（良い点 ・ 改善点 ・ 再提出で修正）",
+    t_prof_rows=[("統計処理", 0, 2, 1), ("解釈", 1, 1, 1), ("図表の見やすさ", 1, 0, 0), ("論理構成", 0, 1, 0), ("Excelスキル", 1, 0, 0), ("生成AIリテラシー", 0, 1, 0)],
+    t_prof_lbl=("良い点", "改善点", "修正済み"),
     t_titles={"book": "BO — ブック管理（ブック詳細）", "dialog": "BO — LOを追加（AIフィードバック）", "created": "BO — 作成後のツリー",
-              "mat": "BO — LO 内容（教材と提出条件）", "queue": "BO — コース › 提出物の採点", "det": "BO — 提出状況 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却"},
+              "mat": "BO — LO 内容（教材と提出条件）", "queue": "BO — コース › 提出物の採点", "det": "BO — 提出状況 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却",
+              "dg": "BO — グループダッシュボード", "ds": "BO — 生徒ダッシュボード"},
 )
 TEN = dict(
     t_lang="en", t_org="LMS 2.0",
@@ -2125,12 +2244,61 @@ TEN = dict(
     t_rev_edited="Edited", t_rev_edit="Edit", t_rev_drop="Delete", t_rev_back="Send back", t_rev_send="Approve and return",
     t_rev_count="1 of 3 comments edited",
     t_role_t="Teacher (BO)", t_role_s="Student", t_role_aria="Role shown",
+    t_dash_tabs=["Group Dashboard", "Student Dashboard", "Real Time Dashboard", "AI Dashboard"],
+    t_f_book="Book", t_apply="Apply", t_dash_chips=["Enrollment: Enrolled", "Duration: Active"], t_reset="Reset to default",
+    t_ai_solved="Questions Solved via AI", t_ai_solved_n="1,284",
+    t_ov=[("rateReview", "blue", "AI Feedback submissions", "41", "/ 90", "3 LOs · 30 students", "T-Queue"),
+          ("schedule", "orange", "Waiting for review", "9", "", "drafts waiting on a teacher", "T-Queue"),
+          ("checkCircle", "green", "Returned", "27", "", "21 of them auto-returned", None),
+          ("autorenew", "", "Resubmissions", "4", "", "including 1 sent back", None),
+          ("event", "", "Avg. time to return", "1.8", "days", "from due date to return", None)],
+    t_dash_search="Search by Student Name", t_dash_modes=["Topic Dashboard", "LO Dashboard"], t_topic_lbl="Topic:",
+    t_score_modes=["Latest Score", "Highest Score"], t_stu_name="Student Name",
+    t_lo_kv=["Avg. Score", "Comp. Rate", "AI-answered questions"], t_fb_kv=["Submitted", "Waiting", "Returned"],
+    t_completed="Completed", t_marking="Marking",
+    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading.",
+    t_mx_los=[("Session 7 lecture video", "comp", ("--", "28/30", "0")), ("Session 7 check-up quiz", "score", ("74", "26/30", "38")),
+              ("Session 7 exercise report", "fb", ("12/30", "8", "3")), ("Week 7 weekly reflection", "fb", ("21/30", "0", "21"))],
+    t_mx_students=[("Hanako Yamada", [("comp",), ("score", "9/10", False, False), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto")]),
+                   ("Taro Sato", [("comp",), ("score", "6/10", True, False), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto")]),
+                   ("Ichiro Suzuki", [("comp",), ("score", "7/10", False, False), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto")]),
+                   ("Misaki Tanaka", [("comp",), ("score", "10/10", False, False), ("fb", "ret", 3, ""), ("fb", "ret", 2, "auto")]),
+                   ("Ken Takahashi", [("none",), ("score", "4/10", False, True), ("none",), ("fb", "ret", 2, "auto")]),
+                   ("Sakura Ito", [("comp",), ("score", "8/10", True, False), ("fb", "nr", 3, ""), ("none",)]),
+                   ("Daiki Watanabe", [("comp",), ("score", "5/10", False, True), ("none",), ("fb", "ret", 2, "auto")])],
+    t_crit_h="Comments by criterion · Session 7 exercise report", t_crit_sub="Share of the 12 drafts with an improvement comment on each criterion",
+    t_crit_rows=[("Statistical processing", 8), ("Interpretation", 6), ("Clarity of charts", 4), ("Logical structure", 3), ("Excel skills", 2), ("Generative-AI literacy", 1)], t_crit_of=12,
+    t_reqf_h="Requirements that stopped a submission", t_reqf_sub="Times a requirement was unmet when a file was chosen (fixed before submitting)",
+    t_reqf_rows=[("The test of significance is stated", 9), ("A scatter plot is included", 4), ("About 2 pages", 3), ("The lecture material is cited", 2), ("The correlation coefficient is stated", 0)],
+    t_times="×",
+    t_stu_list="Student List",
+    t_students=[("Hanako Yamada", "Year 3 · KU-2041"), ("Taro Sato", "Year 3 · KU-2042"), ("Ichiro Suzuki", "Year 3 · KU-2043"), ("Misaki Tanaka", "Year 2 · KU-2044"), ("Ken Takahashi", "Year 3 · KU-2045")],
+    t_ind_cols=["Chapter Name", "Topic Name", "Study Date", "Average Score", "Completion"], t_sub_cols=["Learning Objective", "Latest Submission", "Latest Score", "Highest Score"],
+    t_ind_rows=[("Session 6 · Organising data and averages", "6-1 · Frequency tables and histograms", "2026/10/23", 85, "3/3", False, []),
+                ("Session 6 · Organising data and averages", "6-2 · Averages and dispersion", "2026/11/09", 80, "3/3", True,
+                 [("Session 6 lecture video", "2026/10/28", "comp", "comp"), ("Session 6 check-up quiz", "2026/10/29", "8/10", "8/10"), ("Session 6 exercise report", "2026/11/09", "fb:ret", "resub")]),
+                ("Session 7 · Data analysis and hypothesis testing", "7-1 · Correlation analysis", "2026/11/14", 90, "3/4", True,
+                 [("Session 7 lecture video", "2026/11/08", "comp", "comp"), ("Session 7 lecture slides", "2026/11/08", "comp", "comp"), ("Session 7 check-up quiz", "2026/11/10", "9/10", "9/10"), ("Session 7 exercise report", "2026/11/14", "fb:ir", "--")]),
+                ("Session 7 · Data analysis and hypothesis testing", "7-2 · Hypothesis testing", "2026/11/15", -1, "1/2", False, []),
+                ("Session 8 · Regression analysis", "8-1 · Simple regression", "--", -1, "0/3", False, [])],
+    t_resub_n="1 resubmission",
+    t_stu_fb_h="AI Feedback submissions", t_stu_fb_sub="This student's AI Feedback LOs: submissions and returns",
+    t_stu_ov=[("rateReview", "blue", "Submitted", "3", "/ 3 LOs", ""), ("checkCircle", "green", "Returned", "2", "", "1 of them auto-returned"), ("schedule", "orange", "Waiting for review", "1", "", ""),
+              ("autorenew", "", "Resubmissions", "1", "", "Session 6 exercise report"), ("description", "", "Comments received", "8", "", "3 strengths · 5 to improve"), ("checks", "", "Points fixed on resubmission", "2", "/ 3", "Session 6, draft 1 → 2")],
+    t_stu_fb_cols=["LO Name", "Status", "Submitted", "Returned Date", "Comments", ""],
+    t_stu_fb_rows=[("Session 7 exercise report", "2026/11/14, 09:12", "ir", "", "3", "--", "--", "Review"),
+                   ("Week 7 weekly reflection", "2026/11/15, 20:11", "ret", "auto", "2", "--", "2026/11/16, 00:05", "View"),
+                   ("Session 6 exercise report", "2026/11/09, 13:02", "ret", "resub", "3", "2nd", "2026/11/10, 17:40", "View")],
+    t_prof_h="By criterion", t_prof_sub="Returned comments for this student, per criterion (strengths · to improve · fixed on resubmission)",
+    t_prof_rows=[("Statistical processing", 0, 2, 1), ("Interpretation", 1, 1, 1), ("Clarity of charts", 1, 0, 0), ("Logical structure", 0, 1, 0), ("Excel skills", 1, 0, 0), ("Generative-AI literacy", 0, 1, 0)],
+    t_prof_lbl=("Strengths", "To improve", "Fixed"),
     t_titles={"book": "BO — Book Management (book detail)", "dialog": "BO — Add LO (AI Feedback)", "created": "BO — Tree after creating",
-              "mat": "BO — LO content (material and requirements)", "queue": "BO — Course › Submission Grading", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return"},
+              "mat": "BO — LO content (material and requirements)", "queue": "BO — Course › Submission Grading", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return",
+              "dg": "BO — Group Dashboard", "ds": "BO — Student Dashboard"},
 )
 JA.update(TJA); EN.update(TEN)
 
-TSCREENS = ["T-Book", "T-Dialog", "T-Material", "T-Created", "T-Queue", "T-Detail", "T-List", "T-Review"]
+TSCREENS = ["T-Book", "T-Dialog", "T-Material", "T-Created", "T-Queue", "T-Detail", "T-List", "T-Review", "T-DashGroup", "T-DashStudent"]
 
 def tfn(screen, lang):
     return f"{screen}.dc.html" if lang == "ja" else f"{screen}-en.dc.html"
@@ -2154,8 +2322,11 @@ def tnav(S, side="book"):
     out = ""
     for i, label in enumerate(S["t_nav"]):
         branch = " branch" if (i == 4 and side == "book") or (i == 3 and side == "course") else ""
+        if i == 0 and side == "dash":
+            branch = " on"
         caret = f'<span class="caret">{mi("expandLess" if i in opened else "expandMore", 20)}</span>' if i in groups else ""
-        out += f'<div class="tn{branch}"><span class="mi">{mi(icons[i], 22)}</span><span class="lb">{label}</span>{caret}</div>'
+        lb = f'<a class="lb" href="{tfn("T-DashGroup", L)}" style="color:inherit">{label}</a>' if i == 0 else f'<span class="lb">{label}</span>'
+        out += f'<div class="tn{branch}"><span class="mi">{mi(icons[i], 22)}</span>{lb}{caret}</div>'
         if i == 3:
             for j, sub in enumerate(S["t_nav_course"]):
                 on = " on" if (j == 2 and side == "course") else ""
@@ -2619,8 +2790,188 @@ def t_review(S, L):
 </div>'''
     return tpage(S, "T-Review", S["t_titles"]["rev"], body)
 
+def dash_head(S, L, screen, tab):
+    """Dashboard page head as the Back Office renders it: h1, the four dashboard tabs (Group /
+    Student link to each other), with the language toggle and FOR TESTING chip on the right."""
+    hrefs = [tfn("T-DashGroup", L), tfn("T-DashStudent", L), None, None]
+    tabs = "".join(
+        (f'<a class="tab{" on" if i == tab else ""}" href="{h}">{t}</a>' if h else f'<span class="tab">{t}</span>')
+        for i, (t, h) in enumerate(zip(S["t_dash_tabs"], hrefs)))
+    return f'''{tcrumbs(S, screen, [])}
+  <div class="tphead" style="margin-bottom:8px"><h1>{S["t_nav"][0]}</h1></div>
+  <div class="tabs">{tabs}</div>'''
+
+def dash_filter(S):
+    """Course / Book selects, Filters, a divider, Apply — GroupDashboard's filter row."""
+    return f'''<div class="dash-filter">
+    <div class="fld">{field(S["t_course"], f'<span class="ell">{S["t_course_name"]}</span>', icon="expandMore")}</div>
+    <div class="fld">{field(S["t_f_book"], f'<span class="ell">{S["t_book"]}</span>', icon="expandMore")}</div>
+    <span class="tbtn neutral">{mi("filter", 18)}{S["t_filters"]}</span><span class="vr"></span>
+    <span class="tbtn contained">{S["t_apply"]}</span>
+  </div>'''
+
+def ov_card(icon, tone, label, val, unit, sub, href=None, L="ja"):
+    body = (f'<span class="ic{" " + tone if tone else ""}">{mi(icon, 22)}</span>'
+            f'<span style="min-width:0"><span class="lbl-sm">{label}</span><span class="val">{val}{f"<small>{unit}</small>" if unit else ""}</span>'
+            f'{f"<span class=sub>{sub}</span>" if sub else ""}</span>')
+    if href:
+        return f'<a class="ov-card{" hot" if tone == "orange" else ""}" href="{tfn(href, L)}" style="color:inherit">{body}</a>'
+    return f'<div class="ov-card">{body}</div>'
+
+def progress(v, tone=None):
+    if v is None or v < 0:
+        return '<span class="dd">--</span>'
+    cls = tone if tone else ("good" if v > 50 else "warn")
+    return f'<span class="progress"><span class="pct">{v}%</span><span class="bar"><i class="{cls}" style="width:{v}%"></i></span></span>'
+
+def t_dash_group(S, L):
+    """GroupDashboard in LO Dashboard mode, on topic 7-1: the production overview tile
+    (Questions Solved via AI) with the AI Feedback overview beside it, then the student × LO
+    matrix — regular LOs show Completed or a score as production does, the AI Feedback LOs show
+    the submission status in the marking tones, with the comment count and a link into
+    Submission Grading. Below, what the class missed: comments by criterion and the
+    requirements that stopped a submission."""
+    chips = "".join(f'<span class="tchip" style="padding-right:4px">{c}<span class="tx">{mi("close", 12, "#fff")}</span></span>' for c in S["t_dash_chips"])
+    cards = ov_card("spark", "blue", S["t_ai_solved"], S["t_ai_solved_n"], "", "") + "".join(
+        ov_card(*c[:6], href=c[6], L=L) for c in S["t_ov"])
+    # LO column headers
+    heads = ""
+    for name, kind, (a, b, c) in S["t_mx_los"]:
+        if kind == "fb":
+            k1, k2, k3 = S["t_fb_kv"]
+            nm = f'<a class="lo-name" href="{tfn("T-Detail", L)}" title="{name}"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("rateReview", 12)}</span><span>{name}</span></a>'
+            kv = (f'<span class="kv-line">{k1}: <b>{a}</b></span><span class="kv-line">{k2}: <b><a href="{tfn("T-List", L)}">{b}</a></b></span>'
+                  f'<span class="kv-line">{k3}: <b>{c}</b></span>')
+        else:
+            k1, k2, k3 = S["t_lo_kv"]
+            nm = f'<span class="lo-name" title="{name}"><span>{name}</span></span>'
+            kv = f'<span class="kv-line">{k1}: <b>{a}</b></span><span class="kv-line">{k2}: <b><a href="#">{b}</a></b></span><span class="kv-line">{k3}: <b>{c}</b></span>'
+        heads += f'<th><div class="lo-col">{nm}{kv}</div></th>'
+    def cell(c):
+        if c[0] == "none":
+            return '<span class="stat-cell miss"><span class="dd">--</span></span>'
+        if c[0] == "comp":
+            return f'<span class="stat-cell"><span class="tchip published">{S["t_completed"]}</span><span class="grow">{mi("history", 16)}</span></span>'
+        if c[0] == "score":
+            _, sc, ai, failed = c
+            spark = f'<span title="AI Tutor">{mi("spark", 16)}</span>' if ai else ""
+            return f'<span class="stat-cell{" miss" if failed else ""}"><span class="score">{sc}</span><span class="grow">{spark}{mi("history", 16)}</span></span>'
+        _, st, n, sec = c
+        sec_chip = f'<span class="tchip st-secondary" style="height:20px;padding:0 6px;font-size:11px">{S["t_sec"][sec]}</span>' if sec else ""
+        return (f'<a class="stat-cell" href="{tfn("T-List", L)}" style="color:inherit">{st_chip(S, st)}{sec_chip}'
+                f'<span class="grow"><span class="cnt">{mi("rateReview", 14, "#757575")}{n}</span>{mi("history", 16)}</span></a>')
+    rows = "".join(
+        f'<tr><td class="stu-col"><div class="stu-cell"><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a></div></td>'
+        + "".join(f'<td>{cell(c)}</td>' for c in cells) + '</tr>'
+        for name, cells in S["t_mx_students"])
+    crit = "".join(
+        f'<div class="crit-row"><span>{c}</span>{progress(round(n * 100 / S["t_crit_of"]), None)}<span class="n">{n} / {S["t_crit_of"]}</span></div>'
+        for c, n in S["t_crit_rows"])
+    mx = max(n for _, n in S["t_reqf_rows"])
+    reqf = "".join(
+        f'<div class="crit-row"><span>{c}</span><span class="progress"><span class="pct"></span><span class="bar"><i style="width:{round(n * 100 / mx)}%;background:#9E9E9E"></i></span></span><span class="n">{n} {S["t_times"]}</span></div>'
+        for c, n in S["t_reqf_rows"])
+    body = tnav(S, "dash") + f'''<div class="tmain">
+<div class="tscroll">
+  {dash_head(S, L, "T-DashGroup", 0)}
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div>{dash_filter(S)}<div class="chiplist">{chips}<a href="#" style="margin-left:4px">{S["t_reset"]}</a></div></div>
+    <div class="tpaper" style="padding:16px">
+      <div class="ov-row">{cards}</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+        <span class="tsearch">{mi("search", 20, "#757575")}<span>{S["t_dash_search"]}</span></span>
+        <span class="toggle-group"><span>{S["t_dash_modes"][0]}</span><span class="on">{S["t_dash_modes"][1]}</span></span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin:16px 0 12px">
+        <span style="display:flex;align-items:center;gap:8px"><span class="cell-muted">{S["t_topic_lbl"]}</span><span class="tbtn neutral" style="height:34px;color:#212121">{S["t_tp71"]}{mi("expandMore", 18, "#757575")}</span></span>
+        <span class="toggle-group"><span class="on">{S["t_score_modes"][0]}</span><span>{S["t_score_modes"][1]}</span></span>
+      </div>
+      <div class="matrix"><table>
+        <thead><tr><th class="stu-col"><div class="stu-head">{S["t_stu_name"]}</div></th>{heads}</tr></thead>
+        <tbody>{rows}</tbody>
+      </table></div>
+      <p class="helper" style="margin:10px 0 0">{S["t_matrix_help"]}</p>
+    </div>
+    <div class="insight">
+      <div class="tpaper"><div class="ph"><div><h3>{S["t_crit_h"]}</h3><span class="helper">{S["t_crit_sub"]}</span></div><a class="tbtn sm" href="{tfn("T-List", L)}">{S["t_view_subs"]}</a></div><div class="pb" style="padding:8px 20px">{crit}</div></div>
+      <div class="tpaper"><div class="ph"><div><h3>{S["t_reqf_h"]}</h3><span class="helper">{S["t_reqf_sub"]}</span></div><a class="tbtn sm" href="{tfn("T-Material", L)}">{mi("edit", 16)}{S["t_edit_in_bm"]}</a></div><div class="pb" style="padding:8px 20px">{reqf}</div></div>
+    </div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-DashGroup", S["t_titles"]["dg"], body)
+
+def t_dash_student(S, L):
+    """StudentDashboard: the student list on the left, the selected student's page on the
+    right — filter row, the production chapter / topic table with its expandable LO rows
+    (the AI Feedback LOs show their status where a score would be), then this student's AI
+    Feedback overview: counts, the submissions with links into the review, and the by-criterion
+    profile of the comments they received."""
+    sel = S["t_students"][0]
+    roster = "".join(
+        f'<a class="sl-item{" on" if i == 0 else ""}" href="{tfn("T-DashStudent", L)}">{n}<span class="sl-sub">{g}</span></a>'
+        for i, (n, g) in enumerate(S["t_students"]))
+    def sub_val(v):
+        if v == "comp":
+            return S["t_completed"]
+        if v == "--":
+            return '<span class="dd">--</span>'
+        if v == "resub":
+            return f'<span class="cell-muted">{S["t_resub_n"]}</span>'
+        if v.startswith("fb:"):
+            return st_chip(S, v[3:])
+        return v
+    ind = ""
+    for ch, tp, date, avg, comp, open_, los in S["t_ind_rows"]:
+        ind += (f'<tr><td style="width:44px;padding-right:0"><span class="ticon sm">{mi("expandLess" if open_ else "expandMore", 20)}</span></td>'
+                f'<td style="white-space:normal">{ch}</td><td style="white-space:normal">{tp}</td><td class="num">{date if date != "--" else "<span class=dd>--</span>"}</td>'
+                f'<td style="width:170px">{progress(avg)}</td><td class="num" style="text-align:right">{comp}</td></tr>')
+        if open_:
+            inner = "".join(
+                f'<tr><td>{n}</td><td class="num">{d}</td><td>{sub_val(a)}</td><td>{sub_val(b)}</td></tr>' for n, d, a, b in los)
+            ind += (f'<tr class="sub"><td colspan="6"><table class="m inner"><thead><tr>'
+                    + "".join(f'<th{" style=width:150px" if i else ""}>{c}</th>' for i, c in enumerate(S["t_sub_cols"]))
+                    + f'</tr></thead><tbody>{inner}</tbody></table></td></tr>')
+    cards = "".join(ov_card(*c) for c in S["t_stu_ov"])
+    fb_rows = ""
+    for lo, sub, st, sec, n, resub, ret, act in S["t_stu_fb_rows"]:
+        sec_chip = f'<span class="tchip st-secondary">{S["t_sec"][sec]}</span>' if sec else ""
+        attempt = f'<span class="cell-muted" style="display:block;font-size:12px">{S["t_sec"]["resub"]} {resub}</span>' if resub != "--" else ""
+        fb_rows += (f'<tr><td><a class="cell-link" href="{tfn("T-Detail", L)}">{lo}</a>{attempt}</td>'
+                    f'<td><span style="display:flex;gap:6px">{st_chip(S, st)}{sec_chip}</span></td><td class="num">{sub}</td>'
+                    f'<td class="num">{ret if ret != "--" else "<span class=dd>--</span>"}</td><td class="num">{n}</td>'
+                    f'<td style="text-align:right"><a class="tbtn sm" href="{tfn("T-Review", L)}">{act}</a></td></tr>')
+    g, im, fx = S["t_prof_lbl"]
+    prof = ""
+    for c, a, b, d in S["t_prof_rows"]:
+        chips = (f'<span class="tchip published">{g} {a}</span>' if a else "") + (f'<span class="tchip wait">{im} {b}</span>' if b else "") + (f'<span class="tchip">{mi("check", 12)}{fx} {d}</span>' if d else "")
+        prof += f'<div class="crit-row" style="grid-template-columns:minmax(120px,1fr) auto"><span>{c}</span><span style="display:flex;gap:6px;justify-content:flex-end">{chips}</span></div>'
+    body = tnav(S, "dash") + f'''<div class="tmain">
+<div class="tscroll">
+  {dash_head(S, L, "T-DashStudent", 1)}
+  <div class="split">
+    <div class="stu-list"><div class="sl-hd">{S["t_stu_list"]}<span class="ticon sm primary">{mi("personAdd", 20)}</span></div>{roster}</div>
+    <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+      <h2 class="dash-h2">{sel[0]}<span class="helper" style="display:inline;margin-left:10px">{sel[1]}</span></h2>
+      {dash_filter(S)}
+      <div class="tpaper" style="overflow:hidden"><div class="table-scroll"><table class="m tight">
+        <thead><tr><th style="width:44px"></th>{"".join(f"<th{' style=text-align:right' if i == 4 else ''}>{c}</th>" for i, c in enumerate(S["t_ind_cols"]))}</tr></thead>
+        <tbody>{ind}</tbody></table></div></div>
+      <div class="tpaper">
+        <div class="ph"><div><h3>{S["t_stu_fb_h"]}</h3><span class="helper" style="margin:2px 0 0">{S["t_stu_fb_sub"]}</span></div><a class="tbtn sm" href="{tfn("T-Queue", L)}">{S["t_toreview"]}</a></div>
+        <div class="pb" style="padding:16px 20px 0"><div class="ov-row">{cards}</div></div>
+        <div class="table-scroll"><table class="m tight"><thead><tr>{"".join(f"<th>{c}</th>" for c in S["t_stu_fb_cols"])}</tr></thead><tbody>{fb_rows}</tbody></table></div>
+        <div class="pb" style="border-top:1px solid #E0E0E0"><h3 style="margin:0 0 2px;font-size:15px;font-weight:500">{S["t_prof_h"]}</h3><span class="helper" style="margin:0 0 8px">{S["t_prof_sub"]}</span>{prof}</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-DashStudent", S["t_titles"]["ds"], body)
+
 TBUILDERS = {"T-Book": t_book, "T-Dialog": t_dialog, "T-Created": t_created, "T-Material": t_material,
-             "T-Queue": t_queue, "T-Detail": t_detail, "T-List": t_list, "T-Review": t_review}
+             "T-Queue": t_queue, "T-Detail": t_detail, "T-List": t_list, "T-Review": t_review,
+             "T-DashGroup": t_dash_group, "T-DashStudent": t_dash_student}
 
 # ---------- write ----------
 boards, order = {}, []
@@ -2659,7 +3010,8 @@ TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
            "T3 · Created → LO content — material, requirements, criteria", "T4 · Back in the tree — Unpublished until published",
-           "T5 · Submission Grading — the queue, filtered to AI Feedback", "T6 · Overview — who has submitted", "T7 · The LO's submissions — same table, one LO", "T8 · Review and return — the grading layout"]
+           "T5 · Submission Grading — the queue, filtered to AI Feedback", "T6 · Overview — who has submitted", "T7 · The LO's submissions — same table, one LO", "T8 · Review and return — the grading layout",
+           "T9 · Group Dashboard — AI Feedback in the LO matrix, what the class missed", "T10 · Student Dashboard — one student's AI Feedback"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -2682,6 +3034,8 @@ TNOTES = {
     "t6": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree.",
     "t7": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows.",
     "t8": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (差し戻す outlined, 承認して返却する contained, ⋮). Left, the info panel: submission ID with the 生徒には未公開 chip, Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), the teacher's own ひとこと — which the student sees at the top of the returned screen — and the comment counts. Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却.",
+    "t9": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard as production renders it — Course / Book / Filters / Apply, the Enrollment and Duration chips, the paper with the Questions Solved via AI tile, search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for one topic (sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). WHAT IS NEW: (1) AI Feedback tiles beside the production one — submissions across the course's AI Feedback LOs, 確認待ち (the queue, links to Submission Grading), 返却済み with how many were auto-returned, 再提出 with sent-backs, and the average time from due date to return. (2) In the matrix, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered, and each cell is the submission status in the marking tones with a 自動返却 or 再提出 secondary chip and the comment count; the cell opens the LO's submissions. (3) Below the matrix, what the class missed: comments by criterion (the share of drafts with an improvement comment on each rubric criterion — the 'what did the class miss' view the PRD needs, from the criterion tag every comment carries) and the requirements that stopped a submission at the pre-check (from T3's list), each linking to where it is edited. Student name → the student dashboard.",
+    "t10": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with their status chip where a score would be, and 再提出 1回 where production shows the highest score. WHAT IS NEW, below the table: this student's AI Feedback — tiles (submitted, returned with auto-returns, waiting, resubmissions, comments received split into strengths and improvements, and how many points were fixed on resubmission — the revision trail from screen 7 seen from the teacher's side), the submission rows with status, comment count, which attempt, and 確認する / 見る into the review, and 観点別の傾向: the returned comments grouped by rubric criterion (strengths, improvements, fixed), so the teacher can see at a glance where this student keeps stumbling — here 統計処理 — before a consultation.",
 }
 MNOTES = {
     "m1": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →",
@@ -2720,14 +3074,14 @@ notes = {
         "PC / Mobile switch (18 Sep): the black pill in the bottom-left corner of every artboard jumps to the same step on the other device — PC ⇄ the mobile row below. Since 19 Sep it also carries 先生（BO）, which opens the teacher's Back Office (the row at the bottom of the canvas), so the two sides of the same setting can be read against each other. Prototype-only control, like the DEMO pill; in the product the device is simply whatever the student opened."},
     "title_m": {"x": 0, "y": MROW_Y["ja"] - 300, "text": "Mobile — snap a handwritten answer: LO list → assignment → camera → crop → pages → submit → returned (bottom sheet) · 日本語", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
     "title_m_en": {"x": 0, "y": MROW_Y["en"] - 240, "text": "Same mobile flow in English", "kind": "title1", "maxW": 8 * MW + 7 * MGAP},
-    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › Submission Grading: queue → overview → submissions → review and return · 日本語", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
+    "title_t": {"x": 0, "y": TROW_Y["ja"] - 300, "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › Submission Grading: queue → overview → submissions → review and return · then Dashboard: group and student · 日本語", "kind": "title1", "maxW": 7 * TW + 6 * TGAP},
     "title_t_en": {"x": 0, "y": TROW_Y["en"] - 240, "text": "Same Back Office flow in English", "kind": "title1", "maxW": 6 * TW + 5 * TGAP},
     "n_role": {"x": 1520, "y": MROW_Y["en"] + MH + 60, "w": 700, "maxH": 240, "text":
         "Teacher / student switch (19 Sep): the bottom-left pill on the Back Office boards flips to the student's screen, so the same setting can be read from both sides — the dates on T2 against the waiting copy on screen 3, the checklist on T3 against 提出前チェック on screen 2. Prototype-only, like the DEMO and PC / Mobile pills."},
 }
 for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "m10"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
-for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8"]):
+for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
 
 canvas = {

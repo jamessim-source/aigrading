@@ -362,6 +362,22 @@
       "title": "T8 · Review and return — the grading layout (JA)",
       "is_interactive": true
     },
+    "T-DashGroup.dc.html": {
+      "x": 12160,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "T9 · Group Dashboard — AI Feedback in the LO matrix, what the class missed (JA)",
+      "is_interactive": true
+    },
+    "T-DashStudent.dc.html": {
+      "x": 13680,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "T10 · Student Dashboard — one student's AI Feedback (JA)",
+      "is_interactive": true
+    },
     "T-Book-en.dc.html": {
       "x": 0,
       "y": 7000,
@@ -425,6 +441,22 @@
       "h": 900,
       "title": "T8 · Review and return — the grading layout (EN)",
       "is_interactive": true
+    },
+    "T-DashGroup-en.dc.html": {
+      "x": 12160,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "T9 · Group Dashboard — AI Feedback in the LO matrix, what the class missed (EN)",
+      "is_interactive": true
+    },
+    "T-DashStudent-en.dc.html": {
+      "x": 13680,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "T10 · Student Dashboard — one student's AI Feedback (EN)",
+      "is_interactive": true
     }
   },
   "order": [
@@ -472,6 +504,8 @@
     "T-Detail.dc.html",
     "T-List.dc.html",
     "T-Review.dc.html",
+    "T-DashGroup.dc.html",
+    "T-DashStudent.dc.html",
     "T-Book-en.dc.html",
     "T-Dialog-en.dc.html",
     "T-Material-en.dc.html",
@@ -479,7 +513,9 @@
     "T-Queue-en.dc.html",
     "T-Detail-en.dc.html",
     "T-List-en.dc.html",
-    "T-Review-en.dc.html"
+    "T-Review-en.dc.html",
+    "T-DashGroup-en.dc.html",
+    "T-DashStudent-en.dc.html"
   ],
   "notes": {
     "title": {
@@ -583,9 +619,9 @@
     "title_t": {
       "x": 0,
       "y": 5100,
-      "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › Submission Grading: queue → overview → submissions → review and return · 日本語",
+      "text": "Back Office — inside Book Management, as production renders it: book tree → Add LO dialog with the AI Feedback type and its settings → LO content · then Course › Submission Grading: queue → overview → submissions → review and return · then Dashboard: group and student · 日本語",
       "kind": "title1",
-      "maxW": 9040
+      "maxW": 10560
     },
     "title_t_en": {
       "x": 0,
@@ -726,6 +762,20 @@
       "w": 640,
       "maxH": 460,
       "text": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (差し戻す outlined, 承認して返却する contained, ⋮). Left, the info panel: submission ID with the 生徒には未公開 chip, Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), the teacher's own ひとこと — which the student sees at the top of the returned screen — and the comment counts. Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却."
+    },
+    "t9": {
+      "x": 12160,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard as production renders it — Course / Book / Filters / Apply, the Enrollment and Duration chips, the paper with the Questions Solved via AI tile, search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for one topic (sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). WHAT IS NEW: (1) AI Feedback tiles beside the production one — submissions across the course's AI Feedback LOs, 確認待ち (the queue, links to Submission Grading), 返却済み with how many were auto-returned, 再提出 with sent-backs, and the average time from due date to return. (2) In the matrix, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered, and each cell is the submission status in the marking tones with a 自動返却 or 再提出 secondary chip and the comment count; the cell opens the LO's submissions. (3) Below the matrix, what the class missed: comments by criterion (the share of drafts with an improvement comment on each rubric criterion — the 'what did the class miss' view the PRD needs, from the criterion tag every comment carries) and the requirements that stopped a submission at the pre-check (from T3's list), each linking to where it is edited. Student name → the student dashboard."
+    },
+    "t10": {
+      "x": 13680,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with their status chip where a score would be, and 再提出 1回 where production shows the highest score. WHAT IS NEW, below the table: this student's AI Feedback — tiles (submitted, returned with auto-returns, waiting, resubmissions, comments received split into strengths and improvements, and how many points were fixed on resubmission — the revision trail from screen 7 seen from the teacher's side), the submission rows with status, comment count, which attempt, and 確認する / 見る into the review, and 観点別の傾向: the returned comments grouped by rubric criterion (strengths, improvements, fixed), so the teacher can see at a glance where this student keeps stumbling — here 統計処理 — before a consultation."
     }
   },
   "designSystems": []
