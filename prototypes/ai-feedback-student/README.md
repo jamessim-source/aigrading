@@ -103,19 +103,17 @@ already builds the course.
 - **Dashboard** (2026-09-20, PM): the AI Feedback overview is fitted into
   production's `GroupDashboard` and `StudentDashboard`, not given a page of its
   own. Group, Topic Dashboard mode (production's default, where the Dashboard
-  menu lands): production's chapter / topic / average score / completion table
-  with one added AI Feedback column — the topic's feedback LO with its
-  submitted / waiting / returned counts and ★ count; a topic name opens the LO
-  Dashboard. Group, LO Dashboard mode: an overview paper built from the PRD (C10.3a jobs, B2 revision
-  outcome, §1.6.4 rules) — what the class missed this week: an insight written
-  by an LLM pass over the submissions and their draft feedback grouped by
-  rubric criterion (available before anything is returned),
-  grounded in the criterion counts beneath it and in quoted passages that link
-  into the submissions (teacher-facing only); no score or completion-rate tiles, no
-  per-student comparisons (not-submitted, waiting-on-you and acted-on-feedback
-  blocks were tried and removed, PM: not required; the ★ highlighted-picks
-  block was merged into the matrix). Below
-  it, in the LO matrix an AI Feedback LO shows
+  menu lands): production's chapter / topic / average score / completion table,
+  only for topics with an AI Feedback LO, with one added AI Feedback column —
+  the LO with its start and due dates, submitted / waiting / returned counts,
+  ★ count, and one tagged insight line (missed / going well / worth showing /
+  submissions) read by an LLM pass over the submissions and their draft
+  feedback along the rubric, the LLM's top-priority one shown; no expansion,
+  quotes or counts behind it (PM: the teacher checks the submissions
+  themself, the line only alerts). Filters opens production's panel plus AI
+  Feedback start / due date ranges. Group, LO Dashboard mode: the student × LO
+  matrix alone (an overview paper built from the PRD was tried block by block
+  and removed or merged, PM). In the matrix an AI Feedback LO shows
   the submission status per student in the marking tones, a highlighted cell
   adding the teacher's few-word reason and opening that submission,
   and its header reads Submitted / Waiting / Returned plus a ★ count of
