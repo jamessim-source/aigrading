@@ -2074,6 +2074,8 @@ table.m tbody tr.hide{display:none}
 table.m tbody tr.sub td{background:#FAFAFA;padding:0 16px 16px 54px;border-bottom:1px solid #E0E0E0}
 table.m table.inner{border:1px solid #E0E0E0;border-radius:4px;background:#fff;width:100%}
 table.m table.inner thead th{background:#fff}
+table.m table.inner tbody tr.det td{padding:0 12px 10px 28px;border-top:0;background:#FFFDF7}
+table.m table.inner tbody tr.det .tp-ins span{white-space:normal}
 """
 
 THELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
@@ -3290,10 +3292,10 @@ def t_dash_student(S, L):
                 f'<td style="white-space:normal">{ch}</td><td style="white-space:normal">{tp}</td><td class="num">{date if date != "--" else "<span class=dd>--</span>"}</td>'
                 f'<td style="width:170px">{progress(avg)}</td><td class="num" style="text-align:right">{comp}</td></tr>')
         if open_:
-            def lo_cell(n, a, b):
+            def lo_detail(n, a, b):
                 det = S["t_stu_det"].get(n) if a.startswith("fb:") else None
                 if not det:
-                    return n
+                    return ""
                 # AI Feedback detail in the LO row (PM, 20 Sep: merged here from a separate paper below the table)
                 sub_dt, ret_dt, cm, good, imp, fixed, crit, hl, act = det
                 Lb = S["t_stu_det_lbl"]
@@ -3302,10 +3304,10 @@ def t_dash_student(S, L):
                 parts.append(f'{Lb["cm"]} {cm}（{Lb["good"]} {good} ・ {Lb["imp"]} {imp}' + (f' ・ {Lb["fixed"]} {fixed}' if fixed else "") + '）')
                 parts.append(f'{Lb["crit"]}: {crit}')
                 star = f'<span class="hl-why" style="flex:0 0 auto;margin:0">{hl}</span>' if hl else ""
-                return (f'{n}<span class="tp-ins" style="max-width:none;margin-top:6px;gap:8px;flex-wrap:wrap;align-items:center">'
-                        f'<span>{" ・ ".join(parts)}</span>{star}<a class="tbtn sm" style="height:24px;padding:0 8px" href="{tfn("T-Review", L)}">{act}</a></span>')
+                return (f'<tr class="det"><td colspan="4"><span class="tp-ins" style="max-width:none;margin:0;gap:8px;flex-wrap:wrap;align-items:center">{mi("rateReview", 14, "#757575")}'
+                        f'<span>{" ・ ".join(parts)}</span>{star}<a class="tbtn sm" style="height:24px;padding:0 8px;margin-left:auto" href="{tfn("T-Review", L)}">{act}</a></span></td></tr>')
             inner = "".join(
-                f'<tr><td style="white-space:normal">{lo_cell(n, a, b)}</td><td class="num">{d}</td><td>{sub_val(a)}</td><td>{sub_val(b)}</td></tr>' for n, d, a, b in los)
+                f'<tr><td>{n}</td><td class="num">{d}</td><td>{sub_val(a)}</td><td>{sub_val(b)}</td></tr>{lo_detail(n, a, b)}' for n, d, a, b in los)
             ind += (f'<tr class="sub"><td colspan="6"><table class="m inner"><thead><tr>'
                     + "".join(f'<th{" style=width:150px" if i else ""}>{c}</th>' for i, c in enumerate(S["t_sub_cols"]))
                     + f'</tr></thead><tbody>{inner}</tbody></table></td></tr>')
