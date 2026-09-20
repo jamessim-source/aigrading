@@ -108,7 +108,8 @@ already builds the course.
   submitted / waiting / returned counts and ★ count; a topic name opens the LO
   Dashboard. Group, LO Dashboard mode: an overview paper built from the PRD (C10.3a jobs, B2 revision
   outcome, §1.6.4 rules) — what the class missed this week: an insight written
-  by an LLM pass over the returned comments grouped by rubric criterion,
+  by an LLM pass over the submissions and their draft feedback grouped by
+  rubric criterion (available before anything is returned),
   grounded in the criterion counts beneath it and in quoted passages that link
   into the submissions (teacher-facing only); no score or completion-rate tiles, no
   per-student comparisons (not-submitted, waiting-on-you and acted-on-feedback
