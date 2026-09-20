@@ -2130,7 +2130,7 @@ TJA = dict(
     t_hl="注目", t_hl_title="クラスで紹介する例に選んだ提出", t_hl_action="クラスで紹介する", t_hl_only="注目のみ",
     t_lo_kv=["平均スコア", "完了率", "AIが回答した質問"], t_fb_kv=["提出", "確認待ち", "返却済み"],
     t_completed="完了", t_marking="採点中",
-    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最高スコアの切り替えはスコアのあるLOがあるときだけ使え、AIフィードバックのLOは常に最新の提出の状態を表示します。★は先生がクラスで紹介する例に選んだ提出です。",
+    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最高スコアの切り替えはスコアのあるLOがあるときだけ使え、AIフィードバックのLOは常に最新の提出の状態を表示します。★は先生がクラスで紹介する例に選んだ提出、右端の時計アイコンはその生徒の提出履歴（本番と同じ）です。",
     t_mx_los=[("第6回 演習レポート", "fb", ("30/30", "1", "28", "1")),
               ("第7回 演習レポート", "fb", ("12/30", "8", "3", "1")), ("第7週 週次リフレクション", "fb", ("21/30", "0", "21", "2"))],
     t_mx_students=[("山田 花子", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", True)]),
@@ -2140,7 +2140,7 @@ TJA = dict(
                    ("高橋 健", [("fb", "ret", 3, ""), ("none",), ("fb", "ret", 2, "auto")]),
                    ("伊藤 さくら", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("none",)]),
                    ("渡辺 大輝", [("fb", "back", 3, ""), ("none",), ("fb", "ret", 2, "auto")])],
-    t_no_scores="この表示にスコアのあるLOはありません",
+    t_no_scores="この表示にスコアのあるLOはありません", t_history="提出履歴",
     t_crit_h="観点別の指摘 ・ 第7回 演習レポート", t_crit_sub="下書き12件のうち、改善点のコメントが付いた割合",
     t_crit_rows=[("統計処理", 8), ("解釈", 6), ("図表の見やすさ", 4), ("論理構成", 3), ("Excelスキル", 2), ("生成AIリテラシー", 1)], t_crit_of=12,
     t_reqf_h="提出前チェックで止まった条件", t_reqf_sub="ファイル選択時に満たされていなかった回数（提出前に修正）",
@@ -2270,7 +2270,7 @@ TEN = dict(
     t_hl="Highlighted", t_hl_title="Chosen as an example to show the class", t_hl_action="Highlight for class", t_hl_only="Highlighted only",
     t_lo_kv=["Avg. Score", "Comp. Rate", "AI-answered questions"], t_fb_kv=["Submitted", "Waiting", "Returned"],
     t_completed="Completed", t_marking="Marking",
-    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Highest Score is available only when a scored LO is in view; an AI Feedback LO always shows the status of the latest submission. ★ marks a submission the teacher chose to show the class.",
+    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Highest Score is available only when a scored LO is in view; an AI Feedback LO always shows the status of the latest submission. ★ marks a submission the teacher chose to show the class; the clock icon at the right of a cell is production's Submission history for that student.",
     t_mx_los=[("Session 6 exercise report", "fb", ("30/30", "1", "28", "1")),
               ("Session 7 exercise report", "fb", ("12/30", "8", "3", "1")), ("Week 7 weekly reflection", "fb", ("21/30", "0", "21", "2"))],
     t_mx_students=[("Hanako Yamada", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", True)]),
@@ -2280,7 +2280,7 @@ TEN = dict(
                    ("Ken Takahashi", [("fb", "ret", 3, ""), ("none",), ("fb", "ret", 2, "auto")]),
                    ("Sakura Ito", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("none",)]),
                    ("Daiki Watanabe", [("fb", "back", 3, ""), ("none",), ("fb", "ret", 2, "auto")])],
-    t_no_scores="No scored LOs in this view",
+    t_no_scores="No scored LOs in this view", t_history="Submission history",
     t_crit_h="Comments by criterion · Session 7 exercise report", t_crit_sub="Share of the 12 drafts with an improvement comment on each criterion",
     t_crit_rows=[("Statistical processing", 8), ("Interpretation", 6), ("Clarity of charts", 4), ("Logical structure", 3), ("Excel skills", 2), ("Generative-AI literacy", 1)], t_crit_of=12,
     t_reqf_h="Requirements that stopped a submission", t_reqf_sub="Times a requirement was unmet when a file was chosen (fixed before submitting)",
@@ -2872,22 +2872,23 @@ def t_dash_group(S, L):
             nm = f'<span class="lo-name" title="{name}"><span>{name}</span></span>'
             kv = f'<span class="kv-line">{k1}: <b>{a}</b></span><span class="kv-line">{k2}: <b><a href="#">{b}</a></b></span><span class="kv-line">{k3}: <b>{c}</b></span>'
         heads += f'<th><div class="lo-col">{nm}{kv}</div></th>'
+    hist = f'<span title="{S["t_history"]}" style="display:flex">{mi("history", 16)}</span>'
     def cell(c):
         if c[0] == "none":
             return '<span class="stat-cell miss"><span class="dd">--</span></span>'
         if c[0] == "comp":
             spark = f'<span title="AI Tutor">{mi("spark", 16)}</span>' if len(c) > 1 and c[1] else ""
-            return f'<span class="stat-cell"><span class="tchip published">{S["t_completed"]}</span><span class="grow">{spark}{mi("history", 16)}</span></span>'
+            return f'<span class="stat-cell"><span class="tchip published">{S["t_completed"]}</span><span class="grow">{spark}{hist}</span></span>'
         if c[0] == "score":
             _, sc, ai, failed = c
             spark = f'<span title="AI Tutor">{mi("spark", 16)}</span>' if ai else ""
-            return f'<span class="stat-cell{" miss" if failed else ""}"><span class="score">{sc}</span><span class="grow">{spark}{mi("history", 16)}</span></span>'
+            return f'<span class="stat-cell{" miss" if failed else ""}"><span class="score">{sc}</span><span class="grow">{spark}{hist}</span></span>'
         _, st, n, sec = c[:4]
         hl = len(c) > 4 and c[4]
         sec_chip = f'<span class="tchip st-secondary" style="height:20px;padding:0 6px;font-size:11px">{S["t_sec"][sec]}</span>' if sec else ""
         star = f'<span title="{S["t_hl_title"]}" style="color:#ED6C02;display:flex">{mi("star", 16)}</span>' if hl else ""
         return (f'<a class="stat-cell" href="{tfn("T-List", L)}" style="color:inherit">{st_chip(S, st)}{sec_chip}'
-                f'<span class="grow">{star}{mi("history", 16)}</span></a>')
+                f'<span class="grow">{star}{hist}</span></a>')
     rows = "".join(
         f'<tr><td class="stu-col"><div class="stu-cell"><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a></div></td>'
         + "".join(f'<td>{cell(c)}</td>' for c in cells) + '</tr>'
