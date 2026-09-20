@@ -314,68 +314,76 @@
       "title": "T3 · Created → LO content — material, requirements, criteria (JA)",
       "is_interactive": true
     },
-    "T-Created.dc.html": {
+    "T-Settings.dc.html": {
       "x": 4560,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T4 · Back in the tree — Unpublished until published (JA)",
+      "title": "T4 · LO settings tab — what the dialog collected, read-only (JA)",
       "is_interactive": true
     },
-    "T-Queue.dc.html": {
+    "T-Created.dc.html": {
       "x": 6080,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T5 · Submission Grading — the queue, filtered to AI Feedback (JA)",
+      "title": "T5 · Back in the tree — Unpublished until published (JA)",
       "is_interactive": true
     },
-    "T-Detail.dc.html": {
+    "T-Queue.dc.html": {
       "x": 7600,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T6 · Overview — who has submitted (JA)",
+      "title": "T6 · Submission Grading — the queue, filtered to AI Feedback (JA)",
       "is_interactive": true
     },
-    "T-List.dc.html": {
+    "T-Detail.dc.html": {
       "x": 9120,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T7 · The LO's submissions — same table, one LO (JA)",
+      "title": "T7 · Overview — who has submitted (JA)",
       "is_interactive": true
     },
-    "T-Review.dc.html": {
+    "T-List.dc.html": {
       "x": 10640,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T8 · Review and return — the grading layout (JA)",
+      "title": "T8 · The LO's submissions — same table, one LO (JA)",
       "is_interactive": true
     },
-    "T-DashTopic.dc.html": {
+    "T-Review.dc.html": {
       "x": 12160,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T9 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic (JA)",
+      "title": "T9 · Review and return — the grading layout (JA)",
       "is_interactive": true
     },
-    "T-DashGroup.dc.html": {
+    "T-DashTopic.dc.html": {
       "x": 13680,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T10 · Group Dashboard — LO Dashboard, AI Feedback in the matrix, what the class missed (JA)",
+      "title": "T10 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic (JA)",
       "is_interactive": true
     },
-    "T-DashStudent.dc.html": {
+    "T-DashGroup.dc.html": {
       "x": 15200,
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T11 · Student Dashboard — one student's AI Feedback (JA)",
+      "title": "T11 · Group Dashboard — LO Dashboard, AI Feedback in the matrix, what the class missed (JA)",
+      "is_interactive": true
+    },
+    "T-DashStudent.dc.html": {
+      "x": 16720,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "T12 · Student Dashboard — one student's AI Feedback (JA)",
       "is_interactive": true
     },
     "T-Book-en.dc.html": {
@@ -402,68 +410,76 @@
       "title": "T3 · Created → LO content — material, requirements, criteria (EN)",
       "is_interactive": true
     },
-    "T-Created-en.dc.html": {
+    "T-Settings-en.dc.html": {
       "x": 4560,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T4 · Back in the tree — Unpublished until published (EN)",
+      "title": "T4 · LO settings tab — what the dialog collected, read-only (EN)",
       "is_interactive": true
     },
-    "T-Queue-en.dc.html": {
+    "T-Created-en.dc.html": {
       "x": 6080,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T5 · Submission Grading — the queue, filtered to AI Feedback (EN)",
+      "title": "T5 · Back in the tree — Unpublished until published (EN)",
       "is_interactive": true
     },
-    "T-Detail-en.dc.html": {
+    "T-Queue-en.dc.html": {
       "x": 7600,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T6 · Overview — who has submitted (EN)",
+      "title": "T6 · Submission Grading — the queue, filtered to AI Feedback (EN)",
       "is_interactive": true
     },
-    "T-List-en.dc.html": {
+    "T-Detail-en.dc.html": {
       "x": 9120,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T7 · The LO's submissions — same table, one LO (EN)",
+      "title": "T7 · Overview — who has submitted (EN)",
       "is_interactive": true
     },
-    "T-Review-en.dc.html": {
+    "T-List-en.dc.html": {
       "x": 10640,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T8 · Review and return — the grading layout (EN)",
+      "title": "T8 · The LO's submissions — same table, one LO (EN)",
       "is_interactive": true
     },
-    "T-DashTopic-en.dc.html": {
+    "T-Review-en.dc.html": {
       "x": 12160,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T9 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic (EN)",
+      "title": "T9 · Review and return — the grading layout (EN)",
       "is_interactive": true
     },
-    "T-DashGroup-en.dc.html": {
+    "T-DashTopic-en.dc.html": {
       "x": 13680,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T10 · Group Dashboard — LO Dashboard, AI Feedback in the matrix, what the class missed (EN)",
+      "title": "T10 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic (EN)",
       "is_interactive": true
     },
-    "T-DashStudent-en.dc.html": {
+    "T-DashGroup-en.dc.html": {
       "x": 15200,
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T11 · Student Dashboard — one student's AI Feedback (EN)",
+      "title": "T11 · Group Dashboard — LO Dashboard, AI Feedback in the matrix, what the class missed (EN)",
+      "is_interactive": true
+    },
+    "T-DashStudent-en.dc.html": {
+      "x": 16720,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "T12 · Student Dashboard — one student's AI Feedback (EN)",
       "is_interactive": true
     }
   },
@@ -684,59 +700,66 @@
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation — click it (it works in the prototype, PM 20 Sep): the chip flips to 公開中 Published, the button goes away and a snackbar confirms; T4 shows the tree as it is before that click. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › Submission Grading, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen."
+      "text": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation — click it (it works in the prototype, PM 20 Sep): the chip flips to 公開中 Published, the button goes away and a snackbar confirms; T5 shows the tree as it is before that click; the 設定 tab (T4) lists what the dialog collected. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › Submission Grading, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen."
     },
     "t4": {
       "x": 4560,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3."
+      "text": "The LO's SETTINGS tab (PM, 20 Sep: 'add the settings page'). Production shows an LO's settings as what its Add LO dialog collected, read-only, and Edit settings reopens that dialog (DialogCreateLearningMaterial in edit mode) prefilled — so this tab holds exactly T2's fields and nothing new: 基本情報 General Info (type, LO name, External LO ID, the description the student sees), 設定 Settings (公開と提出期間 start and due, 再提出 with its date, 提出方法 with the 500-character limit on typed, 先生の確認), and 公開状態 — the Published / Unpublished chip with created and updated stamps. 設定を編集 on each card and top-right opens the dialog (T2, shown here as the create dialog; in the product it is the same dialog prefilled). Not here, deliberately: the material, the 提出の基本条件 and the rubric — those are content and stay on the 内容 tab (T3). The two tabs link to each other; 公開する works on this tab too. The course side (T7) shows the same values read-only with ブック管理で編集, which lands back here."
     },
     "t5": {
       "x": 6080,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs (production's Invalid Markers export, which sits top-right on the real page, is left off this board — PM, 20 Sep: nothing to do with AI Feedback), search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview. HIGHLIGHTED (PM, 20 Sep): a submission the teacher picked as an example for the class carries an orange ★ before its ID, and the ★ 注目のみ / Highlighted only chip in the filter bar narrows the table to those rows — click it; it works in the prototype."
+      "text": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3."
     },
     "t6": {
       "x": 7600,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree."
+      "text": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs (production's Invalid Markers export, which sits top-right on the real page, is left off this board — PM, 20 Sep: nothing to do with AI Feedback), search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview. HIGHLIGHTED (PM, 20 Sep): a submission the teacher picked as an example for the class carries an orange ★ before its ID, and the ★ 注目のみ / Highlighted only chip in the filter bar narrows the table to those rows — click it; it works in the prototype."
     },
     "t7": {
       "x": 9120,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts, and the same ★ marker and 注目のみ / Highlighted only filter chip (PM, 20 Sep) so the teacher can pull up the few examples chosen for the class. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows."
+      "text": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree."
     },
     "t8": {
       "x": 10640,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (クラスで紹介する — a text button that stars this submission as an example to show the class and asks for a few-word reason, PM 20 Sep, which the dashboards then count, mark ★ and list with that reason —, 差し戻す outlined, 承認して返却する contained, ⋮). Left, the info panel: submission ID with the 生徒には未公開 chip, Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), the teacher's own ひとこと — which the student sees at the top of the returned screen — and the comment counts. Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却."
+      "text": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts, and the same ★ marker and 注目のみ / Highlighted only filter chip (PM, 20 Sep) so the teacher can pull up the few examples chosen for the class. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows."
     },
     "t9": {
       "x": 12160,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard in TOPIC DASHBOARD mode, production's default view and where the Dashboard menu lands — Course / Book / Filters / Apply, the Enrollment and Duration chips, the paper with search and the Topic / LO Dashboard toggle, then production's topic table: Chapter Name, Topic Name (a link that opens the LO Dashboard for that topic →), Average Score as the progress bar over the topic's scored LOs (quizzes; -- where there is none) and Completion as the number of students who completed the topic. ADDED FOR AI FEEDBACK (PM, 20 Sep: the topic dashboard, per production, but for AI Feedback data): one column, AIフィードバック, with the topic's feedback LO (a link to its overview) and its counts — 提出 12/30, 確認待ち 8 (a link into the LO's submissions when there are any), 返却済み 3 — and the ★ number of submissions the teacher picked to show the class. Topics without a feedback LO say so. Counts, never rates (PRD §1.6.4); no score is invented for a feedback LO, so Average Score stays what production computes from the quizzes. 6-2, 7-1 and 7-2 carry the three feedback LOs the LO Dashboard shows."
+      "text": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (クラスで紹介する — a text button that stars this submission as an example to show the class and asks for a few-word reason, PM 20 Sep, which the dashboards then count, mark ★ and list with that reason —, 差し戻す outlined, 承認して返却する contained, ⋮). Left, the info panel: submission ID with the 生徒には未公開 chip, Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), the teacher's own ひとこと — which the student sees at the top of the returned screen — and the comment counts. Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却."
     },
     "t10": {
       "x": 13680,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "GroupDashboard in LO DASHBOARD mode, reached from a topic name on T9 or from the toggle. This is GroupDashboard as production renders it — the same filter row and chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; and the whole toggle — Latest Score and Highest Score — is greyed out when nothing in the matrix carries a score (PM, 20 Sep) — as here; it comes back live when a quiz or other scored LO is in view. For a clearer demo the matrix shows only AI Feedback LOs (PM, 20 Sep): the Session 6 report (all returned, one 差し戻し, two 再提出), the Session 7 report and the weekly reflection, so all four statuses and both secondary chips are on screen; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header, and the ★ 注目のみ / Highlighted only chip beside the score toggle narrows the matrix to students with a highlighted submission (PM, 20 Sep; it works — click it); sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). A tile row (production's Questions Solved via AI, then AI Feedback count tiles) was tried and removed (PM, 20 Sep: not required). In its place, on the PM's 'try it' (20 Sep), an OVERVIEW PAPER built from the PRD: the three C10.3a jobs, B2's revision outcome and the §1.6.4 rules — (1) 未提出 Not submitted was here as counts and names per LO and was removed (PM, 20 Sep): the matrix header's 提出 12/30 and the tinted -- cells already carry it; (2) 先生の確認待ち Waiting on you — drafts awaiting approval per LO with the oldest one's age — was tried and removed as well (PM, 20 Sep: not required; the matrix header's 確認待ち count and Submission Grading carry it); (3) 今週クラスが見落とした点 What the class missed: one sentence plus the criteria most often flagged this week, as counts, the 'what to re-teach' line for the next lecture's recap; (4) フィードバックを活かした Acted on the feedback — resubmitted, points resolved, rewrote in their own words — was tried and removed (PM, 20 Sep: not required); (5) ★ Highlighted for class: the teacher's own picks, each row a link straight into that submission's review screen, with the few-word reason the teacher typed when highlighting it — 外れ値の扱いが的確, 相関と因果を区別 — so the list reads as a lesson plan, not a name list (PM, 20 Sep). Not shown, deliberately: score or completion-rate tiles, per-student comparisons, average time to return. Block 3 depends on criterion keys being fixed per assignment (PRD §1.6.5, U22); block 5 is collectable today. THE MATRIX below is the drill-down: in it, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered (確認待ち links to the LO's submissions), and each cell is the submission status in the marking tones with a 再提出 secondary chip where the submission is a resubmission (the 自動返却 Auto-returned chip was shown too and removed, PM 20 Sep: not needed in the matrix — it stays in Submission Grading and on the student dashboard rows; a per-cell comment count was tried and removed, PM 20 Sep: use case unclear — it stays in Submission Grading); the cell opens the LO's submissions. Two insight panels below the matrix — comments by rubric criterion and the requirements that stopped a submission at the pre-check — were tried and removed (PM, 20 Sep: not required). Student name → the student dashboard."
+      "text": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard in TOPIC DASHBOARD mode, production's default view and where the Dashboard menu lands — Course / Book / Filters / Apply, the Enrollment and Duration chips, the paper with search and the Topic / LO Dashboard toggle, then production's topic table: Chapter Name, Topic Name (a link that opens the LO Dashboard for that topic, T11 →), Average Score as the progress bar over the topic's scored LOs (quizzes; -- where there is none) and Completion as the number of students who completed the topic. ADDED FOR AI FEEDBACK (PM, 20 Sep: the topic dashboard, per production, but for AI Feedback data): one column, AIフィードバック, with the topic's feedback LO (a link to its overview) and its counts — 提出 12/30, 確認待ち 8 (a link into the LO's submissions when there are any), 返却済み 3 — and the ★ number of submissions the teacher picked to show the class. Topics without a feedback LO say so. Counts, never rates (PRD §1.6.4); no score is invented for a feedback LO, so Average Score stays what production computes from the quizzes. 6-2, 7-1 and 7-2 carry the three feedback LOs the LO Dashboard shows."
     },
     "t11": {
       "x": 15200,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "GroupDashboard in LO DASHBOARD mode, reached from a topic name on T10 or from the toggle. This is GroupDashboard as production renders it — the same filter row and chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; and the whole toggle — Latest Score and Highest Score — is greyed out when nothing in the matrix carries a score (PM, 20 Sep) — as here; it comes back live when a quiz or other scored LO is in view. For a clearer demo the matrix shows only AI Feedback LOs (PM, 20 Sep): the Session 6 report (all returned, one 差し戻し, two 再提出), the Session 7 report and the weekly reflection, so all four statuses and both secondary chips are on screen; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header, and the ★ 注目のみ / Highlighted only chip beside the score toggle narrows the matrix to students with a highlighted submission (PM, 20 Sep; it works — click it); sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). A tile row (production's Questions Solved via AI, then AI Feedback count tiles) was tried and removed (PM, 20 Sep: not required). In its place, on the PM's 'try it' (20 Sep), an OVERVIEW PAPER built from the PRD: the three C10.3a jobs, B2's revision outcome and the §1.6.4 rules — (1) 未提出 Not submitted was here as counts and names per LO and was removed (PM, 20 Sep): the matrix header's 提出 12/30 and the tinted -- cells already carry it; (2) 先生の確認待ち Waiting on you — drafts awaiting approval per LO with the oldest one's age — was tried and removed as well (PM, 20 Sep: not required; the matrix header's 確認待ち count and Submission Grading carry it); (3) 今週クラスが見落とした点 What the class missed: one sentence plus the criteria most often flagged this week, as counts, the 'what to re-teach' line for the next lecture's recap; (4) フィードバックを活かした Acted on the feedback — resubmitted, points resolved, rewrote in their own words — was tried and removed (PM, 20 Sep: not required); (5) ★ Highlighted for class: the teacher's own picks, each row a link straight into that submission's review screen, with the few-word reason the teacher typed when highlighting it — 外れ値の扱いが的確, 相関と因果を区別 — so the list reads as a lesson plan, not a name list (PM, 20 Sep). Not shown, deliberately: score or completion-rate tiles, per-student comparisons, average time to return. Block 3 depends on criterion keys being fixed per assignment (PRD §1.6.5, U22); block 5 is collectable today. THE MATRIX below is the drill-down: in it, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered (確認待ち links to the LO's submissions), and each cell is the submission status in the marking tones with a 再提出 secondary chip where the submission is a resubmission (the 自動返却 Auto-returned chip was shown too and removed, PM 20 Sep: not needed in the matrix — it stays in Submission Grading and on the student dashboard rows; a per-cell comment count was tried and removed, PM 20 Sep: use case unclear — it stays in Submission Grading); the cell opens the LO's submissions. Two insight panels below the matrix — comments by rubric criterion and the requirements that stopped a submission at the pre-check — were tried and removed (PM, 20 Sep: not required). Student name → the student dashboard."
+    },
+    "t12": {
+      "x": 16720,
       "y": 6360,
       "w": 640,
       "maxH": 460,
@@ -783,6 +806,7 @@
     "T-Book.dc.html",
     "T-Dialog.dc.html",
     "T-Material.dc.html",
+    "T-Settings.dc.html",
     "T-Created.dc.html",
     "T-Queue.dc.html",
     "T-Detail.dc.html",
@@ -794,6 +818,7 @@
     "T-Book-en.dc.html",
     "T-Dialog-en.dc.html",
     "T-Material-en.dc.html",
+    "T-Settings-en.dc.html",
     "T-Created-en.dc.html",
     "T-Queue-en.dc.html",
     "T-Detail-en.dc.html",
