@@ -2129,7 +2129,7 @@ TJA = dict(
     t_hl="注目", t_hl_title="クラスで紹介する例に選んだ提出", t_hl_action="クラスで紹介する", t_hl_only="注目のみ",
     t_lo_kv=["平均スコア", "完了率", "AIが回答した質問"], t_fb_kv=["提出", "確認待ち", "返却済み"],
     t_completed="完了", t_marking="採点中",
-    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最高スコアの切り替えはスコアのあるLOにのみ働き、AIフィードバックのLOは常に最新の提出の状態を表示します。★は先生がクラスで紹介する例に選んだ提出です。",
+    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最高スコアの切り替えはスコアのあるLOにのみ働き、AIフィードバックのLOは常に最新の提出の状態を表示します。状態の右の数字はその提出に付いたコメント数、★は先生がクラスで紹介する例に選んだ提出です。",
     t_mx_los=[("第7回 講義動画", "comp", ("--", "28/30", "0")), ("第7回 講義資料", "comp", ("--", "27/30", "12")),
               ("第7回 演習レポート", "fb", ("12/30", "8", "3", "1")), ("第7週 週次リフレクション", "fb", ("21/30", "0", "21", "2"))],
     t_mx_students=[("山田 花子", [("comp",), ("comp",), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", True)]),
@@ -2269,7 +2269,7 @@ TEN = dict(
     t_hl="Highlighted", t_hl_title="Chosen as an example to show the class", t_hl_action="Highlight for class", t_hl_only="Highlighted only",
     t_lo_kv=["Avg. Score", "Comp. Rate", "AI-answered questions"], t_fb_kv=["Submitted", "Waiting", "Returned"],
     t_completed="Completed", t_marking="Marking",
-    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Highest Score applies to scored LOs only; an AI Feedback LO always shows the status of the latest submission. ★ marks a submission the teacher chose to show the class.",
+    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Highest Score applies to scored LOs only; an AI Feedback LO always shows the status of the latest submission. The number beside the status is the count of comments on that submission; ★ marks a submission the teacher chose to show the class.",
     t_mx_los=[("Session 7 lecture video", "comp", ("--", "28/30", "0")), ("Session 7 lecture slides", "comp", ("--", "27/30", "12")),
               ("Session 7 exercise report", "fb", ("12/30", "8", "3", "1")), ("Week 7 weekly reflection", "fb", ("21/30", "0", "21", "2"))],
     t_mx_students=[("Hanako Yamada", [("comp",), ("comp",), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", True)]),
@@ -2887,7 +2887,7 @@ def t_dash_group(S, L):
         sec_chip = f'<span class="tchip st-secondary" style="height:20px;padding:0 6px;font-size:11px">{S["t_sec"][sec]}</span>' if sec else ""
         star = f'<span title="{S["t_hl_title"]}" style="color:#ED6C02;display:flex">{mi("star", 16)}</span>' if hl else ""
         return (f'<a class="stat-cell" href="{tfn("T-List", L)}" style="color:inherit">{st_chip(S, st)}{sec_chip}'
-                f'<span class="grow">{star}<span class="cnt">{mi("rateReview", 14, "#757575")}{n}</span>{mi("history", 16)}</span></a>')
+                f'<span class="grow">{star}<span class="cnt" title="{S["t_comment"]}: {n}">{mi("rateReview", 14, "#757575")}{n}</span>{mi("history", 16)}</span></a>')
     rows = "".join(
         f'<tr><td class="stu-col"><div class="stu-cell"><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a></div></td>'
         + "".join(f'<td>{cell(c)}</td>' for c in cells) + '</tr>'
