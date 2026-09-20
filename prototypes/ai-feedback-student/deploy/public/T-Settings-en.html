@@ -396,6 +396,10 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .tpop{position:absolute;z-index:90;background:#fff;border-radius:4px;padding:8px 0;min-width:320px;
   box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}
 .tpop .it{display:flex;align-items:center;gap:10px;padding:8px 16px;font-size:14px;color:#212121;min-height:36px}
+.tpop.fpanel{left:0;top:44px;width:360px;padding:16px;display:flex;flex-direction:column;gap:14px;text-align:left;font-weight:400}
+.tpop.fpanel h4{margin:0;font-size:15px;font-weight:500}
+.tpop.fpanel .ffoot{display:flex;justify-content:flex-end;gap:8px;margin-top:4px;padding-top:12px;border-top:1px solid #E0E0E0}
+.tbtn.neutral.on{background:#1976D21F;border-color:#1976D2;color:#0B79D0}
 .tpop .it.sel{background:#1976D21F}
 /* snackbar */
 .snack{position:absolute;left:24px;bottom:24px;z-index:120;background:#2E7D32;color:#fff;border-radius:4px;padding:12px 16px;font-size:14px;
@@ -565,6 +569,9 @@ table.m tbody td{vertical-align:top;white-space:nowrap}
 .stat-cell.miss{background:rgba(239,83,80,.1);color:#E31B0C}
 .stat-cell .score{font-variant-numeric:tabular-nums}
 .stat-cell .grow{margin-left:auto;color:#2196F3;display:flex;align-items:center;gap:6px}
+.stat-cell.hl{flex-wrap:wrap;height:auto;min-height:52px;padding:6px 10px;align-content:center;row-gap:2px}
+.stat-cell .hl-why{flex:1 0 100%;font-size:11px;line-height:1.3;color:#7a5a00;white-space:normal}
+.stat-cell .hl-why::before{content:"★ ";color:#ED6C02}
 .stat-cell .grow .cnt{font-size:12px;color:#757575;display:inline-flex;align-items:center;gap:2px;font-variant-numeric:tabular-nums}
 .split{display:grid;grid-template-columns:240px minmax(0,1fr);gap:24px;align-items:start}
 .stu-list{border:1px solid #E0E0E0;border-radius:4px;background:#fff;overflow:hidden}
@@ -617,25 +624,82 @@ body{background:#fff}</style>
   <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px"><div class="tcrumbs"><a href="T-Book-en.html">Book Management</a><span class="sep">/</span><a href="T-Created-en.html">Regional & Environmental Statistics — Textbook (2026)</a><span class="sep">/</span><span>Session 7 exercise report</span></div><div class="tright"><div class="seg" role="group" aria-label="Language"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(28,30,44,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><a class="seg-i" href="T-Settings.html" lang="ja">日本語</a><span class="seg-i on">English</span></div><span class="testing">FOR TESTING</span></div></div>
   <div class="tphead">
     <h1>Session 7 exercise report<span class="tchip type"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z"/></svg>AI Feedback</span><sc-if value="{{pubOff}}" hint-placeholder-val="{{true}}"><span class="tchip unpublished">Unpublished</span></sc-if><sc-if value="{{pubOn}}" hint-placeholder-val="{{false}}"><span class="tchip published">Published</span></sc-if></h1>
-    <div class="acts"><a class="tbtn" href="T-Detail-en.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>View submissions</a><a class="tbtn outlined" href="T-Dialog-en.html" title="These are the values entered in the Add LO dialog. Edit settings reopens that dialog prefilled. The material, the submission requirements and the criteria live on the Content tab."><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Edit settings</a><sc-if value="{{pubOff}}" hint-placeholder-val="{{true}}"><button class="tbtn contained" onClick="{{doPublish}}">Publish</button></sc-if><span class="ticon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></div>
+    <div class="acts"><a class="tbtn" href="T-Detail-en.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>View submissions</a><button class="tbtn outlined" onClick="{{openEdit}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Edit settings</button><sc-if value="{{pubOff}}" hint-placeholder-val="{{true}}"><button class="tbtn contained" onClick="{{doPublish}}">Publish</button></sc-if><span class="ticon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></div>
   </div>
   <div class="tabs"><a class="tab" href="T-Material-en.html">Content</a><span class="tab on">Settings</span></div>
   <div style="display:flex;flex-direction:column;gap:16px">
     <p class="helper" style="margin:-8px 0 0">These are the values entered in the Add LO dialog. Edit settings reopens that dialog prefilled. The material, the submission requirements and the criteria live on the Content tab.</p>
-    <div class="tpaper"><div class="ph"><h3>General Info</h3><a class="tbtn sm" href="T-Dialog-en.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Edit settings</a></div><div class="pb"><dl class="tkv" style="max-width:none"><dt>Type</dt><dd>AI Feedback</dd><dt>Learning Objective</dt><dd>Session 7 exercise report</dd><dt>External LO ID</dt><dd>—</dd><dt>Assignment description (shown to students)</dt><dd><span style="display:block;max-width:640px;line-height:1.6">Choose two variables from the Statistics Bureau's prefectural social indicators, compute the correlation coefficient in Excel and draw a scatter plot. Submit about two A4 pages covering your interpretation and the test of significance.</span></dd></dl></div></div>
-    <div class="tpaper"><div class="ph"><h3>Settings</h3><a class="tbtn sm" href="T-Dialog-en.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Edit settings</a></div><div class="pb"><dl class="tkv" style="max-width:none"><dt>Availability and submission window</dt><dd>6 Nov 2026, 09:00 — 13 Nov 2026, 23:59</dd><dt>Resubmission</dt><dd>Allowed · until 20 Nov 2026, 23:59</dd><dt>Submission methods</dt><dd>File (PDF · Word · Excel · PowerPoint) · Photos (several at once) · Typed (500-character limit)</dd><dt>Teacher review</dt><dd>On · the teacher reviews before it is returned</dd></dl></div></div>
+    <div class="tpaper"><div class="ph"><h3>General Info</h3><button class="tbtn sm" onClick="{{openEdit}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Edit settings</button></div><div class="pb"><dl class="tkv" style="max-width:none"><dt>Type</dt><dd>AI Feedback</dd><dt>Learning Objective</dt><dd>Session 7 exercise report</dd><dt>External LO ID</dt><dd>—</dd><dt>Assignment description (shown to students)</dt><dd><span style="display:block;max-width:640px;line-height:1.6">Choose two variables from the Statistics Bureau's prefectural social indicators, compute the correlation coefficient in Excel and draw a scatter plot. Submit about two A4 pages covering your interpretation and the test of significance.</span></dd></dl></div></div>
+    <div class="tpaper"><div class="ph"><h3>Settings</h3><button class="tbtn sm" onClick="{{openEdit}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Edit settings</button></div><div class="pb"><dl class="tkv" style="max-width:none"><dt>Availability and submission window</dt><dd>6 Nov 2026, 09:00 — 13 Nov 2026, 23:59</dd><dt>Resubmission</dt><dd>Allowed · until 20 Nov 2026, 23:59</dd><dt>Submission methods</dt><dd>File (PDF · Word · Excel · PowerPoint) · Photos (several at once) · Typed (500-character limit)</dd><dt>Teacher review</dt><dd>On · the teacher reviews before it is returned</dd></dl></div></div>
     <div class="tpaper"><div class="ph"><h3>Publishing</h3></div><div class="pb"><dl class="tkv" style="max-width:none"><dt>Status</dt><dd><sc-if value="{{pubOff}}" hint-placeholder-val="{{true}}"><span class="tchip unpublished">Unpublished</span></sc-if><sc-if value="{{pubOn}}" hint-placeholder-val="{{false}}"><span class="tchip published">Published</span></sc-if></dd><dt>Created</dt><dd>5 Nov 2026, 14:12 · HTN Admin</dd><dt>Last updated</dt><dd>5 Nov 2026, 14:40 · HTN Admin</dd></dl></div></div>
   </div>
 </div>
 <sc-if value="{{pubOn}}" hint-placeholder-val="{{false}}"><div class="snack" role="status"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>LO published. Students see it in their list from the start date.</div></sc-if>
+<sc-if value="{{editing}}" hint-placeholder-val="{{false}}"><div class="tscrim">
+  <div class="dlg">
+    <div class="dlg-head"><h2>Edit Learning Objective</h2><button class="ticon" onClick="{{closeEdit}}" aria-label="Cancel"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button></div>
+    <div class="dlg-body">
+      <div class="lm-section">
+        <h3 class="sec-head">General Info</h3>
+        <div class="lm-grid">
+          <label class="field" style="cursor:default">
+        <span class="lbl">Type</span>
+        <span class="in" style="background:#F5F5F5;color:#616161;border-color:#E0E0E0"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z"/></svg></span>AI Feedback<svg width="18" height="18" viewBox="0 0 24 24" fill="#9E9E9E" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/></svg></span>
+        <span class="helper" style="margin:4px 0 0">The LO type cannot be changed after creation</span>
+      </label>
+          <label class="field"><span class="lbl">Learning Objective <span class="req">*</span></span><span class="in">Session 7 exercise report</span></label>
+          <div class="span2"><label class="field"><span class="lbl">Assignment description (shown to students)</span><span class="in area">Choose two variables from the Statistics Bureau's prefectural social indicators, compute the correlation coefficient in Excel and draw a scatter plot. Submit about two A4 pages covering your interpretation and the test of significance.</span></label></div>
+          <label class="field"><span class="lbl">External LO ID</span><span class="in ph">Alphanumeric characters only</span></label>
+        </div>
+      </div>
+      <div class="lm-section">
+        <h3 class="sec-head">Settings</h3>
+        <div class="settings-list">
+          <div class="setting">
+            <span class="setting-label" style="font-weight:500">Availability and submission window</span>
+            <div class="lm-grid" style="margin-top:10px">
+              <label class="field"><span class="lbl">Opens</span><span class="in">6 Nov 2026, 09:00<span class="gr"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg></span></span></label>
+              <label class="field"><span class="lbl">Due</span><span class="in">13 Nov 2026, 23:59<span class="gr"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg></span></span></label>
+            </div>
+            <p class="hint">It appears in the student's To-do when it opens. They can submit and replace their work until the due date; you review after it.</p>
+            <div style="display:flex;align-items:center;gap:16px;margin-top:4px">
+              <button class="switch {{rs}}" onClick="{{toggleRs}}"><span class="track"></span><span>Allow resubmission</span></button>
+              <sc-if value="{{rsOn}}" hint-placeholder-val="{{true}}"><span class="in" style="display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid #BDBDBD;border-radius:4px;font-size:13px">until 20 Nov 2026, 23:59<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(0,0,0,.54)" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg></span></sc-if>
+            </div>
+          </div>
+          <div class="setting">
+            <span class="setting-label" style="font-weight:500">How students submit</span>
+            <div style="display:flex;flex-direction:column;gap:2px;margin-top:4px"><button class="check {{c0}}" onClick="{{t0}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>File (PDF · Word · Excel · PowerPoint)</span></button><button class="check {{c1}}" onClick="{{t1}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>Photos (several at once)</span></button><button class="check {{c2}}" onClick="{{t2}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>Typed answer<span class="helper" style="margin:0">500-character limit</span></span></button></div>
+          </div>
+          <div class="setting">
+            <span class="setting-label" style="font-weight:500">Teacher review</span>
+            <button class="switch {{rv}}" onClick="{{toggleRv}}"><span class="track"></span><span>I review the feedback before it is returned</span></button>
+            <sc-if value="{{rvOff}}" hint-placeholder-val="{{false}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>Feedback is returned to students automatically after the due date, without a review step.</span></div></sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dlg-foot"><button class="tbtn" onClick="{{closeEdit}}">Cancel</button><button class="tbtn contained" onClick="{{closeEdit}}">Save</button></div>
+  </div>
+</div></sc-if>
 </div>
 </div></template>
 <script src="/dc-shim.js"></script>
 <script>
 
 class Component extends DCLogic {
-  state = { pub: false };
-  renderVals() { return { pubOn: this.state.pub, pubOff: !this.state.pub, doPublish: () => this.setState({ pub: true }) }; }
+  state = { pub: false, editing: false, review: true, resub: true, m0: true, m1: true, m2: true };
+  renderVals() {
+    const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
+    return {
+      pubOn: this.state.pub, pubOff: !this.state.pub, doPublish: () => this.setState({ pub: true }),
+      editing: this.state.editing, openEdit: () => this.setState({ editing: true }), closeEdit: () => this.setState({ editing: false }),
+      rv: this.state.review ? "on" : "", rvOff: !this.state.review, toggleRv: t("review"),
+      rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
+      c0: this.state.m0 ? "on" : "", c1: this.state.m1 ? "on" : "", c2: this.state.m2 ? "on" : "",
+      t0: t("m0"), t1: t("m1"), t2: t("m2"),
+    };
+  }
 }
 
 window.__dcBoot(Component);

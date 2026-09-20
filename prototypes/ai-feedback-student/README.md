@@ -108,15 +108,18 @@ already builds the course.
   submitted / waiting / returned counts and ★ count; a topic name opens the LO
   Dashboard. Group, LO Dashboard mode: an overview paper built from the PRD (C10.3a jobs, B2 revision
   outcome, §1.6.4 rules) — what the class missed this week (top criteria as
-  counts) and the ★ highlighted picks; no score or completion-rate tiles, no
+  counts); no score or completion-rate tiles, no
   per-student comparisons (not-submitted, waiting-on-you and acted-on-feedback
-  blocks were tried and removed, PM: not required). Below
+  blocks were tried and removed, PM: not required; the ★ highlighted-picks
+  block was merged into the matrix). Below
   it, in the LO matrix an AI Feedback LO shows
-  the submission status per student in the marking tones,
+  the submission status per student in the marking tones, a highlighted cell
+  adding the teacher's few-word reason and opening that submission,
   and its header reads Submitted / Waiting / Returned plus a ★ count of
   submissions the teacher highlighted as examples for the class (set from the
   review screen's "Highlight for class"; the Submission Grading tables mark
-  those rows with the star and have a working "Highlighted only" filter chip,
+  those rows with the star and carry a working "Highlighted only" option
+  inside Filters (PM: under Filters, not a chip in the bar),
   and the student's returned screen carries a star line in the teacher's note
   card). Two insight panels below the matrix (comments by rubric criterion,
   requirements that stopped a submission) were removed (PM: not required).

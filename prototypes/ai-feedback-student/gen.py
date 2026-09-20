@@ -1852,6 +1852,10 @@ TCSS = """
 .tpop{position:absolute;z-index:90;background:#fff;border-radius:4px;padding:8px 0;min-width:320px;
   box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}
 .tpop .it{display:flex;align-items:center;gap:10px;padding:8px 16px;font-size:14px;color:#212121;min-height:36px}
+.tpop.fpanel{left:0;top:44px;width:360px;padding:16px;display:flex;flex-direction:column;gap:14px;text-align:left;font-weight:400}
+.tpop.fpanel h4{margin:0;font-size:15px;font-weight:500}
+.tpop.fpanel .ffoot{display:flex;justify-content:flex-end;gap:8px;margin-top:4px;padding-top:12px;border-top:1px solid #E0E0E0}
+.tbtn.neutral.on{background:#1976D21F;border-color:#1976D2;color:#0B79D0}
 .tpop .it.sel{background:#1976D21F}
 /* snackbar */
 .snack{position:absolute;left:24px;bottom:24px;z-index:120;background:#2E7D32;color:#fff;border-radius:4px;padding:12px 16px;font-size:14px;
@@ -2021,6 +2025,9 @@ table.m tbody td{vertical-align:top;white-space:nowrap}
 .stat-cell.miss{background:rgba(239,83,80,.1);color:#E31B0C}
 .stat-cell .score{font-variant-numeric:tabular-nums}
 .stat-cell .grow{margin-left:auto;color:#2196F3;display:flex;align-items:center;gap:6px}
+.stat-cell.hl{flex-wrap:wrap;height:auto;min-height:52px;padding:6px 10px;align-content:center;row-gap:2px}
+.stat-cell .hl-why{flex:1 0 100%;font-size:11px;line-height:1.3;color:#7a5a00;white-space:normal}
+.stat-cell .hl-why::before{content:"★ ";color:#ED6C02}
 .stat-cell .grow .cnt{font-size:12px;color:#757575;display:inline-flex;align-items:center;gap:2px;font-variant-numeric:tabular-nums}
 .split{display:grid;grid-template-columns:240px minmax(0,1fr);gap:24px;align-items:start}
 .stu-list{border:1px solid #E0E0E0;border-radius:4px;background:#fff;overflow:hidden}
@@ -2078,6 +2085,7 @@ TJA = dict(
     t_review_body="下書きは締切のあとに作成され、先生が確認・編集して返却するまで生徒には表示されません。生徒には先生からのフィードバックとして届きます。",
     t_review_off="締切のあと、先生の確認なしに自動で返却されます。",
     t_cancel="キャンセル", t_confirm="確定",
+    t_dlg_edit_title="学習目標（LO）を編集", t_type_fixed="LOタイプは作成後に変更できません",
     # LO page
     t_lo_tabs=["内容", "設定"], t_course_tabs=["概要", "提出一覧"], t_publish="公開する", t_edit="設定を編集", t_save="保存",
     # Settings tab (read-only; Edit reopens the dialog prefilled)
@@ -2124,6 +2132,7 @@ TJA = dict(
     t_review_btn="確認する", t_view="見る", t_rows_of="1-5 / 30", t_rows_pp="表示件数:",
     # Submission Grading (ToReviewListPage) — the AI Feedback statuses in the marking tones
     t_sg_invalid="無効な採点者", t_sg_invalid_title="本番の機能：担当が無効になっている採点者の一覧をエクスポートします（AIフィードバックとは無関係）", t_sg_tabs=["提出物", "学習目標"], t_sg_search="提出ID・生徒名・LO名で検索", t_applied="絞り込み:", t_lo_type="LOタイプ", t_all="すべて",
+    t_f_status="状態", t_hl_applied="注目: あり", t_hl_f_help="先生が「クラスで紹介する」に選んだ提出だけを表示します",
     t_status={"nr": ("未確認", "st-default"), "ir": ("確認中", "st-warning"), "ret": ("返却済み", "st-success"), "back": ("差し戻し", "st-error")},
     t_sec={"auto": "自動返却", "resub": "再提出"},
     t_sg_cols=["提出ID", "LO名", "生徒名", "ユーザー名", "外部ID", "コース", "ブック", "確認者", "状態", "コメント", "提出日時", "確認日時", "返却日時"],
@@ -2162,13 +2171,13 @@ TJA = dict(
     t_hl="注目", t_hl_title="クラスで紹介する例に選んだ提出", t_hl_action="クラスで紹介する", t_hl_only="注目のみ",
     t_lo_kv=["平均スコア", "完了率", "AIが回答した質問"], t_fb_kv=["提出", "確認待ち", "返却済み"],
     t_completed="完了", t_marking="採点中",
-    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最高スコアの切り替えはスコアのあるLOがあるときだけ使え、AIフィードバックのLOは常に最新の提出の状態を表示します。★は先生がクラスで紹介する例に選んだ提出、右端の時計アイコンはその生徒の提出履歴（本番と同じ）です。",
+    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最高スコアの切り替えはスコアのあるLOがあるときだけ使え、AIフィードバックのLOは常に最新の提出の状態を表示します。★は先生がクラスで紹介する例に選んだ提出で、選んだときの一言の理由が下に表示され、クリックするとその提出を開きます。右端の時計アイコンはその生徒の提出履歴（本番と同じ）です。",
     t_mx_los=[("第6回 演習レポート", "fb", ("30/30", "1", "28", "1")),
               ("第7回 演習レポート", "fb", ("12/30", "8", "3", "1")), ("第7週 週次リフレクション", "fb", ("21/30", "0", "21", "2"))],
-    t_mx_students=[("山田 花子", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", True)]),
+    t_mx_students=[("山田 花子", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", "自分の言葉で問いを立てた")]),
                    ("佐藤 太郎", [("fb", "nr", 3, "resub"), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto")]),
                    ("鈴木 一郎", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto")]),
-                   ("田中 美咲", [("fb", "ret", 3, "", True), ("fb", "ret", 3, "", True), ("fb", "ret", 2, "auto", True)]),
+                   ("田中 美咲", [("fb", "ret", 3, "", "外れ値の扱いが的確"), ("fb", "ret", 3, "", "相関と因果を区別している"), ("fb", "ret", 2, "auto", "講義内容と結びつけた考察")]),
                    ("高橋 健", [("fb", "ret", 3, ""), ("none",), ("fb", "ret", 2, "auto")]),
                    ("伊藤 さくら", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("none",)]),
                    ("渡辺 大輝", [("fb", "back", 3, ""), ("none",), ("fb", "ret", 2, "auto")])],
@@ -2252,6 +2261,7 @@ TEN = dict(
     t_review_body="The draft is written after the due date and stays hidden until you review, edit and return it. Students receive it as feedback from you.",
     t_review_off="Feedback is returned to students automatically after the due date, without a review step.",
     t_cancel="Cancel", t_confirm="Confirm",
+    t_dlg_edit_title="Edit Learning Objective", t_type_fixed="The LO type cannot be changed after creation",
     t_lo_tabs=["Content", "Settings"], t_course_tabs=["Overview", "Submissions"], t_publish="Publish", t_edit="Edit settings", t_save="Save",
     t_set_gen=[("Type", "AI Feedback"), ("Learning Objective", "Session 7 exercise report"), ("External LO ID", "—"), ("Assignment description (shown to students)", "__desc__")],
     t_set_set=[("Availability and submission window", "6 Nov 2026, 09:00 — 13 Nov 2026, 23:59"), ("Resubmission", "Allowed · until 20 Nov 2026, 23:59"),
@@ -2293,6 +2303,7 @@ TEN = dict(
             ("Ken Takahashi", "—", "none", "Not submitted")],
     t_review_btn="Review", t_view="View", t_rows_of="1-5 of 30", t_rows_pp="Rows per page:",
     t_sg_invalid="Invalid Markers", t_sg_invalid_title="Production control: exports the list of markers whose assignment is no longer valid (not part of AI Feedback)", t_sg_tabs=["Submissions", "Learning Objectives"], t_sg_search="Enter Submission ID, Student Name or LO Name", t_applied="You filter by", t_lo_type="LO Type", t_all="All",
+    t_f_status="Status", t_hl_applied="Highlighted: yes", t_hl_f_help="Only submissions the teacher chose to show the class",
     t_status={"nr": ("Not Reviewed", "st-default"), "ir": ("In Review", "st-warning"), "ret": ("Returned", "st-success"), "back": ("Sent Back", "st-error")},
     t_sec={"auto": "Auto-returned", "resub": "Resubmitted"},
     t_sg_cols=["Submission ID", "LO Name", "Student Name", "Username", "Ext. ID", "Course", "Book", "Reviewer", "Status", "Comments", "Submitted", "Reviewed Date", "Returned Date"],
@@ -2329,13 +2340,13 @@ TEN = dict(
     t_hl="Highlighted", t_hl_title="Chosen as an example to show the class", t_hl_action="Highlight for class", t_hl_only="Highlighted only",
     t_lo_kv=["Avg. Score", "Comp. Rate", "AI-answered questions"], t_fb_kv=["Submitted", "Waiting", "Returned"],
     t_completed="Completed", t_marking="Marking",
-    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Highest Score is available only when a scored LO is in view; an AI Feedback LO always shows the status of the latest submission. ★ marks a submission the teacher chose to show the class; the clock icon at the right of a cell is production's Submission history for that student.",
+    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Highest Score is available only when a scored LO is in view; an AI Feedback LO always shows the status of the latest submission. ★ marks a submission the teacher chose to show the class, with the few-word reason typed when highlighting it; that cell opens the submission. The clock icon at the right of a cell is production's Submission history for that student.",
     t_mx_los=[("Session 6 exercise report", "fb", ("30/30", "1", "28", "1")),
               ("Session 7 exercise report", "fb", ("12/30", "8", "3", "1")), ("Week 7 weekly reflection", "fb", ("21/30", "0", "21", "2"))],
-    t_mx_students=[("Hanako Yamada", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", True)]),
+    t_mx_students=[("Hanako Yamada", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", "Asked a question of her own")]),
                    ("Taro Sato", [("fb", "nr", 3, "resub"), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto")]),
                    ("Ichiro Suzuki", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto")]),
-                   ("Misaki Tanaka", [("fb", "ret", 3, "", True), ("fb", "ret", 3, "", True), ("fb", "ret", 2, "auto", True)]),
+                   ("Misaki Tanaka", [("fb", "ret", 3, "", "Handled the outlier well"), ("fb", "ret", 3, "", "Separates correlation from causation"), ("fb", "ret", 2, "auto", "Ties it back to the lecture")]),
                    ("Ken Takahashi", [("fb", "ret", 3, ""), ("none",), ("fb", "ret", 2, "auto")]),
                    ("Sakura Ito", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("none",)]),
                    ("Daiki Watanabe", [("fb", "back", 3, ""), ("none",), ("fb", "ret", 2, "auto")])],
@@ -2547,14 +2558,33 @@ def field(label, value, required=False, placeholder=False, area=False, icon=None
     cls = "in" + (" ph" if placeholder else "") + (" area" if area else "")
     return f'<label class="field"><span class="lbl">{label}{req}</span><span class="{cls}"{extra}>{value}{gr}</span></label>'
 
-def t_dialog(S, L):
+def lo_dialog(S, L, edit=False):
+    """DialogCreateLearningMaterial. Create mode (T2): the type select is live and Confirm
+    creates the LO. Edit mode (opened from Edit settings on T4): the same dialog prefilled,
+    the type field read-only — the LO type is fixed once created (PM, 20 Sep) — and Save
+    closes it."""
+    if edit:
+        select = f'''<label class="field" style="cursor:default">
+        <span class="lbl">{S["t_f_type"]}</span>
+        <span class="in" style="background:#F5F5F5;color:#616161;border-color:#E0E0E0"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("rateReview", 12)}</span>{S["t_type_fb"]}{mi("lock", 18, "#9E9E9E")}</span>
+        <span class="helper" style="margin:4px 0 0">{S["t_type_fixed"]}</span>
+      </label>'''
+        title, close, foot = (S["t_dlg_edit_title"],
+                              f'<button class="ticon" onClick="{{{{closeEdit}}}}" aria-label="{S["t_cancel"]}">{mi("close", 24)}</button>',
+                              f'<button class="tbtn" onClick="{{{{closeEdit}}}}">{S["t_cancel"]}</button><button class="tbtn contained" onClick="{{{{closeEdit}}}}">{S["t_save"]}</button>')
+        ext_val = S["t_ph_ext"]
+    else:
+        title, close, foot = (S["t_dlg_title"], f'<a class="ticon" href="{tfn("T-Book", L)}" aria-label="{S["t_cancel"]}">{mi("close", 24)}</a>',
+                              f'<a class="tbtn" href="{tfn("T-Book", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Material", L)}">{S["t_confirm"]}</a>')
+        ext_val = S["t_ph_ext"]
     # the type select: MUI Select rendered closed with AI Feedback chosen; click opens the option list
     types = "".join(f'<div class="it">{t}</div>' for t in S["t_types"])
     menu = f'''<sc-if value="{{{{menuOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tpop" style="left:0;top:44px;width:100%">
         {types}
         <div class="it sel"><span class="lm-type" style="width:22px;height:22px">{mi("rateReview", 14)}</span><b>{S["t_type_fb"]}</b><span class="tchip new">{S["t_new"]}</span></div>
       </div></sc-if>'''
-    select = f'''<div style="position:relative">
+    if not edit:
+      select = f'''<div style="position:relative">
       <button class="field" style="width:100%;text-align:left;background:none;border:0;padding:0;font:inherit;cursor:pointer" onClick="{{{{toggleMenu}}}}">
         <span class="lbl" style="color:#2196F3">{S["t_dlg_select"]} <span class="req">*</span></span>
         <span class="in" style="border-color:#2196F3;box-shadow:inset 0 0 0 1px #2196F3">{S["t_type_fb"]}<span class="gr">{mi("expandMore", 22)}</span></span>
@@ -2565,7 +2595,7 @@ def t_dialog(S, L):
         for i, label in enumerate(S["t_how"]))
     dialog = f'''<div class="tscrim">
   <div class="dlg">
-    <div class="dlg-head"><h2>{S["t_dlg_title"]}</h2><a class="ticon" href="{tfn("T-Book", L)}" aria-label="{S["t_cancel"]}">{mi("close", 24)}</a></div>
+    <div class="dlg-head"><h2>{title}</h2>{close}</div>
     <div class="dlg-body">
       <div class="lm-section">
         <h3 class="sec-head">{S["t_dlg_general"]}</h3>
@@ -2573,7 +2603,7 @@ def t_dialog(S, L):
           {select}
           {field(S["t_f_name"], S["t_new_lo"], required=True)}
           <div class="span2">{field(S["t_f_desc"], S["t_v_desc"], area=True)}</div>
-          {field(S["t_f_ext"], S["t_ph_ext"], placeholder=True)}
+          {field(S["t_f_ext"], ext_val, placeholder=True)}
         </div>
       </div>
       <div class="lm-section">
@@ -2603,12 +2633,15 @@ def t_dialog(S, L):
         </div>
       </div>
     </div>
-    <div class="dlg-foot"><a class="tbtn" href="{tfn("T-Book", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Material", L)}">{S["t_confirm"]}</a></div>
+    <div class="dlg-foot">{foot}</div>
   </div>
 </div>'''
-    return tpage(S, "T-Dialog", S["t_titles"]["dialog"], book_page(S, L, "T-Dialog", extra=dialog), logic=TDLG_LOGIC)
+    return dialog
 
-def lo_head(S, L, screen, tab, pub, side="book"):
+def t_dialog(S, L):
+    return tpage(S, "T-Dialog", S["t_titles"]["dialog"], book_page(S, L, "T-Dialog", extra=lo_dialog(S, L)), logic=TDLG_LOGIC)
+
+def lo_head(S, L, screen, tab, pub, side="book", edit_action=False):
     """The LO's page header. Book Management (side="book") sets the LO up: Content and
     Settings tabs, Publish as an action, a link out to its submissions. Course › To
     Review (side="course") processes them: Overview and Submissions tabs, a link back
@@ -2622,8 +2655,9 @@ def lo_head(S, L, screen, tab, pub, side="book"):
     if side == "book":
         crumbs = [(S["t_bm"], tfn("T-Book", L)), (S["t_book"], tfn("T-Created" if not pub else "T-Book", L)), (S["t_new_lo"], None)]
         tabs_src = S["t_lo_tabs"]
-        acts = (f'<a class="tbtn" href="{tfn("T-Detail", L)}">{mi("people", 18)}{S["t_view_subs"]}</a>'
-                f'<a class="tbtn outlined" href="{tfn("T-Dialog", L)}" title="{S["t_set_note"]}">{mi("edit", 18)}{S["t_edit"]}</a>' +
+        acts = (f'<a class="tbtn" href="{tfn("T-Detail", L)}">{mi("people", 18)}{S["t_view_subs"]}</a>' +
+                (f'<button class="tbtn outlined" onClick="{{{{openEdit}}}}">{mi("edit", 18)}{S["t_edit"]}</button>' if edit_action
+                 else f'<a class="tbtn outlined" href="{tfn("T-Settings", L)}" title="{S["t_set_note"]}">{mi("edit", 18)}{S["t_edit"]}</a>') +
                 ("" if pub else f'<sc-if value="{{{{pubOff}}}}" hint-placeholder-val="{{{{true}}}}"><button class="tbtn contained" onClick="{{{{doPublish}}}}">{S["t_publish"]}</button></sc-if>'))
         sub = ""
     else:
@@ -2727,20 +2761,40 @@ def sg_filterbar(S, applied=None, bulk=True, hl_filter=False):
     """Submission Grading filter bar: search, Filters, the applied-filter chips, Bulk Action —
     and, for AI Feedback, a clickable ★ chip that narrows the table to highlighted submissions."""
     chips = "".join(f'<span class="tchip" style="padding-right:4px">{c}<span class="tx">{mi("close", 12, "#fff")}</span></span>' for c in (applied or []))
-    app = f'<span class="tapplied">{S["t_applied"]} {chips}</span>' if applied else ""
-    hl = (f'<button class="tchip hlf {{{{hlCls}}}}" onClick="{{{{toggleHl}}}}" title="{S["t_hl_title"]}">{mi("star", 14)}{S["t_hl_only"]}</button>'
-          if hl_filter else "")
+    hl_chip = (f'<sc-if value="{{{{hlOn}}}}" hint-placeholder-val="{{{{false}}}}"><button class="tchip" style="padding-right:4px;cursor:pointer" onClick="{{{{toggleHl}}}}" title="{S["t_hl_title"]}">{mi("star", 12, "#ED6C02")}{S["t_hl_applied"]}<span class="tx">{mi("close", 12, "#fff")}</span></button></sc-if>'
+               if hl_filter else "")
+    if applied:
+        app = f'<span class="tapplied">{S["t_applied"]} {chips}{hl_chip}</span>'
+    elif hl_filter:
+        app = f'<sc-if value="{{{{hlOn}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tapplied">{S["t_applied"]} {hl_chip}</span></sc-if>'
+    else:
+        app = ""
+    # the Filters panel (PM, 20 Sep: the Highlighted option lives under Filters, not as a chip in the bar)
+    ro = ' style="background:#FAFAFA"'
+    panel = (f'''<sc-if value="{{{{fOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tpop fpanel">
+        <h4>{S["t_filters"]}</h4>
+        {field(S["t_lo_type"], S["t_type_fb"], icon="expandMore", extra=ro)}
+        {field(S["t_f_status"], S["t_all"], icon="expandMore", extra=ro)}
+        {field(S["t_reviewer"], S["t_all"], icon="expandMore", extra=ro)}
+        <button class="check {{{{hlCls}}}}" onClick="{{{{toggleHl}}}}"><span class="cbx">{mi("check", 14, "#fff")}</span><span style="display:flex;align-items:center;gap:6px">{mi("star", 16, "#ED6C02")}{S["t_hl_only"]}</span></button>
+        <span class="helper" style="margin:-4px 0 0 28px">{S["t_hl_f_help"]}</span>
+        <div class="ffoot"><button class="tbtn" onClick="{{{{resetF}}}}">{S["t_reset"]}</button><button class="tbtn contained" onClick="{{{{closeF}}}}">{S["t_apply"]}</button></div>
+      </div></sc-if>''' if hl_filter else "")
+    filters = (f'<span style="position:relative"><button class="tbtn neutral {{{{fCls}}}}" onClick="{{{{toggleF}}}}">{mi("shuffle", 18)}{S["t_filters"]}</button>{panel}</span>'
+               if hl_filter else f'<span class="tbtn neutral">{mi("shuffle", 18)}{S["t_filters"]}</span>')
     right = f'<span class="tbtn contained dis">{S["t_bulk"]}{mi("expandMore", 18)}</span>' if bulk else ""
     return f'''<div class="tfilterbar">
     <div class="left"><span class="tsearch">{mi("search", 20, "#757575")}<span>{S["t_sg_search"]}</span></span>
-      <span class="tbtn neutral">{mi("shuffle", 18)}{S["t_filters"]}</span>{hl}{app}</div>
+      {filters}{app}</div>
     <div class="right">{right}</div>
   </div>'''
 
-SG_LOGIC = """state = { hl: false };
+SG_LOGIC = """state = { hl: false, f: false };
   renderVals() {
-    return { hlCls: this.state.hl ? "on" : "", hideRow: this.state.hl ? "hide" : "",
-             toggleHl: () => this.setState({ hl: !this.state.hl }) };
+    return { hlCls: this.state.hl ? "on" : "", hlOn: this.state.hl, hideRow: this.state.hl ? "hide" : "",
+             toggleHl: () => this.setState({ hl: !this.state.hl }),
+             fOpen: this.state.f, fCls: this.state.f ? "on" : "", toggleF: () => this.setState({ f: !this.state.f }),
+             closeF: () => this.setState({ f: false }), resetF: () => this.setState({ hl: false, f: false }) };
   }"""
 
 def sg_segments(S, counts, active="all"):
@@ -3024,9 +3078,13 @@ def t_dash_group(S, L):
         # the 自動返却 Auto-returned secondary chip is not shown in the matrix (PM, 20 Sep: not needed);
         # it stays in Submission Grading and on the student dashboard rows. 再提出 Resubmitted stays.
         sec_chip = f'<span class="tchip st-secondary" style="height:20px;padding:0 6px;font-size:11px">{S["t_sec"][sec]}</span>' if sec and sec != "auto" else ""
+        # a highlighted cell (PM, 20 Sep: the ★ Highlighted block is merged into the matrix) shows the
+        # teacher's few-word reason under the status and opens that submission's review screen
         star = f'<span title="{S["t_hl_title"]}" style="color:#ED6C02;display:flex">{mi("star", 16)}</span>' if hl else ""
-        return (f'<a class="stat-cell" href="{tfn("T-List", L)}" style="color:inherit">{st_chip(S, st)}{sec_chip}'
-                f'<span class="grow">{star}{hist}</span></a>')
+        why = f'<span class="hl-why" title="{S["t_gd"]["b5_open"]}">{hl}</span>' if isinstance(hl, str) and hl else ""
+        href = tfn("T-Review", L) if hl else tfn("T-List", L)
+        return (f'<a class="stat-cell{" hl" if hl else ""}" href="{href}" style="color:inherit">{st_chip(S, st)}{sec_chip}'
+                f'<span class="grow">{star}{hist}</span>{why}</a>')
     def has_hl(cells):
         return any(c[0] == "fb" and len(c) > 4 and c[4] for c in cells)
     hide_attr = ' class="{{hideRow}}"'
@@ -3051,14 +3109,16 @@ def t_dash_group(S, L):
     b5 = (f'<div class="blk s3"><h4><span style="color:#ED6C02;display:flex">{mi("star", 14)}</span>{G["b5_h"]}</h4>'
           + "".join(f'<a class="brow blrow" href="{tfn("T-Review", L)}" title="{G["b5_open"]}"><div class="bl"><span class="blo">{n}<span class="breason">{why}</span></span><span class="bwho">{lo}</span></div>{mi("chevron", 18, "#9E9E9E")}</a>' for n, lo, why in G["b5_rows"])
           + f'<a class="blink" href="{tfn("T-Queue", L)}">{G["b5_link"]}</a><span class="bwhy">{G["b5_why"]}</span></div>')
-    b3 = (f'<div class="blk s3"><h4>{mi("rateReview", 14)}{G["b3_h"]}</h4><span class="helper" style="margin:0">{G["b3_lo"]}</span>'
+    b3 = (f'<div class="blk" style="grid-column:1 / -1"><h4>{mi("rateReview", 14)}{G["b3_h"]}</h4><span class="helper" style="margin:0">{G["b3_lo"]}</span>'
           f'<p class="bline">{G["b3_line"]}</p><div class="bchips">'
           + "".join(f'<span class="tchip">{c}<b>{n}{G["b3_unit"]}</b></span>' for c, n in G["b3_chips"])
           + f'</div><a class="blink" href="{tfn("T-List", L)}">{S["t_view_subs"]}</a></div>')
     # an "Acted on the feedback" block (resubmitted, points resolved, own words) was here and was
     # removed (PM, 20 Sep: not required)
     overview = f'''<div class="tpaper"><div class="ph"><div><h3>{G["h"]}</h3><span class="helper" style="margin:2px 0 0">{G["sub"]}</span></div></div>
-      <div class="pb" style="padding:16px"><div class="gd">{b3}{b5}</div></div></div>'''
+      <div class="pb" style="padding:16px"><div class="gd">{b3}</div></div></div>'''
+    # the ★ Highlighted for class block (b5) was here and was merged into the matrix (PM, 20 Sep):
+    # a highlighted cell now carries the reason and opens the submission; the LO header keeps the ★ count
     body = tnav(S, "dash") + f'''<div class="tmain">
 <div class="tscroll">
   {dash_head(S, L, "T-DashGroup", 0)}
@@ -3153,8 +3213,18 @@ def t_dash_student(S, L):
 </div>'''
     return tpage(S, "T-DashStudent", S["t_titles"]["ds"], body)
 
-TSET_LOGIC = """state = { pub: false };
-  renderVals() { return { pubOn: this.state.pub, pubOff: !this.state.pub, doPublish: () => this.setState({ pub: true }) }; }"""
+TSET_LOGIC = """state = { pub: false, editing: false, review: true, resub: true, m0: true, m1: true, m2: true };
+  renderVals() {
+    const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
+    return {
+      pubOn: this.state.pub, pubOff: !this.state.pub, doPublish: () => this.setState({ pub: true }),
+      editing: this.state.editing, openEdit: () => this.setState({ editing: true }), closeEdit: () => this.setState({ editing: false }),
+      rv: this.state.review ? "on" : "", rvOff: !this.state.review, toggleRv: t("review"),
+      rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
+      c0: this.state.m0 ? "on" : "", c1: this.state.m1 ? "on" : "", c2: this.state.m2 ? "on" : "",
+      t0: t("m0"), t1: t("m1"), t2: t("m2"),
+    };
+  }"""
 
 def t_settings(S, L):
     """The LO's Settings tab (PM, 20 Sep): what the Add LO dialog collected, read-only in the
@@ -3171,10 +3241,10 @@ def t_settings(S, L):
                      f'<sc-if value="{{{{pubOn}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip published">{S["t_pub"]}</span></sc-if>')
             out += f'<dt>{k}</dt><dd>{v}</dd>'
         return f'<dl class="tkv" style="max-width:none">{out}</dl>'
-    edit = f'<a class="tbtn sm" href="{tfn("T-Dialog", L)}">{mi("edit", 18)}{S["t_edit"]}</a>'
+    edit = f'<button class="tbtn sm" onClick="{{{{openEdit}}}}">{mi("edit", 18)}{S["t_edit"]}</button>'
     body = tnav(S) + f'''<div class="tmain">
 <div class="tscroll">
-  {lo_head(S, L, "T-Settings", 1, pub=False)}
+  {lo_head(S, L, "T-Settings", 1, pub=False, edit_action=True)}
   <div style="display:flex;flex-direction:column;gap:16px">
     <p class="helper" style="margin:-8px 0 0">{S["t_set_note"]}</p>
     <div class="tpaper"><div class="ph"><h3>{S["t_dlg_general"]}</h3>{edit}</div><div class="pb">{kv(S["t_set_gen"])}</div></div>
@@ -3183,6 +3253,7 @@ def t_settings(S, L):
   </div>
 </div>
 <sc-if value="{{{{pubOn}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack" role="status">{mi("checkCircle", 20)}{S["t_pub_snack"]}</div></sc-if>
+<sc-if value="{{{{editing}}}}" hint-placeholder-val="{{{{false}}}}">{lo_dialog(S, L, edit=True)}</sc-if>
 </div>'''
     return tpage(S, "T-Settings", S["t_titles"]["set"], body, logic=TSET_LOGIC)
 
@@ -3244,16 +3315,16 @@ MNW = 375
 TNW = 640
 TNOTES = {
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
-    "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
+    "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. The type is chosen here once: after creation it cannot be changed (PM, 20 Sep) — the edit dialog on T4 shows it as a fixed field. Confirm →",
     "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation — click it (it works in the prototype, PM 20 Sep): the chip flips to 公開中 Published, the button goes away and a snackbar confirms; T5 shows the tree as it is before that click; the 設定 tab (T4) lists what the dialog collected. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › Submission Grading, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
-    "t4": "The LO's SETTINGS tab (PM, 20 Sep: 'add the settings page'). Production shows an LO's settings as what its Add LO dialog collected, read-only, and Edit settings reopens that dialog (DialogCreateLearningMaterial in edit mode) prefilled — so this tab holds exactly T2's fields and nothing new: 基本情報 General Info (type, LO name, External LO ID, the description the student sees), 設定 Settings (公開と提出期間 start and due, 再提出 with its date, 提出方法 with the 500-character limit on typed, 先生の確認), and 公開状態 — the Published / Unpublished chip with created and updated stamps. 設定を編集 on each card and top-right opens the dialog (T2, shown here as the create dialog; in the product it is the same dialog prefilled). Not here, deliberately: the material, the 提出の基本条件 and the rubric — those are content and stay on the 内容 tab (T3). The two tabs link to each other; 公開する works on this tab too. The course side (T7) shows the same values read-only with ブック管理で編集, which lands back here.",
+    "t4": "The LO's SETTINGS tab (PM, 20 Sep: 'add the settings page'). Production shows an LO's settings as what its Add LO dialog collected, read-only, and Edit settings reopens that dialog (DialogCreateLearningMaterial in edit mode) prefilled — so this tab holds exactly T2's fields and nothing new: 基本情報 General Info (type, LO name, External LO ID, the description the student sees), 設定 Settings (公開と提出期間 start and due, 再提出 with its date, 提出方法 with the 500-character limit on typed, 先生の確認), and 公開状態 — the Published / Unpublished chip with created and updated stamps. 設定を編集 on each card and top-right opens the same dialog in EDIT mode over this page (click it — it works): prefilled, titled 学習目標を編集, with the LO type shown as a locked read-only field because the type cannot be changed after creation (PM, 20 Sep); everything else is editable, and 保存 closes it. Not here, deliberately: the material, the 提出の基本条件 and the rubric — those are content and stay on the 内容 tab (T3). The two tabs link to each other; 公開する works on this tab too. The course side (T7) shows the same values read-only with ブック管理で編集, which lands back here.",
     "t5": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3.",
-    "t6": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs (production's Invalid Markers export, which sits top-right on the real page, is left off this board — PM, 20 Sep: nothing to do with AI Feedback), search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview. HIGHLIGHTED (PM, 20 Sep): a submission the teacher picked as an example for the class carries an orange ★ before its ID, and the ★ 注目のみ / Highlighted only chip in the filter bar narrows the table to those rows — click it; it works in the prototype.",
+    "t6": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs (production's Invalid Markers export, which sits top-right on the real page, is left off this board — PM, 20 Sep: nothing to do with AI Feedback), search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview. HIGHLIGHTED (PM, 20 Sep): a submission the teacher picked as an example for the class carries an orange ★ before its ID. The ★ 注目のみ / Highlighted only filter is an option inside フィルター / Filters (PM, 20 Sep: under Filters, not a chip in the bar) — open Filters, tick it, and the table narrows to those rows with a 注目: あり chip among the applied filters; it works in the prototype. The panel's other fields (LO Type, Status, Reviewer) are production's, static here.",
     "t7": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree.",
-    "t8": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts, and the same ★ marker and 注目のみ / Highlighted only filter chip (PM, 20 Sep) so the teacher can pull up the few examples chosen for the class. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows.",
+    "t8": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts, and the same ★ marker and the 注目のみ / Highlighted only option inside Filters (PM, 20 Sep) so the teacher can pull up the few examples chosen for the class. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows.",
     "t9": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (クラスで紹介する — a text button that stars this submission as an example to show the class and asks for a few-word reason, PM 20 Sep, which the dashboards then count, mark ★ and list with that reason —, 差し戻す outlined, 承認して返却する contained, ⋮). Left, the info panel: submission ID with the 生徒には未公開 chip, Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), the teacher's own ひとこと — which the student sees at the top of the returned screen — and the comment counts. Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却.",
     "t10": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard in TOPIC DASHBOARD mode, production's default view and where the Dashboard menu lands — Course / Book / Filters / Apply, the Enrollment and Duration chips, the paper with search and the Topic / LO Dashboard toggle, then production's topic table: Chapter Name, Topic Name (a link that opens the LO Dashboard for that topic, T11 →), Average Score as the progress bar over the topic's scored LOs (quizzes; -- where there is none) and Completion as the number of students who completed the topic. ADDED FOR AI FEEDBACK (PM, 20 Sep: the topic dashboard, per production, but for AI Feedback data): one column, AIフィードバック, with the topic's feedback LO (a link to its overview) and its counts — 提出 12/30, 確認待ち 8 (a link into the LO's submissions when there are any), 返却済み 3 — and the ★ number of submissions the teacher picked to show the class. Topics without a feedback LO say so. Counts, never rates (PRD §1.6.4); no score is invented for a feedback LO, so Average Score stays what production computes from the quizzes. 6-2, 7-1 and 7-2 carry the three feedback LOs the LO Dashboard shows.",
-    "t11": "GroupDashboard in LO DASHBOARD mode, reached from a topic name on T10 or from the toggle. This is GroupDashboard as production renders it — the same filter row and chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; and the whole toggle — Latest Score and Highest Score — is greyed out when nothing in the matrix carries a score (PM, 20 Sep) — as here; it comes back live when a quiz or other scored LO is in view. For a clearer demo the matrix shows only AI Feedback LOs (PM, 20 Sep): the Session 6 report (all returned, one 差し戻し, two 再提出), the Session 7 report and the weekly reflection, so all four statuses and both secondary chips are on screen; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header, and the ★ 注目のみ / Highlighted only chip beside the score toggle narrows the matrix to students with a highlighted submission (PM, 20 Sep; it works — click it); sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). A tile row (production's Questions Solved via AI, then AI Feedback count tiles) was tried and removed (PM, 20 Sep: not required). In its place, on the PM's 'try it' (20 Sep), an OVERVIEW PAPER built from the PRD: the three C10.3a jobs, B2's revision outcome and the §1.6.4 rules — (1) 未提出 Not submitted was here as counts and names per LO and was removed (PM, 20 Sep): the matrix header's 提出 12/30 and the tinted -- cells already carry it; (2) 先生の確認待ち Waiting on you — drafts awaiting approval per LO with the oldest one's age — was tried and removed as well (PM, 20 Sep: not required; the matrix header's 確認待ち count and Submission Grading carry it); (3) 今週クラスが見落とした点 What the class missed: one sentence plus the criteria most often flagged this week, as counts, the 'what to re-teach' line for the next lecture's recap; (4) フィードバックを活かした Acted on the feedback — resubmitted, points resolved, rewrote in their own words — was tried and removed (PM, 20 Sep: not required); (5) ★ Highlighted for class: the teacher's own picks, each row a link straight into that submission's review screen, with the few-word reason the teacher typed when highlighting it — 外れ値の扱いが的確, 相関と因果を区別 — so the list reads as a lesson plan, not a name list (PM, 20 Sep). Not shown, deliberately: score or completion-rate tiles, per-student comparisons, average time to return. Block 3 depends on criterion keys being fixed per assignment (PRD §1.6.5, U22); block 5 is collectable today. THE MATRIX below is the drill-down: in it, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered (確認待ち links to the LO's submissions), and each cell is the submission status in the marking tones with a 再提出 secondary chip where the submission is a resubmission (the 自動返却 Auto-returned chip was shown too and removed, PM 20 Sep: not needed in the matrix — it stays in Submission Grading and on the student dashboard rows; a per-cell comment count was tried and removed, PM 20 Sep: use case unclear — it stays in Submission Grading); the cell opens the LO's submissions. Two insight panels below the matrix — comments by rubric criterion and the requirements that stopped a submission at the pre-check — were tried and removed (PM, 20 Sep: not required). Student name → the student dashboard.",
+    "t11": "GroupDashboard in LO DASHBOARD mode, reached from a topic name on T10 or from the toggle. This is GroupDashboard as production renders it — the same filter row and chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; and the whole toggle — Latest Score and Highest Score — is greyed out when nothing in the matrix carries a score (PM, 20 Sep) — as here; it comes back live when a quiz or other scored LO is in view. For a clearer demo the matrix shows only AI Feedback LOs (PM, 20 Sep): the Session 6 report (all returned, one 差し戻し, two 再提出), the Session 7 report and the weekly reflection, so all four statuses and both secondary chips are on screen; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header, and the ★ 注目のみ / Highlighted only chip beside the score toggle narrows the matrix to students with a highlighted submission (PM, 20 Sep; it works — click it); sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). A tile row (production's Questions Solved via AI, then AI Feedback count tiles) was tried and removed (PM, 20 Sep: not required). In its place, on the PM's 'try it' (20 Sep), an OVERVIEW PAPER built from the PRD: the three C10.3a jobs, B2's revision outcome and the §1.6.4 rules — (1) 未提出 Not submitted was here as counts and names per LO and was removed (PM, 20 Sep): the matrix header's 提出 12/30 and the tinted -- cells already carry it; (2) 先生の確認待ち Waiting on you — drafts awaiting approval per LO with the oldest one's age — was tried and removed as well (PM, 20 Sep: not required; the matrix header's 確認待ち count and Submission Grading carry it); (3) 今週クラスが見落とした点 What the class missed: one sentence plus the criteria most often flagged this week, as counts, the 'what to re-teach' line for the next lecture's recap; (4) フィードバックを活かした Acted on the feedback — resubmitted, points resolved, rewrote in their own words — was tried and removed (PM, 20 Sep: not required); (5) ★ Highlighted for class — the teacher's picks with the few-word reason typed when highlighting, each a link into the submission — was a block here and was MERGED INTO THE MATRIX (PM, 20 Sep): a highlighted cell now shows the ★ and that reason under the status (外れ値の扱いが的確, 相関と因果を区別している…) and opens the submission's review screen, the LO header keeps the ★ count, and the ★ 注目のみ chip narrows the matrix to those students — so the overview paper holds one block, What the class missed. Not shown, deliberately: score or completion-rate tiles, per-student comparisons, average time to return. Block 3 depends on criterion keys being fixed per assignment (PRD §1.6.5, U22); block 5 is collectable today. THE MATRIX below is the drill-down: in it, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered (確認待ち links to the LO's submissions), and each cell is the submission status in the marking tones with a 再提出 secondary chip where the submission is a resubmission (the 自動返却 Auto-returned chip was shown too and removed, PM 20 Sep: not needed in the matrix — it stays in Submission Grading and on the student dashboard rows; a per-cell comment count was tried and removed, PM 20 Sep: use case unclear — it stays in Submission Grading); the cell opens the LO's submissions. Two insight panels below the matrix — comments by rubric criterion and the requirements that stopped a submission at the pre-check — were tried and removed (PM, 20 Sep: not required). Student name → the student dashboard.",
     "t12": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with their status chip where a score would be, and 再提出 1回 where production shows the highest score. WHAT IS NEW, below the table: this student's AI Feedback — tiles (submitted, returned with auto-returns, waiting, resubmissions, comments received split into strengths and improvements, and how many points were fixed on resubmission — the revision trail from screen 7 seen from the teacher's side), the submission rows with status, comment count, which attempt, and 確認する / 見る into the review, and 観点別の傾向: the returned comments grouped by rubric criterion (strengths, improvements, fixed), so the teacher can see at a glance where this student keeps stumbling — here 統計処理 — before a consultation.",
 }
 MNOTES = {
