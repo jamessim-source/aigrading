@@ -108,7 +108,9 @@ already builds the course.
   resubmissions (an average-time-to-return tile was removed, PM: not required);
   in the LO matrix an AI Feedback LO shows
   the submission status per student in the marking tones with the comment count,
-  and its header reads Submitted / Waiting / Returned; below, comments by rubric
+  and its header reads Submitted / Waiting / Returned plus a ★ count of
+  submissions the teacher highlighted as examples for the class (set from the
+  review screen's "Highlight for class"); below, comments by rubric
   criterion and the requirements that stopped a submission at the pre-check.
   Student: AI Feedback LOs sit in the expanded LO rows with their status where a
   score would be; below the table, the student's AI Feedback tiles (including

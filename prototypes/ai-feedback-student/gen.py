@@ -1704,6 +1704,8 @@ MI = {
     "filter": "M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z",
     "history": "M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z",
     "personAdd": "M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z",
+    "star": "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z",
+    "starOff": "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z",
 }
 def mi(name, size=24, color="currentColor"):
     return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="{color}" aria-hidden="true" '
@@ -2113,16 +2115,17 @@ TJA = dict(
           ("checkCircle", "green", "返却済み", "27", "", "うち自動返却 21", None),
           ("autorenew", "", "再提出", "4", "", "差し戻し 1 を含む", None)],
     t_dash_search="生徒名で検索", t_dash_modes=["トピックダッシュボード", "LOダッシュボード"], t_topic_lbl="トピック:",
-    t_score_modes=["最新の提出", "最良の提出"], t_stu_name="生徒名",
+    t_score_modes=["最新スコア", "最高スコア"], t_stu_name="生徒名",
+    t_hl="注目", t_hl_title="クラスで紹介する例に選んだ提出", t_hl_action="クラスで紹介する",
     t_lo_kv=["平均スコア", "完了率", "AIが回答した質問"], t_fb_kv=["提出", "確認待ち", "返却済み"],
     t_completed="完了", t_marking="採点中",
-    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最良の切り替えはスコアのあるLOにのみ働き、AIフィードバックのLOは常に最新の提出の状態を表示します。",
+    t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最高スコアの切り替えはスコアのあるLOにのみ働き、AIフィードバックのLOは常に最新の提出の状態を表示します。★は先生がクラスで紹介する例に選んだ提出です。",
     t_mx_los=[("第7回 講義動画", "comp", ("--", "28/30", "0")), ("第7回 確認クイズ", "score", ("74", "26/30", "38")),
-              ("第7回 演習レポート", "fb", ("12/30", "8", "3")), ("第7週 週次リフレクション", "fb", ("21/30", "0", "21"))],
-    t_mx_students=[("山田 花子", [("comp",), ("score", "9/10", False, False), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto")]),
+              ("第7回 演習レポート", "fb", ("12/30", "8", "3", "1")), ("第7週 週次リフレクション", "fb", ("21/30", "0", "21", "2"))],
+    t_mx_students=[("山田 花子", [("comp",), ("score", "9/10", False, False), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", True)]),
                    ("佐藤 太郎", [("comp",), ("score", "6/10", True, False), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto")]),
                    ("鈴木 一郎", [("comp",), ("score", "7/10", False, False), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto")]),
-                   ("田中 美咲", [("comp",), ("score", "10/10", False, False), ("fb", "ret", 3, ""), ("fb", "ret", 2, "auto")]),
+                   ("田中 美咲", [("comp",), ("score", "10/10", False, False), ("fb", "ret", 3, "", True), ("fb", "ret", 2, "auto", True)]),
                    ("高橋 健", [("none",), ("score", "4/10", False, True), ("none",), ("fb", "ret", 2, "auto")]),
                    ("伊藤 さくら", [("comp",), ("score", "8/10", True, False), ("fb", "nr", 3, ""), ("none",)]),
                    ("渡辺 大輝", [("comp",), ("score", "5/10", False, True), ("none",), ("fb", "ret", 2, "auto")])],
@@ -2251,16 +2254,17 @@ TEN = dict(
           ("checkCircle", "green", "Returned", "27", "", "21 of them auto-returned", None),
           ("autorenew", "", "Resubmissions", "4", "", "including 1 sent back", None)],
     t_dash_search="Search by Student Name", t_dash_modes=["Topic Dashboard", "LO Dashboard"], t_topic_lbl="Topic:",
-    t_score_modes=["Latest Submission", "Best Submission"], t_stu_name="Student Name",
+    t_score_modes=["Latest Score", "Highest Score"], t_stu_name="Student Name",
+    t_hl="Highlighted", t_hl_title="Chosen as an example to show the class", t_hl_action="Highlight for class",
     t_lo_kv=["Avg. Score", "Comp. Rate", "AI-answered questions"], t_fb_kv=["Submitted", "Waiting", "Returned"],
     t_completed="Completed", t_marking="Marking",
-    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Best applies to scored LOs only; an AI Feedback LO always shows the status of the latest submission.",
+    t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Highest Score applies to scored LOs only; an AI Feedback LO always shows the status of the latest submission. ★ marks a submission the teacher chose to show the class.",
     t_mx_los=[("Session 7 lecture video", "comp", ("--", "28/30", "0")), ("Session 7 check-up quiz", "score", ("74", "26/30", "38")),
-              ("Session 7 exercise report", "fb", ("12/30", "8", "3")), ("Week 7 weekly reflection", "fb", ("21/30", "0", "21"))],
-    t_mx_students=[("Hanako Yamada", [("comp",), ("score", "9/10", False, False), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto")]),
+              ("Session 7 exercise report", "fb", ("12/30", "8", "3", "1")), ("Week 7 weekly reflection", "fb", ("21/30", "0", "21", "2"))],
+    t_mx_students=[("Hanako Yamada", [("comp",), ("score", "9/10", False, False), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", True)]),
                    ("Taro Sato", [("comp",), ("score", "6/10", True, False), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto")]),
                    ("Ichiro Suzuki", [("comp",), ("score", "7/10", False, False), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto")]),
-                   ("Misaki Tanaka", [("comp",), ("score", "10/10", False, False), ("fb", "ret", 3, ""), ("fb", "ret", 2, "auto")]),
+                   ("Misaki Tanaka", [("comp",), ("score", "10/10", False, False), ("fb", "ret", 3, "", True), ("fb", "ret", 2, "auto", True)]),
                    ("Ken Takahashi", [("none",), ("score", "4/10", False, True), ("none",), ("fb", "ret", 2, "auto")]),
                    ("Sakura Ito", [("comp",), ("score", "8/10", True, False), ("fb", "nr", 3, ""), ("none",)]),
                    ("Daiki Watanabe", [("comp",), ("score", "5/10", False, True), ("none",), ("fb", "ret", 2, "auto")])],
@@ -2752,7 +2756,7 @@ def t_review(S, L):
   {tcrumbs(S, "T-Review", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_new_lo"], None)])}
   <div class="tphead">
     <h1>{S["t_new_lo"]}{st_chip(S, "ir")}</h1>
-    <div class="acts"><a class="tbtn outlined" href="{tfn("T-List", L)}">{S["t_rev_back"]}</a><a class="tbtn contained" href="{tfn("T-List", L)}">{S["t_rev_send"]}</a><span class="ticon">{mi("more", 24)}</span></div>
+    <div class="acts"><span class="tbtn" title="{S["t_hl_title"]}">{mi("starOff", 18)}{S["t_hl_action"]}</span><a class="tbtn outlined" href="{tfn("T-List", L)}">{S["t_rev_back"]}</a><a class="tbtn contained" href="{tfn("T-List", L)}">{S["t_rev_send"]}</a><span class="ticon">{mi("more", 24)}</span></div>
   </div>
   <div class="grade-layout">
     <div class="info-panel">
@@ -2834,13 +2838,15 @@ def t_dash_group(S, L):
     cards = "".join(ov_card(*c[:6], href=c[6], L=L) for c in S["t_ov"])
     # LO column headers
     heads = ""
-    for name, kind, (a, b, c) in S["t_mx_los"]:
+    for name, kind, vals in S["t_mx_los"]:
         if kind == "fb":
+            a, b, c, hl = vals
             k1, k2, k3 = S["t_fb_kv"]
             nm = f'<a class="lo-name" href="{tfn("T-Detail", L)}" title="{name}"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("rateReview", 12)}</span><span>{name}</span></a>'
             kv = (f'<span class="kv-line">{k1}: <b>{a}</b></span><span class="kv-line">{k2}: <b><a href="{tfn("T-List", L)}">{b}</a></b></span>'
-                  f'<span class="kv-line">{k3}: <b>{c}</b></span>')
+                  f'<span class="kv-line">{k3}: <b>{c}</b><span style="display:inline-flex;align-items:center;gap:2px;margin-left:8px;color:#ED6C02">{mi("star", 12)}<b style="color:#ED6C02">{hl}</b></span></span>')
         else:
+            a, b, c = vals
             k1, k2, k3 = S["t_lo_kv"]
             nm = f'<span class="lo-name" title="{name}"><span>{name}</span></span>'
             kv = f'<span class="kv-line">{k1}: <b>{a}</b></span><span class="kv-line">{k2}: <b><a href="#">{b}</a></b></span><span class="kv-line">{k3}: <b>{c}</b></span>'
@@ -2854,10 +2860,12 @@ def t_dash_group(S, L):
             _, sc, ai, failed = c
             spark = f'<span title="AI Tutor">{mi("spark", 16)}</span>' if ai else ""
             return f'<span class="stat-cell{" miss" if failed else ""}"><span class="score">{sc}</span><span class="grow">{spark}{mi("history", 16)}</span></span>'
-        _, st, n, sec = c
+        _, st, n, sec = c[:4]
+        hl = len(c) > 4 and c[4]
         sec_chip = f'<span class="tchip st-secondary" style="height:20px;padding:0 6px;font-size:11px">{S["t_sec"][sec]}</span>' if sec else ""
+        star = f'<span title="{S["t_hl_title"]}" style="color:#ED6C02;display:flex">{mi("star", 16)}</span>' if hl else ""
         return (f'<a class="stat-cell" href="{tfn("T-List", L)}" style="color:inherit">{st_chip(S, st)}{sec_chip}'
-                f'<span class="grow"><span class="cnt">{mi("rateReview", 14, "#757575")}{n}</span>{mi("history", 16)}</span></a>')
+                f'<span class="grow">{star}<span class="cnt">{mi("rateReview", 14, "#757575")}{n}</span>{mi("history", 16)}</span></a>')
     rows = "".join(
         f'<tr><td class="stu-col"><div class="stu-cell"><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a></div></td>'
         + "".join(f'<td>{cell(c)}</td>' for c in cells) + '</tr>'
@@ -3030,8 +3038,8 @@ TNOTES = {
     "t5": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs, search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview.",
     "t6": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree.",
     "t7": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows.",
-    "t8": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (差し戻す outlined, 承認して返却する contained, ⋮). Left, the info panel: submission ID with the 生徒には未公開 chip, Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), the teacher's own ひとこと — which the student sees at the top of the returned screen — and the comment counts. Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却.",
-    "t9": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard as production renders it — Course / Book / Filters / Apply, the Enrollment and Duration chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle is renamed 最新の提出 / 最良の提出 — Latest / Best Submission — because a feedback LO has no score: for a scored LO 'best' is the highest score; a feedback LO has nothing to rank by (comment counts are not a quality score), so its cells ignore the toggle and always show the latest submission's status — PM, 20 Sep; sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). Production's Questions Solved via AI tile sat at the top of the paper and was removed (PM, 20 Sep: not required). WHAT IS NEW: (1) AI Feedback tiles in its place — submissions across the course's AI Feedback LOs, 確認待ち (the queue, links to Submission Grading), 返却済み with how many were auto-returned, and 再提出 with sent-backs (an average-time-to-return tile was tried and removed, PM 20 Sep: not required). (2) In the matrix, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered, and each cell is the submission status in the marking tones with a 自動返却 or 再提出 secondary chip and the comment count; the cell opens the LO's submissions. (3) Below the matrix, what the class missed: comments by criterion (the share of drafts with an improvement comment on each rubric criterion — the 'what did the class miss' view the PRD needs, from the criterion tag every comment carries) and the requirements that stopped a submission at the pre-check (from T3's list), each linking to where it is edited. Student name → the student dashboard.",
+    "t8": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (クラスで紹介する — a text button that stars this submission as an example to show the class, PM 20 Sep, which the dashboards then count and mark ★ —, 差し戻す outlined, 承認して返却する contained, ⋮). Left, the info panel: submission ID with the 生徒には未公開 chip, Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), the teacher's own ひとこと — which the student sees at the top of the returned screen — and the comment counts. Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却.",
+    "t9": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard as production renders it — Course / Book / Filters / Apply, the Enrollment and Duration chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header; sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). Production's Questions Solved via AI tile sat at the top of the paper and was removed (PM, 20 Sep: not required). WHAT IS NEW: (1) AI Feedback tiles in its place — submissions across the course's AI Feedback LOs, 確認待ち (the queue, links to Submission Grading), 返却済み with how many were auto-returned, and 再提出 with sent-backs (an average-time-to-return tile was tried and removed, PM 20 Sep: not required). (2) In the matrix, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered, and each cell is the submission status in the marking tones with a 自動返却 or 再提出 secondary chip and the comment count; the cell opens the LO's submissions. (3) Below the matrix, what the class missed: comments by criterion (the share of drafts with an improvement comment on each rubric criterion — the 'what did the class miss' view the PRD needs, from the criterion tag every comment carries) and the requirements that stopped a submission at the pre-check (from T3's list), each linking to where it is edited. Student name → the student dashboard.",
     "t10": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with their status chip where a score would be, and 再提出 1回 where production shows the highest score. WHAT IS NEW, below the table: this student's AI Feedback — tiles (submitted, returned with auto-returns, waiting, resubmissions, comments received split into strengths and improvements, and how many points were fixed on resubmission — the revision trail from screen 7 seen from the teacher's side), the submission rows with status, comment count, which attempt, and 確認する / 見る into the review, and 観点別の傾向: the returned comments grouped by rubric criterion (strengths, improvements, fixed), so the teacher can see at a glance where this student keeps stumbling — here 統計処理 — before a consultation.",
 }
 MNOTES = {
