@@ -16,7 +16,7 @@ https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE
 | PC · English | same, `-en` suffix | 1280 × 800 |
 | Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
 | Mobile · English | same, `-en` suffix | 375 × 812 |
-| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` → `T-Created` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashGroup` ↔ `T-DashStudent` | 1440 × 900 |
+| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` → `T-Created` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashTopic` → `T-DashGroup` ↔ `T-DashStudent` | 1440 × 900 |
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
@@ -102,7 +102,11 @@ already builds the course.
   Sent Back, plus a secondary chip (Auto-returned, Resubmitted).
 - **Dashboard** (2026-09-20, PM): the AI Feedback overview is fitted into
   production's `GroupDashboard` and `StudentDashboard`, not given a page of its
-  own. Group: an overview paper built from the PRD (C10.3a jobs, B2 revision
+  own. Group, Topic Dashboard mode (production's default, where the Dashboard
+  menu lands): production's chapter / topic / average score / completion table
+  with one added AI Feedback column — the topic's feedback LO with its
+  submitted / waiting / returned counts and ★ count; a topic name opens the LO
+  Dashboard. Group, LO Dashboard mode: an overview paper built from the PRD (C10.3a jobs, B2 revision
   outcome, §1.6.4 rules) — what the class missed this week (top criteria as
   counts) and the ★ highlighted picks; no score or completion-rate tiles, no
   per-student comparisons (not-submitted, waiting-on-you and acted-on-feedback
