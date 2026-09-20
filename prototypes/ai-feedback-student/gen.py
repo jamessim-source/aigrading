@@ -2880,7 +2880,7 @@ def t_dash_group(S, L):
         <span class="tsearch">{mi("search", 20, "#757575")}<span>{S["t_dash_search"]}</span></span>
         <span class="toggle-group"><span>{S["t_dash_modes"][0]}</span><span class="on">{S["t_dash_modes"][1]}</span></span>
       </div>
-      <div style="display:flex;align-items:center;justify-content:flex-end;gap:16px;margin:16px 0 12px">
+      <div style="display:flex;align-items:center;justify-content:flex-start;gap:16px;margin:16px 0 12px">
         <span class="toggle-group"><span class="on">{S["t_score_modes"][0]}</span><span>{S["t_score_modes"][1]}</span></span>
       </div>
       <div class="matrix"><table>
