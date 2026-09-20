@@ -107,8 +107,10 @@ already builds the course.
   with one added AI Feedback column — the topic's feedback LO with its
   submitted / waiting / returned counts and ★ count; a topic name opens the LO
   Dashboard. Group, LO Dashboard mode: an overview paper built from the PRD (C10.3a jobs, B2 revision
-  outcome, §1.6.4 rules) — what the class missed this week (top criteria as
-  counts); no score or completion-rate tiles, no
+  outcome, §1.6.4 rules) — what the class missed this week: an insight written
+  by an LLM pass over the returned comments grouped by rubric criterion,
+  grounded in the criterion counts beneath it and in quoted passages that link
+  into the submissions (teacher-facing only); no score or completion-rate tiles, no
   per-student comparisons (not-submitted, waiting-on-you and acted-on-feedback
   blocks were tried and removed, PM: not required; the ★ highlighted-picks
   block was merged into the matrix). Below
