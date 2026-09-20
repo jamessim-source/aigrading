@@ -113,8 +113,8 @@ already builds the course.
   review screen's "Highlight for class"; the Submission Grading tables mark
   those rows with the star and have a working "Highlighted only" filter chip,
   and the student's returned screen carries a star line in the teacher's note
-  card); below, comments by rubric
-  criterion and the requirements that stopped a submission at the pre-check.
+  card). Two insight panels below the matrix (comments by rubric criterion,
+  requirements that stopped a submission) were removed (PM: not required).
   Student: AI Feedback LOs sit in the expanded LO rows with their status where a
   score would be; below the table, the student's AI Feedback tiles (including
   points fixed on resubmission), the submission rows into the review, and the
