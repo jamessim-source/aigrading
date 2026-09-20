@@ -2061,7 +2061,7 @@ TJA = dict(
     t_ch6="第6回　データの整理と代表値", t_ch7="第7回　データの分析と仮説検定", t_ch8="第8回　回帰分析",
     t_tp71="7-1　相関分析", t_tp72="7-2　仮説検定",
     t_los=[("第7回 講義動画", "link", False), ("第7回 講義資料", "lo", False), ("第7回 確認クイズ", "lo", True)],
-    t_new_lo="第7回 演習レポート", t_snack="LOを作成しました。",
+    t_new_lo="第7回 演習レポート", t_snack="LOを作成しました。", t_pub_snack="LOを公開しました。開始日から生徒の一覧に表示されます。",
     # Add Learning Objective dialog
     t_dlg_title="学習目標（LO）を追加", t_dlg_general="基本情報", t_dlg_settings="設定", t_dlg_select="LOタイプを選択",
     t_types=["ランダム学習", "学習目標", "フラッシュカード", "録音課題", "演習提出", "外部コンテンツ"],
@@ -2230,7 +2230,7 @@ TEN = dict(
     t_ch6="Session 6 · Organising data and averages", t_ch7="Session 7 · Data analysis and hypothesis testing", t_ch8="Session 8 · Regression analysis",
     t_tp71="7-1 · Correlation analysis", t_tp72="7-2 · Hypothesis testing",
     t_los=[("Session 7 lecture video", "link", False), ("Session 7 lecture slides", "lo", False), ("Session 7 check-up quiz", "lo", True)],
-    t_new_lo="Session 7 exercise report", t_snack="You have created a new LO successfully.",
+    t_new_lo="Session 7 exercise report", t_snack="You have created a new LO successfully.", t_pub_snack="LO published. Students see it in their list from the start date.",
     t_dlg_title="Add Learning Objective", t_dlg_general="General Info", t_dlg_settings="Settings", t_dlg_select="Select LO Type",
     t_types=["Random Activity", "Learning Objective", "Flash Card", "Recording Assignment", "Practice Submission", "External Content"],
     t_type_fb="AI Feedback", t_new="NEW",
@@ -2604,12 +2604,16 @@ def lo_head(S, L, screen, tab, pub, side="book"):
     to Book Management to edit (PM, 19 Sep: Book Management is for setting up LOs, not
     for the student submission flows)."""
     status = f'<span class="tchip {"published" if pub else "unpublished"}">{S["t_pub"] if pub else S["t_unpub"]}</span>'
+    if side == "book" and not pub:
+        # Publish works in the prototype (PM, 20 Sep): the chip flips to 公開中 and the button goes away
+        status = (f'<sc-if value="{{{{pubOff}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tchip unpublished">{S["t_unpub"]}</span></sc-if>'
+                  f'<sc-if value="{{{{pubOn}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip published">{S["t_pub"]}</span></sc-if>')
     if side == "book":
         crumbs = [(S["t_bm"], tfn("T-Book", L)), (S["t_book"], tfn("T-Created" if not pub else "T-Book", L)), (S["t_new_lo"], None)]
         tabs_src = S["t_lo_tabs"]
         acts = (f'<a class="tbtn" href="{tfn("T-Detail", L)}">{mi("people", 18)}{S["t_view_subs"]}</a>'
                 f'<span class="tbtn outlined">{mi("edit", 18)}{S["t_edit"]}</span>' +
-                ("" if pub else f'<span class="tbtn contained">{S["t_publish"]}</span>'))
+                ("" if pub else f'<sc-if value="{{{{pubOff}}}}" hint-placeholder-val="{{{{true}}}}"><button class="tbtn contained" onClick="{{{{doPublish}}}}">{S["t_publish"]}</button></sc-if>'))
         sub = ""
     else:
         crumbs = [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_new_lo"], None)]
@@ -2624,9 +2628,10 @@ def lo_head(S, L, screen, tab, pub, side="book"):
   </div>{sub}
   <div class="tabs">{tabs}</div>'''
 
-TMAT_LOGIC = """state = { req: true, adding: false, draft: "", r: [true, true, true, true, true], a: ["", "", ""] };
+TMAT_LOGIC = """state = { req: true, adding: false, draft: "", r: [true, true, true, true, true], a: ["", "", ""], pub: false };
   renderVals() {
     const v = { rq: this.state.req ? "on" : "", rqOn: this.state.req, rqOff: !this.state.req,
+                pubOn: this.state.pub, pubOff: !this.state.pub, doPublish: () => this.setState({ pub: true }),
                 toggleRq: () => this.setState({ req: !this.state.req }),
                 adding: this.state.adding, draft: this.state.draft,
                 addDis: this.state.draft.trim() ? "" : "dis",
@@ -2689,7 +2694,8 @@ def t_material(S, L):
     </div>
   </div>
 </div>
-<div class="snack" role="status">{mi("checkCircle", 20)}{S["t_snack"]}</div>
+<sc-if value="{{{{pubOff}}}}" hint-placeholder-val="{{{{true}}}}"><div class="snack" role="status">{mi("checkCircle", 20)}{S["t_snack"]}</div></sc-if>
+<sc-if value="{{{{pubOn}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack" role="status">{mi("checkCircle", 20)}{S["t_pub_snack"]}</div></sc-if>
 <div class="tbar">
   <a class="tbtn" href="{fn("02-Assignment", L)}">{mi("eye", 18)}{S["t_preview"]}</a>
   <span style="display:flex;gap:8px"><a class="tbtn" href="{tfn("T-Created", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Created", L)}">{S["t_save"]}</a></span>
@@ -3192,7 +3198,7 @@ TNW = 640
 TNOTES = {
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
     "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. Confirm →",
-    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › Submission Grading, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
+    "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation — click it (it works in the prototype, PM 20 Sep): the chip flips to 公開中 Published, the button goes away and a snackbar confirms; T4 shows the tree as it is before that click. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › Submission Grading, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
     "t4": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3.",
     "t5": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs (production's Invalid Markers export, which sits top-right on the real page, is left off this board — PM, 20 Sep: nothing to do with AI Feedback), search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview. HIGHLIGHTED (PM, 20 Sep): a submission the teacher picked as an example for the class carries an orange ★ before its ID, and the ★ 注目のみ / Highlighted only chip in the filter bar narrows the table to those rows — click it; it works in the prototype.",
     "t6": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 goes back to the LO in the tree.",
