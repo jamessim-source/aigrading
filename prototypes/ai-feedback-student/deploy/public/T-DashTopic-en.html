@@ -397,6 +397,11 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
   box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}
 .tpop .it{display:flex;align-items:center;gap:10px;padding:8px 16px;font-size:14px;color:#212121;min-height:36px;background:none;border:0;width:100%;box-sizing:border-box;text-align:left;font-family:inherit;text-decoration:none;cursor:pointer;white-space:nowrap}
 .tpop .it:hover{background:#F5F5F5}
+.rev-pager{display:flex;align-items:center;gap:6px}
+.rev-pager .rp-mid{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;text-align:center}
+.rev-pager .rp-pos{font-size:13px;font-weight:500}
+.rev-pager .rp-ctx{font-size:11px;color:#9E9E9E}
+.rev-pager a.ticon{color:#616161;text-decoration:none}
 .tpop.fpanel{left:0;top:44px;width:360px;padding:16px;display:flex;flex-direction:column;gap:14px;text-align:left;font-weight:400}
 .tpop.fpanel h4{margin:0;font-size:15px;font-weight:500}
 .tpop.fpanel .ffoot{display:flex;justify-content:flex-end;gap:8px;margin-top:4px;padding-top:12px;border-top:1px solid #E0E0E0}
@@ -645,7 +650,7 @@ body{background:#fff}</style>
   </div><div class="chiplist"><span class="tchip" style="padding-right:4px">Enrollment: Enrolled<span class="tx"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span></span><span class="tchip" style="padding-right:4px">Duration: Active<span class="tx"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span></span><a href="#" style="margin-left:4px">Reset to default</a></div></div>
     <div class="tpaper" style="padding:16px">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px">
-        <span class="tsearch"><svg width="20" height="20" viewBox="0 0 24 24" fill="#757575" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Search by Student Name</span></span>
+        <span class="tsearch"><svg width="20" height="20" viewBox="0 0 24 24" fill="#757575" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Search by Chapter Name or Topic Name</span></span>
         <span class="toggle-group"><span class="on">Topic Dashboard</span><a href="T-DashGroup-en.html">LO Dashboard</a></span>
       </div>
       <div class="table-scroll"><table class="m tight"><thead><tr><th>Chapter Name</th><th>Topic Name</th><th>Average Score</th><th>AI Feedback</th><th style=text-align:right>Completion</th></tr></thead>

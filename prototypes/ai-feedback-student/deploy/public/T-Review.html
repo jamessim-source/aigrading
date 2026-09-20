@@ -397,6 +397,11 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
   box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}
 .tpop .it{display:flex;align-items:center;gap:10px;padding:8px 16px;font-size:14px;color:#212121;min-height:36px;background:none;border:0;width:100%;box-sizing:border-box;text-align:left;font-family:inherit;text-decoration:none;cursor:pointer;white-space:nowrap}
 .tpop .it:hover{background:#F5F5F5}
+.rev-pager{display:flex;align-items:center;gap:6px}
+.rev-pager .rp-mid{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;text-align:center}
+.rev-pager .rp-pos{font-size:13px;font-weight:500}
+.rev-pager .rp-ctx{font-size:11px;color:#9E9E9E}
+.rev-pager a.ticon{color:#616161;text-decoration:none}
 .tpop.fpanel{left:0;top:44px;width:360px;padding:16px;display:flex;flex-direction:column;gap:14px;text-align:left;font-weight:400}
 .tpop.fpanel h4{margin:0;font-size:15px;font-weight:500}
 .tpop.fpanel .ffoot{display:flex;justify-content:flex-end;gap:8px;margin-top:4px;padding-top:12px;border-top:1px solid #E0E0E0}
@@ -646,7 +651,13 @@ body{background:#fff}</style>
   </div>
   <div class="grade-layout">
     <div class="info-panel">
-      <div class="info-sec"><span class="helper num" style="margin:0">FB-260911</span></div>
+      <div class="info-sec"><div class="rev-pager">
+        <a class="ticon sm" href="T-Review.html" title="前の提出" aria-label="前の提出"><span style="display:flex;transform:rotate(180deg)"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span></a>
+        <span class="rp-mid"><span class="helper num" style="margin:0">FB-260911</span><span class="rp-pos num">3 / 12</span><span class="rp-ctx">提出一覧の順 ・ 未確認から</span></span>
+        <a class="ticon sm" href="T-Review.html" title="次の提出" aria-label="次の提出"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+      </div></div>
+      <!-- previous / next submission (PM, 20 Sep): steps through the LO's submissions in the list's order
+           without going back to it; in the prototype both arrows reload this one submission -->
       <!-- a 生徒には未公開 / Not visible to the student chip sat beside the ID and was removed (PM, 20 Sep):
            the status chip says In Review and the report header says draft feedback -->
       <div class="info-sec">
