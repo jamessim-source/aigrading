@@ -517,6 +517,23 @@ table.m tbody td{vertical-align:top;white-space:nowrap}
 .toggle-group span.on{background:#1976D21F;color:#0B79D0}
 .toggle-group span.dis{color:#BDBDBD;background:#FAFAFA;cursor:default}
 .toggle-group.dis{border-color:#E0E0E0}.toggle-group.dis span+span{border-left-color:#E0E0E0}
+/* Group Dashboard overview blocks */
+.gd{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.gd .blk{border:1px solid #E0E0E0;border-radius:8px;background:#fff;padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.gd .blk.s2{grid-column:span 2}.gd .blk.s3{grid-column:span 3}
+.gd .blk.hot{border-color:#FF9800;background:#FFFBF2}
+.gd .blk h4{margin:0;font-size:12px;font-weight:500;color:#757575;letter-spacing:.04em;display:flex;align-items:center;gap:6px}
+.gd .brow{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;padding:4px 0;border-bottom:1px solid #F5F5F5}
+.gd .brow:last-of-type{border-bottom:0}
+.gd .brow .bl{display:flex;flex-direction:column;min-width:0;gap:1px}
+.gd .brow .blo{color:#212121;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gd .brow .bwho{font-size:12px;color:#757575;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gd .brow .bn{font-size:20px;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;flex:0 0 auto}
+.gd .bline{font-size:14px;line-height:1.5;margin:0}
+.gd .bwhy{font-size:11px;color:#9E9E9E;margin-top:auto}
+.gd .blink{font-size:13px;align-self:flex-start}
+.gd .bchips{display:flex;gap:6px;flex-wrap:wrap}
+.gd .bchips .tchip b{font-weight:500;margin-left:2px}
 .progress{display:flex;align-items:center;gap:8px;width:100%;min-width:140px}
 .progress .pct{min-width:38px;font-size:14px;font-variant-numeric:tabular-nums}
 .progress .bar{flex:1 1 auto;height:4px;border-radius:2px;background:#EEEEEE;overflow:hidden}

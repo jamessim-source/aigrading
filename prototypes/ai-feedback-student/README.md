@@ -102,9 +102,12 @@ already builds the course.
   Sent Back, plus a secondary chip (Auto-returned, Resubmitted).
 - **Dashboard** (2026-09-20, PM): the AI Feedback overview is fitted into
   production's `GroupDashboard` and `StudentDashboard`, not given a page of its
-  own. Group: no tile row (production's Questions Solved via AI and a set of AI
-  Feedback overview tiles were tried and removed, PM: not required); in the LO
-  matrix an AI Feedback LO shows
+  own. Group: an overview paper built from the PRD (C10.3a jobs, B2 revision
+  outcome, §1.6.4 rules) — not submitted (counts and names), waiting on the
+  teacher, what the class missed this week (top criteria as counts), acted on
+  the feedback (resubmitted, points resolved, own words), and the ★ highlighted
+  picks; no score or completion-rate tiles, no per-student comparisons. Below
+  it, in the LO matrix an AI Feedback LO shows
   the submission status per student in the marking tones,
   and its header reads Submitted / Waiting / Returned plus a ★ count of
   submissions the teacher highlighted as examples for the class (set from the
