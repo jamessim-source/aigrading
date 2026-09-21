@@ -2077,13 +2077,16 @@ table.m tbody tr.hide{display:none}
 .crit-row:last-child{border-bottom:0}
 .crit-row .n{font-variant-numeric:tabular-nums;color:#757575;font-size:13px;white-space:nowrap}
 table.m>tbody>tr.sub>td{background:#FAFAFA;padding:0 16px 16px 54px;border-bottom:1px solid #E0E0E0}
-table.m table.inner{border:1px solid #E0E0E0;border-radius:4px;background:#fff;width:100%}
+table.m table.inner{border:1px solid #E0E0E0;border-radius:4px;background:#fff;width:100%;table-layout:fixed}
+table.m table.inner col.c-lo{width:21%}table.m table.inner col.c-sub{width:12%}table.m table.inner col.c-sc{width:9%}
+table.m table.inner col.c-st{width:17%}table.m table.inner col.c-cm{width:14%}table.m table.inner col.c-cr{width:12%}table.m table.inner col.c-act{width:6%}
+table.m table.inner thead th{white-space:normal}
 table.m table.inner thead th{background:#fff;padding:10px 8px;font-size:13px}
 table.m table.inner tbody td{padding:10px 8px;background:#fff;vertical-align:middle;border-bottom:1px solid #E0E0E0;font-size:13px}
-table.m table.inner th:first-child,table.m table.inner td:first-child{min-width:150px}
-table.m table.inner td.num{white-space:nowrap}
-table.m table.inner td.crit{min-width:120px;white-space:normal;font-size:12px;line-height:1.4}
-table.m table.inner td.cms{min-width:110px;white-space:normal;line-height:1.35}
+table.m table.inner td{white-space:normal;overflow-wrap:anywhere}
+table.m table.inner td.crit{font-size:12px;line-height:1.4}
+table.m table.inner td.cms{line-height:1.35}
+table.m table.inner td .tchip{white-space:nowrap}
 table.m table.inner td .tchip{height:20px;padding:0 7px;font-size:11px}
 table.m table.inner tbody tr.det td{padding:0 12px 10px 28px;border-top:0;background:#FFFDF7}
 table.m table.inner tbody tr.det .tp-ins>span:first-of-type{flex:1 1 320px;min-width:0;white-space:normal}
@@ -3334,10 +3337,10 @@ def t_dash_student(S, L):
                 sec_key = "resub" if b == "resub" else ("auto" if n in S["t_stu_auto"] else "")
                 sec_chip = f'<span class="tchip st-secondary" style="height:20px;padding:0 6px;font-size:11px">{S["t_sec"][sec_key]}</span>' if sec_key else ""
                 when = f'<span class="cell-muted num" style="display:block;font-size:12px;margin-top:4px">{Lb["ret"]} {ret_day}</span>' if ret_day else ""
-                status = f'<span style="display:flex;gap:4px;align-items:center">{st_chip(S, st_key)}{sec_chip}</span>{when}'
-                return (f'<td style="white-space:nowrap">{status}</td><td class="cms">{cms}</td>'
+                status = f'<span style="display:flex;gap:4px;align-items:center;flex-wrap:wrap">{st_chip(S, st_key)}{sec_chip}</span>{when}'
+                return (f'<td>{status}</td><td class="cms">{cms}</td>'
                         f'<td class="crit">{crit}</td>'
-                        f'<td style="text-align:right"><a class="tbtn sm" style="height:24px;padding:0 8px" href="{tfn("T-Review", L)}">{act}</a></td>')
+                        f'<td style="text-align:right;padding-left:0"><a class="tbtn sm" style="height:24px;padding:0 6px;min-width:0" href="{tfn("T-Review", L)}">{act}</a></td>')
             def lo_name(n, a):
                 det = S["t_stu_det"].get(n) if a.startswith("fb:") else None
                 hl = det[7] if det else ""
@@ -3348,7 +3351,7 @@ def t_dash_student(S, L):
                 return d + (f'<span class="cell-muted" style="display:block;font-size:12px">{S["t_resub_n"]}</span>' if b == "resub" else "")
             inner = "".join(
                 f'<tr><td style="white-space:normal">{lo_name(n, a)}</td><td class="num">{sub_date(d, b)}</td><td>{sub_val(a)}</td><td>{sub_val(b)}</td>{fb_cells(n, a, b)}</tr>' for n, d, a, b in los)
-            ind += (f'<tr class="sub"><td colspan="6"><table class="m inner"><thead><tr>'
+            ind += (f'<tr class="sub"><td colspan="6"><table class="m inner"><colgroup><col class="c-lo"><col class="c-sub"><col class="c-sc"><col class="c-sc"><col class="c-st"><col class="c-cm"><col class="c-cr"><col class="c-act"></colgroup><thead><tr>'
                     + "".join(f'<th>{c}</th>' for c in S["t_sub_cols"])
                     + f'</tr></thead><tbody>{inner}</tbody></table></td></tr>')
     # a separate AI Feedback paper (count tiles, a submissions table, a by-criterion profile) sat below the
