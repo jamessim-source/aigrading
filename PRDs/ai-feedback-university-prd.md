@@ -942,7 +942,7 @@ Course-level "AI Feedback enabled" chip · AI-use declaration · self-check on r
 - [ ] **Section 1 unconfirmed list is still live.** U1 (is the Kindai trial even approved?) and U3 (which subject the 240 reports come from) gate everything downstream. **Nothing on the 1.7 list has been used in Parts A–C, and nothing may be until its named owner confirms it.**
 - [ ] **Part A not authored** — no business goal, no primary metric, no applicability decision, no named Business owner.
 - [ ] **Part B not authored** — five candidate jobs, no chosen core job, no desired outcomes.
-- [ ] **Part C3 has no defined cells.** Every row is undefined and the edge-case checklist is empty. This alone blocks sprint planning.
+- [ ] **Part C3 is only half defined.** Twelve rows are now DEFINED from the prototype review (C11) and six new rows were added, but the cold-start, rubric-versioning, concurrency, appeal, attention-audit, low-confidence and per-student-due-date rows are still empty, and four of the six checklist items are unticked. The undefined half still blocks sprint planning.
 - [ ] **Define the engine contract (C7).** Scoring vs feedback is settled — AI Grading and AI Marking score, AI Feedback is the engine they and the learner app call. What is *not* written is the contract: what the scoring products pass in, what comes back, and **the rule that decides when additional feedback is warranted** rather than firing on every scored submission.
 - [ ] **One live contradiction in the source material must be resolved by the PM, not absorbed:**
       (a) theses/seminar papers are excluded by [S3] and sold by [S4].
@@ -961,7 +961,7 @@ Course-level "AI Feedback enabled" chip · AI-use declaration · self-check on r
 
 **The dashboard showcase (C10) runs on its own clock and is NOT gated by the above.** It is a manual sales artefact, not a build. Its own blockers, in order:
 - [x] ~~C10.3 — which submission type the showcase covers~~ — **closed 17 Sep: both. Two views, per C10.3.**
-- [ ] **The reflection view does not exist.** Specified in C10.3a as a reading queue; the prototype has nothing like it. Design it first; the revision view already works for exercises.
+- [ ] **The reflection view does not exist as a reading queue.** Specified in C10.3a; the handover prototype has nothing like it, and the product took the insight line instead (C10.0). Decide whether the showcase demonstrates C10.0's dashboards with Kindai data or still builds the queue.
 - [ ] **Week-one honesty.** Three of the four queue signals need the reflection rubric or several weeks of history, so the first fortnight is realistically "student asked a question" plus the class-level and submitted views. Frame the showcase accordingly.
 - [ ] **The reflection rubric does not exist** and is Prof. Yasumoto's to author — a dependency on the October hands-on, not a design task.
 - [ ] **Demo data must be rebuilt** as a Kindai class (~140 students, both submission types). Mechanical, but it gates any client-facing version.
