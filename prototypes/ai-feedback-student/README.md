@@ -125,11 +125,13 @@ already builds the course.
   card). Two insight panels below the matrix (comments by rubric criterion,
   requirements that stopped a submission) were removed (PM: not required).
   Student: AI Feedback LOs sit in the expanded LO rows with their status where a
-  score would be, and the inner table gains four feedback columns — returned
-  date, comment counts (strengths, to improve, fixed on resubmission), the
-  criteria touched, and a link into the review — with the ★ reason under the
-  LO name (a separate AI Feedback paper below the table was merged into these
-  rows, PM).
+  score would be, and the inner table gains three feedback columns — Status
+  (the status chip, its secondary chip and the date it was reached; Completed
+  for unscored LOs sits here too), the flagged criteria (those that drew an
+  improvement comment, marked when fixed on resubmission), and a link into
+  the review — with the ★ reason under the LO name (a separate AI Feedback
+  paper below the table was merged into these rows, PM; a comment-count
+  column was tried and dropped).
 
 ## Publishing
 
