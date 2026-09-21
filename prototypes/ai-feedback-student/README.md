@@ -8,6 +8,10 @@ returns. It accompanies `PRDs/ai-feedback-university-prd.md`.
 Live canvas (Claude Design artifact, comments live there):
 https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE
 
+The PM decisions taken in the canvas comments (18–21 Sep 2026) are consolidated,
+dated and grouped by screen, in the PRD's section **C11**; the notes below and the
+sticky notes on the canvas are the per-screen record.
+
 ## Layout
 
 | Row | Boards | Size |

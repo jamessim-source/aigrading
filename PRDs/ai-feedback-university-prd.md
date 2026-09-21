@@ -2,7 +2,8 @@
 
 > **Authorship status — read this before using this document.**
 > Section 1 (Background) is populated from client meetings, internal strategy documents, market decks and the 17 Sep AI direction discussion. Every line carries its source.
-> **Parts A, B and C are NOT authored.** They contain *candidates and questions* drawn from those sources, each clearly labelled. Product scope discussed in a meeting or asserted in a business deck is not a specification. The PM converts each candidate into a decision — or rejects it — before this PRD goes to review. Nothing in Parts A–C may be treated as committed behaviour until that happens.
+> **Parts A and B are NOT authored.** They contain *candidates and questions* drawn from those sources, each clearly labelled. Product scope discussed in a meeting or asserted in a business deck is not a specification. The PM converts each candidate into a decision — or rejects it — before this PRD goes to review. Nothing in Parts A–B may be treated as committed behaviour until that happens.
+> **Part C is partly authored.** Between 18 and 21 Sep the PM reviewed a clickable prototype screen by screen [S20]; the decisions taken there are the PM's own and are recorded, dated, in **C11**, then carried into C1–C5, C9 and C10. A line in Part C marked **DEFINED** or **DECIDED** with a C11 reference is a PM decision. Everything else in Part C remains a candidate or an open question.
 
 > **Canonical source.** This file (`PRDs/ai-feedback-university-prd.md`) is the source of truth. It is published to Confluence as a page tree under [PRD: AI Feedback v1](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2361622595):
 > - [PRD: AI Feedback — Universities & Juku](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2897018905) *(landing page)*
@@ -16,7 +17,7 @@
 
 | | |
 |---|---|
-| **Status** | Draft — Parts A–C not yet authored |
+| **Status** | Draft — Parts A–B not yet authored; Part C carries the PM's prototype-review decisions of 18–21 Sep (see **C11**) |
 | **Product line** | LMS / **AI Tutor** / ERP |
 | **Product Area (E1)** | AI Feedback |
 | **Author (PM)** | James Sim |
@@ -25,12 +26,13 @@
 | **Target partner(s) / market** | **Primary:** Kindai/Kinki University — two independent tracks: (a) Faculty of Applied Sociology, (b) Correspondence Education Division. **Watching:** Sugiyama Jogakuen Univ., Kyoto Koka Women's Univ., Nagoya Univ. of Foreign Studies, Keiwa Gakuen Univ., Shitennoji Univ. **Secondary:** Juku — Waseda Academy, Eishinkan, Z-kai, CKC/Solomon, Toshin |
 | **Release target** | *TBC — Kindai Applied Sociology pilot needs product in learners' hands by late Oct 2026; course starts 6 Nov 2026* |
 | **TDD link** | *Not created* |
-| **Design / Figma link** | *Not created for this scope* |
+| **Design / Figma link** | No Figma. **Clickable prototype** (Claude Design canvas, JA + EN; student PC, student mobile, Back Office): [AI Feedback — Back Office + Student Prototype](https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE) **[S20]**. Generated from `prototypes/ai-feedback-student/gen.py`; the sticky notes on the canvas record the PM decisions per screen |
 | **Jira epic** | *Not created* |
 
 ### Change log
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
+| 2026-09-21 | v1.1 | James Sim (drafted with Claude) | **Prototype review consolidated into the PRD.** Between 18 and 21 Sep the PM reviewed the clickable prototype [S20] — student PC, student mobile, Back Office — through **91 comment threads** on the canvas, each applied to the prototype and answered in the thread. Every decision is now recorded once, dated and grouped by screen, in **C11**, and carried into the sections it changes: **C1** (teacher-in-the-loop is a per-LO setting, default on; V1.1's exclusion of the teacher dashboard and of resubmission is superseded), **C2** (scope lines decided or superseded), **C3** (twelve rows defined or narrowed, six rows added), **C4** (the journeys exist as the prototype, with a Back Office journey that was missing), **C5** (product terms), **C9** (JA/EN strings and all three widths exist in the prototype), **C10** (the in-product dashboard is fitted into production's Group and Student Dashboards; the manual showcase stays a separate sales artefact), **D** and **E** updated. Questions the review raised but did not close are listed at **C11.9**. Section 1 is unchanged: nothing here came from a meeting | Draft | — |
 | 2026-09-17 | v0.1 | James Sim (drafted with Claude) | Section 1 populated from source documents; Parts A–C raised as candidates/questions; Parts D–E scaffolded | Draft | — |
 | 2026-09-18 | v1.0 | James Sim (drafted with Claude) | **Two terminology corrections from the PM.** (1) **"error type" was never a thing** — the Gemini transcript renders 「エルオー」(LO) as *"error"* and sometimes *"arrow"*. Proven in the transcript itself: Koki says *"a separate errors"* and Bunsuke answers *"an all-in-one **LO**… a PDF **LO**… a video **LO**"*. All eight occurrences corrected to **LO type**; a transcription note added at §1.5 and quotes marked `[LO]`. (2) **AI Grading and AI Marking are split by submission origin** — **AI Grading = paper/photo, AI Marking = LMS Assessment LO submissions.** C1's consumer list had these inverted. Corrected in C1, C2, C6 and C7, and the consequence made explicit: the two consumers hand the engine different things (OCR output vs. clean LO-bound text), so C7 must say whether that is one contract or two. Surfaces a **client-facing naming conflict** — the decks sell 添削/"AI Red-Pen Grading", which points at paper, while the internal name AI Marking points at the LO flow | Draft | — |
 | 2026-09-18 | v0.9 | James Sim (drafted with Claude) | **Published to Confluence** as a five-page tree under [S19], the v1 parent — links in the banner above. Fixed a structural bug from an earlier edit: six general readiness-gate blockers (no ACs, C7 blank, no TL review, no designs, no Business sign-off, V1.1 relationship undeclared) had been mis-nested inside the **dashboard's** blocker list, which is explicitly *not* gated by the main list. Also fixed four stale cross-references ("today's direction discussion" → 17 Sep; "1.6 list" → "1.7 list"; a §1.5.2 pointer to a C2 contradiction that v0.4 closed; a C2 DOCX out-of-scope line that v0.8 closed) | Draft | — |
@@ -465,33 +467,33 @@ Section 1 is what we were told. B5 is what the PM decides actually proves the pr
 **AI Feedback is the feedback engine** — rubric/criteria in, submission in, criterion-linked instructor-voiced feedback out, **no score** — called by three surfaces. Scoring stays with AI Grading and AI Marking, which call the engine when additional feedback is warranted on top of the score:
 1. **AI Grading feedback** — feedback attached to a **paper / photo** submission (AI Grading owns the score; OCR sits on this path).
 2. **AI Marking feedback** — feedback attached to an **LMS Assessment LO** submission (AI Marking owns the score; the submission is already digital and already attached to an LO).
-3. **A Feedback LO in the learner app** — feedback as a distinct **LO type** inside the existing LO submission flow, carrying **its own icon** on the To-do list alongside PDF, video, quiz and AI flash-card types, and populating the To-do via **start and end dates layered over the LO** (the aligned decision of 17 Sep).
+3. **A Feedback LO in the learner app** — feedback as a distinct **LO type** inside the existing LO submission flow, carrying **its own icon** on the To-do list alongside PDF, video, quiz and AI flash-card types, and populating the To-do via **start and end dates layered over the LO** (the aligned decision of 17 Sep). **Confirmed and shaped by the PM in the prototype (18–20 Sep — C11):** the LO is created in Book Management's Add Learning Objective dialog as one more LO type, in the hierarchy Book → Chapter → Topic → LO per the [Book Management PRD](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/1133903925/Book+Management) **[S21]**; its settings are start and due dates, resubmission (own date, default off), accepted submission methods (file / photos / typed, 500-character limit on typed) and teacher review (default on); its content page holds the teacher's material, the generated **basic requirements** that gate submission, and the generated **rubric** that shapes the comments. Submissions are processed under **Course › Submission Grading**, production's existing home for work waiting on a teacher.
 
 > **The Grading / Marking split, per the PM (18 Sep):** **AI Grading is for paper and photo submissions. AI Marking is for LMS Assessment LO submissions.** The two are distinguished by *where the submission comes from*, not by how it is scored — both score. This matters to C7 more than anywhere else: surface 1 hands the engine OCR-derived text with all the confidence and layout caveats that carries, while surface 2 hands it clean digital text already bound to an LO, a rubric and a student record. **One engine contract has to serve both, or there are two contracts.** Note also that surfaces 2 and 3 both sit on LOs, so the Feedback LO must be distinguishable from an Assessment LO that merely *received* feedback.
 
 **Open at the level of the summary itself:**
 - The 17 Sep AI Direction Discussion says *"grading and feedback should be part of"* the unified app experience, and 2 Jul set Q3 = merge AI Grading + AI Feedback into one flow, Q4 = plug into the LMS LO submission flow. **Is this PRD the Q3 merge, the Q4 LO integration, or both?** They are different releases with different risk.
 - **The January V1 does not include AI Feedback.** The 17 Sep session aligned that V1 in January is *PDF-based practice functionality only*. Meanwhile the AI Feedback trial runs in preprod from **1 October** with a **5 October** release [S15], and Kindai Applied Sociology expects live use from **6 November**. **Three different timelines are in play and this PRD must say which one it serves.**
-- On 17 Sep James also noted the current prototype returns feedback straight to the student with no teacher in the loop and *"I don't think it's meant to be this way"*. **Is teacher-in-the-loop mandatory, optional per assignment, or per tenant?** This single answer changes C3, C4, C6 and A3 simultaneously.
-- The existing **AI Feedback V1.1** PRD (`PRDs/ai feedback.pdf`) lists **teacher dashboard** and **iterative feedback / re-upload** as *out of scope*. Kindai Applied Sociology needs a teacher dashboard by late October (Takuya/James, 17 Sep) and its whole loop is submit → feedback → revise → resubmit [S1 §2.1]. **This PRD either supersedes those exclusions or it does not — say which, explicitly.**
+- ~~Is teacher-in-the-loop mandatory, optional per assignment, or per tenant?~~ **DECIDED (PM, 19 Sep — C11.3).** Teacher review is a **per-LO setting** (先生の確認 / Teacher review) in the Add LO dialog, **default on**. On: after the due date every draft waits in Course › Submission Grading for the teacher to review, edit and return it; only 承認して返却する makes the feedback exist for the student. Off: the feedback is returned automatically after the due date and the row carries an Auto-returned chip in Submission Grading. **Either way the student is never told AI was involved** (PM, 18–19 Sep — C11.1): to the student, the teacher gives the feedback, so the student-facing name of the LO type is フィードバック / Feedback and "AI Feedback" is the internal and Back Office name. *Open (C11.9): whether the student-facing copy should differ when review is off, since "the teacher gives the feedback" overstates the unreviewed case.*
+- ~~The existing **AI Feedback V1.1** PRD lists **teacher dashboard** and **iterative feedback / re-upload** as *out of scope* — does this PRD supersede those exclusions?~~ **DECIDED — superseded (PM, 18–20 Sep).** Resubmission is a **per-LO setting with its own due date, default off** (C11.3); when on, the student's second submission shows the previous comments as a checklist and the returned screen opens with what changed (C11.1). The teacher's overview is **not a page of its own** but AI Feedback data added to production's **Group Dashboard** (Topic and LO modes) and **Student Dashboard** in Back Office (C10.0, C11.5–C11.6). Kindai Applied Sociology's loop — submit → feedback → revise → resubmit [S1 §2.1] — is therefore in scope, per LO.
 
 ## C2. Scope — in and out — *PM decision required*
 
-**Candidate in-scope** (each needs a yes/no, not a nod):
-- Instructor-defined rubric with versioning and re-run against past submissions, with a disagreement report *(named the strongest competitive gap in [S7])*
-- Rubric inference from assignment instructions + syllabus + past graded submissions, presented for approval with per-criterion source traces [S3 ch.3]
-- Approval queue with confidence routing and 30-second-per-item card [S3 §3.2]
-- Student-facing pre-submission self-check [S6]
-- Formative mode: draft → feedback → revise → resubmit, with version history [S1][S2][S3]
-- Feedback grounded in course materials with page/line/slide references [S1 §4; Takuya 17 Sep]
-- Teacher/group/individual dashboard integration (not a standalone dashboard) [Takuya/James 17 Sep]
-- PDF + image submission; Word/text [S3 ch.9] — **note [S1 §10] records only PDF reliably working as of 17 Aug**
+**Candidate in-scope** (each needs a yes/no, not a nod; lines marked **Decided** were settled by the PM in the prototype review, C11):
+- Instructor-defined rubric with versioning and re-run against past submissions, with a disagreement report *(named the strongest competitive gap in [S7])* — **open**; not prototyped
+- ~~Rubric inference from assignment instructions + syllabus + past graded submissions, presented for approval with per-criterion source traces~~ **Decided (PM, 19 Sep — C11.3):** the rubric (コメントの観点) is **generated by the LLM from the teacher's uploaded material** (brief, marking criteria) and shown as **one editable block** (LaTeX output rendered as a document), which the teacher edits or regenerates in place — not as tag chips, not with per-criterion source traces. The same generate step produces the basic requirements, each of which does carry its source (課題説明 p.1, 評価基準 2.(3)). Past graded submissions are not an input.
+- ~~Approval queue with confidence routing and 30-second-per-item card~~ **Decided (PM, 19–20 Sep — C11.3, C11.4):** the queue is production's **Course › Submission Grading** page filtered to LO type AI Feedback — no new menu item — with its statuses, filters, bulk action and grading-detail layout; the review screen has approve-and-return, send back, highlight for class, a previous/next pager and a kebab. **No confidence routing** and no per-item time budget were prototyped.
+- ~~Student-facing pre-submission self-check~~ **Decided (PM, 18–19 Sep — C11.1, C11.3):** exists as 提出の基本条件 / **Basic requirements** — structural conditions generated from the teacher's material, editable, gating the submission, shown as a plain list until a file is chosen or a typed answer confirmed, then checked. **Per-LO switch, on by default;** off, nothing is shown or checked. It is not a self-report: the AI-use declaration and the self-check on resubmission were both **rejected** (self-report is not evidence).
+- ~~Formative mode: draft → feedback → revise → resubmit, with version history~~ **Decided (PM, 18–19 Sep — C11.1, C11.3):** resubmission is a **per-LO setting with its own due date, default off**. Until the due date the student replaces the file, pages or text freely; the teacher reviews only after it. The second submission shows the previous comments as a checklist; the second return opens with what changed.
+- Feedback grounded in course materials with page/line/slide references [S1 §4; Takuya 17 Sep] — **partly prototyped:** each comment card carries a lecture reference; the engine contract (C7) still has to say how references are produced
+- ~~Teacher/group/individual dashboard integration (not a standalone dashboard)~~ **Decided (PM, 20 Sep — C10.0, C11.5–C11.6):** AI Feedback data is added to production's Group Dashboard (Topic and LO modes) and Student Dashboard in Back Office. No standalone page.
+- ~~PDF + image submission; Word/text~~ **Decided (PM, 18–19 Sep — C11.1):** accepted on PC and mobile: **PDF, Word, Excel (.xlsx) and PowerPoint as they are** (no export-to-PDF step: the Excel-skill criterion is judged on the workbook), **photos of handwritten pages, several per upload kept in page order** (through the AI Grading OCR path before feedback), and a **typed answer** up to 500 characters that the student confirms before the checks run. Which methods an LO accepts is a per-LO setting. *Open (C11.9): the engine has to read .xlsx/.pptx directly or convert server-side, and page-count style requirements do not apply to a workbook — per-format requirement checks are proposed, not decided.* **[S1 §10] still records only PDF reliably working as of 17 Aug** — the gap between the decided scope and the current build is real.
 
 **Candidate out-of-scope, with the reason each is a candidate:**
 - **Graduation theses, seminar theses, specialised open-ended writing** — [S3 ch.5] excludes them: ambiguous criteria, few anchors, high stakes. **But [S4] slide 18 sells exactly this** ("draft guidance for graduation theses, seminar papers, research proposals", 4th-years, 200 students). **This is a live contradiction between the design paper and the sales deck and the PM must resolve it here.**
 - **Oral viva** — U10; no capability exists, and the client is shopping it to competitors [S7].
 - **AI Red-Pen Grading (the paper/photo flow) for university submissions** — James, 17 Sep: *"not for Kindai… most of the submissions gonna be PDF"*. Kindai submits digital documents, so the paper/photo path is not its route in. *(Check this against the naming conflict flagged in C5 before quoting it to a client.)*
-- **Auto-return without instructor confirmation** — [S4]/[S5] both state pilots assume instructor confirmation of every item, with auto-return a separate workflow configured after administrators confirm responsibility.
+- ~~**Auto-return without instructor confirmation**~~ — **not out of scope; it is the off state of a per-LO setting (PM, 19 Sep — C11.3).** Teacher review defaults on; a teacher may turn it off for an LO, and feedback then goes out automatically after the due date. [S4]/[S5]'s "administrators confirm responsibility" framing becomes a question of who may flip that switch (Biz, A3) — not a scope exclusion.
 - ~~**DOCX**~~ — **not out of scope.** [S19] shows v1 already accepts `.docx` and `.pdf`; V1.1's exclusion refers to its mobile/image additions. Word stays in for the web document flow.
 
 **Scoring is not in scope here, and that is the architecture rather than a gap.** *(Confirmed by the PM, 17 Sep.)* **AI Grading and AI Marking are always about scoring; AI Feedback is the feedback engine those two call, and the learner app calls, when additional feedback is warranted on top of a score.** The two scoring products are divided by submission origin, not by scoring method: **AI Grading takes paper and photo submissions; AI Marking takes LMS Assessment LO submissions** (PM, 18 Sep). Consequences to hold to throughout this PRD:
@@ -511,16 +513,16 @@ The table below is **the list of cells that must not be empty**, not a specifica
 
 | Scenario / State | Expected behavior | Notes / edge cases |
 |---|---|---|
-| No submission yet / first use of an assignment | *UNDEFINED* | What does the instructor see before any student submits? |
+| No submission yet / first use of an assignment | **DEFINED (C11.3, C11.5)** — the LO's overview under Submission Grading shows Submitted / Waiting for review / Returned at 0 and the LO's settings read-only; the Topic Dashboard lists the LO with its start and due dates and 0 counts and no insight line; the student's To-do shows the LO from its start date | The rubric and requirements are already on the LO's Content tab before any submission |
 | Cold start — no past graded submissions | *UNDEFINED* | [S3 ch.7] proposes "instructor grades first five, AI takes over at the sixth". Is 5 the number, and is it Env- or Tenant-level? |
 | Past submissions exist but have no scores | *UNDEFINED* | [S3] proposes 10 pairwise comparisons |
-| Rubric already exists at the institution | *UNDEFINED* | [S3] proposes skip inference but still run trial grading, since existing rubrics diverge from actual grading |
+| Rubric already exists at the institution | *UNDEFINED* | [S3] proposes skip inference but still run trial grading, since existing rubrics diverge from actual grading. **Prototype (C11.3):** the teacher uploads the marking criteria as material and the rubric is generated from it as one editable block; pasting an existing rubric verbatim is not prototyped |
 | Trial-grading agreement comes back low | *UNDEFINED* | [S3] proposes: do not enter operational mode; fall back to first-five. What threshold? Who is told? |
-| Submission in draft (formative) vs final | *UNDEFINED* | [S3 §4.1] proposes draft feedback is labelled "learning support", never a grade |
-| Preliminary AI assessment produced, instructor has not approved | *UNDEFINED* | Does the student see anything at all? **This is the policy question in A3.2** |
-| Instructor approves unchanged | *UNDEFINED* | Is the diff recorded as a zero-diff signal? |
-| Instructor edits score only / text only / both | *UNDEFINED* | Correction diffs feed the next run [S3 ch.6] — define what is captured |
-| Instructor rejects and regrades from scratch | *UNDEFINED* | |
+| Submission in draft (formative) vs final | **DEFINED (C11.1)** — until the due date the student can view and **replace** the file, pages or typed text; the basic-requirement checks run on each replacement. Nothing is reviewed or returned before the due date. A further round exists only when resubmission is on for the LO, with its own date | No "learning support" label: the student sees no draft at all before return |
+| Preliminary AI assessment produced, instructor has not approved | **DEFINED (C11.1)** — the student sees a waiting screen: **no draft, no AI mention, no teacher name, no expected date**, one generic line that they will be notified when returned. The draft is visible only in Back Office, status Not Reviewed / In Review | Implements "nothing"; A3.2 still has to ratify it as policy |
+| Instructor approves unchanged | **DEFINED (C11.4)** — 承認して返却する returns the draft as the teacher's feedback, with the teacher's own note (ひとこと) at the top of the returned screen; status Returned | Zero-diff capture: still undefined |
+| Instructor edits score only / text only / both | **DEFINED (C11.4)** — there is no score. The teacher **edits or deletes individual comments** in the report and writes the note; an edited comment carries an edited mark | What the diff feeds: undefined |
+| Instructor rejects and regrades from scratch | **DEFINED (C11.4)** — 差し戻す **Sent Back**: the submission goes back to the student for another submission (error tone); regenerating the draft is an action in the review screen's kebab | |
 | Instructor flags for interview / viva | *UNDEFINED* | Depends on U10 |
 | Low-confidence item | *UNDEFINED* | Routing order, and whether the student's return is delayed |
 | OCR / transcription confidence low on a photo submission | *UNDEFINED* | [S3 ch.9] proposes showing the original image beside the transcription. V1.1 sets OCR target ≥97% |
@@ -534,30 +536,44 @@ The table below is **the list of cells that must not be empty**, not a specifica
 | Attention-audit item injected and **not** detected | *UNDEFINED* | [S3 ch.6] proposes 1–2% injection, ≥80% detection, auto-exclusion of detected cases. Does an undetected injected item ever reach a student? **Answer this one before anything else in this table** |
 | Model is replaced | *UNDEFINED* | [S3 ch.6] proposes model-agnostic schema + re-validation via the same trial-grading procedure |
 | Pre-submission self-check: student keeps submitting until clean | *UNDEFINED* | Is there a cap? [S6] shows 36% of resubmissions were avoidable — what stops gaming? |
-| **Teacher publishes a whole semester of AI Feedback items at once** | *UNDEFINED — mechanism agreed 17 Sep, semantics not* | Aligned: start + end dates layered over the LO, used **only** by the To-do page. Undefined: what a blank start date does; whether the item is visible in the course tab before its start date; whether end date means hidden, overdue, or locked |
-| **AI Feedback item passes its start date** | *UNDEFINED* | Appears on To-do. Does it notify? Does it order against other LO types? |
-| **AI Feedback item passes its due date without submission** | *UNDEFINED* | Koki: overdue shows in red. Still submittable? Still gradeable? |
+| **Teacher publishes a whole semester of AI Feedback items at once** | **PARTLY DEFINED (C11.3)** — each LO carries a **start date** (it appears in the student's To-do then) and a **due date** (submit and replace until then; the teacher reviews after). Confirm creates the LO **Unpublished**; **Publish** is a separate action on the LO page or the tree row. In the prototype's course view a future week is listed dimmed | Undefined: a blank start date; whether the LO is opened from the course tab before its start date; notification |
+| **AI Feedback item passes its start date** | **DEFINED (C11.1, C11.3)** — appears on the To-do with the Feedback type icon | Notification and ordering against other LO types: undefined |
+| **AI Feedback item passes its due date without submission** | **PARTLY DEFINED** — To-do shows it overdue in red; the teacher's review starts after the due date | Late submission accepted or not: undefined |
+| **Teacher review off for the LO (先生の確認 off)** | **DEFINED (C11.3)** — the LO's settings show it; feedback is returned automatically after the due date; the row shows a secondary **Auto-returned** chip in Submission Grading and on the Student Dashboard (**not** in the Group Dashboard matrix, PM 20 Sep); the review screen is skipped. Student-facing copy is unchanged | Open (C11.9): the copy overstates "the teacher gives the feedback" in this case |
+| **Resubmission allowed for the LO** | **DEFINED (C11.1, C11.3)** — per-LO toggle with its own due date, default off. The second submission screen lists the previous comments as a checklist; a returned resubmission opens with what changed; secondary chip **Resubmitted** in the tables; 再提出 1回 sits under the submission date on the Student Dashboard, never in a score column | |
+| **Teacher highlights a submission for the class** | **DEFINED (C11.4–C11.6)** — クラスで紹介する / Highlight for class on the review screen, with a **few-word reason**. Effects: ★ before the ID in Submission Grading tables with a Highlighted-only option **inside Filters**; ★ count in the LO header of the Group Dashboard matrix and in the Topic Dashboard's AI Feedback column; the reason under the status in the matrix cell (which opens the submission) and under the LO name on the Student Dashboard; a ★ line in the teacher's note card on the student's returned screen | |
+| **Basic-requirements check off for the LO** | **DEFINED (C11.3)** — nothing is shown to the student and nothing is checked at submission | |
+| **Student types the answer instead of uploading** | **DEFINED (C11.1)** — counter to a **500-character limit** under the box; the student **confirms** the text, then the checks run on the confirmed text; Edit reopens the box and clears the checks | Limit is a per-LO value in the prototype: **Env vs Tenant level not decided** |
+| **Teacher tries to change the LO type after creation** | **DEFINED (C11.3)** — not possible; the edit dialog shows the type as a locked field | |
 | **Due date differs per student or per class** | *UNDEFINED — and this has failed before* | Koki: *"study plan is meant to be built for that, and we fail."* Provisional lean is teacher sets on the spot for targeted students. **Do not let this be inferred by engineering** |
-| **Teacher-created rubric is saved** | **Currently broken** — routed through the rubric agent, which restructures it and erases the teacher's work [S15] | Agreed fix: teacher rubrics bypass the rubric agent and go straight to the feedback agent. Needs an AC |
+| **Teacher-created rubric is saved** | **Currently broken** — routed through the rubric agent, which restructures it and erases the teacher's work [S15] | Agreed fix: teacher rubrics bypass the rubric agent and go straight to the feedback agent. Needs an AC. **Prototype (C11.3):** the rubric is generated from the material as one LaTeX block and edited in place; the edited block is what the teacher saved and must be used as-is. The review screen and the dashboards tag each comment with a **criterion name**, which requires the block to contain named criteria (C11.9) |
 | **Student-generated rubric exists alongside a teacher rubric** | *UNDEFINED* | This collision is what produced the overwrite defect |
 
-**Mandatory edge-case checklist — none of these can be ticked yet:**
-- [ ] Empty / no-data / first-use state
-- [ ] Each status the entity can be in (draft, submitted, AI-assessed, in-queue, approved, returned, appealed)
+**Mandatory edge-case checklist:**
+- [x] Empty / no-data / first-use state — **defined for the teacher's screens (C11.3, C11.5)**; the student side before the start date is the dimmed To-do row
+- [ ] Each status the entity can be in — **teacher-side statuses defined (C11.4):** Not Reviewed (default) · In Review · Returned · Sent Back, plus secondary chips Auto-returned and Resubmitted; **student-side states defined (C11.1):** not submitted · submitted (waiting) · returned · awaiting resubmission (再提出待ち) · overdue. Missing: appealed, failed generation, late submission
 - [ ] Manual override / admin bypass behavior
 - [ ] Error and failure paths (OCR failure, model timeout, partial extraction)
 - [ ] Concurrency (multiple markers, TA + instructor)
 - [ ] **Configurable vs hardcoded — every value listed in A2 needs an explicit Env-level or Tenant-level label.** None has one.
 
-## C4. User journeys — *PM to write; no designs exist*
+## C4. User journeys — *three journeys exist as the prototype [S20]; two personas still unwritten*
 
-Journeys needed, one per persona chosen in B4. Candidate set:
-- Instructor: course setup → rubric approval → trial grading review → approval queue → semester-end report
-- Student (learner app): assignment appears in To-do → submit → (draft feedback) → revise → resubmit → receive instructor-finalised result
-- TA: first-pass review handoff
-- Academic affairs: rubric governance, audit log, consistency report
+The journeys below are the boards of the prototype, in the order they link. Each board has a JA and an EN version and a sticky note recording the PM decisions behind it (consolidated in C11).
 
-**Design status: no Figma exists for this scope.** The Kindai teacher dashboard is wanted by late October and the 17 Sep direction discussion resolved it should be *integrated into the existing group/individual dashboards*, not built ad hoc — which means the design dependency is on the existing dashboard, not a new screen. Qisheng Zhang is finalising Figma for AI grading US1–US4 (Weekly AI Grading, 17 Sep); **confirm whether that work covers this flow before commissioning more.**
+**Teacher — set-up, in Back Office › Book Management (boards T1–T5).** Book tree → **+ Add LO** → the Add Learning Objective dialog with **AI Feedback** as one more LO type: General Info (type, name, external ID, description the student sees) then Settings (start and due dates; resubmission with its own date, default off; accepted submission methods with the 500-character limit on typed; teacher review, default on) → **Confirm creates the LO Unpublished and lands on its Content tab**: upload the brief and marking criteria → **Generate requirements and criteria** → the basic requirements as an editable list (each row with its source, add/remove inline, per-LO on/off switch) and the rubric as one editable block → **Publish** (separate action) → the Settings tab shows what the dialog collected, with Edit settings reopening the dialog (type locked). A "View submissions" link jumps to the second journey.
+
+**Teacher — processing, in Back Office › Course › Submission Grading (boards T6–T9).** The existing queue filtered to LO type AI Feedback (statuses Not Reviewed / In Review / Returned / Sent Back with counts; Filters incl. Highlighted only; Bulk Action) → the LO's **Overview** (Submitted / Waiting for review / Returned cards, settings read-only, Edit in Book Management) → the LO's **Submissions** tab → the **review screen** on the grading-detail layout: previous/next pager, reviewer and submission info, the teacher's note, the recognised submission beside the draft comments (criterion, passage, comment, edit/delete), actions **Highlight for class** (with reason) · **Send back** · **Approve and return**, kebab (history, download original, regenerate draft, preview the student's screen). With teacher review off this screen is skipped.
+
+**Teacher — dashboards, in Back Office › Dashboard (boards T10–T12).** Group Dashboard, **Topic mode** (production's table + one AI Feedback column: LO with start/due, Submitted / Waiting / Returned counts, ★ count, one tagged insight line ranked by the LLM; Filters with AI Feedback start/due-date ranges) → **LO mode** (student × LO matrix; feedback cells show the status, a highlighted cell shows the reason and opens the submission; score toggle greyed when nothing is scored) → **Student Dashboard** (LO rows with Status, Flagged criteria and a Review/View link). Specified in C10.0 and C11.5–C11.6.
+
+**Student — PC (boards 1–8).** Course → LO list (Feedback type chip; future weeks dimmed) → assignment: criteria chips, **basic requirements**, submit by file/photos or typed answer → **waiting** (no AI mention, no date; replace until the due date) → **returned**: teacher's note (★ line if highlighted), summary, the submission with numbered underlines beside the comment cards (click either side to centre the other) → **resubmit** with the previous comments as a checklist → waiting → second return opening with what changed → To-do carrying 再提出待ち.
+
+**Student — mobile (boards M1–M10).** LO list → assignment with three paths: **snap** (camera with page guide → crop with auto-fit → pages review) · **file / photos** · **typed** (500 limit, confirm) → the same waiting screen → returned with a **bottom sheet** on a tapped underline. Same rules as PC; the weekly reflection is the mobile exception of C9.1.
+
+**Not yet written:** TA first-pass review (no two-stage review exists in the prototype — one reviewer per LO); academic affairs (rubric governance, audit log, consistency report — nothing prototyped).
+
+**Design status.** No Figma. The prototype is the design reference: it reuses production's Back Office components and layouts (Book Management tree and Add LO dialog, Submission Grading list and grading-detail page, Group and Student Dashboards) and the Learner app Figma for the student side, so the design dependency is on **existing** screens plus the AI Feedback additions listed in C11. Qisheng Zhang's AI grading US1–US4 Figma (Weekly AI Grading, 17 Sep) — **confirm whether it overlaps the Submission Grading review screen before commissioning more.**
 
 ## C5. Terminology / glossary — *PM to complete; several genuine collisions*
 
@@ -566,7 +582,13 @@ Journeys needed, one per persona chosen in B4. Candidate set:
 | AI Feedback | *TBC* — today used for **both** the student-initiated V1.1 essay feature **and** the shared feedback engine behind grading/marking | Must be disambiguated; the two are conflated in [S1], [S4], [S5] and in the 2 Jul direction meeting |
 | AI Grading | *TBC* — internally, the scoring product for **paper and photo** submissions (PM, 18 Sep) | The decks' client-facing naming does not follow this split — see the row below |
 | AI Marking / AI 添削 | *TBC* — internally, the scoring product for **LMS Assessment LO** submissions (PM, 18 Sep). But [S5] and [S4] both market **"AI Red-Pen Grading"** as the client-facing name, and 添削 (red-pen) is what a teacher does to *paper* | **Live naming conflict.** The client-facing name points at the paper flow while the internal name points at the LO flow. Align EN / JP / client-facing names before any string is cut or any deck is re-used |
-| Feedback LO | *TBC* — a Feedback learning-object type in the LO submission flow | Aligns with Koki's "everything under the LO structure" (2 Jul) |
+| **AI Feedback LO** / Feedback LO | **Decided (C11):** the LO type, created in Book Management's Add Learning Objective dialog like any other type. **Internal and Back Office name: AI Feedback. Student-facing name: フィードバック / Feedback** — no "AI" anywhere the student reads, because the teacher may endorse the reviewed draft as their own | Aligns with Koki's "everything under the LO structure" (2 Jul) |
+| 提出の基本条件 / Basic requirements | **Decided (C11.1, C11.3):** structural conditions a submission must include, generated from the teacher's material, editable, gating submission; per-LO on/off | Replaces "pre-submission self-check" and "提出前チェック"; never "checks form only" or any AI wording |
+| コメントの観点 / Rubric criteria | **Decided (C11.3):** the rubric, generated as one editable block; comments are tagged with the criterion they concern; no levels, no score | The student-facing chips on the assignment screen |
+| 先生の確認 / Teacher review | **Decided (C11.3):** the per-LO switch, default on, that routes drafts through Submission Grading | "Teacher in the loop" in meeting notes |
+| Submission statuses | **Decided (C11.4):** 未確認 Not Reviewed · 確認中 In Review · 返却済み Returned · 差し戻し Sent Back, in production's marking tones; secondary chips 自動返却 Auto-returned · 再提出 Resubmitted | Production's Submission Grading status vocabulary |
+| クラスで紹介する / Highlight for class | **Decided (C11.4):** the teacher marks a returned submission as an example for the class with a few-word reason; ★ in tables, cells and the student's note card | Not a score, not a ranking |
+| インサイト / Insight (Topic Dashboard) | **Decided (C11.5):** one tagged line per feedback LO — Missed · Going well · Worth showing · Submissions — read by an LLM pass over the submissions and their draft feedback along the rubric, the top-priority one shown | Replaces "what the class missed" as the only kind |
 | Preliminary AI assessment | [S3]'s term for the pre-approval output | Deliberately **not** "grade" |
 | Anchor | Past graded submission used to calibrate [S3] | |
 | Approval queue / approval card | [S3] | |
@@ -617,9 +639,9 @@ Flag every one of these to the Tech Lead **before** commitment:
 
 ## C9. Localization & design
 
-- [ ] All user-facing strings have confirmed translations — **not started**. Feedback itself is generated in Japanese (400–600 JP characters for Kindai [S1]); AI Tutor Product Catchup (12 May) required both Japanese and English base prompts.
-- [ ] JP / long-text overflow checked — **not checked**. 400–600 Japanese characters of feedback plus quoted passages on a narrow card is a real overflow risk. Per C9.1 this must now be checked at BOTH mobile and desktop widths.
-- [ ] Design exists and is linked for every flow in C4 — **no designs exist for this scope.** Koki's redesign demo and back-office mock (17 Sep) are the nearest thing; they are a demo, not a spec, and the Duolingo-style visual direction is a separate track owned by JPE.
+- [ ] All user-facing strings have confirmed translations — **every prototyped string exists in JA and EN** [S20], authored with the PM's wording corrections (C11); **not yet confirmed by a translator**, and production labels (Submission Grading, Dashboard) were kept as production has them. Feedback itself is generated in Japanese (400–600 JP characters for Kindai [S1]); AI Tutor Product Catchup (12 May) required both Japanese and English base prompts.
+- [x] JP / long-text overflow checked — **checked in the prototype at 1280 (student PC), 375 (student mobile) and 1440 (Back Office)** for every board, JA and EN, including the 400–600-character feedback beside the recognised submission and the bottom sheet on mobile. Real generated text may still overflow: re-check on the first real drafts.
+- [x] Design exists and is linked for every flow in C4 — **the clickable prototype [S20] covers the three teacher journeys and both student journeys**; no Figma. TA and academic-affairs flows have no design because they have no journey (C4). The Duolingo-style visual direction is a separate track owned by JPE and is not reflected.
 ### C9.1 Device priority for the university segment — **DECIDED**
 
 > *Decision requested by the PM on 17 Sep and recorded here. It is a Part C decision, so it stands as the PM's; the reasoning and the one assumption it rests on are set out below so it can be overturned on evidence rather than re-argued.*
@@ -655,6 +677,20 @@ Per surface:
 ## C10. Learning-log dashboard — the Kindai showcase
 
 > **This is a separate deliverable from the product build above, and it should stay separate.** It is a **manually produced artefact for sales and trials**, explicitly *not* a Back Office feature [S16 §4, S18]. Do not let it acquire engineering scope by sitting in the same PRD — its purpose is to discover which views teachers value so that *those* become backlog items.
+
+### C10.0 The in-product dashboard — **DECIDED (PM, 20–21 Sep)**, and how it relates to the showcase below
+
+> *This subsection records the PM's decisions from the prototype review (C11.5–C11.6). It does not cancel C10.1–C10.7, which describe Hinano's manual showcase for Kindai on its own clock; it gives that showcase a target, because what is shown manually should be what the product will show.*
+
+**The AI Feedback overview is not a page of its own.** It is AI Feedback data added to production's **Group Dashboard** and **Student Dashboard** in Back Office, in their existing layouts (prototyped as boards T10–T12 [S20]):
+
+- **Group Dashboard, Topic mode** (production's default, where the Dashboard menu lands): production's chapter / topic / average score / completion table, with **one added column, AI Feedback**: the topic's feedback LO (link to its overview), its **start and due dates**, **Submitted n/N · Waiting for review n (link into the LO's submissions) · Returned n**, the **★ count** of submissions highlighted for the class, and **one insight line** — a tagged sentence of one of four kinds (見落とし Missed · 良い傾向 Going well · 紹介候補 Worth showing · 提出状況 Submissions), produced by an LLM pass over that LO's **submissions and their generated draft feedback along the rubric**, ranked by the LLM with the top-priority one shown. It exists before anything is returned, refreshes itself when a submission or draft changes (no Regenerate control), is teacher-facing only, and carries **no expansion, quotes or counts behind it** — the PM's rule: the teacher checks the submissions themself; the line only has to alert them. **Filters** opens production's panel (Enrollment status, Duration) plus **AI Feedback start-date and due-date ranges**, shown as applied chips. Search reads "Search by Chapter Name or Topic Name". Every topic of the book is listed, as production does (the board shows only the three with a feedback LO, for the demo).
+- **Group Dashboard, LO mode:** the student × LO matrix **alone**. A feedback LO's header reads Submitted / Waiting / Returned and its ★ count instead of score and completion; each cell is the submission status in the marking tones with a Resubmitted chip where relevant (no Auto-returned chip here, no comment count); a **highlighted cell shows the teacher's few-word reason under the status and opens that submission**; Highlighted-only narrows the matrix; the Latest / Highest Score toggle keeps production's labels and is greyed out when nothing in view carries a score. **Nothing above or below the matrix** — every overview block built from this PRD (not submitted, waiting on you, acted on the feedback, comments by criterion, requirements that stopped a submission, count tiles, average time to return) was tried and removed by the PM as duplicate of the matrix and Submission Grading, or not required.
+- **Student Dashboard:** production's chapter / topic table with the LO rows expanded; a feedback LO shows **--** in both score columns and gains three columns shared by all LO rows — **Status** (the chip, its secondary chip, the date it was reached; Completed for unscored LOs also lives here, never in a score column), **Flagged criteria** (the rubric criteria that drew an improvement comment, marked when the resubmission fixed them), and a **Review / View** link (Review while In Review, View once Returned). The LO name links to its overview, with the ★ reason under it; 再提出 1回 sits under the submission date.
+
+**Rules carried from §1.6.4 and kept:** counts and names, never rates; no per-student score or ranking for a feedback LO (the score columns stay empty, the score toggle greys out); no chat transcripts (nothing conversational exists in this flow). **Dependency carried from §1.6.5:** the insight line and the flagged-criteria column both group by rubric criterion, so **criterion keys must be fixed per assignment** (U22).
+
+**What this changes for C10.1–C10.7.** The reading-queue thinking in C10.3a fed the insight line (the "worth showing" kind is the queue's purpose; "missed" is job B); it did **not** survive as a ranked list of submissions — the PM chose one line per LO with the teacher going to the submissions themself. The revision trail (C10.3 exercise view) survives only as the Student Dashboard's flagged-criteria column and the student's own "what changed" screen; no own-words / copied classification is shown to the teacher. U17 / U25 (who owns the dashboard) remain open.
 
 ### C10.1 What is actually being asked for — *confirmed*
 
@@ -766,6 +802,137 @@ The prototype's own backlog of unbuilt items, in John's priority order [S17 §6]
 
 The showcase is a document, not a build, so ACs in the QA sense may not apply. What does need writing is a **content sign-off checklist with Hinano before it goes to a client**: every number traceable to a submission, nothing claimed that production cannot collect, fictional data clearly labelled, and no view that breaks a §1.6.4 rule.
 
+## C11. Prototype review — the PM's decisions, consolidated (18–21 Sep 2026)
+
+> **What this is.** A clickable prototype of the whole flow [S20] — student PC, student mobile, Back Office — was built from 18 Sep and reviewed by the PM screen by screen through **91 comment threads** on the canvas. Each comment was applied to the prototype and answered in its thread; **81 threads are resolved, 10 stay open** because they end on an answer the PM has not yet marked read (nothing in them is unapplied). This section is the single record of those decisions, **dated and grouped by screen**, so that nobody has to reconstruct them from the canvas. They are **Part C decisions by the PM**: they can be overturned on evidence, not re-argued by engineering. Where a decision was a *proposal the PM accepted* ("try it", "ok") it is marked as such. Where the prototype embodies a default the PM saw but never ruled on, it is listed separately in C11.7 for ratification.
+>
+> **Reading the dates.** 18 Sep — student PC flow. 19 Sep — student naming and upload rules, mobile, Back Office set-up. 20 Sep — Back Office refinements, Submission Grading, review screen, Group Dashboard. 21 Sep — Student Dashboard columns.
+
+### C11.1 Student — PC and mobile (18–19 Sep)
+
+| # | Date | Decision (PM) | What it changed | PRD effect |
+|---|---|---|---|---|
+| S1 | 18 Sep | **No AI wording anywhere the student reads.** To the student, the teacher gives the feedback: no "the teacher reviews the AI comments", no review-step framing, no teacher's name | Waiting and returned screens, To-do, LO chip, titles | C1, C5 |
+| S2 | 18 Sep | Waiting screen carries **one generic line** — you will be notified when it is returned. A teacher-set expected-return date was tried and removed: the student does not need it | Waiting screens, PC and mobile | C3 |
+| S3 | 18 Sep | **The student can view and replace the submission until the due date.** The teacher reviews only after the due date and never returns before it, so no "this restarts the review" wording | Waiting screens; "view submission" | C3 |
+| S4 | 18 Sep | **No chat or message channel.** The learner app's Message tab is not a default client feature; "message the teacher" and "ask the teacher" buttons removed. The resubmission is the channel | Waiting and returned screens | C4, C7 |
+| S5 | 18 Sep | Returned screen: file page count and the "comment numbers match the underlines" hint removed — the UI should be intuitive | Returned screens | — |
+| S6 | 18 Sep | Clicking an underlined passage **highlights the matching card and centres it**; and the reverse | Returned screens (PC) | C4 |
+| S7 | 18 Sep | On mobile, tapping an underline **opens a bottom sheet** with that point's card | Mobile returned screen (built 19 Sep) | C4 |
+| S8 | 18 Sep | **One layout for every feedback type** — file or typed reflection, long or short. Content varies, structure does not | Returned screens | C4, C9.1 |
+| S9 | 18 Sep | **No AI-written "next step" card.** Prescribing what to do next is the teacher's control of the class flow; guidance stays inside each improvement comment and in the teacher's note | Returned screens | C3 |
+| S10 | 18 Sep | Pre-submission checks are the **基本条件 / Basic requirements** for the submission — no AI mention, no "checks form only", no "checked automatically" hint (the checks appear on choosing a file) | Submit and resubmit screens | C2, C5 |
+| S11 | 18 Sep | **No AI-use declaration; no self-check on resubmission** — self-report is not evidence. The 生成AIリテラシー criterion stays the professor's to judge. What remains on the second return is the system's own observation that flagged passages were rewritten, positive case only | Submit and resubmit screens | C2, C3 |
+| S12 | 18 Sep | "Your teacher grades. The AI does not give a score." line removed from the submit screen | Submit screen | — |
+| S13 | 18 Sep | **Photos of handwritten papers accepted**, several per upload, kept in page order; they go through the AI Grading OCR path before feedback | Submit screens, PC; mobile snap flow | C1, C2, C7 |
+| S14 | 18 Sep | **Typed input** for weekly reflections. Shown as a **limit of 500 characters** under the box (no target line); the student **confirms the typed answer** so it can be evaluated against the basic requirements; edit reopens it. Which modes an LO accepts is a Back Office setting | Submit screens; M7 | C2, C3 |
+| S15 | 18 Sep | **The AI Feedback assignment is created at the LO level** in the LMS hierarchy Book → Chapter → Topic → LO [S21]; **a new LO type for AI Feedback** | Course screen; all of Back Office | C1 |
+| S16 | 19 Sep | Course-level "AI Feedback enabled" chip **not required** — the LO type chip already says it | Course screen | — |
+| S17 | 19 Sep | **Excel and PowerPoint accepted directly**, not exported to PDF; **multiple images per upload** | Submit screens, mobile file/photos | C2, C7, C11.9 |
+| S18 | 19 Sep | **Student-facing name has no "AI"**: the LO type reads フィードバック / Feedback, as do titles and To-do rows, because by configuration the teacher may review the generated feedback and return it as their own endorsed feedback. AI Feedback stays the internal / Back Office name | All student screens | C1, C5, C11.9 |
+| S19 | 19 Sep | The "your answer is never written for you" boundary line removed from the submit screen — belongs in the teacher's brief and this PRD, not on the student's screen | Submit screens | — |
+| S20 | 19 Sep | Mobile screens for **choose file / photos** and **typed answer** added, converging on the same waiting screen | M6, M7 | C4 |
+
+### C11.2 Student — earlier defaults confirmed by the same review (18 Sep)
+
+Rules the prototype carried from the start and the PM left standing after reading them: the six Kindai criteria as chips on the assignment screen; each comment card tagged with its criterion, no level or number; the teacher's note at the top of the returned screen; PDF export of the comments; the To-do carrying 再提出待ち between return and resubmission with overdue in red and future items dimmed until their start date.
+
+### C11.3 Back Office — set-up in Book Management (19–20 Sep)
+
+| # | Date | Decision (PM) | What it changed | PRD effect |
+|---|---|---|---|---|
+| B1 | 19 Sep | **Book Management is for setting up LOs only; it does not process student submissions.** Overview, Submissions and Review moved to the Course menu — first as a new Course › AI Feedback item, then (same day, PM) **reuse the existing To Review / Submission Grading entry, no new menu item** | T6–T9; nav | C1, C2, C4 |
+| B2 | 19 Sep | **After Confirm, land directly on the LO's content page** (material, requirements, rubric), not back in the tree — for this type the next thing the teacher does is upload the material | T3 | C4 |
+| B3 | 19 Sep | Teacher review **off** shows a **neutral info notice**, not a red warning; no hint under the on state | T2 dialog | — |
+| B4 | 19 Sep | The generate button names its outputs: **Generate requirements and criteria** | T3 | C5 |
+| B5 | 19 Sep | **The rubric is generated by the LLM and output as LaTeX; shown as one block, not tags.** The "Generated by AI · LaTeX" label removed. Actions: Regenerate, Edit in place | T3 | C2, C3, C11.9 |
+| B6 | 19 Sep | Rubric helper copy explains what the criteria do, shortened, without "no levels, no score": *Each submission is read against these criteria, and every comment is tagged with the one it concerns* | T3 | C5 |
+| B7 | 19 Sep | **The teacher can turn the basic-requirements check on or off** per LO; off, nothing is shown or checked | T3 | C3 |
+| B8 | 19 Sep | **Add-a-requirement UX**: inline row, disabled Add until text, an "Added by you" source chip on the teacher's own rows, any row removable | T3 | — |
+| B9 | 20 Sep | **Publish must work**: Unpublished → Published with a snackbar. Publishing stays a separate action from creation | T3, T4 | C3 |
+| B10 | 20 Sep | **Add the Settings tab**: what the dialog collected, read-only, with Edit settings reopening the dialog prefilled (production's pattern). Content — material, requirements, rubric — stays on the Content tab | T4 (new board) | C4 |
+| B11 | 20 Sep | **After creating an LO, the LO type cannot be edited** — the edit dialog shows it locked | T4 edit dialog | C3 |
+| B12 | 20 Sep | Production's **Invalid Markers export removed** from the Submission Grading board: nothing to do with AI Feedback (production has it) | T6 | — |
+| B13 | 20 Sep | LO overview page: the **requirements / criteria count rows are not useful** here; the header's Edit in Book Management and ⋮ removed (the card's button is the one way back) | T7 | — |
+
+### C11.4 Back Office — Submission Grading and the review screen (20 Sep)
+
+| # | Date | Decision (PM) | What it changed | PRD effect |
+|---|---|---|---|---|
+| R1 | 20 Sep | **A label for highlighted feedback** so the teacher can easily pick a few to show the class — *a requirement for the teacher* (PM). Became クラスで紹介する / Highlight for class on the review screen, with **a short few-word reason**, ★ before the ID in the tables | T9, T6, T8, dashboards, student note card | C3, C5, C10.0 |
+| R2 | 20 Sep | **Highlighted-only is an option inside Filters**, not a chip in the bar; applied chip "Highlighted: yes" | T6, T8 | — |
+| R3 | 20 Sep | "Not visible to the student" chip **not needed** — the In Review status and the Draft feedback header already say it | T9 | — |
+| R4 | 20 Sep | The comments-count section (drafts / edited / criteria) is **not useful when the teacher can browse the comments** | T9 | — |
+| R5 | 20 Sep | The ⋮ kebab, asked about, kept with items: this student's submission history, download the original file, regenerate the draft, preview the student's screen (**proposal accepted by silence — ratify, C11.7**) | T9 | — |
+| R6 | 20 Sep | **Previous / next navigation between student submissions** from the review screen, in the submissions list's order, Not Reviewed first | T9 | C4 |
+
+### C11.5 Back Office — Group Dashboard (20 Sep)
+
+The Group Dashboard was built in one pass and then taken apart by the PM block by block. The sequence matters because it says what was **rejected**, so it is kept in order.
+
+| # | Date | Decision (PM) | Outcome | PRD effect |
+|---|---|---|---|---|
+| G1 | 20 Sep | **Fit the AI Feedback overview into production's Group and Student Dashboards** (asked as: recommend what to show, based on the PRD's objectives; then "try it") | T10–T12 built; overview paper from C10.3a / B2 / §1.6.4 | C10.0 |
+| G2 | 20 Sep | **Not required:** Questions Solved via AI tile; Avg. time to return tile; then the whole AI Feedback tile row | Removed | C10.0 |
+| G3 | 20 Sep | **Topic select above the matrix removed** — not in production | Removed | — |
+| G4 | 20 Sep | **Latest / Highest Score toggle on the left**, per production code. Rename to Latest / Best Submission tried, then **reverted** on the PM's question — there is no criterion for the "best" feedback submission. **Grey the whole toggle out** when there are no scores to display | Production labels kept; toggle greyed | C10.0 |
+| G5 | 20 Sep | Per-cell **comment count: keep it in Submission Grading only**, use case unclear | Removed from cells | — |
+| G6 | 20 Sep | **Two panels below the matrix** (comments by criterion; requirements that stopped a submission) **not required** | Removed | C10.0 |
+| G7 | 20 Sep | **Remove the non-AI-feedback LOs from the matrix** for a clearer demo | Matrix shows three feedback LOs | — |
+| G8 | 20 Sep | **A highlight filter on the matrix** ("where is it?") | Highlighted-only chip beside the toggle | C10.0 |
+| G9 | 20 Sep | Overview blocks **not necessary / not required:** Not submitted (already in the matrix), Waiting on you (matrix header and Submission Grading carry it), Acted on the feedback | Removed | C10.0 |
+| G10 | 20 Sep | Highlighted picks **link directly to the student's submission** and carry the **reason**; then **merge the highlights into the matrix**; then the **lone ★ beside the status is redundant** once the reason is shown | Reason line in the cell, opens the submission | C10.0 |
+| G11 | 20 Sep | **Auto-returned status not needed** in the matrix cells | Removed there; stays in Submission Grading and Student Dashboard | C3 |
+| G12 | 20 Sep | "What the class missed": PM asked what the criterion is (a count of drafts with an improvement comment per criterion) and **whether a generic prompt / agent over the feedback and the rubric could produce useful insight** → "Ok try it" | Insight paragraph grounded in counts and quoted passages | C10.0 |
+| G13 | 20 Sep | **Base the insight on the submissions and the generated draft feedback, not on returned comments** — the teacher sees the dashboard before anything is returned | Basis changed | C10.0, C7 |
+| G14 | 20 Sep | **Merge the insight into the Topic Dashboard** instead of the LO Dashboard's overview paper | LO Dashboard = matrix alone | C10.0 |
+| G15 | 20 Sep | **Add the Topic Dashboard per production, but for AI Feedback data** | T10 (new board): one AI Feedback column | C10.0 |
+| G16 | 20 Sep | Topic Dashboard: **remove the topics with no AI Feedback LO** (demo); search reads **Search by Chapter Name or Topic Name**; **display start and due dates** per LO | T10 | C10.0 |
+| G17 | 20 Sep | **Add Filters per production, plus an AI Feedback start- and due-date range filter; show the selected ranges** as applied chips | Filters panel on all three dashboards | C10.0 |
+| G18 | 20 Sep | **Regenerate — why?** No reason a teacher should ask; the insight refreshes itself | Removed | C10.0 |
+| G19 | 20 Sep | **Broaden "what the class missed" to insights of several kinds**, of which missed is one, and **show the top-priority insight as judged by the LLM** | Four tagged kinds; top one shown per LO | C10.0, C5 |
+| G20 | 20 Sep | **No Details section** — the teacher checks the submissions themself; the insight line only has to alert them | Expansion removed | C10.0 |
+| G21 | 20 Sep | Fix cell alignment (centred) | — | — |
+
+### C11.6 Back Office — Student Dashboard (20–21 Sep)
+
+| # | Date | Decision (PM) | Outcome | PRD effect |
+|---|---|---|---|---|
+| D1 | 20 Sep | **Merge the AI Feedback table into the existing matrix** rather than a new table; then **fit the details into the existing table as columns**, creating feedback columns if required — the submission date is already a column, so remove the detail row | Three feedback columns on the LO rows | C10.0 |
+| D2 | 20 Sep | **Hyperlink each row to the specific LO** | LO name → its overview | — |
+| D3 | 21 Sep | "Why is 1 resubmission under Highest Score?" — **statuses must not sit in score columns.** Rename Returned → **Status**, put every status there with its date if there is space; the score columns show -- for anything unscored, and **Completed moves into Status** too | Status column | C10.0 |
+| D4 | 21 Sep | **Abbreviated comments are not useful** — comment column dropped; the flagged criteria stay | Flagged criteria column | C10.0 |
+| D5 | 21 Sep | Broken padding fixed; **Review** while the submission is In Review, **View** once Returned | Action column | C10.0 |
+
+### C11.7 Defaults the PM has seen but not ruled on — to ratify
+
+These exist in the prototype because something had to; none was asked for and none was objected to. They should be confirmed or replaced before C6 is written.
+- The four **status names** and tones (Not Reviewed / In Review / Returned / Sent Back) and the two secondary chips, borrowed from production's Submission Grading.
+- The **kebab items** on the review screen (R5); the **submission history** icon kept in matrix cells.
+- The **★ line in the teacher's note card** on the student's returned screen, telling the student their work will be shown in class.
+- The mobile **snap → crop → pages** flow adapted from the unifiedapp student mock.
+- The **insight kinds and their names** (見落とし / 良い傾向 / 紹介候補 / 提出状況), and the rule that every claim must trace to a count in the data.
+- The **Auto-returned** chip remaining in Submission Grading and on the Student Dashboard (the PM removed it only from the matrix).
+- Bulk Action in the submissions tables as production has it: contained, disabled until rows are selected.
+
+### C11.8 Rejected — do not re-add
+
+Course-level "AI Feedback enabled" chip · AI-use declaration · self-check on resubmission · AI next-step card · expected-return date on the waiting screen · message / ask-the-teacher buttons · "not visible to the student" chip · comments-count section on the review panel · requirement / criteria counts on the LO overview · Invalid Markers export on the AI Feedback boards · rubric as tag chips, "Generated by AI · LaTeX" label · every Group Dashboard tile (Questions Solved via AI, avg. time to return, AI Feedback counts) · Topic select above the matrix · Latest / Best Submission rename · per-cell comment count · Auto-returned chip in matrix cells · lone ★ beside a highlighted status · Not submitted, Waiting on you, Acted on the feedback blocks · comments-by-criterion and requirements-that-stopped panels · Regenerate on the insight · Details expansion on the insight · topics without a feedback LO on the demo board · a separate AI Feedback table on the Student Dashboard · a comment-count column there · statuses or resubmission counts in score columns.
+
+### C11.9 Questions the review raised and did not close
+
+| # | Question | Raised where | Owner |
+|---|---|---|---|
+| Q1 | With Excel and PowerPoint going in as they are, the engine must **read .xlsx / .pptx directly or convert server-side**; page-count style requirements do not apply to a workbook — **per-format basic-requirement checks** in Back Office are proposed, not decided | S17 thread | James Sim → TL |
+| Q2 | **Student-facing copy when teacher review is off.** "The teacher gives the feedback" reads correctly in the endorsed case and overstates in the unreviewed one | S18 thread | James Sim |
+| Q3 | The review screen and the dashboards **tag comments with a criterion name**; the rubric is now a free LaTeX block, so the block must yield named criteria or the tags need another source | B5 thread | James Sim → TL |
+| Q4 | **The reflection rubric** (2–3 criteria) is still Prof. Yasumoto's to author (C10.3); the prototype shows the exercise rubric everywhere | S8 thread | Hinano Matsushita |
+| Q5 | **The insight line**: prompt structure (the rubric), grounding rule (every claim traces to a count), refresh trigger, cost per LO per week — and its dependency on **criterion keys fixed per assignment** (§1.6.5, U22) | G12–G20 | James Sim → TL |
+| Q6 | **Who may turn teacher review off** for an LO — a Biz rule (A3), given [S4]/[S5] promised administrators confirm responsibility for auto-return | C2 | Takuya Homma |
+| Q7 | **The 500-character limit** on typed answers, the 20 MB upload cap and the accepted file types: **Env-level or Tenant-level** | S14, S17 | James Sim → TL |
+| Q8 | The **previous / next pager's order** across filters, and whether stepping past the last submission returns to the table | R6 | James Sim |
+| Q9 | Whether the **manual Kindai showcase** (C10.1–C10.7) now simply demonstrates T10–T12 with Kindai data, and who owns the in-product dashboard (U17, U25) | C10.0 | James Sim |
+
 ---
 
 ## D. Readiness gate (before sprint planning)
@@ -784,12 +951,13 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
       A third, softer one: [S1]'s own §12 says the trial is "operationally well defined" while §10 records an unresolved file-upload defect and a prototype-stage dashboard.
 - [ ] **Open defects that gate the October trial:** teacher rubrics destroyed by the rubric agent (U18), feedback number bubbles out of sequence on small PDFs, LangSmith validation errors with a possible one-month tail [S15].
 - [ ] **Dependencies owed by others before C3 and C7 can be completed:** Bunsuke's LO-type refactoring proposal and Koki's start/due-date demo, both actioned on 17 Sep.
-- [ ] **No acceptance criteria.**
-- [ ] **C7 blank while at least five integrations exist**, including a hard API-only requirement against a client-built LMS.
+- [ ] **No acceptance criteria.** C11 now gives C6 its raw material: every DEFINED row in C3 and every decision in C11 can be written as Given/When/Then.
+- [ ] **C7 blank while at least five integrations exist**, including a hard API-only requirement against a client-built LMS. **New inputs from the review (C11.9):** the engine must read .xlsx / .pptx or convert them; the insight line is one LLM call per LO over criterion-tagged drafts; the rubric is a LaTeX block that must yield named criteria.
 - [ ] **No TL feasibility review**, no T-shirt size, no latency or cost budget.
-- [ ] **No designs**, no translations.
+- [x] ~~No designs~~ — **the clickable prototype [S20] is the design for the five journeys in C4** (no Figma). Translations exist in the prototype for every string but are **unconfirmed**.
 - [ ] **No Business sign-off** on Part A — and Part A does not yet exist to sign off.
-- [ ] **Relationship to AI Feedback V1.1 undeclared** — does this supersede its out-of-scope list (teacher dashboard, iterative feedback/re-upload)?
+- [x] ~~Relationship to AI Feedback V1.1 undeclared~~ — **declared in C1: superseded.** Resubmission is a per-LO setting; the dashboard is fitted into Group and Student Dashboards.
+- [ ] **Part C's DEFINED rows are PM decisions taken on a prototype, not yet reviewed by the TL or Biz.** In particular the per-LO **teacher review off** state (auto-return) needs Biz to say who may set it (A3), and the **student-facing copy when review is off** is open (C11.9).
 
 **The dashboard showcase (C10) runs on its own clock and is NOT gated by the above.** It is a manual sales artefact, not a build. Its own blockers, in order:
 - [x] ~~C10.3 — which submission type the showcase covers~~ — **closed 17 Sep: both. Two views, per C10.3.**
@@ -805,7 +973,7 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 **Shortest path to Ready:**
 1. James Sim: write the **engine contract** in C7 — inputs, outputs, and the rule for when a scored submission also gets feedback. It is the one thing all three surfaces depend on.
 2. James Sim: confirm U1, U3, U12 at the 18 Sep correspondence meeting and from Hinano on the Applied Sociology budget outcome.
-3. James Sim: answer the single question in C1 — is teacher-in-the-loop mandatory? Then decide C2's "one feature or two", and which of the three timelines (Oct trial / Jan V1 / Nov Kindai) this PRD serves.
+3. James Sim: ~~answer the single question in C1 — is teacher-in-the-loop mandatory?~~ (**answered: per-LO setting, default on — C11.3**). Still to decide: C2's "one feature or two", and which of the three timelines (Oct trial / Jan V1 / Nov Kindai) this PRD serves.
 4. James Sim + Takuya Homma: fix A1's primary metric and A2's applicability, and take A3 to the Business owner.
 5. James Sim: fill C3 completely. Start with the scoring row, the attention-audit row, the "student sees nothing before approval" row and the four new To-do/due-date rows — all are policy or cross-cutting, and all cascade.
 6. Koki Misawa / Bunsuke Itamura: deliver the start/due-date demo and the LO-type refactoring proposal, which C3 and C7 depend on.
@@ -824,7 +992,7 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 | **Tech Owner** | *TBC — confirm* |
 | **Partner Name** | Kindai University (Faculty of Applied Sociology; Correspondence Education Division) — **plus a general/tenant-configurable decision pending in A2** |
 | **Project Type** | *TBC — Core feature vs Big Bets; depends on A2* |
-| **Affected Area (surface)** | **Learner App** (Feedback LO, submission, result display), **Back Office** (rubric creation, approval queue, dashboards), **API** (university LMS ingest/write-back). Teacher Web / Widget: *TBC* |
+| **Affected Area (surface)** | **Learner App** — PC and mobile (Feedback LO in the course and To-do, submit by file / photos / snap / typed, waiting and returned screens, resubmission) · **Back Office** — Book Management (AI Feedback LO type, dialog, Content and Settings tabs, Publish), Course › Submission Grading (queue, overview, submissions, review and return), Dashboard (Group Topic / LO modes, Student) — all prototyped [S20] · **API** (university LMS ingest/write-back, not prototyped). Teacher Web / Widget: *TBC* |
 | **T-Shirt size** | *Not obtained — chase at the readiness gate* |
 
 ### E2 — Rollout and availability
@@ -841,9 +1009,9 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 
 ### E4 — Dogfooding brief
 - **Internally dogfoodable?** *Partially, and worth saying why.* The engine can be exercised internally with synthetic assignments, but the parts that matter — rubric inference from *real* past graded submissions, instructor voice extraction from *real* past comments, and Japanese-language academic writing at cohort scale — need real client data and a Japanese-language cohort. Business teams should not wait for a full internal dogfood of the university flow.
-- **Things to actually try:** *TBC once C2 is settled.* Candidate shape: "upload last year's assignment instructions plus ten graded reports, approve the inferred rubric, then check whether the trial grading agrees with the scores you already gave" — that is the whole value proposition in one action.
+- **Things to actually try** (written from the prototyped journeys in C4; to be confirmed once the build exists): (1) In Book Management, add an **AI Feedback** LO under a topic with a start date today and a due date tomorrow, teacher review on, resubmission on; upload a brief and marking criteria, generate the requirements and the rubric, edit one requirement, publish. (2) As a student on a phone, open the LO from the To-do, type a 300-character answer, confirm it, watch the basic requirements check, submit, then replace it before the due date. (3) After the due date, in Course › Submission Grading, open the draft, edit one comment, highlight the submission for the class with a reason, approve and return; as the student, open the returned screen and check no AI wording, the teacher's note and the ★ line appear. (4) In Dashboard › Group, find the LO's counts, ★ and insight line in the Topic table, the reason in the matrix cell, and the Status / Flagged criteria columns on the Student Dashboard.
 - **Which internal team:** PS and JP sales (they will run the Kindai pilot), content (rubric/material ingestion), QA.
-- **What "wrong" looks like:** feedback that writes the student's answer for them (the explicit Kindai guardrail [S1 §2.2]); feedback with no quoted passage; a preliminary assessment visible to a student before instructor approval; a criterion score that cannot be traced to a rubric source.
+- **What "wrong" looks like:** feedback that writes the student's answer for them (the explicit Kindai guardrail [S1 §2.2]); feedback with no quoted passage; a preliminary assessment visible to a student before instructor approval; a criterion score that cannot be traced to a rubric source; **the word "AI" on any student screen; a feedback LO showing a score, a rate or a ranking anywhere in the dashboards; a comment whose criterion tag is not in the LO's rubric block** (C11).
 - **Ready-by date on preprod / who to tell:** *TBC*
 
 ### E5 — Wiring
@@ -877,6 +1045,9 @@ The showcase is a document, not a build, so ACs in the QA sense may not apply. W
 | S11 | Weekly AI Direction Discussion, `H6gDlmhD6x4FeJo9QTQ5Q` / `Mp8WpM7zD470xd6Upo4lN` | Meetings | 2 Jul / 18 Jun 2026 |
 | S12 | AI Tutor Product Catchup, `51O371bkHOmZJp4u4WAvE` | Meeting | 12 May 2026 |
 | **S19** | [**PRD: AI Feedback v1**](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2361622595/PRD+AI+Feedback+v1), Confluence PRDM — **the parent page of this PRD** | Existing PRD (John Paoletto). Web-only, student-initiated, AI-generated rubric per upload, `.docx`/`.pdf`, max 6 feedback items, 20 MB, tenant-level flag, latency excluded | May 2026 |
+| **S20** | [**AI Feedback — Back Office + Student Prototype**](https://claude.ai/artifact/FYtGUxxHgPhzWnENGtgLmE), Claude Design canvas; source `prototypes/ai-feedback-student/gen.py`, static build in `prototypes/ai-feedback-student/deploy/` | **Clickable prototype, JA + EN** — student PC (8 boards), student mobile (10), Back Office (12); sticky notes record the PM decisions; **91 comment threads** = the review record consolidated in C11 | 18–21 Sep 2026 |
+| S21 | [Book Management PRD](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/1133903925/Book+Management), Confluence PRDM — Book → Chapter → Topic → LO | Existing PRD, cited by the PM on 18 Sep as the hierarchy the AI Feedback LO lives in | — |
+| S22 | Production Back Office code and its generated prototype (`school-portal-admin`: BookDetail tree and DialogCreateLearningMaterial; ToReviewListPage and GradingScorePage; GroupDashboard and StudentDashboard), checked 19–20 Sep | The components the Back Office boards reproduce; production labels kept as production has them | — |
 | S13 | `PRDs/ai feedback.pdf` — AI Feedback V1.1 | Existing PRD | — |
 | S14 | `PRDs/ai grading.pdf` — Onigroup SOW, Class & Homework Assignment v1.1 | Existing SOW | Mar 2026 |
 | — | `overall_ranking_en.html` (uploaded) | **Unusable — Slack application shell, no recoverable content (U14)** | — |
