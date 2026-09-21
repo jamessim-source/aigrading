@@ -2084,7 +2084,7 @@ table.m table.inner thead th{white-space:normal}
 table.m table.inner thead th{background:#fff;padding:10px 8px;font-size:13px}
 table.m table.inner tbody td{padding:10px 8px;background:#fff;vertical-align:middle;border-bottom:1px solid #E0E0E0;font-size:13px}
 table.m table.inner td{white-space:normal;overflow-wrap:anywhere}
-table.m table.inner td.crit{font-size:12px;line-height:1.4}
+table.m table.inner td.fcrit{font-size:12px;line-height:1.4}
 table.m table.inner td.cms{line-height:1.35}
 table.m table.inner td .tchip{white-space:nowrap}
 table.m table.inner td .tchip{height:20px;padding:0 7px;font-size:11px}
@@ -3342,7 +3342,7 @@ def t_dash_student(S, L):
                 # the comment count (3 ・ 良い点 1 ・ 改善点 2) was a column and was dropped (PM, 21 Sep: not useful);
                 # the flagged criteria stay — they say where this student stumbles
                 return (f'<td>{status}</td>'
-                        f'<td class="crit">{crit}</td>'
+                        f'<td class="fcrit">{crit}</td>'
                         f'<td style="text-align:right;padding-left:0"><a class="tbtn sm" style="height:24px;padding:0 6px;min-width:0" href="{tfn("T-Review", L)}">{act}</a></td>')
             def lo_name(n, a):
                 det = S["t_stu_det"].get(n) if a.startswith("fb:") else None
