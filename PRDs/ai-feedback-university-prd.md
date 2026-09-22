@@ -985,7 +985,8 @@ Course-level "AI Feedback enabled" chip · AI-use declaration · self-check on r
 - [x] ~~No designs~~ — **the clickable prototype [S20] is the design for the five journeys in C4** (no Figma). Translations exist in the prototype for every string but are **unconfirmed**.
 - [ ] **No Business sign-off** on Part A — and Part A does not yet exist to sign off.
 - [x] ~~Relationship to AI Feedback V1.1 undeclared~~ — **declared in C1: superseded.** Resubmission is a per-LO setting; the dashboard is fitted into Group and Student Dashboards.
-- [ ] **Part C's DEFINED rows are PM decisions taken on a prototype, not yet reviewed by the TL or Biz.** In particular the per-LO **teacher review off** state (auto-return) needs Biz to say who may set it (A3), and the **student-facing copy when review is off** is open (C11.9).
+- [ ] **Part C's DEFINED rows are PM decisions taken on a prototype, not yet reviewed by the TL or Biz.** In particular the per-LO **teacher review off** state (auto-return) needs Biz to say who may set it (A3), and the **student-facing copy when review is off** is open (C11.9). C11.7 lists the prototype defaults still to ratify.
+- [ ] **The AI Grading PRD does not exist**, and five things now depend on it: the engine contract, [S3]'s setup phasing, AI Red-Pen Grading, the Correspondence Division's grading assistance, and the seven C3 scenarios of C12 P10. **Moving them out of this PRD only helps once that PRD is started.**
 
 **The dashboard showcase (C10) runs on its own clock and is NOT gated by the above.** It is a manual sales artefact, not a build. Its own blockers, in order:
 - [x] ~~C10.3 — which submission type the showcase covers~~ — **closed 17 Sep: both. Two views, per C10.3.**
@@ -1007,6 +1008,7 @@ Course-level "AI Feedback enabled" chip · AI-use declaration · self-check on r
 6. Koki Misawa / Bunsuke Itamura: deliver the start/due-date demo and the LO-type refactoring proposal, which C3 and C7 depend on.
 7. Tech Lead: size the Kindai burst (~140 submissions within hours of a lecture), the feedback-generation latency and the insight line's per-LO cost before any commitment.
 8. James Sim: ratify or replace the prototype defaults in C11.7, then write C6's acceptance criteria from C3, C11 and C12.
+9. James Sim: start the **AI Grading PRD**, or name who does. Five decided-out items are homeless until it exists.
 
 ---
 
@@ -1049,7 +1051,7 @@ Course-level "AI Feedback enabled" chip · AI-use declaration · self-check on r
 - [ ] Label applied: `prd-draft` → `prd-review` → `prd-approved` — **currently `prd-draft`**
 - [ ] Design child created (E1 implies Learner App + Back Office UI), Figma URL attached — **not done; check overlap with Qisheng's AI grading US1–US4 Figma first**
 - [ ] At least one LT link before Ready for Development — **not done**
-- [ ] **A companion AI Grading PRD exists and has picked up what C12 moved to it** — the engine contract, [S3]'s setup phasing, AI Red-Pen Grading and the Correspondence Division's grading assistance. **Not created.** Until it is, four decided-out items have no home
+- [ ] **A companion AI Grading PRD exists and has picked up what C12 moved to it** — the engine contract, [S3]'s setup phasing, AI Red-Pen Grading, the Correspondence Division's grading assistance, and the seven C3 scenarios of P10. **Not created.** Until it is, five decided-out items have no home
 
 ---
 
@@ -1059,7 +1061,7 @@ Course-level "AI Feedback enabled" chip · AI-use declaration · self-check on r
 |---|---|---|---|
 | S1 | [Kinki University — Manabie AI Feedback Trial: Detailed Brief and Current Status](https://docs.google.com/document/d/1yay5gBWZkiheZYevlJN_Mqg6lO9OrhiGmXZ0YhBszRQ/edit) | Client/deal brief | 10 Sep 2026 |
 | S2 | [Kindai University Distance Education — Overview and AI Feedback Opportunities](https://docs.google.com/document/d/1HHj5-TVYPS6awe4LgqzciLj3ANkQrW2Ap3adOj3L1O4/edit) | Opportunity analysis | Sep 2026 |
-| S3 | [AI Feedback for Higher Education: Implementation Design](https://docs.google.com/document/d/1Cz-0CMbQM35NAUh5fUB0g6iq9Q-L_9EzbrnH_u8HyxQ/edit) | Internal design paper | 10 Sep 2026 |
+| S3 | [AI Feedback for Higher Education: Implementation Design](https://docs.google.com/document/d/1Cz-0CMbQM35NAUh5fUB0g6iq9Q-L_9EzbrnH_u8HyxQ/edit) | Internal design paper. **Most of its apparatus — anchors, trial grading, approval queue, attention audit — is now the AI Grading PRD's (C12 P8, P10)** | 10 Sep 2026 |
 | S4 | [University proposal deck — Manabie LMS × AI](https://docs.google.com/presentation/d/1gqjE_yRlDlzJB5hjn8abfi5kprtxzn7v9OIZbewlsDA/edit) | Sales collateral | Sep 2026 |
 | S5 | [Juku proposal deck — Manabie LMS × AI](https://docs.google.com/presentation/d/1tR4TP07-QMEkflpVng4dSA1CDGwbVCPuxK7N-f9_x1M/edit) | Sales collateral | Sep 2026 |
 | S6 | [Kindai University AI Report Check Trial](https://claude.ai/artifact/1VdG3L8ugcshJ9G9Fq8fkT) | Artifact — ownership unconfirmed (U13) | — |
