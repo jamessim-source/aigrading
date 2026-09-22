@@ -327,13 +327,14 @@ A student whose improvements are *all* "copied + no dialogue" gets **one quiet l
 | U16 | Start/end-date layer over the LO is the agreed mechanism for To-do population | [S8a] 17 Sep | Aligned in the meeting as a direction; the demo that makes it concrete is an open action on Koki, and per-student/per-class due dates are explicitly unsolved. | Koki Misawa → James Sim |
 | U17 | AI Feedback dashboard sits with the AI Grading team | [S15] 11 Sep | James's decision, recorded in grooming notes. Needs confirming against the Kindai pilot's dashboard need and against the 17 Sep "consolidated group/individual dashboard" position. | James Sim |
 | U18 | Rubric-overwrite fix (teacher rubrics bypass the rubric agent) is implemented | [S15] 11 Sep | Agreed in the meeting; no ticket status confirmed as done in any source read. Blocks the "rubric lifecycle" differentiator. | Cuong Hoang |
-| U19 | January V1 excludes AI Feedback | [S8a] 17 Sep | Aligned that V1 is "PDF practice only" — but the AI Feedback preprod trial starts 1 Oct and Kindai goes live 6 Nov. Confirm these are three separate vehicles, not a conflict. | James Sim |
+| U19 | January V1 excludes AI Feedback | [S8a] 17 Sep | Aligned that V1 is "PDF practice only" — but the AI Feedback preprod trial starts 1 Oct and Kindai goes live 6 Nov. Confirm these are three separate vehicles, not a conflict. **Note (C12 P2): the PM has since confirmed the January PDF-practice V1 is RISO's vehicle, not Kindai's, so it is not a competing timeline for this PRD.** | James Sim |
 
 ---
 
 # PART A — BUSINESS
 
 > **NOT AUTHORED.** The material below is a set of candidates and the questions that close them. A single client asking once — however clearly — is not a business goal.
+> **What the 22 Sep scope confirmations change here (C12).** Parts A and B are still unauthored, but the field is narrower: this PRD is **the LO integration for the Kindai Applied Sociology trial**, and the Correspondence Division's grading assistance, the engine contract and the oral viva have gone to a later **AI Grading PRD**. Candidates below that rest on those are marked.
 
 ## A1. Business goal & outcome metric — *PM decision required*
 
@@ -346,12 +347,12 @@ A student whose improvements are *all* "copied + no dialogue" gets **one quiet l
    These are not the same goal. **Pick one primary.**
 2. **What is the ONE primary metric and its target + timeframe?** No source contains an agreed metric. [S1 §9] targets are explicitly not agreed with the university (U7); [S3] targets are internal proposals (U8); [S4]/[S5] numbers are sales assumptions (U9).
 3. **Supporting metrics / tracking — what must the product log?** Candidates surfaced by the sources, none yet decided:
-   - approval rate, and instructor edit distance per approval over time [S3]
-   - agreement between preliminary AI assessment and instructor-finalised score (QWK), per assignment and over time [S3]
-   - time from submission to return; actual instructor seconds per approval [S3][S4]
+   - instructor edit distance per approval over time — how much of the draft the teacher rewrites before returning it [S3]
+   - time from submission to return; actual instructor seconds per submission [S3][S4]
    - resubmission/revision count per assignment [S1][S4][S5]
-   - pre-submission self-check usage and the resubmissions it avoided [S6]
-   - low-confidence routing rate and the share of flagged items the instructor overturned [S3]
+   - basic-requirements check usage and the resubmissions it avoided [S6]
+   - **the prototype adds two that are cheap and this-PRD-specific:** how often a teacher highlights a submission for the class, and whether the Topic Dashboard's insight line is opened or ignored
+   - *(QWK agreement and low-confidence routing rate were listed here in v1.0; both belong to the scoring product and go with the engine contract — C12 P7.)*
    - **Note:** learning-log visualisation was not implemented as of 17 Aug 2026 [S1 §10, U11]. If tracking is a goal, this is a dependency, not a reporting afterthought.
 
 ## A2. Scope of applicability — *PM decision required*
@@ -366,7 +367,7 @@ A student whose improvements are *all* "copied + no dialogue" gets **one quiet l
   - character count bounds 400–700 per answer [S6]
   - 1–2% attention-audit injection rate [S3]
   - confidence threshold for routing [S3][S7]
-- **Question to answer:** Kindai Applied Sociology's rubric includes a **generative-AI literacy** dimension [S1 §3] and the correspondence division's check is **13 formatting rules** [S6]. Is the rubric model general enough to express both, or are these two different products? If two, say so here and split.
+- **Question to answer, now narrower.** Kindai Applied Sociology's rubric includes a **generative-AI literacy** dimension [S1 §3]. ~~The correspondence division's 13 formatting rules [S6] were the other half of this question~~ — **they belong to the AI Grading PRD (C12 P9)**, so what is left to decide is whether one rubric model serves a university's criteria and a juku's, not whether it must also express a rule-checker.
 
 ## A3. Business rules owned by Biz — *PM decision required*
 
@@ -376,8 +377,10 @@ Rules the sources show Business, not Engineering, must decide. None are decided:
 2. **Score display policy.** [S3] and [S4] both assert students must never see a preliminary AI assessment as a grade before instructor confirmation. This is a **policy commitment with regulatory weight** (MEXT; EU AI Act high-risk from Dec 2027 [S3 ch.8]) — Biz must own it, not infer it.
 3. **Accuracy claims made in sales.** Takuya, 17 Sep: *"we never say like it's 100% accurate"*, and 90–95% is acceptable. What exactly may be claimed, and against what evaluation set?
 4. **Data, rights and retention.** Use of past student submissions; third-party copyrighted content in lecture slides under Copyright Act Art. 35, where AI processing is **not settled law** [S3 ch.8]. [S3] recommends syllabus language and a one-page template for the university's personal-information office. Legal review is named as a precondition to deployment — is it commissioned?
-5. **Oral viva.** In or out (U10). The client is evaluating competitors on it [S7].
-6. **What Manabie commits to for the pharmacy-school track** — 1,103 students, full annual implementation, no trial appetite [S1 §11].
+5. ~~**Oral viva.** In or out (U10).~~ **Closed (PM, 22 Sep — C12 P5): not a feature.** It is the client's own workflow, which our output complements. Nothing for Biz to decide.
+6. ~~**The trigger rule for feedback on a scored submission.**~~ **Moved with the engine contract to the AI Grading PRD (C12 P7).**
+7. **Who may turn teacher review off for an LO** (C11.9 Q6). The prototype makes auto-return a per-LO switch; [S4]/[S5] promised clients that administrators confirm responsibility before auto-return is enabled. **Biz owns the answer**, and it is new since v1.0.
+8. **What Manabie commits to for the pharmacy-school track** — 1,103 students, full annual implementation, no trial appetite [S1 §11].
 
 *Business sign-off is captured once at the Section D readiness gate, not here.*
 
@@ -415,7 +418,8 @@ Candidates, each to be restated by the PM as *direction + metric + object + cont
 - Increase the number of revision cycles a student completes before final submission.
 - Minimise the likelihood that a student submits work that will be rejected on grounds they could have fixed themselves.
 - Minimise the likelihood that a polished submission conceals weak understanding.
-- Increase the instructor's confidence that the returned assessment matches their own grading. *([S3] proposes asking this directly on a five-point scale)*
+- Increase the instructor's confidence that the returned feedback matches their own judgement. *([S3] proposes asking this directly on a five-point scale)*
+- **Minimise the time a teacher spends working out what the class as a whole got wrong this week.** *(The Topic Dashboard's insight line is built for this outcome — C10.0 — and nothing in B2 previously named it.)*
 
 **Watch for the collapse:** A1 (how the company wins) ≠ B2 (how the user judges the job done) ≠ C6 (how QA proves the build works). Do not let "QWK ≥ 0.7" appear in all three.
 
@@ -448,15 +452,15 @@ Raw material exists to trace the job, but the trace itself is the PM's work. Wha
 
 **The buyer's financial outcomes must be stated separately.** University: faculty capacity without headcount, under-enrolment pressure and the Feb 2025 Central Council report's learning-outcome evidence requirement [S4]. Juku: correction labour-hours per branch, and "unlimited revisions until application" as a course selling point [S5]. Kindai Applied Sociology's buyer is a **faculty budget meeting**, not the professor — a solution Prof. Yasumoto loves but the faculty won't fund does not ship.
 
-**Note on the executor split, from the 17 Sep direction discussion and 2 Jul:** Koki's position is that a student-initiated feature will not be used — *"students won't proactively use it"*. The current V1.1 product **is** student-initiated. If B4 lands on "the instructor is the executor", that contradicts the shipped product's flow and C2 must say so explicitly.
+**Note on the executor split, from the 17 Sep direction discussion and 2 Jul:** Koki's position is that a student-initiated feature will not be used — *"students won't proactively use it"*. The current V1.1 product **is** student-initiated. **The prototype resolves this in practice (C11): the teacher creates the assignment and the student answers it**, so the executor is the instructor at set-up and the student at submission. B4 should say so rather than leave it as a contradiction.
 
 ## B5. Evidence — *PM to promote from Section 1 with judgement*
 
 Section 1 is what we were told. B5 is what the PM decides actually proves the problem is real and big enough to size the build. **This promotion is a decision, not a copy-paste.**
 
 **Assessment of evidence strength as it stands:**
-- **Strong:** the correspondence division's volume (62,000 reports/yr, 156 faculty, 500–600 reports per high-volume instructor) [S7] and the 241-report retrospective showing 36% avoidable resubmissions [S6] — this is measured, from the client's own operation.
-- **Moderate:** Kindai Applied Sociology — well-specified course, rubric, materials and quotation, but **~140 students, one professor, one course, and not yet approved** (U1). Two-university interest plus a well-attended faculty seminar (Takuya, 17 Sep) is directional, not sized.
+- **Strong, but now sizing the other PRD:** the correspondence division's volume (62,000 reports/yr, 156 faculty, 500–600 reports per high-volume instructor) [S7] and the 241-report retrospective showing 36% avoidable resubmissions [S6] — this is measured, from the client's own operation. **C12 P9 moved the work it justifies to the AI Grading PRD**, which is worth noticing: it means this PRD's own evidence is thinner than the document as a whole suggests.
+- **Moderate, and it is what this PRD rests on:** Kindai Applied Sociology — well-specified course, rubric, materials and quotation, but **~140 students, one professor, one course, and not yet approved** (U1). Two-university interest plus a well-attended faculty seminar (Takuya, 17 Sep) is directional, not sized.
 - **Weak — do not size the build on these:** all model-case deltas in [S4]/[S5] (self-labelled hypothetical, U9); all [S1 §9] evaluation thresholds (explicitly not university-approved, U7); all [S3] operating targets (internal proposals, U8).
 - **Counter-evidence that should change scope, not be filtered out:** Ohzora's credit-granting exam was judged a *poor fit* even at 80% accuracy because every entry still needs manual review (Weekly AI Grading, 17 Sep). Kindai is deploying Google AI Pro for Education broadly [S1 §10]. Both point the same way — the defensible value is workflow, rubric governance and the record, not model output.
 
@@ -1047,6 +1051,7 @@ Course-level "AI Feedback enabled" chip · AI-use declaration · self-check on r
 - [ ] Label applied: `prd-draft` → `prd-review` → `prd-approved` — **currently `prd-draft`**
 - [ ] Design child created (E1 implies Learner App + Back Office UI), Figma URL attached — **not done; check overlap with Qisheng's AI grading US1–US4 Figma first**
 - [ ] At least one LT link before Ready for Development — **not done**
+- [ ] **A companion AI Grading PRD exists and has picked up what C12 moved to it** — the engine contract, [S3]'s setup phasing, AI Red-Pen Grading and the Correspondence Division's grading assistance. **Not created.** Until it is, four decided-out items have no home
 
 ---
 
