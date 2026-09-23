@@ -99,7 +99,7 @@ already builds the course.
 - **Join by QR code**: the AI Tutor class page's existing **Share Access**
   dialog (`AIClassShare`: a QR code of the class code with Download, the code
   itself with Copy, Close) is reused for the course — a share icon on each row of
-  `T-Courses` and a Share Access button on `T-Course`. A student who scans it or
+  `T-Courses` and a Share Access item in the ⋮ menu on `T-Course`. A student who scans it or
   types the code is enrolled and sees the course's LOs from their start dates.
   The course's **Student** tab on `T-Course` (production's `StudentTab`: Student
   Info, Action, search and filters, the student table) lists who is in the
