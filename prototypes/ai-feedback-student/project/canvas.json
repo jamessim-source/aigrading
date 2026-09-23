@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-23T07:55:39Z"
+    "at": "2026-09-23T13:05:38Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -343,7 +343,7 @@
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T6 · Course Management — the course list, two courses on one book, Share Access (join by QR) (JA)",
+      "title": "T6 · Course Management — the course list, two courses on one book, Add course, Share Access (join by QR) (JA)",
       "is_interactive": true
     },
     "T-Course.dc.html": {
@@ -463,7 +463,7 @@
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T6 · Course Management — the course list, two courses on one book, Share Access (join by QR) (EN)",
+      "title": "T6 · Course Management — the course list, two courses on one book, Add course, Share Access (join by QR) (EN)",
       "is_interactive": true
     },
     "T-Course-en.dc.html": {
@@ -837,7 +837,7 @@
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "COURSE MANAGEMENT (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates student submissions). This is CourseList as the syllabus squad renders it (CourseList.tsx / CourseTable.tsx): the page title, the keyword search, コースの追加 Add course, and the table — Course Name with its avatar (a link into the course), Teaching Method (個別 Individual / 集団 Group), Course Type, Subject. Two courses carry the statistics book: the Thursday class and a Friday class. Both link the same book (T1), both list the same LOs, and each sets its own dates on T8 — that is the 'multiple schedule management' the move to the course buys, and why the LO dialog (T2) and the LO settings tab (T4) no longer carry dates. Nothing on this board is new for AI Feedback; the AI Feedback LO is just one more learning objective whose window the course sets. JOIN BY QR CODE (comment, 23 Sep: add a way for students to join the class by QR code, the function the AI Tutor page already has): the share icon at the end of each course row is the AI Tutor class list's (ClassListTable.tsx: MIconButtonBase + ShareIcon → AIClassShare), and it opens production's アクセスを共有 Share Access dialog as it is — the QR code the student scans to join (QRCode.toCanvas of the class code, error correction H; here a real QR of the code 7QK4M2) with ダウンロード Download, then コード Code, the same code typed instead, with コピー Copy and its snackbar. Scanning it enrols the student in the course, so the course's LOs — the AI Feedback LO among them — appear on their course tab from each LO's start date (T8). Click the share icon — it works; T7 has the same dialog behind its Share Access button. Click the first course →"
+      "text": "COURSE MANAGEMENT (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates student submissions). This is CourseList as the syllabus squad renders it (CourseList.tsx / CourseTable.tsx): the page title, the keyword search, コースの追加 Add course, and the table — Course Name with its avatar (a link into the course), Teaching Method (個別 Individual / 集団 Group), Course Type, Subject. Two courses carry the statistics book: the Thursday class and a Friday class. Both link the same book (T1), both list the same LOs, and each sets its own dates on T8 — that is the 'multiple schedule management' the move to the course buys, and why the LO dialog (T2) and the LO settings tab (T4) no longer carry dates. Nothing on this board is new for AI Feedback; the AI Feedback LO is just one more learning objective whose window the course sets. JOIN BY QR CODE (comment, 23 Sep: add a way for students to join the class by QR code, the function the AI Tutor page already has): the share icon at the end of each course row is the AI Tutor class list's (ClassListTable.tsx: MIconButtonBase + ShareIcon → AIClassShare), and it opens production's アクセスを共有 Share Access dialog as it is — the QR code the student scans to join (QRCode.toCanvas of the class code, error correction H; here a real QR of the code 7QK4M2) with ダウンロード Download, then コード Code, the same code typed instead, with コピー Copy and its snackbar. Scanning it enrols the student in the course, so the course's LOs — the AI Feedback LO among them — appear on their course tab from each LO's start date (T8). Click the share icon — it works; T7 has the same dialog behind its Share Access button. ADD COURSE (comment, 23 Sep: the add-course UX flow, from production): コースの追加 Add course opens DialogUpsertCourse — a full-screen dialog (MDialogCustom fullScreen) with the form on one paper (CourseForm), the fields in production's order: the course icon (AvatarInputHF, 112px, the camera button), a dashed divider, コース名 Course Name (required), 拠点 Location (SelectLocationInputHF — chips; a location tree dialog behind it), コース指導法種別 Teaching Method (required; 個別 Individual / 集団 Group; changing it later asks for confirmation), コースタイプ Course Type, 科目 Subject, the AI学習 Adaptive switch (BookOrAdaptiveClass — off, so the 教材 Book autocomplete shows; on, it would ask for an AI-learning class instead), 教材 Book (multiple). It is drawn filled in: a third class of the statistics course, linking the same book — 保存 Save adds it to the list (highlighted, 1-5 / 5) with production's 正常に作成されました snackbar (commonMessage.createdSuccess); キャンセル Cancel closes. The book is linked at creation, or later from ⋮ › Assign Books on T7; the course's dates then follow on T8. Nothing here is new for AI Feedback. Click the first course →"
     },
     "tc2": {
       "x": 9120,

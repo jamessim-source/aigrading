@@ -105,6 +105,11 @@ already builds the course.
   Info, Action, search and filters, the student table) lists who is in the
   course, with one proposed column, **Joined via** — QR code / code entered with
   the join time, or added manually with who added them.
+- **Add course**: `T-Courses` › Add course opens production's full-screen
+  `DialogUpsertCourse` with `CourseForm` (course icon, Course Name, Location,
+  Teaching Method, Course Type, Subject, Adaptive switch, Book); Save adds the
+  course to the list with the created-successfully snackbar. Nothing in it is new
+  for AI Feedback; it is where the book gets linked to a course.
 - **Submission methods**: which of file / photos / typed the LO accepts, with the
   500-character limit attached to typed.
 - **Pre-submission checklist**: on the LO's own page (opened from the tree, as a
