@@ -342,7 +342,7 @@ JA = dict(
     lo_fb6="第6回 演習 のフィードバック",
     lo_ref6="第6回 週のふりかえり のフィードバック", lo_ref_s="300字のふりかえり",
     chip_returned="返却済み",
-    lo_fb8="第8回 演習 のフィードバック", lo_fb8_s="開始日になると「やること」に表示されます", chip_pre="開始前",
+    lo_fb8="第8回 演習 のフィードバック", lo_fb8_s="11月20日 開始 ・ 開始日になると「やること」に表示されます", chip_pre="開始前",
     a_crumb="地域環境統計学 ／ 第7回", a_h="第7回 演習：都道府県別データの相関分析",
     a_meta="安本 正義 先生 ・ 11月6日 出題", a_due="11月13日 23:59 まで",
     a_desc="総務省「社会生活統計指標」の都道府県別データから2つの変数を選び、Excel で相関係数を求めて散布図を作成してください。結果の解釈と、有意性の確認までを A4 2枚程度のレポートにまとめて提出します。",
@@ -474,7 +474,7 @@ EN = dict(
     lo_fb6="Feedback · Session 6 exercise",
     lo_ref6="Feedback · Session 6 weekly reflection", lo_ref_s="300-character reflection",
     chip_returned="Returned",
-    lo_fb8="Feedback · Session 8 exercise", lo_fb8_s="Appears in To-do on its start date", chip_pre="Not started",
+    lo_fb8="Feedback · Session 8 exercise", lo_fb8_s="Opens Nov 20 · appears in To-do on its start date", chip_pre="Not started",
     a_crumb="Regional & Environmental Statistics / Session 7", a_h="Session 7 exercise: Correlation analysis of prefectural data",
     a_meta="Prof. Masayoshi Yasumoto · Set Nov 6", a_due="Due Nov 13, 23:59",
     a_desc="Choose two variables from the Statistics Bureau's prefectural social indicators, compute the correlation coefficient in Excel and draw a scatter plot. Submit a report of about two A4 pages covering your interpretation and a check of statistical significance.",
@@ -2115,9 +2115,11 @@ TJA = dict(
     t_f_name="学習目標", t_ph_name="LO名を入力", t_f_ext="外部LO ID", t_ph_ext="英数字のみ",
     t_f_desc="課題の説明（生徒に表示）",
     t_v_desc="総務省「社会生活統計指標」の都道府県別データから2つの変数を選び、Excel で相関係数を求めて散布図を作成してください。結果の解釈と、有意性の確認までを A4 2枚程度にまとめて提出します。",
-    t_s_when="公開と提出期間", t_f_start="開始日時", t_v_start="2026/11/06 09:00", t_f_due="締切日時", t_v_due="2026/11/13 23:59",
-    t_when_note="開始日時に生徒の「やること」に表示されます。締切までは提出と差し替えができ、締切のあとに先生が確認します。",
-    t_f_resub="再提出を許可する", t_v_resub="2026/11/20 23:59 まで",
+    # Dates left the LO (PM, 22 Sep): the submission window is the course's, set in Course Management
+    t_s_when="公開期間と締切", t_f_start="開始日時", t_v_start="2026/11/06 09:00", t_f_due="締切日時", t_v_due="2026/11/13 23:59",
+    t_when_course="公開開始日・締切・再提出締切は、この教材を割り当てたコースの「コース管理 › 教材 › 学習項目の公開期間」で設定します。同じ教材を複数のコースで使う場合、コースごとに別の日程を管理できます。",
+    t_when_link="コース管理で日程を設定する",
+    t_f_resub="再提出を許可する", t_v_resub="2026/11/20 23:59 まで", t_resub_note="再提出の締切はコース管理で設定します",
     t_s_how="提出方法", t_how=["ファイル（PDF ・ Word ・ Excel ・ PowerPoint）", "写真（複数枚まとめて）", "直接入力"],
     t_how_limit="文字数の上限 500字",
     t_s_review="先生の確認", t_review_on="返却前に先生が確認する",
@@ -2129,12 +2131,33 @@ TJA = dict(
     t_lo_tabs=["内容", "設定"], t_course_tabs=["概要", "提出一覧"], t_publish="公開する", t_edit="設定を編集", t_save="保存",
     # Settings tab (read-only; Edit reopens the dialog prefilled)
     t_set_gen=[("種類", "AIフィードバック"), ("学習目標", "第7回 演習レポート"), ("外部LO ID", "—"), ("課題の説明（生徒に表示）", "__desc__")],
-    t_set_set=[("公開と提出期間", "2026/11/06 09:00 — 2026/11/13 23:59"), ("再提出", "許可する ・ 2026/11/20 23:59 まで"),
+    t_set_set=[("公開期間と締切", "__course__"), ("再提出", "許可する"),
                ("提出方法", "ファイル（PDF ・ Word ・ Excel ・ PowerPoint） ・ 写真（複数枚まとめて） ・ 直接入力（上限 500字）"), ("先生の確認", "あり ・ 返却前に先生が確認する")],
     t_set_h_status="公開状態", t_set_status=[("状態", "__status__"), ("作成", "2026/11/05 14:12 ・ HTN Admin"), ("最終更新", "2026/11/05 14:40 ・ HTN Admin")],
-    t_set_note="設定はLOを追加したダイアログで入力した内容です。「設定を編集」で同じダイアログが入力済みで開きます。教材・提出条件・観点は「内容」タブにあります。",
+    t_set_note="設定はLOを追加したダイアログで入力した内容です。「設定を編集」で同じダイアログが入力済みで開きます。公開期間と締切はコースごとにコース管理で設定します。教材・提出条件・観点は「内容」タブにあります。",
+    t_set_course_lead="コース管理で設定（コースごと）", t_edit_dates="コース管理で日程を編集",
+    t_set_courses=[("地域環境統計学（2026年度）", "2026/11/06 09:00 — 2026/11/13 23:59", "再提出 2026/11/20 23:59 まで"),
+                   ("地域環境統計学（2026年度・金曜クラス）", "2026/11/07 09:00 — 2026/11/14 23:59", "再提出 2026/11/21 23:59 まで")],
     t_nav_course=["コース管理", "学習計画管理", "提出物の採点", "AIグレーディング"], t_toreview="提出物の採点", t_f_type="種類",
     t_course="コース", t_course_name="地域環境統計学（2026年度）", t_view_subs="提出状況を見る", t_edit_in_bm="ブック管理で編集",
+    # Course Management (CourseList / CourseDetail / CourseBookDetail, syllabus squad) — the submission window lives here (PM, 22 Sep)
+    t_cm="コース管理", t_cm_search="キーワードを入力", t_cm_add="コースの追加", t_cm_cols=["コース名", "コース指導法種別", "コースタイプ", "科目"],
+    t_cm_rows=[("地域環境統計学（2026年度）", "集団", "講義", "統計学", True), ("地域環境統計学（2026年度・金曜クラス）", "集団", "講義", "統計学", True),
+               ("社会調査法（2026年度）", "集団", "講義", "社会学", False), ("情報リテラシー入門", "個別", "演習", "情報", False)],
+    t_course2_name="地域環境統計学（2026年度・金曜クラス）",
+    t_c_tabs=["教材", "学習計画", "レッスン", "生徒", "クラス", "設定"], t_c_books_h="教材", t_c_book_cols=["教材名"],
+    t_c_alert="学習項目（LO）の公開開始日と公開終了日を設定できます。教材を選択し、設定をしてください。",
+    t_lo_av="学習項目の公開期間", t_lo_av_edit="編集", t_imp_exp="インポート/エクスポート",
+    t_av_cols=["チャプター名", "トピック名", "学習項目名", "開始日", "終了日", "再提出締切"], t_av_ph="yyyy/mm/dd, hh:mm", t_av_none="—", t_av_off="許可なし",
+    t_av_saved="学習項目の公開期間が正常に更新されました",
+    t_av_shared="この教材は 2 つのコースに割り当てられています（木曜クラス・金曜クラス）。公開期間はコースごとに設定します。",
+    t_av_fb_help="AIフィードバックのLOは、開始日に生徒の「やること」に表示され、終了日（締切）まで提出・差し替えができます。締切のあとに先生が確認します。再提出締切は、再提出を許可したLOにだけあります。",
+    t_av_rows=[("第6回　データの整理と代表値", [("6-1　度数分布とヒストグラム", [("第6回 講義動画", "link", "2026/10/30, 09:00", "", None), ("第6回 講義資料", "lo", "2026/10/30, 09:00", "", None)]),
+                                                ("6-2　代表値と散布度", [("第6回 確認クイズ", "lo", "2026/10/30, 09:00", "", None), ("第6回 演習レポート", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
+               ("第7回　データの分析と仮説検定", [("7-1　相関分析", [("第7回 講義動画", "link", "2026/11/06, 09:00", "", None), ("第7回 講義資料", "lo", "2026/11/06, 09:00", "", None), ("第7回 確認クイズ", "lo", "2026/11/06, 09:00", "", None),
+                                                                   ("第7回 演習レポート", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59")]),
+                                                ("7-2　仮説検定", [("第7週 週次リフレクション", "fb", "2026/11/08, 09:00", "2026/11/15, 23:59", "off")])]),
+               ("第8回　回帰分析", [("8-1　単回帰分析", [("第8回 講義資料", "lo", "2026/11/20, 09:00", "", None), ("第8回 演習レポート", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off")])])],
     t_queue_sub="確認が必要な提出の一覧です。AIフィードバックの下書きは、先生の確認を待ってここに並びます。",
     t_queue_cols=["LO", "コース", "締切", "提出", "確認待ち", "返却済み", ""], t_open="開く", t_f_course="コース", t_filters="フィルター",
     t_queue=[("第7回 演習レポート", "11月13日 23:59", "12 / 30", "12", "9"), ("第7週 週次リフレクション", "11月15日 23:59", "21 / 30", "0", "21"),
@@ -2162,7 +2185,7 @@ TJA = dict(
     t_s_status="提出状況", t_st1="提出済み", t_st1_n="12 / 30", t_st1_s="30人中12人が提出しました",
     t_st2="未確認", t_st2_n="8", t_st2_s="下書きができています。確認して返却してください", t_st3="返却済み", t_st3_n="3 / 30", t_st3_s="30人中3人に返却しました",
     t_open_list="確認する（8件）",
-    t_s_sum="設定", t_sum=[("提出期間", "11月6日 09:00 — 11月13日 23:59"), ("再提出", "11月20日 23:59 まで"),
+    t_s_sum="設定", t_sum=[("提出期間（コース）", "11月6日 09:00 — 11月13日 23:59 ・ 地域環境統計学（2026年度）"), ("再提出", "許可する ・ 11月20日 23:59 まで（コース）"),
                             ("提出方法", "ファイル ・ 写真 ・ 直接入力"), ("先生の確認", "あり（返却前に確認）")],
     # submissions
     t_cols=["生徒", "提出", "状態", ""], t_bulk="一括操作", t_bulk_note="内容を見てから返却することをおすすめします",
@@ -2290,6 +2313,7 @@ TJA = dict(
     t_prof_rows=[("統計処理", 0, 2, 1), ("解釈", 1, 1, 1), ("図表の見やすさ", 1, 0, 0), ("論理構成", 0, 1, 0), ("Excelスキル", 1, 0, 0), ("生成AIリテラシー", 0, 1, 0)],
     t_prof_lbl=("良い点", "改善点", "修正済み"),
     t_titles={"book": "BO — ブック管理（ブック詳細）", "dialog": "BO — LOを追加（AIフィードバック）", "created": "BO — 作成後のツリー",
+              "courses": "BO — コース管理", "course": "BO — コース詳細（教材）", "cbook": "BO — 学習項目の公開期間",
               "mat": "BO — LO 内容（教材と提出条件）", "set": "BO — LO 設定", "queue": "BO — コース › 提出物の採点", "det": "BO — 提出状況 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却",
               "dt": "BO — グループダッシュボード（トピック）", "dg": "BO — グループダッシュボード（LO）", "ds": "BO — 生徒ダッシュボード"},
 )
@@ -2310,9 +2334,10 @@ TEN = dict(
     t_f_name="Learning Objective", t_ph_name="Enter LO Name", t_f_ext="External LO ID", t_ph_ext="Alphanumeric characters only",
     t_f_desc="Assignment description (shown to students)",
     t_v_desc="Choose two variables from the Statistics Bureau's prefectural social indicators, compute the correlation coefficient in Excel and draw a scatter plot. Submit about two A4 pages covering your interpretation and the test of significance.",
-    t_s_when="Availability and submission window", t_f_start="Opens", t_v_start="6 Nov 2026, 09:00", t_f_due="Due", t_v_due="13 Nov 2026, 23:59",
-    t_when_note="It appears in the student's To-do when it opens. They can submit and replace their work until the due date; you review after it.",
-    t_f_resub="Allow resubmission", t_v_resub="until 20 Nov 2026, 23:59",
+    t_s_when="Availability and due date", t_f_start="Opens", t_v_start="6 Nov 2026, 09:00", t_f_due="Due", t_v_due="13 Nov 2026, 23:59",
+    t_when_course="The start date, due date and resubmission deadline are set per course, under Course Management › Books › Learning Objectives Availability, for each course this book is assigned to. One book used by several courses can run on a different schedule in each.",
+    t_when_link="Set the dates in Course Management",
+    t_f_resub="Allow resubmission", t_v_resub="until 20 Nov 2026, 23:59", t_resub_note="The resubmission deadline is set in Course Management",
     t_s_how="How students submit", t_how=["File (PDF · Word · Excel · PowerPoint)", "Photos (several at once)", "Typed answer"],
     t_how_limit="500-character limit",
     t_s_review="Teacher review", t_review_on="I review the feedback before it is returned",
@@ -2322,12 +2347,32 @@ TEN = dict(
     t_dlg_edit_title="Edit Learning Objective", t_type_fixed="The LO type cannot be changed after creation",
     t_lo_tabs=["Content", "Settings"], t_course_tabs=["Overview", "Submissions"], t_publish="Publish", t_edit="Edit settings", t_save="Save",
     t_set_gen=[("Type", "AI Feedback"), ("Learning Objective", "Session 7 exercise report"), ("External LO ID", "—"), ("Assignment description (shown to students)", "__desc__")],
-    t_set_set=[("Availability and submission window", "6 Nov 2026, 09:00 — 13 Nov 2026, 23:59"), ("Resubmission", "Allowed · until 20 Nov 2026, 23:59"),
+    t_set_set=[("Availability and due date", "__course__"), ("Resubmission", "Allowed"),
                ("Submission methods", "File (PDF · Word · Excel · PowerPoint) · Photos (several at once) · Typed (500-character limit)"), ("Teacher review", "On · the teacher reviews before it is returned")],
     t_set_h_status="Publishing", t_set_status=[("Status", "__status__"), ("Created", "5 Nov 2026, 14:12 · HTN Admin"), ("Last updated", "5 Nov 2026, 14:40 · HTN Admin")],
-    t_set_note="These are the values entered in the Add LO dialog. Edit settings reopens that dialog prefilled. The material, the submission requirements and the criteria live on the Content tab.",
+    t_set_note="These are the values entered in the Add LO dialog. Edit settings reopens that dialog prefilled. The availability and due dates are set per course in Course Management. The material, the submission requirements and the criteria live on the Content tab.",
+    t_set_course_lead="Set in Course Management, per course", t_edit_dates="Edit dates in Course Management",
+    t_set_courses=[("Regional & Environmental Statistics (2026)", "2026/11/06, 09:00 — 2026/11/13, 23:59", "resubmission until 2026/11/20, 23:59"),
+                   ("Regional & Environmental Statistics (2026 · Friday class)", "2026/11/07, 09:00 — 2026/11/14, 23:59", "resubmission until 2026/11/21, 23:59")],
     t_nav_course=["Course Management", "Study Plan Management", "Submission Grading", "AI Grading"], t_toreview="Submission Grading", t_f_type="Type",
     t_course="Course", t_course_name="Regional & Environmental Statistics (2026)", t_view_subs="View submissions", t_edit_in_bm="Edit in Book Management",
+    t_cm="Course Management", t_cm_search="Enter your keyword", t_cm_add="Add course", t_cm_cols=["Course Name", "Teaching Method", "Course Type", "Subject"],
+    t_cm_rows=[("Regional & Environmental Statistics (2026)", "Group", "Lecture", "Statistics", True), ("Regional & Environmental Statistics (2026 · Friday class)", "Group", "Lecture", "Statistics", True),
+               ("Social Research Methods (2026)", "Group", "Lecture", "Sociology", False), ("Introduction to Information Literacy", "Individual", "Seminar", "Informatics", False)],
+    t_course2_name="Regional & Environmental Statistics (2026 · Friday class)",
+    t_c_tabs=["Books", "Study Plan", "Lesson", "Student", "Class", "Settings"], t_c_books_h="Books", t_c_book_cols=["Book Name"],
+    t_c_alert="Availability dates for each learning objective in a book can be set using specific dates. To begin configuring, open the book.",
+    t_lo_av="Learning Objectives Availability", t_lo_av_edit="Edit Date", t_imp_exp="Import/Export",
+    t_av_cols=["Chapter Name", "Topic Name", "LO Name", "Start Date", "End Date", "Resubmission Due"], t_av_ph="yyyy/mm/dd, hh:mm", t_av_none="—", t_av_off="Off",
+    t_av_saved="Learning Objectives Availability is updated successfully",
+    t_av_shared="This book is assigned to 2 courses (Thursday and Friday classes). Availability is set per course.",
+    t_av_fb_help="An AI Feedback LO appears in the student's To-do on its start date; students can submit and replace their work until the end date (the due date), and the teacher reviews after it. Resubmission Due exists only for LOs that allow resubmission.",
+    t_av_rows=[("Session 6 · Organising data and averages", [("6-1 · Frequency tables and histograms", [("Session 6 lecture video", "link", "2026/10/30, 09:00", "", None), ("Session 6 lecture slides", "lo", "2026/10/30, 09:00", "", None)]),
+                                                                ("6-2 · Averages and dispersion", [("Session 6 check-up quiz", "lo", "2026/10/30, 09:00", "", None), ("Session 6 exercise report", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
+               ("Session 7 · Data analysis and hypothesis testing", [("7-1 · Correlation analysis", [("Session 7 lecture video", "link", "2026/11/06, 09:00", "", None), ("Session 7 lecture slides", "lo", "2026/11/06, 09:00", "", None), ("Session 7 check-up quiz", "lo", "2026/11/06, 09:00", "", None),
+                                                                                                    ("Session 7 exercise report", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59")]),
+                                                                    ("7-2 · Hypothesis testing", [("Week 7 weekly reflection", "fb", "2026/11/08, 09:00", "2026/11/15, 23:59", "off")])]),
+               ("Session 8 · Regression analysis", [("8-1 · Simple regression", [("Session 8 lecture slides", "lo", "2026/11/20, 09:00", "", None), ("Session 8 exercise report", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off")])])],
     t_queue_sub="Submissions waiting on you. AI Feedback drafts queue here until you review them, alongside manual grading.",
     t_queue_cols=["LO", "Course", "Due", "Submitted", "Waiting for you", "Returned", ""], t_open="Open", t_f_course="Course", t_filters="Filters",
     t_queue=[("Session 7 exercise report", "13 Nov, 23:59", "12 / 30", "12", "9"), ("Week 7 weekly reflection", "15 Nov, 23:59", "21 / 30", "0", "21"),
@@ -2354,7 +2399,7 @@ TEN = dict(
     t_s_status="Submissions", t_st1="Submitted", t_st1_n="12 / 30", t_st1_s="12 of 30 students have submitted",
     t_st2="Not Reviewed", t_st2_n="8", t_st2_s="Drafts are ready. Review them and return", t_st3="Returned", t_st3_n="3 / 30", t_st3_s="Returned to 3 of 30 students",
     t_open_list="Review (8)",
-    t_s_sum="Settings", t_sum=[("Window", "6 Nov 09:00 — 13 Nov 23:59"), ("Resubmission", "until 20 Nov 23:59"),
+    t_s_sum="Settings", t_sum=[("Window (course)", "6 Nov 09:00 — 13 Nov 23:59 · Regional & Environmental Statistics (2026)"), ("Resubmission", "Allowed · until 20 Nov 23:59 (course)"),
                                ("Submission", "File · Photos · Typed"), ("Teacher review", "On — before it is returned")],
     t_cols=["Student", "Submitted", "Status", ""], t_bulk="Bulk Action", t_bulk_note="Reading them first is the safer habit",
     t_rows=[("Hanako Yamada", "11 Nov, 14:32", "wait", "Waiting for you"), ("Taro Sato", "11 Nov, 18:05", "wait", "Waiting for you"),
@@ -2473,12 +2518,13 @@ TEN = dict(
     t_prof_rows=[("Statistical processing", 0, 2, 1), ("Interpretation", 1, 1, 1), ("Clarity of charts", 1, 0, 0), ("Logical structure", 0, 1, 0), ("Excel skills", 1, 0, 0), ("Generative-AI literacy", 0, 1, 0)],
     t_prof_lbl=("Strengths", "To improve", "Fixed"),
     t_titles={"book": "BO — Book Management (book detail)", "dialog": "BO — Add LO (AI Feedback)", "created": "BO — Tree after creating",
+              "courses": "BO — Course Management", "course": "BO — Course detail (Books)", "cbook": "BO — Learning Objectives Availability",
               "mat": "BO — LO content (material and requirements)", "set": "BO — LO settings", "queue": "BO — Course › Submission Grading", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return",
               "dt": "BO — Group Dashboard (Topic)", "dg": "BO — Group Dashboard (LO)", "ds": "BO — Student Dashboard"},
 )
 JA.update(TJA); EN.update(TEN)
 
-TSCREENS = ["T-Book", "T-Dialog", "T-Material", "T-Settings", "T-Created", "T-Queue", "T-Detail", "T-List", "T-Review", "T-DashTopic", "T-DashGroup", "T-DashStudent"]
+TSCREENS = ["T-Book", "T-Dialog", "T-Material", "T-Settings", "T-Created", "T-Courses", "T-Course", "T-CourseBook", "T-Queue", "T-Detail", "T-List", "T-Review", "T-DashTopic", "T-DashGroup", "T-DashStudent"]
 
 def tfn(screen, lang):
     return f"{screen}.dc.html" if lang == "ja" else f"{screen}-en.dc.html"
@@ -2501,7 +2547,7 @@ def tnav(S, side="book"):
     opened = {3, 4}
     out = ""
     for i, label in enumerate(S["t_nav"]):
-        branch = " branch" if (i == 4 and side == "book") or (i == 3 and side == "course") else ""
+        branch = " branch" if (i == 4 and side == "book") or (i == 3 and side in ("course", "cm")) else ""
         if i == 0 and side == "dash":
             branch = " on"
         caret = f'<span class="caret">{mi("expandLess" if i in opened else "expandMore", 20)}</span>' if i in groups else ""
@@ -2509,8 +2555,13 @@ def tnav(S, side="book"):
         out += f'<div class="tn{branch}"><span class="mi">{mi(icons[i], 22)}</span>{lb}{caret}</div>'
         if i == 3:
             for j, sub in enumerate(S["t_nav_course"]):
-                on = " on" if (j == 2 and side == "course") else ""
-                lb = f'<a class="lb" href="{tfn("T-Queue", L)}" style="color:inherit">{sub}</a>' if j == 2 else f'<span class="lb">{sub}</span>'
+                on = " on" if (j == 2 and side == "course") or (j == 0 and side == "cm") else ""
+                if j == 2:
+                    lb = f'<a class="lb" href="{tfn("T-Queue", L)}" style="color:inherit">{sub}</a>'
+                elif j == 0:  # Course Management — where the submission window is set (PM, 22 Sep)
+                    lb = f'<a class="lb" href="{tfn("T-Courses", L)}" style="color:inherit">{sub}</a>'
+                else:
+                    lb = f'<span class="lb">{sub}</span>'
                 out += f'<div class="tn child{on}"><span class="mi"></span>{lb}</div>'
         if i == 4:
             for j, sub in enumerate(S["t_nav_sub"]):
@@ -2686,14 +2737,11 @@ def lo_dialog(S, L, edit=False):
         <div class="settings-list">
           <div class="setting">
             <span class="setting-label" style="font-weight:500">{S["t_s_when"]}</span>
-            <div class="lm-grid" style="margin-top:10px">
-              {field(S["t_f_start"], S["t_v_start"], icon="calendar")}
-              {field(S["t_f_due"], S["t_v_due"], icon="calendar")}
-            </div>
-            <p class="hint">{S["t_when_note"]}</p>
-            <div style="display:flex;align-items:center;gap:16px;margin-top:4px">
+            <!-- Start, due and resubmission dates left this dialog (PM, 22 Sep): they belong to the course, in Course Management -->
+            <div class="alert info" style="margin-top:10px">{mi("calendar", 20, "#2196F3")}<span>{S["t_when_course"]}<br><a href="{tfn("T-CourseBook", L)}" style="font-weight:500;display:inline-block;margin-top:4px">{S["t_when_link"]} →</a></span></div>
+            <div style="display:flex;align-items:center;gap:16px;margin-top:12px">
               <button class="switch {{{{rs}}}}" onClick="{{{{toggleRs}}}}"><span class="track"></span><span>{S["t_f_resub"]}</span></button>
-              <sc-if value="{{{{rsOn}}}}" hint-placeholder-val="{{{{true}}}}"><span class="in" style="display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid #BDBDBD;border-radius:4px;font-size:13px">{S["t_v_resub"]}{mi("calendar", 16, "rgba(0,0,0,.54)")}</span></sc-if>
+              <sc-if value="{{{{rsOn}}}}" hint-placeholder-val="{{{{true}}}}"><span class="helper" style="margin:0">{S["t_resub_note"]}</span></sc-if>
             </div>
           </div>
           <div class="setting">
@@ -2951,7 +2999,7 @@ def t_detail(S, L):
         {metric("checkCircle", S["t_st3"], S["t_st3_n"], S["t_st3_s"])}
       </div>
     </div>
-    <div class="tpaper"><div class="ph"><h3>{S["t_s_sum"]}</h3><a class="tbtn sm" href="{tfn("T-Settings", L)}">{mi("edit", 18)}{S["t_edit_in_bm"]}</a></div><div class="pb"><dl class="tkv">{kv}</dl></div></div>
+    <div class="tpaper"><div class="ph"><h3>{S["t_s_sum"]}</h3><span style="display:flex;gap:4px"><a class="tbtn sm" href="{tfn("T-CourseBook", L)}">{mi("calendar", 18)}{S["t_edit_dates"]}</a><a class="tbtn sm" href="{tfn("T-Settings", L)}">{mi("edit", 18)}{S["t_edit_in_bm"]}</a></span></div><div class="pb"><dl class="tkv">{kv}</dl></div></div>
   </div>
 </div>
 </div>'''
@@ -3402,6 +3450,11 @@ def t_settings(S, L):
             elif v == "__status__":
                 v = (f'<sc-if value="{{{{pubOff}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tchip unpublished">{S["t_unpub"]}</span></sc-if>'
                      f'<sc-if value="{{{{pubOn}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip published">{S["t_pub"]}</span></sc-if>')
+            elif v == "__course__":
+                # the window is the course's (PM, 22 Sep): one line per course this book is assigned to, and the way there
+                per_course = "".join(f'<span style="display:block;line-height:1.7">{c}: <span class="num">{w}</span> <span class="cell-muted">・ {r}</span></span>' for c, w, r in S["t_set_courses"])
+                v = (f'<span style="display:block;color:#757575;font-size:13px;margin-bottom:2px">{S["t_set_course_lead"]}</span>{per_course}'
+                     f'<a class="tbtn sm" href="{tfn("T-CourseBook", L)}" style="margin:6px 0 0 -10px">{mi("calendar", 16)}{S["t_edit_dates"]}</a>')
             out += f'<dt>{k}</dt><dd>{v}</dd>'
         return f'<dl class="tkv" style="max-width:none">{out}</dl>'
     edit = f'<button class="tbtn sm" onClick="{{{{openEdit}}}}">{mi("edit", 18)}{S["t_edit"]}</button>'
@@ -3420,7 +3473,148 @@ def t_settings(S, L):
 </div>'''
     return tpage(S, "T-Settings", S["t_titles"]["set"], body, logic=TSET_LOGIC)
 
+
+# ---------- Course Management (CourseList → CourseDetail › Books → CourseBookDetail: LO Availability) ----------
+# The submission window moved from the LO to the course (PM, 22 Sep). Production already has the page for
+# it: Course › Books › <book> shows "Learning Objectives Availability" — chapter / topic / LO / start / end,
+# edited in bulk (Edit Date → Save), importable and exportable as CSV. These three boards are that flow, as
+# the syllabus squad renders it, with the AI Feedback LOs carrying their window there and nowhere else.
+
+def course_head(S, L, screen, crumbs, title, acts=""):
+    return f'''{tcrumbs(S, screen, crumbs)}
+  <div class="tphead"><h1>{title}</h1><div class="acts">{acts}</div></div>'''
+
+def t_courses(S, L):
+    """CourseList: page title, keyword search, Add course, the course table (Course Name with its avatar,
+    Teaching Method, Course Type, Subject). Two courses share the statistics book — the Thursday and the
+    Friday class — so the same LOs run on two schedules, which is what the move to the course is for."""
+    head = f'<th class="idx">#</th>' + "".join(f"<th>{c}</th>" for c in S["t_cm_cols"])
+    trs = ""
+    for i, (name, method, ctype, subj, shared) in enumerate(S["t_cm_rows"]):
+        av = f'<span class="avatar" style="background:{"#E3F2FD" if shared else "#F5F5F5"};color:{"#0B79D0" if shared else "#757575"}">{mi("library", 16)}</span>'
+        nm = f'<a class="cell-link" href="{tfn("T-Course", L)}">{name}</a>' if shared else f'<span>{name}</span>'
+        trs += (f'<tr><td class="idx num">{i+1}</td><td><span class="name-cell">{av}{nm}</span></td>'
+                f'<td>{method}</td><td>{ctype}</td><td>{subj}</td></tr>')
+    body = tnav(S, "cm") + f'''<div class="tmain">
+<div class="tscroll">
+  {tcrumbs(S, "T-Courses", [])}
+  <div class="tphead"><h1>{S["t_cm"]}</h1></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px">
+    <span class="tsearch">{mi("search", 20, "#757575")}<span>{S["t_cm_search"]}</span></span>
+    <span style="display:flex;gap:8px"><span class="tbtn contained">{mi("add", 18)}{S["t_cm_add"]}</span><span class="ticon">{mi("more", 24)}</span></span>
+  </div>
+  <div class="tpaper" style="overflow:hidden">
+    <div class="table-scroll"><table class="m"><thead><tr>{head}</tr></thead><tbody>{trs}</tbody></table></div>
+    <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-{len(S["t_cm_rows"])} / {len(S["t_cm_rows"])}</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-Courses", S["t_titles"]["courses"], body)
+
+def t_course(S, L):
+    """CourseDetail, Books tab (production's first tab when course-book is on): the course's name, its ⋮
+    (Edit / Assign Books), the tabs Books · Study Plan · Lesson · Student · Class · Settings, the info alert
+    that says the LO dates are set per book, and the book table — the book name opens its availability page."""
+    tabs = "".join(f'<span class="tab{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(S["t_c_tabs"]))
+    row = (f'<tr><td class="idx num">1</td><td><a class="cell-link" href="{tfn("T-CourseBook", L)}">{S["t_book"]}</a></td></tr>')
+    body = tnav(S, "cm") + f'''<div class="tmain">
+<div class="tscroll">
+  {course_head(S, L, "T-Course", [(S["t_cm"], tfn("T-Courses", L)), (S["t_course_name"], None)], S["t_course_name"], f'<span class="ticon">{mi("more", 24)}</span>')}
+  <div class="tabs">{tabs}</div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <h3 style="margin:0;font-size:16px;font-weight:500">{S["t_c_books_h"]}</h3>
+    <div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["t_c_alert"]}</span></div>
+    <div class="tpaper" style="overflow:hidden">
+      <div class="table-scroll"><table class="m"><thead><tr><th class="idx">#</th><th>{S["t_c_book_cols"][0]}</th></tr></thead><tbody>{row}</tbody></table></div>
+      <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-1 / 1</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
+    </div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "T-Course", S["t_titles"]["course"], body)
+
+TAV_LOGIC = """state = { edit: false, saved: false };
+  renderVals() {
+    return { editing: this.state.edit, viewing: !this.state.edit, saved: this.state.saved,
+             openEdit: () => this.setState({ edit: true, saved: false }), cancelEdit: () => this.setState({ edit: false }),
+             saveEdit: () => this.setState({ edit: false, saved: true }) };
+  }"""
+
+def av_table(S, L, edit=False):
+    """CourseBookDetailContent's LO Availability table: chapter and topic cells span their rows as the
+    production table merges them; each LO has its type icon; Start / End show as text, or as inputs in
+    edit mode. One column is added for AI Feedback: 再提出締切 Resubmission Due — the resubmission date
+    had nowhere else to go once dates left the LO (proposal, not yet decided by the PM)."""
+    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview"}
+    def cell(v, kind="date"):
+        if edit and kind == "date":
+            return f'<input class="tinput" style="width:150px;height:36px;padding:0 8px;font-size:13px" value="{v}" placeholder="{S["t_av_ph"]}">'
+        if not v:
+            return f'<span class="dd">{S["t_av_none"]}</span>'
+        return f'<span class="num">{v}</span>'
+    trs = ""
+    for ci, (ch, topics) in enumerate(S["t_av_rows"]):
+        ch_rows = sum(len(los) for _, los in topics)
+        first_ch = True
+        for tp, los in topics:
+            first_tp = True
+            for name, kind, start, end, resub in los:
+                cells = ""
+                if first_ch:
+                    cells += f'<td class="idx num" rowspan="{ch_rows}">{ci+1}</td><td rowspan="{ch_rows}" style="white-space:normal;vertical-align:top;width:170px;min-width:170px">{ch}</td>'
+                    first_ch = False
+                if first_tp:
+                    cells += f'<td rowspan="{len(los)}" style="white-space:normal;vertical-align:top;border-left:1px solid #E0E0E0;width:170px;min-width:170px">{tp}</td>'
+                    first_tp = False
+                fb = kind == "fb"
+                fb_chip = f'<span class="tchip type" style="margin-left:4px">{S["t_type_fb"]}</span>' if fb else ""
+                bold = ' style="font-weight:500"' if fb else ""
+                lo_cell = (f'<span class="name-cell"><span class="lm-type" style="width:22px;height:22px;flex:0 0 22px">{mi(icon[kind], 14)}</span>'
+                           f'<span{bold}>{name}</span>{fb_chip}</span>')
+                if resub is None:
+                    rs = f'<span class="dd">{S["t_av_none"]}</span>'
+                elif resub == "off":
+                    rs = f'<span class="cell-muted">{S["t_av_off"]}</span>'
+                else:
+                    rs = cell(resub)
+                cells += (f'<td style="border-left:1px solid #E0E0E0;white-space:normal;min-width:220px">{lo_cell}</td>'
+                          f'<td style="border-left:1px solid #E0E0E0;padding:12px 10px">{cell(start)}</td><td style="padding:12px 10px">{cell(end)}</td><td style="padding:12px 10px">{rs}</td>')
+                trs += f'<tr>{cells}</tr>'
+    head = f'<th class="idx">#</th>' + "".join(f"<th>{c}</th>" for c in S["t_av_cols"])
+    return f'''<div class="tpaper" style="overflow:hidden">
+      <div class="table-scroll"><table class="m"><thead><tr>{head}</tr></thead><tbody>{trs}</tbody></table></div>
+      <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-3 / 3</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
+    </div>'''
+
+def t_coursebook(S, L):
+    """CourseBookDetail: breadcrumb Course Management / course / book, the book as the title, then the
+    section head 学習項目の公開期間 with Edit Date and Import/Export (ActionPanelV2); Edit Date turns the
+    date cells into inputs and swaps the actions for Cancel / Save; Save shows production's success
+    snackbar. Click 編集 — it works."""
+    acts_view = (f'<sc-if value="{{{{viewing}}}}" hint-placeholder-val="{{{{true}}}}"><span style="display:flex;gap:8px">'
+                 f'<button class="tbtn outlined" onClick="{{{{openEdit}}}}">{mi("calendar", 18)}{S["t_lo_av_edit"]}</button>'
+                 f'<span class="tbtn outlined">{mi("cloudUp", 18)}{S["t_imp_exp"]}</span></span></sc-if>')
+    acts_edit = (f'<sc-if value="{{{{editing}}}}" hint-placeholder-val="{{{{false}}}}"><span style="display:flex;gap:8px">'
+                 f'<button class="tbtn outlined" onClick="{{{{cancelEdit}}}}">{S["t_cancel"]}</button>'
+                 f'<button class="tbtn contained" onClick="{{{{saveEdit}}}}">{S["t_save"]}</button></span></sc-if>')
+    body = tnav(S, "cm") + f'''<div class="tmain">
+<div class="tscroll">
+  {course_head(S, L, "T-CourseBook", [(S["t_cm"], tfn("T-Courses", L)), (S["t_course_name"], tfn("T-Course", L)), (S["t_book"], None)], S["t_book"])}
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;height:40px">
+      <h3 style="margin:0;font-size:16px;font-weight:500">{S["t_lo_av"]}</h3>{acts_view}{acts_edit}
+    </div>
+    <div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["t_av_shared"]}<br><span class="cell-muted" style="font-size:13px">{S["t_av_fb_help"]}</span></span></div>
+    <sc-if value="{{{{viewing}}}}" hint-placeholder-val="{{{{true}}}}">{av_table(S, L)}</sc-if>
+    <sc-if value="{{{{editing}}}}" hint-placeholder-val="{{{{false}}}}">{av_table(S, L, edit=True)}</sc-if>
+  </div>
+</div>
+<sc-if value="{{{{saved}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack" role="status">{mi("checkCircle", 20)}{S["t_av_saved"]}</div></sc-if>
+</div>'''
+    return tpage(S, "T-CourseBook", S["t_titles"]["cbook"], body, logic=TAV_LOGIC)
+
 TBUILDERS = {"T-Book": t_book, "T-Dialog": t_dialog, "T-Created": t_created, "T-Material": t_material, "T-Settings": t_settings,
+             "T-Courses": t_courses, "T-Course": t_course, "T-CourseBook": t_coursebook,
              "T-Queue": t_queue, "T-Detail": t_detail, "T-List": t_list, "T-Review": t_review,
              "T-DashTopic": t_dash_topic, "T-DashGroup": t_dash_group, "T-DashStudent": t_dash_student}
 
@@ -3461,8 +3655,9 @@ TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
            "T3 · Created → LO content — material, requirements, criteria", "T4 · LO settings tab — what the dialog collected, read-only", "T5 · Back in the tree — Unpublished until published",
-           "T6 · Submission Grading — the queue, filtered to AI Feedback", "T7 · Overview — who has submitted", "T8 · The LO's submissions — same table, one LO", "T9 · Review and return — the grading layout",
-           "T10 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T11 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T12 · Student Dashboard — one student's AI Feedback"]
+           "T6 · Course Management — the course list, two courses on one book", "T7 · Course detail — Books tab, the book that carries the dates", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course",
+           "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
+           "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -3477,16 +3672,19 @@ NW = 560
 MNW = 375
 TNW = 640
 TNOTES = {
+    "tc1": "COURSE MANAGEMENT (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates student submissions). This is CourseList as the syllabus squad renders it (CourseList.tsx / CourseTable.tsx): the page title, the keyword search, コースの追加 Add course, and the table — Course Name with its avatar (a link into the course), Teaching Method (個別 Individual / 集団 Group), Course Type, Subject. Two courses carry the statistics book: the Thursday class and a Friday class. Both link the same book (T1), both list the same LOs, and each sets its own dates on T8 — that is the 'multiple schedule management' the move to the course buys, and why the LO dialog (T2) and the LO settings tab (T4) no longer carry dates. Nothing on this board is new for AI Feedback; the AI Feedback LO is just one more learning objective whose window the course sets. Click the first course →",
+    "tc2": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head, production's info alert word for word (courseBook.infoMessage: availability dates for each learning objective in a book can be set using specific dates — to begin configuring, open the book) and the book table (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. Click the book →",
+    "tc3": "LEARNING OBJECTIVES AVAILABILITY (CourseBookDetail.tsx → CourseBookDetailContent → LOAvailabilityTable), production's page for exactly this: per course, per book, the start and end date of every LO in the book, in one table — Chapter Name, Topic Name, LO Name (with its type icon), Start Date, End Date — with chapter and topic cells merged over their rows, 編集 Edit Date switching every date cell to an input (yyyy/mm/dd, hh:mm) and the actions to キャンセル / 保存, and インポート/エクスポート for CSV (useImportCSVLOAvailability / useExportCSVLOAvailability). Save posts BulkUpdateLOAvailability and shows the success snackbar (click 編集, then 保存 — both work). WHAT THE AI FEEDBACK LOs GET HERE: nothing new in kind — their window is a Start Date and an End Date like any LO's, and the End Date is the due date: the LO shows on the student's course tab from the start date and is not clickable before it; it enters the To-do on the start date; submission and replacement run until the end date; the teacher reviews after it; a late submission is refused unless this end date is extended here (PM, 22 Sep). ONE ADDED COLUMN, A PROPOSAL: 再提出締切 Resubmission Due, shown only for LOs whose 再提出を許可する switch is on (T2/T4) — the PM left 'where the resubmission date lives' open when dates moved to the course, and this is the one place all the LO's dates can sit together; it is drawn to be decided, not decided. The alert at the top says this book is assigned to two courses and that availability is set per course; the Friday class has its own copy of this page with later dates (T4 lists both). Production's Chapter/Topic/LO values here match T1's tree and T13's dashboard rows; the dates match the student's course tab (screen 1: 第7回 11月6日 公開, 第8回 11月20日から) and the Topic Dashboard's 開始 / 締切 line.",
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
-    "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep): 公開と提出期間 — opens (the LO appears in the student's To-do) and due (submit and replace until then, the teacher reviews after); 再提出を許可する with its own date (default off in the product, on here to show it); 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. The type is chosen here once: after creation it cannot be changed (PM, 20 Sep) — the edit dialog on T4 shows it as a fixed field. Confirm →",
+    "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep, then 22 Sep): the dates are GONE from this dialog — the start date, the due date and the resubmission deadline belong to the course (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates submissions), so the 公開期間と締切 block is now a pointer to Course Management › Books › Learning Objectives Availability (T8), where one book assigned to two courses runs on two schedules; 再提出を許可する stays as the switch alone, its deadline set with the other dates on the course; 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. The type is chosen here once: after creation it cannot be changed (PM, 20 Sep) — the edit dialog on T4 shows it as a fixed field. Confirm →",
     "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation — click it (it works in the prototype, PM 20 Sep): the chip flips to 公開中 Published, the button goes away and a snackbar confirms; T5 shows the tree as it is before that click; the 設定 tab (T4) lists what the dialog collected. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › Submission Grading, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",
-    "t4": "The LO's SETTINGS tab (PM, 20 Sep: 'add the settings page'). Production shows an LO's settings as what its Add LO dialog collected, read-only, and Edit settings reopens that dialog (DialogCreateLearningMaterial in edit mode) prefilled — so this tab holds exactly T2's fields and nothing new: 基本情報 General Info (type, LO name, External LO ID, the description the student sees), 設定 Settings (公開と提出期間 start and due, 再提出 with its date, 提出方法 with the 500-character limit on typed, 先生の確認), and 公開状態 — the Published / Unpublished chip with created and updated stamps. 設定を編集 on each card and top-right opens the same dialog in EDIT mode over this page (click it — it works): prefilled, titled 学習目標を編集, with the LO type shown as a locked read-only field because the type cannot be changed after creation (PM, 20 Sep); everything else is editable, and 保存 closes it. Not here, deliberately: the material, the 提出の基本条件 and the rubric — those are content and stay on the 内容 tab (T3). The two tabs link to each other; 公開する works on this tab too. The course side (T7) shows the same values read-only with ブック管理で編集, which lands back here.",
+    "t4": "The LO's SETTINGS tab (PM, 20 Sep: 'add the settings page'). Production shows an LO's settings as what its Add LO dialog collected, read-only, and Edit settings reopens that dialog (DialogCreateLearningMaterial in edit mode) prefilled — so this tab holds exactly T2's fields and nothing new: 基本情報 General Info (type, LO name, External LO ID, the description the student sees), 設定 Settings (公開期間と締切 — no longer a pair of dates but the per-course windows read from Course Management, one line per course this book is assigned to, with コース管理で日程を編集 opening T8 — PM 22 Sep; 再提出 as the switch alone; 提出方法 with the 500-character limit on typed; 先生の確認), and 公開状態 — the Published / Unpublished chip with created and updated stamps. 設定を編集 on each card and top-right opens the same dialog in EDIT mode over this page (click it — it works): prefilled, titled 学習目標を編集, with the LO type shown as a locked read-only field because the type cannot be changed after creation (PM, 20 Sep); everything else is editable, and 保存 closes it. Not here, deliberately: the material, the 提出の基本条件 and the rubric — those are content and stay on the 内容 tab (T3). The two tabs link to each other; 公開する works on this tab too. The course side (T7) shows the same values read-only with ブック管理で編集, which lands back here.",
     "t5": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3.",
     "t6": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs (production's Invalid Markers export, which sits top-right on the real page, is left off this board — PM, 20 Sep: nothing to do with AI Feedback), search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview. HIGHLIGHTED (PM, 20 Sep): a submission the teacher picked as an example for the class carries an orange ★ before its ID. The ★ 注目のみ / Highlighted only filter is an option inside フィルター / Filters (PM, 20 Sep: under Filters, not a chip in the bar) — open Filters, tick it, and the table narrows to those rows with a 注目: あり chip among the applied filters; it works in the prototype. The panel's other fields (LO Type, Status, Reviewer) are production's, static here.",
-    "t7": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; ブック管理で編集 opens the LO's Settings tab (T4). Two count rows — 提出条件 5件, コメントの観点 6件 — were removed (PM, 20 Sep: not useful here; the conditions and the rubric are read on the LO's Content tab). The header's own ブック管理で編集 and ⋮ were removed too (PM, 20 Sep): the card's button is the one way back, and the ⋮ had nothing behind it.",
+    "t7": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; the window row names the course it belongs to (PM, 22 Sep: dates are the course's), コース管理で日程を編集 opens the course's LO Availability page (T8) and ブック管理で編集 opens the LO's Settings tab (T4). Two count rows — 提出条件 5件, コメントの観点 6件 — were removed (PM, 20 Sep: not useful here; the conditions and the rubric are read on the LO's Content tab). The header's own ブック管理で編集 and ⋮ were removed too (PM, 20 Sep): the card's button is the one way back, and the ⋮ had nothing behind it.",
     "t8": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts, and the same ★ marker and the 注目のみ / Highlighted only option inside Filters (PM, 20 Sep) so the teacher can pull up the few examples chosen for the class. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows.",
     "t9": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (クラスで紹介する — a text button that stars this submission as an example to show the class and asks for a few-word reason, PM 20 Sep, which the dashboards then count, mark ★ and list with that reason —, 差し戻す outlined, 承認して返却する contained, and production's ⋮ kebab — asked about by the PM (20 Sep) and given its items: this student's submission history, download the original file, regenerate the draft, preview what the student sees; click it). Left, the info panel: a PREVIOUS / NEXT pager around the submission ID — 3 / 12, stepping through the LO's submissions in the list's order, Not Reviewed first, so a teacher clearing the queue never goes back to the table (PM, 20 Sep; in the prototype both arrows reload this submission) — (a 生徒には未公開 / Not visible to the student chip sat beside the ID and was removed, PM 20 Sep: the 確認中 status and the report's 下書き header already say it), Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), and the teacher's own ひとこと — which the student sees at the top of the returned screen. A Comments count section (drafts 3, edited 1, criteria 6) closed the panel and was removed (PM, 20 Sep: not useful when the comments themselves are in the report beside it; the edited mark sits on the comment). Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却.",
-    "t10": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard in TOPIC DASHBOARD mode, production's default view and where the Dashboard menu lands — Course / Book / Filters / Apply, the Enrollment and Duration chips (FILTERS opens production's panel — 在籍状況 Enrollment status, 期間 Duration — with an AI Feedback section added, PM 20 Sep: 開始日 start-date and 締切日 due-date ranges that keep only the feedback LOs falling inside them; the applied ranges show as chips beside Enrollment and Duration — AIフィードバック 開始日: 11/01 – 11/30, 締切日: 11/06 – 11/30 (PM, 20 Sep: show the selected ranges here); click Filters, it opens; same panel on the LO and Student dashboards), the paper with search and the Topic / LO Dashboard toggle, then production's topic table: Chapter Name, Topic Name (a link that opens the LO Dashboard for that topic, T11 →), Average Score as the progress bar over the topic's scored LOs (quizzes; -- where there is none) and Completion as the number of students who completed the topic. ADDED FOR AI FEEDBACK (PM, 20 Sep: the topic dashboard, per production, but for AI Feedback data): one column, AIフィードバック, with the topic's feedback LO (a link to its overview), its 開始 start and 締切 due dates under the name (PM, 20 Sep) and its counts — 提出 12/30, 確認待ち 8 (a link into the LO's submissions when there are any), 返却済み 3 — and the ★ number of submissions the teacher picked to show the class. Topics without a feedback LO (6-1, 8-1) were shown with “no AI Feedback LO” and are left off the board for a clearer demo (PM, 20 Sep); in the product every topic of the book is listed, as production does. Counts, never rates (PRD §1.6.4); no score is invented for a feedback LO, so Average Score stays what production computes from the quizzes. 6-2, 7-1 and 7-2 carry the three feedback LOs the LO Dashboard shows. INSIGHTS (PM, 20 Sep: merged here from the LO Dashboard's overview paper, which is gone; the 詳しく Details expansion that opened the full insight with quotes and counts was then removed too — PM, 20 Sep: the teacher checks the submissions themself, the line only has to alert them; then broadened, PM 20 Sep, from strictly 'what the class missed' to insights of several kinds — 見落とし what was missed, 良い傾向 what is going well, 紹介候補 what is worth showing the class, 提出状況 how submissions stand — with the LLM ranking them and the top one shown per LO): under each feedback LO's counts, one line with its kind as a tag, read by an LLM pass over that LO's submissions and their generated draft feedback along the rubric — 6-2 良い傾向: 21/30 compare before and after the outlier; 7-1 見落とし: 有意性の検定に進まない下書きが 8/12件, 次回冒頭の候補; 7-2 紹介候補: 4 asked a question of their own — nothing more: no expansion, no quotes, no counts on this board (the LO's overview and submissions are one click away). It is generated from the submissions and their draft feedback, so it is there before anything is returned (PM, 20 Sep), refreshes itself whenever a submission or a draft changes (a Regenerate button was tried and removed, PM 20 Sep: no reason a teacher should have to ask), and is teacher-facing only. The rubric is the prompt's structure; every claim must trace to a count in the data.",
+    "t10": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard in TOPIC DASHBOARD mode, production's default view and where the Dashboard menu lands — Course / Book / Filters / Apply, the Enrollment and Duration chips (FILTERS opens production's panel — 在籍状況 Enrollment status, 期間 Duration — with an AI Feedback section added, PM 20 Sep: 開始日 start-date and 締切日 due-date ranges that keep only the feedback LOs falling inside them; the applied ranges show as chips beside Enrollment and Duration — AIフィードバック 開始日: 11/01 – 11/30, 締切日: 11/06 – 11/30 (PM, 20 Sep: show the selected ranges here); click Filters, it opens; same panel on the LO and Student dashboards), the paper with search and the Topic / LO Dashboard toggle, then production's topic table: Chapter Name, Topic Name (a link that opens the LO Dashboard for that topic, T11 →), Average Score as the progress bar over the topic's scored LOs (quizzes; -- where there is none) and Completion as the number of students who completed the topic. ADDED FOR AI FEEDBACK (PM, 20 Sep: the topic dashboard, per production, but for AI Feedback data): one column, AIフィードバック, with the topic's feedback LO (a link to its overview), its 開始 start and 締切 due dates under the name (PM, 20 Sep; since 22 Sep these are the course's dates from T8, not the LO's own) and its counts — 提出 12/30, 確認待ち 8 (a link into the LO's submissions when there are any), 返却済み 3 — and the ★ number of submissions the teacher picked to show the class. Topics without a feedback LO (6-1, 8-1) were shown with “no AI Feedback LO” and are left off the board for a clearer demo (PM, 20 Sep); in the product every topic of the book is listed, as production does. Counts, never rates (PRD §1.6.4); no score is invented for a feedback LO, so Average Score stays what production computes from the quizzes. 6-2, 7-1 and 7-2 carry the three feedback LOs the LO Dashboard shows. INSIGHTS (PM, 20 Sep: merged here from the LO Dashboard's overview paper, which is gone; the 詳しく Details expansion that opened the full insight with quotes and counts was then removed too — PM, 20 Sep: the teacher checks the submissions themself, the line only has to alert them; then broadened, PM 20 Sep, from strictly 'what the class missed' to insights of several kinds — 見落とし what was missed, 良い傾向 what is going well, 紹介候補 what is worth showing the class, 提出状況 how submissions stand — with the LLM ranking them and the top one shown per LO): under each feedback LO's counts, one line with its kind as a tag, read by an LLM pass over that LO's submissions and their generated draft feedback along the rubric — 6-2 良い傾向: 21/30 compare before and after the outlier; 7-1 見落とし: 有意性の検定に進まない下書きが 8/12件, 次回冒頭の候補; 7-2 紹介候補: 4 asked a question of their own — nothing more: no expansion, no quotes, no counts on this board (the LO's overview and submissions are one click away). It is generated from the submissions and their draft feedback, so it is there before anything is returned (PM, 20 Sep), refreshes itself whenever a submission or a draft changes (a Regenerate button was tried and removed, PM 20 Sep: no reason a teacher should have to ask), and is teacher-facing only. The rubric is the prompt's structure; every claim must trace to a count in the data.",
     "t11": "GroupDashboard in LO DASHBOARD mode, reached from a topic name on T10 or from the toggle. This is GroupDashboard as production renders it — the same filter row and chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; and the whole toggle — Latest Score and Highest Score — is greyed out when nothing in the matrix carries a score (PM, 20 Sep) — as here; it comes back live when a quiz or other scored LO is in view. For a clearer demo the matrix shows only AI Feedback LOs (PM, 20 Sep): the Session 6 report (all returned, one 差し戻し, two 再提出), the Session 7 report and the weekly reflection, so all four statuses and both secondary chips are on screen; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header, and the ★ 注目のみ / Highlighted only chip beside the score toggle narrows the matrix to students with a highlighted submission (PM, 20 Sep; it works — click it); sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). A tile row (production's Questions Solved via AI, then AI Feedback count tiles) was tried and removed (PM, 20 Sep: not required). In its place, on the PM's 'try it' (20 Sep), an OVERVIEW PAPER was built from the PRD — the three C10.3a jobs, B2's revision outcome and the §1.6.4 rules — and then taken apart block by block, so that this board is the matrix alone: (1) 未提出 Not submitted was here as counts and names per LO and was removed (PM, 20 Sep): the matrix header's 提出 12/30 and the tinted -- cells already carry it; (2) 先生の確認待ち Waiting on you — drafts awaiting approval per LO with the oldest one's age — was tried and removed as well (PM, 20 Sep: not required; the matrix header's 確認待ち count and Submission Grading carry it); (3) 今週クラスが見落とした点 What the class missed: first a templated sentence over the criteria counts; then, on the PM's 'try it' (20 Sep), an INSIGHT written by an LLM pass over the week's SUBMISSIONS AND THEIR DRAFT FEEDBACK grouped by rubric criterion (PM, 20 Sep: not the returned comments — the teacher opens this dashboard after the due date, before anything is returned, so the basis is every draft the checks produced; a returned comment counts the same, and the teacher's edits flow in once made) — what the recurring mistake actually is (8 of 12 drafts stop before the significance test, 3 read r ≈ 0.4 as causation) and one recap point — grounded two ways: the criterion counts stay beneath it as the anchor, and two quoted passages link into the submissions they come from. Teacher-facing only, one call per LO per week, the rubric as the prompt's structure; it refreshes itself when the drafts change (a Regenerate button was tried and removed, PM 20 Sep). It is also a review aid: it tells the teacher what the drafts are about to say to the class before they approve them. The PM's question that led here: is the criterion just a count (yes: drafts with an improvement comment per criterion) and could a generic agent read the feedback against the rubric instead (this is that); (4) フィードバックを活かした Acted on the feedback — resubmitted, points resolved, rewrote in their own words — was tried and removed (PM, 20 Sep: not required); (5) ★ Highlighted for class — the teacher's picks with the few-word reason typed when highlighting, each a link into the submission — was a block here and was MERGED INTO THE MATRIX (PM, 20 Sep): a highlighted cell now shows that reason under the status with a small ★ before it (★ 外れ値の扱いが的確, ★ 相関と因果を区別している…; the separate ★ icon beside the status was dropped as redundant, PM 20 Sep) and opens the submission's review screen, the LO header keeps the ★ count, and the ★ 注目のみ chip narrows the matrix to those students — and block 3 itself, What the class missed, was merged into the Topic Dashboard (T10, PM 20 Sep), one line per feedback LO with the full insight in an expanded row; so the overview paper is gone. Not shown, deliberately: score or completion-rate tiles, per-student comparisons, average time to return. Block 3 depends on criterion keys being fixed per assignment (PRD §1.6.5, U22); block 5 is collectable today. THE MATRIX below is the drill-down: in it, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered (確認待ち links to the LO's submissions), and each cell is the submission status in the marking tones with a 再提出 secondary chip where the submission is a resubmission (the 自動返却 Auto-returned chip was shown too and removed, PM 20 Sep: not needed in the matrix — it stays in Submission Grading and on the student dashboard rows; a per-cell comment count was tried and removed, PM 20 Sep: use case unclear — it stays in Submission Grading); the cell opens the LO's submissions. Two insight panels below the matrix — comments by rubric criterion and the requirements that stopped a submission at the pre-check — were tried and removed (PM, 20 Sep: not required). Student name → the student dashboard.",
     "t12": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with -- under Latest Score and Highest Score (a feedback LO has none; 再提出 1回 sat there first and was moved under the submission date, PM 21 Sep: it describes the submission, not a score). WHAT IS NEW is in the LO table itself (PM, 20 Sep: merged into the existing matrix rather than a table of its own; then, PM 20 Sep, fitted as columns rather than a detail row — the submission date was already a column): three feedback columns after production's four — 状態 Status (for every LO, PM 21 Sep: production writes 完了 Completed into the score columns of a video or slide deck, which read as statuses in score columns once a Status column existed, so 完了 moved here and the score columns show -- for anything unscored; for a feedback LO the status chip with its 再提出 / 自動返却 secondary chip and the date it was reached beneath, PM 21 Sep: a column of its own rather than sitting where a score would be), 指摘された観点 Flagged criteria — the rubric criteria that drew an improvement comment, with 再提出で修正済み where the resubmission fixed them (a コメント count column — 3, 良い点 1 ・ 改善点 2 — sat between and was dropped, PM 21 Sep: not useful; where the student stumbles is, and it is here), and 確認する / 見る into the review — the feedback LO's name a link to its overview (T7, PM 20 Sep), with the ★ reason under it where the teacher highlighted it; other LO rows show -- there. A separate paper below the table — count tiles, a submissions table and a by-criterion profile — was built first and removed in the merge. 7-2 is expanded so the weekly reflection shows too.",
 }
@@ -3534,7 +3732,7 @@ notes = {
 }
 for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "m10"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
-for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10", "t11", "t12"]):
+for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
 
 canvas = {
@@ -3547,6 +3745,7 @@ canvas = {
     "order": order,
     "notes": notes,
     "designSystems": [],
+    "attachments": {},  # the live copy carries this key; keep it so a republish is a clean superset
 }
 with open(os.path.join(ROOT, "canvas.json"), "w", encoding="utf-8") as f:
     json.dump(canvas, f, ensure_ascii=False, indent=2)

@@ -20,7 +20,7 @@ sticky notes on the canvas are the per-screen record.
 | PC · English | same, `-en` suffix | 1280 × 800 |
 | Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
 | Mobile · English | same, `-en` suffix | 375 × 812 |
-| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` ↔ `T-Settings` → `T-Created` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashTopic` → `T-DashGroup` ↔ `T-DashStudent` | 1440 × 900 |
+| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` ↔ `T-Settings` → `T-Created` · `T-Courses` → `T-Course` → `T-CourseBook` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashTopic` → `T-DashGroup` ↔ `T-DashStudent` | 1440 × 900 |
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
@@ -84,9 +84,18 @@ already builds the course.
 - The Back Office chrome follows the `manabieV5` theme and the `BookDetail`
   accordion tree from `school-portal-admin` (checked on 2026-09-19 against the
   prototype generated from that code); the nav follows the live LMS 2.0 tenant.
-- **Dates**: a start date (the LO appears in the student's To-do then) and a due
-  date. The student submits and replaces until the due date; the teacher reviews
-  after it. Resubmission is a separate toggle with its own date, default off.
+- **Dates** (2026-09-22, PM — supersedes the LO-level dates of 19 Sep): the
+  start date, the due date and the resubmission deadline belong to the **course**,
+  not the LO. They are set on production's Course Management › Books › book ›
+  **Learning Objectives Availability** page (`CourseBookDetail`,
+  `LOAvailabilityTable` in `school-portal-admin`'s syllabus squad), per course, so
+  one book assigned to two courses runs on two schedules (`T-Courses` →
+  `T-Course` → `T-CourseBook`). The Add LO dialog and the LO's Settings tab point
+  there instead of carrying dates; resubmission stays a per-LO toggle, default
+  off, with its deadline in the same course table (a proposed column, not yet
+  decided by the PM). The student still sees the LO on the course tab from the
+  start date, not clickable before it; submits and replaces until the due date;
+  the teacher reviews after it.
 - **Submission methods**: which of file / photos / typed the LO accepts, with the
   500-character limit attached to typed.
 - **Pre-submission checklist**: on the LO's own page (opened from the tree, as a
