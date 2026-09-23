@@ -96,6 +96,11 @@ already builds the course.
   decided by the PM). The student still sees the LO on the course tab from the
   start date, not clickable before it; submits and replaces until the due date;
   the teacher reviews after it.
+- **Join by QR code**: the AI Tutor class page's existing **Share Access**
+  dialog (`AIClassShare`: a QR code of the class code with Download, the code
+  itself with Copy, Close) is reused for the course — a share icon on each row of
+  `T-Courses` and a Share Access button on `T-Course`. A student who scans it or
+  types the code is enrolled and sees the course's LOs from their start dates.
 - **Submission methods**: which of file / photos / typed the LO accepts, with the
   500-character limit attached to typed.
 - **Pre-submission checklist**: on the LO's own page (opened from the tree, as a

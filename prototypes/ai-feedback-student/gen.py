@@ -1711,6 +1711,10 @@ MI = {
     "personAdd": "M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z",
     "star": "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z",
     "fileDownload": "M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z",
+    # the AI Tutor class page's Share Access: MUI Share on the row, QrCode2 in the dialog, ContentCopy on the code
+    "share": "M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z",
+    "qrCode": "M15 21h-2v-2h2v2zm-2-7h-2v5h2v-5zm8-2h-2v4h2v-4zm-2-2h-2v2h2v-2zM7 12H5v2h2v-2zm-2-2H3v2h2v-2zm7-5h2V3h-2v2zm-7.5-.5v3h3v-3h-3zM9 9H3V3h6v6zm-4.5 7.5v3h3v-3h-3zM9 21H3v-6h6v6zm7.5-16.5v3h3v-3h-3zM21 9h-6V3h6v6zm-2 10v-3h-4v2h2v3h4v-2h-2zm-2-7h-4v2h4v-2zm-4-2H7v2h2v2h2v-2h2v-2zm1-1V7h-2V5h-2v4h4zM6.75 5.25h-1.5v1.5h1.5v-1.5zm0 12h-1.5v1.5h1.5v-1.5zm12-12h-1.5v1.5h1.5v-1.5z",
+    "contentCopy": "M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z",
     "chevron": "M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z",
     "starOff": "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z",
 }
@@ -2148,6 +2152,10 @@ TJA = dict(
     t_c_tabs=["教材", "学習計画", "レッスン", "生徒", "クラス", "設定"], t_c_books_h="教材", t_c_book_cols=["教材名"],
     t_c_alert="学習項目（LO）の公開開始日と公開終了日を設定できます。教材を選択し、設定をしてください。",
     t_lo_av="学習項目の公開期間", t_lo_av_edit="編集", t_imp_exp="インポート/エクスポート",
+    # Share Access — the AI Tutor class page's QR dialog (AIClassShare.tsx), borrowed for the course so students join by QR
+    t_share="アクセスを共有", t_share_qr="QRコードを学生と共有してクラスに参加させる", t_share_code="このコードを学生と共有してクラスに参加させる",
+    t_code="コード", t_download="ダウンロード", t_copy="コピー", t_copied="コードをコピーしました", t_close="閉じる", t_class_code="7QK4M2",
+    t_share_row="QRコードで参加",
     t_av_cols=["チャプター名", "トピック名", "学習項目名", "開始日", "終了日", "再提出締切"], t_av_ph="yyyy/mm/dd, hh:mm", t_av_none="—", t_av_off="許可なし",
     t_av_saved="学習項目の公開期間が正常に更新されました",
     t_av_shared="この教材は 2 つのコースに割り当てられています（木曜クラス・金曜クラス）。公開期間はコースごとに設定します。",
@@ -2363,6 +2371,9 @@ TEN = dict(
     t_c_tabs=["Books", "Study Plan", "Lesson", "Student", "Class", "Settings"], t_c_books_h="Books", t_c_book_cols=["Book Name"],
     t_c_alert="Availability dates for each learning objective in a book can be set using specific dates. To begin configuring, open the book.",
     t_lo_av="Learning Objectives Availability", t_lo_av_edit="Edit Date", t_imp_exp="Import/Export",
+    t_share="Share Access", t_share_qr="Share the QR code with students to join your class", t_share_code="Share this code with students to join your class",
+    t_code="Code", t_download="Download", t_copy="Copy", t_copied="Code copied", t_close="Close", t_class_code="7QK4M2",
+    t_share_row="Join by QR code",
     t_av_cols=["Chapter Name", "Topic Name", "LO Name", "Start Date", "End Date", "Resubmission Due"], t_av_ph="yyyy/mm/dd, hh:mm", t_av_none="—", t_av_off="Off",
     t_av_saved="Learning Objectives Availability is updated successfully",
     t_av_shared="This book is assigned to 2 courses (Thursday and Friday classes). Availability is set per course.",
@@ -3484,17 +3495,63 @@ def course_head(S, L, screen, crumbs, title, acts=""):
     return f'''{tcrumbs(S, screen, crumbs)}
   <div class="tphead"><h1>{title}</h1><div class="acts">{acts}</div></div>'''
 
+def qr_svg(data, size=120):
+    """A real QR code (error correction H, margin 1 — QRCode.toCanvas's options in AIClassShare) as an inline SVG."""
+    import qrcode
+    q = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=1, border=1)
+    q.add_data(data); q.make(fit=True)
+    m = q.get_matrix(); n = len(m)
+    d = "".join(f"M{x} {y}h1v1h-1z" for y, row in enumerate(m) for x, v in enumerate(row) if v)
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 {n} {n}" shape-rendering="crispEdges" role="img" aria-label="QR {data}" '
+            f'style="display:block"><rect width="{n}" height="{n}" fill="#fff"/><path d="{d}" fill="#212121"/></svg>')
+
+TSHARE_LOGIC = """state = { share: false, copied: false };
+  renderVals() {
+    return { shareOpen: this.state.share, openShare: () => this.setState({ share: true, copied: false }),
+             closeShare: () => this.setState({ share: false, copied: false }),
+             copied: this.state.copied, copyCode: () => this.setState({ copied: true }) };
+  }"""
+
+def share_dialog(S, L):
+    """AIClassShare (src/squads/syllabus/@share/aiTutor/components/AIClassShare.tsx), the AI Tutor class page's
+    Share Access dialog, opened for the course: the QR code students scan to join (Download), a divider, the
+    class code to type instead (Copy → snackbar), Close. Under sc-if so the board renders closed; the row's
+    share icon / the header's button open it."""
+    return f'''<sc-if value="{{{{shareOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tscrim">
+  <div class="dlg" style="max-width:520px">
+    <div class="dlg-head"><h2>{S["t_share"]}</h2><button class="ticon" onClick="{{{{closeShare}}}}" aria-label="{S["t_close"]}">{mi("close", 24)}</button></div>
+    <div class="dlg-body" style="gap:0;padding:24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+        <div><div style="font-size:14px;font-weight:500">{S["t_share"]}</div><div class="cell-muted" style="font-size:12px;margin-top:2px">{S["t_share_qr"]}</div></div>
+        <span class="tbtn outlined">{mi("fileDownload", 18)}{S["t_download"]}</span>
+      </div>
+      <div style="margin-top:16px;width:fit-content;border:1px solid #E0E0E0;border-radius:4px;padding:8px">{qr_svg(S["t_class_code"], 136)}</div>
+      <hr style="border:0;border-top:1px solid #E0E0E0;margin:24px 0">
+      <div style="font-size:14px;font-weight:500">{S["t_code"]}</div><div class="cell-muted" style="font-size:12px;margin-top:2px">{S["t_share_code"]}</div>
+      <div style="display:flex;gap:16px;align-items:center;margin-top:16px">
+        <span class="field" style="flex:1 1 auto"><span class="lbl">{S["t_code"]}</span><span class="in num" style="color:#757575;letter-spacing:1px">{S["t_class_code"]}</span></span>
+        <button class="tbtn outlined" onClick="{{{{copyCode}}}}">{mi("contentCopy", 18)}{S["t_copy"]}</button>
+      </div>
+    </div>
+    <div class="dlg-foot"><button class="tbtn" style="color:#212121" onClick="{{{{closeShare}}}}">{S["t_close"]}</button></div>
+  </div>
+</div></sc-if>
+<sc-if value="{{{{copied}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack" role="status" style="z-index:130">{mi("checkCircle", 20)}{S["t_copied"]}</div></sc-if>'''
+
 def t_courses(S, L):
     """CourseList: page title, keyword search, Add course, the course table (Course Name with its avatar,
     Teaching Method, Course Type, Subject). Two courses share the statistics book — the Thursday and the
     Friday class — so the same LOs run on two schedules, which is what the move to the course is for."""
-    head = f'<th class="idx">#</th>' + "".join(f"<th>{c}</th>" for c in S["t_cm_cols"])
+    head = f'<th class="idx">#</th>' + "".join(f"<th>{c}</th>" for c in S["t_cm_cols"]) + '<th style="width:56px"></th>'
     trs = ""
     for i, (name, method, ctype, subj, shared) in enumerate(S["t_cm_rows"]):
         av = f'<span class="avatar" style="background:{"#E3F2FD" if shared else "#F5F5F5"};color:{"#0B79D0" if shared else "#757575"}">{mi("library", 16)}</span>'
         nm = f'<a class="cell-link" href="{tfn("T-Course", L)}">{name}</a>' if shared else f'<span>{name}</span>'
+        # ClassListTable's actions column: MIconButtonBase + ShareIcon (color primary) → AIClassShare; here it opens the same dialog for the course
+        share = (f'<button class="ticon sm" style="color:#2196F3" onClick="{{{{openShare}}}}" title="{S["t_share"]}">{mi("share", 20)}</button>' if shared
+                 else f'<span class="ticon sm" style="color:#BDBDBD" title="{S["t_share"]}">{mi("share", 20)}</span>')
         trs += (f'<tr><td class="idx num">{i+1}</td><td><span class="name-cell">{av}{nm}</span></td>'
-                f'<td>{method}</td><td>{ctype}</td><td>{subj}</td></tr>')
+                f'<td>{method}</td><td>{ctype}</td><td>{subj}</td><td style="text-align:right;padding:6px 12px">{share}</td></tr>')
     body = tnav(S, "cm") + f'''<div class="tmain">
 <div class="tscroll">
   {tcrumbs(S, "T-Courses", [])}
@@ -3508,8 +3565,9 @@ def t_courses(S, L):
     <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-{len(S["t_cm_rows"])} / {len(S["t_cm_rows"])}</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
   </div>
 </div>
+{share_dialog(S, L)}
 </div>'''
-    return tpage(S, "T-Courses", S["t_titles"]["courses"], body)
+    return tpage(S, "T-Courses", S["t_titles"]["courses"], body, logic=TSHARE_LOGIC)
 
 def t_course(S, L):
     """CourseDetail, Books tab (production's first tab when course-book is on): the course's name, its ⋮
@@ -3519,7 +3577,8 @@ def t_course(S, L):
     row = (f'<tr><td class="idx num">1</td><td><a class="cell-link" href="{tfn("T-CourseBook", L)}">{S["t_book"]}</a></td></tr>')
     body = tnav(S, "cm") + f'''<div class="tmain">
 <div class="tscroll">
-  {course_head(S, L, "T-Course", [(S["t_cm"], tfn("T-Courses", L)), (S["t_course_name"], None)], S["t_course_name"], f'<span class="ticon">{mi("more", 24)}</span>')}
+  {course_head(S, L, "T-Course", [(S["t_cm"], tfn("T-Courses", L)), (S["t_course_name"], None)], S["t_course_name"],
+               f'<button class="tbtn outlined" onClick="{{{{openShare}}}}">{mi("qrCode", 18)}{S["t_share"]}</button><span class="ticon">{mi("more", 24)}</span>')}
   <div class="tabs">{tabs}</div>
   <div style="display:flex;flex-direction:column;gap:16px">
     <h3 style="margin:0;font-size:16px;font-weight:500">{S["t_c_books_h"]}</h3>
@@ -3530,8 +3589,9 @@ def t_course(S, L):
     </div>
   </div>
 </div>
+{share_dialog(S, L)}
 </div>'''
-    return tpage(S, "T-Course", S["t_titles"]["course"], body)
+    return tpage(S, "T-Course", S["t_titles"]["course"], body, logic=TSHARE_LOGIC)
 
 TAV_LOGIC = """state = { edit: false, saved: false };
   renderVals() {
@@ -3655,7 +3715,7 @@ TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
            "T3 · Created → LO content — material, requirements, criteria", "T4 · LO settings tab — what the dialog collected, read-only", "T5 · Back in the tree — Unpublished until published",
-           "T6 · Course Management — the course list, two courses on one book", "T7 · Course detail — Books tab, the book that carries the dates", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course",
+           "T6 · Course Management — the course list, two courses on one book, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; Share Access", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course",
            "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
            "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback"]
 for lang, S in (("ja", JA), ("en", EN)):
@@ -3672,8 +3732,8 @@ NW = 560
 MNW = 375
 TNW = 640
 TNOTES = {
-    "tc1": "COURSE MANAGEMENT (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates student submissions). This is CourseList as the syllabus squad renders it (CourseList.tsx / CourseTable.tsx): the page title, the keyword search, コースの追加 Add course, and the table — Course Name with its avatar (a link into the course), Teaching Method (個別 Individual / 集団 Group), Course Type, Subject. Two courses carry the statistics book: the Thursday class and a Friday class. Both link the same book (T1), both list the same LOs, and each sets its own dates on T8 — that is the 'multiple schedule management' the move to the course buys, and why the LO dialog (T2) and the LO settings tab (T4) no longer carry dates. Nothing on this board is new for AI Feedback; the AI Feedback LO is just one more learning objective whose window the course sets. Click the first course →",
-    "tc2": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head, production's info alert word for word (courseBook.infoMessage: availability dates for each learning objective in a book can be set using specific dates — to begin configuring, open the book) and the book table (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. Click the book →",
+    "tc1": "COURSE MANAGEMENT (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates student submissions). This is CourseList as the syllabus squad renders it (CourseList.tsx / CourseTable.tsx): the page title, the keyword search, コースの追加 Add course, and the table — Course Name with its avatar (a link into the course), Teaching Method (個別 Individual / 集団 Group), Course Type, Subject. Two courses carry the statistics book: the Thursday class and a Friday class. Both link the same book (T1), both list the same LOs, and each sets its own dates on T8 — that is the 'multiple schedule management' the move to the course buys, and why the LO dialog (T2) and the LO settings tab (T4) no longer carry dates. Nothing on this board is new for AI Feedback; the AI Feedback LO is just one more learning objective whose window the course sets. JOIN BY QR CODE (comment, 23 Sep: add a way for students to join the class by QR code, the function the AI Tutor page already has): the share icon at the end of each course row is the AI Tutor class list's (ClassListTable.tsx: MIconButtonBase + ShareIcon → AIClassShare), and it opens production's アクセスを共有 Share Access dialog as it is — the QR code the student scans to join (QRCode.toCanvas of the class code, error correction H; here a real QR of the code 7QK4M2) with ダウンロード Download, then コード Code, the same code typed instead, with コピー Copy and its snackbar. Scanning it enrols the student in the course, so the course's LOs — the AI Feedback LO among them — appear on their course tab from each LO's start date (T8). Click the share icon — it works; T7 has the same dialog behind its Share Access button. Click the first course →",
+    "tc2": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head, production's info alert word for word (courseBook.infoMessage: availability dates for each learning objective in a book can be set using specific dates — to begin configuring, open the book) and the book table (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. アクセスを共有 Share Access beside the ⋮ opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. Click the book →",
     "tc3": "LEARNING OBJECTIVES AVAILABILITY (CourseBookDetail.tsx → CourseBookDetailContent → LOAvailabilityTable), production's page for exactly this: per course, per book, the start and end date of every LO in the book, in one table — Chapter Name, Topic Name, LO Name (with its type icon), Start Date, End Date — with chapter and topic cells merged over their rows, 編集 Edit Date switching every date cell to an input (yyyy/mm/dd, hh:mm) and the actions to キャンセル / 保存, and インポート/エクスポート for CSV (useImportCSVLOAvailability / useExportCSVLOAvailability). Save posts BulkUpdateLOAvailability and shows the success snackbar (click 編集, then 保存 — both work). WHAT THE AI FEEDBACK LOs GET HERE: nothing new in kind — their window is a Start Date and an End Date like any LO's, and the End Date is the due date: the LO shows on the student's course tab from the start date and is not clickable before it; it enters the To-do on the start date; submission and replacement run until the end date; the teacher reviews after it; a late submission is refused unless this end date is extended here (PM, 22 Sep). ONE ADDED COLUMN, A PROPOSAL: 再提出締切 Resubmission Due, shown only for LOs whose 再提出を許可する switch is on (T2/T4) — the PM left 'where the resubmission date lives' open when dates moved to the course, and this is the one place all the LO's dates can sit together; it is drawn to be decided, not decided. The alert at the top says this book is assigned to two courses and that availability is set per course; the Friday class has its own copy of this page with later dates (T4 lists both). Production's Chapter/Topic/LO values here match T1's tree and T13's dashboard rows; the dates match the student's course tab (screen 1: 第7回 11月6日 公開, 第8回 11月20日から) and the Topic Dashboard's 開始 / 締切 line.",
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
     "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep, then 22 Sep): the dates are GONE from this dialog — the start date, the due date and the resubmission deadline belong to the course (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates submissions), so the 公開期間と締切 block is now a pointer to Course Management › Books › Learning Objectives Availability (T8), where one book assigned to two courses runs on two schedules; 再提出を許可する stays as the switch alone, its deadline set with the other dates on the course; 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. The type is chosen here once: after creation it cannot be changed (PM, 20 Sep) — the edit dialog on T4 shows it as a fixed field. Confirm →",
