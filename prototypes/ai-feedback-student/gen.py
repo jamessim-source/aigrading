@@ -3562,7 +3562,7 @@ def student_tab(S, L):
             chip = f'<span class="tchip type">{mi("contentCopy", 14)}{S["t_join_code"]}</span>'
         else:
             chip = f'<span class="tchip filled">{mi("personAdd", 14)}{S["t_join_manual"]}</span>'
-        sub = (f'{S["t_join_by"]} {detail}' if how == "manual" else detail)
+        sub = (f'{S["t_join_by"]} ' + detail.replace(" ・ ", "<br>").replace(" · ", "<br>") if how == "manual" else detail)
         trs += (f'<tr><td style="padding:0 8px"><span class="check"><span class="cbx"></span></span></td>'
                 f'<td><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a><br><span class="cell-muted" style="font-size:12px">{sid}</span></td>'
                 f'<td>{year}</td><td>{loc}</td><td class="num" style="white-space:nowrap">{period}</td><td>{cls}</td><td>{school}</td><td>{plan}</td>'
