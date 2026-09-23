@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-23T07:43:06Z"
+    "at": "2026-09-23T07:54:42Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -351,7 +351,7 @@
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T7 · Course detail — Books tab, the book that carries the dates; Share Access (JA)",
+      "title": "T7 · Course detail — Books tab, the book that carries the dates; Share Access; Student tab, who joined and how (JA)",
       "is_interactive": true
     },
     "T-CourseBook.dc.html": {
@@ -471,7 +471,7 @@
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T7 · Course detail — Books tab, the book that carries the dates; Share Access (EN)",
+      "title": "T7 · Course detail — Books tab, the book that carries the dates; Share Access; Student tab, who joined and how (EN)",
       "is_interactive": true
     },
     "T-CourseBook-en.dc.html": {
@@ -844,7 +844,7 @@
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head, production's info alert word for word (courseBook.infoMessage: availability dates for each learning objective in a book can be set using specific dates — to begin configuring, open the book) and the book table (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. アクセスを共有 Share Access beside the ⋮ opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. Click the book →"
+      "text": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head, production's info alert word for word (courseBook.infoMessage: availability dates for each learning objective in a book can be set using specific dates — to begin configuring, open the book) and the book table (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. アクセスを共有 Share Access beside the ⋮ opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. THE STUDENT TAB (comment, 23 Sep: add the student list here — who joined by code or was added manually). Click 生徒 Student — it works: production's StudentTab.tsx as it is — 生徒情報 Student Info with its 変更 Action menu (assign to class, assign study plans, …), the student-name search with the 学年度 / クラス / 学校 / 拠点 filter chips, and StudentsListTable's columns: Student Name (a link to the student's dashboard, T15), Academic Year, Location, Enrollment Date (yyyy/LL/dd - yyyy/LL/dd, the student's course period), Class, School, Study Plan — PLUS ONE PROPOSED COLUMN, 参加方法 Joined via: QRコード QR code or コード入力 Code entered with the moment the student joined, or 手動追加 Added manually with who added them and when. Seven students: five joined by QR or code on the first two Thursdays, two were added by the admin before term; the last one has no class or study plan yet, which is what a self-joined student looks like until the teacher assigns them. Both kinds see the course's LOs from their start dates. The column is drawn to be decided, not decided; nothing else on the tab is new. Click the book →"
     },
     "tc3": {
       "x": 10640,

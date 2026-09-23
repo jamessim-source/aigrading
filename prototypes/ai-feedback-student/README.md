@@ -101,6 +101,10 @@ already builds the course.
   itself with Copy, Close) is reused for the course — a share icon on each row of
   `T-Courses` and a Share Access button on `T-Course`. A student who scans it or
   types the code is enrolled and sees the course's LOs from their start dates.
+  The course's **Student** tab on `T-Course` (production's `StudentTab`: Student
+  Info, Action, search and filters, the student table) lists who is in the
+  course, with one proposed column, **Joined via** — QR code / code entered with
+  the join time, or added manually with who added them.
 - **Submission methods**: which of file / photos / typed the LO accepts, with the
   500-character limit attached to typed.
 - **Pre-submission checklist**: on the LO's own page (opened from the tree, as a

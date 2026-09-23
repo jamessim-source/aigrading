@@ -1872,7 +1872,7 @@ TCSS = """
   box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);display:flex;gap:12px;align-items:center;max-width:480px}
 /* tabs */
 .tabs{display:flex;border-bottom:1px solid #E0E0E0;margin-bottom:24px}
-.tab{position:relative;padding:12px 16px;font-size:14px;font-weight:500;letter-spacing:.4px;color:#757575;white-space:nowrap}
+.tab{position:relative;padding:12px 16px;font-size:14px;font-weight:500;letter-spacing:.4px;color:#757575;white-space:nowrap;background:none;border:0;font-family:inherit;cursor:pointer;line-height:1.43}
 .tab.on{color:#2196F3}
 .tab.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#2196F3}
 /* paper, tables, kv */
@@ -2156,6 +2156,18 @@ TJA = dict(
     t_share="アクセスを共有", t_share_qr="QRコードを学生と共有してクラスに参加させる", t_share_code="このコードを学生と共有してクラスに参加させる",
     t_code="コード", t_download="ダウンロード", t_copy="コピー", t_copied="コードをコピーしました", t_close="閉じる", t_class_code="7QK4M2",
     t_share_row="QRコードで参加",
+    # the course's Student tab (StudentTab.tsx → StudentsListAction / StudentsListFormFilterAdvanced / StudentsListTable) + one proposed column, 参加方法
+    t_stu_h="生徒情報", t_stu_action="変更", t_stu_search="生徒名を入力", t_stu_filters=["学年度", "クラス", "学校", "拠点"],
+    t_stu_cols=["生徒名", "学年度", "拠点", "コース期間", "クラス", "学校", "学習計画", "参加方法"],
+    t_join_qr="QRコード", t_join_code="コード入力", t_join_manual="手動追加", t_join_by="追加者",
+    t_join_help="参加方法は、QRコードの読み取り・コード入力で参加した生徒と、先生が手動で追加した生徒を区別します。どちらもコースの学習項目を公開開始日から見られます。",
+    t_stu_rows=[("山田 花子", "KU-2041", "2026年度", "東京", "2026/10/01 - 2027/03/31", "木曜クラス", "近畿大学", "2026年度 標準", "qr", "2026/10/02 14:05"),
+                ("佐藤 太郎", "KU-2042", "2026年度", "東京", "2026/10/01 - 2027/03/31", "木曜クラス", "近畿大学", "2026年度 標準", "code", "2026/10/02 14:11"),
+                ("鈴木 一郎", "KU-2043", "2026年度", "東京", "2026/10/01 - 2027/03/31", "木曜クラス", "近畿大学", "2026年度 標準", "manual", "HTN Admin ・ 2026/09/28"),
+                ("田中 美咲", "KU-2044", "2026年度", "東京", "2026/10/01 - 2027/03/31", "木曜クラス", "近畿大学", "2026年度 標準", "qr", "2026/10/02 14:06"),
+                ("高橋 健", "KU-2045", "2026年度", "東京", "2026/10/01 - 2027/03/31", "木曜クラス", "近畿大学", "2026年度 標準", "manual", "HTN Admin ・ 2026/09/28"),
+                ("伊藤 さくら", "KU-2046", "2026年度", "東京", "2026/10/09 - 2027/03/31", "木曜クラス", "近畿大学", "2026年度 標準", "qr", "2026/10/09 13:58"),
+                ("渡辺 大輔", "KU-2047", "2026年度", "東京", "2026/10/09 - 2027/03/31", "—", "近畿大学", "—", "code", "2026/10/09 21:40")],
     t_av_cols=["チャプター名", "トピック名", "学習項目名", "開始日", "終了日", "再提出締切"], t_av_ph="yyyy/mm/dd, hh:mm", t_av_none="—", t_av_off="許可なし",
     t_av_saved="学習項目の公開期間が正常に更新されました",
     t_av_shared="この教材は 2 つのコースに割り当てられています（木曜クラス・金曜クラス）。公開期間はコースごとに設定します。",
@@ -2374,6 +2386,17 @@ TEN = dict(
     t_share="Share Access", t_share_qr="Share the QR code with students to join your class", t_share_code="Share this code with students to join your class",
     t_code="Code", t_download="Download", t_copy="Copy", t_copied="Code copied", t_close="Close", t_class_code="7QK4M2",
     t_share_row="Join by QR code",
+    t_stu_h="Student Info", t_stu_action="Action", t_stu_search="Enter student name", t_stu_filters=["Academic Year", "Class", "School", "Location"],
+    t_stu_cols=["Student Name", "Academic Year", "Location", "Enrollment Date", "Class", "School", "Study Plan", "Joined via"],
+    t_join_qr="QR code", t_join_code="Code entered", t_join_manual="Added manually", t_join_by="Added by",
+    t_join_help="Joined via tells apart students who joined by scanning the QR code or entering the code from students a teacher added manually. Both see the course's learning objectives from their start dates.",
+    t_stu_rows=[("Hanako Yamada", "KU-2041", "2026", "Tokyo", "2026/10/01 - 2027/03/31", "Thursday class", "Kindai University", "2026 Standard", "qr", "2026/10/02 14:05"),
+                ("Taro Sato", "KU-2042", "2026", "Tokyo", "2026/10/01 - 2027/03/31", "Thursday class", "Kindai University", "2026 Standard", "code", "2026/10/02 14:11"),
+                ("Ichiro Suzuki", "KU-2043", "2026", "Tokyo", "2026/10/01 - 2027/03/31", "Thursday class", "Kindai University", "2026 Standard", "manual", "HTN Admin · 2026/09/28"),
+                ("Misaki Tanaka", "KU-2044", "2026", "Tokyo", "2026/10/01 - 2027/03/31", "Thursday class", "Kindai University", "2026 Standard", "qr", "2026/10/02 14:06"),
+                ("Ken Takahashi", "KU-2045", "2026", "Tokyo", "2026/10/01 - 2027/03/31", "Thursday class", "Kindai University", "2026 Standard", "manual", "HTN Admin · 2026/09/28"),
+                ("Sakura Ito", "KU-2046", "2026", "Tokyo", "2026/10/09 - 2027/03/31", "Thursday class", "Kindai University", "2026 Standard", "qr", "2026/10/09 13:58"),
+                ("Daisuke Watanabe", "KU-2047", "2026", "Tokyo", "2026/10/09 - 2027/03/31", "—", "Kindai University", "—", "code", "2026/10/09 21:40")],
     t_av_cols=["Chapter Name", "Topic Name", "LO Name", "Start Date", "End Date", "Resubmission Due"], t_av_ph="yyyy/mm/dd, hh:mm", t_av_none="—", t_av_off="Off",
     t_av_saved="Learning Objectives Availability is updated successfully",
     t_av_shared="This book is assigned to 2 courses (Thursday and Friday classes). Availability is set per course.",
@@ -3512,6 +3535,54 @@ TSHARE_LOGIC = """state = { share: false, copied: false };
              copied: this.state.copied, copyCode: () => this.setState({ copied: true }) };
   }"""
 
+TCOURSE_LOGIC = """state = { share: false, copied: false, tab: "books" };
+  renderVals() {
+    return { shareOpen: this.state.share, openShare: () => this.setState({ share: true, copied: false }),
+             closeShare: () => this.setState({ share: false, copied: false }),
+             copied: this.state.copied, copyCode: () => this.setState({ copied: true }),
+             booksOn: this.state.tab === "books", stuOn: this.state.tab === "students",
+             tabBooks: this.state.tab === "books" ? "on" : "", tabStu: this.state.tab === "students" ? "on" : "",
+             showBooks: () => this.setState({ tab: "books" }), showStu: () => this.setState({ tab: "students" }) };
+  }"""
+
+def student_tab(S, L):
+    """StudentTab.tsx as production lays it out: the 生徒情報 Student Info head with its 変更 Action menu
+    (StudentsListAction), the name search and filter chips (StudentsListFormFilterAdvanced), then
+    StudentsListTable — checkbox, Student Name (a link), Academic Year, Location, Enrollment Date
+    (yyyy/LL/dd - yyyy/LL/dd), Class, School, Study Plan — plus ONE proposed column, 参加方法 Joined via:
+    QR code / Code entered with the moment they joined, or Added manually with who added them."""
+    chips = "".join(f'<span class="tchip">{f}{mi("expandMore", 16)}</span>' for f in S["t_stu_filters"])
+    head = ('<th style="width:44px;padding:0 8px"><span class="check"><span class="cbx"></span></span></th>'
+            + "".join(f"<th>{c}</th>" for c in S["t_stu_cols"]))
+    trs = ""
+    for (name, sid, year, loc, period, cls, school, plan, how, detail) in S["t_stu_rows"]:
+        if how == "qr":
+            chip = f'<span class="tchip type">{mi("qrCode", 14)}{S["t_join_qr"]}</span>'
+        elif how == "code":
+            chip = f'<span class="tchip type">{mi("contentCopy", 14)}{S["t_join_code"]}</span>'
+        else:
+            chip = f'<span class="tchip filled">{mi("personAdd", 14)}{S["t_join_manual"]}</span>'
+        sub = (f'{S["t_join_by"]} {detail}' if how == "manual" else detail)
+        trs += (f'<tr><td style="padding:0 8px"><span class="check"><span class="cbx"></span></span></td>'
+                f'<td><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a><br><span class="cell-muted" style="font-size:12px">{sid}</span></td>'
+                f'<td>{year}</td><td>{loc}</td><td class="num" style="white-space:nowrap">{period}</td><td>{cls}</td><td>{school}</td><td>{plan}</td>'
+                f'<td style="min-width:150px">{chip}<br><span class="cell-muted num" style="font-size:12px;display:inline-block;margin-top:2px;line-height:1.35">{sub}</span></td></tr>')
+    return f'''<div style="display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;height:36px">
+      <h3 style="margin:0;font-size:16px;font-weight:500">{S["t_stu_h"]}</h3>
+      <span class="tbtn outlined">{S["t_stu_action"]}{mi("expandMore", 18)}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span class="tsearch" style="flex:0 1 360px">{mi("search", 20, "#757575")}<span>{S["t_stu_search"]}</span></span>
+      <span style="display:flex;gap:8px">{chips}</span>
+    </div>
+    <div class="alert info">{mi("qrCode", 20, "#2196F3")}<span>{S["t_join_help"]}</span></div>
+    <div class="tpaper" style="overflow:hidden">
+      <div class="table-scroll"><table class="m" style="font-size:13px"><thead><tr>{head}</tr></thead><tbody>{trs}</tbody></table></div>
+      <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-{len(S["t_stu_rows"])} / {len(S["t_stu_rows"])}</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
+    </div>
+  </div>'''
+
 def share_dialog(S, L):
     """AIClassShare (src/squads/syllabus/@share/aiTutor/components/AIClassShare.tsx), the AI Tutor class page's
     Share Access dialog, opened for the course: the QR code students scan to join (Download), a divider, the
@@ -3573,25 +3644,30 @@ def t_course(S, L):
     """CourseDetail, Books tab (production's first tab when course-book is on): the course's name, its ⋮
     (Edit / Assign Books), the tabs Books · Study Plan · Lesson · Student · Class · Settings, the info alert
     that says the LO dates are set per book, and the book table — the book name opens its availability page."""
-    tabs = "".join(f'<span class="tab{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(S["t_c_tabs"]))
+    def tab(i, t):
+        if i == 0: return f'<button class="tab {{{{tabBooks}}}}" onClick="{{{{showBooks}}}}">{t}</button>'
+        if i == 3: return f'<button class="tab {{{{tabStu}}}}" onClick="{{{{showStu}}}}">{t}</button>'
+        return f'<span class="tab">{t}</span>'
+    tabs = "".join(tab(i, t) for i, t in enumerate(S["t_c_tabs"]))
     row = (f'<tr><td class="idx num">1</td><td><a class="cell-link" href="{tfn("T-CourseBook", L)}">{S["t_book"]}</a></td></tr>')
     body = tnav(S, "cm") + f'''<div class="tmain">
 <div class="tscroll">
   {course_head(S, L, "T-Course", [(S["t_cm"], tfn("T-Courses", L)), (S["t_course_name"], None)], S["t_course_name"],
                f'<button class="tbtn outlined" onClick="{{{{openShare}}}}">{mi("qrCode", 18)}{S["t_share"]}</button><span class="ticon">{mi("more", 24)}</span>')}
   <div class="tabs">{tabs}</div>
-  <div style="display:flex;flex-direction:column;gap:16px">
+  <sc-if value="{{{{booksOn}}}}" hint-placeholder-val="{{{{true}}}}"><div style="display:flex;flex-direction:column;gap:16px">
     <h3 style="margin:0;font-size:16px;font-weight:500">{S["t_c_books_h"]}</h3>
     <div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["t_c_alert"]}</span></div>
     <div class="tpaper" style="overflow:hidden">
       <div class="table-scroll"><table class="m"><thead><tr><th class="idx">#</th><th>{S["t_c_book_cols"][0]}</th></tr></thead><tbody>{row}</tbody></table></div>
       <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-1 / 1</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
     </div>
-  </div>
+  </div></sc-if>
+  <sc-if value="{{{{stuOn}}}}" hint-placeholder-val="{{{{false}}}}">{student_tab(S, L)}</sc-if>
 </div>
 {share_dialog(S, L)}
 </div>'''
-    return tpage(S, "T-Course", S["t_titles"]["course"], body, logic=TSHARE_LOGIC)
+    return tpage(S, "T-Course", S["t_titles"]["course"], body, logic=TCOURSE_LOGIC)
 
 TAV_LOGIC = """state = { edit: false, saved: false };
   renderVals() {
@@ -3715,7 +3791,7 @@ TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
            "T3 · Created → LO content — material, requirements, criteria", "T4 · LO settings tab — what the dialog collected, read-only", "T5 · Back in the tree — Unpublished until published",
-           "T6 · Course Management — the course list, two courses on one book, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; Share Access", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course",
+           "T6 · Course Management — the course list, two courses on one book, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; Share Access; Student tab, who joined and how", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course",
            "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
            "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback"]
 for lang, S in (("ja", JA), ("en", EN)):
@@ -3733,7 +3809,7 @@ MNW = 375
 TNW = 640
 TNOTES = {
     "tc1": "COURSE MANAGEMENT (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates student submissions). This is CourseList as the syllabus squad renders it (CourseList.tsx / CourseTable.tsx): the page title, the keyword search, コースの追加 Add course, and the table — Course Name with its avatar (a link into the course), Teaching Method (個別 Individual / 集団 Group), Course Type, Subject. Two courses carry the statistics book: the Thursday class and a Friday class. Both link the same book (T1), both list the same LOs, and each sets its own dates on T8 — that is the 'multiple schedule management' the move to the course buys, and why the LO dialog (T2) and the LO settings tab (T4) no longer carry dates. Nothing on this board is new for AI Feedback; the AI Feedback LO is just one more learning objective whose window the course sets. JOIN BY QR CODE (comment, 23 Sep: add a way for students to join the class by QR code, the function the AI Tutor page already has): the share icon at the end of each course row is the AI Tutor class list's (ClassListTable.tsx: MIconButtonBase + ShareIcon → AIClassShare), and it opens production's アクセスを共有 Share Access dialog as it is — the QR code the student scans to join (QRCode.toCanvas of the class code, error correction H; here a real QR of the code 7QK4M2) with ダウンロード Download, then コード Code, the same code typed instead, with コピー Copy and its snackbar. Scanning it enrols the student in the course, so the course's LOs — the AI Feedback LO among them — appear on their course tab from each LO's start date (T8). Click the share icon — it works; T7 has the same dialog behind its Share Access button. Click the first course →",
-    "tc2": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head, production's info alert word for word (courseBook.infoMessage: availability dates for each learning objective in a book can be set using specific dates — to begin configuring, open the book) and the book table (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. アクセスを共有 Share Access beside the ⋮ opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. Click the book →",
+    "tc2": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head, production's info alert word for word (courseBook.infoMessage: availability dates for each learning objective in a book can be set using specific dates — to begin configuring, open the book) and the book table (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. アクセスを共有 Share Access beside the ⋮ opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. THE STUDENT TAB (comment, 23 Sep: add the student list here — who joined by code or was added manually). Click 生徒 Student — it works: production's StudentTab.tsx as it is — 生徒情報 Student Info with its 変更 Action menu (assign to class, assign study plans, …), the student-name search with the 学年度 / クラス / 学校 / 拠点 filter chips, and StudentsListTable's columns: Student Name (a link to the student's dashboard, T15), Academic Year, Location, Enrollment Date (yyyy/LL/dd - yyyy/LL/dd, the student's course period), Class, School, Study Plan — PLUS ONE PROPOSED COLUMN, 参加方法 Joined via: QRコード QR code or コード入力 Code entered with the moment the student joined, or 手動追加 Added manually with who added them and when. Seven students: five joined by QR or code on the first two Thursdays, two were added by the admin before term; the last one has no class or study plan yet, which is what a self-joined student looks like until the teacher assigns them. Both kinds see the course's LOs from their start dates. The column is drawn to be decided, not decided; nothing else on the tab is new. Click the book →",
     "tc3": "LEARNING OBJECTIVES AVAILABILITY (CourseBookDetail.tsx → CourseBookDetailContent → LOAvailabilityTable), production's page for exactly this: per course, per book, the start and end date of every LO in the book, in one table — Chapter Name, Topic Name, LO Name (with its type icon), Start Date, End Date — with chapter and topic cells merged over their rows, 編集 Edit Date switching every date cell to an input (yyyy/mm/dd, hh:mm) and the actions to キャンセル / 保存, and インポート/エクスポート for CSV (useImportCSVLOAvailability / useExportCSVLOAvailability). Save posts BulkUpdateLOAvailability and shows the success snackbar (click 編集, then 保存 — both work). WHAT THE AI FEEDBACK LOs GET HERE: nothing new in kind — their window is a Start Date and an End Date like any LO's, and the End Date is the due date: the LO shows on the student's course tab from the start date and is not clickable before it; it enters the To-do on the start date; submission and replacement run until the end date; the teacher reviews after it; a late submission is refused unless this end date is extended here (PM, 22 Sep). ONE ADDED COLUMN, A PROPOSAL: 再提出締切 Resubmission Due, shown only for LOs whose 再提出を許可する switch is on (T2/T4) — the PM left 'where the resubmission date lives' open when dates moved to the course, and this is the one place all the LO's dates can sit together; it is drawn to be decided, not decided. The alert at the top says this book is assigned to two courses and that availability is set per course; the Friday class has its own copy of this page with later dates (T4 lists both). Production's Chapter/Topic/LO values here match T1's tree and T13's dashboard rows; the dates match the student's course tab (screen 1: 第7回 11月6日 公開, 第8回 11月20日から) and the Topic Dashboard's 開始 / 締切 line.",
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
     "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep, then 22 Sep): the dates are GONE from this dialog — the start date, the due date and the resubmission deadline belong to the course (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates submissions), so the 公開期間と締切 block is now a pointer to Course Management › Books › Learning Objectives Availability (T8), where one book assigned to two courses runs on two schedules; 再提出を許可する stays as the switch alone, its deadline set with the other dates on the course; 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. The type is chosen here once: after creation it cannot be changed (PM, 20 Sep) — the edit dialog on T4 shows it as a fixed field. Confirm →",
