@@ -107,7 +107,7 @@ already builds the course.
   the join time, or added manually with who added them.
 - **Add course**: `T-Courses` › Add course opens production's full-screen
   `DialogUpsertCourse` with `CourseForm` (course icon, Course Name, Location,
-  Teaching Method, Course Type, Subject, Adaptive switch, Book); Save adds the
+  Teaching Method, Course Type, Subject, Book); Save adds the
   course to the list with the created-successfully snackbar. Nothing in it is new
   for AI Feedback; it is where the book gets linked to a course.
 - **Submission methods**: which of file / photos / typed the LO accepts, with the
