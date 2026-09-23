@@ -103,8 +103,9 @@ already builds the course.
   types the code is enrolled and sees the course's LOs from their start dates.
   The course's **Student** tab on `T-Course` (production's `StudentTab`: Student
   Info, Action, search and filters, the student table) lists who is in the
-  course, with one proposed column, **Joined via** — QR code / code entered with
-  the join time, or added manually with who added them.
+  course, production's columns only; a Joined via column was proposed and
+  dropped (PM, 23 Sep). A self-joined student shows no class or study plan
+  until the teacher assigns them.
 - **Add course**: `T-Courses` › Add course opens production's full-screen
   `DialogUpsertCourse` with `CourseForm` (course icon, Course Name, Location,
   Teaching Method, Course Type, Subject, Book); Save adds the
