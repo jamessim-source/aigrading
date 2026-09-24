@@ -2173,7 +2173,7 @@ TJA = dict(
     t_new_course=("地域環境統計学（2026年度・集中クラス）", "集団", "講義", "統計学"),
     # the course's Student tab (StudentTab.tsx → StudentsListAction / StudentsListFormFilterAdvanced / StudentsListTable) + one proposed column, 参加方法
     t_stu_h="生徒情報", t_stu_action="変更", t_stu_search="生徒名を入力", t_stu_filters=["学年度", "クラス", "学校", "拠点"],
-    t_stu_cols=["生徒名", "学年度", "拠点", "コース期間", "クラス", "学校", "学習計画"],
+    t_stu_cols=["生徒名", "学年度", "拠点", "コース期間", "クラス", "学校"],
     t_join_qr="QRコード", t_join_code="コード入力", t_join_manual="手動追加", t_join_by="追加者",
     t_join_help="参加方法は、QRコードの読み取り・コード入力で参加した生徒と、先生が手動で追加した生徒を区別します。どちらもコースの学習項目を公開開始日から見られます。",
     t_stu_rows=[("山田 花子", "KU-2041", "2026年度", "東京", "2026/10/01 - 2027/03/31", "木曜クラス", "近畿大学", "2026年度 標準", "qr", "2026/10/02 14:05"),
@@ -2187,13 +2187,17 @@ TJA = dict(
     t_av_saved="学習項目の公開期間が正常に更新されました",
     t_av_shared="この教材は 2 つのコースに割り当てられています（木曜クラス・金曜クラス）。公開期間はコースごとに設定します。",
     t_av_source="開始日・終了日は学習計画（study plan）のデータです。ここで保存した日程は学習計画に書き込まれ、学習計画管理で変更した日程もここに反映されます。",
+    t_av_nodates="公開期間が未設定です ・ 日程を入れるまで、公開した時点で生徒に表示されます",
+    # per-student due-date extension (V2 proposal): a row action on the Student tab → dialog
+    t_ext_action="期限を延長", t_ext_title="期限の延長", t_ext_v2="V2 案", t_ext_lead="この生徒だけ締切を変更します。コースの日程（学習項目の公開期間）は変わりません。",
+    t_ext_cols=["学習項目", "コースの公開期間", "この生徒の終了日"], t_ext_plus="＋7日", t_ext_saved="{name} の締切を延長しました", t_ext_chip="締切延長あり",
     t_av_fb_help="AIフィードバックのLOは、開始日に生徒の「やること」に表示され、終了日（締切）まで提出・差し替えができます。締切のあとに先生が確認します。再提出締切は、再提出を許可したLOにだけあります。",
     t_av_rows=[("第6回　データの整理と代表値", [("6-1　度数分布とヒストグラム", [("第6回 講義動画", "link", "2026/10/30, 09:00", "", None), ("第6回 講義資料", "lo", "2026/10/30, 09:00", "", None)]),
                                                 ("6-2　代表値と散布度", [("第6回 確認クイズ", "lo", "2026/10/30, 09:00", "", None), ("第6回 演習レポート", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
                ("第7回　データの分析と仮説検定", [("7-1　相関分析", [("第7回 講義動画", "link", "2026/11/06, 09:00", "", None), ("第7回 講義資料", "lo", "2026/11/06, 09:00", "", None), ("第7回 確認クイズ", "lo", "2026/11/06, 09:00", "", None),
                                                                    ("第7回 演習レポート", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59")]),
                                                 ("7-2　仮説検定", [("第7週 週次リフレクション", "fb", "2026/11/08, 09:00", "2026/11/15, 23:59", "off")])]),
-               ("第8回　回帰分析", [("8-1　単回帰分析", [("第8回 講義資料", "lo", "2026/11/20, 09:00", "", None), ("第8回 演習レポート", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off")])])],
+               ("第8回　回帰分析", [("8-1　単回帰分析", [("第8回 講義資料", "lo", "2026/11/20, 09:00", "", None), ("第8回 演習レポート", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off"), ("第9回 演習レポート（追加）", "fb", "", "", "off")])])],
     t_queue_sub="確認が必要な提出の一覧です。AIフィードバックの下書きは、先生の確認を待ってここに並びます。",
     t_queue_cols=["LO", "コース", "締切", "提出", "確認待ち", "返却済み", ""], t_open="開く", t_f_course="コース", t_filters="フィルター",
     t_queue=[("第7回 演習レポート", "11月13日 23:59", "12 / 30", "12", "9"), ("第7週 週次リフレクション", "11月15日 23:59", "21 / 30", "0", "21"),
@@ -2407,7 +2411,7 @@ TEN = dict(
     t_f_adaptive="Adaptive", t_f_cbook="Book", t_loc_val="Tokyo", t_created_msg="Created successfully",
     t_new_course=("Regional & Environmental Statistics (2026 · Intensive class)", "Group", "Lecture", "Statistics"),
     t_stu_h="Student Info", t_stu_action="Action", t_stu_search="Enter student name", t_stu_filters=["Academic Year", "Class", "School", "Location"],
-    t_stu_cols=["Student Name", "Academic Year", "Location", "Enrollment Date", "Class", "School", "Study Plan"],
+    t_stu_cols=["Student Name", "Academic Year", "Location", "Enrollment Date", "Class", "School"],
     t_join_qr="QR code", t_join_code="Code entered", t_join_manual="Added manually", t_join_by="Added by",
     t_join_help="Joined via tells apart students who joined by scanning the QR code or entering the code from students a teacher added manually. Both see the course's learning objectives from their start dates.",
     t_stu_rows=[("Hanako Yamada", "KU-2041", "2026", "Tokyo", "2026/10/01 - 2027/03/31", "Thursday class", "Kindai University", "2026 Standard", "qr", "2026/10/02 14:05"),
@@ -2421,13 +2425,16 @@ TEN = dict(
     t_av_saved="Learning Objectives Availability is updated successfully",
     t_av_shared="This book is assigned to 2 courses (Thursday and Friday classes). Availability is set per course.",
     t_av_source="Start and end dates are the study plan's data: dates saved here are written to the study plan, and dates changed in Study Plan Management show here.",
+    t_av_nodates="No window set · shown to students from the moment it is published, until dates are entered",
+    t_ext_action="Extend due date", t_ext_title="Extend due date", t_ext_v2="V2 proposal", t_ext_lead="Changes the due date for this student only. The course's dates (Learning Objectives Availability) stay as they are.",
+    t_ext_cols=["Learning Objective", "Course window", "This student's end date"], t_ext_plus="+7 days", t_ext_saved="Due date extended for {name}", t_ext_chip="Due date extended",
     t_av_fb_help="An AI Feedback LO appears in the student's To-do on its start date; students can submit and replace their work until the end date (the due date), and the teacher reviews after it. Resubmission Due exists only for LOs that allow resubmission.",
     t_av_rows=[("Session 6 · Organising data and averages", [("6-1 · Frequency tables and histograms", [("Session 6 lecture video", "link", "2026/10/30, 09:00", "", None), ("Session 6 lecture slides", "lo", "2026/10/30, 09:00", "", None)]),
                                                                 ("6-2 · Averages and dispersion", [("Session 6 check-up quiz", "lo", "2026/10/30, 09:00", "", None), ("Session 6 exercise report", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
                ("Session 7 · Data analysis and hypothesis testing", [("7-1 · Correlation analysis", [("Session 7 lecture video", "link", "2026/11/06, 09:00", "", None), ("Session 7 lecture slides", "lo", "2026/11/06, 09:00", "", None), ("Session 7 check-up quiz", "lo", "2026/11/06, 09:00", "", None),
                                                                                                     ("Session 7 exercise report", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59")]),
                                                                     ("7-2 · Hypothesis testing", [("Week 7 weekly reflection", "fb", "2026/11/08, 09:00", "2026/11/15, 23:59", "off")])]),
-               ("Session 8 · Regression analysis", [("8-1 · Simple regression", [("Session 8 lecture slides", "lo", "2026/11/20, 09:00", "", None), ("Session 8 exercise report", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off")])])],
+               ("Session 8 · Regression analysis", [("8-1 · Simple regression", [("Session 8 lecture slides", "lo", "2026/11/20, 09:00", "", None), ("Session 8 exercise report", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off"), ("Session 9 exercise report (added)", "fb", "", "", "off")])])],
     t_queue_sub="Submissions waiting on you. AI Feedback drafts queue here until you review them, alongside manual grading.",
     t_queue_cols=["LO", "Course", "Due", "Submitted", "Waiting for you", "Returned", ""], t_open="Open", t_f_course="Course", t_filters="Filters",
     t_queue=[("Session 7 exercise report", "13 Nov, 23:59", "12 / 30", "12", "9"), ("Week 7 weekly reflection", "15 Nov, 23:59", "21 / 30", "0", "21"),
@@ -3599,32 +3606,85 @@ def add_course_dialog(S, L):
 </div></sc-if>
 <sc-if value="{{{{created}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack" role="status" style="z-index:130">{mi("checkCircle", 20)}{S["t_created_msg"]}</div></sc-if>'''
 
-TCOURSE_LOGIC = """state = { share: false, copied: false, tab: "books", menu: false };
-  renderVals() {
-    return { shareOpen: this.state.share, openShare: () => this.setState({ share: true, copied: false, menu: false }),
-             closeShare: () => this.setState({ share: false, copied: false }),
-             menuOpen: this.state.menu, toggleMenu: () => this.setState({ menu: !this.state.menu }),
-             copied: this.state.copied, copyCode: () => this.setState({ copied: true }),
+def tcourse_logic(S):
+    """T7's logic: Share Access, the ⋮ menu, the Books / Student tabs, and the per-student extension dialog
+    (ext = the row index it is open for, -1 closed; extSavedFor = the row whose due date was extended)."""
+    import json
+    names = json.dumps([r[0] for r in S["t_stu_rows"]], ensure_ascii=False)
+    n = len(S["t_stu_rows"])
+    opens = ", ".join(f"openExt{i}: () => this.setState({{ ext: {i}, extSaved: false }})" for i in range(n))
+    dones = ", ".join(f"extDone{i}: this.state.extSavedFor === {i}" for i in range(n))
+    return f"""state = {{ share: false, copied: false, tab: "books", menu: false, ext: -1, extSaved: false, extSavedFor: -1 }};
+  renderVals() {{
+    const names = {names};
+    return {{ shareOpen: this.state.share, openShare: () => this.setState({{ share: true, copied: false, menu: false }}),
+             closeShare: () => this.setState({{ share: false, copied: false }}),
+             menuOpen: this.state.menu, toggleMenu: () => this.setState({{ menu: !this.state.menu }}),
+             copied: this.state.copied, copyCode: () => this.setState({{ copied: true }}),
              booksOn: this.state.tab === "books", stuOn: this.state.tab === "students",
              tabBooks: this.state.tab === "books" ? "on" : "", tabStu: this.state.tab === "students" ? "on" : "",
-             showBooks: () => this.setState({ tab: "books" }), showStu: () => this.setState({ tab: "students" }) };
-  }"""
+             showBooks: () => this.setState({{ tab: "books" }}), showStu: () => this.setState({{ tab: "students" }}),
+             extOpen: this.state.ext >= 0, extName: this.state.ext >= 0 ? names[this.state.ext] : (this.state.extSavedFor >= 0 ? names[this.state.extSavedFor] : ""),
+             closeExt: () => this.setState({{ ext: -1 }}), saveExt: () => this.setState({{ ext: -1, extSaved: true, extSavedFor: this.state.ext }}),
+             extSaved: this.state.extSaved, {opens}, {dones} }};
+  }}"""
+
+def ext_dialog(S, L):
+    """V2 proposal (24 Sep: per-student due-date extension is common in higher education and lives at the
+    study plan's student level, not in the course's dates). Opened from a row on the Student tab: the
+    course's AI Feedback LOs with their window, and one editable end date for this student; the first row is
+    drawn already moved a week later. Save → snackbar and a chip on the student's row."""
+    rows = ""
+    first = True
+    for ch, topics in S["t_av_rows"]:
+        for tp, los in topics:
+            for name, kind, start, end, resub in los:
+                if kind != "fb" or not end: continue
+                own = end
+                extra = ""
+                if first:
+                    # the extension itself: a week after the course's end date
+                    d = end.split(",")[0]; y, m, dd = d.split("/")
+                    import datetime
+                    nd = datetime.date(int(y), int(m), int(dd)) + datetime.timedelta(days=7)
+                    own = f"{nd.year}/{nd.month:02d}/{nd.day:02d},{end.split(',')[1]}"
+                    extra = f'<span class="tchip type" style="margin-left:8px">{S["t_ext_plus"]}</span>'
+                    first = False
+                rows += (f'<tr><td style="white-space:normal;min-width:220px"><span class="name-cell"><span class="lm-type" style="width:22px;height:22px;flex:0 0 22px">{mi("rateReview", 14)}</span><span style="font-weight:500">{name}</span></span></td>'
+                         f'<td class="num" style="white-space:nowrap;color:#757575">{start} – {end}</td>'
+                         f'<td style="white-space:nowrap"><span style="display:inline-flex;align-items:center"><input class="tinput" style="width:170px;height:36px;padding:0 8px;font-size:13px" value="{own}">{extra}</span></td></tr>')
+    head = "".join(f"<th>{c}</th>" for c in S["t_ext_cols"])
+    saved = S["t_ext_saved"].replace("{name}", "{{extName}}")
+    return f'''<sc-if value="{{{{extOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tscrim">
+  <div class="dlg" style="max-width:820px">
+    <div class="dlg-head"><h2 style="display:flex;align-items:center;gap:10px">{S["t_ext_title"]} — {{{{extName}}}}<span class="tchip new">{S["t_ext_v2"]}</span></h2><button class="ticon" onClick="{{{{closeExt}}}}" aria-label="{S["t_cancel"]}">{mi("close", 24)}</button></div>
+    <div class="dlg-body">
+      <div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["t_ext_lead"]}</span></div>
+      <div class="tpaper" style="overflow:hidden"><div class="table-scroll"><table class="m" style="font-size:13px"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></div></div>
+    </div>
+    <div class="dlg-foot"><button class="tbtn" onClick="{{{{closeExt}}}}">{S["t_cancel"]}</button><button class="tbtn contained" onClick="{{{{saveExt}}}}">{S["t_save"]}</button></div>
+  </div>
+</div></sc-if>
+<sc-if value="{{{{extSaved}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack" role="status" style="z-index:130">{mi("checkCircle", 20)}{saved}</div></sc-if>'''
 
 def student_tab(S, L):
     """StudentTab.tsx as production lays it out: the 生徒情報 Student Info head with its 変更 Action menu
     (StudentsListAction), the name search and filter chips (StudentsListFormFilterAdvanced), then
     StudentsListTable — checkbox, Student Name (a link), Academic Year, Location, Enrollment Date
-    (yyyy/LL/dd - yyyy/LL/dd), Class, School, Study Plan — exactly production's columns. A 参加方法 Joined via
-    column was drawn and dropped (PM, 23 Sep: no separate column required); how a student got in is kept in
-    the data only. The self-joined student shows as production would show them: no class, no study plan yet."""
+    (yyyy/LL/dd - yyyy/LL/dd), Class, School — production's columns minus Study Plan: with the course's dates
+    auto-creating the study plan and enrolling every student (24 Sep), the column has nothing to say to a
+    university tenant. A 参加方法 Joined via column was drawn and dropped (PM, 23 Sep). One row action is
+    added as a V2 proposal: 期限を延長 Extend due date → a dialog that moves this student's end date only."""
     chips = "".join(f'<span class="tchip">{f}{mi("expandMore", 16)}</span>' for f in S["t_stu_filters"])
     head = ('<th style="width:44px;padding:0 8px"><span class="check"><span class="cbx"></span></span></th>'
-            + "".join(f"<th>{c}</th>" for c in S["t_stu_cols"]))
+            + "".join(f"<th>{c}</th>" for c in S["t_stu_cols"]) + '<th style="width:56px"></th>')
     trs = ""
-    for (name, sid, year, loc, period, cls, school, plan, how, detail) in S["t_stu_rows"]:
+    for i, (name, sid, year, loc, period, cls, school, plan, how, detail) in enumerate(S["t_stu_rows"]):
+        done = f'<sc-if value="{{{{extDone{i}}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip type" style="margin-top:4px">{mi("event", 12)}{S["t_ext_chip"]}</span></sc-if>'
         trs += (f'<tr><td style="padding:0 8px"><span class="check"><span class="cbx"></span></span></td>'
-                f'<td><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a><br><span class="cell-muted" style="font-size:12px">{sid}</span></td>'
-                f'<td>{year}</td><td>{loc}</td><td class="num" style="white-space:nowrap">{period}</td><td>{cls}</td><td>{school}</td><td>{plan}</td></tr>')
+                f'<td><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a><br><span class="cell-muted" style="font-size:12px">{sid}</span>{done}</td>'
+                f'<td>{year}</td><td>{loc}</td><td class="num" style="white-space:nowrap">{period}</td><td>{cls}</td><td>{school}</td>'
+                f'<td style="text-align:right;padding:6px 12px"><button class="ticon sm" style="color:#757575" onClick="{{{{openExt{i}}}}}" title="{S["t_ext_action"]}">{mi("event", 20)}</button></td></tr>')
     return f'''<div style="display:flex;flex-direction:column;gap:16px">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;height:36px">
       <h3 style="margin:0;font-size:16px;font-weight:500">{S["t_stu_h"]}</h3>
@@ -3734,8 +3794,9 @@ def t_course(S, L):
   <sc-if value="{{{{stuOn}}}}" hint-placeholder-val="{{{{false}}}}">{student_tab(S, L)}</sc-if>
 </div>
 </div>
-{share_dialog(S, L)}'''
-    return tpage(S, "T-Course", S["t_titles"]["course"], body, logic=TCOURSE_LOGIC)
+{share_dialog(S, L)}
+{ext_dialog(S, L)}'''
+    return tpage(S, "T-Course", S["t_titles"]["course"], body, logic=tcourse_logic(S))
 
 TAV_LOGIC = """state = { edit: false, saved: false };
   renderVals() {
@@ -3775,6 +3836,9 @@ def av_table(S, L, edit=False):
                 bold = ' style="font-weight:500"' if fb else ""
                 lo_cell = (f'<span class="name-cell"><span class="lm-type" style="width:22px;height:22px;flex:0 0 22px">{mi(icon[kind], 14)}</span>'
                            f'<span{bold}>{name}</span>{fb_chip}</span>')
+                if not start and not end:   # an LO added to the book after the dates were set: no window yet
+                    lo_cell += f'<span class="cell-muted" style="display:block;font-size:12px;margin:4px 0 0 30px">{mi("warning", 14, "#C77700")} {S["t_av_nodates"]}</span>'
+                    if edit: lo_cell = lo_cell.replace(S["t_av_nodates"], S["t_av_nodates"].split(" ・ ")[0].split(" · ")[0])
                 if resub is None:
                     rs = f'<span class="dd">{S["t_av_none"]}</span>'
                 elif resub == "off":
@@ -3859,7 +3923,7 @@ TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
            "T3 · Created → LO content — material, requirements, criteria", "T4 · LO settings tab — what the dialog collected, read-only", "T5 · Back in the tree — Unpublished until published",
-           "T6 · Course Management — the course list, two courses on one book, Add course, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course",
+           "T6 · Course Management — the course list, two courses on one book, Add course, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab, Extend due date (V2)", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course; an LO with no window yet",
            "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
            "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback"]
 for lang, S in (("ja", JA), ("en", EN)):
@@ -3877,8 +3941,8 @@ MNW = 375
 TNW = 640
 TNOTES = {
     "tc1": "COURSE MANAGEMENT (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates student submissions). This is CourseList as the syllabus squad renders it (CourseList.tsx / CourseTable.tsx): the page title, the keyword search, コースの追加 Add course, and the table — Course Name with its avatar (a link into the course), Teaching Method (個別 Individual / 集団 Group), Course Type, Subject. Two courses carry the statistics book: the Thursday class and a Friday class. Both link the same book (T1), both list the same LOs, and each sets its own dates on T8 — that is the 'multiple schedule management' the move to the course buys, and why the LO dialog (T2) and the LO settings tab (T4) no longer carry dates. Nothing on this board is new for AI Feedback; the AI Feedback LO is just one more learning objective whose window the course sets. JOIN BY QR CODE (comment, 23 Sep: add a way for students to join the class by QR code, the function the AI Tutor page already has): the share icon at the end of each course row is the AI Tutor class list's (ClassListTable.tsx: MIconButtonBase + ShareIcon → AIClassShare), and it opens production's アクセスを共有 Share Access dialog as it is — the QR code the student scans to join (QRCode.toCanvas of the class code, error correction H; here a real QR of the code 7QK4M2) with ダウンロード Download, then コード Code, the same code typed instead, with コピー Copy and its snackbar. Scanning it enrols the student in the course, so the course's LOs — the AI Feedback LO among them — appear on their course tab from each LO's start date (T8). Click the share icon — it works; T7 has the same dialog behind its Share Access button. ADD COURSE (comment, 23 Sep: the add-course UX flow, from production): コースの追加 Add course opens DialogUpsertCourse — a full-screen dialog (MDialogCustom fullScreen) with the form on one paper (CourseForm), the fields in production's order: the course icon (AvatarInputHF, 112px, the camera button), a dashed divider, コース名 Course Name (required), 拠点 Location (SelectLocationInputHF — chips; a location tree dialog behind it), コース指導法種別 Teaching Method (required; 個別 Individual / 集団 Group; changing it later asks for confirmation), コースタイプ Course Type, 科目 Subject, 教材 Book (multiple; production also shows an AI学習 Adaptive switch when that feature setting is on — left out here, PM 23 Sep). It is drawn filled in: a third class of the statistics course, linking the same book — 保存 Save adds it to the list (highlighted, 1-5 / 5) with production's 正常に作成されました snackbar (commonMessage.createdSuccess); キャンセル Cancel closes. The book is linked at creation, or later from ⋮ › Assign Books on T7; the course's dates then follow on T8. Nothing here is new for AI Feedback. Click the first course →",
-    "tc2": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head and the book table (production also shows an info alert here, courseBook.infoMessage, about setting availability dates per book — removed, PM 23 Sep) (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. the ⋮ opens production's menu — 編集する Edit, 教材を割り当てる Assign Books — with アクセスを共有 Share Access added as its third item (PM, 23 Sep: in the 3-dot menu, not a button); it opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. THE STUDENT TAB (comment, 23 Sep: add the student list here — who joined by code or was added manually). Click 生徒 Student — it works: production's StudentTab.tsx as it is — 生徒情報 Student Info with its 変更 Action menu (assign to class, assign study plans, …), the student-name search with the 学年度 / クラス / 学校 / 拠点 filter chips, and StudentsListTable's columns: Student Name (a link to the student's dashboard, T15), Academic Year, Location, Enrollment Date (yyyy/LL/dd - yyyy/LL/dd, the student's course period), Class, School, Study Plan — production's columns, nothing added. A 参加方法 Joined via column (QR code / code entered / added manually) was drawn and dropped: for AI Feedback nothing downstream depends on how a student got in (PM, 23 Sep: no separate column required). Seven students, five of whom joined by QR or code on the first two Thursdays; the last one has no class or study plan yet, which is what a self-joined student looks like until the teacher assigns them, and the empty cells are what says so. Click the book →",
-    "tc3": "LEARNING OBJECTIVES AVAILABILITY (CourseBookDetail.tsx → CourseBookDetailContent → LOAvailabilityTable), production's page for exactly this: per course, per book, the start and end date of every LO in the book, in one table — Chapter Name, Topic Name, LO Name (with its type icon), Start Date, End Date — with chapter and topic cells merged over their rows, 編集 Edit Date switching every date cell to an input (yyyy/mm/dd, hh:mm) and the actions to キャンセル / 保存, and インポート/エクスポート for CSV (useImportCSVLOAvailability / useExportCSVLOAvailability). Save posts BulkUpdateLOAvailability and shows the success snackbar (click 編集, then 保存 — both work). WHAT THE AI FEEDBACK LOs GET HERE: nothing new in kind — their window is a Start Date and an End Date like any LO's, and the End Date is the due date: the LO shows on the student's course tab from the start date and is not clickable before it; it enters the To-do on the start date; submission and replacement run until the end date; the teacher reviews after it; a late submission is refused unless this end date is extended here (PM, 22 Sep). ONE ADDED COLUMN, A PROPOSAL: 再提出締切 Resubmission Due, shown only for LOs whose 再提出を許可する switch is on (T2/T4) — the PM left 'where the resubmission date lives' open when dates moved to the course, and this is the one place all the LO's dates can sit together; it is drawn to be decided, not decided. DATA SOURCE (PM, 24 Sep: start and end dates should be based on the study plan backend): the Start Date and End Date here are the course's study plan items' available_from / available_to — the same rows Study Plan Management edits — not a separate availability table. Save writes them to the study plan; a change made in 学習計画管理 Study Plan Management shows here, and the student's course tab, To-do and the dashboards all read the same dates. The proposed Resubmission Due would be one more study-plan-item field. The alert at the top says this book is assigned to two courses, that availability is set per course, and that the dates are the study plan's; the Friday class has its own copy of this page with later dates (T4 lists both). Production's Chapter/Topic/LO values here match T1's tree and T13's dashboard rows; the dates match the student's course tab (screen 1: 第7回 11月6日 公開, 第8回 11月20日から) and the Topic Dashboard's 開始 / 締切 line.",
+    "tc2": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head and the book table (production also shows an info alert here, courseBook.infoMessage, about setting availability dates per book — removed, PM 23 Sep) (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. the ⋮ opens production's menu — 編集する Edit, 教材を割り当てる Assign Books — with アクセスを共有 Share Access added as its third item (PM, 23 Sep: in the 3-dot menu, not a button); it opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. THE STUDENT TAB (comment, 23 Sep: add the student list here — who joined by code or was added manually). Click 生徒 Student — it works: production's StudentTab.tsx as it is — 生徒情報 Student Info with its 変更 Action menu (assign to class, assign study plans, …), the student-name search with the 学年度 / クラス / 学校 / 拠点 filter chips, and StudentsListTable's columns: Student Name (a link to the student's dashboard, T15), Academic Year, Location, Enrollment Date (yyyy/LL/dd - yyyy/LL/dd, the student's course period), Class, School, Study Plan — production's columns, nothing added. A 参加方法 Joined via column (QR code / code entered / added manually) was drawn and dropped: for AI Feedback nothing downstream depends on how a student got in (PM, 23 Sep: no separate column required). Seven students, five of whom joined by QR or code on the first two Thursdays; the last one has no class yet. NO STUDY PLAN COLUMN (24 Sep: the dates on T8 auto-create the course's study plan in the back end and every enrolled student — QR-joined ones included — is on it, so there is nothing to assign and nothing to show a university tenant; production's Study Plan column is hidden here). EXTEND DUE DATE, A V2 PROPOSAL (24 Sep: per-student extension is common in higher education — Canvas, Moodle — and lives at the study plan's student level, never in the course's dates): the calendar icon at the end of each row opens 期限の延長 for that student — the course's AI Feedback LOs with their window, and one editable end date for this student, the first drawn a week later; the course's dates on T8 do not move. 保存 Save closes it with a snackbar and marks the row 締切延長あり. Click the icon on any row — it works. Click the book →",
+    "tc3": "LEARNING OBJECTIVES AVAILABILITY (CourseBookDetail.tsx → CourseBookDetailContent → LOAvailabilityTable), production's page for exactly this: per course, per book, the start and end date of every LO in the book, in one table — Chapter Name, Topic Name, LO Name (with its type icon), Start Date, End Date — with chapter and topic cells merged over their rows, 編集 Edit Date switching every date cell to an input (yyyy/mm/dd, hh:mm) and the actions to キャンセル / 保存, and インポート/エクスポート for CSV (useImportCSVLOAvailability / useExportCSVLOAvailability). Save posts BulkUpdateLOAvailability and shows the success snackbar (click 編集, then 保存 — both work). WHAT THE AI FEEDBACK LOs GET HERE: nothing new in kind — their window is a Start Date and an End Date like any LO's, and the End Date is the due date: the LO shows on the student's course tab from the start date and is not clickable before it; it enters the To-do on the start date; submission and replacement run until the end date; the teacher reviews after it; a late submission is refused unless this end date is extended here (PM, 22 Sep). ONE ADDED COLUMN, A PROPOSAL: 再提出締切 Resubmission Due, shown only for LOs whose 再提出を許可する switch is on (T2/T4) — the PM left 'where the resubmission date lives' open when dates moved to the course, and this is the one place all the LO's dates can sit together; it is drawn to be decided, not decided. DATA SOURCE (PM, 24 Sep: start and end dates should be based on the study plan backend): the Start Date and End Date here are the course's study plan items' available_from / available_to — the same rows Study Plan Management edits — not a separate availability table. Save writes them to the study plan; a change made in 学習計画管理 Study Plan Management shows here, and the student's course tab, To-do and the dashboards all read the same dates. The proposed Resubmission Due would be one more study-plan-item field. AN LO WITH NO WINDOW YET: the last row, 第9回 演習レポート（追加）, was added to the book after the dates were set — its Start and End are empty and a warning line says it is shown to students from publish until dates are entered; in edit mode its inputs are empty. The alert at the top says this book is assigned to two courses, that availability is set per course, and that the dates are the study plan's; the Friday class has its own copy of this page with later dates (T4 lists both). Production's Chapter/Topic/LO values here match T1's tree and T13's dashboard rows; the dates match the student's course tab (screen 1: 第7回 11月6日 公開, 第8回 11月20日から) and the Topic Dashboard's 開始 / 締切 line.",
     "t1": "TEACHER, BACK OFFICE — rebuilt on 19 Sep against the prototype generated from production (school-portal-admin, syllabus squad). This is BookDetail as the code renders it: breadcrumb Book Management / book, the book title with its status chip and Add chapter top-right, chapters as accordions (blue left edge when open, N Topic(s), ↑ ↓ ⋮), topics as accordions inside them, and each learning material as a row with its type tile, the name as a link, the AI Tutor sparkle where that is on, and its publish chip. The nav follows the live LMS 2.0 tenant the PM screenshotted, which carries more squads than the syllabus one. Nothing here is new; + Add LO is where the new type enters →",
     "t2": "DialogCreateLearningMaterial, unchanged in shape: one 900-px dialog, General Info then Settings, Cancel / Confirm. Production chooses the fields by LO type (getVisibleFieldsByLMType) — Learning Objective gets Manual Grading, Practice Mode, AI Tutor…; this is the AI Feedback branch. General Info: type, LO name, External LO ID, the description the student sees. Settings (PM, 19 Sep, then 22 Sep): the dates are GONE from this dialog — the start date, the due date and the resubmission deadline belong to the course (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates submissions), so the 公開期間と締切 block is now a pointer to Course Management › Books › Learning Objectives Availability (T8), where one book assigned to two courses runs on two schedules; 再提出を許可する stays as the switch alone, its deadline set with the other dates on the course; 提出方法 — which of file / photos / typed the LO accepts, the 500-character limit riding with typed; 先生の確認 — the teacher-in-the-loop switch; off, a neutral notice says feedback goes out automatically after the due date. Click the type field to see where AI Feedback sits among the six existing types; the switches and checkboxes work. The type is chosen here once: after creation it cannot be changed (PM, 20 Sep) — the edit dialog on T4 shows it as a fixed field. Confirm →",
     "t3": "Where Confirm lands (PM, 19 Sep): straight on the new LO's own page, Content tab, with the created snackbar — not back in the tree, because for this type the next thing the teacher does is upload the material. The LO is UNPUBLISHED, as every new learning material is in production; Publish is the action top-right, never part of creation — click it (it works in the prototype, PM 20 Sep): the chip flips to 公開中 Published, the button goes away and a snackbar confirms; T5 shows the tree as it is before that click; the 設定 tab (T4) lists what the dialog collected. The page is the same one a regular LO opens to for authoring its questions; its tabs are Content and Settings only — 提出状況を見る jumps to Course › Submission Grading, where submissions are processed. This is where the pre-submission checklist comes from (PM, 19 Sep: 'extracted from teacher's content'): upload the brief and the marking criteria, 提出条件と観点を生成する (the button names its two outputs), and 提出の基本条件 comes back as an editable list where every row carries its source (課題説明 p.1, 評価基準 2.(3)). These are the structural checks the student sees on the submit screen and that run when a file is chosen; the switch on the card turns that check off for an LO that does not need one (PM, 19 Sep) — off, nothing is shown or checked. コメントの観点 (the rubric) is generated by the LLM as LaTeX from the same material and shown as one rendered block the teacher can edit or regenerate (PM, 19 Sep) — not as separate tags. Conditions gate the submission; the rubric shapes the comments. 生徒に表示される画面を見る jumps to the student's assignment screen.",

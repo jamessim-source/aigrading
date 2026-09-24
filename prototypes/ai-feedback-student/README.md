@@ -105,9 +105,13 @@ already builds the course.
   types the code is enrolled and sees the course's LOs from their start dates.
   The course's **Student** tab on `T-Course` (production's `StudentTab`: Student
   Info, Action, search and filters, the student table) lists who is in the
-  course, production's columns only; a Joined via column was proposed and
-  dropped (PM, 23 Sep). A self-joined student shows no class or study plan
-  until the teacher assigns them.
+  course, production's columns minus Study Plan (24 Sep: the dates on
+  `T-CourseBook` auto-create the course's study plan and enrol every student,
+  so the column has nothing to show a university tenant). A Joined via column
+  was proposed and dropped (PM, 23 Sep). **Extend due date** (V2 proposal): a
+  row action opens a dialog with this student's end date per AI Feedback LO;
+  the course's dates stay. `T-CourseBook` also shows an LO added after the
+  dates were set — empty Start/End with a warning line.
 - **Add course**: `T-Courses` › Add course opens production's full-screen
   `DialogUpsertCourse` with `CourseForm` (course icon, Course Name, Location,
   Teaching Method, Course Type, Subject, Book); Save adds the

@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-24T02:44:21Z"
+    "at": "2026-09-24T05:12:02Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -351,7 +351,7 @@
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab (JA)",
+      "title": "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab, Extend due date (V2) (JA)",
       "is_interactive": true
     },
     "T-CourseBook.dc.html": {
@@ -359,7 +359,7 @@
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course (JA)",
+      "title": "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course; an LO with no window yet (JA)",
       "is_interactive": true
     },
     "T-Queue.dc.html": {
@@ -471,7 +471,7 @@
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab (EN)",
+      "title": "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab, Extend due date (V2) (EN)",
       "is_interactive": true
     },
     "T-CourseBook-en.dc.html": {
@@ -479,7 +479,7 @@
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course (EN)",
+      "title": "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course; an LO with no window yet (EN)",
       "is_interactive": true
     },
     "T-Queue-en.dc.html": {
@@ -844,14 +844,14 @@
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head and the book table (production also shows an info alert here, courseBook.infoMessage, about setting availability dates per book — removed, PM 23 Sep) (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. the ⋮ opens production's menu — 編集する Edit, 教材を割り当てる Assign Books — with アクセスを共有 Share Access added as its third item (PM, 23 Sep: in the 3-dot menu, not a button); it opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. THE STUDENT TAB (comment, 23 Sep: add the student list here — who joined by code or was added manually). Click 生徒 Student — it works: production's StudentTab.tsx as it is — 生徒情報 Student Info with its 変更 Action menu (assign to class, assign study plans, …), the student-name search with the 学年度 / クラス / 学校 / 拠点 filter chips, and StudentsListTable's columns: Student Name (a link to the student's dashboard, T15), Academic Year, Location, Enrollment Date (yyyy/LL/dd - yyyy/LL/dd, the student's course period), Class, School, Study Plan — production's columns, nothing added. A 参加方法 Joined via column (QR code / code entered / added manually) was drawn and dropped: for AI Feedback nothing downstream depends on how a student got in (PM, 23 Sep: no separate column required). Seven students, five of whom joined by QR or code on the first two Thursdays; the last one has no class or study plan yet, which is what a self-joined student looks like until the teacher assigns them, and the empty cells are what says so. Click the book →"
+      "text": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head and the book table (production also shows an info alert here, courseBook.infoMessage, about setting availability dates per book — removed, PM 23 Sep) (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. the ⋮ opens production's menu — 編集する Edit, 教材を割り当てる Assign Books — with アクセスを共有 Share Access added as its third item (PM, 23 Sep: in the 3-dot menu, not a button); it opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. THE STUDENT TAB (comment, 23 Sep: add the student list here — who joined by code or was added manually). Click 生徒 Student — it works: production's StudentTab.tsx as it is — 生徒情報 Student Info with its 変更 Action menu (assign to class, assign study plans, …), the student-name search with the 学年度 / クラス / 学校 / 拠点 filter chips, and StudentsListTable's columns: Student Name (a link to the student's dashboard, T15), Academic Year, Location, Enrollment Date (yyyy/LL/dd - yyyy/LL/dd, the student's course period), Class, School, Study Plan — production's columns, nothing added. A 参加方法 Joined via column (QR code / code entered / added manually) was drawn and dropped: for AI Feedback nothing downstream depends on how a student got in (PM, 23 Sep: no separate column required). Seven students, five of whom joined by QR or code on the first two Thursdays; the last one has no class yet. NO STUDY PLAN COLUMN (24 Sep: the dates on T8 auto-create the course's study plan in the back end and every enrolled student — QR-joined ones included — is on it, so there is nothing to assign and nothing to show a university tenant; production's Study Plan column is hidden here). EXTEND DUE DATE, A V2 PROPOSAL (24 Sep: per-student extension is common in higher education — Canvas, Moodle — and lives at the study plan's student level, never in the course's dates): the calendar icon at the end of each row opens 期限の延長 for that student — the course's AI Feedback LOs with their window, and one editable end date for this student, the first drawn a week later; the course's dates on T8 do not move. 保存 Save closes it with a snackbar and marks the row 締切延長あり. Click the icon on any row — it works. Click the book →"
     },
     "tc3": {
       "x": 10640,
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "LEARNING OBJECTIVES AVAILABILITY (CourseBookDetail.tsx → CourseBookDetailContent → LOAvailabilityTable), production's page for exactly this: per course, per book, the start and end date of every LO in the book, in one table — Chapter Name, Topic Name, LO Name (with its type icon), Start Date, End Date — with chapter and topic cells merged over their rows, 編集 Edit Date switching every date cell to an input (yyyy/mm/dd, hh:mm) and the actions to キャンセル / 保存, and インポート/エクスポート for CSV (useImportCSVLOAvailability / useExportCSVLOAvailability). Save posts BulkUpdateLOAvailability and shows the success snackbar (click 編集, then 保存 — both work). WHAT THE AI FEEDBACK LOs GET HERE: nothing new in kind — their window is a Start Date and an End Date like any LO's, and the End Date is the due date: the LO shows on the student's course tab from the start date and is not clickable before it; it enters the To-do on the start date; submission and replacement run until the end date; the teacher reviews after it; a late submission is refused unless this end date is extended here (PM, 22 Sep). ONE ADDED COLUMN, A PROPOSAL: 再提出締切 Resubmission Due, shown only for LOs whose 再提出を許可する switch is on (T2/T4) — the PM left 'where the resubmission date lives' open when dates moved to the course, and this is the one place all the LO's dates can sit together; it is drawn to be decided, not decided. DATA SOURCE (PM, 24 Sep: start and end dates should be based on the study plan backend): the Start Date and End Date here are the course's study plan items' available_from / available_to — the same rows Study Plan Management edits — not a separate availability table. Save writes them to the study plan; a change made in 学習計画管理 Study Plan Management shows here, and the student's course tab, To-do and the dashboards all read the same dates. The proposed Resubmission Due would be one more study-plan-item field. The alert at the top says this book is assigned to two courses, that availability is set per course, and that the dates are the study plan's; the Friday class has its own copy of this page with later dates (T4 lists both). Production's Chapter/Topic/LO values here match T1's tree and T13's dashboard rows; the dates match the student's course tab (screen 1: 第7回 11月6日 公開, 第8回 11月20日から) and the Topic Dashboard's 開始 / 締切 line."
+      "text": "LEARNING OBJECTIVES AVAILABILITY (CourseBookDetail.tsx → CourseBookDetailContent → LOAvailabilityTable), production's page for exactly this: per course, per book, the start and end date of every LO in the book, in one table — Chapter Name, Topic Name, LO Name (with its type icon), Start Date, End Date — with chapter and topic cells merged over their rows, 編集 Edit Date switching every date cell to an input (yyyy/mm/dd, hh:mm) and the actions to キャンセル / 保存, and インポート/エクスポート for CSV (useImportCSVLOAvailability / useExportCSVLOAvailability). Save posts BulkUpdateLOAvailability and shows the success snackbar (click 編集, then 保存 — both work). WHAT THE AI FEEDBACK LOs GET HERE: nothing new in kind — their window is a Start Date and an End Date like any LO's, and the End Date is the due date: the LO shows on the student's course tab from the start date and is not clickable before it; it enters the To-do on the start date; submission and replacement run until the end date; the teacher reviews after it; a late submission is refused unless this end date is extended here (PM, 22 Sep). ONE ADDED COLUMN, A PROPOSAL: 再提出締切 Resubmission Due, shown only for LOs whose 再提出を許可する switch is on (T2/T4) — the PM left 'where the resubmission date lives' open when dates moved to the course, and this is the one place all the LO's dates can sit together; it is drawn to be decided, not decided. DATA SOURCE (PM, 24 Sep: start and end dates should be based on the study plan backend): the Start Date and End Date here are the course's study plan items' available_from / available_to — the same rows Study Plan Management edits — not a separate availability table. Save writes them to the study plan; a change made in 学習計画管理 Study Plan Management shows here, and the student's course tab, To-do and the dashboards all read the same dates. The proposed Resubmission Due would be one more study-plan-item field. AN LO WITH NO WINDOW YET: the last row, 第9回 演習レポート（追加）, was added to the book after the dates were set — its Start and End are empty and a warning line says it is shown to students from publish until dates are entered; in edit mode its inputs are empty. The alert at the top says this book is assigned to two courses, that availability is set per course, and that the dates are the study plan's; the Friday class has its own copy of this page with later dates (T4 lists both). Production's Chapter/Topic/LO values here match T1's tree and T13's dashboard rows; the dates match the student's course tab (screen 1: 第7回 11月6日 公開, 第8回 11月20日から) and the Topic Dashboard's 開始 / 締切 line."
     },
     "t6": {
       "x": 12160,
