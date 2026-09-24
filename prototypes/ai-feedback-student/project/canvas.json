@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-24T12:54:30Z"
+    "at": "2026-09-24T14:41:24Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1173,7 +1173,7 @@
       "y": 9760,
       "w": 640,
       "maxH": 520,
-      "text": "THE PRACTICE LO's PAGE (C10.3): the linked source LO (a link to P2), the prepared source questions (three; the stock is never shown to students), the sets students created (12, by 5 of 30 students) with a way into the dashboard, its availability — a start date set in Course Management with no end date, because a practice LO has no deadline (T8 shows the row with 開始 only) — and two read-only statements: completion status none by design, teacher/admin override none (no delete, alter or regenerate). Where Confirm lands, with the created snackbar. 'Visible to students as' describes the card on the course tab (P4, P10)."
+      "text": "THE PRACTICE LO's PAGE (C10.3): Settings shows ONLY the linked source LO (a link to P2) — PM, 24 Sep: \"Show only linked source LO\". What was on the page before and now lives here as record: the prepared source questions (three; the stock is never shown to students), the sets students created (12, by 5 of 30 students — the dashboard button in the header leads there), its availability (a start date set in Course Management with no end date, because a practice LO has no deadline — T8 shows the row with 開始 only), no completion status (C3), and no teacher/admin override (sets cannot be deleted, altered or regenerated). Below the settings: how it looks to students (the ✦ card with the set count only, no completion chip). Header: ダッシュボードで見る, 編集する (reopens the dialog; the type is locked)."
     },
     "p_P-Sets": {
       "x": 4560,

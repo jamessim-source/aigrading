@@ -187,10 +187,11 @@ Feedback LO rather than in a separate demo:
   gate (`Syllabus_BackOffice_AIPractice` + `syllabus.ai_practice.is_enabled`).
   The source LO's Settings tab carries **Available as practice source** —
   locked with the reason once students have sets — and **Linked by**; the tree
-  marks it 演習の元. The practice LO's own page shows the linked LO, the
-  prepared source questions (three; stock counts never reach students), the
-  sets created, its start date and no end date, and states what it has not:
-  no completion status, no mastery, no delete, no override.
+  marks it 演習の元. The practice LO's own page shows only the linked source LO
+  in Settings (PM, 24 Sep), plus how it looks to students and a dashboard
+  button; the set count, the start-only availability, and the facts that it
+  has no completion status, mastery, delete or override are recorded in the
+  board's note.
 - **Course Management (T8).** The practice LO row carries a Start Date only —
   a practice LO has no deadline — under the same study-plan-backed dates.
 - **Dashboards (T13–T15).** Topic mode: one insight line under 7-1 (sets
