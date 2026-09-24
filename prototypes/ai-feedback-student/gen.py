@@ -3998,7 +3998,7 @@ P_JA = dict(
     p_sets_h="セット", p_set_n="セット{i}", p_done="完了", p_notdone="未完了", p_q_n="{d}/{t}問", p_correct_q="正解 {c}問",
     p_print="印刷する", p_add_set="演習を追加する", p_create_set="演習セットをつくる", p_from_pdf="第7回 講義資料 の PDF から",
     p_history="学習履歴", p_hist_row="{r}/{n}問 正解", p_hist=[("11月9日 14:02", 1, 5, 6)],
-    p_cta_done_note="セット1 は完了しています（解き直しはありません）", p_cta_print="セット1 を印刷する",
+    p_cta_done_note="セット1 は完了しています（解き直しはありません）", p_cta_print="セット1 を印刷する", p_cta_print2="セット2 を印刷する",
     p_cta_resume_note="セット2 ・ つづき（2/4）", p_resume="つづきから始める", p_start="演習を始める",
     p_no_status="完了ステータスやマスターレベルはありません。セットは何度でも追加できます。",
     # student — crop
@@ -4060,7 +4060,7 @@ P_EN = dict(
     p_sets_h="Sets", p_set_n="Set {i}", p_done="Done", p_notdone="Not done", p_q_n="{d}/{t} questions", p_correct_q="{c} correct",
     p_print="Print set", p_add_set="Add practice", p_create_set="Create practice set", p_from_pdf="from the Session 7 lecture slides PDF",
     p_history="History", p_hist_row="{r}/{n} correct", p_hist=[("9 Nov, 14:02", 1, 5, 6)],
-    p_cta_done_note="Set 1 is completed (no re-practice)", p_cta_print="Print set 1",
+    p_cta_done_note="Set 1 is completed (no re-practice)", p_cta_print="Print set 1", p_cta_print2="Print set 2",
     p_cta_resume_note="Set 2 · continue (2/4)", p_resume="Continue", p_start="Start practice",
     p_no_status="No completion status and no mastery level. Sets can be added at any time.",
     p_crop_title="Session 7 lecture slides (PDF)", p_crop_mode="Make practice", p_crop_hint="Draw frames around the questions in the PDF (several allowed). Same gesture as the \"Mana AI\" crop on the study-guide screen.",
@@ -4277,13 +4277,14 @@ P_SETS_LOGIC = """state = { sel: 2 };
 
 def p_set_rows(S, L, mobile=False):
     """Two set rows (Koki's prototype: tapping a row selects it and the bottom CTA follows; default = the
-    topmost unfinished set), the dashed ＋ row, and the history. Set 1 is completed and printable; Set 2 is 2/4."""
+    topmost unfinished set), the dashed ＋ row, and the history. Set 1 is completed; Set 2 is 2/4. Every set is printable."""
     row_cls = "lo" if not mobile else "lo"
     def row(i, d, t, c, done, sel_hole, pick_hole):
         chip = (f'<span class="chip done">{S["p_done"]}</span>' if done else f'<span class="chip pre">{S["p_notdone"]}</span>')
         extra = f'<span>{S["p_q_n"].format(d=d, t=t)}</span>' + (f'<span>{S["p_correct_q"].format(c=c)}</span>' if done else "")
-        pr = (f'<a class="btn ghost" style="height:36px" href="{fn("P-Print", L)}" aria-label="{S["p_print"]}" title="{S["p_print"]}">{ic("download", 18)}</a>' if done and not mobile
-              else (f'<span class="btn ghost" style="height:36px;padding:0 8px">{ic("download", 18)}</span>' if done else ""))
+        # print is available for every generated set, finished or not (PM, 24 Sep): the sheet is question + options only
+        pr = (f'<a class="btn ghost" style="height:36px" href="{fn("P-Print", L)}" aria-label="{S["p_print"]}" title="{S["p_print"]}">{ic("download", 18)}</a>' if not mobile
+              else f'<span class="btn ghost" style="height:36px;padding:0 8px" aria-label="{S["p_print"]}">{ic("download", 18)}</span>')
         return (f'<button class="{row_cls} {{{{{sel_hole}}}}}" style="border:2px solid transparent" onClick="{{{{{pick_hole}}}}}">{p_ring(d, t)}'
                 f'<span class="t"><b>{S["p_set_n"].format(i=i)}</b><i>{chip}{extra}</i></span>{pr}</button>')
     rows = row(1, 6, 6, 5, True, "sel1", "pick1") + row(2, 2, 4, 1, False, "sel2", "pick2")
@@ -4294,14 +4295,17 @@ def p_set_rows(S, L, mobile=False):
     return rows, add, hist
 
 def p_cta(S, L, mobile=False):
-    """The bottom CTA that follows the selected set: Set 1 (completed) → print; Set 2 → continue at 2/4."""
+    """The bottom CTA that follows the selected set: Set 1 (completed) → print; Set 2 → continue at 2/4, with print beside it
+    (print is available at any point for a generated set — PM, 24 Sep)."""
     go_prac = fn("M-PPractice" if mobile else "P-Practice", L)
     go_print = fn("P-Print", L)
     btn = "mbtn primary" if mobile else "btn primary"
     return (f'<sc-if value="{{{{is1}}}}" hint-placeholder-val="{{{{false}}}}"><div style="display:flex;flex-direction:column;gap:8px;align-items:stretch"><p class="cap" style="text-align:center">{S["p_cta_done_note"]}</p>'
             f'<a class="{btn}" href="{go_print}">{ic("download", 18)}{S["p_cta_print"]}</a></div></sc-if>'
             f'<sc-if value="{{{{is2}}}}" hint-placeholder-val="{{{{true}}}}"><div style="display:flex;flex-direction:column;gap:8px;align-items:stretch"><p class="cap" style="text-align:center">{S["p_cta_resume_note"]}</p>'
-            f'<a class="{btn}" href="{go_prac}">{ic("play", 18)}{S["p_resume"]}</a></div></sc-if>')
+            f'<a class="{btn}" href="{go_prac}">{ic("play", 18)}{S["p_resume"]}</a>'
+            + (f'<span class="mbtn neutral">{ic("download", 18)}{S["p_cta_print2"]}</span>' if mobile else f'<a class="btn ghost" href="{go_print}">{ic("download", 18)}{S["p_cta_print2"]}</a>')
+            + '</div></sc-if>')
 
 # ---------- student, PC ----------
 def p_sets(S, L):
@@ -4775,12 +4779,12 @@ PNOTES = {
     "P-Dialog": "AI PRACTICE — the Similar Questions Practice LO (jamessim-source/AIpractice: docs/prototype-plan.md, docs/c10-finalized-logic.md = PRD C10 as decided by the PM on 24 Sep; the clickable prototype on branch `prototype`). Redrawn here on this canvas's production components and fitted into the Kindai course: the practice LO sits in Topic 7-1 beside the AI Feedback LO, linked to the Session 7 lecture slides PDF, so Book Management, Course Management, the dashboards and the student app all show it as one more LO. THIS BOARD: DialogCreateLearningMaterial with the new frontend sub-type chosen (a plain LEARNING_OBJECTIVE with ai_practice=true, like Random Activity or Paper Submission — not a new proto type). Type name decided: Similar Questions Practice LO (JA 類題演習 LO is a placeholder; Random Activity already uses AI演習). General Info as for any LO; Settings = the required リンク元の LO picker, fed by the book's LOs whose 演習の元として利用可 switch is on — one here — with the empty-state copy (turn the switch on a PDF LO first); the note of the fields hidden for this type; the flag + tenant-setting gate. Creation and linking are one save. One eligible LO may be linked by several practice LOs. Confirm → P3. T2's type menu also lists this type (click it).",
     "P-Source": "THE SOURCE LO (C10.3): the Session 7 lecture slides — a Learning Objective with a study-guide PDF, the only supported source type in v1 — on its Settings tab. Production's read-only settings, then the eligibility switch 演習の元として利用可 Available as practice source: shown only for supported types, default off; ON here, and LOCKED with the reason (students already have practice sets) — disabled with the reason, never an error on save. Below it, リンクされている類題演習 LO: the practice LOs pointing at this LO (one), with its set count. T1's tree marks this LO with a small 演習の元 chip.",
     "P-Detail": "THE PRACTICE LO's PAGE (C10.3): the linked source LO (a link to P2), the prepared source questions (three; the stock is never shown to students), the sets students created (12, by 5 of 30 students) with a way into the dashboard, its availability — a start date set in Course Management with no end date, because a practice LO has no deadline (T8 shows the row with 開始 only) — and two read-only statements: completion status none by design, teacher/admin override none (no delete, alter or regenerate). Where Confirm lands, with the created snackbar. 'Visible to students as' describes the card on the course tab (P4, P10).",
-    "P-Sets": "STUDENT, PC (C10.4 screen 2 — Koki's prototype adopted, the PRD's rules trimming it): the practice LO opened from the course tab. StatBox 問題数 8/10 · 正解数 6 with the done-ratio bar and the round line (1回 10問ずつ). SETS: one selectable row per set — ring x/N, 完了 / 未完了 chip, 正解 k問 and the print icon when complete; tapping a row selects it and the bottom CTA follows (セット1 → 印刷する; セット2 → つづきから始める 2/4; default = the topmost unfinished set). ＋ 演習を追加する always at the end (sets accumulate; creation is never blocked by an unfinished set). 学習履歴: one row per finished round. NO crown, no LO-level completion, no delete, no edit mode, no re-practice (C3). Click a row, then the CTA.",
+    "P-Sets": "STUDENT, PC (C10.4 screen 2 — Koki's prototype adopted, the PRD's rules trimming it): the practice LO opened from the course tab. StatBox 問題数 8/10 · 正解数 6 with the done-ratio bar and the round line (1回 10問ずつ). SETS: one selectable row per set — ring x/N, 完了 / 未完了 chip, 正解 k問 and the PRINT icon on every set — a generated set can be printed at any point, finished or not (PM, 24 Sep); tapping a row selects it and the bottom CTA follows (セット1 → 印刷する; セット2 → つづきから始める 2/4 with 印刷する beside it; default = the topmost unfinished set). ＋ 演習を追加する always at the end (sets accumulate; creation is never blocked by an unfinished set). 学習履歴: one row per finished round. NO crown, no LO-level completion, no delete, no edit mode, no re-practice (C3). Click a row, then the CTA.",
     "P-Crop": "CROP IN PRACTICE MODE (screen 3): the linked LO's study-guide PDF with the existing 'Mana AI' crop — up to five frames, may span pages — its confirm pill relabelled 演習をつくる →, enabled once a frame exists. Click the exercises on p.12–14 to frame them (numbered); the panel counts them and names the destination (the practice LO). With one linked LO the crop opens directly; more than one would show a chooser sheet first. No cross-book, no cross-LO practice.",
     "P-Setup": "切り取った範囲 (screen 4): at Next the frames were uploaded and MATCHED (RAG against the prepared bank) — so NO_MATCH surfaces here, before a count is chosen, and creates nothing. One row per detected question (page, 問題 tag), the read-only 追加先 line, then ONE number per question: a slider 1..max where max = the shallowest remaining stock among the cropped questions (2 here: stock 4/3/2), shown as a stated maximum — 1問につき 最大 2問 — with the live total 全部で 6問つくります; stock totals are never shown. DEMO pill top-right flips to NO_MATCH: the committed copy (PBT-3825: 'Please ensure your crop contains the question in full and try again'), もう一度 切り取る, no set. STOCK_EXHAUSTED is a distinct message (not drawn). 演習を作る → P7.",
     "P-Wait": "WAIT STATE (screen 5), for creation only — never for read-only transitions: 類題を集めています… (retrieval, not generation: RISO is generation-off; the mock calls the similar_question graph so the flow is clickable today). Failure → toast, no partial set left behind. DEMO → the set list with the new set selected.",
     "P-Practice": "PRACTICE (screen 6): the AI Tutor web app's existing MCQ practice module (modules/practice) mounted in a webview via a new ai-practice/embed route — so app and Flutter web share it and LaTeX/JSXGraph keep rendering. One attempt per question: pick an option → the correct one is marked ✓, a wrong pick ✗, the explanation box appears; 次へ →; the last question of the round ends with この回を終える → the round-end screen 演習 おわり！ N問のうち k問 正解, back to the sets. Rounds of 10 (config, pending TL), one history row per finished round. Answers are persisted per question so a reconnect resumes at the first unanswered one — this set resumes at 3/4. A completed set opens read-only; no Try Another. Click an option.",
-    "P-Print": "PRINT (screen 7): the whole set as a sheet — question and options only; the source question and stock counts are never printed; re-rendered on demand, the file is not stored (GET /sets/{id}/print). Print is RISO's primary use, so it sits on every completed set and on the CTA. Real PDF rendering, page caps and JSXGraph print fidelity are the TL's C8 items.",
+    "P-Print": "PRINT (screen 7): the whole set as a sheet — question and options only; the source question and stock counts are never printed; re-rendered on demand, the file is not stored (GET /sets/{id}/print). Print is RISO's primary use, so it sits on every generated set — finished or not (PM, 24 Sep) — and on the CTA. Real PDF rendering, page caps and JSXGraph print fidelity are the TL's C8 items.",
     "M-PSets": "MOBILE (the learner app; the practice screens reuse manabie_ui and the existing BookFlowLOHorizontalCard, not the Duolingo-style redesign): the practice LO screen — the same StatBox, set rows, ＋ row, history and the fixed bottom CTA that follows the selected set. Reached from M1's new ✦ card (set count only, no completion chip).",
     "M-PCrop": "Mobile crop in practice mode: the existing study-guide screen (LearningVideoAndStudyGuideLMSV2Screen) with CropToAskEnabledBuilder forced on and the confirm action relabelled 演習をつくる →; the CTA is fixed at the bottom and stays disabled until a frame exists. Tap the exercises to frame them.",
     "M-PSetup": "Mobile 切り取った範囲: the same rows, destination line, the per-question slider bounded by the shallowest stock and the live total. DEMO pill → NO_MATCH with もう一度 切り取る. 演習を作る → the wait screen.",

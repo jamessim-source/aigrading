@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-24T12:20:59Z"
+    "at": "2026-09-24T12:54:30Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1180,7 +1180,7 @@
       "y": 9660,
       "w": 560,
       "maxH": 520,
-      "text": "STUDENT, PC (C10.4 screen 2 — Koki's prototype adopted, the PRD's rules trimming it): the practice LO opened from the course tab. StatBox 問題数 8/10 · 正解数 6 with the done-ratio bar and the round line (1回 10問ずつ). SETS: one selectable row per set — ring x/N, 完了 / 未完了 chip, 正解 k問 and the print icon when complete; tapping a row selects it and the bottom CTA follows (セット1 → 印刷する; セット2 → つづきから始める 2/4; default = the topmost unfinished set). ＋ 演習を追加する always at the end (sets accumulate; creation is never blocked by an unfinished set). 学習履歴: one row per finished round. NO crown, no LO-level completion, no delete, no edit mode, no re-practice (C3). Click a row, then the CTA."
+      "text": "STUDENT, PC (C10.4 screen 2 — Koki's prototype adopted, the PRD's rules trimming it): the practice LO opened from the course tab. StatBox 問題数 8/10 · 正解数 6 with the done-ratio bar and the round line (1回 10問ずつ). SETS: one selectable row per set — ring x/N, 完了 / 未完了 chip, 正解 k問 and the PRINT icon on every set — a generated set can be printed at any point, finished or not (PM, 24 Sep); tapping a row selects it and the bottom CTA follows (セット1 → 印刷する; セット2 → つづきから始める 2/4 with 印刷する beside it; default = the topmost unfinished set). ＋ 演習を追加する always at the end (sets accumulate; creation is never blocked by an unfinished set). 学習履歴: one row per finished round. NO crown, no LO-level completion, no delete, no edit mode, no re-practice (C3). Click a row, then the CTA."
     },
     "p_P-Crop": {
       "x": 5920,
@@ -1215,7 +1215,7 @@
       "y": 9660,
       "w": 560,
       "maxH": 520,
-      "text": "PRINT (screen 7): the whole set as a sheet — question and options only; the source question and stock counts are never printed; re-rendered on demand, the file is not stored (GET /sets/{id}/print). Print is RISO's primary use, so it sits on every completed set and on the CTA. Real PDF rendering, page caps and JSXGraph print fidelity are the TL's C8 items."
+      "text": "PRINT (screen 7): the whole set as a sheet — question and options only; the source question and stock counts are never printed; re-rendered on demand, the file is not stored (GET /sets/{id}/print). Print is RISO's primary use, so it sits on every generated set — finished or not (PM, 24 Sep) — and on the CTA. Real PDF rendering, page caps and JSXGraph print fidelity are the TL's C8 items."
     },
     "p_M-PSets": {
       "x": 12720,

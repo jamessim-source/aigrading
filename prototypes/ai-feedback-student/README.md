@@ -202,9 +202,11 @@ Feedback LO rather than in a separate demo:
 - **Student PC (Main, 05-Todo, P4–P9)** and **mobile (M-Main, P10–P14).** The
   LO list and To-do gain the ✦ practice card (set count only, no completion
   chip). The practice screen follows Koki's prototype trimmed to the PRD
-  rules: StatBox (問題数 / 正解数, rounds of 10), selectable set rows with a
-  print icon on complete sets, the ＋ row into the crop, and the CTA that
-  follows the selected set. Crop reuses the Mana AI frames relabelled
+  rules: StatBox (問題数 / 正解数, rounds of 10), selectable set rows each with a
+  print icon (a generated set can be printed at any point, finished or not —
+  PM, 24 Sep), the ＋ row into the crop, and the CTA that follows the
+  selected set (print for a finished set; resume with print beside it for an
+  unfinished one). Crop reuses the Mana AI frames relabelled
   演習をつくる →; 切り取った範囲 shows the detected questions with a per-question
   slider capped by the shallowest remaining stock and the live total, and the
   DEMO pill shows NO_MATCH (*Please ensure your crop contains the question in
