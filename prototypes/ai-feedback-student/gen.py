@@ -318,6 +318,30 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .pt{height:30px;padding:0 10px;border-radius:1000px;border:1px solid rgba(28,30,44,.12);background:#fff;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;color:rgba(28,30,44,.87)}
 .pt:hover{background:#f2f2f4}
 .pt.hit{border-color:#395ad2;background:#eef1ff}
+
+.ppdf{background:#fff;border:1px solid rgba(28,30,44,.12);border-radius:6px;padding:20px 24px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 16px rgba(0,0,0,.08)}
+.ppdf.m{padding:14px;gap:10px}
+.pq{position:relative;display:flex;flex-direction:column;gap:6px;text-align:left;border:2px dashed rgba(28,30,44,.18);border-radius:6px;padding:10px 12px 10px 14px;background:#fff;font-family:inherit;color:inherit;cursor:pointer}
+.pq:hover{border-color:rgba(57,90,210,.5)}
+.pq.on{border:2px solid #395ad2;box-shadow:0 0 0 3px rgba(57,90,210,.18);background:#f7f8ff}
+.pq .pno{position:absolute;left:-10px;top:-10px;width:22px;height:22px;border-radius:50%;background:#395ad2;color:#fff;font-size:12px;font-weight:700;display:none;align-items:center;justify-content:center}
+.pq.on .pno{display:flex}
+.popt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1.5px solid rgba(28,30,44,.16);border-radius:10px;padding:12px 14px;background:#fff;font-family:inherit;color:inherit;font-size:15px;line-height:22px;cursor:pointer}
+.popt:hover{background:#fafafc}
+.popt .mk{width:22px;height:22px;border-radius:50%;border:2px solid rgba(28,30,44,.24);flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.popt.ok{border-color:#1f7a4d;background:#e6f5ee}.popt.ok .mk{background:#1f7a4d;border-color:#1f7a4d}
+.popt.ng{border-color:#d13842;background:#fbe7e9}.popt.ng .mk{background:#d13842;border-color:#d13842}
+.popt.dis{cursor:default}
+.pfb{border-radius:10px;padding:12px 14px;font-size:14px;line-height:22px}
+.pfb.ok{background:#e6f5ee;color:#1f7a4d}.pfb.ng{background:#fbe7e9;color:#8a1f2a}
+.pfb b{display:block;margin-bottom:2px}
+.prange{width:100%;accent-color:#395ad2;height:32px}
+.pspin{width:44px;height:44px;border-radius:50%;border:4px solid rgba(57,90,210,.2);border-top-color:#395ad2;animation:pspin 1s linear infinite}
+@keyframes pspin{to{transform:rotate(360deg)}}
+.psq{padding:12px 0;border-top:1px solid rgba(28,30,44,.1);font-size:14px;line-height:22px}
+.psq b{display:inline-block;width:40px}
+.psq ol{margin:6px 0 0 40px;padding-left:18px}
+.lo.on{border-color:#395ad2!important;box-shadow:0 0 0 3px rgba(57,90,210,.15)}
 """
 HELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
           '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">'
@@ -822,6 +846,7 @@ def course(S, L):
   <p class="topic">{S["t72"]}</p>
   {lo_row("table", S["lo_xlsx"], S["lo_xlsx_s"], chip=lt(S["lt_file"]), done=True)}
   {lo_row("filetext", S["lo_fb7_name"], S["lo_fb_s"], chip=lt(S["lt_fb"], True) + f'<span class="chip wait">{S["chip_notsub"]}</span>', href=fn("02-Assignment",L), sparkle=True)}
+  {lo_row("sparkle", S["p_lo"], S["p_course_sub"], chip=lt(S["p_lt"], True) + f'<span class="chip review">{S["p_todo_chip"]}</span>', href=fn("P-Sets",L), sparkle=True)}
   {sect(S["wk6"], f'<span class="cap">{S["wk6_pub"]}</span>')}
   <p class="topic">{S["t61"]}</p>
   {lo_row("filetext", S["lo_fb6_name"], S["lo_fb_s"], chip=lt(S["lt_fb"], True) + f'<span class="chip done">{S["chip_returned"]}</span>', sparkle=True, done=True)}
@@ -1211,7 +1236,7 @@ def todo(S, L):
   </div>
   {trow("filetext", S["lo_fb7"], S["course"], f'<span class="chip wait">{ic("refresh",12)}{S["t_fb7_chip"]}</span>', href=fn("04-Feedback",L), sparkle=True, when=S["t_fb7_when"])}
   {trow("message", S["t_ref7"], S["course"], f'<span class="chip review">{S["p_chip"]}</span>', sparkle=True, when=S["t_ref7_when"])}
-  {trow("sparkle", S["t_sim"], S["t_sim_course"], f'<span class="chip wait">{S["t_sim_chip"]}</span>', sparkle=True)}
+  {trow("sparkle", S["p_lo"], S["course"], f'<span class="chip review">{S["p_todo_chip"]}</span>', href=fn("P-Sets",L), sparkle=True)}
   {trow("play", S["t_video"], S["course"], f'<span class="chip done">{S["t_done"]}</span>', done=True)}
   {sect(f'<span style="color:#d13842">{S["t_late_h"]}</span>')}
   {trow("filetext", S["t_late"], S["course"], f'<span class="chip late">{S["t_late_chip"]}</span>', sparkle=True, href=fn("02-Assignment",L))}
@@ -1327,6 +1352,7 @@ def m_main(S, L):
   {lo_row("filetext", S["lo_pdf"], S["lo_pdf_s"], chip=lt(S["lt_doc"]), done=True)}
   {lo_row("table", S["lo_xlsx"], S["lo_xlsx_s"], chip=lt(S["lt_file"]), done=True)}
   {lo_row("filetext", S["lo_fb7_name"], S["lo_fb_s"], chip=fbchip, href=fn("M-Assignment",L), sparkle=True)}
+  {lo_row("sparkle", S["p_lo"], S["p_course_sub"], chip=lt(S["p_lt"], True) + f'<span class="chip review">{S["p_todo_chip"]}</span>', href=fn("M-PSets",L), sparkle=True)}
 </div>
 {mnav(S, 0)}'''
     return mpage(S, "M-Main", S["m_titles"]["main"], body, over_nav=True)
@@ -2195,7 +2221,7 @@ TJA = dict(
     t_av_rows=[("第6回　データの整理と代表値", [("6-1　度数分布とヒストグラム", [("第6回 講義動画", "link", "2026/10/30, 09:00", "", None), ("第6回 講義資料", "lo", "2026/10/30, 09:00", "", None)]),
                                                 ("6-2　代表値と散布度", [("第6回 確認クイズ", "lo", "2026/10/30, 09:00", "", None), ("第6回 演習レポート", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
                ("第7回　データの分析と仮説検定", [("7-1　相関分析", [("第7回 講義動画", "link", "2026/11/06, 09:00", "", None), ("第7回 講義資料", "lo", "2026/11/06, 09:00", "", None), ("第7回 確認クイズ", "lo", "2026/11/06, 09:00", "", None),
-                                                                   ("第7回 演習レポート", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59")]),
+                                                                   ("第7回 演習レポート", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59"), ("第7回 類題演習（相関分析）", "prac", "2026/11/06, 09:00", "", None)]),
                                                 ("7-2　仮説検定", [("第7週 週次リフレクション", "fb", "2026/11/08, 09:00", "2026/11/15, 23:59", "off")])]),
                ("第8回　回帰分析", [("8-1　単回帰分析", [("第8回 講義資料", "lo", "2026/11/20, 09:00", "", None), ("第8回 演習レポート", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off"), ("第9回 演習レポート（追加）", "fb", "", "", "off")])])],
     t_queue_sub="確認が必要な提出の一覧です。AIフィードバックの下書きは、先生の確認を待ってここに並びます。",
@@ -2280,17 +2306,18 @@ TJA = dict(
     t_completed="完了", t_marking="採点中",
     t_matrix_help="スコアをクリックすると、その生徒のLOの提出一覧を表示します。AIフィードバックの状態をクリックすると「提出物の採点」で開きます。最新／最高スコアの切り替えはスコアのあるLOがあるときだけ使え、AIフィードバックのLOは常に最新の提出の状態を表示します。★は先生がクラスで紹介する例に選んだ提出で、選んだときの一言の理由が下に表示され、クリックするとその提出を開きます。右端の時計アイコンはその生徒の提出履歴（本番と同じ）です。",
     t_mx_los=[("第6回 演習レポート", "fb", ("30/30", "1", "28", "1")),
-              ("第7回 演習レポート", "fb", ("12/30", "8", "3", "1")), ("第7週 週次リフレクション", "fb", ("21/30", "0", "21", "2"))],
-    t_mx_students=[("山田 花子", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", "自分の言葉で問いを立てた")]),
-                   ("佐藤 太郎", [("fb", "nr", 3, "resub"), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto")]),
-                   ("鈴木 一郎", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto")]),
-                   ("田中 美咲", [("fb", "ret", 3, "", "外れ値の扱いが的確"), ("fb", "ret", 3, "", "相関と因果を区別している"), ("fb", "ret", 2, "auto", "講義内容と結びつけた考察")]),
-                   ("高橋 健", [("fb", "ret", 3, ""), ("none",), ("fb", "ret", 2, "auto")]),
-                   ("伊藤 さくら", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("none",)]),
-                   ("渡辺 大輝", [("fb", "back", 3, ""), ("none",), ("fb", "ret", 2, "auto")])],
+              ("第7回 演習レポート", "fb", ("12/30", "8", "3", "1")), ("第7週 週次リフレクション", "fb", ("21/30", "0", "21", "2")),
+              ("第7回 類題演習（相関分析）", "prac", ("5/30", "12", "40 ・ 31"))],
+    t_mx_students=[("山田 花子", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", "自分の言葉で問いを立てた"), ("prac", 2, 8, 10, 6, 0)]),
+                   ("佐藤 太郎", [("fb", "nr", 3, "resub"), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto"), ("prac", 1, 4, 4, 3, 0)]),
+                   ("鈴木 一郎", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto"), ("prac", 0, 0, 0, 0, 0)]),
+                   ("田中 美咲", [("fb", "ret", 3, "", "外れ値の扱いが的確"), ("fb", "ret", 3, "", "相関と因果を区別している"), ("fb", "ret", 2, "auto", "講義内容と結びつけた考察"), ("prac", 1, 6, 6, 6, 1)]),
+                   ("高橋 健", [("fb", "ret", 3, ""), ("none",), ("fb", "ret", 2, "auto"), ("prac", 0, 0, 0, 0, 1)]),
+                   ("伊藤 さくら", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("none",), ("prac", 1, 2, 6, 1, 0)]),
+                   ("渡辺 大輝", [("fb", "back", 3, ""), ("none",), ("fb", "ret", 2, "auto"), ("prac", 0, 0, 0, 0, 0)])],
     t_no_scores="この表示にスコアのあるLOはありません", t_history="提出履歴",
     # Topic Dashboard (production's table: chapter / topic / average score / completion) plus the AI Feedback column
-    t_tp_cols=["チャプター名", "トピック名", "平均スコア", "AIフィードバック", "完了"],
+    t_tp_cols=["チャプター名", "トピック名", "平均スコア", "AIフィードバック ・ 類題演習", "完了"],
     t_tp_fb_lbl=["提出", "確認待ち", "返却済み"], t_tp_none="AIフィードバックのLOなし", t_tp_open="LOダッシュボードで開く",
     t_tp_help="トピック名をクリックすると、そのトピックのLOダッシュボード（生徒×LOの表）を表示します。平均スコアと完了は本番と同じ（スコアのあるLOの平均、トピックを完了した生徒数）。AIフィードバック列はそのトピックのフィードバックLOの提出・確認待ち・返却済みの件数と、先生がクラスで紹介する例に選んだ★の数、そして「インサイト」— 提出物と生成された下書きを観点に沿って読み、見落とし・良い傾向・紹介候補・提出状況のうち最も優先度の高いものをLLMが選んだ一言です。率は使いません。",
     t_ins_types={"miss": "見落とし", "good": "良い傾向", "pick": "紹介候補", "pace": "提出状況"},
@@ -2331,7 +2358,7 @@ TJA = dict(
                 ("第6回　データの整理と代表値", "6-2　代表値と散布度", "2026/11/09", 80, "3/3", True,
                  [("第6回 講義動画", "2026/10/28", "comp", "comp"), ("第6回 確認クイズ", "2026/10/29", "8/10", "8/10"), ("第6回 演習レポート", "2026/11/09", "fb:ret", "resub")]),
                 ("第7回　データの分析と仮説検定", "7-1　相関分析", "2026/11/14", 90, "3/4", True,
-                 [("第7回 講義動画", "2026/11/08", "comp", "comp"), ("第7回 講義資料", "2026/11/08", "comp", "comp"), ("第7回 確認クイズ", "2026/11/10", "9/10", "9/10"), ("第7回 演習レポート", "2026/11/14", "fb:ir", "--")]),
+                 [("第7回 講義動画", "2026/11/08", "comp", "comp"), ("第7回 講義資料", "2026/11/08", "comp", "comp"), ("第7回 確認クイズ", "2026/11/10", "9/10", "9/10"), ("第7回 演習レポート", "2026/11/14", "fb:ir", "--"), ("第7回 類題演習（相関分析）", "2026/11/14", "prac", "--")]),
                 ("第7回　データの分析と仮説検定", "7-2　仮説検定", "2026/11/15", -1, "1/2", True,
                  [("第7週 週次リフレクション", "2026/11/15", "fb:ret", "--"), ("第7回 仮説検定 演習問題", "--", "--", "--")]),
                 ("第8回　回帰分析", "8-1　単回帰分析", "--", -1, "0/3", False, [])],
@@ -2432,7 +2459,7 @@ TEN = dict(
     t_av_rows=[("Session 6 · Organising data and averages", [("6-1 · Frequency tables and histograms", [("Session 6 lecture video", "link", "2026/10/30, 09:00", "", None), ("Session 6 lecture slides", "lo", "2026/10/30, 09:00", "", None)]),
                                                                 ("6-2 · Averages and dispersion", [("Session 6 check-up quiz", "lo", "2026/10/30, 09:00", "", None), ("Session 6 exercise report", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
                ("Session 7 · Data analysis and hypothesis testing", [("7-1 · Correlation analysis", [("Session 7 lecture video", "link", "2026/11/06, 09:00", "", None), ("Session 7 lecture slides", "lo", "2026/11/06, 09:00", "", None), ("Session 7 check-up quiz", "lo", "2026/11/06, 09:00", "", None),
-                                                                                                    ("Session 7 exercise report", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59")]),
+                                                                                                    ("Session 7 exercise report", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59"), ("Session 7 similar-questions practice (correlation)", "prac", "2026/11/06, 09:00", "", None)]),
                                                                     ("7-2 · Hypothesis testing", [("Week 7 weekly reflection", "fb", "2026/11/08, 09:00", "2026/11/15, 23:59", "off")])]),
                ("Session 8 · Regression analysis", [("8-1 · Simple regression", [("Session 8 lecture slides", "lo", "2026/11/20, 09:00", "", None), ("Session 8 exercise report", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off"), ("Session 9 exercise report (added)", "fb", "", "", "off")])])],
     t_queue_sub="Submissions waiting on you. AI Feedback drafts queue here until you review them, alongside manual grading.",
@@ -2511,16 +2538,17 @@ TEN = dict(
     t_completed="Completed", t_marking="Marking",
     t_matrix_help="You may click the score to view the list of submissions made by the student for the learning objective. Click an AI Feedback status to open it in Submission Grading. Latest / Highest Score is available only when a scored LO is in view; an AI Feedback LO always shows the status of the latest submission. ★ marks a submission the teacher chose to show the class, with the few-word reason typed when highlighting it; that cell opens the submission. The clock icon at the right of a cell is production's Submission history for that student.",
     t_mx_los=[("Session 6 exercise report", "fb", ("30/30", "1", "28", "1")),
-              ("Session 7 exercise report", "fb", ("12/30", "8", "3", "1")), ("Week 7 weekly reflection", "fb", ("21/30", "0", "21", "2"))],
-    t_mx_students=[("Hanako Yamada", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", "Asked a question of her own")]),
-                   ("Taro Sato", [("fb", "nr", 3, "resub"), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto")]),
-                   ("Ichiro Suzuki", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto")]),
-                   ("Misaki Tanaka", [("fb", "ret", 3, "", "Handled the outlier well"), ("fb", "ret", 3, "", "Separates correlation from causation"), ("fb", "ret", 2, "auto", "Ties it back to the lecture")]),
-                   ("Ken Takahashi", [("fb", "ret", 3, ""), ("none",), ("fb", "ret", 2, "auto")]),
-                   ("Sakura Ito", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("none",)]),
-                   ("Daiki Watanabe", [("fb", "back", 3, ""), ("none",), ("fb", "ret", 2, "auto")])],
+              ("Session 7 exercise report", "fb", ("12/30", "8", "3", "1")), ("Week 7 weekly reflection", "fb", ("21/30", "0", "21", "2")),
+              ("Session 7 similar-questions practice (correlation)", "prac", ("5/30", "12", "40 · 31"))],
+    t_mx_students=[("Hanako Yamada", [("fb", "ret", 3, "resub"), ("fb", "ir", 3, ""), ("fb", "ret", 2, "auto", "Asked a question of her own"), ('prac', 2, 8, 10, 6, 0)]),
+                   ("Taro Sato", [("fb", "nr", 3, "resub"), ("fb", "nr", 3, ""), ("fb", "ret", 2, "auto"), ('prac', 1, 4, 4, 3, 0)]),
+                   ("Ichiro Suzuki", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("fb", "ret", 1, "auto"), ('prac', 0, 0, 0, 0, 0)]),
+                   ("Misaki Tanaka", [("fb", "ret", 3, "", "Handled the outlier well"), ("fb", "ret", 3, "", "Separates correlation from causation"), ("fb", "ret", 2, "auto", "Ties it back to the lecture"), ('prac', 1, 6, 6, 6, 1)]),
+                   ("Ken Takahashi", [("fb", "ret", 3, ""), ("none",), ("fb", "ret", 2, "auto"), ('prac', 0, 0, 0, 0, 1)]),
+                   ("Sakura Ito", [("fb", "ret", 3, ""), ("fb", "nr", 3, ""), ("none",), ('prac', 1, 2, 6, 1, 0)]),
+                   ("Daiki Watanabe", [("fb", "back", 3, ""), ("none",), ("fb", "ret", 2, "auto"), ('prac', 0, 0, 0, 0, 0)])],
     t_no_scores="No scored LOs in this view", t_history="Submission history",
-    t_tp_cols=["Chapter Name", "Topic Name", "Average Score", "AI Feedback", "Completion"],
+    t_tp_cols=["Chapter Name", "Topic Name", "Average Score", "AI Feedback · Practice", "Completion"],
     t_tp_fb_lbl=["Submitted", "Waiting", "Returned"], t_tp_none="No AI Feedback LO", t_tp_open="Open in the LO Dashboard",
     t_tp_help="Click a topic name to open its LO Dashboard (the student × LO matrix). Average Score and Completion are production's: the average over the topic's scored LOs and the number of students who completed the topic. The AI Feedback column shows the topic's feedback LO with its submitted / waiting / returned counts, the ★ number of submissions the teacher chose to show the class, and “Insights” — one line read from the submissions and their draft feedback along the rubric: of what was missed, what is going well, what is worth showing and how submissions stand, the one the LLM ranks highest. Counts, never rates.",
     t_ins_types={"miss": "Missed", "good": "Going well", "pick": "Worth showing", "pace": "Submissions"},
@@ -2559,7 +2587,7 @@ TEN = dict(
                 ("Session 6 · Organising data and averages", "6-2 · Averages and dispersion", "2026/11/09", 80, "3/3", True,
                  [("Session 6 lecture video", "2026/10/28", "comp", "comp"), ("Session 6 check-up quiz", "2026/10/29", "8/10", "8/10"), ("Session 6 exercise report", "2026/11/09", "fb:ret", "resub")]),
                 ("Session 7 · Data analysis and hypothesis testing", "7-1 · Correlation analysis", "2026/11/14", 90, "3/4", True,
-                 [("Session 7 lecture video", "2026/11/08", "comp", "comp"), ("Session 7 lecture slides", "2026/11/08", "comp", "comp"), ("Session 7 check-up quiz", "2026/11/10", "9/10", "9/10"), ("Session 7 exercise report", "2026/11/14", "fb:ir", "--")]),
+                 [("Session 7 lecture video", "2026/11/08", "comp", "comp"), ("Session 7 lecture slides", "2026/11/08", "comp", "comp"), ("Session 7 check-up quiz", "2026/11/10", "9/10", "9/10"), ("Session 7 exercise report", "2026/11/14", "fb:ir", "--"), ("Session 7 similar-questions practice (correlation)", "2026/11/14", "prac", "--")]),
                 ("Session 7 · Data analysis and hypothesis testing", "7-2 · Hypothesis testing", "2026/11/15", -1, "1/2", True,
                  [("Week 7 weekly reflection", "2026/11/15", "fb:ret", "--"), ("Session 7 hypothesis-testing exercises", "--", "--", "--")]),
                 ("Session 8 · Regression analysis", "8-1 · Simple regression", "--", -1, "0/3", False, [])],
@@ -2675,17 +2703,21 @@ class Component extends DCLogic {{
 def tools(*names):
     return "".join(f'<span class="ticon sm{" dis" if n.endswith("!") else ""}">{mi(n.rstrip("!"), 18)}</span>' for n in names)
 
-def lm_row(S, L, name, kind, ai=False, pub="published", created=False, href=None):
-    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview"}[kind]
+def lm_row(S, L, name, kind, ai=False, pub="published", created=False, href=None, src=False):
+    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview", "prac": "spark"}[kind]
     nm = f'<a class="nm" href="{href}">{name}</a>' if href else f'<span class="nm">{name}</span>'
     spark = f'<span class="ticon sm primary" title="AI Tutor">{mi("spark", 16)}</span>' if ai else ""
+    # AI Practice (24 Sep): the source PDF LO carries a small 演習の元 chip; the practice LO its type chip
+    spark += f'<span class="tchip type" style="height:20px;font-size:11px">{S["p_src_chip"]}</span>' if src else ""
+    spark += f'<span class="tchip type" style="height:20px;font-size:11px">{S["p_type_short"]}</span>' if kind == "prac" else ""
     chip = f'<span class="tchip {pub}">{S["t_pub"] if pub == "published" else S["t_unpub"]}</span>'
     return (f'<li class="lm{" just-created" if created else ""}"><span class="lm-type">{mi(icon, 16)}</span>{nm}{spark}{chip}'
             f'<span class="spc"></span><span class="ticon sm">{mi("more", 18)}</span></li>')
 
 def book_tree(S, L, created=False, add_href=None):
     """BookDetail: chapter accordions → topic accordions → learning-material rows."""
-    rows = "".join(lm_row(S, L, n, k, ai) for n, k, ai in S["t_los"])
+    rows = "".join(lm_row(S, L, n, k, ai, src=(n == S["p_src_lo"]), href=(tfn("P-Source", L) if n == S["p_src_lo"] else None)) for n, k, ai in S["t_los"])
+    rows += lm_row(S, L, S["p_lo"], "prac", False, href=tfn("P-Detail", L))
     if created:
         rows += lm_row(S, L, S["t_new_lo"], "fb", False, "unpublished", created=True, href=tfn("T-Material", L))
     add_lo = (f'<a class="tbtn sm" href="{add_href}">{mi("add", 18)}{S["t_add_lo"]}</a>' if add_href
@@ -2770,6 +2802,7 @@ def lo_dialog(S, L, edit=False):
     menu = f'''<sc-if value="{{{{menuOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tpop" style="left:0;top:44px;width:100%">
         {types}
         <div class="it sel"><span class="lm-type" style="width:22px;height:22px">{mi("rateReview", 14)}</span><b>{S["t_type_fb"]}</b><span class="tchip new">{S["t_new"]}</span></div>
+        <a class="it" href="{tfn("P-Dialog", L)}"><span class="lm-type" style="width:22px;height:22px">{mi("spark", 14)}</span><b>{S["p_type"]}</b><span class="tchip new">{S["t_new"]}</span></a>
       </div></sc-if>'''
     if not edit:
       select = f'''<div style="position:relative">
@@ -3280,6 +3313,9 @@ def t_dash_topic(S, L):
                     f'<span style="display:flex;gap:6px"><span class="tchip">{k1} {sub}</span>{wait_chip}'
                     f'<span class="tchip published">{k3} {ret}</span>'
                     f'<span class="tchip" style="color:#ED6C02;gap:2px" title="{S["t_hl_title"]}">{mi("star", 12)}{hl}</span></span>{ins_line}')
+            if tp == S["t_tp71"]:
+                # AI Practice (24 Sep): the topic's practice LO under the feedback LO — from practice sets only
+                cell += f'<a class="tp-ins" href="{tfn("T-DashGroup", L)}" style="color:#424242;margin-top:10px;padding-top:8px;border-top:1px dashed #E0E0E0">{S["p_tp_line"]}</a>'
         else:
             cell = f'<span class="cell-muted">{S["t_tp_none"]}</span>'
         rows += (f'<tr><td style="white-space:normal">{ch}</td>'
@@ -3329,6 +3365,12 @@ def t_dash_group(S, L):
             nm = f'<a class="lo-name" href="{tfn("T-Detail", L)}" title="{name}"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("rateReview", 12)}</span><span>{name}</span></a>'
             kv = (f'<span class="kv-line">{k1}: <b>{a}</b></span><span class="kv-line">{k2}: <b><a href="{tfn("T-List", L)}">{b}</a></b></span>'
                   f'<span class="kv-line">{k3}: <b>{c}</b><span style="display:inline-flex;align-items:center;gap:2px;margin-left:8px;color:#ED6C02">{mi("star", 12)}<b style="color:#ED6C02">{hl}</b></span></span>')
+        elif kind == "prac":
+            # AI Practice (24 Sep, C10.5): students with sets, sets, questions done · correct — from practice sets only
+            a, b, c = vals
+            k1, k2, k3 = S["p_mx_kv"]
+            nm = f'<a class="lo-name" href="{tfn("P-Detail", L)}" title="{name}"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("spark", 12)}</span><span>{name}</span></a>'
+            kv = f'<span class="kv-line">{k1}: <b>{a}</b></span><span class="kv-line">{k2}: <b>{b}</b></span><span class="kv-line">{k3}: <b>{c}</b></span>'
         else:
             a, b, c = vals
             k1, k2, k3 = S["t_lo_kv"]
@@ -3337,6 +3379,17 @@ def t_dash_group(S, L):
         heads += f'<th><div class="lo-col">{nm}{kv}</div></th>'
     hist = f'<span title="{S["t_history"]}" style="display:flex">{mi("history", 16)}</span>'
     def cell(c):
+        if c[0] == "prac":
+            # the practice LO's cell: sets · done/total · correct with the accuracy bar; informal ad hoc sessions
+            # (the widget's) kept apart and labelled, never merged (C10.5); no completion status
+            _, sets, done, total, correct, adhoc = c
+            adhoc_l = f'<span class="cell-muted" style="font-size:11px;flex:1 0 100%">{S["p_adhoc_n"].format(n=adhoc)}</span>' if adhoc else ""
+            if not sets:
+                return f'<span class="stat-cell miss" style="flex-wrap:wrap;height:auto;min-height:52px;padding:8px 10px;gap:2px"><span class="dd">--</span>{adhoc_l}</span>'
+            acc = int(correct / done * 100) if done else 0
+            return (f'<a class="stat-cell" href="{tfn("T-DashStudent", L)}" style="color:inherit;flex-wrap:wrap;height:auto;min-height:52px;padding:8px 10px;gap:4px 8px">'
+                    f'<span class="tchip type">{S["p_sets_n"].format(n=sets)}</span><span class="num" style="font-size:13px">{S["p_done_of"].format(d=done, t=total)} ・ {S["p_correct_n"].format(c=correct)}</span>'
+                    f'<span class="progress" style="min-width:0;width:140px"><span class="pct">{acc}%</span><span class="bar"><i class="good" style="width:{acc}%"></i></span></span>{adhoc_l}</a>')
         if c[0] == "none":
             return '<span class="stat-cell miss"><span class="dd">--</span></span>'
         if c[0] == "comp":
@@ -3423,6 +3476,8 @@ def t_dash_student(S, L):
             return '<span class="dd">--</span>'  # a feedback LO has no highest score; the attempt count sits with the submission date (PM, 21 Sep)
         if v.startswith("fb:"):
             return '<span class="dd">--</span>'  # a feedback LO has no score; its status has its own column (PM, 21 Sep)
+        if v == "prac":
+            return f'<span class="num">{S["p_stu_score"]}</span>'  # AI Practice: questions correct / done across the student's sets — not a score, no max
         return v
     ind = ""
     for ch, tp, date, avg, comp, open_, los in S["t_ind_rows"]:
@@ -3435,6 +3490,12 @@ def t_dash_student(S, L):
                 (PM, 20 Sep: the details fit into the table as columns, not a row beneath)."""
                 det = S["t_stu_det"].get(n) if a.startswith("fb:") else None
                 dd = '<span class="dd">--</span>'
+                if a == "prac":
+                    # AI Practice (24 Sep, C10.5): status derived from the sets, never a completion flag; the sets behind the ▾
+                    status = (f'<span style="display:flex;gap:4px;align-items:center;flex-wrap:wrap"><span class="tchip wait">{S["p_stu_status_prog"]}</span></span>'
+                              f'<span class="cell-muted num" style="display:block;font-size:12px;margin-top:4px">{S["p_stu_sets_line"]}</span>')
+                    return (f'<td>{status}</td><td class="fcrit"><span class="dd">--</span></td>'
+                            f'<td style="text-align:right;padding-left:0"><a class="tbtn sm" style="height:24px;padding:0 6px;min-width:0" href="{tfn("T-DashGroup", L)}">{S["p_stu_view"]}</a></td>')
                 if not det:
                     done = f'<span class="tchip published">{S["t_completed"]}</span>' if a == "comp" else dd
                     return f'<td>{done}</td><td>{dd}</td><td></td>'
@@ -3458,6 +3519,8 @@ def t_dash_student(S, L):
                 hl = det[7] if det else ""
                 # a feedback LO's name links to its overview in Submission Grading (PM, 20 Sep)
                 name = f'<a class="cell-link" href="{tfn("T-Detail", L)}">{n}</a>' if det else n
+                if a == "prac":
+                    name = f'<a class="cell-link" href="{tfn("P-Detail", L)}" style="display:inline-flex;align-items:center;gap:6px"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("spark", 12)}</span>{n}</a>'
                 return name + (f'<span class="hl-why" style="display:block;margin-top:2px">{hl}</span>' if hl else "")
             def sub_date(d, b):
                 return d + (f'<span class="cell-muted" style="display:block;font-size:12px">{S["t_resub_n"]}</span>' if b == "resub" else "")
@@ -3809,7 +3872,7 @@ def av_table(S, L, edit=False):
     production table merges them; each LO has its type icon; Start / End show as text, or as inputs in
     edit mode. One column is added for AI Feedback: 再提出締切 Resubmission Due — the resubmission date
     had nowhere else to go once dates left the LO (proposal, not yet decided by the PM)."""
-    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview"}
+    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview", "prac": "spark"}
     def cell(v, kind="date"):
         if edit and kind == "date":
             return f'<input class="tinput" style="width:150px;height:36px;padding:0 8px;font-size:13px" value="{v}" placeholder="{S["t_av_ph"]}">'
@@ -3831,7 +3894,7 @@ def av_table(S, L, edit=False):
                     cells += f'<td rowspan="{len(los)}" style="white-space:normal;vertical-align:top;border-left:1px solid #E0E0E0;width:170px;min-width:170px">{tp}</td>'
                     first_tp = False
                 fb = kind == "fb"
-                fb_chip = f'<span class="tchip type" style="margin-left:4px">{S["t_type_fb"]}</span>' if fb else ""
+                fb_chip = f'<span class="tchip type" style="margin-left:4px">{S["t_type_fb"]}</span>' if fb else (f'<span class="tchip type" style="margin-left:4px">{S["p_type_short"]}</span>' if kind == "prac" else "")
                 bold = ' style="font-weight:500"' if fb else ""
                 lo_cell = (f'<span class="name-cell"><span class="lm-type" style="width:22px;height:22px;flex:0 0 22px">{mi(icon[kind], 14)}</span>'
                            f'<span{bold}>{name}</span>{fb_chip}</span>')
@@ -3885,6 +3948,684 @@ TBUILDERS = {"T-Book": t_book, "T-Dialog": t_dialog, "T-Created": t_created, "T-
              "T-Queue": t_queue, "T-Detail": t_detail, "T-List": t_list, "T-Review": t_review,
              "T-DashTopic": t_dash_topic, "T-DashGroup": t_dash_group, "T-DashStudent": t_dash_student}
 
+
+# =====================================================================================
+# AI PRACTICE — the Similar Questions Practice LO (RISO first; here fitted into the Kindai course)
+# Source: jamessim-source/AIpractice — docs/prototype-plan.md, docs/c10-finalized-logic.md (PRD C10,
+# PM decisions of 24 Sep), contract/openapi.yaml, mock-service/seed.py, and the clickable prototype
+# prototype/sqp-prototype.html (branch `prototype`). The logic below is that prototype's, redrawn on this
+# canvas's production components: Book Management, Course Management, the dashboards, the student app.
+# The bank is statistics (Topic 7-1 相関分析) so the practice LO sits in the same book as the rest.
+# =====================================================================================
+
+P_JA = dict(
+    # names
+    p_type="類題演習 LO", p_type_short="類題演習", p_type_en="Similar Questions Practice LO",
+    p_lo="第7回 類題演習（相関分析）", p_src_lo="第7回 講義資料", p_src_lo_full="第7回 講義資料（PDF）",
+    p_src_chip="演習の元", p_ai="AI",
+    # Back Office — Add LO dialog
+    p_dlg_title="学習目標（LO）を追加", p_dlg_name="第7回 類題演習（相関分析）", p_dlg_ext="—",
+    p_dlg_desc="第7回 講義資料（PDF）の問題を切り取ると、AIが類題を集めて演習セットをつくります。何度でもセットを追加できます。",
+    p_f_link="リンク元の LO", p_link_req="必須", p_link_hint="この教材の中で「演習の元として利用可」がオンの LO だけが表示されます。すでに他の類題演習 LO にリンクされている LO も選べます。",
+    p_link_none="この教材に対象の LO がありません。先に PDF LO の「演習の元として利用可」をオンにしてください。",
+    p_empty_lbl="対象 LO がないときの表示",
+    p_hidden="この種類では非表示：満点、合格点、手動採点、AI Tutor、パスワード。生徒にはセット数・解答数・正解数だけを表示し、完了ステータスはありません。",
+    p_cant_save="保存できません：類題演習 LO は作成時に対象 LO へのリンクが必要です。",
+    p_gate="Syllabus_BackOffice_AIPractice ・ syllabus.ai_practice.is_enabled",
+    p_gate_note="フラグとテナント設定の両方がオンのときだけ、この種類が選べます。",
+    # Back Office — source LO settings
+    p_src_type="学習目標（PDF 学習ガイド付き）", p_src_pages="24ページ ・ 公開中",
+    p_tog="演習の元として利用可", p_tog_desc="生徒はこの LO の PDF から類題演習セットを作れます。既定はオフ。",
+    p_tog_locked="オフにできません：生徒がすでに演習セットを作成しています。",
+    p_linked_by="リンクされている類題演習 LO", p_linked_none="まだこの LO にリンクする類題演習 LO はありません。",
+    p_src_kv=[("種類", "学習目標"), ("学習ガイド", "第7回_講義資料.pdf ・ 24ページ"), ("AI Tutor", "オフ"), ("公開期間", "__course__")],
+    # Back Office — practice LO detail
+    p_det_kv_link="リンク元の LO", p_det_sets="生徒が作ったセット数", p_det_sets_v="12 セット（生徒 5人 / 30人）",
+    p_det_comp="完了ステータス", p_det_comp_v="なし（仕様 ・ PRD C3）", p_det_over="先生・管理者による操作", p_det_over_v="なし ・ セットの削除・変更・再生成はできません",
+    p_det_visible="生徒アプリでの見え方", p_det_visible_v="トピック「7-1　相関分析」の中に ✦ バッジと「類題演習」タグ付きのカードとして表示されます。セット数だけを示し、完了チップはありません。",
+    p_det_dates="公開期間", p_det_dates_v="コース管理で開始日を設定（終了日なし ・ 締切のない LO）", p_det_dash="ダッシュボードで見る",
+    p_det_stock="用意された類題", p_det_stock_v="出典 3問 ・ 在庫は生徒に表示しません",
+    # dashboards
+    p_dash_col="類題演習", p_mx_kv=["セットのある生徒", "セット", "解答 ・ 正解"], p_mx_none="--",
+    p_sets_n="{n}セット", p_done_of="{d}/{t}問", p_correct_n="正解 {c}", p_adhoc_n="非公式 {n}回", p_acc="正答率",
+    p_tp_line="✦ 第7回 類題演習 ・ セットのある生徒 5/30 ・ セット 12 ・ 解答 40問 ・ 正解 31問",
+    p_stu_sets_line="セット 2（完了 1 ・ 途中 1）", p_stu_status_prog="途中", p_stu_status_done="完了", p_stu_view="セット一覧",
+    p_stu_score="正解 6/8",
+    # student — course / to-do
+    p_lt="類題演習", p_course_sub="第7回 講義資料 の PDF から ・ 2セット", p_todo_chip="セット2 つづき 2/4",
+    # student — practice LO screen
+    p_questions="問題数", p_correct="正解数", p_round_line="1回 10問ずつ ・ {d}/{t}問 解答 ・ 間違い {w}問",
+    p_sets_h="セット", p_set_n="セット{i}", p_done="完了", p_notdone="未完了", p_q_n="{d}/{t}問", p_correct_q="正解 {c}問",
+    p_print="印刷する", p_add_set="演習を追加する", p_create_set="演習セットをつくる", p_from_pdf="第7回 講義資料 の PDF から",
+    p_history="学習履歴", p_hist_row="{r}/{n}問 正解", p_hist=[("11月9日 14:02", 1, 5, 6)],
+    p_cta_done_note="セット1 は完了しています（解き直しはありません）", p_cta_print="セット1 を印刷する",
+    p_cta_resume_note="セット2 ・ つづき（2/4）", p_resume="つづきから始める", p_start="演習を始める",
+    p_no_status="完了ステータスやマスターレベルはありません。セットは何度でも追加できます。",
+    # student — crop
+    p_crop_title="第7回 講義資料（PDF）", p_crop_mode="演習をつくる", p_crop_hint="PDF の問題を枠で囲んでください（複数可）。学習ガイド画面の「Mana AI」クロップと同じ操作です。",
+    p_crop_pages="p.12–14 / 24", p_crop_cta="演習をつくる →", p_frames_n="{n}か所 選択中", p_frames_none="枠を1つ以上選ぶと「演習をつくる」が押せます",
+    p_pdf_h="7-1 相関分析 — 演習問題", p_pdf_sub="第7回 講義資料 p.12–14",
+    # student — setup
+    p_setup_title="切り取った範囲", p_dest="追加先", p_count="問題数", p_per_q="問 × {k}問題", p_max_per="1問につき 最大 {m}問",
+    p_total="全部で {n}問つくります", p_cap_hint="上限は選んだ範囲でいちばん少ない在庫に合わせています。在庫の総数は表示しません。",
+    p_create="演習を作る", p_question="問題", p_one="1問",
+    p_nomatch_t="この範囲の類題は用意されていません。", p_nomatch_b="問題全体が枠に入るように切り取って、もう一度お試しください。",
+    p_nomatch_h="セットは作成されません。生成へのフォールバックはありません。", p_recrop="もう一度 切り取る", p_demo_nomatch="DEMO：一致なし",
+    p_demo_match="DEMO：一致あり",
+    # student — wait / practice
+    p_making="作成中", p_collecting="類題を集めています…", p_wait_note="作成のときだけ表示します。読み取りだけなら待たせません。",
+    p_practice="類題演習", p_one_attempt="1回だけ答えられます", p_next="次へ →", p_end_round="この回を終える",
+    p_correct_bang="正解！", p_correct_is="正解は {ci}", p_round_done="演習 おわり！", p_round_sum="{n}問のうち {r}問 正解",
+    p_set_done="このセットは完了しました", p_back_sets="セット一覧に戻る", p_q_of="{i} / {n}",
+    # student — print
+    p_sheet_title="類題演習 セット1（6問）", p_sheet_chip="印刷プレビュー ・ PDF は都度再生成", p_q_label="問{n}",
+    p_sheet_foot="出典の問題と在庫数は印刷しません。", p_print_btn="印刷する", p_close="閉じる",
+    # titles
+    p_titles={"dialog": "BO — LOを追加（類題演習）", "src": "BO — 元の LO の設定（演習の元として利用可）", "det": "BO — 類題演習 LO の詳細",
+              "sets": "類題演習 — セット一覧", "crop": "類題演習 — PDF を切り取る", "setup": "類題演習 — 切り取った範囲", "wait": "類題演習 — 作成中",
+              "prac": "類題演習 — 解く", "print": "類題演習 — 印刷", "msets": "モバイル — 類題演習 セット一覧", "mcrop": "モバイル — PDF を切り取る",
+              "msetup": "モバイル — 切り取った範囲", "mwait": "モバイル — 作成中", "mprac": "モバイル — 解く"},
+)
+
+P_EN = dict(
+    p_type="Similar Questions Practice LO", p_type_short="Similar Questions Practice", p_type_en="Similar Questions Practice LO",
+    p_lo="Session 7 similar-questions practice (correlation)", p_src_lo="Session 7 lecture slides", p_src_lo_full="Session 7 lecture slides (PDF)",
+    p_src_chip="source", p_ai="AI",
+    p_dlg_title="Add Learning Objective", p_dlg_name="Session 7 similar-questions practice (correlation)", p_dlg_ext="—",
+    p_dlg_desc="Crop questions from the Session 7 lecture slides (PDF) and the AI collects similar questions into a practice set. Add as many sets as you like.",
+    p_f_link="Linked source LO", p_link_req="required", p_link_hint="Only LOs in this book with \"Available as practice source\" turned on are offered. An LO already linked by another practice LO stays available.",
+    p_link_none="No eligible LOs in this book. Turn on \"Available as practice source\" on a PDF LO first.",
+    p_empty_lbl="Empty state",
+    p_hidden="Hidden for this type: max score, grade to pass, manual grading, AI Tutor, password. Students see sets, questions done and questions correct — no completion status.",
+    p_cant_save="Cannot save: a Similar Questions Practice LO must be linked to an eligible LO when created.",
+    p_gate="Syllabus_BackOffice_AIPractice · syllabus.ai_practice.is_enabled",
+    p_gate_note="The type is offered only when the feature flag and the tenant setting are both on.",
+    p_src_type="Learning Objective (with study-guide PDF)", p_src_pages="24 pages · Published",
+    p_tog="Available as practice source", p_tog_desc="Students can build similar-question practice sets from this LO's PDF. Default off.",
+    p_tog_locked="Cannot be turned off: students already have practice sets.",
+    p_linked_by="Linked by (Similar Questions Practice LOs)", p_linked_none="No practice LO links to this LO yet.",
+    p_src_kv=[("Type", "Learning Objective"), ("Study guide", "Session7_lecture_slides.pdf · 24 pages"), ("AI Tutor", "Off"), ("Availability", "__course__")],
+    p_det_kv_link="Linked source LO", p_det_sets="Sets created by students", p_det_sets_v="12 sets (5 of 30 students)",
+    p_det_comp="Completion status", p_det_comp_v="None by design (PRD C3)", p_det_over="Teacher / admin override", p_det_over_v="None · sets cannot be deleted, altered or regenerated",
+    p_det_visible="Visible to students as", p_det_visible_v="A card in topic \"7-1 · Correlation analysis\" with the ✦ badge and the tag \"Similar Questions Practice\". It shows the set count only; there is no completion chip.",
+    p_det_dates="Availability", p_det_dates_v="Start date set in Course Management (no end date — an LO without a deadline)", p_det_dash="Open in the dashboard",
+    p_det_stock="Prepared similar questions", p_det_stock_v="3 source questions · stock is never shown to students",
+    p_dash_col="Similar Questions Practice", p_mx_kv=["Students with sets", "Sets", "Done · correct"], p_mx_none="--",
+    p_sets_n="{n} sets", p_done_of="{d}/{t} questions", p_correct_n="{c} correct", p_adhoc_n="{n} informal", p_acc="Accuracy",
+    p_tp_line="✦ Session 7 similar-questions practice · students with sets 5/30 · sets 12 · done 40 · correct 31",
+    p_stu_sets_line="2 sets (1 completed · 1 in progress)", p_stu_status_prog="In progress", p_stu_status_done="Completed", p_stu_view="View sets",
+    p_stu_score="6/8 correct",
+    p_lt="Practice", p_course_sub="From the Session 7 lecture slides PDF · 2 sets", p_todo_chip="Set 2 · continue 2/4",
+    p_questions="Questions", p_correct="Correct", p_round_line="10 per round · {d}/{t} answered · {w} wrong",
+    p_sets_h="Sets", p_set_n="Set {i}", p_done="Done", p_notdone="Not done", p_q_n="{d}/{t} questions", p_correct_q="{c} correct",
+    p_print="Print set", p_add_set="Add practice", p_create_set="Create practice set", p_from_pdf="from the Session 7 lecture slides PDF",
+    p_history="History", p_hist_row="{r}/{n} correct", p_hist=[("9 Nov, 14:02", 1, 5, 6)],
+    p_cta_done_note="Set 1 is completed (no re-practice)", p_cta_print="Print set 1",
+    p_cta_resume_note="Set 2 · continue (2/4)", p_resume="Continue", p_start="Start practice",
+    p_no_status="No completion status and no mastery level. Sets can be added at any time.",
+    p_crop_title="Session 7 lecture slides (PDF)", p_crop_mode="Make practice", p_crop_hint="Draw frames around the questions in the PDF (several allowed). Same gesture as the \"Mana AI\" crop on the study-guide screen.",
+    p_crop_pages="p.12–14 / 24", p_crop_cta="Make practice →", p_frames_n="{n} selected", p_frames_none="Select at least one frame to enable \"Make practice\"",
+    p_pdf_h="7-1 Correlation analysis — exercises", p_pdf_sub="Session 7 lecture slides p.12–14",
+    p_setup_title="Cropped range", p_dest="Add to", p_count="Questions", p_per_q=" per question × {k}", p_max_per="up to {m} per question",
+    p_total="{n} questions in total", p_cap_hint="The maximum follows the question with the least stock in your selection. Stock totals are never shown.",
+    p_create="Create practice", p_question="question", p_one="1",
+    p_nomatch_t="Similar questions are not available for this range.", p_nomatch_b="Please ensure your crop contains the question in full and try again.",
+    p_nomatch_h="No set is created. There is no generative fallback.", p_recrop="Crop again", p_demo_nomatch="DEMO: no match",
+    p_demo_match="DEMO: match",
+    p_making="Creating", p_collecting="Collecting similar questions…", p_wait_note="Shown for creation only, never for read-only transitions.",
+    p_practice="Similar questions", p_one_attempt="One attempt per question", p_next="Next →", p_end_round="Finish this round",
+    p_correct_bang="Correct!", p_correct_is="The correct answer is {ci}", p_round_done="Round complete!", p_round_sum="{r} of {n} correct",
+    p_set_done="This set is completed", p_back_sets="Back to sets", p_q_of="{i} / {n}",
+    p_sheet_title="Similar questions · Set 1 (6 questions)", p_sheet_chip="Print preview · PDF re-rendered on demand", p_q_label="Q{n}",
+    p_sheet_foot="Source question and stock counts are not printed.", p_print_btn="Print", p_close="Close",
+    p_titles={"dialog": "BO — Add LO (Similar Questions Practice)", "src": "BO — Source LO settings (Available as practice source)", "det": "BO — Similar Questions Practice LO detail",
+              "sets": "Practice — sets", "crop": "Practice — crop the PDF", "setup": "Practice — cropped range", "wait": "Practice — creating",
+              "prac": "Practice — solve", "print": "Practice — print", "msets": "Mobile — practice sets", "mcrop": "Mobile — crop the PDF",
+              "msetup": "Mobile — cropped range", "mwait": "Mobile — creating", "mprac": "Mobile — solve"},
+)
+JA.update(P_JA); EN.update(P_EN)
+
+# The bank: three source questions on the Session 7 slides (p.12–14), stock 4 / 3 / 2, so the shallowest-stock
+# cap is visible (cropping all three gives max 2). Content in JA and EN; the correct option index is fixed.
+P_BANK = [
+    {"id": "sq_r", "page": 12, "label": ("問1 相関係数の解釈", "Q1 Interpreting r"), "variants": [
+        (("相関係数 r = 0.82 のとき、2変数の関係として最も適切なものはどれか。", "For r = 0.82, which best describes the relationship between the two variables?"),
+         (("強い正の相関", "Strong positive correlation"), ("弱い正の相関", "Weak positive correlation"), ("強い負の相関", "Strong negative correlation"), ("相関なし", "No correlation")), 0,
+         ("r が 0.7 を超えると一般に強い相関とされ、符号が正なので正の相関。", "r above about 0.7 is generally called strong, and the sign is positive.")),
+        (("相関係数 r = −0.15 のとき、最も適切なものはどれか。", "For r = −0.15, which is the best description?"),
+         (("強い負の相関", "Strong negative correlation"), ("弱い負の相関", "Weak negative correlation"), ("強い正の相関", "Strong positive correlation"), ("完全な相関", "Perfect correlation")), 1,
+         ("絶対値が 0.2 未満なのでほとんど相関がなく、符号が負。", "An absolute value under 0.2 is barely any correlation, and the sign is negative.")),
+        (("相関係数 r = −0.91 のとき、最も適切なものはどれか。", "For r = −0.91, which is the best description?"),
+         (("弱い負の相関", "Weak negative correlation"), ("相関なし", "No correlation"), ("強い負の相関", "Strong negative correlation"), ("強い正の相関", "Strong positive correlation")), 2,
+         ("絶対値が 0.9 を超えるので強い相関、符号が負。", "An absolute value above 0.9 is a strong correlation, and the sign is negative.")),
+        (("相関係数 r が取りうる値の範囲はどれか。", "What is the range of values the correlation coefficient r can take?"),
+         (("0 以上 1 以下", "0 to 1"), ("−1 以上 1 以下", "−1 to 1"), ("−∞ から ∞", "−∞ to ∞"), ("0 以上 100 以下", "0 to 100")), 1,
+         ("相関係数は共分散を両標準偏差の積で割った値で、−1 から 1 の範囲に収まる。", "r is the covariance divided by the product of the two standard deviations, which stays between −1 and 1.")),
+    ]},
+    {"id": "sq_scatter", "page": 13, "label": ("問2 散布図の読み取り", "Q2 Reading a scatter plot"), "variants": [
+        (("散布図で点が右下がりに並ぶとき、相関係数の符号はどれか。", "When the points of a scatter plot run downward to the right, what is the sign of r?"),
+         (("正", "Positive"), ("負", "Negative"), ("0", "Zero"), ("決まらない", "Cannot be told")), 1,
+         ("一方が増えると他方が減る関係なので負の相関。", "One variable falls as the other rises, so the correlation is negative.")),
+        (("散布図で点がほぼ水平に散らばっているとき、相関係数はどれに近いか。", "When the points are scattered almost horizontally, what is r close to?"),
+         (("1", "1"), ("−1", "−1"), ("0", "0"), ("0.5", "0.5")), 2,
+         ("x が変わっても y の傾向が変わらないので、相関はほとんどない。", "y shows no trend as x changes, so there is almost no correlation.")),
+        (("散布図で点がほぼ一直線上に右上がりに並ぶとき、相関係数はどれに近いか。", "When the points lie almost on a straight line rising to the right, what is r close to?"),
+         (("0", "0"), ("−1", "−1"), ("0.3", "0.3"), ("1", "1")), 3,
+         ("直線に近く右上がりなので、1 に近い強い正の相関。", "Nearly a straight rising line means a strong positive correlation close to 1.")),
+    ]},
+    {"id": "sq_cause", "page": 14, "label": ("問3 相関と因果", "Q3 Correlation and causation"), "variants": [
+        (("アイスクリームの売上と水難事故の件数に正の相関がある。最も適切な解釈はどれか。", "Ice-cream sales and drowning accidents are positively correlated. Which interpretation is best?"),
+         (("アイスクリームが事故の原因である", "Ice cream causes the accidents"), ("事故がアイスクリームの売上を増やす", "Accidents increase ice-cream sales"), ("気温など第三の変数の影響の可能性がある", "A third variable such as temperature may drive both"), ("相関があるので因果もある", "Correlation implies causation")), 2,
+         ("両方に影響する第三の変数（気温）を疑うのが妥当。相関は因果を意味しない。", "Suspect a third variable (temperature) that affects both. Correlation does not imply causation.")),
+        (("相関係数が高いとき、必ず言えることはどれか。", "When r is high, which statement is always true?"),
+         (("一方が他方の原因である", "One variable causes the other"), ("2変数は直線的に関連している", "The two variables are linearly related"), ("外れ値はない", "There are no outliers"), ("サンプルサイズが十分である", "The sample size is sufficient")), 1,
+         ("高い相関が示すのは直線的な関連の強さだけで、因果・外れ値・標本サイズは別の話。", "A high r shows only the strength of a linear relationship; causation, outliers and sample size are separate questions.")),
+    ]},
+]
+def pl(pair, L):
+    return pair[0] if L == "ja" else pair[1]
+
+# Set 1 (completed, 6 questions): Q1 ×4 + Q2 ×2 — 5 correct. Set 2 (in progress, 4 questions): Q2 v3, Q3 v1, Q3 v2, Q1 v1
+# — the first two answered (1 correct), the last two open. The student resumes at the third.
+P_SET1 = [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (1, 1)]
+P_SET2 = [(1, 2), (2, 0), (2, 1), (0, 0)]
+def pq(ref):
+    sq, v = ref
+    return P_BANK[sq]["variants"][v]
+
+# ---------- Back Office ----------
+def p_dialog(S, L):
+    """DialogCreateLearningMaterial with the new sub-type chosen (C10.3 'Add learning material'): the type
+    select reads 類題演習 LO, General Info as for any LO, and in Settings the required 'Linked source LO'
+    picker fed by the book's eligible LOs (one radio option here — the Session 7 slides PDF, marked 演習の元),
+    with production's empty-state copy noted, the hidden-fields note and the flag/tenant-setting gate.
+    Confirm goes to the new LO's page. Cancel back to the tree."""
+    pick = (f'<div class="tpaper" style="padding:0;overflow:hidden;border:1px solid #BDBDBD;box-shadow:none">'
+            f'<button class="check on" style="width:100%;padding:12px 14px;gap:12px" onClick="{{{{noop}}}}"><span class="cbx" style="border-radius:50%">{mi("check", 14, "#fff")}</span>'
+            f'<span class="lm-type">{mi("lo", 16)}</span><span style="flex:1 1 auto;text-align:left">{S["p_src_lo"]}</span>'
+            f'<span class="tchip type">{S["p_src_chip"]}</span><span class="cell-muted" style="font-size:12px">p.1–24</span></button></div>'
+            f'<span class="helper">{S["p_link_hint"]}</span>')
+    dialog = f'''<div class="tscrim">
+  <div class="dlg">
+    <div class="dlg-head"><h2>{S["p_dlg_title"]}</h2><a class="ticon" href="{tfn("T-Book", L)}" aria-label="{S["t_cancel"]}">{mi("close", 24)}</a></div>
+    <div class="dlg-body">
+      <div class="lm-section">
+        <h3 class="sec-head">{S["t_dlg_general"]}</h3>
+        <div class="lm-grid">
+          <label class="field"><span class="lbl">{S["t_dlg_select"]} <span class="req">*</span></span><span class="in" style="gap:8px"><span class="lm-type" style="width:22px;height:22px">{mi("spark", 14)}</span>{S["p_type"]}<span class="tchip new">{S["t_new"]}</span><span class="gr">{mi("expandMore", 22)}</span></span></label>
+          {field(S["t_f_name"], S["p_dlg_name"], required=True)}
+          <div class="span2">{field(S["t_f_desc"], S["p_dlg_desc"], area=True)}</div>
+          {field(S["t_f_ext"], S["t_ph_ext"], placeholder=True)}
+        </div>
+        <span class="helper" style="display:flex;gap:6px;align-items:center;margin-top:10px">{mi("lock", 14, "#9E9E9E")}<span class="num">{S["p_gate"]}</span> ・ {S["p_gate_note"]}</span>
+      </div>
+      <div class="lm-section">
+        <h3 class="sec-head">{S["t_dlg_settings"]}</h3>
+        <div class="settings-list">
+          <div class="setting">
+            <span class="setting-label" style="font-weight:500">{S["p_f_link"]} <span class="req" style="color:#F44336">*</span> <span class="cell-muted" style="font-weight:400;font-size:12px">{S["p_link_req"]}</span></span>
+            {pick}
+            <span class="helper" style="color:#9E9E9E;display:flex;gap:6px;align-items:flex-start"><span style="flex:0 0 auto;margin-top:2px">{mi("info", 14, "#9E9E9E")}</span><span><b style="color:#757575">{S["p_empty_lbl"]}:</b> {S["p_link_none"]}</span></span>
+          </div>
+          <div class="setting"><div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["p_hidden"]}</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="dlg-foot"><a class="tbtn" href="{tfn("T-Book", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("P-Detail", L)}">{S["t_confirm"]}</a></div>
+  </div>
+</div>'''
+    return tpage(S, "P-Dialog", S["p_titles"]["dialog"], book_page(S, L, "P-Dialog", extra=dialog), logic='state = {}; renderVals(){ return { noop: () => {} }; }')
+
+def p_head(S, L, screen, name, type_chip, crumbs, acts=""):
+    return f'''{tcrumbs(S, screen, crumbs)}
+  <div class="tphead">
+    <h1>{name}{type_chip}<span class="tchip published">{S["t_pub"]}</span></h1>
+    <div class="acts">{acts}<span class="ticon">{mi("more", 24)}</span></div>
+  </div>
+  <div class="tabs"><span class="tab">{S["t_lo_tabs"][0]}</span><span class="tab on">{S["t_lo_tabs"][1]}</span></div>'''
+
+P_SRC_LOGIC = """state = { on: true };
+  renderVals() { return { tg: this.state.on ? "on" : "", tgOn: this.state.on, toggle: () => {} }; }"""
+
+def p_source(S, L):
+    """The source LO's Settings tab (C10.3 'LO detail / edit — source LO'): production's read-only settings
+    for a Learning Objective with a study-guide PDF, plus the eligibility switch 'Available as practice source'
+    — on, and locked with the reason because students already have sets — and 'Linked by', listing the
+    practice LO that points here. Shown only for supported types (v1: a PDF LO), default off."""
+    kv = ""
+    for k, v in S["p_src_kv"]:
+        if v == "__course__":
+            v = f'{S["t_course_name"]} ・ 2026/11/06 09:00 – ・ <a href="{tfn("T-CourseBook", L)}">{S["t_edit_dates"]}</a>'
+        kv += f'<dt>{k}</dt><dd>{v}</dd>'
+    body = tnav(S) + f'''<div class="tmain">
+<div class="tscroll">
+  {p_head(S, L, "P-Source", S["p_src_lo"], f'<span class="tchip type">{mi("lo", 14)}{S["p_src_type"]}</span>',
+          [(S["t_bm"], tfn("T-Book", L)), (S["t_book"], tfn("T-Book", L)), (S["p_src_lo"], None)],
+          f'<a class="tbtn outlined" href="#">{mi("edit", 18)}{S["t_edit"]}</a>')}
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tpaper"><div class="ph"><h3>{S["t_dlg_settings"]}</h3></div><div class="pb"><dl class="tkv" style="max-width:none">{kv}</dl></div></div>
+    <div class="tpaper">
+      <div class="ph"><h3>{S["p_type_short"]}</h3></div>
+      <div class="pb" style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:flex-start;gap:16px">
+          <span class="switch on" style="opacity:.55;cursor:default"><span class="track"></span><span style="font-weight:500">{S["p_tog"]}</span></span>
+        </div>
+        <span class="helper" style="margin:-6px 0 0 62px">{S["p_tog_desc"]}</span>
+        <div class="alert warn" style="margin-left:62px">{mi("lock", 20, "#ED6C02")}<span>{S["p_tog_locked"]}</span></div>
+        <div class="divider" style="height:1px;background:#E0E0E0"></div>
+        <span class="setting-label" style="font-weight:500">{S["p_linked_by"]}</span>
+        <ul class="lm-list" style="padding:0"><li class="lm" style="padding-left:0"><span class="lm-type">{mi("spark", 16)}</span><a class="nm" href="{tfn("P-Detail", L)}">{S["p_lo"]}</a><span class="tchip type">{S["p_type_short"]}</span><span class="cell-muted" style="font-size:12px">{S["p_det_sets_v"]}</span></li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "P-Source", S["p_titles"]["src"], body, logic=P_SRC_LOGIC)
+
+def p_detail(S, L):
+    """The practice LO's own page (C10.3 'Practice LO detail'): the linked source LO (a link to its
+    settings), the count of sets students created, and two read-only statements — completion status none
+    by design, no teacher/admin override — plus how it looks to students, where its start date lives
+    (Course Management, no end date) and a way into the dashboard."""
+    rows = [
+        (S["p_det_kv_link"], f'<a href="{tfn("P-Source", L)}" style="display:inline-flex;align-items:center;gap:6px"><span class="lm-type" style="width:20px;height:20px">{mi("lo", 12)}</span>{S["p_src_lo_full"]}</a> <span class="tchip type">{S["p_src_chip"]}</span>'),
+        (S["p_det_stock"], S["p_det_stock_v"]),
+        (S["p_det_sets"], f'<b style="font-weight:500">{S["p_det_sets_v"]}</b> ・ <a href="{tfn("T-DashGroup", L)}">{S["p_det_dash"]}</a>'),
+        (S["p_det_dates"], f'{S["p_det_dates_v"]} ・ <a href="{tfn("T-CourseBook", L)}">{S["t_edit_dates"]}</a>'),
+        (S["p_det_comp"], f'<span class="cell-muted">{S["p_det_comp_v"]}</span>'),
+        (S["p_det_over"], f'<span class="cell-muted">{S["p_det_over_v"]}</span>'),
+    ]
+    kv = "".join(f'<dt>{k}</dt><dd>{v}</dd>' for k, v in rows)
+    body = tnav(S) + f'''<div class="tmain">
+<div class="tscroll">
+  {p_head(S, L, "P-Detail", S["p_lo"], f'<span class="tchip type">{mi("spark", 14)}{S["p_type"]}</span>',
+          [(S["t_bm"], tfn("T-Book", L)), (S["t_book"], tfn("T-Book", L)), (S["p_lo"], None)],
+          f'<a class="tbtn" href="{tfn("T-DashGroup", L)}">{mi("dashboard", 18)}{S["p_det_dash"]}</a><a class="tbtn outlined" href="{tfn("P-Dialog", L)}">{mi("edit", 18)}{S["t_edit"]}</a>')}
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tpaper"><div class="ph"><h3>{S["t_dlg_settings"]}</h3></div><div class="pb"><dl class="tkv" style="max-width:none">{kv}</dl></div></div>
+    <div class="tpaper"><div class="ph"><h3>{S["p_det_visible"]}</h3></div><div class="pb"><div class="alert info">{mi("spark", 20, "#2196F3")}<span>{S["p_det_visible_v"]}</span></div></div></div>
+  </div>
+</div>
+<sc-if value="{{{{created}}}}" hint-placeholder-val="{{{{true}}}}"><div class="snack" role="status">{mi("checkCircle", 20)}{S["t_snack"]}</div></sc-if>
+</div>'''
+    return tpage(S, "P-Detail", S["p_titles"]["det"], body, logic='state = { created: true }; renderVals(){ return { created: this.state.created }; }')
+
+# ---------- student, shared pieces ----------
+def p_ring(d, t, size=44):
+    deg = int(d / t * 360) if t else 0
+    inner = size - 10
+    return (f'<span style="width:{size}px;height:{size}px;border-radius:50%;flex:0 0 {size}px;display:flex;align-items:center;justify-content:center;'
+            f'background:conic-gradient(#395ad2 {deg}deg, rgba(28,30,44,.12) 0)"><span style="width:{inner}px;height:{inner}px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">{d}/{t}</span></span>')
+
+def p_stat(S, done, total, correct, wide=False):
+    pct = int(done / total * 100) if total else 0
+    return f'''<div class="{"card" if wide else "mcard"}" style="{"padding:20px 24px" if wide else ""}">
+    <div style="display:flex">
+      <div style="flex:1;text-align:center"><b style="display:block;font-size:28px;line-height:36px;color:#395ad2">{done}<span style="font-size:14px;color:rgba(28,30,44,.45)">/{total}</span></b><span class="cap">{S["p_questions"]}</span></div>
+      <div style="flex:1;text-align:center;border-left:1px solid rgba(28,30,44,.12)"><b style="display:block;font-size:28px;line-height:36px;color:#395ad2">{correct}</b><span class="cap">{S["p_correct"]}</span></div>
+    </div>
+    <div style="height:8px;border-radius:999px;background:rgba(28,30,44,.12);overflow:hidden;margin-top:12px"><i style="display:block;height:100%;width:{pct}%;background:#395ad2;border-radius:999px"></i></div>
+    <p class="cap" style="text-align:center;margin-top:8px">{S["p_round_line"].format(d=done, t=total, w=done - correct)}</p>
+  </div>'''
+
+P_SETS_LOGIC = """state = { sel: 2 };
+  renderVals() {
+    const s = this.state.sel;
+    return { sel1: s === 1 ? "on" : "", sel2: s === 2 ? "on" : "", is1: s === 1, is2: s === 2,
+             pick1: () => this.setState({ sel: 1 }), pick2: () => this.setState({ sel: 2 }) };
+  }"""
+
+def p_set_rows(S, L, mobile=False):
+    """Two set rows (Koki's prototype: tapping a row selects it and the bottom CTA follows; default = the
+    topmost unfinished set), the dashed ＋ row, and the history. Set 1 is completed and printable; Set 2 is 2/4."""
+    row_cls = "lo" if not mobile else "lo"
+    def row(i, d, t, c, done, sel_hole, pick_hole):
+        chip = (f'<span class="chip done">{S["p_done"]}</span>' if done else f'<span class="chip pre">{S["p_notdone"]}</span>')
+        extra = f'<span>{S["p_q_n"].format(d=d, t=t)}</span>' + (f'<span>{S["p_correct_q"].format(c=c)}</span>' if done else "")
+        pr = (f'<a class="btn ghost" style="height:36px" href="{fn("P-Print", L)}" aria-label="{S["p_print"]}" title="{S["p_print"]}">{ic("download", 18)}</a>' if done and not mobile
+              else (f'<span class="btn ghost" style="height:36px;padding:0 8px">{ic("download", 18)}</span>' if done else ""))
+        return (f'<button class="{row_cls} {{{{{sel_hole}}}}}" style="border:2px solid transparent" onClick="{{{{{pick_hole}}}}}">{p_ring(d, t)}'
+                f'<span class="t"><b>{S["p_set_n"].format(i=i)}</b><i>{chip}{extra}</i></span>{pr}</button>')
+    rows = row(1, 6, 6, 5, True, "sel1", "pick1") + row(2, 2, 4, 1, False, "sel2", "pick2")
+    add = (f'<a class="{row_cls}" style="box-shadow:none;border:2px dashed rgba(28,30,44,.2);background:transparent" href="{fn("P-Crop" if not mobile else "M-PCrop", L)}">'
+           f'<span class="tile" style="background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.08)">{ic("plus", 26)}</span><span class="t"><b>{S["p_add_set"]}</b><i><span>{S["p_from_pdf"]}</span></i></span>{ic("right", 20, "#c7c7cc", 2.4)}</a>')
+    hist = "".join(f'<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-top:1px solid rgba(28,30,44,.08)"><span class="b2 muted">{when} <b style="color:rgba(28,30,44,.87)">{S["p_set_n"].format(i=i)}</b></span><b class="b2">{S["p_hist_row"].format(r=r, n=n)}</b></div>'
+                   for when, i, r, n in S["p_hist"])
+    return rows, add, hist
+
+def p_cta(S, L, mobile=False):
+    """The bottom CTA that follows the selected set: Set 1 (completed) → print; Set 2 → continue at 2/4."""
+    go_prac = fn("M-PPractice" if mobile else "P-Practice", L)
+    go_print = fn("P-Print", L)
+    btn = "mbtn primary" if mobile else "btn primary"
+    return (f'<sc-if value="{{{{is1}}}}" hint-placeholder-val="{{{{false}}}}"><div style="display:flex;flex-direction:column;gap:8px;align-items:stretch"><p class="cap" style="text-align:center">{S["p_cta_done_note"]}</p>'
+            f'<a class="{btn}" href="{go_print}">{ic("download", 18)}{S["p_cta_print"]}</a></div></sc-if>'
+            f'<sc-if value="{{{{is2}}}}" hint-placeholder-val="{{{{true}}}}"><div style="display:flex;flex-direction:column;gap:8px;align-items:stretch"><p class="cap" style="text-align:center">{S["p_cta_resume_note"]}</p>'
+            f'<a class="{btn}" href="{go_prac}">{ic("play", 18)}{S["p_resume"]}</a></div></sc-if>')
+
+# ---------- student, PC ----------
+def p_sets(S, L):
+    """The practice LO screen on the web (C10.4 screen 2): stat box (問題数 done/total, 正解数, bar, the
+    round line), the set list — selecting a row swaps the CTA — the ＋ row, the history, no completion chip
+    on the LO, no crown, no delete."""
+    rows, add, hist = p_set_rows(S, L)
+    body = header(S, "P-Sets", S["p_lo"], crumb=f'{S["course"]} › {S["wk7"]} › {S["t71"]}', back_href=fn("Main", L),
+                  right_extra=f'<span class="chip lt fb" style="height:26px">{ic("sparkle", 12)}{S["p_type_short"]}</span>') + f'''
+<div class="body"><div class="col" style="width:760px">
+  {p_stat(S, 8, 10, 6, wide=True)}
+  {sect(S["p_sets_h"], f'<span class="cap">{S["p_no_status"]}</span>')}
+  {rows}
+  {add}
+  {sect(S["p_history"])}
+  <div class="card" style="padding:6px 16px">{hist}</div>
+  <div class="card" style="padding:16px 24px">{p_cta(S, L)}</div>
+  <div style="height:8px"></div>
+</div></div>'''
+    return page(S, S["p_titles"]["sets"], body, logic=P_SETS_LOGIC)
+
+P_CROP_LOGIC = """state = { f: [false, false, false] };
+  renderVals() {
+    const f = this.state.f, n = f.filter(Boolean).length;
+    const tog = (i) => () => { const g = f.slice(); g[i] = !g[i]; this.setState({ f: g }); };
+    const no = (i) => f[i] ? String(f.slice(0, i + 1).filter(Boolean).length) : "";
+    return { f0: f[0] ? "on" : "", f1: f[1] ? "on" : "", f2: f[2] ? "on" : "", n0: no(0), n1: no(1), n2: no(2),
+             t0: tog(0), t1: tog(1), t2: tog(2), any: n > 0, none: n === 0, n: String(n) };
+  }"""
+
+def p_pdf_page(S, L, mobile=False):
+    """The Session 7 slides as a PDF page: three exercise boxes (p.12–14) that toggle a numbered blue frame
+    when clicked — the 'Mana AI' crop gesture in practice mode."""
+    boxes = ""
+    for i, sq in enumerate(P_BANK):
+        v = sq["variants"][0]
+        boxes += (f'<button class="pq {{{{f{i}}}}}" onClick="{{{{t{i}}}}}"><span class="pno">{{{{n{i}}}}}</span>'
+                  f'<span style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><b>{pl(sq["label"], L)}</b><span class="cap">p.{sq["page"]}</span></span>'
+                  f'<span class="b2" style="line-height:20px">{pl(v[0], L)}</span></button>')
+    return f'''<div class="ppdf{" m" if mobile else ""}">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:{13 if mobile else 15}px">{S["p_pdf_h"]}</b><span class="cap">{S["p_pdf_sub"]}</span></div>
+    <div style="height:6px;border-radius:3px;background:#e9e9ec;width:60%"></div><div style="height:6px;border-radius:3px;background:#e9e9ec;width:85%"></div>
+    {boxes}
+  </div>'''
+
+P_CSS = """
+.ppdf{background:#fff;border:1px solid rgba(28,30,44,.12);border-radius:6px;padding:20px 24px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 16px rgba(0,0,0,.08)}
+.ppdf.m{padding:14px;gap:10px}
+.pq{position:relative;display:flex;flex-direction:column;gap:6px;text-align:left;border:2px dashed rgba(28,30,44,.18);border-radius:6px;padding:10px 12px 10px 14px;background:#fff;font-family:inherit;color:inherit;cursor:pointer}
+.pq:hover{border-color:rgba(57,90,210,.5)}
+.pq.on{border:2px solid #395ad2;box-shadow:0 0 0 3px rgba(57,90,210,.18);background:#f7f8ff}
+.pq .pno{position:absolute;left:-10px;top:-10px;width:22px;height:22px;border-radius:50%;background:#395ad2;color:#fff;font-size:12px;font-weight:700;display:none;align-items:center;justify-content:center}
+.pq.on .pno{display:flex}
+.popt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1.5px solid rgba(28,30,44,.16);border-radius:10px;padding:12px 14px;background:#fff;font-family:inherit;color:inherit;font-size:15px;line-height:22px;cursor:pointer}
+.popt:hover{background:#fafafc}
+.popt .mk{width:22px;height:22px;border-radius:50%;border:2px solid rgba(28,30,44,.24);flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.popt.ok{border-color:#1f7a4d;background:#e6f5ee}.popt.ok .mk{background:#1f7a4d;border-color:#1f7a4d}
+.popt.ng{border-color:#d13842;background:#fbe7e9}.popt.ng .mk{background:#d13842;border-color:#d13842}
+.popt.dis{cursor:default}
+.pfb{border-radius:10px;padding:12px 14px;font-size:14px;line-height:22px}
+.pfb.ok{background:#e6f5ee;color:#1f7a4d}.pfb.ng{background:#fbe7e9;color:#8a1f2a}
+.pfb b{display:block;margin-bottom:2px}
+.prange{width:100%;accent-color:#395ad2;height:32px}
+.pspin{width:44px;height:44px;border-radius:50%;border:4px solid rgba(57,90,210,.2);border-top-color:#395ad2;animation:pspin 1s linear infinite}
+@keyframes pspin{to{transform:rotate(360deg)}}
+.psq{padding:12px 0;border-top:1px solid rgba(28,30,44,.1);font-size:14px;line-height:22px}
+.psq b{display:inline-block;width:40px}
+.psq ol{margin:6px 0 0 40px;padding-left:18px}
+"""
+
+def p_crop(S, L):
+    """The PDF crop in practice mode (C10.4 screen 3): the linked LO's study guide with the existing
+    'Mana AI' frames — up to five, spanning pages — and the confirm pill relabelled 演習をつくる →, enabled
+    once one frame is drawn. Click the exercises to frame them."""
+    body = header(S, "P-Crop", S["p_crop_title"], crumb=f'{S["course"]} › {S["t71"]} › {S["p_lo"]}', back_href=fn("P-Sets", L),
+                  right_extra=f'<span class="chip review" style="height:28px">{ic("scan", 14)}{S["p_crop_mode"]}</span>') + f'''
+<div class="body"><div style="width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start">
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span class="cap" style="white-space:nowrap;flex:0 0 auto">{S["p_crop_pages"]}</span><span class="cap" style="text-align:right">{S["p_crop_hint"]}</span></div>
+    {p_pdf_page(S, L)}
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px;position:sticky;top:0">
+    <div class="card" style="display:flex;flex-direction:column;gap:12px">
+      <p class="sub1">{S["p_setup_title"]}</p>
+      <sc-if value="{{{{any}}}}" hint-placeholder-val="{{{{true}}}}"><p class="b2">{S["p_frames_n"].replace("{n}", "{{n}}")}</p></sc-if>
+      <sc-if value="{{{{none}}}}" hint-placeholder-val="{{{{false}}}}"><p class="b2 muted">{S["p_frames_none"]}</p></sc-if>
+      <p class="cap">{S["p_dest"]}: <b>{S["p_lo"]}</b></p>
+      <sc-if value="{{{{any}}}}" hint-placeholder-val="{{{{true}}}}"><a class="btn primary" href="{fn("P-Setup", L)}">{ic("sparkle", 16)}{S["p_crop_cta"]}</a></sc-if>
+      <sc-if value="{{{{none}}}}" hint-placeholder-val="{{{{false}}}}"><span class="btn dis">{ic("sparkle", 16)}{S["p_crop_cta"]}</span></sc-if>
+    </div>
+  </div>
+</div></div>'''
+    return page(S, S["p_titles"]["crop"], body, logic=P_CROP_LOGIC)
+
+P_SETUP_LOGIC = """state = { count: 2, nomatch: false };
+  renderVals() {
+    const c = this.state.count, k = 3;
+    return { count: String(c), total: String(c * k), onCount: (e) => this.setState({ count: +e.target.value || 1 }),
+             match: !this.state.nomatch, nomatch: this.state.nomatch, toggleDemo: () => this.setState({ nomatch: !this.state.nomatch }) };
+  }"""
+
+def p_setup_rows(S, L):
+    return "".join(f'<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(28,30,44,.08)"><span class="ctag">p.{sq["page"]}</span><span class="b2" style="flex:1 1 auto;font-weight:700">{pl(sq["label"], L)}</span><span class="chip neutral" style="height:22px">{S["p_question"]}</span></div>'
+                   for sq in P_BANK)
+
+def p_slider(S, L, mobile=False):
+    k = 3
+    return f'''<div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:{22 if mobile else 26}px;color:#395ad2">{{{{count}}}}<span style="font-size:14px;color:rgba(28,30,44,.6);font-weight:500">{S["p_per_q"].format(k=k)}</span></b><span class="cap">{S["p_max_per"].format(m=2)}</span></div>
+    <input class="prange" type="range" min="1" max="2" step="1" value="{{{{count}}}}" onInput="{{{{onCount}}}}" aria-label="{S["p_count"]}">
+    <div style="display:flex;justify-content:space-between"><span class="cap">{S["p_one"]}</span><span class="cap">2</span></div>
+    <p class="sub1" style="text-align:center;color:#395ad2">{S["p_total"].replace("{n}", "{{total}}")}</p>
+    <p class="cap">{S["p_cap_hint"]}</p>'''
+
+def p_nomatch(S, L, mobile=False):
+    return f'''<div class="{"mcard" if mobile else "card"}" style="border-left:4px solid #d13842">
+      <p class="sub1" style="color:#d13842">{S["p_nomatch_t"]}</p>
+      <p class="b2" style="line-height:20px">{S["p_nomatch_b"]}</p>
+      <p class="cap">{S["p_nomatch_h"]}</p>
+    </div>'''
+
+def p_setup(S, L):
+    """切り取った範囲 (C10.4 screen 4): after Next the frames are uploaded and matched — one row per detected
+    question with its page, the read-only 追加先 line, and a per-question slider 1..max where max is the
+    shallowest remaining stock in the crop (2 here), with the live total. The DEMO pill flips to NO_MATCH:
+    the committed copy, もう一度 切り取る, nothing created."""
+    body = header(S, "P-Setup", S["p_setup_title"], crumb=f'{S["course"]} › {S["t71"]} › {S["p_lo"]}', back_href=fn("P-Crop", L),
+                  right_extra=f'<button class="chip pick" onClick="{{{{toggleDemo}}}}"><sc-if value="{{{{match}}}}" hint-placeholder-val="{{{{true}}}}">{S["p_demo_nomatch"]}</sc-if><sc-if value="{{{{nomatch}}}}" hint-placeholder-val="{{{{false}}}}">{S["p_demo_match"]}</sc-if></button>') + f'''
+<div class="body"><div class="col" style="width:760px">
+  <sc-if value="{{{{match}}}}" hint-placeholder-val="{{{{true}}}}">
+  <div class="card" style="padding:8px 24px">{p_setup_rows(S, L)}
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 0"><span class="cap">{S["p_dest"]}</span><span class="b2" style="font-weight:700">{S["p_lo"]}</span></div></div>
+  {sect(S["p_count"])}
+  <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:10px">{p_slider(S, L)}</div>
+  <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end"><a class="btn primary" href="{fn("P-Wait", L)}">{ic("sparkle", 16)}{S["p_create"]}</a></div>
+  </sc-if>
+  <sc-if value="{{{{nomatch}}}}" hint-placeholder-val="{{{{false}}}}">
+  {p_nomatch(S, L)}
+  <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end"><a class="btn primary" href="{fn("P-Crop", L)}">{ic("scan", 16)}{S["p_recrop"]}</a></div>
+  </sc-if>
+</div></div>'''
+    return page(S, S["p_titles"]["setup"], body, logic=P_SETUP_LOGIC)
+
+def p_wait(S, L):
+    """The wait state (C10.4 screen 5), for creation only: spinner and 類題を集めています… — retrieval, not
+    generation. DEMO → the set list with the new set."""
+    body = header(S, "P-Wait", S["p_making"], back_href=fn("P-Setup", L)) + f'''
+<div class="body" style="display:flex;align-items:center;justify-content:center">
+  <div class="card" style="width:420px;padding:40px 32px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+    <span class="pspin"></span>
+    <p class="sub1">{S["p_collecting"]}</p>
+    <p class="cap">{S["p_wait_note"]}</p>
+  </div>
+</div>
+<a class="demo" href="{fn("P-Sets", L)}"><span class="tag">DEMO</span>{S["p_sets_h"]} {ic("right", 16, "#fff", 2.4)}</a>'''
+    return page(S, S["p_titles"]["wait"], body)
+
+def p_practice_logic(L):
+    """Set 2 resumes at its third question. Two open questions (Q3 v1, Q1 v1) are drawn as sc-if blocks; the
+    option classes and the feedback box are holes. Correct so far: 1 of 2 answered."""
+    qs = [pq(P_SET2[2]), pq(P_SET2[3])]
+    corr = [q[2] for q in qs]
+    return f"""state = {{ i: 0, sel: [-1, -1], right: 1, end: false }};
+  renderVals() {{
+    const corr = {corr}; const i = this.state.i, sel = this.state.sel;
+    const v = {{ q0: i === 0 && !this.state.end, q1: i === 1 && !this.state.end, end: this.state.end,
+                 idx: String(i + 3), right: String(this.state.right), lastQ: i === 1 }};
+    for (let q = 0; q < 2; q++) {{
+      const a = sel[q] >= 0;
+      v["a" + q] = a; v["u" + q] = !a;
+      v["ok" + q] = a && sel[q] === corr[q]; v["ng" + q] = a && sel[q] !== corr[q];
+      for (let o = 0; o < 4; o++) {{
+        v["c" + q + o] = !a ? "" : (o === corr[q] ? "ok" : (o === sel[q] ? "ng" : "dis"));
+        v["m" + q + o] = !a ? "" : (o === corr[q] ? "✓" : (o === sel[q] ? "✗" : ""));
+        v["p" + q + o] = () => {{ if (sel[q] >= 0) return; const s = sel.slice(); s[q] = o; this.setState({{ sel: s, right: this.state.right + (o === corr[q] ? 1 : 0) }}); }};
+      }}
+    }}
+    v.next = () => this.setState({{ i: 1 }}); v.finish = () => this.setState({{ end: true }});
+    return v;
+  }}"""
+
+def p_question_block(S, L, q, n, total, qi, mobile=False):
+    """One question card: text, four options (letters A–D, marks and tones from holes), the feedback box."""
+    text, opts, corr, expl = q
+    letters = "ABCD"
+    options = "".join(f'<button class="popt {{{{c{qi}{o}}}}}" onClick="{{{{p{qi}{o}}}}}"><span class="mk">{{{{m{qi}{o}}}}}</span><span>{letters[o]}. {pl(opt, L)}</span></button>' for o, opt in enumerate(opts))
+    ci = letters[corr]
+    fb = (f'<sc-if value="{{{{ok{qi}}}}}" hint-placeholder-val="{{{{false}}}}"><div class="pfb ok"><b>{S["p_correct_bang"]}</b>{pl(expl, L)}</div></sc-if>'
+          f'<sc-if value="{{{{ng{qi}}}}}" hint-placeholder-val="{{{{false}}}}"><div class="pfb ng"><b>{S["p_correct_is"].format(ci=ci)}. {pl(opts[corr], L)}</b>{pl(expl, L)}</div></sc-if>')
+    return f'''<div class="{"mcard" if mobile else "card"}" style="display:flex;flex-direction:column;gap:12px;{"" if mobile else "padding:24px"}">
+      <span class="cap">{n} / {total}</span>
+      <p class="{"b1" if not mobile else "b2"}" style="font-weight:700;line-height:{26 if not mobile else 22}px">{pl(text, L)}</p>
+      <div style="display:flex;flex-direction:column;gap:8px">{options}</div>
+      {fb}
+    </div>'''
+
+def p_footer(S, L, qi, mobile=False, back=None):
+    btn = "mbtn primary" if mobile else "btn primary"
+    nxt = (f'<button class="{btn}" onClick="{{{{next}}}}">{S["p_next"]}</button>' if qi == 0 else f'<button class="{btn}" onClick="{{{{finish}}}}">{S["p_end_round"]}</button>')
+    return (f'<sc-if value="{{{{u{qi}}}}}" hint-placeholder-val="{{{{true}}}}"><p class="cap" style="text-align:center">{S["p_one_attempt"]}</p></sc-if>'
+            f'<sc-if value="{{{{a{qi}}}}}" hint-placeholder-val="{{{{false}}}}">{nxt}</sc-if>')
+
+def p_end_block(S, L, mobile=False):
+    back = fn("M-PSets" if mobile else "P-Sets", L)
+    btn = "mbtn primary" if mobile else "btn primary"
+    return f'''<div class="{"mcard" if mobile else "card"}" style="align-items:center;text-align:center;gap:10px;padding:32px 24px;display:flex;flex-direction:column">
+      <b style="font-size:40px;line-height:48px;color:#395ad2">{{{{right}}}}/4</b>
+      <p class="sub1">{S["p_round_done"]}</p>
+      <p class="b2">{S["p_round_sum"].replace("{n}", "4").replace("{r}", "{{right}}")}</p>
+      <p class="cap">{S["p_set_done"]}</p>
+      <a class="{btn}" style="margin-top:8px" href="{back}">{S["p_back_sets"]}</a>
+    </div>'''
+
+def p_practice(S, L):
+    """Practice (C10.4 screen 6) — the reused web MCQ module in a webview: one attempt per question, the
+    correct option marked and the wrong one crossed, the explanation under the options, 次へ →, then
+    この回を終える → the round-end screen with the set completed. Resumes at question 3 of 4."""
+    qs = [pq(P_SET2[2]), pq(P_SET2[3])]
+    body = header(S, "P-Practice", S["p_practice"], crumb=f'{S["p_lo"]} › {S["p_set_n"].format(i=2)}', back_href=fn("P-Sets", L),
+                  right_extra=f'<span class="chip neutral" style="height:28px">{S["p_q_of"].replace("{i}", "{{idx}}").replace("{n}", "4")}</span>') + f'''
+<div class="body"><div class="col" style="width:720px">
+  <sc-if value="{{{{q0}}}}" hint-placeholder-val="{{{{true}}}}">{p_question_block(S, L, qs[0], 3, 4, 0)}<div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end">{p_footer(S, L, 0)}</div></sc-if>
+  <sc-if value="{{{{q1}}}}" hint-placeholder-val="{{{{false}}}}">{p_question_block(S, L, qs[1], 4, 4, 1)}<div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end">{p_footer(S, L, 1)}</div></sc-if>
+  <sc-if value="{{{{end}}}}" hint-placeholder-val="{{{{false}}}}">{p_end_block(S, L)}</sc-if>
+</div></div>'''
+    return page(S, S["p_titles"]["prac"], body, logic=p_practice_logic(L))
+
+def p_print(S, L):
+    """Print (C10.4 screen 7): the whole set as a sheet — questions and options only; the source question
+    and stock counts never printed; re-rendered on demand, nothing stored."""
+    items = ""
+    for n, ref in enumerate(P_SET1):
+        text, opts, corr, expl = pq(ref)
+        items += f'<div class="psq"><b>{S["p_q_label"].format(n=n + 1)}</b>{pl(text, L)}<ol type="A">{"".join(f"<li>{pl(o, L)}</li>" for o in opts)}</ol></div>'
+    body = header(S, "P-Print", S["p_sheet_title"], crumb=f'{S["p_lo"]} › {S["p_set_n"].format(i=1)}', back_href=fn("P-Sets", L),
+                  right_extra=f'<span class="chip review" style="height:28px">{S["p_sheet_chip"]}</span>') + f'''
+<div class="body"><div class="col" style="width:760px">
+  <div class="card" style="padding:32px 40px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><b class="h4" style="font-size:20px">{S["p_sheet_title"]}</b><span class="cap">{S["course"]} ・ {S["t71"]}</span></div>
+    {items}
+    <p class="cap" style="margin-top:16px">{S["p_sheet_foot"]}</p>
+  </div>
+  <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end;gap:12px"><a class="btn neutral" href="{fn("P-Sets", L)}">{S["p_close"]}</a><span class="btn primary">{ic("download", 18)}{S["p_print_btn"]}</span></div>
+</div></div>'''
+    return page(S, S["p_titles"]["print"], body)
+
+# ---------- student, mobile ----------
+def m_psets(S, L):
+    rows, add, hist = p_set_rows(S, L, mobile=True)
+    body = mheader(S, "M-PSets", S["p_lo"], back_href=fn("M-Main", L)) + f'''
+<div class="mbody" style="padding-bottom:140px">
+  <p class="cap" style="margin:-4px 0 -8px;display:flex;gap:6px;align-items:center">{ic("sparkle", 12)}{S["p_type_short"]} ・ {S["t71"]}</p>
+  {p_stat(S, 8, 10, 6)}
+  <p class="cap" style="margin:-4px 0 -8px;font-weight:700">{S["p_sets_h"]}</p>
+  {rows}
+  {add}
+  <p class="cap" style="margin:-4px 0 -8px;font-weight:700">{S["p_history"]}</p>
+  <div class="mcard" style="padding:2px 12px">{hist}</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20">{p_cta(S, L, mobile=True)}</div>'''
+    return mpage(S, "M-PSets", S["p_titles"]["msets"], body, logic=P_SETS_LOGIC)
+
+def m_pcrop(S, L):
+    body = mheader(S, "M-PCrop", S["p_crop_title"], back_href=fn("M-PSets", L), right=f'<span class="chip review" style="height:26px;font-size:11px">{S["p_crop_mode"]}</span>') + f'''
+<div class="mbody" style="padding-bottom:160px">
+  <p class="cap">{S["p_crop_hint"]}</p>
+  {p_pdf_page(S, L, mobile=True)}
+  <p class="cap" style="text-align:center">{S["p_crop_pages"]}</p>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20;display:flex;flex-direction:column;gap:8px">
+  <sc-if value="{{{{any}}}}" hint-placeholder-val="{{{{true}}}}"><p class="cap" style="text-align:center">{S["p_frames_n"].replace("{n}", "{{n}}")}</p><a class="mbtn primary" href="{fn("M-PSetup", L)}">{ic("sparkle", 16)}{S["p_crop_cta"]}</a></sc-if>
+  <sc-if value="{{{{none}}}}" hint-placeholder-val="{{{{false}}}}"><p class="cap" style="text-align:center">{S["p_frames_none"]}</p><span class="mbtn dis">{ic("sparkle", 16)}{S["p_crop_cta"]}</span></sc-if>
+</div>'''
+    return mpage(S, "M-PCrop", S["p_titles"]["mcrop"], body, logic=P_CROP_LOGIC)
+
+def m_psetup(S, L):
+    body = mheader(S, "M-PSetup", S["p_setup_title"], back_href=fn("M-PCrop", L), right=f'<button class="chip pick" style="height:26px;font-size:11px;padding:0 10px" onClick="{{{{toggleDemo}}}}"><sc-if value="{{{{match}}}}" hint-placeholder-val="{{{{true}}}}">{S["p_demo_nomatch"]}</sc-if><sc-if value="{{{{nomatch}}}}" hint-placeholder-val="{{{{false}}}}">{S["p_demo_match"]}</sc-if></button>') + f'''
+<div class="mbody" style="padding-bottom:120px">
+  <sc-if value="{{{{match}}}}" hint-placeholder-val="{{{{true}}}}">
+  <div class="mcard" style="padding:4px 14px;gap:0">{p_setup_rows(S, L)}<div style="display:flex;align-items:center;gap:10px;padding:10px 0"><span class="cap">{S["p_dest"]}</span><span class="b2" style="font-weight:700">{S["p_lo"]}</span></div></div>
+  <p class="cap" style="margin:-4px 0 -8px;font-weight:700">{S["p_count"]}</p>
+  <div class="mcard" style="gap:8px">{p_slider(S, L, mobile=True)}</div>
+  </sc-if>
+  <sc-if value="{{{{nomatch}}}}" hint-placeholder-val="{{{{false}}}}">{p_nomatch(S, L, mobile=True)}</sc-if>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20">
+  <sc-if value="{{{{match}}}}" hint-placeholder-val="{{{{true}}}}"><a class="mbtn primary" href="{fn("M-PWait", L)}">{ic("sparkle", 16)}{S["p_create"]}</a></sc-if>
+  <sc-if value="{{{{nomatch}}}}" hint-placeholder-val="{{{{false}}}}"><a class="mbtn primary" href="{fn("M-PCrop", L)}">{ic("scan", 16)}{S["p_recrop"]}</a></sc-if>
+</div>'''
+    return mpage(S, "M-PSetup", S["p_titles"]["msetup"], body, logic=P_SETUP_LOGIC)
+
+def m_pwait(S, L):
+    body = mheader(S, "M-PWait", S["p_making"], back_href=fn("M-PSetup", L)) + f'''
+<div class="mbody" style="align-items:center;justify-content:center;text-align:center">
+  <span class="pspin"></span>
+  <p class="sub1">{S["p_collecting"]}</p>
+  <p class="cap">{S["p_wait_note"]}</p>
+</div>
+<a class="demo" style="right:12px;bottom:14px;padding:8px 10px 8px 12px" href="{fn("M-PSets", L)}"><span class="tag">DEMO</span>{ic("right", 16, "#fff", 2.4)}</a>'''
+    return mpage(S, "M-PWait", S["p_titles"]["mwait"], body)
+
+def m_ppractice(S, L):
+    qs = [pq(P_SET2[2]), pq(P_SET2[3])]
+    body = mheader(S, "M-PPractice", S["p_practice"], back_href=fn("M-PSets", L), right=f'<span class="chip neutral" style="height:26px;font-size:11px">{S["p_q_of"].replace("{i}", "{{idx}}").replace("{n}", "4")}</span>') + f'''
+<div class="mbody" style="padding-bottom:120px">
+  <sc-if value="{{{{q0}}}}" hint-placeholder-val="{{{{true}}}}">{p_question_block(S, L, qs[0], 3, 4, 0, mobile=True)}</sc-if>
+  <sc-if value="{{{{q1}}}}" hint-placeholder-val="{{{{false}}}}">{p_question_block(S, L, qs[1], 4, 4, 1, mobile=True)}</sc-if>
+  <sc-if value="{{{{end}}}}" hint-placeholder-val="{{{{false}}}}">{p_end_block(S, L, mobile=True)}</sc-if>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20;display:flex;flex-direction:column;gap:8px">
+  <sc-if value="{{{{q0}}}}" hint-placeholder-val="{{{{true}}}}">{p_footer(S, L, 0, mobile=True)}</sc-if>
+  <sc-if value="{{{{q1}}}}" hint-placeholder-val="{{{{false}}}}">{p_footer(S, L, 1, mobile=True)}</sc-if>
+  <sc-if value="{{{{end}}}}" hint-placeholder-val="{{{{false}}}}"><p class="cap" style="text-align:center">{S["p_no_status"]}</p></sc-if>
+</div>'''
+    return mpage(S, "M-PPractice", S["p_titles"]["mprac"], body, logic=p_practice_logic(L))
+
+PSCREENS_T = ["P-Dialog", "P-Source", "P-Detail"]
+PSCREENS_W = ["P-Sets", "P-Crop", "P-Setup", "P-Wait", "P-Practice", "P-Print"]
+PSCREENS_M = ["M-PSets", "M-PCrop", "M-PSetup", "M-PWait", "M-PPractice"]
+PBUILDERS = {"P-Dialog": p_dialog, "P-Source": p_source, "P-Detail": p_detail,
+             "P-Sets": p_sets, "P-Crop": p_crop, "P-Setup": p_setup, "P-Wait": p_wait, "P-Practice": p_practice, "P-Print": p_print,
+             "M-PSets": m_psets, "M-PCrop": m_pcrop, "M-PSetup": m_psetup, "M-PWait": m_pwait, "M-PPractice": m_ppractice}
+TO_MOBILE.update({"P-Sets": "M-PSets", "P-Crop": "M-PCrop", "P-Setup": "M-PSetup", "P-Wait": "M-PWait", "P-Practice": "M-PPractice", "P-Print": "M-PSets"})
+TO_PC.update({"M-PSets": "P-Sets", "M-PCrop": "P-Crop", "M-PSetup": "P-Setup", "M-PWait": "P-Wait", "M-PPractice": "P-Practice"})
+
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
@@ -3934,6 +4675,35 @@ for lang, S in (("ja", JA), ("en", EN)):
         boards[name] = {"x": i * (TW + TGAP), "y": TROW_Y[lang], "w": TW, "h": TH,
                         "title": ttitles[i] + (" (EN)" if lang == "en" else " (JA)"), "is_interactive": True}
         order.append(name)
+
+# AI Practice rows (24 Sep): the Similar Questions Practice LO across Back Office, PC and mobile
+PROW_Y = {"ja": 8800, "en": 10500}
+ptitles = ["P1 · Add LO — the Similar Questions Practice type, the required linked source LO",
+           "P2 · Source LO settings — Available as practice source, locked once sets exist; Linked by",
+           "P3 · Practice LO detail — linked LO, sets created, no completion status, no override",
+           "P4 · Student PC — the practice LO: sets, questions done and correct; the CTA follows the selected set",
+           "P5 · Student PC — crop the PDF with the Mana AI frames, then 演習をつくる",
+           "P6 · Student PC — 切り取った範囲: detected questions, a per-question count capped by the shallowest stock; DEMO no-match",
+           "P7 · Student PC — creating (retrieval, not generation)",
+           "P8 · Student PC — practice: one attempt per question, explanation, round end",
+           "P9 · Student PC — print the set",
+           "P10 · Mobile — the practice LO screen", "P11 · Mobile — crop the PDF", "P12 · Mobile — 切り取った範囲", "P13 · Mobile — creating", "P14 · Mobile — practice"]
+PSCREENS_ALL = PSCREENS_T + PSCREENS_W + PSCREENS_M
+PSIZE = {**{k: (TW, TH) for k in PSCREENS_T}, **{k: (W, H) for k in PSCREENS_W}, **{k: (MW, MH) for k in PSCREENS_M}}
+PX = {}
+for lang, S in (("ja", JA), ("en", EN)):
+    x = 0
+    for i, screen in enumerate(PSCREENS_ALL):
+        CUR = screen
+        name = fn(screen, lang)
+        with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+            f.write(PBUILDERS[screen](S, lang))
+        w, h = PSIZE[screen]
+        boards[name] = {"x": x, "y": PROW_Y[lang], "w": w, "h": h,
+                        "title": ptitles[i] + (" (EN)" if lang == "en" else " (JA)"), "is_interactive": True}
+        order.append(name)
+        PX[screen] = x
+        x += w + 80
 
 NW = 560
 MNW = 375
@@ -4001,6 +4771,27 @@ for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
 for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
+PNOTES = {
+    "P-Dialog": "AI PRACTICE — the Similar Questions Practice LO (jamessim-source/AIpractice: docs/prototype-plan.md, docs/c10-finalized-logic.md = PRD C10 as decided by the PM on 24 Sep; the clickable prototype on branch `prototype`). Redrawn here on this canvas's production components and fitted into the Kindai course: the practice LO sits in Topic 7-1 beside the AI Feedback LO, linked to the Session 7 lecture slides PDF, so Book Management, Course Management, the dashboards and the student app all show it as one more LO. THIS BOARD: DialogCreateLearningMaterial with the new frontend sub-type chosen (a plain LEARNING_OBJECTIVE with ai_practice=true, like Random Activity or Paper Submission — not a new proto type). Type name decided: Similar Questions Practice LO (JA 類題演習 LO is a placeholder; Random Activity already uses AI演習). General Info as for any LO; Settings = the required リンク元の LO picker, fed by the book's LOs whose 演習の元として利用可 switch is on — one here — with the empty-state copy (turn the switch on a PDF LO first); the note of the fields hidden for this type; the flag + tenant-setting gate. Creation and linking are one save. One eligible LO may be linked by several practice LOs. Confirm → P3. T2's type menu also lists this type (click it).",
+    "P-Source": "THE SOURCE LO (C10.3): the Session 7 lecture slides — a Learning Objective with a study-guide PDF, the only supported source type in v1 — on its Settings tab. Production's read-only settings, then the eligibility switch 演習の元として利用可 Available as practice source: shown only for supported types, default off; ON here, and LOCKED with the reason (students already have practice sets) — disabled with the reason, never an error on save. Below it, リンクされている類題演習 LO: the practice LOs pointing at this LO (one), with its set count. T1's tree marks this LO with a small 演習の元 chip.",
+    "P-Detail": "THE PRACTICE LO's PAGE (C10.3): the linked source LO (a link to P2), the prepared source questions (three; the stock is never shown to students), the sets students created (12, by 5 of 30 students) with a way into the dashboard, its availability — a start date set in Course Management with no end date, because a practice LO has no deadline (T8 shows the row with 開始 only) — and two read-only statements: completion status none by design, teacher/admin override none (no delete, alter or regenerate). Where Confirm lands, with the created snackbar. 'Visible to students as' describes the card on the course tab (P4, P10).",
+    "P-Sets": "STUDENT, PC (C10.4 screen 2 — Koki's prototype adopted, the PRD's rules trimming it): the practice LO opened from the course tab. StatBox 問題数 8/10 · 正解数 6 with the done-ratio bar and the round line (1回 10問ずつ). SETS: one selectable row per set — ring x/N, 完了 / 未完了 chip, 正解 k問 and the print icon when complete; tapping a row selects it and the bottom CTA follows (セット1 → 印刷する; セット2 → つづきから始める 2/4; default = the topmost unfinished set). ＋ 演習を追加する always at the end (sets accumulate; creation is never blocked by an unfinished set). 学習履歴: one row per finished round. NO crown, no LO-level completion, no delete, no edit mode, no re-practice (C3). Click a row, then the CTA.",
+    "P-Crop": "CROP IN PRACTICE MODE (screen 3): the linked LO's study-guide PDF with the existing 'Mana AI' crop — up to five frames, may span pages — its confirm pill relabelled 演習をつくる →, enabled once a frame exists. Click the exercises on p.12–14 to frame them (numbered); the panel counts them and names the destination (the practice LO). With one linked LO the crop opens directly; more than one would show a chooser sheet first. No cross-book, no cross-LO practice.",
+    "P-Setup": "切り取った範囲 (screen 4): at Next the frames were uploaded and MATCHED (RAG against the prepared bank) — so NO_MATCH surfaces here, before a count is chosen, and creates nothing. One row per detected question (page, 問題 tag), the read-only 追加先 line, then ONE number per question: a slider 1..max where max = the shallowest remaining stock among the cropped questions (2 here: stock 4/3/2), shown as a stated maximum — 1問につき 最大 2問 — with the live total 全部で 6問つくります; stock totals are never shown. DEMO pill top-right flips to NO_MATCH: the committed copy (PBT-3825: 'Please ensure your crop contains the question in full and try again'), もう一度 切り取る, no set. STOCK_EXHAUSTED is a distinct message (not drawn). 演習を作る → P7.",
+    "P-Wait": "WAIT STATE (screen 5), for creation only — never for read-only transitions: 類題を集めています… (retrieval, not generation: RISO is generation-off; the mock calls the similar_question graph so the flow is clickable today). Failure → toast, no partial set left behind. DEMO → the set list with the new set selected.",
+    "P-Practice": "PRACTICE (screen 6): the AI Tutor web app's existing MCQ practice module (modules/practice) mounted in a webview via a new ai-practice/embed route — so app and Flutter web share it and LaTeX/JSXGraph keep rendering. One attempt per question: pick an option → the correct one is marked ✓, a wrong pick ✗, the explanation box appears; 次へ →; the last question of the round ends with この回を終える → the round-end screen 演習 おわり！ N問のうち k問 正解, back to the sets. Rounds of 10 (config, pending TL), one history row per finished round. Answers are persisted per question so a reconnect resumes at the first unanswered one — this set resumes at 3/4. A completed set opens read-only; no Try Another. Click an option.",
+    "P-Print": "PRINT (screen 7): the whole set as a sheet — question and options only; the source question and stock counts are never printed; re-rendered on demand, the file is not stored (GET /sets/{id}/print). Print is RISO's primary use, so it sits on every completed set and on the CTA. Real PDF rendering, page caps and JSXGraph print fidelity are the TL's C8 items.",
+    "M-PSets": "MOBILE (the learner app; the practice screens reuse manabie_ui and the existing BookFlowLOHorizontalCard, not the Duolingo-style redesign): the practice LO screen — the same StatBox, set rows, ＋ row, history and the fixed bottom CTA that follows the selected set. Reached from M1's new ✦ card (set count only, no completion chip).",
+    "M-PCrop": "Mobile crop in practice mode: the existing study-guide screen (LearningVideoAndStudyGuideLMSV2Screen) with CropToAskEnabledBuilder forced on and the confirm action relabelled 演習をつくる →; the CTA is fixed at the bottom and stays disabled until a frame exists. Tap the exercises to frame them.",
+    "M-PSetup": "Mobile 切り取った範囲: the same rows, destination line, the per-question slider bounded by the shallowest stock and the live total. DEMO pill → NO_MATCH with もう一度 切り取る. 演習を作る → the wait screen.",
+    "M-PWait": "Mobile wait state — 類題を集めています… — creation only. DEMO → back to the practice LO with the new set.",
+    "M-PPractice": "Mobile practice: the same web MCQ module in ManabieAITutorWebView (a new practice source mode), one attempt per question, the explanation under the options, 次へ / この回を終える, the round-end screen, back to the sets. Tap an option.",
+}
+for screen in PSCREENS_ALL:
+    w = TNW if screen in PSCREENS_T else (NW if screen in PSCREENS_W else MNW)
+    notes["p_" + screen] = {"x": PX[screen], "y": PROW_Y["ja"] + PSIZE[screen][1] + 60, "w": w, "maxH": 520, "text": PNOTES[screen]}
+notes["title_p"] = {"x": 0, "y": PROW_Y["ja"] - 300, "text": "AI Practice — the Similar Questions Practice LO, fitted into the same course: Back Office set-up (Add LO → source LO → practice LO) → student PC (sets → crop → count → create → practice → print) → mobile · 日本語", "kind": "title1", "maxW": 12800}
+notes["title_p_en"] = {"x": 0, "y": PROW_Y["en"] - 240, "text": "Same AI Practice flow in English", "kind": "title1", "maxW": 12800}
 
 canvas = {
     "v": 3,
@@ -4098,6 +4889,8 @@ def site_index():
         ("Mobile · English", "375 × 812", links(MSCREENS, "en", mtitles)),
         ("先生（バックオフィス）・ 日本語", "1440 × 900", links(TSCREENS, "ja", ttitles)),
         ("Teacher (Back Office) · English", "1440 × 900", links(TSCREENS, "en", ttitles)),
+        ("AI演習（類題演習 LO）・ 日本語", "BO 1440 ・ PC 1280 ・ モバイル 375", links(PSCREENS_ALL, "ja", ptitles)),
+        ("AI Practice (Similar Questions Practice LO) · English", "BO 1440 · PC 1280 · Mobile 375", links(PSCREENS_ALL, "en", ptitles)),
     ]
     blocks = "".join(
         f'<section class="row"><h2>{name}<span>{size}</span></h2><div class="steps">{body}</div></section>'
@@ -4144,7 +4937,7 @@ footer{{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px s
 '''
 
 for lang in ("ja", "en"):
-    for screen in SCREENS + MSCREENS + TSCREENS:
+    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL:
         name = fn(screen, lang)
         with open(os.path.join(ROOT, name), encoding="utf-8") as f:
             src = f.read()

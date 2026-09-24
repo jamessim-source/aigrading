@@ -264,6 +264,30 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .pt{height:30px;padding:0 10px;border-radius:1000px;border:1px solid rgba(28,30,44,.12);background:#fff;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;color:rgba(28,30,44,.87)}
 .pt:hover{background:#f2f2f4}
 .pt.hit{border-color:#395ad2;background:#eef1ff}
+
+.ppdf{background:#fff;border:1px solid rgba(28,30,44,.12);border-radius:6px;padding:20px 24px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 16px rgba(0,0,0,.08)}
+.ppdf.m{padding:14px;gap:10px}
+.pq{position:relative;display:flex;flex-direction:column;gap:6px;text-align:left;border:2px dashed rgba(28,30,44,.18);border-radius:6px;padding:10px 12px 10px 14px;background:#fff;font-family:inherit;color:inherit;cursor:pointer}
+.pq:hover{border-color:rgba(57,90,210,.5)}
+.pq.on{border:2px solid #395ad2;box-shadow:0 0 0 3px rgba(57,90,210,.18);background:#f7f8ff}
+.pq .pno{position:absolute;left:-10px;top:-10px;width:22px;height:22px;border-radius:50%;background:#395ad2;color:#fff;font-size:12px;font-weight:700;display:none;align-items:center;justify-content:center}
+.pq.on .pno{display:flex}
+.popt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1.5px solid rgba(28,30,44,.16);border-radius:10px;padding:12px 14px;background:#fff;font-family:inherit;color:inherit;font-size:15px;line-height:22px;cursor:pointer}
+.popt:hover{background:#fafafc}
+.popt .mk{width:22px;height:22px;border-radius:50%;border:2px solid rgba(28,30,44,.24);flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.popt.ok{border-color:#1f7a4d;background:#e6f5ee}.popt.ok .mk{background:#1f7a4d;border-color:#1f7a4d}
+.popt.ng{border-color:#d13842;background:#fbe7e9}.popt.ng .mk{background:#d13842;border-color:#d13842}
+.popt.dis{cursor:default}
+.pfb{border-radius:10px;padding:12px 14px;font-size:14px;line-height:22px}
+.pfb.ok{background:#e6f5ee;color:#1f7a4d}.pfb.ng{background:#fbe7e9;color:#8a1f2a}
+.pfb b{display:block;margin-bottom:2px}
+.prange{width:100%;accent-color:#395ad2;height:32px}
+.pspin{width:44px;height:44px;border-radius:50%;border:4px solid rgba(57,90,210,.2);border-top-color:#395ad2;animation:pspin 1s linear infinite}
+@keyframes pspin{to{transform:rotate(360deg)}}
+.psq{padding:12px 0;border-top:1px solid rgba(28,30,44,.1);font-size:14px;line-height:22px}
+.psq b{display:inline-block;width:40px}
+.psq ol{margin:6px 0 0 40px;padding-left:18px}
+.lo.on{border-color:#395ad2!important;box-shadow:0 0 0 3px rgba(57,90,210,.15)}
 </style></helmet>
 <div class="mroot" style="width: 375px; height: 812px;">
 <div class="sb" style="color:#000"><span>9:41</span><span class="si">
@@ -286,6 +310,9 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f7a4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg></div>
   <a class="lo" href="M-Assignment-en.dc.html"><span class="tile"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg><span class="sp"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1c1e2c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg></span></span>
     <span class="t"><b>Session 7 exercise report</b><i><span class="chip lt fb">Feedback</span><span class="chip wait">Not submitted · due Nov 13</span><span>Comments on your submitted exercise report</span></i></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></a>
+  <a class="lo" href="M-PSets-en.dc.html"><span class="tile"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg><span class="sp"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1c1e2c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg></span></span>
+    <span class="t"><b>Session 7 similar-questions practice (correlation)</b><i><span class="chip lt fb">Practice</span><span class="chip review">Set 2 · continue 2/4</span><span>From the Session 7 lecture slides PDF · 2 sets</span></i></span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></a>
 </div>
 <nav class="mnav"><span class="ni on"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Courses</span><span class="ni"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>Message</span><span class="ni"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</span></nav>

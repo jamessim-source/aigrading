@@ -22,6 +22,8 @@ sticky notes on the canvas are the per-screen record.
 | Mobile · English | same, `-en` suffix | 375 × 812 |
 | Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` ↔ `T-Settings` → `T-Created` · `T-Courses` → `T-Course` → `T-CourseBook` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashTopic` → `T-DashGroup` ↔ `T-DashStudent` | 1440 × 900 |
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
+| AI Practice · 日本語 | `P-Dialog` → `P-Source` ↔ `P-Detail` (BO, 1440 × 900) · `P-Sets` → `P-Crop` → `P-Setup` → `P-Wait` → `P-Practice` · `P-Print` (PC, 1280 × 800) · `M-PSets` → `M-PCrop` → `M-PSetup` → `M-PWait` → `M-PPractice` (mobile, 375 × 812) | mixed |
+| AI Practice · English | same, `-en` suffix | mixed |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
 PC / Mobile / 先生（BO） pill (bottom-left) that jumps to the twin screen or into
@@ -166,6 +168,51 @@ already builds the course.
   the review — with the ★ reason under the LO name (a separate AI Feedback
   paper below the table was merged into these rows, PM; a comment-count
   column was tried and dropped).
+
+## AI Practice fitted in (2026-09-24, PM)
+
+The Similar Questions Practice feature (`jamessim-source/AIpractice`: `README.md`,
+`docs/prototype-plan.md`, `docs/c10-finalized-logic.md` — the PRD's C10 as the PM
+decided it — the `contract/openapi.yaml` + `mock-service/seed.py` mock, and Koki's
+clickable prototype on branch `prototype`) is drawn as one more LO in the same
+Kindai statistics course, so every existing surface shows it beside the AI
+Feedback LO rather than in a separate demo:
+
+- **Book Management (T1, T2, P1–P3).** Topic 7-1 gains 第7回 類題演習（相関分析）,
+  a plain LO with `ai_practice = true`, linked to the Session 7 lecture-slides
+  PDF LO. The Add LO type menu lists 類題演習 LO (NEW); the dialog's Settings
+  block is the required **Linked source LO** picker fed by the book's eligible
+  LOs, with the empty-state copy, the hidden-fields note (no max score, pass
+  score, manual grading, AI Tutor or password) and the flag / tenant-setting
+  gate (`Syllabus_BackOffice_AIPractice` + `syllabus.ai_practice.is_enabled`).
+  The source LO's Settings tab carries **Available as practice source** —
+  locked with the reason once students have sets — and **Linked by**; the tree
+  marks it 演習の元. The practice LO's own page shows the linked LO, the
+  prepared source questions (three; stock counts never reach students), the
+  sets created, its start date and no end date, and states what it has not:
+  no completion status, no mastery, no delete, no override.
+- **Course Management (T8).** The practice LO row carries a Start Date only —
+  a practice LO has no deadline — under the same study-plan-backed dates.
+- **Dashboards (T13–T15).** Topic mode: one insight line under 7-1 (sets
+  created, students, accuracy). LO mode: a practice column whose header reads
+  sets · students · done / correct, cells showing the set count, done/total ・
+  correct, an accuracy bar and an informal line for ad hoc widget sessions,
+  which stay separate from the formal sets. Student Dashboard: the practice
+  row shows 途中 with its sets line, no score, and a link into the group view.
+- **Student PC (Main, 05-Todo, P4–P9)** and **mobile (M-Main, P10–P14).** The
+  LO list and To-do gain the ✦ practice card (set count only, no completion
+  chip). The practice screen follows Koki's prototype trimmed to the PRD
+  rules: StatBox (問題数 / 正解数, rounds of 10), selectable set rows with a
+  print icon on complete sets, the ＋ row into the crop, and the CTA that
+  follows the selected set. Crop reuses the Mana AI frames relabelled
+  演習をつくる →; 切り取った範囲 shows the detected questions with a per-question
+  slider capped by the shallowest remaining stock and the live total, and the
+  DEMO pill shows NO_MATCH (*Please ensure your crop contains the question in
+  full and try again.*) before any count is chosen. The wait state is for
+  creation only (retrieval, not generation). Practice is the AI Tutor web
+  app's MCQ module: one attempt per question, explanation, 次へ, round end.
+  Print renders question and options only — never the source question or the
+  stock.
 
 ## Publishing
 

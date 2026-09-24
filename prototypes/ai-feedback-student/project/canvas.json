@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-24T06:20:51Z"
+    "at": "2026-09-24T12:20:59Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -537,6 +537,230 @@
       "h": 900,
       "title": "T15 · Student Dashboard — one student's AI Feedback (EN)",
       "is_interactive": true
+    },
+    "P-Dialog.dc.html": {
+      "x": 0,
+      "y": 8800,
+      "w": 1440,
+      "h": 900,
+      "title": "P1 · Add LO — the Similar Questions Practice type, the required linked source LO (JA)",
+      "is_interactive": true
+    },
+    "P-Source.dc.html": {
+      "x": 1520,
+      "y": 8800,
+      "w": 1440,
+      "h": 900,
+      "title": "P2 · Source LO settings — Available as practice source, locked once sets exist; Linked by (JA)",
+      "is_interactive": true
+    },
+    "P-Detail.dc.html": {
+      "x": 3040,
+      "y": 8800,
+      "w": 1440,
+      "h": 900,
+      "title": "P3 · Practice LO detail — linked LO, sets created, no completion status, no override (JA)",
+      "is_interactive": true
+    },
+    "P-Sets.dc.html": {
+      "x": 4560,
+      "y": 8800,
+      "w": 1280,
+      "h": 800,
+      "title": "P4 · Student PC — the practice LO: sets, questions done and correct; the CTA follows the selected set (JA)",
+      "is_interactive": true
+    },
+    "P-Crop.dc.html": {
+      "x": 5920,
+      "y": 8800,
+      "w": 1280,
+      "h": 800,
+      "title": "P5 · Student PC — crop the PDF with the Mana AI frames, then 演習をつくる (JA)",
+      "is_interactive": true
+    },
+    "P-Setup.dc.html": {
+      "x": 7280,
+      "y": 8800,
+      "w": 1280,
+      "h": 800,
+      "title": "P6 · Student PC — 切り取った範囲: detected questions, a per-question count capped by the shallowest stock; DEMO no-match (JA)",
+      "is_interactive": true
+    },
+    "P-Wait.dc.html": {
+      "x": 8640,
+      "y": 8800,
+      "w": 1280,
+      "h": 800,
+      "title": "P7 · Student PC — creating (retrieval, not generation) (JA)",
+      "is_interactive": true
+    },
+    "P-Practice.dc.html": {
+      "x": 10000,
+      "y": 8800,
+      "w": 1280,
+      "h": 800,
+      "title": "P8 · Student PC — practice: one attempt per question, explanation, round end (JA)",
+      "is_interactive": true
+    },
+    "P-Print.dc.html": {
+      "x": 11360,
+      "y": 8800,
+      "w": 1280,
+      "h": 800,
+      "title": "P9 · Student PC — print the set (JA)",
+      "is_interactive": true
+    },
+    "M-PSets.dc.html": {
+      "x": 12720,
+      "y": 8800,
+      "w": 375,
+      "h": 812,
+      "title": "P10 · Mobile — the practice LO screen (JA)",
+      "is_interactive": true
+    },
+    "M-PCrop.dc.html": {
+      "x": 13175,
+      "y": 8800,
+      "w": 375,
+      "h": 812,
+      "title": "P11 · Mobile — crop the PDF (JA)",
+      "is_interactive": true
+    },
+    "M-PSetup.dc.html": {
+      "x": 13630,
+      "y": 8800,
+      "w": 375,
+      "h": 812,
+      "title": "P12 · Mobile — 切り取った範囲 (JA)",
+      "is_interactive": true
+    },
+    "M-PWait.dc.html": {
+      "x": 14085,
+      "y": 8800,
+      "w": 375,
+      "h": 812,
+      "title": "P13 · Mobile — creating (JA)",
+      "is_interactive": true
+    },
+    "M-PPractice.dc.html": {
+      "x": 14540,
+      "y": 8800,
+      "w": 375,
+      "h": 812,
+      "title": "P14 · Mobile — practice (JA)",
+      "is_interactive": true
+    },
+    "P-Dialog-en.dc.html": {
+      "x": 0,
+      "y": 10500,
+      "w": 1440,
+      "h": 900,
+      "title": "P1 · Add LO — the Similar Questions Practice type, the required linked source LO (EN)",
+      "is_interactive": true
+    },
+    "P-Source-en.dc.html": {
+      "x": 1520,
+      "y": 10500,
+      "w": 1440,
+      "h": 900,
+      "title": "P2 · Source LO settings — Available as practice source, locked once sets exist; Linked by (EN)",
+      "is_interactive": true
+    },
+    "P-Detail-en.dc.html": {
+      "x": 3040,
+      "y": 10500,
+      "w": 1440,
+      "h": 900,
+      "title": "P3 · Practice LO detail — linked LO, sets created, no completion status, no override (EN)",
+      "is_interactive": true
+    },
+    "P-Sets-en.dc.html": {
+      "x": 4560,
+      "y": 10500,
+      "w": 1280,
+      "h": 800,
+      "title": "P4 · Student PC — the practice LO: sets, questions done and correct; the CTA follows the selected set (EN)",
+      "is_interactive": true
+    },
+    "P-Crop-en.dc.html": {
+      "x": 5920,
+      "y": 10500,
+      "w": 1280,
+      "h": 800,
+      "title": "P5 · Student PC — crop the PDF with the Mana AI frames, then 演習をつくる (EN)",
+      "is_interactive": true
+    },
+    "P-Setup-en.dc.html": {
+      "x": 7280,
+      "y": 10500,
+      "w": 1280,
+      "h": 800,
+      "title": "P6 · Student PC — 切り取った範囲: detected questions, a per-question count capped by the shallowest stock; DEMO no-match (EN)",
+      "is_interactive": true
+    },
+    "P-Wait-en.dc.html": {
+      "x": 8640,
+      "y": 10500,
+      "w": 1280,
+      "h": 800,
+      "title": "P7 · Student PC — creating (retrieval, not generation) (EN)",
+      "is_interactive": true
+    },
+    "P-Practice-en.dc.html": {
+      "x": 10000,
+      "y": 10500,
+      "w": 1280,
+      "h": 800,
+      "title": "P8 · Student PC — practice: one attempt per question, explanation, round end (EN)",
+      "is_interactive": true
+    },
+    "P-Print-en.dc.html": {
+      "x": 11360,
+      "y": 10500,
+      "w": 1280,
+      "h": 800,
+      "title": "P9 · Student PC — print the set (EN)",
+      "is_interactive": true
+    },
+    "M-PSets-en.dc.html": {
+      "x": 12720,
+      "y": 10500,
+      "w": 375,
+      "h": 812,
+      "title": "P10 · Mobile — the practice LO screen (EN)",
+      "is_interactive": true
+    },
+    "M-PCrop-en.dc.html": {
+      "x": 13175,
+      "y": 10500,
+      "w": 375,
+      "h": 812,
+      "title": "P11 · Mobile — crop the PDF (EN)",
+      "is_interactive": true
+    },
+    "M-PSetup-en.dc.html": {
+      "x": 13630,
+      "y": 10500,
+      "w": 375,
+      "h": 812,
+      "title": "P12 · Mobile — 切り取った範囲 (EN)",
+      "is_interactive": true
+    },
+    "M-PWait-en.dc.html": {
+      "x": 14085,
+      "y": 10500,
+      "w": 375,
+      "h": 812,
+      "title": "P13 · Mobile — creating (EN)",
+      "is_interactive": true
+    },
+    "M-PPractice-en.dc.html": {
+      "x": 14540,
+      "y": 10500,
+      "w": 375,
+      "h": 812,
+      "title": "P14 · Mobile — practice (EN)",
+      "is_interactive": true
     }
   },
   "order": [
@@ -605,7 +829,35 @@
     "T-Review-en.dc.html",
     "T-DashTopic-en.dc.html",
     "T-DashGroup-en.dc.html",
-    "T-DashStudent-en.dc.html"
+    "T-DashStudent-en.dc.html",
+    "P-Dialog.dc.html",
+    "P-Source.dc.html",
+    "P-Detail.dc.html",
+    "P-Sets.dc.html",
+    "P-Crop.dc.html",
+    "P-Setup.dc.html",
+    "P-Wait.dc.html",
+    "P-Practice.dc.html",
+    "P-Print.dc.html",
+    "M-PSets.dc.html",
+    "M-PCrop.dc.html",
+    "M-PSetup.dc.html",
+    "M-PWait.dc.html",
+    "M-PPractice.dc.html",
+    "P-Dialog-en.dc.html",
+    "P-Source-en.dc.html",
+    "P-Detail-en.dc.html",
+    "P-Sets-en.dc.html",
+    "P-Crop-en.dc.html",
+    "P-Setup-en.dc.html",
+    "P-Wait-en.dc.html",
+    "P-Practice-en.dc.html",
+    "P-Print-en.dc.html",
+    "M-PSets-en.dc.html",
+    "M-PCrop-en.dc.html",
+    "M-PSetup-en.dc.html",
+    "M-PWait-en.dc.html",
+    "M-PPractice-en.dc.html"
   ],
   "notes": {
     "title": {
@@ -901,6 +1153,118 @@
       "w": 640,
       "maxH": 460,
       "text": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with -- under Latest Score and Highest Score (a feedback LO has none; 再提出 1回 sat there first and was moved under the submission date, PM 21 Sep: it describes the submission, not a score). WHAT IS NEW is in the LO table itself (PM, 20 Sep: merged into the existing matrix rather than a table of its own; then, PM 20 Sep, fitted as columns rather than a detail row — the submission date was already a column): three feedback columns after production's four — 状態 Status (for every LO, PM 21 Sep: production writes 完了 Completed into the score columns of a video or slide deck, which read as statuses in score columns once a Status column existed, so 完了 moved here and the score columns show -- for anything unscored; for a feedback LO the status chip with its 再提出 / 自動返却 secondary chip and the date it was reached beneath, PM 21 Sep: a column of its own rather than sitting where a score would be), 指摘された観点 Flagged criteria — the rubric criteria that drew an improvement comment, with 再提出で修正済み where the resubmission fixed them (a コメント count column — 3, 良い点 1 ・ 改善点 2 — sat between and was dropped, PM 21 Sep: not useful; where the student stumbles is, and it is here), and 確認する / 見る into the review — the feedback LO's name a link to its overview (T7, PM 20 Sep), with the ★ reason under it where the teacher highlighted it; other LO rows show -- there. A separate paper below the table — count tiles, a submissions table and a by-criterion profile — was built first and removed in the merge. 7-2 is expanded so the weekly reflection shows too."
+    },
+    "p_P-Dialog": {
+      "x": 0,
+      "y": 9760,
+      "w": 640,
+      "maxH": 520,
+      "text": "AI PRACTICE — the Similar Questions Practice LO (jamessim-source/AIpractice: docs/prototype-plan.md, docs/c10-finalized-logic.md = PRD C10 as decided by the PM on 24 Sep; the clickable prototype on branch `prototype`). Redrawn here on this canvas's production components and fitted into the Kindai course: the practice LO sits in Topic 7-1 beside the AI Feedback LO, linked to the Session 7 lecture slides PDF, so Book Management, Course Management, the dashboards and the student app all show it as one more LO. THIS BOARD: DialogCreateLearningMaterial with the new frontend sub-type chosen (a plain LEARNING_OBJECTIVE with ai_practice=true, like Random Activity or Paper Submission — not a new proto type). Type name decided: Similar Questions Practice LO (JA 類題演習 LO is a placeholder; Random Activity already uses AI演習). General Info as for any LO; Settings = the required リンク元の LO picker, fed by the book's LOs whose 演習の元として利用可 switch is on — one here — with the empty-state copy (turn the switch on a PDF LO first); the note of the fields hidden for this type; the flag + tenant-setting gate. Creation and linking are one save. One eligible LO may be linked by several practice LOs. Confirm → P3. T2's type menu also lists this type (click it)."
+    },
+    "p_P-Source": {
+      "x": 1520,
+      "y": 9760,
+      "w": 640,
+      "maxH": 520,
+      "text": "THE SOURCE LO (C10.3): the Session 7 lecture slides — a Learning Objective with a study-guide PDF, the only supported source type in v1 — on its Settings tab. Production's read-only settings, then the eligibility switch 演習の元として利用可 Available as practice source: shown only for supported types, default off; ON here, and LOCKED with the reason (students already have practice sets) — disabled with the reason, never an error on save. Below it, リンクされている類題演習 LO: the practice LOs pointing at this LO (one), with its set count. T1's tree marks this LO with a small 演習の元 chip."
+    },
+    "p_P-Detail": {
+      "x": 3040,
+      "y": 9760,
+      "w": 640,
+      "maxH": 520,
+      "text": "THE PRACTICE LO's PAGE (C10.3): the linked source LO (a link to P2), the prepared source questions (three; the stock is never shown to students), the sets students created (12, by 5 of 30 students) with a way into the dashboard, its availability — a start date set in Course Management with no end date, because a practice LO has no deadline (T8 shows the row with 開始 only) — and two read-only statements: completion status none by design, teacher/admin override none (no delete, alter or regenerate). Where Confirm lands, with the created snackbar. 'Visible to students as' describes the card on the course tab (P4, P10)."
+    },
+    "p_P-Sets": {
+      "x": 4560,
+      "y": 9660,
+      "w": 560,
+      "maxH": 520,
+      "text": "STUDENT, PC (C10.4 screen 2 — Koki's prototype adopted, the PRD's rules trimming it): the practice LO opened from the course tab. StatBox 問題数 8/10 · 正解数 6 with the done-ratio bar and the round line (1回 10問ずつ). SETS: one selectable row per set — ring x/N, 完了 / 未完了 chip, 正解 k問 and the print icon when complete; tapping a row selects it and the bottom CTA follows (セット1 → 印刷する; セット2 → つづきから始める 2/4; default = the topmost unfinished set). ＋ 演習を追加する always at the end (sets accumulate; creation is never blocked by an unfinished set). 学習履歴: one row per finished round. NO crown, no LO-level completion, no delete, no edit mode, no re-practice (C3). Click a row, then the CTA."
+    },
+    "p_P-Crop": {
+      "x": 5920,
+      "y": 9660,
+      "w": 560,
+      "maxH": 520,
+      "text": "CROP IN PRACTICE MODE (screen 3): the linked LO's study-guide PDF with the existing 'Mana AI' crop — up to five frames, may span pages — its confirm pill relabelled 演習をつくる →, enabled once a frame exists. Click the exercises on p.12–14 to frame them (numbered); the panel counts them and names the destination (the practice LO). With one linked LO the crop opens directly; more than one would show a chooser sheet first. No cross-book, no cross-LO practice."
+    },
+    "p_P-Setup": {
+      "x": 7280,
+      "y": 9660,
+      "w": 560,
+      "maxH": 520,
+      "text": "切り取った範囲 (screen 4): at Next the frames were uploaded and MATCHED (RAG against the prepared bank) — so NO_MATCH surfaces here, before a count is chosen, and creates nothing. One row per detected question (page, 問題 tag), the read-only 追加先 line, then ONE number per question: a slider 1..max where max = the shallowest remaining stock among the cropped questions (2 here: stock 4/3/2), shown as a stated maximum — 1問につき 最大 2問 — with the live total 全部で 6問つくります; stock totals are never shown. DEMO pill top-right flips to NO_MATCH: the committed copy (PBT-3825: 'Please ensure your crop contains the question in full and try again'), もう一度 切り取る, no set. STOCK_EXHAUSTED is a distinct message (not drawn). 演習を作る → P7."
+    },
+    "p_P-Wait": {
+      "x": 8640,
+      "y": 9660,
+      "w": 560,
+      "maxH": 520,
+      "text": "WAIT STATE (screen 5), for creation only — never for read-only transitions: 類題を集めています… (retrieval, not generation: RISO is generation-off; the mock calls the similar_question graph so the flow is clickable today). Failure → toast, no partial set left behind. DEMO → the set list with the new set selected."
+    },
+    "p_P-Practice": {
+      "x": 10000,
+      "y": 9660,
+      "w": 560,
+      "maxH": 520,
+      "text": "PRACTICE (screen 6): the AI Tutor web app's existing MCQ practice module (modules/practice) mounted in a webview via a new ai-practice/embed route — so app and Flutter web share it and LaTeX/JSXGraph keep rendering. One attempt per question: pick an option → the correct one is marked ✓, a wrong pick ✗, the explanation box appears; 次へ →; the last question of the round ends with この回を終える → the round-end screen 演習 おわり！ N問のうち k問 正解, back to the sets. Rounds of 10 (config, pending TL), one history row per finished round. Answers are persisted per question so a reconnect resumes at the first unanswered one — this set resumes at 3/4. A completed set opens read-only; no Try Another. Click an option."
+    },
+    "p_P-Print": {
+      "x": 11360,
+      "y": 9660,
+      "w": 560,
+      "maxH": 520,
+      "text": "PRINT (screen 7): the whole set as a sheet — question and options only; the source question and stock counts are never printed; re-rendered on demand, the file is not stored (GET /sets/{id}/print). Print is RISO's primary use, so it sits on every completed set and on the CTA. Real PDF rendering, page caps and JSXGraph print fidelity are the TL's C8 items."
+    },
+    "p_M-PSets": {
+      "x": 12720,
+      "y": 9672,
+      "w": 375,
+      "maxH": 520,
+      "text": "MOBILE (the learner app; the practice screens reuse manabie_ui and the existing BookFlowLOHorizontalCard, not the Duolingo-style redesign): the practice LO screen — the same StatBox, set rows, ＋ row, history and the fixed bottom CTA that follows the selected set. Reached from M1's new ✦ card (set count only, no completion chip)."
+    },
+    "p_M-PCrop": {
+      "x": 13175,
+      "y": 9672,
+      "w": 375,
+      "maxH": 520,
+      "text": "Mobile crop in practice mode: the existing study-guide screen (LearningVideoAndStudyGuideLMSV2Screen) with CropToAskEnabledBuilder forced on and the confirm action relabelled 演習をつくる →; the CTA is fixed at the bottom and stays disabled until a frame exists. Tap the exercises to frame them."
+    },
+    "p_M-PSetup": {
+      "x": 13630,
+      "y": 9672,
+      "w": 375,
+      "maxH": 520,
+      "text": "Mobile 切り取った範囲: the same rows, destination line, the per-question slider bounded by the shallowest stock and the live total. DEMO pill → NO_MATCH with もう一度 切り取る. 演習を作る → the wait screen."
+    },
+    "p_M-PWait": {
+      "x": 14085,
+      "y": 9672,
+      "w": 375,
+      "maxH": 520,
+      "text": "Mobile wait state — 類題を集めています… — creation only. DEMO → back to the practice LO with the new set."
+    },
+    "p_M-PPractice": {
+      "x": 14540,
+      "y": 9672,
+      "w": 375,
+      "maxH": 520,
+      "text": "Mobile practice: the same web MCQ module in ManabieAITutorWebView (a new practice source mode), one attempt per question, the explanation under the options, 次へ / この回を終える, the round-end screen, back to the sets. Tap an option."
+    },
+    "title_p": {
+      "x": 0,
+      "y": 8500,
+      "text": "AI Practice — the Similar Questions Practice LO, fitted into the same course: Back Office set-up (Add LO → source LO → practice LO) → student PC (sets → crop → count → create → practice → print) → mobile · 日本語",
+      "kind": "title1",
+      "maxW": 12800
+    },
+    "title_p_en": {
+      "x": 0,
+      "y": 10260,
+      "text": "Same AI Practice flow in English",
+      "kind": "title1",
+      "maxW": 12800
     }
   },
   "designSystems": [],
