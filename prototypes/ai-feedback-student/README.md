@@ -188,8 +188,8 @@ Feedback LO rather than in a separate demo:
   The source LO's Settings tab carries **Available as practice source** —
   locked with the reason once students have sets — and **Linked by**; the tree
   marks it 演習の元. The practice LO's own page shows only the linked source LO
-  in Settings (PM, 24 Sep), plus how it looks to students and a dashboard
-  button; the set count, the start-only availability, and the facts that it
+  in Settings (PM, 24 Sep; a "Visible to students as" paper was drawn and
+  removed the same day), plus a dashboard button; the set count, the start-only availability, and the facts that it
   has no completion status, mastery, delete or override are recorded in the
   board's note.
 - **Course Management (T8).** The practice LO row carries a Start Date only —
