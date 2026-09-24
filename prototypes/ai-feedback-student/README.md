@@ -88,7 +88,9 @@ already builds the course.
   start date, the due date and the resubmission deadline belong to the **course**,
   not the LO. They are set on production's Course Management › Books › book ›
   **Learning Objectives Availability** page (`CourseBookDetail`,
-  `LOAvailabilityTable` in `school-portal-admin`'s syllabus squad), per course, so
+  `LOAvailabilityTable` in `school-portal-admin`'s syllabus squad), per course —
+  the values are the course's study plan items' start and end, read from and
+  written to the study plan backend (PM, 24 Sep) — so
   one book assigned to two courses runs on two schedules (`T-Courses` →
   `T-Course` → `T-CourseBook`). The Add LO dialog and the LO's Settings tab point
   there instead of carrying dates; resubmission stays a per-LO toggle, default
