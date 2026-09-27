@@ -194,8 +194,11 @@ Feedback LO rather than in a separate demo:
   board's note.
 - **Course Management (T8).** The practice LO row carries a Start Date only —
   a practice LO has no deadline — under the same study-plan-backed dates.
-- **Dashboards (T13–T15).** Topic mode: one insight line under 7-1 (sets
-  created, students, accuracy). LO mode: a practice column whose header reads
+- **Dashboards (T13–T15).** Topic mode: under 7-1's feedback LO, the practice
+  LO in the same shape (PM, 27 Sep) — name, start date with no due date, chips
+  for students with sets / sets / done / correct, one insight naming the
+  source question with the lowest accuracy, and an uncounted ad hoc widget
+  line. LO mode: a practice column whose header reads
   sets · students · done / correct, cells showing the set count, done/total ・
   correct, an accuracy bar and an informal line for ad hoc widget sessions,
   which stay separate from the formal sets. Student Dashboard: the practice
