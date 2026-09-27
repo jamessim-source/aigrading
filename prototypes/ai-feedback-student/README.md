@@ -198,7 +198,10 @@ Feedback LO rather than in a separate demo:
   LO in the same shape (PM, 27 Sep) — name, start date with no due date, chips
   for students with sets / sets / done / correct, one insight naming the
   source question with the lowest accuracy, and an uncounted ad hoc widget
-  line. LO mode: a practice column whose header reads
+  line. **Rule (PM, 27 Sep): when there is not going to be something, do
+  not state it** — no "no due date", "no completion status", "not printed"
+  or hidden-fields notes on any board; the absences are recorded in the
+  sticky notes and the PRD instead. LO mode: a practice column whose header reads
   sets · students · done / correct, cells showing the set count, done/total ・
   correct, an accuracy bar and an informal line for ad hoc widget sessions,
   which stay separate from the formal sets. Student Dashboard: the practice

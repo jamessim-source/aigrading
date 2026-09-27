@@ -307,14 +307,13 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
     <input class="prange" type="range" min="1" max="2" step="1" value="{{count}}" onInput="{{onCount}}" aria-label="問題数">
     <div style="display:flex;justify-content:space-between"><span class="cap">1問</span><span class="cap">2</span></div>
     <p class="sub1" style="text-align:center;color:#395ad2">全部で {{total}}問つくります</p>
-    <p class="cap">上限は選んだ範囲でいちばん少ない在庫に合わせています。在庫の総数は表示しません。</p></div>
+    <p class="cap">上限は選んだ範囲でいちばん少ない在庫に合わせています。</p></div>
   <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end"><a class="btn primary" href="P-Wait.dc.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg>演習を作る</a></div>
   </sc-if>
   <sc-if value="{{nomatch}}" hint-placeholder-val="{{false}}">
   <div class="card" style="border-left:4px solid #d13842">
       <p class="sub1" style="color:#d13842">この範囲の類題は用意されていません。</p>
       <p class="b2" style="line-height:20px">問題全体が枠に入るように切り取って、もう一度お試しください。</p>
-      <p class="cap">セットは作成されません。生成へのフォールバックはありません。</p>
     </div>
   <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end"><a class="btn primary" href="P-Crop.dc.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/></svg>もう一度 切り取る</a></div>
   </sc-if>
