@@ -192,10 +192,11 @@ Feedback LO rather than in a separate demo:
   removed the same day), plus a dashboard button; the set count, the start-only availability, and the facts that it
   has no completion status, mastery, delete or override are recorded in the
   board's note.
-- **Course Management (T8).** The practice LO row carries a Start Date only —
-  a practice LO has no deadline — under the same study-plan-backed dates.
+- **Course Management (T8).** The practice LO row is listed with empty date
+  cells: whether a practice LO has a start/due-date concept is unconfirmed
+  (PM, 27 Sep), so no date is shown for it anywhere — T8, T13, P3.
 - **Dashboards (T13–T15).** Topic mode: under 7-1's feedback LO, the practice
-  LO in the same shape (PM, 27 Sep) — name, start date with no due date, chips
+  LO in the same shape (PM, 27 Sep) — name, no date line, chips
   for students with sets / sets / done / correct, one insight naming the
   source question with the lowest accuracy, and an uncounted ad hoc widget
   line. **Rule (PM, 27 Sep): when there is not going to be something, do
