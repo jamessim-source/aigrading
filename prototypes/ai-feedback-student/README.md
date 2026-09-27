@@ -196,8 +196,8 @@ Feedback LO rather than in a separate demo:
   cells: whether a practice LO has a start/due-date concept is unconfirmed
   (PM, 27 Sep), so no date is shown for it anywhere — T8, T13, P3.
 - **Dashboards (T13–T15).** Topic mode: under 7-1's feedback LO, the practice
-  LO in the same shape (PM, 27 Sep) — name, no date line, chips
-  for students with sets / sets / done / correct, one insight naming the
+  LO in the same shape (PM, 27 Sep) — name, no date line, two chips
+  (students with sets, students who completed their sets), one insight naming the
   source question with the lowest accuracy, and an uncounted ad hoc widget
   line. **Rule (PM, 27 Sep): when there is not going to be something, do
   not state it** — no "no due date", "no completion status", "not printed"
