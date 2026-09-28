@@ -201,10 +201,10 @@ Feedback LO rather than in a separate demo:
   source question with the lowest accuracy. **Rule (PM, 27 Sep): when there is not going to be something, do
   not state it** — no "no due date", "no completion status", "not printed"
   or hidden-fields notes on any board; the absences are recorded in the
-  sticky notes and the PRD instead. LO mode: a practice column whose header reads
-  sets · students · done / correct, cells showing the set count, done/total ・
-  correct, an accuracy bar and an informal line for ad hoc widget sessions,
-  which stay separate from the formal sets. Student Dashboard: the practice
+  sticky notes and the PRD instead. LO mode: a practice column whose cells show the set count
+  and a score with its accuracy bar — Latest Score is correct / answered across
+  the student's sets, Highest Score the best single set — and the Latest /
+  Highest Score toggle is live when a practice LO is in view (PM, 28 Sep). Student Dashboard: the practice
   row shows 途中 with its sets line, no score, and a link into the group view.
 - **Student PC (Main, 05-Todo, P4–P9)** and **mobile (M-Main, P10–P14).** The
   LO list and To-do gain the ✦ practice card (set count only, no completion
