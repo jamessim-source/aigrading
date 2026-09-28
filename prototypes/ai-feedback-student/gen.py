@@ -2018,7 +2018,7 @@ table.m tbody td{vertical-align:top;white-space:nowrap}
 .ov-card .sub{font-size:12px;color:#757575;display:block;white-space:nowrap}
 .ov-card.hot{border-color:#FF9800;background:#FFFBF2}
 .toggle-group{display:inline-flex;border:1px solid rgba(33,150,243,.5);border-radius:4px;overflow:hidden;flex:0 0 auto}
-.toggle-group>span,.toggle-group>a{color:#2196F3;padding:0 14px;height:34px;display:inline-flex;align-items:center;font-size:14px;font-weight:500;white-space:nowrap;text-decoration:none}
+.toggle-group>span,.toggle-group>a,.toggle-group>button{background:none;border:0;font-family:inherit;cursor:pointer;color:#2196F3;padding:0 14px;height:34px;display:inline-flex;align-items:center;font-size:14px;font-weight:500;white-space:nowrap;text-decoration:none}
 .toggle-group>a:hover{background:#2196F30A}
 .toggle-group>*+*{border-left:1px solid rgba(33,150,243,.5)}
 .toggle-group span.on{background:#1976D21F;color:#0B79D0}
@@ -3008,9 +3008,11 @@ def sg_filterbar(S, applied=None, bulk=True, hl_filter=False):
     <div class="right">{right}</div>
   </div>'''
 
-SG_LOGIC = """state = { hl: false, f: false };
+SG_LOGIC = """state = { hl: false, f: false, hi: false };
   renderVals() {
     return { hlCls: this.state.hl ? "on" : "", hlOn: this.state.hl, hideRow: this.state.hl ? "hide" : "",
+             lat: !this.state.hi, hi: this.state.hi, latCls: this.state.hi ? "" : "on", hiCls: this.state.hi ? "on" : "",
+             setLat: () => this.setState({ hi: false }), setHi: () => this.setState({ hi: true }),
              toggleHl: () => this.setState({ hl: !this.state.hl }),
              fOpen: this.state.f, fCls: this.state.f ? "on" : "", toggleF: () => this.setState({ f: !this.state.f }),
              closeF: () => this.setState({ f: false }), resetF: () => this.setState({ hl: false, f: false }) };
@@ -3390,14 +3392,21 @@ def t_dash_group(S, L):
         if c[0] == "prac":
             # the practice LO's cell: sets · done/total · correct with the accuracy bar; informal ad hoc sessions
             # (the widget's) kept apart and labelled, never merged (C10.5); no completion status
-            _, sets, done, total, correct, adhoc = c
-            adhoc_l = f'<span class="cell-muted" style="font-size:11px;flex:1 0 100%">{S["p_adhoc_n"].format(n=adhoc)}</span>' if adhoc else ""
+            _, sets, done, total, correct, adhoc = c[:6]
+            # the informal ad hoc line was here and was removed (PM, 28 Sep: not required, per the T13 line)
             if not sets:
-                return f'<span class="stat-cell miss" style="flex-wrap:wrap;height:auto;min-height:52px;padding:8px 10px;gap:2px"><span class="dd">--</span>{adhoc_l}</span>'
-            acc = int(correct / done * 100) if done else 0
+                return f'<span class="stat-cell miss"><span class="dd">--</span></span>'
+            bc, bd = c[6] if len(c) > 6 else (correct, done)   # best single set (correct, answered)
+            def score(cc, dd):
+                acc = int(cc / dd * 100) if dd else 0
+                return (f'<span class="num" style="font-size:13px">{cc}/{dd}</span>'
+                        f'<span class="progress" style="min-width:0;width:140px"><span class="pct">{acc}%</span><span class="bar"><i class="good" style="width:{acc}%"></i></span></span>')
+            # Latest Score = correct / answered across the student's sets so far; Highest Score = the best
+            # single set — the toggle switches between them (PM, 28 Sep: a similar-questions LO has a score)
             return (f'<a class="stat-cell" href="{tfn("T-DashStudent", L)}" style="color:inherit;flex-wrap:wrap;height:auto;min-height:52px;padding:8px 10px;gap:4px 8px">'
-                    f'<span class="tchip type">{S["p_sets_n"].format(n=sets)}</span><span class="num" style="font-size:13px">{S["p_done_of"].format(d=done, t=total)} ・ {S["p_correct_n"].format(c=correct)}</span>'
-                    f'<span class="progress" style="min-width:0;width:140px"><span class="pct">{acc}%</span><span class="bar"><i class="good" style="width:{acc}%"></i></span></span>{adhoc_l}</a>')
+                    f'<span class="tchip type">{S["p_sets_n"].format(n=sets)}</span>'
+                    f'<sc-if value="{{{{lat}}}}" hint-placeholder-val="{{{{true}}}}">{score(correct, done)}</sc-if>'
+                    f'<sc-if value="{{{{hi}}}}" hint-placeholder-val="{{{{false}}}}">{score(bc, bd)}</sc-if></a>')
         if c[0] == "none":
             return '<span class="stat-cell miss"><span class="dd">--</span></span>'
         if c[0] == "comp":
@@ -3428,7 +3437,7 @@ def t_dash_group(S, L):
         for name, cells in S["t_mx_students"])
     hl_chip = f'<button class="tchip hlf {{{{hlCls}}}}" onClick="{{{{toggleHl}}}}" title="{S["t_hl_title"]}">{mi("star", 14)}{S["t_hl_only"]}</button>'
     # the whole Latest / Highest Score toggle is greyed out when nothing in the matrix carries a score (PM, 20 Sep)
-    has_score = any(kind == "score" for _, kind, _ in S["t_mx_los"])
+    has_score = any(kind in ("score", "prac") for _, kind, _ in S["t_mx_los"])  # PM, 28 Sep: a practice LO has a score, so the toggle is live
     hi_dis = "" if has_score else f' class="dis" title="{S["t_no_scores"]}"'
     # two insight panels sat below the matrix (comments by criterion, requirements that stopped a
     # submission) and were removed (PM, 20 Sep: not required)
@@ -3451,7 +3460,7 @@ def t_dash_group(S, L):
         {dash_modes(S, L, 1)}
       </div>
       <div style="display:flex;align-items:center;justify-content:flex-start;gap:16px;margin:16px 0 12px">
-        <span class="toggle-group{" dis" if not has_score else ""}"><span{" class=on" if has_score else hi_dis}>{S["t_score_modes"][0]}</span><span{hi_dis}>{S["t_score_modes"][1]}</span></span>
+        <span class="toggle-group{" dis" if not has_score else ""}">{(f'<button class="{{{{latCls}}}}" onClick="{{{{setLat}}}}">{S["t_score_modes"][0]}</button><button class="{{{{hiCls}}}}" onClick="{{{{setHi}}}}">{S["t_score_modes"][1]}</button>' if has_score else f'<span{hi_dis}>{S["t_score_modes"][0]}</span><span{hi_dis}>{S["t_score_modes"][1]}</span>')}</span>
         {hl_chip}
       </div>
       <div class="matrix"><table>
