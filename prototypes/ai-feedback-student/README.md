@@ -198,8 +198,7 @@ Feedback LO rather than in a separate demo:
 - **Dashboards (T13–T15).** Topic mode: under 7-1's feedback LO, the practice
   LO in the same shape (PM, 27 Sep) — name, no date line, two chips
   (students with sets, students who completed their sets), one insight naming the
-  source question with the lowest accuracy, and an uncounted ad hoc widget
-  line. **Rule (PM, 27 Sep): when there is not going to be something, do
+  source question with the lowest accuracy. **Rule (PM, 27 Sep): when there is not going to be something, do
   not state it** — no "no due date", "no completion status", "not printed"
   or hidden-fields notes on any board; the absences are recorded in the
   sticky notes and the PRD instead. LO mode: a practice column whose header reads
