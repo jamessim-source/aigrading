@@ -761,6 +761,12 @@ body{background:#fff}</style>
             <button class="switch {{rv}}" onClick="{{toggleRv}}"><span class="track"></span><span>返却前に先生が確認する</span></button>
             <sc-if value="{{rvOff}}" hint-placeholder-val="{{false}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>締切のあと、先生の確認なしに自動で返却されます。</span></div></sc-if>
           </div>
+          <div class="setting">
+            <!-- AI feedback before submission (PM, 29 Sep): a per-LO switch, default off -->
+            <span class="setting-label" style="font-weight:500">提出前のAIフィードバック</span>
+            <button class="switch {{pr}}" onClick="{{togglePr}}"><span class="track"></span><span>提出前にAIフィードバックを受けられるようにする</span></button>
+            <sc-if value="{{prOn}}" hint-placeholder-val="{{false}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>生徒は下書きにAIフィードバックを受け、直してから提出できます。先生の確認はなく、提出回数には数えません。</span></div></sc-if>
+          </div>
         </div>
       </div>
     </div>
@@ -773,13 +779,14 @@ body{background:#fff}</style>
 <script>
 
 class Component extends DCLogic {
-  state = { menu: false, review: true, resub: true, m0: true, m1: true, m2: true };
+  state = { menu: false, review: true, resub: true, pre: false, m0: true, m1: true, m2: true };
   renderVals() {
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {
       menuOpen: this.state.menu, toggleMenu: t("menu"),
       rv: this.state.review ? "on" : "", rvOff: !this.state.review, toggleRv: t("review"),
       rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
+      pr: this.state.pre ? "on" : "", prOn: this.state.pre, togglePr: t("pre"),
       c0: this.state.m0 ? "on" : "", c1: this.state.m1 ? "on" : "", c2: this.state.m2 ? "on" : "",
       t0: t("m0"), t1: t("m1"), t2: t("m2"),
     };

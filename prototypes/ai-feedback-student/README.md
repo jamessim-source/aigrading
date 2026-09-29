@@ -169,6 +169,14 @@ already builds the course.
   paper below the table was merged into these rows, PM; a comment-count
   column was tried and dropped).
 
+## AI feedback before submission (2026-09-29, PM)
+
+A per-LO switch, 提出前のAIフィードバック / AI feedback before submission, default
+off, as a fourth Settings block in the Add LO dialog (T2) and a row on the
+LO's Settings tab (T4). On, the helper states that the student gets AI feedback
+on a draft and can revise before submitting, that it is not teacher-reviewed
+and does not count as a submission. The student-side flow is not drawn yet.
+
 ## AI Practice fitted in (2026-09-24, PM)
 
 The Similar Questions Practice feature (`jamessim-source/AIpractice`: `README.md`,
