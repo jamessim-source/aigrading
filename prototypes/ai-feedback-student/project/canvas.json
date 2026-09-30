@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T14:25:12Z"
+    "at": "2026-09-30T14:31:00Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1690,7 +1690,7 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then the results. Click Confirm & Analyze to run it; the DEMO pill skips ahead."
+      "text": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then 分析結果を見る to the results (the source navigates on its own; here a link, so the board stays put). Click Confirm & Analyze to run it; the DEMO pill skips ahead."
     },
     "q_Q-Result": {
       "x": 4080,

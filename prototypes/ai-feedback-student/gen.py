@@ -5417,7 +5417,7 @@ Q_JA = dict(
     q_err_unclear="写真が不鮮明です", q_err_unclear_d="回答全体が見えるように、明るい場所で撮り直してください。", q_got_it="了解",
     # preview / analyze
     q_add_more="さらに追加", q_pages_up="{n} / {m} ページ アップロード済み", q_confirm_analyze="確認して分析", q_page_of="{i} / {n} ページ",
-    q_analyzing="課題を分析中…", q_checking="回答を確認しています。少々お待ちください。", q_progress="進行状況",
+    q_analyzing="課題を分析中…", q_analyzed="分析が完了しました", q_see_results="分析結果を見る", q_checking="回答を確認しています。少々お待ちください。", q_progress="進行状況",
     # analysis result
     q_results="分析結果", q_ai_marked="AIがあなたの解答を採点しました。提出すると先生が確認します。",
     q_self_mark="自分の解答を見直し、設問ごとに正直に採点してください。先生があなたの自己採点を確認します。",
@@ -5450,7 +5450,7 @@ Q_EN = dict(
     q_err_h="Submission error", q_err_wrong="Wrong assessment", q_err_wrong_d="This sheet does not match the questions. Make sure you are photographing the right page.",
     q_err_unclear="Photo unclear", q_err_unclear_d="Retake your photo in good lighting with your full answer visible.", q_got_it="Got it",
     q_add_more="Add More", q_pages_up="{n} of {m} pages uploaded", q_confirm_analyze="Confirm & Analyze", q_page_of="Page {i} of {n}",
-    q_analyzing="Analyzing Your Work…", q_checking="We are checking your answers. This will take a moment.", q_progress="Progress",
+    q_analyzing="Analyzing Your Work…", q_analyzed="Analysis complete", q_see_results="See the results", q_checking="We are checking your answers. This will take a moment.", q_progress="Progress",
     q_results="Analysis Results", q_ai_marked="AI has marked your work. Submit it and your teacher will review the result.",
     q_self_mark="Review your work and score each question honestly. Your teacher will review your self-assessment.",
     q_breakdown="Question Breakdown", q_ai_scores="AI-generated scores for your submission", q_score_yourself="Score yourself for each question", q_total="Total Score",
@@ -5523,16 +5523,16 @@ def q_total_badge(S, hole=None, total=None, mx=10, mobile=False):
 
 
 # ---------- shared logic ----------
-Q_PREVIEW_LOGIC = """state = { i: 0, n: 2, busy: false, pct: 0, err: "" };
+Q_PREVIEW_LOGIC = """state = { i: 0, n: 2, busy: false, done: false, pct: 0, err: "" };
   renderVals() {
     const s = this.state;
     return {
       idx: String(s.i + 1), n: String(s.n), isFirst: s.i === 0, isLast: s.i === s.n - 1, on0: s.i === 0 ? "on" : "", on1: s.i === 1 ? "on" : "",
-      ready: !s.busy, busy: s.busy, pct: String(s.pct), pw: s.pct + "%", hasErr: s.err !== "", noErr: s.err === "",
+      ready: !s.busy, busy: s.busy && !s.done, done: s.done, pct: String(s.pct), pw: s.pct + "%", hasErr: s.err !== "", noErr: s.err === "",
       errWrong: s.err === "wrong", errUnclear: s.err === "unclear",
       prev: () => this.setState({ i: Math.max(0, s.i - 1) }), next: () => this.setState({ i: Math.min(s.n - 1, s.i + 1) }),
       go0: () => this.setState({ i: 0 }), go1: () => this.setState({ i: 1 }),
-      analyze: () => { this.setState({ busy: true, pct: 8 }); let p = 8; const t = setInterval(() => { p = Math.min(100, p + 23); this.setState({ pct: p }); if (p >= 100) { clearInterval(t); setTimeout(() => { window.location.href = this.__next; }, 350); } }, 380); },
+      analyze: () => { this.setState({ busy: true, pct: 8 }); let p = 8; const t = setInterval(() => { p = Math.min(100, p + 23); this.setState({ pct: p }); if (p >= 100) { clearInterval(t); setTimeout(() => this.setState({ done: true }), 350); } }, 380); },
       demoWrong: () => this.setState({ err: "wrong" }), demoUnclear: () => this.setState({ err: "unclear" }), closeErr: () => this.setState({ err: "" }),
     };
   }"""
@@ -5689,11 +5689,17 @@ def q_preview(S, L):
     </div>
   </div>
   </sc-if>
+  <sc-if value="{{{{done}}}}" hint-placeholder-val="{{{{false}}}}">
+  <div class="card" style="padding:56px 32px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
+    <span style="width:80px;height:80px;border-radius:16px;background:#e6f5ee;display:flex;align-items:center;justify-content:center;color:#1f7a4d">{ic("check", 36, "#1f7a4d", 2.6)}</span>
+    <h2 class="h3" style="font-size:20px">{S["q_analyzed"]}</h2>
+    <a class="btn primary" style="margin-top:8px" href="{fn("Q-Result", L)}">{S["q_see_results"]}{ic("right", 18, "#fff", 2.4)}</a>
+  </div>
+  </sc-if>
   <div style="height:8px"></div>
 </div></div>
 <a class="demo" href="{fn("Q-Result", L)}"><span class="tag">DEMO</span>{S["q_results"]} {ic("right", 16, "#fff", 2.4)}</a>'''
-    logic = Q_PREVIEW_LOGIC.replace("this.__next", f'"{fn("Q-Result", L)}"')
-    return page(S, S["q_titles"]["preview"], body, logic=logic)
+    return page(S, S["q_titles"]["preview"], body, logic=Q_PREVIEW_LOGIC)
 
 def q_result(S, L):
     """SubmissionAnalysisResult (source): the banner (AI-marked, or the self-marking instruction when the assignment allows
@@ -5875,15 +5881,21 @@ def mq_preview(S, L):
     </div>
   </div>
   </sc-if>
+  <sc-if value="{{{{done}}}}" hint-placeholder-val="{{{{false}}}}">
+  <div class="mcard" style="align-items:center;text-align:center;gap:10px;padding:40px 16px">
+    <span style="width:72px;height:72px;border-radius:16px;background:#e6f5ee;display:flex;align-items:center;justify-content:center;color:#1f7a4d">{ic("check", 32, "#1f7a4d", 2.6)}</span>
+    <h2 class="mh">{S["q_analyzed"]}</h2>
+  </div>
+  </sc-if>
 </div>
 <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20;display:flex;flex-direction:column;gap:8px">
   <sc-if value="{{{{ready}}}}" hint-placeholder-val="{{{{true}}}}"><a class="mbtn neutral" href="{fn("MQ-Submit", L)}">{ic("plus", 18)}{S["q_add_more"]}</a>
   <button class="mbtn primary" onClick="{{{{analyze}}}}">{ic("sparkle", 18, "#fff")}{S["q_confirm_analyze"]}</button></sc-if>
   <sc-if value="{{{{busy}}}}" hint-placeholder-val="{{{{false}}}}"><span class="mbtn dis">{S["q_analyzing"]}</span></sc-if>
+  <sc-if value="{{{{done}}}}" hint-placeholder-val="{{{{false}}}}"><a class="mbtn primary" href="{fn("MQ-Result", L)}">{S["q_see_results"]}{ic("right", 18, "#fff", 2.4)}</a></sc-if>
 </div>
 <a class="demo" style="right:12px;bottom:150px;padding:8px 10px 8px 12px" href="{fn("MQ-Result", L)}" aria-label="{S["q_results"]}"><span class="tag">DEMO</span>{ic("right", 16, "#fff", 2.4)}</a>'''
-    logic = Q_PREVIEW_LOGIC.replace("this.__next", f'"{fn("MQ-Result", L)}"')
-    return mpage(S, "MQ-Preview", S["q_mtitles"]["preview"], body, logic=logic)
+    return mpage(S, "MQ-Preview", S["q_mtitles"]["preview"], body, logic=Q_PREVIEW_LOGIC)
 
 def mq_result(S, L):
     rows = q_breakdown_rows(S, Q_AI, editable=True, mobile=True)
@@ -6199,7 +6211,7 @@ for lang, S in (("ja", JA), ("en", EN)):
 QNOTES = {
     "Q-Detail": "AI GRADING, THE STUDENT SIDE (source: jamessim-source/aigradingv1, apps/frontend/src/screens/student — the deprecated student SPA that is the acceptance spec: ClassDetail → AssignmentDetails → HomeworkSubmission → HomeworkSubmissionPreview → SubmissionAnalysisResult → SubmissionConfirmation → SubmissionReview; PM, 30 Sep: review the ai grading student interface from this repo and integrate the student experience into the student web and app). Redrawn on this canvas's student components and fitted into the Kindai course: the Session 7 確認クイズ (the paper LO of G1–G7) now has a row on the course tab (Main, M1) and in To-do (8) with the pencil disc and the 紙提出物 chip — it appears to students only because the LO's Allow student to submit (G1) is ON; off, the teacher bulk-scans and the student sees nothing until the return. THIS BOARD = AssignmentDetails: the LO, 指示 Instructions (the LO description from G1), 提出の詳細 Submission details (8問 · 10点満点 · photos or PDF), the three steps the AI Feedback assignment also shows (photo → AI marks → submit to the teacher), 課題を提出 Submit Your Work. The source's My Classes / Add Class by QR or code and the class card list are NOT drawn — the LMS course and the course QR (T6) already do that.",
     "Q-Submit": "HomeworkSubmission: 写真を撮る Take Photo or アップロード Upload (images or PDF, max 10 MB, at most 1 PDF, up to 5 photos — the source's limits), the four photo tips. On the phone Take Photo opens the camera (the AI Feedback M3 pattern); on PC both land on the pages screen. The bottom error popup the source shows when the analysis rejects the upload — 誤った課題 Wrong assessment (the sheet does not match the LO's questions) and 写真が不鮮明です Photo unclear — is raised by the DEMO buttons; 了解 closes it and the student retakes.",
-    "Q-Preview": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then the results. Click Confirm & Analyze to run it; the DEMO pill skips ahead.",
+    "Q-Preview": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then 分析結果を見る to the results (the source navigates on its own; here a link, so the board stays put). Click Confirm & Analyze to run it; the DEMO pill skips ahead.",
     "Q-Result": "SubmissionAnalysisResult: the banner — AIがあなたの解答を採点しました when the LO is AI-marked, or the self-marking instruction when the assignment allows self-marking (the source's allowSelfMarking; the DEMO chip in the header flips it — this canvas has NO such setting on G1 yet, see OPEN) — the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule; read-only when AI-marked, inputs when self-marking (type a number, the total follows). 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: is self-marking a setting of the paper LO (G1) or off for this segment; does the student see the AI's score before submitting at all (the source shows it).",
     "Q-Done": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state.",
     "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
@@ -6265,7 +6277,6 @@ def to_static(text, lang):
     markup = re.search(r"</helmet>\s*(.*?)\s*</x-dc>", text, re.S).group(1)
     logic = re.search(r'<script type="text/x-dc"[^>]*>(.*?)</script>', text, re.S).group(1)
     markup = markup.replace('.dc.html"', '.html"')      # links between screens
-    logic = logic.replace('.dc.html"', '.html"')        # and the one navigation a logic block makes (Q3 / Q9 on completion)
     # Drop the artboard's fixed size; the stylesheet gives it the window instead.
     markup = re.sub(r'\s*style="width: (?:1280|375|1440)px; height: (?:800|812|900)px;"', "", markup, count=1)
     # Fold an index link into the prototype-only device pill, so no page chrome is needed.
