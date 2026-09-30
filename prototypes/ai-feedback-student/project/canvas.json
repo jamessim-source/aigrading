@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T14:49:50Z"
+    "at": "2026-09-30T14:52:55Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1697,7 +1697,7 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return)."
+      "text": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, each row carrying the question's tag from the teacher's question list (G2: 知識・技能 Knowledge & skills / 思考・判断 Thinking & judgment, spelled out for the student — PM, 30 Sep: what is K and T?) — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return)."
     },
     "q_Q-Done": {
       "x": 5440,
