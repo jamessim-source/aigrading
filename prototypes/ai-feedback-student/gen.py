@@ -342,6 +342,51 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .psq b{display:inline-block;width:40px}
 .psq ol{margin:6px 0 0 40px;padding-left:18px}
 .lo.on{border-color:#395ad2!important;box-shadow:0 0 0 3px rgba(57,90,210,.15)}
+.gsheet{background:#fff;border:1px solid #E0E0E0;box-shadow:0 1px 3px rgba(0,0,0,.12);padding:22px 26px;display:flex;flex-direction:column;gap:10px;font-size:11px;color:#424242}
+.gsheet .ln{height:8px;border-radius:2px;background:#EEEEEE}
+.gsheet .q{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed #EEEEEE}
+.gsheet .q b{width:34px;color:#212121}.gsheet .q .ln{flex:1}
+.gsheet .q .box{width:64px;height:22px;border:1px solid #9E9E9E;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;font-weight:500;color:#1A237E}
+.gsheet .q .ai{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.gsheet .q .ai.o{color:#2E7D32;border:2px solid #2E7D32}.gsheet .q .ai.x{color:#C62828}
+/* AI Grading — the student's paper submission */
+.qphoto{position:relative;display:inline-block;border-radius:8px;overflow:hidden;background:#2a2521}
+.qphoto .desk{position:absolute;inset:0}
+.qphoto .qsheet{position:absolute;left:8%;top:5%;width:84%;transform:rotate(-2deg);box-shadow:0 12px 30px rgba(0,0,0,.55)}
+.qphoto .gsheet{padding:14px 16px;gap:6px;font-size:10px;border:0}
+.qphoto .gsheet .q{padding:4px 0}
+.qphoto .gsheet .q .box{width:56px;height:18px;font-size:10px;border-color:#BDBDBD;font-family:'Noto Sans JP',sans-serif;font-style:italic;color:#1A237E}
+.qcar{position:relative;display:flex;align-items:center;justify-content:center;background:#e9e9ec;border-radius:8px;overflow:hidden}
+.qcar .nv{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);border:0;display:flex;align-items:center;justify-content:center;color:#1c1e2c;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.qcar .nv.l{left:10px}.qcar .nv.r{right:10px}
+.qcar .pg{position:absolute;right:10px;bottom:10px;background:rgba(28,30,44,.75);color:#fff;font-size:12px;font-weight:700;border-radius:1000px;padding:3px 10px}
+.qcar .del{position:absolute;right:10px;top:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);border:0;display:flex;align-items:center;justify-content:center;color:#d13842;cursor:pointer}
+.qopt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;height:120px;border-radius:12px;border:1.5px solid rgba(28,30,44,.16);background:#fff;color:#1c1e2c;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;flex:1 1 0}
+.qopt.pri{border-color:#395ad2;background:#eef1ff;color:#395ad2}
+.qopt:hover{background:#fafbff;color:inherit}.qopt.pri:hover{background:#e3e8ff;color:#395ad2}
+.qtips{background:#fffdf4;border:1px solid #f2e8c4;border-radius:8px;padding:14px 16px;color:#a27a23;font-size:13px;line-height:20px}
+.qtips b{display:block;font-size:14px;margin-bottom:6px}
+.qtips ul{margin:0;padding-left:16px}
+.qbanner{display:flex;gap:10px;align-items:flex-start;border-radius:8px;padding:12px 14px;font-size:14px;line-height:20px}
+.qbanner.ai{background:#eef1ff;color:#2c48ae}.qbanner.self{background:#fff3cc;color:#7a5a00}.qbanner.ok{background:#e6f5ee;color:#1f7a4d}
+.qrow-s{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;border:1px solid rgba(28,30,44,.1);background:#fff}
+.qrow-s b{font-size:14px;min-width:44px}
+.qrow-s .qtag{font-size:11px;color:rgba(28,30,44,.6);background:#f2f2f4;border-radius:4px;padding:1px 6px}
+.qrow-s .qsv{margin-left:auto;display:flex;align-items:baseline;gap:2px}
+.qrow-s .qmax{font-size:13px;font-weight:700;color:rgba(28,30,44,.45)}
+.qsc{width:44px;height:36px;border:1.5px solid rgba(28,30,44,.16);border-radius:8px;text-align:center;font-size:16px;font-weight:700;font-family:inherit;background:#fff;color:inherit;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.qsc.ro{border-color:transparent;background:transparent;width:auto;padding:0 2px}
+.qrow-s.full{background:#f2fcf5;border-color:#d1f0d9}.qrow-s.full .qsc{color:#38a169;border-color:#d1f0d9}
+.qrow-s.zero{background:#fcf3f3;border-color:#f2d6d6}.qrow-s.zero .qsc{color:#d9534f;border-color:#f2d6d6}
+.qrow-s.part{background:#fff9e6;border-color:#f2e8c4}.qrow-s.part .qsc{color:#ad8200;border-color:#f2e8c4}
+.qtotal{display:flex;align-items:center;justify-content:space-between;background:#395ad2;color:#fff;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:700}
+.qtotal b{font-size:24px;line-height:32px}.qtotal b i{font-style:normal;font-size:14px;opacity:.75;margin-left:2px}
+.qprog{height:10px;border-radius:999px;background:#ececef;overflow:hidden}.qprog i{display:block;height:100%;background:#395ad2;border-radius:999px;transition:width .3s}
+.qerr{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:50;padding:24px}
+.qerr .bx{background:#fff;border-radius:12px;padding:24px;width:100%;max-width:360px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.qerr .ic{width:56px;height:56px;border-radius:50%;background:#fbe7e9;color:#d13842;display:flex;align-items:center;justify-content:center}
+.qkv{display:flex;flex-direction:column;gap:2px}.qkv .k{font-size:12px;color:rgba(28,30,44,.6)}.qkv .v{font-size:14px;font-weight:700}
+.qcheck{width:72px;height:72px;border-radius:50%;background:#1f7a4d;display:flex;align-items:center;justify-content:center;color:#fff}
 """
 HELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
           '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">'
@@ -610,7 +655,7 @@ EN = dict(
 )
 
 MJA = dict(
-    m_crumb="地域環境統計学 › 第7回 データの分析と仮説検定", m_banner_n="3 / 4", m_banner_l="完了",
+    m_crumb="地域環境統計学 › 第7回 データの分析と仮説検定", m_banner_n="3 / 5", m_banner_l="完了",
     m_nav=["コース", "メッセージ", "カレンダー"],
     m_opt_cam="撮影して提出", m_opt_cam_s="手書きの答案を1ページずつ撮影します",
     m_opt_file="ファイル・写真を選ぶ", m_opt_file_s="PDF ・ Word ・ Excel ・ PowerPoint ・ 写真（複数枚まとめて）",
@@ -630,7 +675,7 @@ MJA = dict(
               "pending": "モバイル — 提出済み", "fb": "モバイル — 返却済み", "sheet": "モバイル — 返却済み（コメントを開いた状態）"},
 )
 MEN = dict(
-    m_crumb="Regional & Environmental Statistics › Session 7 Data analysis and hypothesis testing", m_banner_n="3 / 4", m_banner_l="Completed",
+    m_crumb="Regional & Environmental Statistics › Session 7 Data analysis and hypothesis testing", m_banner_n="3 / 5", m_banner_l="Completed",
     m_nav=["Courses", "Message", "Calendar"],
     m_opt_cam="Snap and submit", m_opt_cam_s="Photograph handwritten pages one at a time",
     m_opt_file="Choose a file or photos", m_opt_file_s="PDF · Word · Excel · PowerPoint · Photos (several at once)",
@@ -843,6 +888,7 @@ def course(S, L):
   <p class="topic">{S["t71"]}</p>
   {lo_row("play", S["lo_video"], S["lo_video_s"], chip=lt(S["lt_video"]), done=True)}
   {lo_row("filetext", S["lo_pdf"], S["lo_pdf_s"], chip=lt(S["lt_doc"]), done=True)}
+  {lo_row("pencil", S["g_lo"], S["q_lo_sub"], chip=lt(S["q_lt"], True) + f'<span class="chip wait">{S["q_chip_todo"]}</span>', href=fn("Q-Detail",L), sparkle=True)}
   <p class="topic">{S["t72"]}</p>
   {lo_row("table", S["lo_xlsx"], S["lo_xlsx_s"], chip=lt(S["lt_file"]), done=True)}
   {lo_row("filetext", S["lo_fb7_name"], S["lo_fb_s"], chip=lt(S["lt_fb"], True) + f'<span class="chip wait">{S["chip_notsub"]}</span>', href=fn("02-Assignment",L), sparkle=True)}
@@ -1237,6 +1283,7 @@ def todo(S, L):
   {trow("filetext", S["lo_fb7"], S["course"], f'<span class="chip wait">{ic("refresh",12)}{S["t_fb7_chip"]}</span>', href=fn("04-Feedback",L), sparkle=True, when=S["t_fb7_when"])}
   {trow("message", S["t_ref7"], S["course"], f'<span class="chip review">{S["p_chip"]}</span>', sparkle=True, when=S["t_ref7_when"])}
   {trow("sparkle", S["p_lo"], S["course"], f'<span class="chip review">{S["p_todo_chip"]}</span>', href=fn("P-Sets",L), sparkle=True)}
+  {trow("pencil", S["g_lo"], S["course"], f'<span class="chip wait">{S["q_chip_todo"]}</span>', href=fn("Q-Detail",L), sparkle=True, when=S["q_todo_when"])}
   {trow("play", S["t_video"], S["course"], f'<span class="chip done">{S["t_done"]}</span>', done=True)}
   {sect(f'<span style="color:#d13842">{S["t_late_h"]}</span>')}
   {trow("filetext", S["t_late"], S["course"], f'<span class="chip late">{S["t_late_chip"]}</span>', sparkle=True, href=fn("02-Assignment",L))}
@@ -1350,6 +1397,7 @@ def m_main(S, L):
   <div class="banner">{ic("check",24,"#fff",2.6)}<b>{S["m_banner_n"]}</b><span>{S["m_banner_l"]}</span></div>
   {lo_row("play", S["lo_video"], S["lo_video_s"], chip=lt(S["lt_video"]), done=True)}
   {lo_row("filetext", S["lo_pdf"], S["lo_pdf_s"], chip=lt(S["lt_doc"]), done=True)}
+  {lo_row("pencil", S["g_lo"], S["q_lo_sub"], chip=lt(S["q_lt"], True) + f'<span class="chip wait">{S["q_chip_todo"]}</span>', href=fn("MQ-Detail",L), sparkle=True)}
   {lo_row("table", S["lo_xlsx"], S["lo_xlsx_s"], chip=lt(S["lt_file"]), done=True)}
   {lo_row("filetext", S["lo_fb7_name"], S["lo_fb_s"], chip=fbchip, href=fn("M-Assignment",L), sparkle=True)}
   {lo_row("sparkle", S["p_lo"], S["p_course_sub"], chip=lt(S["p_lt"], True) + f'<span class="chip review">{S["p_todo_chip"]}</span>', href=fn("M-PSets",L), sparkle=True)}
@@ -2151,13 +2199,6 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
 .gql .rowctl span{width:18px;height:18px;border:1px solid #E0E0E0;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;background:#fff}
 .gpill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:12px;background:#F5F5F5;font-size:12px;color:#424242}
 .gpill b{color:#212121}
-.gsheet{background:#fff;border:1px solid #E0E0E0;box-shadow:0 1px 3px rgba(0,0,0,.12);padding:22px 26px;display:flex;flex-direction:column;gap:10px;font-size:11px;color:#424242}
-.gsheet .ln{height:8px;border-radius:2px;background:#EEEEEE}
-.gsheet .q{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed #EEEEEE}
-.gsheet .q b{width:34px;color:#212121}.gsheet .q .ln{flex:1}
-.gsheet .q .box{width:64px;height:22px;border:1px solid #9E9E9E;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;font-weight:500;color:#1A237E}
-.gsheet .q .ai{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
-.gsheet .q .ai.o{color:#2E7D32;border:2px solid #2E7D32}.gsheet .q .ai.x{color:#C62828}
 .gmc{text-align:center;font-weight:500;min-width:56px}
 .gmc.full{background:rgba(76,175,80,.14);color:#2E7D32}.gmc.zero{background:#FEEBEE;color:#C62828}.gmc.part{background:#FFF3E0;color:#C77700}.gmc.avg{background:#FAFAFA;color:#616161;font-weight:400}
 .gmc .of{color:#9E9E9E;font-weight:400;font-size:11px}
@@ -4916,7 +4957,7 @@ def g_head(S, L, screen, crumbs, title, chip=True, acts="", sub=""):
   </div>{sub}'''
 
 # ---------- G1 · Add LO dialog, Paper Submission type (US-1) ----------
-G_DLG_LOGIC = """state = { apv: false, allow: false };
+G_DLG_LOGIC = """state = { apv: false, allow: true };
   renderVals() { return { ap: this.state.apv ? "on" : "", apOn: this.state.apv, toggleAp: () => this.setState({ apv: !this.state.apv }),
     al: this.state.allow ? "on" : "", alOn: this.state.allow, alOff: !this.state.allow, toggleAl: () => this.setState({ allow: !this.state.allow }) }; }"""
 
@@ -5349,6 +5390,584 @@ GSCREENS = ["G-Dialog", "G-Detail", "G-LOs", "G-Import", "G-Process", "G-Overvie
 GBUILDERS = {"G-Dialog": g_dialog, "G-Detail": g_detail, "G-LOs": g_los, "G-Import": g_import, "G-Process": g_process, "G-Overview": g_overview, "G-Mark": g_mark}
 
 
+# =====================================================================================
+# AI GRADING — the student's side of the Paper Submission LO (the learner web and app).
+# Source: jamessim-source/aigradingv1, apps/frontend/src/screens/student (deprecated SPA; the
+# acceptance spec): ClassDetail → AssignmentDetails → HomeworkSubmission → HomeworkSubmissionPreview
+# → SubmissionAnalysisResult → SubmissionConfirmation → SubmissionReview. Redrawn on this canvas's
+# student components and fitted into the Kindai course: 山田 花子 photographs her completed Session 7
+# check-up quiz, the AI marks it, she submits it to the teacher, and reads the returned result — the
+# 9/10 the dashboards show. Only when the paper LO's Allow student to submit is ON (G1).
+# =====================================================================================
+Q_JA = dict(
+    q_lo_sub="紙で解いて、写真で提出", q_lt="紙提出物", q_chip_todo="未提出", q_chip_ret="返却済み", q_chip_sent="先生の確認待ち",
+    q_titles={"detail": "紙提出物 — 課題の詳細", "submit": "紙提出物 — 写真を撮る／アップロード", "preview": "紙提出物 — 確認して分析", "result": "紙提出物 — 分析結果",
+              "done": "紙提出物 — 提出完了", "review": "紙提出物 — 提出物の確認"},
+    q_mtitles={"detail": "モバイル — 紙提出物の詳細", "submit": "モバイル — 写真を撮る", "preview": "モバイル — 確認して分析", "result": "モバイル — 分析結果",
+               "done": "モバイル — 提出完了", "review": "モバイル — 提出物の確認"},
+    # assignment details
+    q_details="詳細", q_instr="指示", q_instr_body="授業内で配布した確認クイズ（全8問・10点満点）を紙で解き、記入した用紙を写真に撮って提出してください。AIが一次採点し、先生が確認したうえで返却します。",
+    q_sub_details="提出の詳細", q_n_questions="{n}問", q_points="{p}点満点", q_submit_work="課題を提出", q_already="提出済み",
+    q_flow=[("写真を撮る", "記入した用紙を1ページずつ"), ("AIの採点", "設問ごとに ○ / ✕"), ("先生に提出", "先生が確認して返却")],
+    # take / upload
+    q_formats="写真 または PDF", q_take_or_upload="写真を撮るかアップロードする", q_capture_clear="記入した用紙の鮮明な写真を撮ってください",
+    q_supported="対応フォーマット：画像またはPDF（最大10MB、PDFは1つまで、写真は5枚まで）", q_take_photo="写真を撮る", q_upload="アップロード",
+    q_tips_h="写真のヒント", q_tips=["十分な明るさを確保し、影を避ける", "用紙を平らにしてまっすぐに", "すべての設問をフレームに収める", "手書きがはっきり見えるように"],
+    q_err_h="提出エラー", q_err_wrong="誤った課題", q_err_wrong_d="この用紙は設問と一致しません。正しいページを撮影しているか確認してください。",
+    q_err_unclear="写真が不鮮明です", q_err_unclear_d="回答全体が見えるように、明るい場所で撮り直してください。", q_got_it="了解",
+    # preview / analyze
+    q_add_more="さらに追加", q_pages_up="{n} / {m} ページ アップロード済み", q_confirm_analyze="確認して分析", q_page_of="{i} / {n} ページ",
+    q_analyzing="課題を分析中…", q_checking="回答を確認しています。少々お待ちください。", q_progress="進行状況",
+    # analysis result
+    q_results="分析結果", q_ai_marked="AIがあなたの解答を採点しました。提出すると先生が確認します。",
+    q_self_mark="自分の解答を見直し、設問ごとに正直に採点してください。先生があなたの自己採点を確認します。",
+    q_breakdown="設問ごとの結果", q_ai_scores="AIによる採点結果", q_score_yourself="設問ごとに自分で採点", q_total="合計スコア",
+    q_q_label="問{idx}", q_submit_teacher="先生に提出する", q_self_toggle="自己採点モード（DEMO）", q_edit_hint="数字をタップして修正",
+    # confirmation
+    q_success="提出が完了しました！", q_success_d="解答は先生に送られました。先生が確認すると返却されます。",
+    q_sub_time="提出時間", q_sub_time_v="2026年11月10日 16:42", q_correct="正解した設問", q_back_class="コースに戻る", q_view_details="提出の詳細を表示",
+    # review (returned)
+    q_review="提出物の確認", q_submitted="提出済み", q_sub_date="提出日：", q_sub_date_v="2026年11月10日", q_ret_date_v="2026年11月12日",
+    q_teacher_reviewed="先生があなたの結果を確認しました。", q_teacher_badge="先生の確認済み", q_teacher_fb="先生のフィードバック",
+    q_fb_body="問5は考え方は合っています。相関係数が大きくても因果関係は言えない、という指摘に「第三の変数」の例（例：気温）を一つ添えると満点でした。次回は散布図の外れ値にも触れてみてください。",
+    q_score_lbl="スコア", q_changed="先生が修正", q_ai_lbl="AI",
+    q_total_colon="合計スコア：",
+    # LO row / to-do
+    q_todo_when="11月10日 授業内", q_ret_when="11月12日 返却",
+)
+Q_EN = dict(
+    q_lo_sub="Answer on paper, submit a photo", q_lt="Paper", q_chip_todo="Not submitted", q_chip_ret="Returned", q_chip_sent="Awaiting teacher review",
+    q_titles={"detail": "Paper Submission — Assignment details", "submit": "Paper Submission — Take or upload photo", "preview": "Paper Submission — Confirm & Analyze",
+              "result": "Paper Submission — Analysis results", "done": "Paper Submission — Submitted", "review": "Paper Submission — Submission review"},
+    q_mtitles={"detail": "Mobile — Paper LO details", "submit": "Mobile — Take photo", "preview": "Mobile — Confirm & Analyze", "result": "Mobile — Analysis results",
+               "done": "Mobile — Submitted", "review": "Mobile — Submission review"},
+    q_details="Details", q_instr="Instructions", q_instr_body="Answer the check-up quiz handed out in class (8 questions, 10 points) on paper, then photograph the completed sheet and submit it. AI marks it first; your teacher reviews the marks and returns the result.",
+    q_sub_details="Submission details", q_n_questions="{n} questions", q_points="{p} points", q_submit_work="Submit Your Work", q_already="Already Submitted",
+    q_flow=[("Take photos", "one page at a time"), ("AI marks", "○ / ✕ per question"), ("Submit to teacher", "reviewed and returned")],
+    q_formats="Photos or a PDF", q_take_or_upload="Take or upload a photo", q_capture_clear="Capture a clear photo of your completed sheet",
+    q_supported="Supported: images or PDF (max 10 MB, at most 1 PDF, up to 5 photos)", q_take_photo="Take Photo", q_upload="Upload",
+    q_tips_h="Photo tips", q_tips=["Ensure good lighting and avoid shadows", "Keep the page flat and straight", "Include all questions in the frame", "Make sure the handwriting is clear"],
+    q_err_h="Submission error", q_err_wrong="Wrong assessment", q_err_wrong_d="This sheet does not match the questions. Make sure you are photographing the right page.",
+    q_err_unclear="Photo unclear", q_err_unclear_d="Retake your photo in good lighting with your full answer visible.", q_got_it="Got it",
+    q_add_more="Add More", q_pages_up="{n} of {m} pages uploaded", q_confirm_analyze="Confirm & Analyze", q_page_of="Page {i} of {n}",
+    q_analyzing="Analyzing Your Work…", q_checking="We are checking your answers. This will take a moment.", q_progress="Progress",
+    q_results="Analysis Results", q_ai_marked="AI has marked your work. Submit it and your teacher will review the result.",
+    q_self_mark="Review your work and score each question honestly. Your teacher will review your self-assessment.",
+    q_breakdown="Question Breakdown", q_ai_scores="AI-generated scores for your submission", q_score_yourself="Score yourself for each question", q_total="Total Score",
+    q_q_label="Q{idx}", q_submit_teacher="Submit to Teacher", q_self_toggle="Self-marking mode (DEMO)", q_edit_hint="Tap a number to change it",
+    q_success="Successfully Submitted!", q_success_d="Your work has been sent to your teacher. It comes back once they have reviewed it.",
+    q_sub_time="Submission Time", q_sub_time_v="Nov 10, 2026 16:42", q_correct="Questions Correct", q_back_class="Back to the course", q_view_details="View Submission Details",
+    q_review="Submission Review", q_submitted="Submitted", q_sub_date="Submitted:", q_sub_date_v="Nov 10, 2026", q_ret_date_v="Nov 12, 2026",
+    q_teacher_reviewed="Your teacher has reviewed your results.", q_teacher_badge="Teacher reviewed", q_teacher_fb="Teacher Feedback",
+    q_fb_body="Q5 — your reasoning is right. A large correlation coefficient still says nothing about causation; naming one third variable (temperature, for example) would have earned full marks. Next time, mention the outlier in the scatter plot as well.",
+    q_score_lbl="Score", q_changed="Changed by teacher", q_ai_lbl="AI",
+    q_total_colon="Total Score:",
+    q_todo_when="Nov 10, in class", q_ret_when="Returned Nov 12",
+)
+JA.update(Q_JA); EN.update(Q_EN)
+
+# The AI's first pass on 山田's sheet: ○ / ✕ only (a △ is the teacher's), so Q5 (2 points) is ✕ → 8/10.
+# The teacher's review on G7 gives Q5 partial credit → the returned 9/10 that G-Mark, T14 and T15 show.
+Q_AI = [1, 1, 1, 2, 1, 1, 0, 1]
+Q_TEACHER = [1, 1, 1, 2, 1, 1, 1, 1]
+
+def q_sheet_photo(w, h, scores=None, page=0):
+    """The student's completed quiz sheet as a photo: the drawn gsheet with handwritten-looking answers, tilted on a desk.
+    The quiz is two pages (G2: 2ページ): page 1 carries Q1–4, page 2 Q5–8."""
+    return f'''<span class="qphoto" style="width:{w}px;height:{h}px;flex:0 0 {w}px"><span class="desk"></span><span class="qsheet">{q_sheet(scores, page)}</span></span>'''
+
+def q_sheet(scores=None, page=0):
+    S = JA  # the sheet itself is in Japanese — it is the paper the class sat
+    rows = ""
+    hand = ["0.82", "正", "負", "外れ値", "0.35", "弱い", "相関≠因果", "有意"]
+    for k, (idx, ans, mx, tag) in enumerate(S["g_questions"]):
+        if k // 4 != page:
+            continue
+        mark = ""
+        if scores is not None:
+            v = scores[k]
+            mark = f'<span class="ai {"o" if v >= mx else "x"}">{"○" if v >= mx else "✕"}</span>'
+        rows += f'<div class="q"><b>{idx}</b><span class="ln"></span><span class="ln" style="flex:.6"></span><span class="box">{hand[k]}</span>{mark}</div>'
+    head = (f'<div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:14px;color:#212121">{S["g_sheet_title"]}</b><span style="font-family:monospace;font-size:10px;color:#757575">▣ {S["g_ext"]} ・ KU-2041</span></div>'
+            f'<div style="font-size:10px;color:#757575">{S["g_sheet_sub"]} <span style="display:inline-block;width:120px;border-bottom:1px solid #9E9E9E;font-family:\'Noto Sans JP\';color:#1A237E;font-style:italic">山田 花子</span></div>'
+            if page == 0 else f'<div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px;color:#757575">{S["g_sheet_title"]} ・ 2</b><span style="font-family:monospace;font-size:10px;color:#757575">▣ {S["g_ext"]} ・ KU-2041</span></div>')
+    return f'''<div class="gsheet">
+    {head}
+    <div class="ln" style="width:70%"></div>
+    {rows}
+  </div>'''
+
+def q_score_cls(v, mx):
+    return "full" if v >= mx else ("zero" if v == 0 else "part")
+
+def q_breakdown_rows(S, scores, editable=False, changed=None, mobile=False):
+    """One row per question — index, the score box (an input when self-marking) / max — coloured by full / partial / zero,
+    as the source's getScoreColorClasses does for the student context."""
+    rows = ""
+    for k, (idx, ans, mx, tag) in enumerate(S["g_questions"]):
+        v = scores[k]
+        if editable:
+            box = f'<input class="qsc" defaultValue="{{{{s{k}}}}}" onInput="{{{{e{k}}}}}" inputmode="numeric" aria-label="{S["q_q_label"].format(idx=idx)}">'
+            cls = f"{{{{c{k}}}}}"
+        else:
+            box = f'<span class="qsc ro">{v}</span>'
+            cls = q_score_cls(v, mx)
+        chg = (f'<span class="chip hl" style="height:20px;font-size:11px">{S["q_changed"]} ・ {S["q_ai_lbl"]} {changed[k]}</span>'
+               if changed is not None and changed[k] != v else "")
+        rows += f'''<div class="qrow-s {cls}"><b>{S["q_q_label"].format(idx=idx)}</b><span class="qtag">{S["g_tags"][tag]}</span>{chg}<span class="qsv">{box}<span class="qmax">/{mx}</span></span></div>'''
+    return rows
+
+def q_total_badge(S, hole=None, total=None, mx=10, mobile=False):
+    v = f"{{{{{hole}}}}}" if hole else str(total)
+    return f'''<div class="qtotal"><span>{S["q_total"]}</span><b>{v}<i>/{mx}</i></b></div>'''
+
+
+# ---------- shared logic ----------
+Q_PREVIEW_LOGIC = """state = { i: 0, n: 2, busy: false, pct: 0, err: "" };
+  renderVals() {
+    const s = this.state;
+    return {
+      idx: String(s.i + 1), n: String(s.n), isFirst: s.i === 0, isLast: s.i === s.n - 1, on0: s.i === 0 ? "on" : "", on1: s.i === 1 ? "on" : "",
+      ready: !s.busy, busy: s.busy, pct: String(s.pct), pw: s.pct + "%", hasErr: s.err !== "", noErr: s.err === "",
+      errWrong: s.err === "wrong", errUnclear: s.err === "unclear",
+      prev: () => this.setState({ i: Math.max(0, s.i - 1) }), next: () => this.setState({ i: Math.min(s.n - 1, s.i + 1) }),
+      go0: () => this.setState({ i: 0 }), go1: () => this.setState({ i: 1 }),
+      analyze: () => { this.setState({ busy: true, pct: 8 }); let p = 8; const t = setInterval(() => { p = Math.min(100, p + 23); this.setState({ pct: p }); if (p >= 100) { clearInterval(t); setTimeout(() => { window.location.href = this.__next; }, 350); } }, 380); },
+      demoWrong: () => this.setState({ err: "wrong" }), demoUnclear: () => this.setState({ err: "unclear" }), closeErr: () => this.setState({ err: "" }),
+    };
+  }"""
+
+def q_result_logic(self_default=False):
+    """The per-question score holes (s = value, c = colour class, e = onInput) and the live total; a DEMO switch flips the
+    board between the AI-marked banner (read-only) and the self-marking banner (inputs), the source's allowSelfMarking."""
+    mx = [q[2] for q in JA["g_questions"]]
+    init = ", ".join(f"s{k}: {v}" for k, v in enumerate(Q_AI))
+    holes = ""
+    for k in range(len(mx)):
+        holes += (f'      s{k}: String(st.s{k}), c{k}: cls(st.s{k}, {mx[k]}), '
+                  f'e{k}: (e) => {{ const v = Math.max(0, Math.min({mx[k]}, parseInt(e.target.value || "0", 10) || 0)); this.setState({{ s{k}: v }}); }},\n')
+    return f"""state = {{ {init}, self: {"true" if self_default else "false"} }};
+  renderVals() {{
+    const st = this.state;
+    const cls = (v, m) => v >= m ? "full" : (v === 0 ? "zero" : "part");
+    const total = {" + ".join(f"st.s{k}" for k in range(len(mx)))};
+    return {{
+{holes}      total: String(total), isSelf: st.self, isAi: !st.self, selfOn: st.self ? "sel" : "",
+      toggleSelf: () => this.setState({{ self: !st.self }}),
+    }};
+  }}"""
+
+# ---------- PC (1280 x 800) ----------
+def q_crumb(S):
+    return f'{S["course"]} › {S["wk7"]} › {S["t71"]}'
+
+def q_flow_steps(S, cur=0):
+    steps = ""
+    for i, (l, s) in enumerate(S["q_flow"]):
+        steps += f'<div class="step{" cur" if i == cur else (" done" if i < cur else "")}"><span class="line"></span><span class="dot">{i+1}</span><span class="l">{l}</span><span class="s">{s}</span></div>'
+    return f'<div class="steps">{steps}</div>'
+
+def q_detail(S, L):
+    """AssignmentDetails (source): course, Instructions, Submission Details (#questions), the Submit Your Work button.
+    Fitted: the LO header with the paper chip, the three-step flow the AI Feedback assignment also shows."""
+    body = header(S, "Q-Detail", S["g_lo"], crumb=q_crumb(S), back_href=fn("Main", L),
+                  right_extra=f'<span class="chip lt fb" style="height:26px">{ic("pencil", 12)}{S["q_lt"]}</span>') + f'''
+<div class="body"><div class="col" style="width:760px">
+  <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+        <h2 class="h3">{S["g_lo"]}</h2>
+        <p class="b2 muted">{S["course"]} {S["sep"]} {S["t71"]}</p>
+      </div>
+      <span class="chip wait" style="height:28px">{S["q_chip_todo"]}</span>
+    </div>
+    <div class="divider"></div>
+    <p class="sub1">{S["q_instr"]}</p>
+    <p class="b1" style="line-height:26px">{S["q_instr_body"]}</p>
+    <div class="divider"></div>
+    <p class="sub1">{S["q_sub_details"]}</p>
+    <div style="display:flex;gap:10px">
+      <span class="chip neutral" style="height:28px">{ic("filetext", 14)}{S["q_n_questions"].format(n=len(S["g_questions"]))}</span>
+      <span class="chip neutral" style="height:28px">{ic("check", 14)}{S["q_points"].format(p=10)}</span>
+      <span class="chip neutral" style="height:28px">{ic("camera", 14)}{S["q_formats"]}</span>
+    </div>
+  </div>
+  <div class="card" style="padding:24px 24px 20px">{q_flow_steps(S, 0)}</div>
+  <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end">
+    <a class="btn primary" href="{fn("Q-Submit", L)}">{ic("camera", 18, "#fff")}{S["q_submit_work"]}</a>
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    return page(S, S["q_titles"]["detail"], body)
+
+def q_error_modal(S):
+    return f'''<sc-if value="{{{{hasErr}}}}" hint-placeholder-val="{{{{false}}}}"><div class="qerr"><div class="bx">
+    <span class="ic">{ic("alert", 28, "currentColor", 2.4)}</span>
+    <p class="sub1">{S["q_err_h"]}</p>
+    <sc-if value="{{{{errWrong}}}}" hint-placeholder-val="{{{{true}}}}"><p class="b2" style="font-weight:700">{S["q_err_wrong"]}</p><p class="b2 muted" style="line-height:20px">{S["q_err_wrong_d"]}</p></sc-if>
+    <sc-if value="{{{{errUnclear}}}}" hint-placeholder-val="{{{{false}}}}"><p class="b2" style="font-weight:700">{S["q_err_unclear"]}</p><p class="b2 muted" style="line-height:20px">{S["q_err_unclear_d"]}</p></sc-if>
+    <button class="btn primary" style="margin-top:6px;width:100%" onClick="{{{{closeErr}}}}">{S["q_got_it"]}</button>
+  </div></div></sc-if>'''
+
+def q_tips(S):
+    return f'<div class="qtips"><b>{S["q_tips_h"]}</b><ul>{"".join(f"<li>{t}</li>" for t in S["q_tips"])}</ul></div>'
+
+def q_submit(S, L):
+    """HomeworkSubmission (source): Take Photo / Upload, the photo tips, the supported formats; the bottom error popup
+    (Wrong assessment / Photo unclear) is what the analysis returns — DEMO pills raise it here."""
+    body = header(S, "Q-Submit", S["q_submit_work"], crumb=f'{S["g_lo"]}', back_href=fn("Q-Detail", L)) + f'''
+<div class="body"><div class="col" style="width:760px">
+  <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <p class="sub1">{S["q_take_or_upload"]}</p>
+      <p class="b2 muted">{S["q_capture_clear"]}</p>
+    </div>
+    <div style="display:flex;gap:12px">
+      <a class="qopt pri" href="{fn("Q-Preview", L)}">{ic("camera", 30)}{S["q_take_photo"]}</a>
+      <a class="qopt" href="{fn("Q-Preview", L)}">{ic("upload", 30)}{S["q_upload"]}</a>
+    </div>
+    <p class="cap">{S["q_supported"]}</p>
+    {q_tips(S)}
+  </div>
+  <div class="card" style="padding:24px 24px 20px">{q_flow_steps(S, 0)}</div>
+  <div style="height:8px"></div>
+</div></div>
+<div class="demo" style="right:20px;bottom:20px;gap:6px"><span class="tag">DEMO</span><button class="btn" style="height:26px;padding:0 10px;background:rgba(255,255,255,.14);color:#fff;font-size:12px" onClick="{{{{demoWrong}}}}">{S["q_err_wrong"]}</button><button class="btn" style="height:26px;padding:0 10px;background:rgba(255,255,255,.14);color:#fff;font-size:12px" onClick="{{{{demoUnclear}}}}">{S["q_err_unclear"]}</button></div>
+{q_error_modal(S)}'''
+    logic = """state = { err: "" };
+  renderVals() { const s = this.state; return { hasErr: s.err !== "", noErr: s.err === "", errWrong: s.err === "wrong", errUnclear: s.err === "unclear",
+    demoWrong: () => this.setState({ err: "wrong" }), demoUnclear: () => this.setState({ err: "unclear" }), closeErr: () => this.setState({ err: "" }) }; }"""
+    return page(S, S["q_titles"]["submit"], body, logic=logic)
+
+def q_carousel(S, w, h, pages=2, del_btn=True, marks=None):
+    """The source's ImageCarousel: the current page, ‹ › arrows, the page pill, the delete button on the page."""
+    pg1 = q_sheet_photo(w, h, marks, 0)
+    pg2 = q_sheet_photo(w, h, marks, 1)
+    dl = f'<button class="del" aria-label="delete">{ic("trash", 16)}</button>' if del_btn else ""
+    return f'''<div class="qcar" style="height:{h}px">
+    <sc-if value="{{{{isFirst}}}}" hint-placeholder-val="{{{{true}}}}">{pg1}</sc-if>
+    <sc-if value="{{{{isLast}}}}" hint-placeholder-val="{{{{false}}}}">{pg2}</sc-if>
+    <button class="nv l" onClick="{{{{prev}}}}" aria-label="prev">{ic("left", 18)}</button>
+    <button class="nv r" onClick="{{{{next}}}}" aria-label="next">{ic("right", 18)}</button>
+    {dl}
+    <span class="pg">{S["q_page_of"].replace("{i}", "{{idx}}").replace("{n}", str(pages))}</span>
+  </div>'''
+
+def q_preview(S, L):
+    """HomeworkSubmissionPreview (source): the carousel, Add More (up to 5 photos or 1 PDF), N of 5 pages uploaded, the tips,
+    Confirm & Analyze → the Analyzing Your Work state with its progress bar, then the results."""
+    body = header(S, "Q-Preview", S["q_submit_work"], crumb=f'{S["g_lo"]}', back_href=fn("Q-Submit", L)) + f'''
+<div class="body"><div class="col" style="width:760px">
+  <sc-if value="{{{{ready}}}}" hint-placeholder-val="{{{{true}}}}">
+  <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;gap:20px;align-items:flex-start">
+      <div style="flex:1 1 auto;min-width:0">{q_carousel(S, 420, 380)}</div>
+      <div style="width:220px;flex:0 0 220px;display:flex;flex-direction:column;gap:12px">
+        <div class="pstrip" style="flex-wrap:wrap">
+          <button class="pth {{{{on0}}}}" onClick="{{{{go0}}}}"><span class="no">1</span>{paper_inline(56, 74, False)}</button>
+          <button class="pth {{{{on1}}}}" onClick="{{{{go1}}}}"><span class="no">2</span>{paper_inline(56, 74, False)}</button>
+          <a class="pth add" href="{fn("Q-Submit", L)}" aria-label="{S["q_add_more"]}">{ic("plus", 24)}</a>
+        </div>
+        <p class="b2" style="text-align:center"><b>{S["q_pages_up"].format(n=2, m=5)}</b></p>
+        <a class="btn neutral" style="height:40px" href="{fn("Q-Submit", L)}">{ic("plus", 16)}{S["q_add_more"]}</a>
+      </div>
+    </div>
+    {q_tips(S)}
+  </div>
+  <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end">
+    <button class="btn primary" onClick="{{{{analyze}}}}">{ic("sparkle", 18, "#fff")}{S["q_confirm_analyze"]}</button>
+  </div>
+  </sc-if>
+  <sc-if value="{{{{busy}}}}" hint-placeholder-val="{{{{false}}}}">
+  <div class="card" style="padding:56px 32px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
+    <span style="width:80px;height:80px;border-radius:16px;background:#eef1ff;display:flex;align-items:center;justify-content:center;color:#395ad2">{ic("sparkle", 36, "#395ad2", 1.8)}</span>
+    <h2 class="h3" style="font-size:20px">{S["q_analyzing"]}</h2>
+    <p class="b2 muted">{S["q_checking"]}</p>
+    <div style="width:320px;display:flex;flex-direction:column;gap:8px;margin-top:16px">
+      <div style="display:flex;justify-content:space-between" class="cap"><span>{S["q_progress"]}</span><b>{{{{pct}}}}%</b></div>
+      <div class="qprog"><i style="width:{{{{pw}}}}"></i></div>
+    </div>
+  </div>
+  </sc-if>
+  <div style="height:8px"></div>
+</div></div>
+<a class="demo" href="{fn("Q-Result", L)}"><span class="tag">DEMO</span>{S["q_results"]} {ic("right", 16, "#fff", 2.4)}</a>'''
+    logic = Q_PREVIEW_LOGIC.replace("this.__next", f'"{fn("Q-Result", L)}"')
+    return page(S, S["q_titles"]["preview"], body, logic=logic)
+
+def q_result(S, L):
+    """SubmissionAnalysisResult (source): the banner (AI-marked, or the self-marking instruction when the assignment allows
+    self-marking), the carousel with the AI's marks, the Question Breakdown with the Total Score badge, per-question score
+    /max coloured full / partial / zero — editable only when self-marking — and Submit to Teacher."""
+    rows = q_breakdown_rows(S, Q_AI, editable=True)
+    body = header(S, "Q-Result", S["q_results"], crumb=f'{S["g_lo"]}', back_href=fn("Q-Preview", L),
+                  right_extra=f'<button class="chip pick {{{{selfOn}}}}" style="height:28px" onClick="{{{{toggleSelf}}}}">{S["q_self_toggle"]}</button>') + f'''
+<div class="body"><div class="col" style="width:880px">
+  <sc-if value="{{{{isAi}}}}" hint-placeholder-val="{{{{true}}}}"><div class="qbanner ai">{ic("sparkle", 18)}<span>{S["q_ai_marked"]}</span></div></sc-if>
+  <sc-if value="{{{{isSelf}}}}" hint-placeholder-val="{{{{false}}}}"><div class="qbanner self">{ic("pencil", 18)}<span>{S["q_self_mark"]}</span></div></sc-if>
+  <div style="display:flex;gap:16px;align-items:flex-start">
+    <div class="card" style="padding:16px;flex:0 0 400px">{q_carousel(S, 368, 400, del_btn=False, marks=Q_AI)}</div>
+    <div class="card" style="padding:20px 24px;flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+        <div><p class="sub1">{S["q_breakdown"]}</p>
+          <sc-if value="{{{{isAi}}}}" hint-placeholder-val="{{{{true}}}}"><p class="cap">{S["q_ai_scores"]}</p></sc-if>
+          <sc-if value="{{{{isSelf}}}}" hint-placeholder-val="{{{{false}}}}"><p class="cap">{S["q_score_yourself"]} {S["sep"]} {S["q_edit_hint"]}</p></sc-if>
+        </div>
+      </div>
+      {q_total_badge(S, hole="total")}
+      <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+    </div>
+  </div>
+  <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end">
+    <a class="btn primary" href="{fn("Q-Done", L)}">{ic("upload", 18, "#fff")}{S["q_submit_teacher"]}</a>
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    logic = q_with_carousel(q_result_logic())
+    return page(S, S["q_titles"]["result"], body, logic=logic)
+
+def q_with_carousel(logic):
+    """Add the two-page carousel state to a result / review logic string."""
+    return (logic.replace("state = { ", "state = { i: 0, ", 1)
+                 .replace("return {\n", "return {\n      idx: String(st.i + 1), isFirst: st.i === 0, isLast: st.i === 1, prev: () => this.setState({ i: 0 }), next: () => this.setState({ i: 1 }),\n", 1))
+
+def q_done(S, L):
+    """SubmissionConfirmation (source): the green check, Successfully Submitted!, the details card (course, Instructions,
+    Submission Time, Questions Correct), Back to Class Homework / View Submission Details. The score shown is the AI's
+    first pass (8/10); the teacher's review may change it."""
+    body = header(S, "Q-Done", S["g_lo"], crumb=q_crumb(S), back_href=fn("Main", L)) + f'''
+<div class="body"><div class="col" style="width:640px">
+  <div class="card" style="padding:40px 32px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+    <span class="qcheck">{ic("check", 36, "#fff", 3)}</span>
+    <h2 class="h3" style="font-size:22px">{S["q_success"]}</h2>
+    <p class="b2 muted" style="line-height:22px;max-width:420px">{S["q_success_d"]}</p>
+    <span class="chip review" style="margin-top:4px">{ic("clock", 14)}{S["q_chip_sent"]}</span>
+  </div>
+  <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:14px">
+    <p class="sub1">{S["g_lo"]}</p>
+    <p class="cap">{S["course"]} {S["sep"]} {S["t71"]}</p>
+    <div class="divider"></div>
+    <div class="qkv"><span class="k">{S["q_instr"]}</span><span class="b2" style="line-height:20px">{S["q_instr_body"]}</span></div>
+    <div style="display:flex;gap:32px">
+      <div class="qkv"><span class="k">{S["q_sub_time"]}</span><span class="v">{S["q_sub_time_v"]}</span></div>
+      <div class="qkv"><span class="k">{S["q_correct"]}</span><span class="v" style="color:#395ad2">{sum(Q_AI)}/10 <span class="cap">({S["q_ai_lbl"]})</span></span></div>
+    </div>
+  </div>
+  <div style="display:flex;gap:12px;justify-content:flex-end">
+    <a class="btn neutral" href="{fn("Main", L)}">{S["q_back_class"]}</a>
+    <a class="btn primary" href="{fn("Q-Review", L)}">{ic("eye", 18, "#fff")}{S["q_view_details"]}</a>
+  </div>
+  <div style="height:8px"></div>
+</div></div>
+<a class="demo" href="{fn("Q-Review", L)}"><span class="tag">DEMO</span>{S["q_chip_ret"]} {ic("right", 16, "#fff", 2.4)}</a>'''
+    return page(S, S["q_titles"]["done"], body)
+
+def q_review(S, L):
+    """SubmissionReview (source): title with the Submitted badge, class, Submitted Date, Instructions, the carousel, Question
+    Breakdown with the Teacher reviewed badge and Score, Teacher Feedback, the read-only scores. Drawn AFTER the return:
+    the teacher's △ on Q5 (G7) turned the AI's 8/10 into 9/10; the rows the teacher changed say so."""
+    rows = q_breakdown_rows(S, Q_TEACHER, changed=Q_AI)
+    body = header(S, "Q-Review", S["q_review"], crumb=f'{S["g_lo"]}', back_href=fn("Main", L),
+                  right_extra=f'<span class="chip done" style="height:28px">{ic("check", 14)}{S["q_chip_ret"]}</span>') + f'''
+<div class="body"><div class="col" style="width:880px">
+  <div class="qbanner ok">{ic("check", 18, "currentColor", 2.6)}<span>{S["q_teacher_reviewed"]} {S["q_ret_date_v"]}</span></div>
+  <div style="display:flex;gap:16px;align-items:flex-start">
+    <div style="flex:0 0 400px;display:flex;flex-direction:column;gap:16px">
+      <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="sub1">{S["g_lo"]}</p><span class="chip done">{S["q_submitted"]}</span></div>
+        <p class="cap">{S["course"]} {S["sep"]} {S["t71"]}</p>
+        <p class="cap">{S["q_sub_date"]} {S["q_sub_date_v"]}</p>
+        <div class="divider"></div>
+        <p class="cap" style="font-weight:700">{S["q_sub_details"]}</p>
+        <p class="b2">{S["q_n_questions"].format(n=len(S["g_questions"]))} {S["sep"]} {S["q_total_colon"]} <b>{sum(Q_TEACHER)}/10</b></p>
+      </div>
+      <div class="card" style="padding:16px">{q_carousel(S, 368, 380, del_btn=False, marks=Q_TEACHER)}</div>
+    </div>
+    <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:16px">
+      <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><p class="sub1">{S["q_breakdown"]}</p><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12)}{S["q_teacher_badge"]}</span></div>
+        {q_total_badge(S, total=sum(Q_TEACHER))}
+        <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+      </div>
+      <div class="card" style="padding:20px 24px;display:flex;gap:12px;align-items:flex-start">
+        <span class="tav">{ic("person", 20)}</span>
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><p class="sub1" style="font-size:14px">{S["q_teacher_fb"]}</p><p class="b2" style="line-height:22px">{S["q_fb_body"]}</p></div>
+      </div>
+    </div>
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    logic = """state = { i: 0 };
+  renderVals() { const st = this.state; return { idx: String(st.i + 1), isFirst: st.i === 0, isLast: st.i === 1, prev: () => this.setState({ i: 0 }), next: () => this.setState({ i: 1 }) }; }"""
+    return page(S, S["q_titles"]["review"], body, logic=logic)
+
+# ---------- mobile (375 x 812) ----------
+def mq_detail(S, L):
+    body = mheader(S, "MQ-Detail", S["g_lo"], back_href=fn("M-Main", L)) + f'''
+<div class="mbody">
+  <div class="mcard">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <h2 class="mh">{S["g_lo"]}</h2>
+      <p class="cap">{S["course"]} {S["sep"]} {S["t71"]}</p>
+      <span class="chip wait" style="align-self:flex-start">{S["q_chip_todo"]}</span>
+    </div>
+    <div class="divider"></div>
+    <p class="sub1" style="font-size:14px">{S["q_instr"]}</p>
+    <p class="b2" style="line-height:22px">{S["q_instr_body"]}</p>
+    <div class="divider"></div>
+    <p class="sub1" style="font-size:14px">{S["q_sub_details"]}</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="chip neutral">{ic("filetext", 14)}{S["q_n_questions"].format(n=len(S["g_questions"]))}</span>
+      <span class="chip neutral">{ic("check", 14)}{S["q_points"].format(p=10)}</span>
+    </div>
+  </div>
+  <div class="mcard">
+    <div class="vsteps">{"".join(f'<div class="vstep{" cur" if i == 0 else ""}"><span class="line"></span><span class="dot">{i+1}</span><span class="tt"><b>{l}</b><span>{s}</span></span></div>' for i, (l, s) in enumerate(S["q_flow"]))}</div>
+  </div>
+  <a class="mbtn primary" href="{fn("MQ-Submit", L)}">{ic("camera", 18, "#fff")}{S["q_submit_work"]}</a>
+</div>'''
+    return mpage(S, "MQ-Detail", S["q_mtitles"]["detail"], body)
+
+def mq_submit(S, L):
+    body = mheader(S, "MQ-Submit", S["q_submit_work"], back_href=fn("MQ-Detail", L)) + f'''
+<div class="mbody">
+  <div class="mcard">
+    <p class="sub1" style="font-size:14px">{S["q_take_or_upload"]}</p>
+    <p class="cap">{S["q_capture_clear"]}</p>
+    <div style="display:flex;gap:10px">
+      <a class="qopt pri" href="{fn("MQ-Preview", L)}">{ic("camera", 28)}{S["q_take_photo"]}</a>
+      <a class="qopt" href="{fn("MQ-Preview", L)}">{ic("upload", 28)}{S["q_upload"]}</a>
+    </div>
+    <p class="cap">{S["q_supported"]}</p>
+  </div>
+  {q_tips(S)}
+</div>
+<div class="demo" style="right:12px;bottom:14px;gap:6px;padding:6px 6px 6px 10px"><span class="tag">DEMO</span><button class="btn" style="height:24px;padding:0 8px;background:rgba(255,255,255,.14);color:#fff;font-size:11px" onClick="{{{{demoWrong}}}}">{S["q_err_wrong"]}</button><button class="btn" style="height:24px;padding:0 8px;background:rgba(255,255,255,.14);color:#fff;font-size:11px" onClick="{{{{demoUnclear}}}}">{S["q_err_unclear"]}</button></div>
+{q_error_modal(S)}'''
+    logic = """state = { err: "" };
+  renderVals() { const s = this.state; return { hasErr: s.err !== "", noErr: s.err === "", errWrong: s.err === "wrong", errUnclear: s.err === "unclear",
+    demoWrong: () => this.setState({ err: "wrong" }), demoUnclear: () => this.setState({ err: "unclear" }), closeErr: () => this.setState({ err: "" }) }; }"""
+    return mpage(S, "MQ-Submit", S["q_mtitles"]["submit"], body, logic=logic)
+
+def mq_preview(S, L):
+    body = mheader(S, "MQ-Preview", S["q_submit_work"], back_href=fn("MQ-Submit", L)) + f'''
+<div class="mbody" style="padding-bottom:120px">
+  <sc-if value="{{{{ready}}}}" hint-placeholder-val="{{{{true}}}}">
+  <div class="mcard" style="gap:10px">
+    {q_carousel(S, 311, 340)}
+    <div class="pstrip">
+      <button class="pth {{{{on0}}}}" onClick="{{{{go0}}}}"><span class="no">1</span>{paper_inline(56, 74, False)}</button>
+      <button class="pth {{{{on1}}}}" onClick="{{{{go1}}}}"><span class="no">2</span>{paper_inline(56, 74, False)}</button>
+      <a class="pth add" href="{fn("MQ-Submit", L)}" aria-label="{S["q_add_more"]}">{ic("plus", 24)}</a>
+    </div>
+    <p class="b2" style="text-align:center"><b>{S["q_pages_up"].format(n=2, m=5)}</b></p>
+  </div>
+  {q_tips(S)}
+  </sc-if>
+  <sc-if value="{{{{busy}}}}" hint-placeholder-val="{{{{false}}}}">
+  <div class="mcard" style="align-items:center;text-align:center;gap:10px;padding:40px 16px">
+    <span style="width:72px;height:72px;border-radius:16px;background:#eef1ff;display:flex;align-items:center;justify-content:center;color:#395ad2">{ic("sparkle", 32, "#395ad2", 1.8)}</span>
+    <h2 class="mh">{S["q_analyzing"]}</h2>
+    <p class="cap" style="line-height:18px">{S["q_checking"]}</p>
+    <div style="width:100%;display:flex;flex-direction:column;gap:8px;margin-top:12px">
+      <div style="display:flex;justify-content:space-between" class="cap"><span>{S["q_progress"]}</span><b>{{{{pct}}}}%</b></div>
+      <div class="qprog"><i style="width:{{{{pw}}}}"></i></div>
+    </div>
+  </div>
+  </sc-if>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20;display:flex;flex-direction:column;gap:8px">
+  <sc-if value="{{{{ready}}}}" hint-placeholder-val="{{{{true}}}}"><a class="mbtn neutral" href="{fn("MQ-Submit", L)}">{ic("plus", 18)}{S["q_add_more"]}</a>
+  <button class="mbtn primary" onClick="{{{{analyze}}}}">{ic("sparkle", 18, "#fff")}{S["q_confirm_analyze"]}</button></sc-if>
+  <sc-if value="{{{{busy}}}}" hint-placeholder-val="{{{{false}}}}"><span class="mbtn dis">{S["q_analyzing"]}</span></sc-if>
+</div>
+<a class="demo" style="right:12px;bottom:150px;padding:8px 10px 8px 12px" href="{fn("MQ-Result", L)}" aria-label="{S["q_results"]}"><span class="tag">DEMO</span>{ic("right", 16, "#fff", 2.4)}</a>'''
+    logic = Q_PREVIEW_LOGIC.replace("this.__next", f'"{fn("MQ-Result", L)}"')
+    return mpage(S, "MQ-Preview", S["q_mtitles"]["preview"], body, logic=logic)
+
+def mq_result(S, L):
+    rows = q_breakdown_rows(S, Q_AI, editable=True, mobile=True)
+    body = mheader(S, "MQ-Result", S["q_results"], back_href=fn("MQ-Preview", L),
+                   right=f'<button class="chip pick {{{{selfOn}}}}" style="height:26px;font-size:11px;padding:0 10px" onClick="{{{{toggleSelf}}}}">{S["q_self_toggle"].replace("（DEMO）", "").replace(" (DEMO)", "")}</button>') + f'''
+<div class="mbody" style="padding-bottom:110px">
+  <sc-if value="{{{{isAi}}}}" hint-placeholder-val="{{{{true}}}}"><div class="qbanner ai" style="font-size:13px">{ic("sparkle", 18)}<span>{S["q_ai_marked"]}</span></div></sc-if>
+  <sc-if value="{{{{isSelf}}}}" hint-placeholder-val="{{{{false}}}}"><div class="qbanner self" style="font-size:13px">{ic("pencil", 18)}<span>{S["q_self_mark"]}</span></div></sc-if>
+  <div class="mcard" style="padding:12px">{q_carousel(S, 319, 300, del_btn=False, marks=Q_AI)}</div>
+  <div class="mcard" style="gap:10px">
+    <div><p class="sub1" style="font-size:14px">{S["q_breakdown"]}</p>
+      <sc-if value="{{{{isAi}}}}" hint-placeholder-val="{{{{true}}}}"><p class="cap">{S["q_ai_scores"]}</p></sc-if>
+      <sc-if value="{{{{isSelf}}}}" hint-placeholder-val="{{{{false}}}}"><p class="cap">{S["q_score_yourself"]} {S["sep"]} {S["q_edit_hint"]}</p></sc-if>
+    </div>
+    {q_total_badge(S, hole="total")}
+    <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+  </div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20">
+  <a class="mbtn primary" href="{fn("MQ-Done", L)}">{ic("upload", 18, "#fff")}{S["q_submit_teacher"]}</a>
+</div>'''
+    return mpage(S, "MQ-Result", S["q_mtitles"]["result"], body, logic=q_with_carousel(q_result_logic()))
+
+def mq_done(S, L):
+    body = mheader(S, "MQ-Done", S["g_lo"], back_href=fn("M-Main", L)) + f'''
+<div class="mbody">
+  <div class="mcard" style="align-items:center;text-align:center;gap:8px;padding:28px 16px">
+    <span class="qcheck" style="width:64px;height:64px">{ic("check", 32, "#fff", 3)}</span>
+    <h2 class="mh">{S["q_success"]}</h2>
+    <p class="cap" style="line-height:18px">{S["q_success_d"]}</p>
+    <span class="chip review">{ic("clock", 14)}{S["q_chip_sent"]}</span>
+  </div>
+  <div class="mcard" style="gap:10px">
+    <p class="sub1" style="font-size:14px">{S["g_lo"]}</p>
+    <p class="cap">{S["course"]} {S["sep"]} {S["t71"]}</p>
+    <div class="divider"></div>
+    <div class="qkv"><span class="k">{S["q_instr"]}</span><span class="b2" style="line-height:20px">{S["q_instr_body"]}</span></div>
+    <div style="display:flex;gap:24px">
+      <div class="qkv"><span class="k">{S["q_sub_time"]}</span><span class="v">{S["q_sub_time_v"]}</span></div>
+      <div class="qkv"><span class="k">{S["q_correct"]}</span><span class="v" style="color:#395ad2">{sum(Q_AI)}/10 <span class="cap">({S["q_ai_lbl"]})</span></span></div>
+    </div>
+  </div>
+  <a class="mbtn primary" href="{fn("MQ-Review", L)}">{ic("eye", 18, "#fff")}{S["q_view_details"]}</a>
+  <a class="mbtn neutral" href="{fn("M-Main", L)}">{S["q_back_class"]}</a>
+  <div style="height:24px"></div>
+</div>
+<a class="demo" style="right:12px;bottom:14px;padding:8px 10px 8px 12px" href="{fn("MQ-Review", L)}" aria-label="{S["q_chip_ret"]}"><span class="tag">DEMO</span>{ic("right", 16, "#fff", 2.4)}</a>'''
+    return mpage(S, "MQ-Done", S["q_mtitles"]["done"], body)
+
+def mq_review(S, L):
+    rows = q_breakdown_rows(S, Q_TEACHER, changed=Q_AI, mobile=True)
+    body = mheader(S, "MQ-Review", S["q_review"], back_href=fn("M-Main", L)) + f'''
+<div class="mbody">
+  <div class="qbanner ok" style="font-size:13px">{ic("check", 18, "currentColor", 2.6)}<span>{S["q_teacher_reviewed"]} {S["q_ret_date_v"]}</span></div>
+  <div class="mcard" style="gap:6px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="sub1" style="font-size:14px">{S["g_lo"]}</p><span class="chip done">{S["q_submitted"]}</span></div>
+    <p class="cap">{S["course"]} {S["sep"]} {S["t71"]}</p>
+    <p class="cap">{S["q_sub_date"]} {S["q_sub_date_v"]}</p>
+    <p class="b2">{S["q_n_questions"].format(n=len(S["g_questions"]))} {S["sep"]} {S["q_total_colon"]} <b>{sum(Q_TEACHER)}/10</b></p>
+  </div>
+  <div class="mcard" style="padding:12px">{q_carousel(S, 319, 300, del_btn=False, marks=Q_TEACHER)}</div>
+  <div class="mcard" style="gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="sub1" style="font-size:14px">{S["q_breakdown"]}</p><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12)}{S["q_teacher_badge"]}</span></div>
+    {q_total_badge(S, total=sum(Q_TEACHER))}
+    <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+  </div>
+  <div class="mcard" style="flex-direction:row;gap:12px;align-items:flex-start">
+    <span class="tav">{ic("person", 20)}</span>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><p class="sub1" style="font-size:14px">{S["q_teacher_fb"]}</p><p class="b2" style="line-height:22px">{S["q_fb_body"]}</p></div>
+  </div>
+  <div style="height:24px"></div>
+</div>'''
+    logic = """state = { i: 0 };
+  renderVals() { const st = this.state; return { idx: String(st.i + 1), isFirst: st.i === 0, isLast: st.i === 1, prev: () => this.setState({ i: 0 }), next: () => this.setState({ i: 1 }) }; }"""
+    return mpage(S, "MQ-Review", S["q_mtitles"]["review"], body, logic=logic)
+
+QSCREENS_W = ["Q-Detail", "Q-Submit", "Q-Preview", "Q-Result", "Q-Done", "Q-Review"]
+QSCREENS_M = ["MQ-Detail", "MQ-Submit", "MQ-Preview", "MQ-Result", "MQ-Done", "MQ-Review"]
+QSCREENS_ALL = QSCREENS_W + QSCREENS_M
+QBUILDERS = {"Q-Detail": q_detail, "Q-Submit": q_submit, "Q-Preview": q_preview, "Q-Result": q_result, "Q-Done": q_done, "Q-Review": q_review,
+             "MQ-Detail": mq_detail, "MQ-Submit": mq_submit, "MQ-Preview": mq_preview, "MQ-Result": mq_result, "MQ-Done": mq_done, "MQ-Review": mq_review}
+TO_MOBILE.update({w: m for w, m in zip(QSCREENS_W, QSCREENS_M)})
+TO_PC.update({m: w for w, m in zip(QSCREENS_W, QSCREENS_M)})
+
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
@@ -5539,7 +6158,7 @@ for lang, S in (("ja", JA), ("en", EN)):
         GX[screen] = x
         x += TW + TGAP
 GNOTES = {
-    "G-Dialog": "AI GRADING — the Paper Submission LO (source: the AI Grading prototype, claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn — US-1 to US-8; PM, 30 Sep: review these screens for Book Management and Submission Grading and fit them into the prototype). Redrawn on this canvas's production components and fitted into the Kindai course: the Session 7 確認クイズ becomes the paper LO — a 10-point quiz sat on paper in class, scanned on the copier, imported, AI-marked, reviewed, returned; the 9/10 the dashboards already show. THIS BOARD: DialogCreateLearningMaterial with 紙提出物（AI採点） as one more type (NEW, after the practice type in the T2 menu). General Info as for any LO plus レポート回 Paper Count. Settings: 添削指導 Manual Grading with なし shown but disabled and あり fixed (the source's rule; its info box was removed on request); 添削の承認フローを適用する as a switch; ★ NEW 生徒による提出を許可する, default OFF — off, the teacher submits on the student's behalf (bulk scan); on, the student starts and submits in the learner app; the help text follows the switch; 合格点 / 上限点 / パスワード as on the Learning Objective type. Not shown for this type, per the source: Rules, URL tracking, Practice Mode, Enforce answer checking, AI Tutor, Adaptive retry. Click the switches. OPEN (from the source): OQ-B does the approval workflow stay available with Allow student to submit on; OQ-C should Score to Pass / Capped Score stay editable when AI writes the first-pass score; OQ-D is Paper Count meaningful here; OQ-F AI Feedback as a separate LO type (as this canvas has it) rather than an option on this dialog — this canvas answers F: separate types.",
+    "G-Dialog": "AI GRADING — the Paper Submission LO (source: the AI Grading prototype, claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn — US-1 to US-8; PM, 30 Sep: review these screens for Book Management and Submission Grading and fit them into the prototype). Redrawn on this canvas's production components and fitted into the Kindai course: the Session 7 確認クイズ becomes the paper LO — a 10-point quiz sat on paper in class, scanned on the copier, imported, AI-marked, reviewed, returned; the 9/10 the dashboards already show. THIS BOARD: DialogCreateLearningMaterial with 紙提出物（AI採点） as one more type (NEW, after the practice type in the T2 menu). General Info as for any LO plus レポート回 Paper Count. Settings: 添削指導 Manual Grading with なし shown but disabled and あり fixed (the source's rule; its info box was removed on request); 添削の承認フローを適用する as a switch; ★ NEW 生徒による提出を許可する, default OFF — off, the teacher submits on the student's behalf (bulk scan); on, the student starts and submits in the learner app; the help text follows the switch; ON for this LO since 30 Sep, because the student boards (Q1–Q12) submit it from the app; 合格点 / 上限点 / パスワード as on the Learning Objective type. Not shown for this type, per the source: Rules, URL tracking, Practice Mode, Enforce answer checking, AI Tutor, Adaptive retry. Click the switches. OPEN (from the source): OQ-B does the approval workflow stay available with Allow student to submit on; OQ-C should Score to Pass / Capped Score stay editable when AI writes the first-pass score; OQ-D is Paper Count meaningful here; OQ-F AI Feedback as a separate LO type (as this canvas has it) rather than an option on this dialog — this canvas answers F: separate types.",
     "G-Detail": "THE PAPER LO's CONTENT TAB IN BOOK MANAGEMENT (US-3 upload, US-4 flat question list) — PM, 30 Sep: the question and answer key belong in Book Management, as T3 does for AI Feedback; Submission Grading keeps the student PDFs (G4, G5), the submission list (G6) and the submission detail (G7). Reached from the tree (T1: the 確認クイズ row carries the purple pencil disc and the 紙提出物 chip); 提出状況を見る leads to its submissions under Submission Grading. ONE upload area for the Question sheet and the Answer key — after 読み取りを開始 Process each file shows what AI classified it as (問題 / 解答); the source superseded its earlier two-box design with this. QUESTION LIST: the uploaded sheet on the left (38%, paginated, zoom) so the teacher checks the original against the extraction without scrolling; on the right the flat grid — 問題番号 Question index · 正答 Correct Answer · 配点 Max Score · タグ Tag — no 大問 / 小問 nesting, no question-content column (the wording is read from the paper beside it), cells AI could not read stay EMPTY rather than invented (4(1), 4(2) here). Per-row +, ▲▼; header select-all for bulk delete; totals and per-tag pills (知 / 考 summing Max Score) recalculate live. A draft banner until ✓ 保存 SAVE — click it; the saved list is what marking runs against. Tags come from the tenant's Question Tag master (US-5, out of this canvas's scope). OPEN: OQ-G AI extracts and stores the question text but it is not editable here — if a mis-read has to be fixable it needs a home (expandable row / side panel).",
     "G-LOs": "SUBMISSION GRADING › 学習目標 Learning Objectives tab (the second tab of T9, now live): one row per LO with submissions, with the type disc and chip — the paper LOs with 添削済 marked / total and a progress line, the AI Feedback LOs with returned / total — under the 添削待ち To Mark / 添削済 Marked segments (click them). The LO name opens the paper LO's submissions — the Overview (G6) — or the feedback LO's overview (T10); the question list is in Book Management (G2, PM 30 Sep). The ⋯ menu carries 紙提出物の一括取り込み Bulk Import Submissions (US-6) — click ⋯. On T9 the ⋯ opens it directly. The Submissions tab (T9) keeps the AI Feedback queue; a paper LO's rows would list there too with 得点 Raw / Final Score, Marker and Approver columns from the source — not drawn, to keep T9 the feedback demo.",
     "G-Import": "BULK IMPORT SUBMISSIONS (US-6), a full screen with a breadcrumb back, not a modal. 用紙レイアウト Layout: A4片面 Single-sided (Phase 1 · MVP — 1 page = 1 submission, the header carries test_id = External LO ID and student_id = username as a QR) or A4両面 Double-sided (multi-page policy — one sheet both sides, the ID on the front only, the back matched to the front scanned just before it; a missing back surfaces as a question-count error). ⓘ opens the explanation on both cards; click the cards. The dropzone takes the copier's PDFs — 100+ pages, 100+ MB per file — uploaded straight to storage (presigned multipart; the app server is not in the path). Two files listed as uploaded, then the counts: 30 pages → 30 submissions expected (the layout decides the ratio) and what is read from every page. Cancel / 処理を開始 Start processing → G5. OPEN: OQ-H the layout guardrail's granularity (per file or per batch); OQ-I duplicate-submission detection — a student legitimately spans several rows on a multi-page layout, so repeats are not flagged.",
@@ -5551,6 +6170,51 @@ for screen in GSCREENS:
     notes["g_" + screen] = {"x": GX[screen], "y": GROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 560, "text": GNOTES[screen]}
 notes["title_g"] = {"x": 0, "y": GROW_Y["ja"] - 300, "text": "AI Grading — the Paper Submission LO fitted into the same course: Book Management (Add LO → the paper LO's question list) → Submission Grading (Learning Objectives tab → Bulk Import → job → result → Overview → marking review) · 日本語", "kind": "title1", "maxW": 10600}
 notes["title_g_en"] = {"x": 0, "y": GROW_Y["en"] - 240, "text": "Same AI Grading flow in English", "kind": "title1", "maxW": 10600}
+
+# ---- AI Grading, the student side (30 Sep) ----
+QROW_Y = {"ja": 15800, "en": 17500}
+qtitles = ["Q1 · Student PC — the paper LO: instructions, submission details, the three steps, Submit Your Work",
+           "Q2 · Student PC — take or upload a photo, the photo tips; DEMO the two analysis errors",
+           "Q3 · Student PC — the pages, Add More (5 photos or 1 PDF), Confirm & Analyze → analyzing",
+           "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown, Submit to Teacher; DEMO self-marking",
+           "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review",
+           "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, teacher feedback",
+           "Q7 · Mobile — the paper LO", "Q8 · Mobile — take or upload", "Q9 · Mobile — pages, Confirm & Analyze", "Q10 · Mobile — analysis results",
+           "Q11 · Mobile — submitted", "Q12 · Mobile — returned"]
+QSIZE = {**{k: (W, H) for k in QSCREENS_W}, **{k: (MW, MH) for k in QSCREENS_M}}
+QX = {}
+for lang, S in (("ja", JA), ("en", EN)):
+    x = 0
+    for i, screen in enumerate(QSCREENS_ALL):
+        CUR = screen
+        name = fn(screen, lang)
+        with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+            f.write(QBUILDERS[screen](S, lang))
+        w, h = QSIZE[screen]
+        boards[name] = {"x": x, "y": QROW_Y[lang], "w": w, "h": h,
+                        "title": qtitles[i] + (" (EN)" if lang == "en" else " (JA)"), "is_interactive": True}
+        order.append(name)
+        QX[screen] = x
+        x += w + 80
+QNOTES = {
+    "Q-Detail": "AI GRADING, THE STUDENT SIDE (source: jamessim-source/aigradingv1, apps/frontend/src/screens/student — the deprecated student SPA that is the acceptance spec: ClassDetail → AssignmentDetails → HomeworkSubmission → HomeworkSubmissionPreview → SubmissionAnalysisResult → SubmissionConfirmation → SubmissionReview; PM, 30 Sep: review the ai grading student interface from this repo and integrate the student experience into the student web and app). Redrawn on this canvas's student components and fitted into the Kindai course: the Session 7 確認クイズ (the paper LO of G1–G7) now has a row on the course tab (Main, M1) and in To-do (8) with the pencil disc and the 紙提出物 chip — it appears to students only because the LO's Allow student to submit (G1) is ON; off, the teacher bulk-scans and the student sees nothing until the return. THIS BOARD = AssignmentDetails: the LO, 指示 Instructions (the LO description from G1), 提出の詳細 Submission details (8問 · 10点満点 · photos or PDF), the three steps the AI Feedback assignment also shows (photo → AI marks → submit to the teacher), 課題を提出 Submit Your Work. The source's My Classes / Add Class by QR or code and the class card list are NOT drawn — the LMS course and the course QR (T6) already do that.",
+    "Q-Submit": "HomeworkSubmission: 写真を撮る Take Photo or アップロード Upload (images or PDF, max 10 MB, at most 1 PDF, up to 5 photos — the source's limits), the four photo tips. On the phone Take Photo opens the camera (the AI Feedback M3 pattern); on PC both land on the pages screen. The bottom error popup the source shows when the analysis rejects the upload — 誤った課題 Wrong assessment (the sheet does not match the LO's questions) and 写真が不鮮明です Photo unclear — is raised by the DEMO buttons; 了解 closes it and the student retakes.",
+    "Q-Preview": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then the results. Click Confirm & Analyze to run it; the DEMO pill skips ahead.",
+    "Q-Result": "SubmissionAnalysisResult: the banner — AIがあなたの解答を採点しました when the LO is AI-marked, or the self-marking instruction when the assignment allows self-marking (the source's allowSelfMarking; the DEMO chip in the header flips it — this canvas has NO such setting on G1 yet, see OPEN) — the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule; read-only when AI-marked, inputs when self-marking (type a number, the total follows). 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: is self-marking a setting of the paper LO (G1) or off for this segment; does the student see the AI's score before submitting at all (the source shows it).",
+    "Q-Done": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state.",
+    "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
+    "MQ-Detail": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出.",
+    "MQ-Submit": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors.",
+    "MQ-Preview": "Mobile pages: the carousel and thumbnails, さらに追加 and 確認して分析 fixed at the bottom; Confirm & Analyze runs the analyzing state in place.",
+    "MQ-Result": "Mobile analysis results: the banner, the marked sheet, the breakdown with the total; 先生に提出する fixed at the bottom. The header chip flips self-marking (DEMO).",
+    "MQ-Done": "Mobile submitted: the check, the LO card with time and the AI's score, 提出の詳細を表示 / コースに戻る. DEMO → returned.",
+    "MQ-Review": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled), the marked sheet, the teacher's feedback.",
+}
+for screen in QSCREENS_ALL:
+    w = NW if screen in QSCREENS_W else MNW
+    notes["q_" + screen] = {"x": QX[screen], "y": QROW_Y["ja"] + QSIZE[screen][1] + 60, "w": w, "maxH": 560, "text": QNOTES[screen]}
+notes["title_q"] = {"x": 0, "y": QROW_Y["ja"] - 300, "text": "AI Grading, the student side — the Paper Submission LO in the student web and app when Allow student to submit is on: details → take or upload the photo → pages → Confirm & Analyze → the AI's marks → Submit to Teacher → submitted → returned with the teacher's marks and feedback · 日本語", "kind": "title1", "maxW": 10600}
+notes["title_q_en"] = {"x": 0, "y": QROW_Y["en"] - 240, "text": "Same student flow in English", "kind": "title1", "maxW": 10600}
 
 canvas = {
     "v": 3,
@@ -5601,6 +6265,7 @@ def to_static(text, lang):
     markup = re.search(r"</helmet>\s*(.*?)\s*</x-dc>", text, re.S).group(1)
     logic = re.search(r'<script type="text/x-dc"[^>]*>(.*?)</script>', text, re.S).group(1)
     markup = markup.replace('.dc.html"', '.html"')      # links between screens
+    logic = logic.replace('.dc.html"', '.html"')        # and the one navigation a logic block makes (Q3 / Q9 on completion)
     # Drop the artboard's fixed size; the stylesheet gives it the window instead.
     markup = re.sub(r'\s*style="width: (?:1280|375|1440)px; height: (?:800|812|900)px;"', "", markup, count=1)
     # Fold an index link into the prototype-only device pill, so no page chrome is needed.
@@ -5652,6 +6317,8 @@ def site_index():
         ("AI Practice (Similar Questions Practice LO) · English", "BO 1440 · PC 1280 · Mobile 375", links(PSCREENS_ALL, "en", ptitles)),
         ("AI採点（紙提出物 LO）・ 日本語", "BO 1440", links(GSCREENS, "ja", gtitles)),
         ("AI Grading (Paper Submission LO) · English", "BO 1440", links(GSCREENS, "en", gtitles)),
+        ("AI採点 — 生徒側（写真で提出）・ 日本語", "PC 1280 ・ モバイル 375", links(QSCREENS_ALL, "ja", qtitles)),
+        ("AI Grading — student side (photo submission) · English", "PC 1280 · Mobile 375", links(QSCREENS_ALL, "en", qtitles)),
     ]
     blocks = "".join(
         f'<section class="row"><h2>{name}<span>{size}</span></h2><div class="steps">{body}</div></section>'
@@ -5698,7 +6365,7 @@ footer{{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px s
 '''
 
 for lang in ("ja", "en"):
-    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL + GSCREENS:
+    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL + GSCREENS + QSCREENS_ALL:
         name = fn(screen, lang)
         with open(os.path.join(ROOT, name), encoding="utf-8") as f:
             src = f.read()

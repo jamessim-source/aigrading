@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T14:05:53Z"
+    "at": "2026-09-30T14:25:12Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -873,6 +873,198 @@
       "h": 900,
       "title": "G7 · Marking review — students, the scanned sheet with the AI's ○ / ✕, per-question ○ △ ✕, Confirm and Next (EN)",
       "is_interactive": true
+    },
+    "Q-Detail.dc.html": {
+      "x": 0,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q1 · Student PC — the paper LO: instructions, submission details, the three steps, Submit Your Work (JA)",
+      "is_interactive": true
+    },
+    "Q-Submit.dc.html": {
+      "x": 1360,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q2 · Student PC — take or upload a photo, the photo tips; DEMO the two analysis errors (JA)",
+      "is_interactive": true
+    },
+    "Q-Preview.dc.html": {
+      "x": 2720,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q3 · Student PC — the pages, Add More (5 photos or 1 PDF), Confirm & Analyze → analyzing (JA)",
+      "is_interactive": true
+    },
+    "Q-Result.dc.html": {
+      "x": 4080,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown, Submit to Teacher; DEMO self-marking (JA)",
+      "is_interactive": true
+    },
+    "Q-Done.dc.html": {
+      "x": 5440,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review (JA)",
+      "is_interactive": true
+    },
+    "Q-Review.dc.html": {
+      "x": 6800,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, teacher feedback (JA)",
+      "is_interactive": true
+    },
+    "MQ-Detail.dc.html": {
+      "x": 8160,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q7 · Mobile — the paper LO (JA)",
+      "is_interactive": true
+    },
+    "MQ-Submit.dc.html": {
+      "x": 8615,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q8 · Mobile — take or upload (JA)",
+      "is_interactive": true
+    },
+    "MQ-Preview.dc.html": {
+      "x": 9070,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q9 · Mobile — pages, Confirm & Analyze (JA)",
+      "is_interactive": true
+    },
+    "MQ-Result.dc.html": {
+      "x": 9525,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q10 · Mobile — analysis results (JA)",
+      "is_interactive": true
+    },
+    "MQ-Done.dc.html": {
+      "x": 9980,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q11 · Mobile — submitted (JA)",
+      "is_interactive": true
+    },
+    "MQ-Review.dc.html": {
+      "x": 10435,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q12 · Mobile — returned (JA)",
+      "is_interactive": true
+    },
+    "Q-Detail-en.dc.html": {
+      "x": 0,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q1 · Student PC — the paper LO: instructions, submission details, the three steps, Submit Your Work (EN)",
+      "is_interactive": true
+    },
+    "Q-Submit-en.dc.html": {
+      "x": 1360,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q2 · Student PC — take or upload a photo, the photo tips; DEMO the two analysis errors (EN)",
+      "is_interactive": true
+    },
+    "Q-Preview-en.dc.html": {
+      "x": 2720,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q3 · Student PC — the pages, Add More (5 photos or 1 PDF), Confirm & Analyze → analyzing (EN)",
+      "is_interactive": true
+    },
+    "Q-Result-en.dc.html": {
+      "x": 4080,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown, Submit to Teacher; DEMO self-marking (EN)",
+      "is_interactive": true
+    },
+    "Q-Done-en.dc.html": {
+      "x": 5440,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review (EN)",
+      "is_interactive": true
+    },
+    "Q-Review-en.dc.html": {
+      "x": 6800,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, teacher feedback (EN)",
+      "is_interactive": true
+    },
+    "MQ-Detail-en.dc.html": {
+      "x": 8160,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q7 · Mobile — the paper LO (EN)",
+      "is_interactive": true
+    },
+    "MQ-Submit-en.dc.html": {
+      "x": 8615,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q8 · Mobile — take or upload (EN)",
+      "is_interactive": true
+    },
+    "MQ-Preview-en.dc.html": {
+      "x": 9070,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q9 · Mobile — pages, Confirm & Analyze (EN)",
+      "is_interactive": true
+    },
+    "MQ-Result-en.dc.html": {
+      "x": 9525,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q10 · Mobile — analysis results (EN)",
+      "is_interactive": true
+    },
+    "MQ-Done-en.dc.html": {
+      "x": 9980,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q11 · Mobile — submitted (EN)",
+      "is_interactive": true
+    },
+    "MQ-Review-en.dc.html": {
+      "x": 10435,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q12 · Mobile — returned (EN)",
+      "is_interactive": true
     }
   },
   "order": [
@@ -983,7 +1175,31 @@
     "G-Import-en.dc.html",
     "G-Process-en.dc.html",
     "G-Overview-en.dc.html",
-    "G-Mark-en.dc.html"
+    "G-Mark-en.dc.html",
+    "Q-Detail.dc.html",
+    "Q-Submit.dc.html",
+    "Q-Preview.dc.html",
+    "Q-Result.dc.html",
+    "Q-Done.dc.html",
+    "Q-Review.dc.html",
+    "MQ-Detail.dc.html",
+    "MQ-Submit.dc.html",
+    "MQ-Preview.dc.html",
+    "MQ-Result.dc.html",
+    "MQ-Done.dc.html",
+    "MQ-Review.dc.html",
+    "Q-Detail-en.dc.html",
+    "Q-Submit-en.dc.html",
+    "Q-Preview-en.dc.html",
+    "Q-Result-en.dc.html",
+    "Q-Done-en.dc.html",
+    "Q-Review-en.dc.html",
+    "MQ-Detail-en.dc.html",
+    "MQ-Submit-en.dc.html",
+    "MQ-Preview-en.dc.html",
+    "MQ-Result-en.dc.html",
+    "MQ-Done-en.dc.html",
+    "MQ-Review-en.dc.html"
   ],
   "notes": {
     "title": {
@@ -1397,7 +1613,7 @@
       "y": 13260,
       "w": 640,
       "maxH": 560,
-      "text": "AI GRADING — the Paper Submission LO (source: the AI Grading prototype, claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn — US-1 to US-8; PM, 30 Sep: review these screens for Book Management and Submission Grading and fit them into the prototype). Redrawn on this canvas's production components and fitted into the Kindai course: the Session 7 確認クイズ becomes the paper LO — a 10-point quiz sat on paper in class, scanned on the copier, imported, AI-marked, reviewed, returned; the 9/10 the dashboards already show. THIS BOARD: DialogCreateLearningMaterial with 紙提出物（AI採点） as one more type (NEW, after the practice type in the T2 menu). General Info as for any LO plus レポート回 Paper Count. Settings: 添削指導 Manual Grading with なし shown but disabled and あり fixed (the source's rule; its info box was removed on request); 添削の承認フローを適用する as a switch; ★ NEW 生徒による提出を許可する, default OFF — off, the teacher submits on the student's behalf (bulk scan); on, the student starts and submits in the learner app; the help text follows the switch; 合格点 / 上限点 / パスワード as on the Learning Objective type. Not shown for this type, per the source: Rules, URL tracking, Practice Mode, Enforce answer checking, AI Tutor, Adaptive retry. Click the switches. OPEN (from the source): OQ-B does the approval workflow stay available with Allow student to submit on; OQ-C should Score to Pass / Capped Score stay editable when AI writes the first-pass score; OQ-D is Paper Count meaningful here; OQ-F AI Feedback as a separate LO type (as this canvas has it) rather than an option on this dialog — this canvas answers F: separate types."
+      "text": "AI GRADING — the Paper Submission LO (source: the AI Grading prototype, claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn — US-1 to US-8; PM, 30 Sep: review these screens for Book Management and Submission Grading and fit them into the prototype). Redrawn on this canvas's production components and fitted into the Kindai course: the Session 7 確認クイズ becomes the paper LO — a 10-point quiz sat on paper in class, scanned on the copier, imported, AI-marked, reviewed, returned; the 9/10 the dashboards already show. THIS BOARD: DialogCreateLearningMaterial with 紙提出物（AI採点） as one more type (NEW, after the practice type in the T2 menu). General Info as for any LO plus レポート回 Paper Count. Settings: 添削指導 Manual Grading with なし shown but disabled and あり fixed (the source's rule; its info box was removed on request); 添削の承認フローを適用する as a switch; ★ NEW 生徒による提出を許可する, default OFF — off, the teacher submits on the student's behalf (bulk scan); on, the student starts and submits in the learner app; the help text follows the switch; ON for this LO since 30 Sep, because the student boards (Q1–Q12) submit it from the app; 合格点 / 上限点 / パスワード as on the Learning Objective type. Not shown for this type, per the source: Rules, URL tracking, Practice Mode, Enforce answer checking, AI Tutor, Adaptive retry. Click the switches. OPEN (from the source): OQ-B does the approval workflow stay available with Allow student to submit on; OQ-C should Score to Pass / Capped Score stay editable when AI writes the first-pass score; OQ-D is Paper Count meaningful here; OQ-F AI Feedback as a separate LO type (as this canvas has it) rather than an option on this dialog — this canvas answers F: separate types."
     },
     "g_G-Detail": {
       "x": 1520,
@@ -1452,6 +1668,104 @@
       "x": 0,
       "y": 13760,
       "text": "Same AI Grading flow in English",
+      "kind": "title1",
+      "maxW": 10600
+    },
+    "q_Q-Detail": {
+      "x": 0,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "AI GRADING, THE STUDENT SIDE (source: jamessim-source/aigradingv1, apps/frontend/src/screens/student — the deprecated student SPA that is the acceptance spec: ClassDetail → AssignmentDetails → HomeworkSubmission → HomeworkSubmissionPreview → SubmissionAnalysisResult → SubmissionConfirmation → SubmissionReview; PM, 30 Sep: review the ai grading student interface from this repo and integrate the student experience into the student web and app). Redrawn on this canvas's student components and fitted into the Kindai course: the Session 7 確認クイズ (the paper LO of G1–G7) now has a row on the course tab (Main, M1) and in To-do (8) with the pencil disc and the 紙提出物 chip — it appears to students only because the LO's Allow student to submit (G1) is ON; off, the teacher bulk-scans and the student sees nothing until the return. THIS BOARD = AssignmentDetails: the LO, 指示 Instructions (the LO description from G1), 提出の詳細 Submission details (8問 · 10点満点 · photos or PDF), the three steps the AI Feedback assignment also shows (photo → AI marks → submit to the teacher), 課題を提出 Submit Your Work. The source's My Classes / Add Class by QR or code and the class card list are NOT drawn — the LMS course and the course QR (T6) already do that."
+    },
+    "q_Q-Submit": {
+      "x": 1360,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "HomeworkSubmission: 写真を撮る Take Photo or アップロード Upload (images or PDF, max 10 MB, at most 1 PDF, up to 5 photos — the source's limits), the four photo tips. On the phone Take Photo opens the camera (the AI Feedback M3 pattern); on PC both land on the pages screen. The bottom error popup the source shows when the analysis rejects the upload — 誤った課題 Wrong assessment (the sheet does not match the LO's questions) and 写真が不鮮明です Photo unclear — is raised by the DEMO buttons; 了解 closes it and the student retakes."
+    },
+    "q_Q-Preview": {
+      "x": 2720,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then the results. Click Confirm & Analyze to run it; the DEMO pill skips ahead."
+    },
+    "q_Q-Result": {
+      "x": 4080,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "SubmissionAnalysisResult: the banner — AIがあなたの解答を採点しました when the LO is AI-marked, or the self-marking instruction when the assignment allows self-marking (the source's allowSelfMarking; the DEMO chip in the header flips it — this canvas has NO such setting on G1 yet, see OPEN) — the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule; read-only when AI-marked, inputs when self-marking (type a number, the total follows). 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: is self-marking a setting of the paper LO (G1) or off for this segment; does the student see the AI's score before submitting at all (the source shows it)."
+    },
+    "q_Q-Done": {
+      "x": 5440,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state."
+    },
+    "q_Q-Review": {
+      "x": 6800,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback."
+    },
+    "q_MQ-Detail": {
+      "x": 8160,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出."
+    },
+    "q_MQ-Submit": {
+      "x": 8615,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors."
+    },
+    "q_MQ-Preview": {
+      "x": 9070,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile pages: the carousel and thumbnails, さらに追加 and 確認して分析 fixed at the bottom; Confirm & Analyze runs the analyzing state in place."
+    },
+    "q_MQ-Result": {
+      "x": 9525,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile analysis results: the banner, the marked sheet, the breakdown with the total; 先生に提出する fixed at the bottom. The header chip flips self-marking (DEMO)."
+    },
+    "q_MQ-Done": {
+      "x": 9980,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile submitted: the check, the LO card with time and the AI's score, 提出の詳細を表示 / コースに戻る. DEMO → returned."
+    },
+    "q_MQ-Review": {
+      "x": 10435,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled), the marked sheet, the teacher's feedback."
+    },
+    "title_q": {
+      "x": 0,
+      "y": 15500,
+      "text": "AI Grading, the student side — the Paper Submission LO in the student web and app when Allow student to submit is on: details → take or upload the photo → pages → Confirm & Analyze → the AI's marks → Submit to Teacher → submitted → returned with the teacher's marks and feedback · 日本語",
+      "kind": "title1",
+      "maxW": 10600
+    },
+    "title_q_en": {
+      "x": 0,
+      "y": 17260,
+      "text": "Same student flow in English",
       "kind": "title1",
       "maxW": 10600
     }

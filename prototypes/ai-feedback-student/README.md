@@ -26,6 +26,8 @@ sticky notes on the canvas are the per-screen record.
 | AI Practice · English | same, `-en` suffix | mixed |
 | AI Grading · 日本語 | `G-Dialog` · `G-Detail` · `G-LOs` → `G-Import` → `G-Process` → `G-Overview` → `G-Mark` (BO, 1440 × 900) | 1440 × 900 |
 | AI Grading · English | same, `-en` suffix | 1440 × 900 |
+| AI Grading, student side · 日本語 | `Q-Detail` → `Q-Submit` → `Q-Preview` → `Q-Result` → `Q-Done` → `Q-Review` (PC, 1280 × 800) · `MQ-Detail` → `MQ-Submit` → `MQ-Preview` → `MQ-Result` → `MQ-Done` → `MQ-Review` (mobile, 375 × 812) | mixed |
+| AI Grading, student side · English | same, `-en` suffix | mixed |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
 PC / Mobile / 先生（BO） pill (bottom-left) that jumps to the twin screen or into
@@ -197,8 +199,29 @@ Feedback and AI Practice LOs on the same surfaces:
 - **Course Management and dashboards.** T8 shows the paper LO's icon; its
   scores already sit in the score columns on T14 / T15.
 
+- **Student web and app (Main, M1, To-do 8, Q1–Q12; 30 Sep, PM).** The
+  student side of the same LO, from `jamessim-source/aigradingv1`
+  (`apps/frontend/src/screens/student`, the deprecated SPA that is the
+  acceptance spec): the quiz row on the course tab and in To-do (shown only
+  because the LO's Allow student to submit is On — G1 now has it On) →
+  assignment details (instructions, submission details, the three steps) →
+  Take Photo / Upload with the photo tips and the two analysis errors
+  (Wrong assessment, Photo unclear — DEMO) → the pages carousel, Add More up to
+  5 photos or 1 PDF, Confirm & Analyze with the analyzing progress → the
+  analysis results (the AI's ○ / ✕ on the sheet, the question breakdown in
+  green / amber / red, the total; a DEMO chip flips the source's self-marking
+  mode, where the scores are inputs) → Submit to Teacher → submitted (the AI's
+  8/10, awaiting teacher review) → returned (the teacher's △ on Q5 from G7,
+  9/10, the changed row labelled, teacher feedback). The student's sheet is
+  the one the teacher marks on G7; the 9/10 is the score on T14 / T15. The
+  source's My Classes and Add Class by QR / code are not carried — the LMS
+  course and the course QR (T6) already do that.
+
 Not drawn: the Question Tag master and CSV book import (Master Data), the
-paper LO's rows in the Submissions tab, and the student's returned result.
+paper LO's rows in the Submissions tab, the student's row on the Overview
+matrix as an app submission, a teacher-feedback field on the marking review
+(the returned result shows one, from the source), and self-marking as a
+setting of the paper LO (the source has it per assignment).
 
 ## AI feedback before submission (2026-09-29, PM)
 

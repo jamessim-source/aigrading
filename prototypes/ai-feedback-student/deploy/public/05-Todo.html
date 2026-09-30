@@ -287,6 +287,51 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .psq b{display:inline-block;width:40px}
 .psq ol{margin:6px 0 0 40px;padding-left:18px}
 .lo.on{border-color:#395ad2!important;box-shadow:0 0 0 3px rgba(57,90,210,.15)}
+.gsheet{background:#fff;border:1px solid #E0E0E0;box-shadow:0 1px 3px rgba(0,0,0,.12);padding:22px 26px;display:flex;flex-direction:column;gap:10px;font-size:11px;color:#424242}
+.gsheet .ln{height:8px;border-radius:2px;background:#EEEEEE}
+.gsheet .q{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed #EEEEEE}
+.gsheet .q b{width:34px;color:#212121}.gsheet .q .ln{flex:1}
+.gsheet .q .box{width:64px;height:22px;border:1px solid #9E9E9E;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;font-weight:500;color:#1A237E}
+.gsheet .q .ai{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.gsheet .q .ai.o{color:#2E7D32;border:2px solid #2E7D32}.gsheet .q .ai.x{color:#C62828}
+/* AI Grading — the student's paper submission */
+.qphoto{position:relative;display:inline-block;border-radius:8px;overflow:hidden;background:#2a2521}
+.qphoto .desk{position:absolute;inset:0}
+.qphoto .qsheet{position:absolute;left:8%;top:5%;width:84%;transform:rotate(-2deg);box-shadow:0 12px 30px rgba(0,0,0,.55)}
+.qphoto .gsheet{padding:14px 16px;gap:6px;font-size:10px;border:0}
+.qphoto .gsheet .q{padding:4px 0}
+.qphoto .gsheet .q .box{width:56px;height:18px;font-size:10px;border-color:#BDBDBD;font-family:'Noto Sans JP',sans-serif;font-style:italic;color:#1A237E}
+.qcar{position:relative;display:flex;align-items:center;justify-content:center;background:#e9e9ec;border-radius:8px;overflow:hidden}
+.qcar .nv{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);border:0;display:flex;align-items:center;justify-content:center;color:#1c1e2c;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.qcar .nv.l{left:10px}.qcar .nv.r{right:10px}
+.qcar .pg{position:absolute;right:10px;bottom:10px;background:rgba(28,30,44,.75);color:#fff;font-size:12px;font-weight:700;border-radius:1000px;padding:3px 10px}
+.qcar .del{position:absolute;right:10px;top:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);border:0;display:flex;align-items:center;justify-content:center;color:#d13842;cursor:pointer}
+.qopt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;height:120px;border-radius:12px;border:1.5px solid rgba(28,30,44,.16);background:#fff;color:#1c1e2c;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;flex:1 1 0}
+.qopt.pri{border-color:#395ad2;background:#eef1ff;color:#395ad2}
+.qopt:hover{background:#fafbff;color:inherit}.qopt.pri:hover{background:#e3e8ff;color:#395ad2}
+.qtips{background:#fffdf4;border:1px solid #f2e8c4;border-radius:8px;padding:14px 16px;color:#a27a23;font-size:13px;line-height:20px}
+.qtips b{display:block;font-size:14px;margin-bottom:6px}
+.qtips ul{margin:0;padding-left:16px}
+.qbanner{display:flex;gap:10px;align-items:flex-start;border-radius:8px;padding:12px 14px;font-size:14px;line-height:20px}
+.qbanner.ai{background:#eef1ff;color:#2c48ae}.qbanner.self{background:#fff3cc;color:#7a5a00}.qbanner.ok{background:#e6f5ee;color:#1f7a4d}
+.qrow-s{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;border:1px solid rgba(28,30,44,.1);background:#fff}
+.qrow-s b{font-size:14px;min-width:44px}
+.qrow-s .qtag{font-size:11px;color:rgba(28,30,44,.6);background:#f2f2f4;border-radius:4px;padding:1px 6px}
+.qrow-s .qsv{margin-left:auto;display:flex;align-items:baseline;gap:2px}
+.qrow-s .qmax{font-size:13px;font-weight:700;color:rgba(28,30,44,.45)}
+.qsc{width:44px;height:36px;border:1.5px solid rgba(28,30,44,.16);border-radius:8px;text-align:center;font-size:16px;font-weight:700;font-family:inherit;background:#fff;color:inherit;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.qsc.ro{border-color:transparent;background:transparent;width:auto;padding:0 2px}
+.qrow-s.full{background:#f2fcf5;border-color:#d1f0d9}.qrow-s.full .qsc{color:#38a169;border-color:#d1f0d9}
+.qrow-s.zero{background:#fcf3f3;border-color:#f2d6d6}.qrow-s.zero .qsc{color:#d9534f;border-color:#f2d6d6}
+.qrow-s.part{background:#fff9e6;border-color:#f2e8c4}.qrow-s.part .qsc{color:#ad8200;border-color:#f2e8c4}
+.qtotal{display:flex;align-items:center;justify-content:space-between;background:#395ad2;color:#fff;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:700}
+.qtotal b{font-size:24px;line-height:32px}.qtotal b i{font-style:normal;font-size:14px;opacity:.75;margin-left:2px}
+.qprog{height:10px;border-radius:999px;background:#ececef;overflow:hidden}.qprog i{display:block;height:100%;background:#395ad2;border-radius:999px;transition:width .3s}
+.qerr{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:50;padding:24px}
+.qerr .bx{background:#fff;border-radius:12px;padding:24px;width:100%;max-width:360px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.qerr .ic{width:56px;height:56px;border-radius:50%;background:#fbe7e9;color:#d13842;display:flex;align-items:center;justify-content:center}
+.qkv{display:flex;flex-direction:column;gap:2px}.qkv .k{font-size:12px;color:rgba(28,30,44,.6)}.qkv .v{font-size:14px;font-weight:700}
+.qcheck{width:72px;height:72px;border-radius:50%;background:#1f7a4d;display:flex;align-items:center;justify-content:center;color:#fff}
 </style>
 <style>
 html,body{height:100%}
@@ -325,6 +370,9 @@ body{background:#f2f2f4}</style>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></div>
   <a class="lo" href="P-Sets.html"><span class="tile"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg><span class="sp"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1c1e2c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg></span></span>
     <span class="t"><b>第7回 類題演習（相関分析）</b><i><span class="chip review">セット2 つづき 2/4</span><span>地域環境統計学</span></i></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></a>
+  <a class="lo" href="Q-Detail.html"><span class="tile"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 20h4L20 8a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span class="sp"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1c1e2c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg></span></span>
+    <span class="t"><b>第7回 確認クイズ</b><i><span class="chip wait">未提出</span><span>地域環境統計学 ・ 11月10日 授業内</span></i></span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></a>
   <div class="lo"><span class="tile done"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m10 9 5 3-5 3z"/></svg></span>
     <span class="t"><b>第7回 講義動画 を見る</b><i><span class="chip done">完了</span><span>地域環境統計学</span></i></span>
