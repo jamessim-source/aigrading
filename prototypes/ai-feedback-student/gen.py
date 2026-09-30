@@ -2223,6 +2223,7 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
 .qrow.hand{background:#E3F2FD}
 .qrow .qh{display:flex;justify-content:space-between;font-size:13px}.qrow .qh b{font-weight:500}.qrow .qh span{color:#757575}
 .qrow .qc{display:flex;align-items:center;gap:8px}
+.qfbx{display:flex;flex-direction:column;gap:4px;margin-top:2px}
 .sbox{width:56px;height:32px;border:1px solid #BDBDBD;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;background:#fff}
 .sbox.full{border-color:#4CAF50;color:#2E7D32}.sbox.zero{border-color:#E57373;color:#C62828}.sbox.part{border-color:#FFB74D;color:#C77700}
 .mkb{width:32px;height:32px;border-radius:4px;border:1px solid #E0E0E0;background:#fff;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#757575;font-family:inherit}
@@ -4839,7 +4840,7 @@ G_JA = dict(
                 ("渡辺 大輝", "KU-2047", "nc", [1, 0, 0, 2, 1, 1, 1, 1])],
     # marking (US-8)
     g_mk_pos="生徒 {i} / {n}", g_summary="一覧", g_confirmed="確認済", g_not_confirmed="未確認", g_pdf_lbl="スキャン", g_zoom="80%",
-    g_score="得点", g_total="合計", g_close="閉じる", g_confirm_next="確定して次へ", g_edited="{n}問を修正",
+    g_score="得点", g_total="合計", g_close="閉じる", g_fb_lbl="フィードバック", g_fb_add="＋ フィードバックを追加", g_fb_del="フィードバックを削除", g_fb_hint="設問ごとに1件。AIの案を編集するか、削除して書き直せます。", g_confirm_next="確定して次へ", g_edited="{n}問を修正",
     g_mark_o="正解 — 配点を満点で付与", g_mark_t="部分正解 — 得点を入力（講師のみ）", g_mark_x="不正解 — 0点", g_back_hint="左の一覧から生徒を選ぶと、いつでも戻れます",
     g_sheet_title="第7回 確認クイズ", g_sheet_sub="地域環境統計学 ・ 2026/11/10 ・ 氏名：", g_ai_line="AIの一次採点 ・ ○ / ✕ のみ ・ △ は先生だけが付けられます",
 )
@@ -4906,7 +4907,7 @@ G_EN = dict(
                 ("Misaki Tanaka", "KU-2044", "nc", [1, 1, 1, 2, 1, 1, 2, 1]), ("Ken Takahashi", "KU-2045", "nc", [0, 1, 1, 0, 1, 0, 1, 0]), ("Sakura Ito", "KU-2046", "nc", [1, 1, 1, 1, 0, 1, 2, 0]),
                 ("Daiki Watanabe", "KU-2047", "nc", [1, 0, 0, 2, 1, 1, 1, 1])],
     g_mk_pos="Student {i} of {n}", g_summary="Summary", g_confirmed="Confirmed", g_not_confirmed="Not Confirmed", g_pdf_lbl="Scan", g_zoom="80%",
-    g_score="Score", g_total="Total", g_close="Close", g_confirm_next="Confirm and Next", g_edited="{n} changed",
+    g_score="Score", g_total="Total", g_close="Close", g_fb_lbl="Feedback", g_fb_add="+ Add feedback", g_fb_del="Remove feedback", g_fb_hint="One per question. Edit the AI's draft, or remove it and write your own.", g_confirm_next="Confirm and Next", g_edited="{n} changed",
     g_mark_o="Correct — award full marks", g_mark_t="Partially correct — enter a score (teacher only)", g_mark_x="Incorrect — zero", g_back_hint="Pick any student from the list on the left to go back",
     g_sheet_title="Session 7 check-up quiz", g_sheet_sub="Regional & Environmental Statistics · 10 Nov 2026 · Name:", g_ai_line="AI first pass · ○ / ✕ only · △ is for the teacher",
 )
@@ -5388,7 +5389,8 @@ def g_mark_logic(S):
     Not Confirmed student."""
     maxes = [m for _, _, m, _ in S["g_questions"]]
     stu = [{"n": n, "u": u, "st": st, "ai": sc} for n, u, st, sc in S["g_students"]]
-    return f"""state = {{ cur: 2, maxes: {json.dumps(maxes)}, stu: {json.dumps(stu, ensure_ascii=False)}, edits: {{}} }};
+    return f"""state = {{ cur: 2, maxes: {json.dumps(maxes)}, stu: {json.dumps(stu, ensure_ascii=False)}, edits: {{}}, fbs: {{}}, fbOk: {json.dumps(S["q_qfb"], ensure_ascii=False)}, fbNg: {json.dumps(S["q_qfb_ng"], ensure_ascii=False)} }};
+  setFb(k, on) {{ const i = this.state.cur; const f = Object.assign({{}}, this.state.fbs); f[i] = Object.assign({{}}, f[i] || {{}}); f[i][k] = on; this.setState({{ fbs: f }}); }}
   scoresOf(i) {{ const e = this.state.edits[i] || {{}}; return this.state.maxes.map((m, k) => (k in e) ? e[k] : this.state.stu[i].ai[k]); }}
   setQ(k, mode) {{ const i = this.state.cur, m = this.state.maxes[k]; const v = mode === "o" ? m : (mode === "x" ? 0 : Math.max(0.5, Math.round(m / 2 * 2) / 2)); const e = Object.assign({{}}, this.state.edits); e[i] = Object.assign({{}}, e[i] || {{}}); e[i][k] = v; this.setState({{ edits: e }}); }}
   renderVals() {{
@@ -5400,7 +5402,8 @@ def g_mark_logic(S):
     this.state.stu.forEach((x, j) => {{ v["stu" + j] = (x.st === "nc" ? "" : "done") + (j === i ? " on" : ""); v["pick" + j] = () => this.setState({{ cur: j }}); }});
     sc.forEach((val, k) => {{ const m = this.state.maxes[k]; v["s" + k] = String(val); v["c" + k] = val >= m ? "full" : (val <= 0 ? "zero" : "part");
       v["o" + k] = val >= m ? "on" : ""; v["t" + k] = (val > 0 && val < m) ? "on" : ""; v["x" + k] = val <= 0 ? "on" : ""; v["h" + k] = (k in (this.state.edits[i] || {{}}) && this.state.edits[i][k] !== s.ai[k]) ? "hand" : "";
-      v["so" + k] = () => this.setQ(k, "o"); v["st" + k] = () => this.setQ(k, "t"); v["sx" + k] = () => this.setQ(k, "x"); }});
+      v["so" + k] = () => this.setQ(k, "o"); v["st" + k] = () => this.setQ(k, "t"); v["sx" + k] = () => this.setQ(k, "x");
+      const fb = (this.state.fbs[i] || {{}}); const has = (k in fb) ? fb[k] : true; v["fb" + k] = has; v["nofb" + k] = !has; v["f" + k] = s.ai[k] >= m ? this.state.fbOk[k] : this.state.fbNg[k]; v["rf" + k] = () => this.setFb(k, false); v["af" + k] = () => this.setFb(k, true); }});
     return v;
   }}"""
 
@@ -5415,7 +5418,9 @@ def g_mark(S, L):
                    for j, (n, u, st, sc) in enumerate(S["g_students"]))
     qrows = "".join(f'''<div class="qrow {{{{h{k}}}}}"><div class="qh"><b>{idx}</b><span>{S["g_max"]}: {mx}</span></div>
         <div class="qc"><span class="cell-muted" style="font-size:12px;width:36px">{S["g_score"]}</span><span class="sbox {{{{c{k}}}}}">{{{{s{k}}}}}</span><span class="cell-muted">/ {mx}</span>
-          <span style="display:flex;gap:6px;margin-left:auto"><button class="mkb o {{{{o{k}}}}}" onClick="{{{{so{k}}}}}" title="{S["g_mark_o"]}">○</button><button class="mkb t {{{{t{k}}}}}" onClick="{{{{st{k}}}}}" title="{S["g_mark_t"]}">△</button><button class="mkb x {{{{x{k}}}}}" onClick="{{{{sx{k}}}}}" title="{S["g_mark_x"]}">✕</button></span></div></div>'''
+          <span style="display:flex;gap:6px;margin-left:auto"><button class="mkb o {{{{o{k}}}}}" onClick="{{{{so{k}}}}}" title="{S["g_mark_o"]}">○</button><button class="mkb t {{{{t{k}}}}}" onClick="{{{{st{k}}}}}" title="{S["g_mark_t"]}">△</button><button class="mkb x {{{{x{k}}}}}" onClick="{{{{sx{k}}}}}" title="{S["g_mark_x"]}">✕</button></span></div>
+        <sc-if value="{{{{fb{k}}}}}" hint-placeholder-val="{{{{true}}}}"><div class="qfbx"><span class="cell-muted" style="font-size:11px;display:flex;justify-content:space-between;align-items:center">{S["g_fb_lbl"]}<button class="ticon sm" style="width:24px;height:24px" onClick="{{{{rf{k}}}}}" title="{S["g_fb_del"]}" aria-label="{S["g_fb_del"]}">{mi("close", 14)}</button></span><textarea class="tinput" style="height:auto;min-height:44px;padding:6px 10px;font-size:12px;line-height:1.5;resize:vertical;width:100%" defaultValue="{{{{f{k}}}}}">{{{{f{k}}}}}</textarea></div></sc-if>
+        <sc-if value="{{{{nofb{k}}}}}" hint-placeholder-val="{{{{false}}}}"><button class="tbtn neutral sm" style="align-self:flex-start;height:26px;font-size:12px" onClick="{{{{af{k}}}}}">{S["g_fb_add"]}</button></sc-if></div>'''
                     for k, (idx, ans, mx, tag) in enumerate(qs))
     # the sheet shows the AI's first pass for the student on screen (drawn for the default student, 鈴木)
     body = f'''<div class="tscrim" style="padding:0;align-items:stretch">
@@ -5499,7 +5504,10 @@ Q_JA = dict(
     q_fb_h="設問ごとのフィードバック", q_fb_sub="学習項目の解答キーと採点基準にもとづくAIのコメントです。",
     q_qfb=["相関係数 r = 0.82 が正しく求められています。", "正の相関と判断できています。", "右下がりの散布図から負の相関（r < 0）と読み取れています。",
            "外れ値が1点あることを正しく指摘しています。", "決定係数を正しく求められています。", "決定係数から相関の強さを「弱い」と判断できています。",
-           "「相関≠因果」は書けています。採点基準では第三の変数（例：気温）への言及も求めています。", "n = 30 で p < 0.05 となり、有意と判断できています。"],
+           "「相関≠因果」を第三の変数の例とともに述べられています。", "n = 30 で p < 0.05 となり、有意と判断できています。"],
+    q_qfb_ng=["相関係数の値が解答キー（r = 0.82）と一致していません。計算を見直しましょう。", "この散布図は正の相関です。右上がりの分布から判断しましょう。", "右下がりの散布図は負の相関（r < 0）です。",
+              "散布図に外れ値が1点あります。位置と根拠を示しましょう。", "決定係数は相関係数の二乗です。計算を見直しましょう。", "決定係数の大きさから相関の強さを判断しましょう。",
+              "「相関≠因果」は書けています。採点基準では第三の変数（例：気温）への言及も求めています。", "n = 30 で p < 0.05 なので、有意と判断できます。"],
     q_total_colon="合計スコア：",
     # LO row / to-do
     q_todo_when="11月10日 授業内", q_ret_when="11月12日 返却",
@@ -5532,7 +5540,10 @@ Q_EN = dict(
     q_fb_h="Feedback per question", q_fb_sub="AI comments against the LO's answer key and marking guide.",
     q_qfb=["Correlation coefficient worked out correctly as r = 0.82.", "Correctly judged a positive correlation.", "Read the downward-sloping scatter as a negative correlation (r < 0) — correct.",
            "Correctly spotted the single outlier.", "Coefficient of determination worked out correctly.", "Judged the correlation as weak from the coefficient — correct.",
-           "\"Correlation is not causation\" is there. The marking guide also asks for a third variable (temperature, for example).", "Significant at p < 0.05 with n = 30 — correct."],
+           "States correlation ≠ causation with a third-variable example — correct.", "Significant at p < 0.05 with n = 30 — correct."],
+    q_qfb_ng=["The coefficient differs from the key (r = 0.82). Check the calculation.", "This scatter shows a positive correlation — read the upward slope.", "A downward-sloping scatter means a negative correlation (r < 0).",
+              "There is one outlier on the scatter plot — point it out with a reason.", "The coefficient of determination is r squared — recheck the calculation.", "Judge the strength of the correlation from the size of r squared.",
+              "\"Correlation is not causation\" is there. The marking guide also asks for a third variable (temperature, for example).", "With n = 30 and p < 0.05 the result is significant."],
     q_total_colon="Total Score:",
     q_todo_when="Nov 10, in class", q_ret_when="Returned Nov 12",
 )
@@ -5584,7 +5595,7 @@ def q_breakdown_rows(S, scores, changed=None, mobile=False):
         cls = q_score_cls(v, mx)
         chg = (f'<span class="chip hl" style="height:20px;font-size:11px">{S["q_changed"]} ・ {S["q_ai_lbl"]} {changed[k]}</span>'
                if changed is not None and changed[k] != v else "")
-        rows += f'''<div class="qrow-s {cls}"><b>{S["q_q_label"].format(idx=idx)}</b>{chg}<span class="qsv">{box}<span class="qmax">/{mx}</span></span><span class="qfb">{S["q_qfb"][k]}</span></div>'''
+        rows += f'''<div class="qrow-s {cls}"><b>{S["q_q_label"].format(idx=idx)}</b>{chg}<span class="qsv">{box}<span class="qmax">/{mx}</span></span><span class="qfb">{S["q_qfb"][k] if v >= mx else S["q_qfb_ng"][k]}</span></div>'''
     return rows
 
 def q_total_badge(S, hole=None, total=None, mx=10, mobile=False):
@@ -6213,7 +6224,7 @@ GNOTES = {
     "G-Import": "BULK IMPORT SUBMISSIONS (US-6), a full screen with a breadcrumb back, not a modal. 用紙レイアウト Layout: A4片面 Single-sided (Phase 1 · MVP — 1 page = 1 submission, the header carries test_id = External LO ID and student_id = username as a QR) or A4両面 Double-sided (multi-page policy — one sheet both sides, the ID on the front only, the back matched to the front scanned just before it; a missing back surfaces as a question-count error). ⓘ opens the explanation on both cards; click the cards. The dropzone takes the copier's PDFs — 100+ pages, 100+ MB per file — uploaded straight to storage (presigned multipart; the app server is not in the path). Two files listed as uploaded, then the counts: 30 pages → 30 submissions expected (the layout decides the ratio) and what is read from every page. Cancel / 処理を開始 Start processing → G5. OPEN: OQ-H the layout guardrail's granularity (per file or per batch); OQ-I duplicate-submission detection — a student legitimately spans several rows on a multi-page layout, so repeats are not flagged.",
     "G-Process": "THE JOB, THEN THE RESULT (US-6). PROCESSING runs in the background — ジョブ id, a progress bar, the pipeline stages with their counts (30ページを読み込み, 3件の傾きを補正, 0件の白紙を除外, QR/OCR 30/30, 問題数を照合 29/30 running, the two matching stages to come); the stage the layout does not need (裏面の対応づけ) is greyed; この画面を離れて通知を受け取る Leave and notify me. DEMO：完了 finishes it. RESULT: one editable row per detected submission — # · ☑ · ユーザーネーム · 生徒名 · 学習項目外部ID · 学習目標 · 開始ページ (a link into the PDF at that page, with n/N 問 · ページ beneath); red rows carry the reason in the cell — a username the QR/OCR could not read (required; click to type or pick a student), a sheet where only 7 of 8 question indexes were found (the LO presets 8 — re-scan, not a typo); nothing is invented into an empty field. 要対応の行のみ表示 filters to those rows (click it); the floating bar deletes the selected rows; AIで採点する AI-mark is enabled for the clean rows (28) and disabled while a selected row is red. Rows a teacher edits by hand turn blue. OPEN: OQ-K the blank-page filter's confidence threshold; OQ-L progress transport (WebSocket vs polling); OQ-M PDF retention and access.",
     "G-Overview": "OVERVIEW (US-7), the paper LO's page under Submission Grading — its 提出一覧 list of submissions (PM, 30 Sep: Submission Grading holds the student PDFs, the list and the detail; the question list moved to Book Management, ブック管理で編集 in the header). 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting.",
-    "G-Mark": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No comment field, no AI annotation, by design. 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削.",
+    "G-Mark": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so.",
 }
 for screen in GSCREENS:
     notes["g_" + screen] = {"x": GX[screen], "y": GROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 560, "text": GNOTES[screen]}
@@ -6251,7 +6262,7 @@ QNOTES = {
     "Q-Preview": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then 分析結果を見る to the results (the source navigates on its own; here a link, so the board stays put). Click Confirm & Analyze to run it; the DEMO pill skips ahead.",
     "Q-Result": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return).",
     "Q-Done": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state.",
-    "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review can edit these lines on G7 — not drawn) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
+    "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
     "MQ-Detail": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出.",
     "MQ-Submit": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors.",
     "MQ-Preview": "Mobile pages: the carousel and thumbnails, さらに追加 and 確認して分析 fixed at the bottom; Confirm & Analyze runs the analyzing state in place.",
