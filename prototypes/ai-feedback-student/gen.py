@@ -5848,10 +5848,6 @@ def q_review(S, L):
         {q_total_badge(S, total=sum(Q_TEACHER))}
         <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
       </div>
-      <div class="card" style="padding:20px 24px;display:flex;gap:12px;align-items:flex-start">
-        <span class="tav">{ic("person", 20)}</span>
-        <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><p class="sub1" style="font-size:14px">{S["q_teacher_fb"]}</p><p class="b2" style="line-height:22px">{S["q_fb_body"]}</p></div>
-      </div>
     </div>
   </div>
   <div style="height:8px"></div>
@@ -6009,10 +6005,6 @@ def mq_review(S, L):
     <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="sub1" style="font-size:14px">{S["q_breakdown"]}</p><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12)}{S["q_teacher_badge"]}</span></div>
     {q_total_badge(S, total=sum(Q_TEACHER))}
     <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
-  </div>
-  <div class="mcard" style="flex-direction:row;gap:12px;align-items:flex-start">
-    <span class="tav">{ic("person", 20)}</span>
-    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><p class="sub1" style="font-size:14px">{S["q_teacher_fb"]}</p><p class="b2" style="line-height:22px">{S["q_fb_body"]}</p></div>
   </div>
   <div style="height:24px"></div>
 </div>'''
@@ -6238,7 +6230,7 @@ qtitles = ["Q1 · Student PC — the paper LO: instructions, submission details,
            "Q3 · Student PC — the pages, Add More (5 photos or 1 PDF), Confirm & Analyze → analyzing",
            "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher",
            "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review",
-           "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, teacher feedback",
+           "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the per-question feedback",
            "Q7 · Mobile — the paper LO", "Q8 · Mobile — take or upload", "Q9 · Mobile — pages, Confirm & Analyze", "Q10 · Mobile — analysis results",
            "Q11 · Mobile — submitted", "Q12 · Mobile — returned"]
 QSIZE = {**{k: (W, H) for k in QSCREENS_W}, **{k: (MW, MH) for k in QSCREENS_M}}
@@ -6262,18 +6254,18 @@ QNOTES = {
     "Q-Preview": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then 分析結果を見る to the results (the source navigates on its own; here a link, so the board stays put). Click Confirm & Analyze to run it; the DEMO pill skips ahead.",
     "Q-Result": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return).",
     "Q-Done": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state.",
-    "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
+    "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks). The whole-submission 先生のフィードバック Teacher Feedback card the source had was removed (PM, 30 Sep: not needed for now) — the per-question feedback is the comment. This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
     "MQ-Detail": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出.",
     "MQ-Submit": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors.",
     "MQ-Preview": "Mobile pages: the carousel and thumbnails, さらに追加 and 確認して分析 fixed at the bottom; Confirm & Analyze runs the analyzing state in place.",
     "MQ-Result": "Mobile analysis results: the banner, the marked sheet, the read-only breakdown with the total; 先生に提出する fixed at the bottom.",
     "MQ-Done": "Mobile submitted: the check, the LO card with time and the AI's score, 提出の詳細を表示 / コースに戻る. DEMO → returned.",
-    "MQ-Review": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled), the marked sheet, the teacher's feedback.",
+    "MQ-Review": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled) with the per-question feedback, the marked sheet.",
 }
 for screen in QSCREENS_ALL:
     w = NW if screen in QSCREENS_W else MNW
     notes["q_" + screen] = {"x": QX[screen], "y": QROW_Y["ja"] + QSIZE[screen][1] + 60, "w": w, "maxH": 560, "text": QNOTES[screen]}
-notes["title_q"] = {"x": 0, "y": QROW_Y["ja"] - 300, "text": "AI Grading, the student side — the Paper Submission LO in the student web and app when Allow student to submit is on: details → take or upload the photo → pages → Confirm & Analyze → the AI's marks → Submit to Teacher → submitted → returned with the teacher's marks and feedback · 日本語", "kind": "title1", "maxW": 10600}
+notes["title_q"] = {"x": 0, "y": QROW_Y["ja"] - 300, "text": "AI Grading, the student side — the Paper Submission LO in the student web and app when Allow student to submit is on: details → take or upload the photo → pages → Confirm & Analyze → the AI's marks → Submit to Teacher → submitted → returned with the teacher's marks and per-question feedback · 日本語", "kind": "title1", "maxW": 10600}
 notes["title_q_en"] = {"x": 0, "y": QROW_Y["en"] - 240, "text": "Same student flow in English", "kind": "title1", "maxW": 10600}
 
 canvas = {

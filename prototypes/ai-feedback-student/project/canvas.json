@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T15:50:22Z"
+    "at": "2026-09-30T15:59:23Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -919,7 +919,7 @@
       "y": 15800,
       "w": 1280,
       "h": 800,
-      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, teacher feedback (JA)",
+      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the per-question feedback (JA)",
       "is_interactive": true
     },
     "MQ-Detail.dc.html": {
@@ -1015,7 +1015,7 @@
       "y": 17500,
       "w": 1280,
       "h": 800,
-      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, teacher feedback (EN)",
+      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the per-question feedback (EN)",
       "is_interactive": true
     },
     "MQ-Detail-en.dc.html": {
@@ -1711,7 +1711,7 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback."
+      "text": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks). The whole-submission 先生のフィードバック Teacher Feedback card the source had was removed (PM, 30 Sep: not needed for now) — the per-question feedback is the comment. This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback."
     },
     "q_MQ-Detail": {
       "x": 8160,
@@ -1753,12 +1753,12 @@
       "y": 16672,
       "w": 375,
       "maxH": 560,
-      "text": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled), the marked sheet, the teacher's feedback."
+      "text": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled) with the per-question feedback, the marked sheet."
     },
     "title_q": {
       "x": 0,
       "y": 15500,
-      "text": "AI Grading, the student side — the Paper Submission LO in the student web and app when Allow student to submit is on: details → take or upload the photo → pages → Confirm & Analyze → the AI's marks → Submit to Teacher → submitted → returned with the teacher's marks and feedback · 日本語",
+      "text": "AI Grading, the student side — the Paper Submission LO in the student web and app when Allow student to submit is on: details → take or upload the photo → pages → Confirm & Analyze → the AI's marks → Submit to Teacher → submitted → returned with the teacher's marks and per-question feedback · 日本語",
       "kind": "title1",
       "maxW": 10600
     },
