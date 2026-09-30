@@ -5492,7 +5492,7 @@ def g_mark(S, L):
         <div style="flex:1;overflow:auto">{qrows}</div>
         <div style="padding:12px 16px;border-top:1px solid #E0E0E0;display:flex;justify-content:space-between;align-items:center;gap:8px">
           <sc-if value="{{{{isNc}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tchip st-default">{S["g_status"]["nc"]}</span></sc-if><sc-if value="{{{{isNc}}}}" hint-placeholder-val="{{{{true}}}}"></sc-if>
-          <span style="display:flex;gap:8px;margin-left:auto"><a class="tbtn outlined" href="{tfn("G-Overview", L)}">{S["g_close"]}</a><button class="tbtn contained" onClick="{{{{next}}}}">{S["g_confirm_next"]}{mi("chevron", 18)}</button></span></div>
+          <span style="display:flex;gap:8px;margin-left:auto"><a class="tbtn outlined" href="{tfn("G-Overview", L)}">{S["g_close"]}</a><span class="tbtn outlined" style="color:#C62828;border-color:rgba(198,40,40,.5)" title="{S["g_return_resub_hint"]}">{mi("autorenew", 16)}{S["g_return_resub"]}</span><button class="tbtn contained" onClick="{{{{next}}}}">{S["g_confirm_next"]}{mi("chevron", 18)}</button></span></div>
       </div>
     </div>
   </div>
@@ -5598,15 +5598,15 @@ JA.update(Q_JA); EN.update(Q_EN)
 Q_AI = [1, 1, 1, 2, 1, 1, 0, 1]
 Q_TEACHER = [1, 1, 1, 2, 1, 1, 1, 1]
 
-def q_sheet_photo(w, h, scores=None, page=0):
+def q_sheet_photo(w, h, scores=None, page=0, hand=None):
     """The student's completed quiz sheet as a photo: the drawn gsheet with handwritten-looking answers, tilted on a desk.
     The quiz is two pages (G2: 2ページ): page 1 carries Q1–4, page 2 Q5–8."""
-    return f'''<span class="qphoto" style="width:{w}px;height:{h}px;flex:0 0 {w}px"><span class="desk"></span><span class="qsheet">{q_sheet(scores, page)}</span></span>'''
+    return f'''<span class="qphoto" style="width:{w}px;height:{h}px;flex:0 0 {w}px"><span class="desk"></span><span class="qsheet">{q_sheet(scores, page, hand)}</span></span>'''
 
-def q_sheet(scores=None, page=0):
+def q_sheet(scores=None, page=0, hand=None):
     S = JA  # the sheet itself is in Japanese — it is the paper the class sat
     rows = ""
-    hand = ["0.82", "正", "負", "外れ値", "0.35", "弱い", "相関≠因果", "有意"]
+    hand = hand or ["0.82", "正", "負", "外れ値", "0.35", "弱い", "相関≠因果", "有意"]
     for k, (idx, ans, mx, tag) in enumerate(S["g_questions"]):
         if k // 4 != page:
             continue
@@ -5627,7 +5627,7 @@ def q_sheet(scores=None, page=0):
 def q_score_cls(v, mx):
     return "full" if v >= mx else ("zero" if v == 0 else "part")
 
-def q_breakdown_rows(S, scores, changed=None, mobile=False):
+def q_breakdown_rows(S, scores, changed=None, mobile=False, flags=None):
     """One row per question — index, score / max — coloured by full / partial / zero, as the source's getScoreColorClasses
     does for the student context, with the AI's one-line feedback per question against the LO's answer key / marking guide
     (PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, instead of the question tag). Read-only:
@@ -5639,7 +5639,7 @@ def q_breakdown_rows(S, scores, changed=None, mobile=False):
         cls = q_score_cls(v, mx)
         chg = (f'<span class="chip hl" style="height:20px;font-size:11px">{S["q_changed"]} ・ {S["q_ai_lbl"]} {changed[k]}</span>'
                if changed is not None and changed[k] != v else "")
-        rows += f'''<div class="qrow-s {cls}"><b>{S["q_q_label"].format(idx=idx)}</b>{chg}<span class="qsv">{box}<span class="qmax">/{mx}</span></span><span class="qfb">{S["q_qfb"][k] if v >= mx else S["q_qfb_ng"][k]}</span></div>'''
+        rows += f'''<div class="qrow-s {cls}"><b>{S["q_q_label"].format(idx=idx)}</b>{chg}{flags.get(k, "") if flags else ""}<span class="qsv">{box}<span class="qmax">/{mx}</span></span><span class="qfb">{S["q_qfb"][k] if v >= mx else S["q_qfb_ng"][k]}</span></div>'''
     return rows
 
 def q_total_badge(S, hole=None, total=None, mx=10, mobile=False):
@@ -5747,10 +5747,10 @@ def q_submit(S, L):
     demoWrong: () => this.setState({ err: "wrong" }), demoUnclear: () => this.setState({ err: "unclear" }), closeErr: () => this.setState({ err: "" }) }; }"""
     return page(S, S["q_titles"]["submit"], body, logic=logic)
 
-def q_carousel(S, w, h, pages=2, del_btn=True, marks=None):
+def q_carousel(S, w, h, pages=2, del_btn=True, marks=None, hand=None):
     """The source's ImageCarousel: the current page, ‹ › arrows, the page pill, the delete button on the page."""
-    pg1 = q_sheet_photo(w, h, marks, 0)
-    pg2 = q_sheet_photo(w, h, marks, 1)
+    pg1 = q_sheet_photo(w, h, marks, 0, hand)
+    pg2 = q_sheet_photo(w, h, marks, 1, hand)
     dl = f'<button class="del" aria-label="delete">{ic("trash", 16)}</button>' if del_btn else ""
     return f'''<div class="qcar" style="height:{h}px">
     <sc-if value="{{{{isFirst}}}}" hint-placeholder-val="{{{{true}}}}">{pg1}</sc-if>
@@ -5862,6 +5862,7 @@ def q_done(S, L):
   </div>
   <div style="height:8px"></div>
 </div></div>
+<a class="demo" style="right:200px" href="{fn("Q-Resub1", L)}"><span class="tag">DEMO</span>{S["q_demo_resub"]} {ic("right", 16, "#fff", 2.4)}</a>
 <a class="demo" href="{fn("Q-Review", L)}"><span class="tag">DEMO</span>{S["q_chip_ret"]} {ic("right", 16, "#fff", 2.4)}</a>'''
     return page(S, S["q_titles"]["done"], body)
 
@@ -6032,6 +6033,7 @@ def mq_done(S, L):
   <a class="mbtn neutral" href="{fn("M-Main", L)}">{S["q_back_class"]}</a>
   <div style="height:24px"></div>
 </div>
+<a class="demo" style="right:12px;bottom:60px;padding:8px 10px 8px 12px" href="{fn("MQ-Resub1", L)}" aria-label="{S["q_demo_resub"]}"><span class="tag">DEMO</span>{ic("refresh", 16, "#fff", 2.4)}</a>
 <a class="demo" style="right:12px;bottom:14px;padding:8px 10px 8px 12px" href="{fn("MQ-Review", L)}" aria-label="{S["q_chip_ret"]}"><span class="tag">DEMO</span>{ic("right", 16, "#fff", 2.4)}</a>'''
     return mpage(S, "MQ-Done", S["q_mtitles"]["done"], body)
 
@@ -6393,6 +6395,268 @@ QSCREENS_W.append("Q-Chat"); QSCREENS_M.append("MQ-Chat"); QSCREENS_ALL = QSCREE
 QBUILDERS["Q-Chat"] = q_chat; QBUILDERS["MQ-Chat"] = mq_chat
 TO_MOBILE["Q-Chat"] = "MQ-Chat"; TO_PC["MQ-Chat"] = "Q-Chat"
 
+# =====================================================================================
+# RETURNED FOR RESUBMISSION, and the student's second version — the paper LO's other branch (deck S27
+# slide 16 'revise and resubmit', p.30 third phone 'Check your revision'). Alternative to Q6: instead of
+# △ on Q5, the teacher returns the sheet asking for Q5 to be redone. The student rewrites Q5 on paper,
+# photographs it, checks what changed against the criteria, submits version 2, and gets it returned.
+# =====================================================================================
+RS_JA = dict(
+    q_rs_chip="要再提出", q_rs_title="返却 — 再提出が必要", q_rs_banner="先生が確認しました。問5 を書き直して再提出してください。", q_rs_due="再提出期限：11月19日",
+    q_rs_head="再提出が必要", q_rs_sub="8/10点 ・ 問5 を書き直す", q_rs_flag="再提出", q_rs_note_h="先生からの依頼",
+    q_rs_note="「相関≠因果」は合っています。第三の変数の例（気温など）を一つ書き足して、問5 だけ再提出してください。", q_rs_btn="問5 を書き直して再提出する",
+    q_rs_v1="1回目", q_rs_v2="2回目",
+    q_rs2_title="再提出 — 写真を撮る", q_rs2_h="書き直した用紙を撮影", q_rs2_sub="問5 だけで構いません。前回のコメントに沿って書き直したら、そのページを撮影してください。",
+    q_rs2_check_h="前回のコメント", q_rs2_check_sub="直したものにチェックを入れてください", q_rs2_items=["問5：第三の変数の例を一つ添える（例：気温）", "問5：「相関≠因果」の一文は残す"],
+    q_rs3_title="修正の確認 — 2回目", q_rs3_h="修正の確認", q_rs3_changed="変わった点", q_rs3_old="相関≠因果", q_rs3_new="相関≠因果（気温が第三の変数として両方に影響）",
+    q_rs3_crit="基準チェック（AI）", q_rs3_items=[("問5 相関と因果の区別・第三の変数：改善", "ok"), ("問1〜4・問6：前回どおり", "same")],
+    q_rs3_hist="履歴", q_rs3_h1="11/10 16:42 提出 → 11/12 返却（再提出）", q_rs3_h2="11/14 20:03 撮影 ・ AIチェック済み",
+    q_rs3_note="先生は回ごとの変更点と、AIとの対話も見ることができます。", q_rs3_submit="先生に提出する（2回目）", q_rs3_ai="AIが2回目を採点しました：10/10点。提出すると先生が確認します。",
+    q_rs4_title="返却（2回目）— 合格", q_rs4_banner="先生が2回目を確認しました。", q_rs4_head="合格", q_rs4_sub="8問中8問正解 ・ 10/10点", q_rs4_hist_h="提出の履歴",
+    q_rs4_rows=[("1回目", "11/10", "8/10", "返却（再提出）"), ("2回目", "11/14", "10/10", "合格")], q_rs4_strengths="問5 に第三の変数の例（気温）を添え、相関と因果の区別が明確になりました。前回の強みはそのままです。",
+    q_titles_rs={"rs1": "紙提出物 — 返却（再提出が必要）", "rs2": "紙提出物 — 再提出の撮影", "rs3": "紙提出物 — 修正の確認", "rs4": "紙提出物 — 返却（2回目）"},
+    q_mtitles_rs={"rs1": "モバイル — 返却（再提出）", "rs2": "モバイル — 再提出の撮影", "rs3": "モバイル — 修正の確認", "rs4": "モバイル — 返却（2回目）"},
+    g_return_resub="再提出を求めて返却", g_return_resub_hint="この生徒にだけ返却し、指定した設問の書き直しを求めます。生徒は該当ページを撮り直して2回目を提出できます。",
+    q_demo_resub="返却（再提出）",
+)
+RS_EN = dict(
+    q_rs_chip="Resubmit", q_rs_title="Returned — resubmission needed", q_rs_banner="Your teacher has reviewed it. Redo Q5 and resubmit.", q_rs_due="Resubmit by Nov 19",
+    q_rs_head="Resubmission needed", q_rs_sub="8/10 · redo Q5", q_rs_flag="Resubmit", q_rs_note_h="From your teacher",
+    q_rs_note="\"Correlation ≠ causation\" is right. Add one example of a third variable (temperature, say) and resubmit Q5 only.", q_rs_btn="Redo Q5 and resubmit",
+    q_rs_v1="Version 1", q_rs_v2="Version 2",
+    q_rs2_title="Resubmit — take a photo", q_rs2_h="Photograph the rewritten sheet", q_rs2_sub="Q5 only is fine. Rewrite it along last time's comments, then photograph that page.",
+    q_rs2_check_h="Last time's comments", q_rs2_check_sub="Tick what you've addressed", q_rs2_items=["Q5: add one example of a third variable (e.g. temperature)", "Q5: keep the \"correlation ≠ causation\" sentence"],
+    q_rs3_title="Check your revision — version 2", q_rs3_h="Check your revision", q_rs3_changed="What changed", q_rs3_old="correlation ≠ causation", q_rs3_new="correlation ≠ causation (temperature, a third variable, drives both)",
+    q_rs3_crit="Criteria check (AI)", q_rs3_items=[("Q5 correlation vs causation, third variable: improved", "ok"), ("Q1–4, Q6: still met", "same")],
+    q_rs3_hist="History", q_rs3_h1="Nov 10 16:42 submitted → Nov 12 returned (resubmit)", q_rs3_h2="Nov 14 20:03 photographed · AI checked",
+    q_rs3_note="Your teacher can also see the changes between versions and your AI dialogue.", q_rs3_submit="Submit to Teacher (version 2)", q_rs3_ai="AI has marked version 2: 10/10. Submit it and your teacher will review it.",
+    q_rs4_title="Returned (version 2) — pass", q_rs4_banner="Your teacher has reviewed version 2.", q_rs4_head="Pass", q_rs4_sub="8 of 8 correct · 10/10", q_rs4_hist_h="Submission history",
+    q_rs4_rows=[("Version 1", "Nov 10", "8/10", "Returned (resubmit)"), ("Version 2", "Nov 14", "10/10", "Pass")], q_rs4_strengths="Q5 now names a third variable (temperature), so correlation and causation are clearly separated. Last time's strengths stand.",
+    q_titles_rs={"rs1": "Paper Submission — Returned (resubmit)", "rs2": "Paper Submission — Resubmit, take a photo", "rs3": "Paper Submission — Check your revision", "rs4": "Paper Submission — Returned (version 2)"},
+    q_mtitles_rs={"rs1": "Mobile — Returned (resubmit)", "rs2": "Mobile — Resubmit photo", "rs3": "Mobile — Check your revision", "rs4": "Mobile — Returned (version 2)"},
+    g_return_resub="Return for resubmission", g_return_resub_hint="Returns to this student only and asks for the named questions to be redone; the student re-photographs that page and submits version 2.",
+    q_demo_resub="Returned (resubmit)",
+)
+JA.update(RS_JA); EN.update(RS_EN)
+
+Q_V2 = [1, 1, 1, 2, 1, 1, 2, 1]              # version 2: Q5 rewritten with the third variable → 10/10
+Q_HAND_V2 = ["0.82", "正", "負", "外れ値", "0.35", "弱い", "相関≠因果 気温", "有意"]
+
+def rs_flags(S):
+    return {6: f'<span class="chip late" style="height:20px;font-size:11px">{S["q_rs_flag"]}</span>'}
+
+def rs_hist_rows(S, mobile=False):
+    return "".join(f'<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-top:1px solid rgba(28,30,44,.08);font-size:13px"><span><b>{v}</b> <span class="muted">{d}</span></span><span style="display:flex;gap:10px;align-items:center"><b>{sc}</b><span class="chip {"done" if st in ("合格", "Pass") else "late"}" style="height:20px;font-size:11px">{st}</span></span></div>'
+                   for v, d, sc, st in S["q_rs4_rows"])
+
+# ---------- PC ----------
+def q_resub1(S, L):
+    """Returned for resubmission (the alternative to Q6): the banner with the teacher's request and the resubmission
+    deadline, the headline, the teacher's note, the breakdown with Q5 flagged 再提出, the summary cards, the CTA."""
+    rows = q_breakdown_rows(S, Q_AI, flags=rs_flags(S))
+    body = header(S, "Q-Resub1", S["q_rs_title"], crumb=f'{S["g_lo"]}', back_href=fn("Main", L),
+                  right_extra=f'<span class="chip late" style="height:28px">{S["q_rs_chip"]}</span>') + f'''
+<div class="body"><div class="col" style="width:880px">
+  <div class="qbanner" style="background:#fbe7e9;color:#8a1f2a">{ic("alert", 18, "currentColor", 2.4)}<span>{S["q_rs_banner"]} <b>{S["q_rs_due"]}</b></span></div>
+  <div style="display:flex;gap:16px;align-items:flex-start">
+    <div style="flex:0 0 400px;display:flex;flex-direction:column;gap:16px">
+      <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:12px">
+        <div class="qhead" style="background:#8a1f2a"><b>{S["q_rs_head"]}</b><span>{S["q_rs_sub"]}</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><span class="tav">{ic("person", 20)}</span><div style="display:flex;flex-direction:column;gap:4px"><p class="sub1" style="font-size:14px">{S["q_rs_note_h"]}</p><p class="b2" style="line-height:22px">{S["q_rs_note"]}</p></div></div>
+        <div class="qsum i"><b>{S["q_improve"]}</b><span>{S["q_improve_body"]}</span></div>
+        <div class="qsum f"><b>{S["q_fix"]}</b><span><s>{S["q_fix_old"]}</s> → <mark>{S["q_fix_new"]}</mark></span></div>
+        <a class="btn primary" href="{fn("Q-Resub2", L)}">{ic("camera", 18, "#fff")}{S["q_rs_btn"]}</a>
+        <a class="btn neutral" href="{fn("Q-Chat", L)}">{ic("message", 18)}{S["q_ask"]}</a>
+      </div>
+      <div class="card" style="padding:16px">{q_carousel(S, 368, 380, del_btn=False, marks=Q_AI)}</div>
+    </div>
+    <div class="card" style="padding:20px 24px;flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><p class="sub1">{S["q_breakdown"]}</p><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12)}{S["q_teacher_badge"]}</span></div>
+      {q_total_badge(S, total=sum(Q_AI))}
+      <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+    </div>
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    return page(S, S["q_titles_rs"]["rs1"], body, logic=Q_CAR_LOGIC)
+
+def rs_checklist(S, mobile=False):
+    items = "".join(f'<button class="chk {{{{c{i}}}}}" onClick="{{{{t{i}}}}}"><span class="box">{ic("check", 14, "#fff", 3)}</span><span class="tt"><b>{t}</b></span></button>' for i, t in enumerate(S["q_rs2_items"]))
+    return f'''<div class="{"mcard" if mobile else "card"}" style="padding:{"12px 16px" if mobile else "16px 24px"};display:flex;flex-direction:column;gap:4px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="sub1" style="font-size:14px">{S["q_rs2_check_h"]}</p><span class="cap">{S["q_rs2_check_sub"]}</span></div>{items}</div>'''
+
+RS2_LOGIC = """state = { c: [false, false] };
+  renderVals() { const c = this.state.c; const o = {}; c.forEach((v, i) => { o["c" + i] = v ? "on" : ""; o["t" + i] = () => { const d = c.slice(); d[i] = !d[i]; this.setState({ c: d }); }; }); return o; }"""
+
+def q_resub2(S, L):
+    """Resubmit: last time's comments as a checklist (the AI Feedback 06 pattern), then Take Photo / Upload for the
+    rewritten page only."""
+    body = header(S, "Q-Resub2", S["q_rs2_title"], crumb=f'{S["g_lo"]} › {S["q_rs_v2"]}', back_href=fn("Q-Resub1", L)) + f'''
+<div class="body"><div class="col" style="width:760px">
+  {rs_checklist(S)}
+  <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;flex-direction:column;gap:4px"><p class="sub1">{S["q_rs2_h"]}</p><p class="b2 muted">{S["q_rs2_sub"]}</p></div>
+    <div style="display:flex;gap:12px">
+      <a class="qopt pri" href="{fn("Q-Resub3", L)}">{ic("camera", 30)}{S["q_take_photo"]}</a>
+      <a class="qopt" href="{fn("Q-Resub3", L)}">{ic("upload", 30)}{S["q_upload"]}</a>
+    </div>
+    <p class="cap">{S["q_supported"]}</p>
+    {q_tips(S)}
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    return page(S, S["q_titles_rs"]["rs2"], body, logic=RS2_LOGIC)
+
+def rs_revision(S, mobile=False):
+    crit = "".join(f'<div style="display:flex;gap:8px;align-items:center;font-size:14px"><span style="width:22px;height:22px;border-radius:50%;background:{"#e6f5ee" if k == "ok" else "#ececef"};color:{"#1f7a4d" if k == "ok" else "rgba(28,30,44,.5)"};display:inline-flex;align-items:center;justify-content:center;flex:0 0 22px">{ic("check", 12, "currentColor", 3) if k == "ok" else ic("minus", 12, "currentColor", 3)}</span>{t}</div>' for t, k in S["q_rs3_items"])
+    card = "mcard" if mobile else "card"; pad = "14px 16px" if mobile else "20px 24px"
+    return f'''<div class="{card}" style="padding:{pad};display:flex;flex-direction:column;gap:10px;border-left:4px solid #395ad2">
+    <p class="sub1" style="font-size:14px">{S["q_rs3_changed"]} <span class="cap">{S["q_rs_v1"]} → {S["q_rs_v2"]}</span></p>
+    <p class="b2" style="line-height:22px">{S["q_q_label"].format(idx="5")}: <s style="background:#fbe7e9;color:#8a1f2a;padding:0 3px;border-radius:3px">{S["q_rs3_old"]}</s> → <mark style="background:#e6f5ee;color:#1f7a4d;padding:0 3px;border-radius:3px;font-weight:700">{S["q_rs3_new"]}</mark></p>
+  </div>
+  <div class="{card}" style="padding:{pad};display:flex;flex-direction:column;gap:8px;border-left:4px solid #1f7a4d">
+    <p class="sub1" style="font-size:14px">{S["q_rs3_crit"]}</p>{crit}
+  </div>
+  <div class="{card}" style="padding:{pad};display:flex;flex-direction:column;gap:6px;border-left:4px solid #1c1e2c">
+    <p class="sub1" style="font-size:14px">{S["q_rs3_hist"]}</p>
+    <p class="b2"><b>{S["q_rs_v1"]}</b> <span class="muted">{S["q_rs3_h1"]}</span></p>
+    <p class="b2"><b>{S["q_rs_v2"]}</b> <span class="muted">{S["q_rs3_h2"]}</span></p>
+    <p class="cap">{S["q_rs3_note"]}</p>
+  </div>'''
+
+def q_resub3(S, L):
+    """Check your revision (deck p.30, third phone): what changed, the AI's criteria check, the history, and the
+    breakdown of version 2 — Q5 now ○ — then Submit to Teacher (version 2)."""
+    rows = q_breakdown_rows(S, Q_V2, changed=Q_AI)
+    body = header(S, "Q-Resub3", S["q_rs3_h"], crumb=f'{S["g_lo"]} › {S["q_rs_v2"]}', back_href=fn("Q-Resub2", L)) + f'''
+<div class="body"><div class="col" style="width:880px">
+  <div class="qbanner ai">{ic("sparkle", 18)}<span>{S["q_rs3_ai"]}</span></div>
+  <div style="display:flex;gap:16px;align-items:flex-start">
+    <div style="flex:0 0 400px;display:flex;flex-direction:column;gap:16px">
+      {rs_revision(S)}
+      <div class="card" style="padding:16px">{q_carousel(S, 368, 380, del_btn=False, marks=Q_V2, hand=Q_HAND_V2)}</div>
+    </div>
+    <div class="card" style="padding:20px 24px;flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:12px">
+      <div><p class="sub1">{S["q_breakdown"]} <span class="cap">{S["q_rs_v2"]}</span></p><p class="cap">{S["q_ai_scores"]}</p></div>
+      {q_total_badge(S, total=sum(Q_V2))}
+      <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+    </div>
+  </div>
+  <div class="card" style="padding:16px 24px;display:flex;justify-content:flex-end">
+    <a class="btn primary" href="{fn("Q-Resub4", L)}">{ic("upload", 18, "#fff")}{S["q_rs3_submit"]}</a>
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    return page(S, S["q_titles_rs"]["rs3"], body, logic=Q_CAR_LOGIC)
+
+def q_resub4(S, L):
+    """Returned, version 2: pass, the history of both versions, the breakdown with the row that changed labelled."""
+    rows = q_breakdown_rows(S, Q_V2, changed=Q_AI)
+    body = header(S, "Q-Resub4", S["q_rs4_title"], crumb=f'{S["g_lo"]}', back_href=fn("Main", L),
+                  right_extra=f'<span class="chip done" style="height:28px">{ic("check", 14)}{S["q_chip_ret"]}</span>') + f'''
+<div class="body"><div class="col" style="width:880px">
+  <div class="qbanner ok">{ic("check", 18, "currentColor", 2.6)}<span>{S["q_rs4_banner"]}</span></div>
+  <div style="display:flex;gap:16px;align-items:flex-start">
+    <div style="flex:0 0 400px;display:flex;flex-direction:column;gap:16px">
+      <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:12px">
+        <div class="qhead" style="background:#1f7a4d"><b>{S["q_rs4_head"]}</b><span>{S["q_rs4_sub"]}</span></div>
+        <div class="qsum s"><b>{S["q_strengths"]}</b><span>{S["q_rs4_strengths"]}</span></div>
+        <div><p class="sub1" style="font-size:14px;margin-bottom:4px">{S["q_rs4_hist_h"]}</p>{rs_hist_rows(S)}</div>
+        <a class="btn neutral" href="{fn("Q-Chat", L)}">{ic("message", 18)}{S["q_ask"]}</a>
+      </div>
+      <div class="card" style="padding:16px">{q_carousel(S, 368, 380, del_btn=False, marks=Q_V2, hand=Q_HAND_V2)}</div>
+    </div>
+    <div class="card" style="padding:20px 24px;flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><p class="sub1">{S["q_breakdown"]} <span class="cap">{S["q_rs_v2"]}</span></p><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12)}{S["q_teacher_badge"]}</span></div>
+      {q_total_badge(S, total=sum(Q_V2))}
+      <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+    </div>
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    return page(S, S["q_titles_rs"]["rs4"], body, logic=Q_CAR_LOGIC)
+
+# ---------- mobile ----------
+def mq_resub1(S, L):
+    rows = q_breakdown_rows(S, Q_AI, flags=rs_flags(S), mobile=True)
+    body = mheader(S, "MQ-Resub1", S["q_rs_title"], back_href=fn("M-Main", L)) + f'''
+<div class="mbody" style="padding-bottom:110px">
+  <div class="qbanner" style="background:#fbe7e9;color:#8a1f2a;font-size:13px">{ic("alert", 18, "currentColor", 2.4)}<span>{S["q_rs_banner"]} <b>{S["q_rs_due"]}</b></span></div>
+  <div class="mcard" style="gap:10px">
+    <div class="qhead" style="background:#8a1f2a"><b>{S["q_rs_head"]}</b><span>{S["q_rs_sub"]}</span></div>
+    <div style="display:flex;gap:10px;align-items:flex-start"><span class="tav">{ic("person", 20)}</span><div style="display:flex;flex-direction:column;gap:4px"><p class="sub1" style="font-size:14px">{S["q_rs_note_h"]}</p><p class="b2" style="line-height:20px">{S["q_rs_note"]}</p></div></div>
+    <div class="qsum f"><b>{S["q_fix"]}</b><span><s>{S["q_fix_old"]}</s> → <mark>{S["q_fix_new"]}</mark></span></div>
+    <a class="mbtn neutral" href="{fn("MQ-Chat", L)}">{ic("message", 18)}{S["q_ask"]}</a>
+  </div>
+  <div class="mcard" style="gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="sub1" style="font-size:14px">{S["q_breakdown"]}</p><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12)}{S["q_teacher_badge"]}</span></div>
+    {q_total_badge(S, total=sum(Q_AI))}
+    <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+  </div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20">
+  <a class="mbtn primary" href="{fn("MQ-Resub2", L)}">{ic("camera", 18, "#fff")}{S["q_rs_btn"]}</a>
+</div>'''
+    return mpage(S, "MQ-Resub1", S["q_mtitles_rs"]["rs1"], body)
+
+def mq_resub2(S, L):
+    body = mheader(S, "MQ-Resub2", S["q_rs2_title"], back_href=fn("MQ-Resub1", L)) + f'''
+<div class="mbody">
+  {rs_checklist(S, mobile=True)}
+  <div class="mcard">
+    <p class="sub1" style="font-size:14px">{S["q_rs2_h"]}</p>
+    <p class="cap" style="line-height:18px">{S["q_rs2_sub"]}</p>
+    <div style="display:flex;gap:10px">
+      <a class="qopt pri" href="{fn("MQ-Resub3", L)}">{ic("camera", 28)}{S["q_take_photo"]}</a>
+      <a class="qopt" href="{fn("MQ-Resub3", L)}">{ic("upload", 28)}{S["q_upload"]}</a>
+    </div>
+  </div>
+  {q_tips(S)}
+</div>'''
+    return mpage(S, "MQ-Resub2", S["q_mtitles_rs"]["rs2"], body, logic=RS2_LOGIC)
+
+def mq_resub3(S, L):
+    rows = q_breakdown_rows(S, Q_V2, changed=Q_AI, mobile=True)
+    body = mheader(S, "MQ-Resub3", S["q_rs3_h"], back_href=fn("MQ-Resub2", L)) + f'''
+<div class="mbody" style="padding-bottom:110px">
+  <div class="qbanner ai" style="font-size:13px">{ic("sparkle", 18)}<span>{S["q_rs3_ai"]}</span></div>
+  {rs_revision(S, mobile=True)}
+  <div class="mcard" style="padding:12px">{q_carousel(S, 319, 300, del_btn=False, marks=Q_V2, hand=Q_HAND_V2)}</div>
+  <div class="mcard" style="gap:10px">
+    <div><p class="sub1" style="font-size:14px">{S["q_breakdown"]} <span class="cap">{S["q_rs_v2"]}</span></p></div>
+    {q_total_badge(S, total=sum(Q_V2))}
+    <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+  </div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20">
+  <a class="mbtn primary" href="{fn("MQ-Resub4", L)}">{ic("upload", 18, "#fff")}{S["q_rs3_submit"]}</a>
+</div>'''
+    return mpage(S, "MQ-Resub3", S["q_mtitles_rs"]["rs3"], body, logic=Q_CAR_LOGIC)
+
+def mq_resub4(S, L):
+    rows = q_breakdown_rows(S, Q_V2, changed=Q_AI, mobile=True)
+    body = mheader(S, "MQ-Resub4", S["q_rs4_title"], back_href=fn("M-Main", L)) + f'''
+<div class="mbody">
+  <div class="qbanner ok" style="font-size:13px">{ic("check", 18, "currentColor", 2.6)}<span>{S["q_rs4_banner"]}</span></div>
+  <div class="mcard" style="gap:10px">
+    <div class="qhead" style="background:#1f7a4d"><b>{S["q_rs4_head"]}</b><span>{S["q_rs4_sub"]}</span></div>
+    <div class="qsum s"><b>{S["q_strengths"]}</b><span>{S["q_rs4_strengths"]}</span></div>
+    <div><p class="sub1" style="font-size:14px;margin-bottom:4px">{S["q_rs4_hist_h"]}</p>{rs_hist_rows(S, mobile=True)}</div>
+  </div>
+  <div class="mcard" style="padding:12px">{q_carousel(S, 319, 300, del_btn=False, marks=Q_V2, hand=Q_HAND_V2)}</div>
+  <div class="mcard" style="gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="sub1" style="font-size:14px">{S["q_breakdown"]} <span class="cap">{S["q_rs_v2"]}</span></p><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12)}{S["q_teacher_badge"]}</span></div>
+    {q_total_badge(S, total=sum(Q_V2))}
+    <div style="display:flex;flex-direction:column;gap:6px">{rows}</div>
+  </div>
+  <div style="height:24px"></div>
+</div>'''
+    return mpage(S, "MQ-Resub4", S["q_mtitles_rs"]["rs4"], body, logic=Q_CAR_LOGIC)
+
+for _w, _m, _fw, _fm in (("Q-Resub1", "MQ-Resub1", q_resub1, mq_resub1), ("Q-Resub2", "MQ-Resub2", q_resub2, mq_resub2), ("Q-Resub3", "MQ-Resub3", q_resub3, mq_resub3), ("Q-Resub4", "MQ-Resub4", q_resub4, mq_resub4)):
+    QSCREENS_W.append(_w); QSCREENS_M.append(_m); QBUILDERS[_w] = _fw; QBUILDERS[_m] = _fm; TO_MOBILE[_w] = _m; TO_PC[_m] = _w
+QSCREENS_ALL = QSCREENS_W + QSCREENS_M
+
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
@@ -6591,7 +6855,7 @@ GNOTES = {
     "G-Process": "THE JOB, THEN THE RESULT (US-6). PROCESSING runs in the background — ジョブ id, a progress bar, the pipeline stages with their counts (30ページを読み込み, 3件の傾きを補正, 0件の白紙を除外, QR/OCR 30/30, 問題数を照合 29/30 running, the two matching stages to come); the stage the layout does not need (裏面の対応づけ) is greyed; この画面を離れて通知を受け取る Leave and notify me. DEMO：完了 finishes it. RESULT: one editable row per detected submission — # · ☑ · ユーザーネーム · 生徒名 · 学習項目外部ID · 学習目標 · 開始ページ (a link into the PDF at that page, with n/N 問 · ページ beneath); red rows carry the reason in the cell — a username the QR/OCR could not read (required; click to type or pick a student), a sheet where only 7 of 8 question indexes were found (the LO presets 8 — re-scan, not a typo); nothing is invented into an empty field. 要対応の行のみ表示 filters to those rows (click it); the floating bar deletes the selected rows; AIで採点する AI-mark is enabled for the clean rows (28) and disabled while a selected row is red. Rows a teacher edits by hand turn blue. OPEN: OQ-K the blank-page filter's confidence threshold; OQ-L progress transport (WebSocket vs polling); OQ-M PDF retention and access.",
     "G-Overview": "CONFIDENCE TRIAGE (deck S27 slides 10, 13, 15, 23 and the p.27 grading queue; PM, 30 Sep: implement the confidence triage for the AI grading LO): three boxes — 要確認 Needs review (judgment needed), 不合格見込み Likely fail (reasons and comments drafted), 合格見込み Likely pass (incl. the spot checks) — click one to filter the list. The THRESHOLD preset — ゼロミス / 慎重 / 標準 — is the per-course setting the deck promises (slide 15: 'from zero misses to standard'); it belongs on Course Management and is switchable here only to show rows re-bucket (zero misses puts everything in Needs review). 合格見込みを一括確認 confirms every likely pass that is not a spot check (the toast says how many, and that the spot checks stay Not Confirmed); 抜き取り確認を開く opens the held-out ones on G7. Per row: the AI verdict with its REASON in words (a split verdict, an unclear read, a similar answer, below the pass mark), the CONFIDENCE bar, then status, total and the per-question scores; rows ordered needs-judgment first. The footer shows the false-pass counter against the course's limit — the stop rule on slide 23: over the limit, the course drops back to full review. Confidence and thresholds are 'in development' on the deck (p.42): the values here are illustrative. ORIGINAL OVERVIEW (US-7), the paper LO's page under Submission Grading — its 提出一覧 list of submissions (PM, 30 Sep: Submission Grading holds the student PDFs, the list and the detail; the question list moved to Book Management, ブック管理で編集 in the header). 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting.",
     "G-Compare": "COMPARE BY QUESTION (deck S27 p.26 'Side-by-side', slide 10 'answers to the same question are compared, so equal content gets an equal verdict'): pick a question in the segment control; every student's answer box, as the AI read it, sits in one of three columns — ✕ differs from the key, △ needs review (partial or an uncertain read), ○ matches — with the AI mark, the confidence bar and the ○ △ ✕ buttons; two answers that match each other carry a 類似 chip (問5: 伊藤 and 渡辺). The key and the rubric for the question sit above the columns. Opens from G6's header and from G7's viewer. A mark changed here updates that student's review (not wired in the prototype). NEW against the source (US-8 is one student at a time).",
-    "G-Mark": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. EVIDENCE (deck S27 p.28 'Evidence, rubric and draft comments on one review screen'): the viewer has two modes — スキャン the photo, and 読み取りテキスト the transcript, the default: for each question the answer as the AI read it, coloured 一致 green / 要確認 blue / 不足・不一致 red against the key, the reason line under it, the key and the rubric beside it, and an AIメモ where the models split (鈴木's 問2(1)) or a similar answer was found (伊藤, 渡辺). The header carries the AI verdict and the confidence for the student on screen, and the AIとの対話 count where the student used Ask AI (山田). この設問を並べて見る opens G8. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so.",
+    "G-Mark": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. EVIDENCE (deck S27 p.28 'Evidence, rubric and draft comments on one review screen'): the viewer has two modes — スキャン the photo, and 読み取りテキスト the transcript, the default: for each question the answer as the AI read it, coloured 一致 green / 要確認 blue / 不足・不一致 red against the key, the reason line under it, the key and the rubric beside it, and an AIメモ where the models split (鈴木's 問2(1)) or a similar answer was found (伊藤, 渡辺). The header carries the AI verdict and the confidence for the student on screen, and the AIとの対話 count where the student used Ask AI (山田). この設問を並べて見る opens G8. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so. RETURN FOR RESUBMISSION (PM, 30 Sep): the red 再提出を求めて返却 button beside Confirm and Next returns the sheet to this student with the questions to redo (the per-question feedback is the request); the student's branch is Q8–Q11. The second version comes back as a new row on G6 and a second sheet here (not drawn).",
 }
 for screen in GSCREENS:
     notes["g_" + screen] = {"x": GX[screen], "y": GROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 560, "text": GNOTES[screen]}
@@ -6604,11 +6868,16 @@ qtitles = ["Q1 · Student PC — the paper LO: instructions, submission details,
            "Q2 · Student PC — take or upload a photo, the photo tips; DEMO the two analysis errors",
            "Q3 · Student PC — the pages, Add More (5 photos or 1 PDF), Confirm & Analyze → analyzing",
            "Q4 · Student PC — analysis results: strengths / to improve / suggested fix, Ask AI, the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher",
-           "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review",
-           "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the summary and the per-question feedback",
+           "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review; DEMO → returned (pass) or returned (resubmit)",
+           "Q6 · Student PC — returned (pass): the teacher's △ on Q5, 9/10, the summary and the per-question feedback",
            "Q7 · Student PC — Ask AI: a question about the feedback, the answer guided along the textbook, suggested questions, the teacher can see the dialogue",
-           "Q8 · Mobile — the paper LO", "Q9 · Mobile — take or upload", "Q10 · Mobile — pages, Confirm & Analyze", "Q11 · Mobile — analysis results with the summary and Ask AI",
-           "Q12 · Mobile — submitted", "Q13 · Mobile — returned", "Q14 · Mobile — Ask AI"]
+           "Q8 · Student PC — returned for resubmission (the other branch): the teacher's request on Q5, the deadline, Q5 flagged, Redo Q5 and resubmit",
+           "Q9 · Student PC — resubmit: last time's comments as a checklist, photograph the rewritten page",
+           "Q10 · Student PC — check your revision: what changed v1 → v2, the AI's criteria check, the history, version 2 marked 10/10, Submit to Teacher",
+           "Q11 · Student PC — returned (version 2): pass, the submission history, the row that changed",
+           "Q12 · Mobile — the paper LO", "Q13 · Mobile — take or upload", "Q14 · Mobile — pages, Confirm & Analyze", "Q15 · Mobile — analysis results with the summary and Ask AI",
+           "Q16 · Mobile — submitted", "Q17 · Mobile — returned (pass)", "Q18 · Mobile — Ask AI",
+           "Q19 · Mobile — returned for resubmission", "Q20 · Mobile — resubmit photo with the checklist", "Q21 · Mobile — check your revision", "Q22 · Mobile — returned (version 2)"]
 QSIZE = {**{k: (W, H) for k in QSCREENS_W}, **{k: (MW, MH) for k in QSCREENS_M}}
 QX = {}
 for lang, S in (("ja", JA), ("en", EN)):
@@ -6630,7 +6899,15 @@ QNOTES = {
     "Q-Preview": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then 分析結果を見る to the results (the source navigates on its own; here a link, so the board stays put). Click Confirm & Analyze to run it; the DEMO pill skips ahead.",
     "Q-Result": "FEEDBACK DISPLAY (deck S27 p.30 'Feedback splits into strengths, issues and fixes'): above the sheet, the headline (もう一歩 · 8問中7問正解 · 8/10点) and three cards — 強み Strengths, 改善点 To improve, 提案する修正 Suggested fix as a strike-through and a replacement — with the AIに質問する Ask AI button to Q7. Then, as before: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return).",
     "Q-Chat": "ASK AI (deck S27 p.30 'Ask AI on the spot — guides thinking along the textbook, not answers'): reached from the AIに質問する button on Q4 / Q6. The context card names the question being discussed (問5 and its improvement point) and says the teacher can see the dialogue. The thread: the student's question, the AI's answer with its textbook source line (第7回 §3 擬似相関), a nudge to summarise in the student's own words, then suggested questions as chips — click one, or type and send, and the exchange appends (the first chip has a written answer, the others a generic textbook pointer). The dialogue count shows on G7's header for the teacher. NEW against the source (no chat there); the deck lists AI Q&A chat and logs as available.",
-    "Q-Done": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state.",
+    "Q-Resub1": "RETURNED FOR RESUBMISSION — the paper LO's other branch (deck S27 slide 16 'revise and resubmit'; PM, 30 Sep: add the flow for the returned submission and the resubmission). Alternative to Q6: on G7 the teacher presses 再提出を求めて返却 instead of giving △ on 問5. The student sees the red banner with the request and the resubmission deadline, the headline 再提出が必要 · 8/10点, the teacher's note (what to add), the breakdown with 問5 flagged 再提出 and every other row confirmed, the improvement and suggested-fix cards, Ask AI, and the CTA 問5 を書き直して再提出する. The LO row on the course would read 要再提出 (not drawn — Main keeps the first-submission state). OPEN: the resubmission deadline is the LO's end date on the course (T8), which the paper LO does not carry yet; whether the teacher can name the questions to redo or only return the whole sheet.",
+    "Q-Resub2": "RESUBMIT: last time's comments as a checklist to tick off (the AI Feedback 06 pattern), then 写真を撮る / アップロード for the rewritten page only — the other pages are kept from version 1. Same limits and tips as Q2.",
+    "Q-Resub3": "CHECK YOUR REVISION (deck p.30, third phone): 変わった点 what changed, version 1 → 2, as a strike-through and replacement read from the new photo; 基準チェック（AI） the criteria check — 問5 improved, the rest still met; 履歴 the history of both versions with the note that the teacher sees the changes and the AI dialogue; the sheet with the AI's marks on version 2 (問5 now ○, the box reads 相関≠因果 気温); the breakdown 10/10 with the changed row labelled; 先生に提出する（2回目）.",
+    "Q-Resub4": "RETURNED, VERSION 2: pass — 合格 · 10/10点, the strengths line, the submission history (1回目 8/10 返却（再提出）, 2回目 10/10 合格), the sheet, the breakdown with the teacher-reviewed badge. On the teacher's side the second version is one more row on G6 and a second sheet on G7 (not drawn); the dashboards would show the latest score 10/10 and, with the Latest / Highest toggle, the history.",
+    "MQ-Resub1": "Mobile returned for resubmission: the banner and deadline, the teacher's note, the suggested fix, Ask AI, the breakdown with 問5 flagged; the CTA fixed at the bottom.",
+    "MQ-Resub2": "Mobile resubmit: the checklist, then take a photo of the rewritten page.",
+    "MQ-Resub3": "Mobile check your revision: what changed, the criteria check, the history, the version-2 sheet and breakdown; 先生に提出する（2回目） fixed at the bottom.",
+    "MQ-Resub4": "Mobile returned, version 2: pass, the history, the sheet, the breakdown.",
+    "Q-Done": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. Two DEMO pills: 返却済み → the pass branch (Q6), 返却（再提出） → the resubmission branch (Q8–Q11). From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state.",
     "Q-Review": "SubmissionReview, AFTER the return — with the same summary cards (headline よくできました · 9/10点, teacher-confirmed) and Ask AI above the sheet: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks). The whole-submission 先生のフィードバック Teacher Feedback card the source had was removed (PM, 30 Sep: not needed for now) — the per-question feedback is the comment. This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
     "MQ-Detail": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出.",
     "MQ-Submit": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors.",

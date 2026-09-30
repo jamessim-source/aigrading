@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T16:56:01Z"
+    "at": "2026-09-30T17:06:18Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -927,7 +927,7 @@
       "y": 15800,
       "w": 1280,
       "h": 800,
-      "title": "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review (JA)",
+      "title": "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review; DEMO → returned (pass) or returned (resubmit) (JA)",
       "is_interactive": true
     },
     "Q-Review.dc.html": {
@@ -935,7 +935,7 @@
       "y": 15800,
       "w": 1280,
       "h": 800,
-      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the summary and the per-question feedback (JA)",
+      "title": "Q6 · Student PC — returned (pass): the teacher's △ on Q5, 9/10, the summary and the per-question feedback (JA)",
       "is_interactive": true
     },
     "Q-Chat.dc.html": {
@@ -946,60 +946,124 @@
       "title": "Q7 · Student PC — Ask AI: a question about the feedback, the answer guided along the textbook, suggested questions, the teacher can see the dialogue (JA)",
       "is_interactive": true
     },
-    "MQ-Detail.dc.html": {
+    "Q-Resub1.dc.html": {
       "x": 9520,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q8 · Student PC — returned for resubmission (the other branch): the teacher's request on Q5, the deadline, Q5 flagged, Redo Q5 and resubmit (JA)",
+      "is_interactive": true
+    },
+    "Q-Resub2.dc.html": {
+      "x": 10880,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q9 · Student PC — resubmit: last time's comments as a checklist, photograph the rewritten page (JA)",
+      "is_interactive": true
+    },
+    "Q-Resub3.dc.html": {
+      "x": 12240,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q10 · Student PC — check your revision: what changed v1 → v2, the AI's criteria check, the history, version 2 marked 10/10, Submit to Teacher (JA)",
+      "is_interactive": true
+    },
+    "Q-Resub4.dc.html": {
+      "x": 13600,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q11 · Student PC — returned (version 2): pass, the submission history, the row that changed (JA)",
+      "is_interactive": true
+    },
+    "MQ-Detail.dc.html": {
+      "x": 14960,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q8 · Mobile — the paper LO (JA)",
+      "title": "Q12 · Mobile — the paper LO (JA)",
       "is_interactive": true
     },
     "MQ-Submit.dc.html": {
-      "x": 9975,
+      "x": 15415,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q9 · Mobile — take or upload (JA)",
+      "title": "Q13 · Mobile — take or upload (JA)",
       "is_interactive": true
     },
     "MQ-Preview.dc.html": {
-      "x": 10430,
+      "x": 15870,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q10 · Mobile — pages, Confirm & Analyze (JA)",
+      "title": "Q14 · Mobile — pages, Confirm & Analyze (JA)",
       "is_interactive": true
     },
     "MQ-Result.dc.html": {
-      "x": 10885,
+      "x": 16325,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q11 · Mobile — analysis results with the summary and Ask AI (JA)",
+      "title": "Q15 · Mobile — analysis results with the summary and Ask AI (JA)",
       "is_interactive": true
     },
     "MQ-Done.dc.html": {
-      "x": 11340,
+      "x": 16780,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q12 · Mobile — submitted (JA)",
+      "title": "Q16 · Mobile — submitted (JA)",
       "is_interactive": true
     },
     "MQ-Review.dc.html": {
-      "x": 11795,
+      "x": 17235,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q13 · Mobile — returned (JA)",
+      "title": "Q17 · Mobile — returned (pass) (JA)",
       "is_interactive": true
     },
     "MQ-Chat.dc.html": {
-      "x": 12250,
+      "x": 17690,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q14 · Mobile — Ask AI (JA)",
+      "title": "Q18 · Mobile — Ask AI (JA)",
+      "is_interactive": true
+    },
+    "MQ-Resub1.dc.html": {
+      "x": 18145,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q19 · Mobile — returned for resubmission (JA)",
+      "is_interactive": true
+    },
+    "MQ-Resub2.dc.html": {
+      "x": 18600,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q20 · Mobile — resubmit photo with the checklist (JA)",
+      "is_interactive": true
+    },
+    "MQ-Resub3.dc.html": {
+      "x": 19055,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q21 · Mobile — check your revision (JA)",
+      "is_interactive": true
+    },
+    "MQ-Resub4.dc.html": {
+      "x": 19510,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q22 · Mobile — returned (version 2) (JA)",
       "is_interactive": true
     },
     "Q-Detail-en.dc.html": {
@@ -1039,7 +1103,7 @@
       "y": 17500,
       "w": 1280,
       "h": 800,
-      "title": "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review (EN)",
+      "title": "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review; DEMO → returned (pass) or returned (resubmit) (EN)",
       "is_interactive": true
     },
     "Q-Review-en.dc.html": {
@@ -1047,7 +1111,7 @@
       "y": 17500,
       "w": 1280,
       "h": 800,
-      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the summary and the per-question feedback (EN)",
+      "title": "Q6 · Student PC — returned (pass): the teacher's △ on Q5, 9/10, the summary and the per-question feedback (EN)",
       "is_interactive": true
     },
     "Q-Chat-en.dc.html": {
@@ -1058,60 +1122,124 @@
       "title": "Q7 · Student PC — Ask AI: a question about the feedback, the answer guided along the textbook, suggested questions, the teacher can see the dialogue (EN)",
       "is_interactive": true
     },
-    "MQ-Detail-en.dc.html": {
+    "Q-Resub1-en.dc.html": {
       "x": 9520,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q8 · Student PC — returned for resubmission (the other branch): the teacher's request on Q5, the deadline, Q5 flagged, Redo Q5 and resubmit (EN)",
+      "is_interactive": true
+    },
+    "Q-Resub2-en.dc.html": {
+      "x": 10880,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q9 · Student PC — resubmit: last time's comments as a checklist, photograph the rewritten page (EN)",
+      "is_interactive": true
+    },
+    "Q-Resub3-en.dc.html": {
+      "x": 12240,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q10 · Student PC — check your revision: what changed v1 → v2, the AI's criteria check, the history, version 2 marked 10/10, Submit to Teacher (EN)",
+      "is_interactive": true
+    },
+    "Q-Resub4-en.dc.html": {
+      "x": 13600,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q11 · Student PC — returned (version 2): pass, the submission history, the row that changed (EN)",
+      "is_interactive": true
+    },
+    "MQ-Detail-en.dc.html": {
+      "x": 14960,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q8 · Mobile — the paper LO (EN)",
+      "title": "Q12 · Mobile — the paper LO (EN)",
       "is_interactive": true
     },
     "MQ-Submit-en.dc.html": {
-      "x": 9975,
+      "x": 15415,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q9 · Mobile — take or upload (EN)",
+      "title": "Q13 · Mobile — take or upload (EN)",
       "is_interactive": true
     },
     "MQ-Preview-en.dc.html": {
-      "x": 10430,
+      "x": 15870,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q10 · Mobile — pages, Confirm & Analyze (EN)",
+      "title": "Q14 · Mobile — pages, Confirm & Analyze (EN)",
       "is_interactive": true
     },
     "MQ-Result-en.dc.html": {
-      "x": 10885,
+      "x": 16325,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q11 · Mobile — analysis results with the summary and Ask AI (EN)",
+      "title": "Q15 · Mobile — analysis results with the summary and Ask AI (EN)",
       "is_interactive": true
     },
     "MQ-Done-en.dc.html": {
-      "x": 11340,
+      "x": 16780,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q12 · Mobile — submitted (EN)",
+      "title": "Q16 · Mobile — submitted (EN)",
       "is_interactive": true
     },
     "MQ-Review-en.dc.html": {
-      "x": 11795,
+      "x": 17235,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q13 · Mobile — returned (EN)",
+      "title": "Q17 · Mobile — returned (pass) (EN)",
       "is_interactive": true
     },
     "MQ-Chat-en.dc.html": {
-      "x": 12250,
+      "x": 17690,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q14 · Mobile — Ask AI (EN)",
+      "title": "Q18 · Mobile — Ask AI (EN)",
+      "is_interactive": true
+    },
+    "MQ-Resub1-en.dc.html": {
+      "x": 18145,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q19 · Mobile — returned for resubmission (EN)",
+      "is_interactive": true
+    },
+    "MQ-Resub2-en.dc.html": {
+      "x": 18600,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q20 · Mobile — resubmit photo with the checklist (EN)",
+      "is_interactive": true
+    },
+    "MQ-Resub3-en.dc.html": {
+      "x": 19055,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q21 · Mobile — check your revision (EN)",
+      "is_interactive": true
+    },
+    "MQ-Resub4-en.dc.html": {
+      "x": 19510,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q22 · Mobile — returned (version 2) (EN)",
       "is_interactive": true
     }
   },
@@ -1233,6 +1361,10 @@
     "Q-Done.dc.html",
     "Q-Review.dc.html",
     "Q-Chat.dc.html",
+    "Q-Resub1.dc.html",
+    "Q-Resub2.dc.html",
+    "Q-Resub3.dc.html",
+    "Q-Resub4.dc.html",
     "MQ-Detail.dc.html",
     "MQ-Submit.dc.html",
     "MQ-Preview.dc.html",
@@ -1240,6 +1372,10 @@
     "MQ-Done.dc.html",
     "MQ-Review.dc.html",
     "MQ-Chat.dc.html",
+    "MQ-Resub1.dc.html",
+    "MQ-Resub2.dc.html",
+    "MQ-Resub3.dc.html",
+    "MQ-Resub4.dc.html",
     "Q-Detail-en.dc.html",
     "Q-Submit-en.dc.html",
     "Q-Preview-en.dc.html",
@@ -1247,13 +1383,21 @@
     "Q-Done-en.dc.html",
     "Q-Review-en.dc.html",
     "Q-Chat-en.dc.html",
+    "Q-Resub1-en.dc.html",
+    "Q-Resub2-en.dc.html",
+    "Q-Resub3-en.dc.html",
+    "Q-Resub4-en.dc.html",
     "MQ-Detail-en.dc.html",
     "MQ-Submit-en.dc.html",
     "MQ-Preview-en.dc.html",
     "MQ-Result-en.dc.html",
     "MQ-Done-en.dc.html",
     "MQ-Review-en.dc.html",
-    "MQ-Chat-en.dc.html"
+    "MQ-Chat-en.dc.html",
+    "MQ-Resub1-en.dc.html",
+    "MQ-Resub2-en.dc.html",
+    "MQ-Resub3-en.dc.html",
+    "MQ-Resub4-en.dc.html"
   ],
   "notes": {
     "title": {
@@ -1709,7 +1853,7 @@
       "y": 13260,
       "w": 640,
       "maxH": 560,
-      "text": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. EVIDENCE (deck S27 p.28 'Evidence, rubric and draft comments on one review screen'): the viewer has two modes — スキャン the photo, and 読み取りテキスト the transcript, the default: for each question the answer as the AI read it, coloured 一致 green / 要確認 blue / 不足・不一致 red against the key, the reason line under it, the key and the rubric beside it, and an AIメモ where the models split (鈴木's 問2(1)) or a similar answer was found (伊藤, 渡辺). The header carries the AI verdict and the confidence for the student on screen, and the AIとの対話 count where the student used Ask AI (山田). この設問を並べて見る opens G8. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so."
+      "text": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. EVIDENCE (deck S27 p.28 'Evidence, rubric and draft comments on one review screen'): the viewer has two modes — スキャン the photo, and 読み取りテキスト the transcript, the default: for each question the answer as the AI read it, coloured 一致 green / 要確認 blue / 不足・不一致 red against the key, the reason line under it, the key and the rubric beside it, and an AIメモ where the models split (鈴木's 問2(1)) or a similar answer was found (伊藤, 渡辺). The header carries the AI verdict and the confidence for the student on screen, and the AIとの対話 count where the student used Ask AI (山田). この設問を並べて見る opens G8. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so. RETURN FOR RESUBMISSION (PM, 30 Sep): the red 再提出を求めて返却 button beside Confirm and Next returns the sheet to this student with the questions to redo (the per-question feedback is the request); the student's branch is Q8–Q11. The second version comes back as a new row on G6 and a second sheet here (not drawn)."
     },
     "g_G-Compare": {
       "x": 10640,
@@ -1765,7 +1909,7 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state."
+      "text": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. Two DEMO pills: 返却済み → the pass branch (Q6), 返却（再提出） → the resubmission branch (Q8–Q11). From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state."
     },
     "q_Q-Review": {
       "x": 6800,
@@ -1781,54 +1925,110 @@
       "maxH": 560,
       "text": "ASK AI (deck S27 p.30 'Ask AI on the spot — guides thinking along the textbook, not answers'): reached from the AIに質問する button on Q4 / Q6. The context card names the question being discussed (問5 and its improvement point) and says the teacher can see the dialogue. The thread: the student's question, the AI's answer with its textbook source line (第7回 §3 擬似相関), a nudge to summarise in the student's own words, then suggested questions as chips — click one, or type and send, and the exchange appends (the first chip has a written answer, the others a generic textbook pointer). The dialogue count shows on G7's header for the teacher. NEW against the source (no chat there); the deck lists AI Q&A chat and logs as available."
     },
-    "q_MQ-Detail": {
+    "q_Q-Resub1": {
       "x": 9520,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "RETURNED FOR RESUBMISSION — the paper LO's other branch (deck S27 slide 16 'revise and resubmit'; PM, 30 Sep: add the flow for the returned submission and the resubmission). Alternative to Q6: on G7 the teacher presses 再提出を求めて返却 instead of giving △ on 問5. The student sees the red banner with the request and the resubmission deadline, the headline 再提出が必要 · 8/10点, the teacher's note (what to add), the breakdown with 問5 flagged 再提出 and every other row confirmed, the improvement and suggested-fix cards, Ask AI, and the CTA 問5 を書き直して再提出する. The LO row on the course would read 要再提出 (not drawn — Main keeps the first-submission state). OPEN: the resubmission deadline is the LO's end date on the course (T8), which the paper LO does not carry yet; whether the teacher can name the questions to redo or only return the whole sheet."
+    },
+    "q_Q-Resub2": {
+      "x": 10880,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "RESUBMIT: last time's comments as a checklist to tick off (the AI Feedback 06 pattern), then 写真を撮る / アップロード for the rewritten page only — the other pages are kept from version 1. Same limits and tips as Q2."
+    },
+    "q_Q-Resub3": {
+      "x": 12240,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "CHECK YOUR REVISION (deck p.30, third phone): 変わった点 what changed, version 1 → 2, as a strike-through and replacement read from the new photo; 基準チェック（AI） the criteria check — 問5 improved, the rest still met; 履歴 the history of both versions with the note that the teacher sees the changes and the AI dialogue; the sheet with the AI's marks on version 2 (問5 now ○, the box reads 相関≠因果 気温); the breakdown 10/10 with the changed row labelled; 先生に提出する（2回目）."
+    },
+    "q_Q-Resub4": {
+      "x": 13600,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "RETURNED, VERSION 2: pass — 合格 · 10/10点, the strengths line, the submission history (1回目 8/10 返却（再提出）, 2回目 10/10 合格), the sheet, the breakdown with the teacher-reviewed badge. On the teacher's side the second version is one more row on G6 and a second sheet on G7 (not drawn); the dashboards would show the latest score 10/10 and, with the Latest / Highest toggle, the history."
+    },
+    "q_MQ-Detail": {
+      "x": 14960,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出."
     },
     "q_MQ-Submit": {
-      "x": 9975,
+      "x": 15415,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors."
     },
     "q_MQ-Preview": {
-      "x": 10430,
+      "x": 15870,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile pages: the carousel and thumbnails, さらに追加 and 確認して分析 fixed at the bottom; Confirm & Analyze runs the analyzing state in place."
     },
     "q_MQ-Result": {
-      "x": 10885,
+      "x": 16325,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile analysis results: the banner, the marked sheet, the read-only breakdown with the total; 先生に提出する fixed at the bottom."
     },
     "q_MQ-Done": {
-      "x": 11340,
+      "x": 16780,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile submitted: the check, the LO card with time and the AI's score, 提出の詳細を表示 / コースに戻る. DEMO → returned."
     },
     "q_MQ-Review": {
-      "x": 11795,
+      "x": 17235,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled) with the per-question feedback, the marked sheet."
     },
     "q_MQ-Chat": {
-      "x": 12250,
+      "x": 17690,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile Ask AI: the context card, the thread, the suggested-question chips, the input fixed at the bottom."
+    },
+    "q_MQ-Resub1": {
+      "x": 18145,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile returned for resubmission: the banner and deadline, the teacher's note, the suggested fix, Ask AI, the breakdown with 問5 flagged; the CTA fixed at the bottom."
+    },
+    "q_MQ-Resub2": {
+      "x": 18600,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile resubmit: the checklist, then take a photo of the rewritten page."
+    },
+    "q_MQ-Resub3": {
+      "x": 19055,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile check your revision: what changed, the criteria check, the history, the version-2 sheet and breakdown; 先生に提出する（2回目） fixed at the bottom."
+    },
+    "q_MQ-Resub4": {
+      "x": 19510,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile returned, version 2: pass, the history, the sheet, the breakdown."
     },
     "title_q": {
       "x": 0,

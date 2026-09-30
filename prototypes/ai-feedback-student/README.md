@@ -26,7 +26,7 @@ sticky notes on the canvas are the per-screen record.
 | AI Practice · English | same, `-en` suffix | mixed |
 | AI Grading · 日本語 | `G-Dialog` · `G-Detail` · `G-LOs` → `G-Import` → `G-Process` → `G-Overview` → `G-Mark` · `G-Compare` (BO, 1440 × 900) | 1440 × 900 |
 | AI Grading · English | same, `-en` suffix | 1440 × 900 |
-| AI Grading, student side · 日本語 | `Q-Detail` → `Q-Submit` → `Q-Preview` → `Q-Result` → `Q-Done` → `Q-Review` · `Q-Chat` (PC, 1280 × 800) · `MQ-Detail` → `MQ-Submit` → `MQ-Preview` → `MQ-Result` → `MQ-Done` → `MQ-Review` · `MQ-Chat` (mobile, 375 × 812) | mixed |
+| AI Grading, student side · 日本語 | `Q-Detail` → `Q-Submit` → `Q-Preview` → `Q-Result` → `Q-Done` → `Q-Review` · `Q-Chat` · `Q-Resub1` → `Q-Resub2` → `Q-Resub3` → `Q-Resub4` (PC, 1280 × 800) · `MQ-Detail` → … → `MQ-Review` · `MQ-Chat` · `MQ-Resub1` → … → `MQ-Resub4` (mobile, 375 × 812) | mixed |
 | AI Grading, student side · English | same, `-en` suffix | mixed |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
@@ -236,6 +236,15 @@ Feedback and AI Practice LOs on the same surfaces:
   `MQ-Chat`) guided along the textbook, visible to the teacher. Confidence,
   thresholds and evidence highlighting are in development on the deck;
   the values shown are illustrative.
+- **Returned for resubmission and version 2 (30 Sep, PM).** The other
+  branch from the submitted state: G7 gains Return for resubmission; the
+  student gets the request with the deadline and Q5 flagged (`Q-Resub1`),
+  ticks last time's comments and photographs the rewritten page
+  (`Q-Resub2`), checks the revision — what changed, the AI's criteria
+  check, the history — and submits version 2 (`Q-Resub3`), then reads the
+  returned version 2 with the submission history (`Q-Resub4`); the same on
+  mobile (`MQ-Resub1`–`MQ-Resub4`). The pass branch (Q6) stays as the main
+  story; both are reachable from the DEMO pills on Q5.
 
 Not drawn: the Question Tag master and CSV book import (Master Data), the
 paper LO's rows in the Submissions tab, the student's row on the Overview
