@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-29T16:02:45Z"
+    "at": "2026-09-30T13:41:08Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -761,6 +761,118 @@
       "h": 812,
       "title": "P14 · Mobile — practice (EN)",
       "is_interactive": true
+    },
+    "G-Dialog.dc.html": {
+      "x": 0,
+      "y": 12300,
+      "w": 1440,
+      "h": 900,
+      "title": "G1 · Add LO — the Paper Submission type: Manual Grading fixed On, approval workflow, Allow student to submit (JA)",
+      "is_interactive": true
+    },
+    "G-Detail.dc.html": {
+      "x": 1520,
+      "y": 12300,
+      "w": 1440,
+      "h": 900,
+      "title": "G2 · Paper LO detail — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE (JA)",
+      "is_interactive": true
+    },
+    "G-LOs.dc.html": {
+      "x": 3040,
+      "y": 12300,
+      "w": 1440,
+      "h": 900,
+      "title": "G3 · Submission Grading, Learning Objectives tab — paper and feedback LOs with their progress; ⋯ Bulk Import (JA)",
+      "is_interactive": true
+    },
+    "G-Import.dc.html": {
+      "x": 4560,
+      "y": 12300,
+      "w": 1440,
+      "h": 900,
+      "title": "G4 · Bulk Import Submissions — sheet layout, the copier's PDFs straight to storage, counts, Start processing (JA)",
+      "is_interactive": true
+    },
+    "G-Process.dc.html": {
+      "x": 6080,
+      "y": 12300,
+      "w": 1440,
+      "h": 900,
+      "title": "G5 · Bulk import — the background job's stages, then the editable result table with the rows that need attention (JA)",
+      "is_interactive": true
+    },
+    "G-Overview.dc.html": {
+      "x": 7600,
+      "y": 12300,
+      "w": 1440,
+      "h": 900,
+      "title": "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the class results matrix (JA)",
+      "is_interactive": true
+    },
+    "G-Mark.dc.html": {
+      "x": 9120,
+      "y": 12300,
+      "w": 1440,
+      "h": 900,
+      "title": "G7 · Marking review — students, the scanned sheet with the AI's ○ / ✕, per-question ○ △ ✕, Confirm and Next (JA)",
+      "is_interactive": true
+    },
+    "G-Dialog-en.dc.html": {
+      "x": 0,
+      "y": 14000,
+      "w": 1440,
+      "h": 900,
+      "title": "G1 · Add LO — the Paper Submission type: Manual Grading fixed On, approval workflow, Allow student to submit (EN)",
+      "is_interactive": true
+    },
+    "G-Detail-en.dc.html": {
+      "x": 1520,
+      "y": 14000,
+      "w": 1440,
+      "h": 900,
+      "title": "G2 · Paper LO detail — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE (EN)",
+      "is_interactive": true
+    },
+    "G-LOs-en.dc.html": {
+      "x": 3040,
+      "y": 14000,
+      "w": 1440,
+      "h": 900,
+      "title": "G3 · Submission Grading, Learning Objectives tab — paper and feedback LOs with their progress; ⋯ Bulk Import (EN)",
+      "is_interactive": true
+    },
+    "G-Import-en.dc.html": {
+      "x": 4560,
+      "y": 14000,
+      "w": 1440,
+      "h": 900,
+      "title": "G4 · Bulk Import Submissions — sheet layout, the copier's PDFs straight to storage, counts, Start processing (EN)",
+      "is_interactive": true
+    },
+    "G-Process-en.dc.html": {
+      "x": 6080,
+      "y": 14000,
+      "w": 1440,
+      "h": 900,
+      "title": "G5 · Bulk import — the background job's stages, then the editable result table with the rows that need attention (EN)",
+      "is_interactive": true
+    },
+    "G-Overview-en.dc.html": {
+      "x": 7600,
+      "y": 14000,
+      "w": 1440,
+      "h": 900,
+      "title": "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the class results matrix (EN)",
+      "is_interactive": true
+    },
+    "G-Mark-en.dc.html": {
+      "x": 9120,
+      "y": 14000,
+      "w": 1440,
+      "h": 900,
+      "title": "G7 · Marking review — students, the scanned sheet with the AI's ○ / ✕, per-question ○ △ ✕, Confirm and Next (EN)",
+      "is_interactive": true
     }
   },
   "order": [
@@ -857,7 +969,21 @@
     "M-PCrop-en.dc.html",
     "M-PSetup-en.dc.html",
     "M-PWait-en.dc.html",
-    "M-PPractice-en.dc.html"
+    "M-PPractice-en.dc.html",
+    "G-Dialog.dc.html",
+    "G-Detail.dc.html",
+    "G-LOs.dc.html",
+    "G-Import.dc.html",
+    "G-Process.dc.html",
+    "G-Overview.dc.html",
+    "G-Mark.dc.html",
+    "G-Dialog-en.dc.html",
+    "G-Detail-en.dc.html",
+    "G-LOs-en.dc.html",
+    "G-Import-en.dc.html",
+    "G-Process-en.dc.html",
+    "G-Overview-en.dc.html",
+    "G-Mark-en.dc.html"
   ],
   "notes": {
     "title": {
@@ -1265,6 +1391,69 @@
       "text": "Same AI Practice flow in English",
       "kind": "title1",
       "maxW": 12800
+    },
+    "g_G-Dialog": {
+      "x": 0,
+      "y": 13260,
+      "w": 640,
+      "maxH": 560,
+      "text": "AI GRADING — the Paper Submission LO (source: the AI Grading prototype, claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn — US-1 to US-8; PM, 30 Sep: review these screens for Book Management and Submission Grading and fit them into the prototype). Redrawn on this canvas's production components and fitted into the Kindai course: the Session 7 確認クイズ becomes the paper LO — a 10-point quiz sat on paper in class, scanned on the copier, imported, AI-marked, reviewed, returned; the 9/10 the dashboards already show. THIS BOARD: DialogCreateLearningMaterial with 紙提出物（AI採点） as one more type (NEW, after the practice type in the T2 menu). General Info as for any LO plus レポート回 Paper Count. Settings: 添削指導 Manual Grading with なし shown but disabled and あり fixed (the source's rule; its info box was removed on request); 添削の承認フローを適用する as a switch; ★ NEW 生徒による提出を許可する, default OFF — off, the teacher submits on the student's behalf (bulk scan); on, the student starts and submits in the learner app; the help text follows the switch; 合格点 / 上限点 / パスワード as on the Learning Objective type. Not shown for this type, per the source: Rules, URL tracking, Practice Mode, Enforce answer checking, AI Tutor, Adaptive retry. Click the switches. OPEN (from the source): OQ-B does the approval workflow stay available with Allow student to submit on; OQ-C should Score to Pass / Capped Score stay editable when AI writes the first-pass score; OQ-D is Paper Count meaningful here; OQ-F AI Feedback as a separate LO type (as this canvas has it) rather than an option on this dialog — this canvas answers F: separate types."
+    },
+    "g_G-Detail": {
+      "x": 1520,
+      "y": 13260,
+      "w": 640,
+      "maxH": 560,
+      "text": "THE PAPER LO's DETAIL (US-3 upload, US-4 flat question list), reached from the tree (T1: the 確認クイズ row now carries the purple pencil disc and the 紙提出物 chip) and from Submission Grading › 学習目標. ONE upload area for the Question sheet and the Answer key — after 読み取りを開始 Process each file shows what AI classified it as (問題 / 解答); the source superseded its earlier two-box design with this. QUESTION LIST: the uploaded sheet on the left (38%, paginated, zoom) so the teacher checks the original against the extraction without scrolling; on the right the flat grid — 問題番号 Question index · 正答 Correct Answer · 配点 Max Score · タグ Tag — no 大問 / 小問 nesting, no question-content column (the wording is read from the paper beside it), cells AI could not read stay EMPTY rather than invented (4(1), 4(2) here). Per-row +, ▲▼; header select-all for bulk delete; totals and per-tag pills (知 / 考 summing Max Score) recalculate live. A draft banner until ✓ 保存 SAVE — click it; the saved list is what marking runs against. Tags come from the tenant's Question Tag master (US-5, out of this canvas's scope). OPEN: OQ-G AI extracts and stores the question text but it is not editable here — if a mis-read has to be fixable it needs a home (expandable row / side panel)."
+    },
+    "g_G-LOs": {
+      "x": 3040,
+      "y": 13260,
+      "w": 640,
+      "maxH": 560,
+      "text": "SUBMISSION GRADING › 学習目標 Learning Objectives tab (the second tab of T9, now live): one row per LO with submissions, with the type disc and chip — the paper LOs with 添削済 marked / total and a progress line, the AI Feedback LOs with returned / total — under the 添削待ち To Mark / 添削済 Marked segments (click them). The LO name opens the paper LO's detail (G2) or the feedback LO's overview (T10). The ⋯ menu carries 紙提出物の一括取り込み Bulk Import Submissions (US-6) — click ⋯. On T9 the ⋯ opens it directly. The Submissions tab (T9) keeps the AI Feedback queue; a paper LO's rows would list there too with 得点 Raw / Final Score, Marker and Approver columns from the source — not drawn, to keep T9 the feedback demo."
+    },
+    "g_G-Import": {
+      "x": 4560,
+      "y": 13260,
+      "w": 640,
+      "maxH": 560,
+      "text": "BULK IMPORT SUBMISSIONS (US-6), a full screen with a breadcrumb back, not a modal. 用紙レイアウト Layout: A4片面 Single-sided (Phase 1 · MVP — 1 page = 1 submission, the header carries test_id = External LO ID and student_id = username as a QR) or A4両面 Double-sided (multi-page policy — one sheet both sides, the ID on the front only, the back matched to the front scanned just before it; a missing back surfaces as a question-count error). ⓘ opens the explanation on both cards; click the cards. The dropzone takes the copier's PDFs — 100+ pages, 100+ MB per file — uploaded straight to storage (presigned multipart; the app server is not in the path). Two files listed as uploaded, then the counts: 30 pages → 30 submissions expected (the layout decides the ratio) and what is read from every page. Cancel / 処理を開始 Start processing → G5. OPEN: OQ-H the layout guardrail's granularity (per file or per batch); OQ-I duplicate-submission detection — a student legitimately spans several rows on a multi-page layout, so repeats are not flagged."
+    },
+    "g_G-Process": {
+      "x": 6080,
+      "y": 13260,
+      "w": 640,
+      "maxH": 560,
+      "text": "THE JOB, THEN THE RESULT (US-6). PROCESSING runs in the background — ジョブ id, a progress bar, the pipeline stages with their counts (30ページを読み込み, 3件の傾きを補正, 0件の白紙を除外, QR/OCR 30/30, 問題数を照合 29/30 running, the two matching stages to come); the stage the layout does not need (裏面の対応づけ) is greyed; この画面を離れて通知を受け取る Leave and notify me. DEMO：完了 finishes it. RESULT: one editable row per detected submission — # · ☑ · ユーザーネーム · 生徒名 · 学習項目外部ID · 学習目標 · 開始ページ (a link into the PDF at that page, with n/N 問 · ページ beneath); red rows carry the reason in the cell — a username the QR/OCR could not read (required; click to type or pick a student), a sheet where only 7 of 8 question indexes were found (the LO presets 8 — re-scan, not a typo); nothing is invented into an empty field. 要対応の行のみ表示 filters to those rows (click it); the floating bar deletes the selected rows; AIで採点する AI-mark is enabled for the clean rows (28) and disabled while a selected row is red. Rows a teacher edits by hand turn blue. OPEN: OQ-K the blank-page filter's confidence threshold; OQ-L progress transport (WebSocket vs polling); OQ-M PDF retention and access."
+    },
+    "g_G-Overview": {
+      "x": 7600,
+      "y": 13260,
+      "w": 640,
+      "maxH": 560,
+      "text": "OVERVIEW (US-7), the paper LO's page under Submission Grading. 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting."
+    },
+    "g_G-Mark": {
+      "x": 9120,
+      "y": 13260,
+      "w": 640,
+      "maxH": 560,
+      "text": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No comment field, no AI annotation, by design. 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削."
+    },
+    "title_g": {
+      "x": 0,
+      "y": 12000,
+      "text": "AI Grading — the Paper Submission LO fitted into the same course: Book Management (Add LO → the paper LO's question list) → Submission Grading (Learning Objectives tab → Bulk Import → job → result → Overview → marking review) · 日本語",
+      "kind": "title1",
+      "maxW": 10600
+    },
+    "title_g_en": {
+      "x": 0,
+      "y": 13760,
+      "text": "Same AI Grading flow in English",
+      "kind": "title1",
+      "maxW": 10600
     }
   },
   "designSystems": [],

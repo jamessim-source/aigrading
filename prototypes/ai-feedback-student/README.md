@@ -24,6 +24,8 @@ sticky notes on the canvas are the per-screen record.
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 | AI Practice · 日本語 | `P-Dialog` → `P-Source` ↔ `P-Detail` (BO, 1440 × 900) · `P-Sets` → `P-Crop` → `P-Setup` → `P-Wait` → `P-Practice` · `P-Print` (PC, 1280 × 800) · `M-PSets` → `M-PCrop` → `M-PSetup` → `M-PWait` → `M-PPractice` (mobile, 375 × 812) | mixed |
 | AI Practice · English | same, `-en` suffix | mixed |
+| AI Grading · 日本語 | `G-Dialog` · `G-Detail` · `G-LOs` → `G-Import` → `G-Process` → `G-Overview` → `G-Mark` (BO, 1440 × 900) | 1440 × 900 |
+| AI Grading · English | same, `-en` suffix | 1440 × 900 |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
 PC / Mobile / 先生（BO） pill (bottom-left) that jumps to the twin screen or into
@@ -168,6 +170,33 @@ already builds the course.
   the review — with the ★ reason under the LO name (a separate AI Feedback
   paper below the table was merged into these rows, PM; a comment-count
   column was tried and dropped).
+
+## AI Grading fitted in (2026-09-30, PM)
+
+The Paper Submission LO from the AI Grading prototype
+(`claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn`, US-1 to US-8) is drawn as the
+Session 7 check-up quiz — sat on paper in class, scanned on the copier,
+bulk-imported, AI-marked, reviewed and returned — so it sits beside the AI
+Feedback and AI Practice LOs on the same surfaces:
+
+- **Book Management (T1, T2, G1, G2).** The quiz row carries the purple pencil
+  disc and the 紙提出物 chip; the Add LO type menu lists 紙提出物（AI採点）as
+  NEW; the dialog has Paper Count, Manual Grading fixed On, the approval
+  switch, the NEW Allow student to submit switch (default Off), Score to Pass /
+  Capped Score / Password. The LO's detail has one upload area for the Question
+  and Answer PDFs and the flat question list beside the sheet, draft until SAVE.
+- **Submission Grading (T9, G3–G7).** The Learning Objectives tab is live, with
+  paper and feedback LOs and their progress; ⋯ opens Bulk Import Submissions
+  (layout, upload, counts) → the background job and the editable result table
+  with the rows that need attention → the Overview matrix (approval workflow,
+  Teacher / Admin view, per-question scores, course average) → the marking
+  review overlay (students, the scan with the AI's ○ / ✕, per-question ○ △ ✕,
+  Confirm and Next).
+- **Course Management and dashboards.** T8 shows the paper LO's icon; its
+  scores already sit in the score columns on T14 / T15.
+
+Not drawn: the Question Tag master and CSV book import (Master Data), the
+paper LO's rows in the Submissions tab, and the student's returned result.
 
 ## AI feedback before submission (2026-09-29, PM)
 

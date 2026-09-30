@@ -514,6 +514,9 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tseg span{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
 .tseg span+span{border-left:1px solid #BDBDBD}
 .tseg span.on{background:#1976D21F;color:#0B79D0}
+.tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap;border:0;background:none;cursor:pointer;font-family:inherit}
+.tseg button+button{border-left:1px solid #BDBDBD}
+.tseg button.on{background:#1976D21F;color:#0B79D0}
 .table-scroll{overflow-x:auto}
 table.m thead th.idx,table.m tbody td.idx{width:56px;color:#757575;padding-right:0}
 table.m thead th.idx::after{display:none}
@@ -668,6 +671,57 @@ table.m table.inner td .tchip{height:20px;padding:0 7px;font-size:11px}
 table.m table.inner tbody tr.det td{padding:0 12px 10px 28px;border-top:0;background:#FFFDF7}
 table.m table.inner tbody tr.det .tp-ins>span:first-of-type{flex:1 1 320px;min-width:0;white-space:normal}
 table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
+
+/* AI Grading — the paper LO */
+.lm-type.ppr{background:#EDE7F6;color:#5E35B1}
+.tchip.ppr{background:#EDE7F6;border-color:transparent;color:#5E35B1}
+.gradio{display:flex;align-items:center;gap:8px;font-size:14px}
+.gradio .rd{width:18px;height:18px;border-radius:50%;border:2px solid #757575;display:inline-flex;align-items:center;justify-content:center;flex:0 0 18px}
+.gradio.on .rd{border-color:#2196F3}.gradio.on .rd::after{content:"";width:10px;height:10px;border-radius:50%;background:#2196F3}
+.gradio.dis{color:#BDBDBD}.gradio.dis .rd{border-color:#BDBDBD}
+.gql{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+.gql th,.gql td{border:1px solid #E0E0E0;padding:6px 10px;text-align:left;vertical-align:middle;height:40px}
+.gql th{background:#FAFAFA;font-weight:500;color:#424242}
+.gql td.num,.gql th.num{text-align:right}
+.gql td.empty{color:#BDBDBD;font-style:italic}
+.gql .rowctl{display:flex;gap:4px;color:#9E9E9E;font-size:11px}
+.gql .rowctl span{width:18px;height:18px;border:1px solid #E0E0E0;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;background:#fff}
+.gpill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:12px;background:#F5F5F5;font-size:12px;color:#424242}
+.gpill b{color:#212121}
+.gsheet{background:#fff;border:1px solid #E0E0E0;box-shadow:0 1px 3px rgba(0,0,0,.12);padding:22px 26px;display:flex;flex-direction:column;gap:10px;font-size:11px;color:#424242}
+.gsheet .ln{height:8px;border-radius:2px;background:#EEEEEE}
+.gsheet .q{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed #EEEEEE}
+.gsheet .q b{width:34px;color:#212121}.gsheet .q .ln{flex:1}
+.gsheet .q .box{width:64px;height:22px;border:1px solid #9E9E9E;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;font-weight:500;color:#1A237E}
+.gsheet .q .ai{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.gsheet .q .ai.o{color:#2E7D32;border:2px solid #2E7D32}.gsheet .q .ai.x{color:#C62828}
+.gmc{text-align:center;font-weight:500;min-width:56px}
+.gmc.full{background:rgba(76,175,80,.14);color:#2E7D32}.gmc.zero{background:#FEEBEE;color:#C62828}.gmc.part{background:#FFF3E0;color:#C77700}.gmc.avg{background:#FAFAFA;color:#616161;font-weight:400}
+.gmc .of{color:#9E9E9E;font-weight:400;font-size:11px}
+.gstage{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #F5F5F5;font-size:14px}
+.gstage .st{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 22px}
+.gstage.done .st{background:rgba(76,175,80,.16);color:#2E7D32}.gstage.run .st{background:#E3F2FD;color:#0B79D0}
+.gstage.na{color:#9E9E9E}.gstage.na .st{background:#F5F5F5;color:#BDBDBD}.gstage.todo{color:#9E9E9E}.gstage.todo .st{border:2px solid #E0E0E0}
+.gstage .cnt{margin-left:auto;color:#757575;font-size:13px}
+.grow-err td{background:#FEEBEE}.grow-err .rerr{display:block;font-size:11px;color:#C62828;white-space:normal;margin-top:2px}
+.grow-hand td{background:#E3F2FD}
+.gsel{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);background:#212121;color:#fff;border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:16px;font-size:14px;box-shadow:0 6px 16px rgba(0,0,0,.3);z-index:20}
+.gsel a{color:#90CAF9}
+.gmk{display:grid;grid-template-columns:240px 1fr 380px;height:100%;min-height:0}
+.gmk .rail{border-right:1px solid #E0E0E0;background:#FAFAFA;display:flex;flex-direction:column;min-height:0}
+.gmk .stu{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:14px;cursor:pointer;border-left:3px solid transparent}
+.gmk .stu.on{background:#E3F2FD;border-left-color:#2196F3}
+.gmk .stu .dot{width:10px;height:10px;border-radius:50%;background:#BDBDBD;flex:0 0 10px}.gmk .stu.done .dot{background:#4CAF50}
+.gmk .viewer{background:#ECEFF1;display:flex;flex-direction:column;min-height:0}
+.gmk .panel{border-left:1px solid #E0E0E0;display:flex;flex-direction:column;min-height:0}
+.qrow{padding:10px 16px;border-bottom:1px solid #F0F0F0;display:flex;flex-direction:column;gap:6px}
+.qrow.hand{background:#E3F2FD}
+.qrow .qh{display:flex;justify-content:space-between;font-size:13px}.qrow .qh b{font-weight:500}.qrow .qh span{color:#757575}
+.qrow .qc{display:flex;align-items:center;gap:8px}
+.sbox{width:56px;height:32px;border:1px solid #BDBDBD;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;background:#fff}
+.sbox.full{border-color:#4CAF50;color:#2E7D32}.sbox.zero{border-color:#E57373;color:#C62828}.sbox.part{border-color:#FFB74D;color:#C77700}
+.mkb{width:32px;height:32px;border-radius:4px;border:1px solid #E0E0E0;background:#fff;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#757575;font-family:inherit}
+.mkb.o.on{background:rgba(76,175,80,.16);border-color:#4CAF50;color:#2E7D32}.mkb.t.on{background:#FFF3E0;border-color:#FFB74D;color:#C77700}.mkb.x.on{background:#FEEBEE;border-color:#E57373;color:#C62828}
 </style>
 <style>
 html,body{height:100%}
@@ -706,7 +760,7 @@ body{background:#fff}</style>
       <div class="acc-body"><div class="acc tp open">
         <div class="acc-sum"><span class="title">7-1　相関分析</span><span class="tools"><span class="ticon sm dis"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></span></div>
         <div class="acc-body">
-          <ul class="lm-list"><li class="lm"><span class="lm-type"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></span><span class="nm">第7回 講義動画</span><span class="tchip published">公開中</span><span class="spc"></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></li><li class="lm"><span class="lm-type"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></span><a class="nm" href="P-Source.html">第7回 講義資料</a><span class="tchip type" style="height:20px;font-size:11px">演習の元</span><span class="tchip published">公開中</span><span class="spc"></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></li><li class="lm"><span class="lm-type"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></span><span class="nm">第7回 確認クイズ</span><span class="ticon sm primary" title="AI Tutor"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></svg></span><span class="tchip published">公開中</span><span class="spc"></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></li><li class="lm"><span class="lm-type"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></svg></span><a class="nm" href="P-Detail.html">第7回 類題演習（相関分析）</a><span class="tchip type" style="height:20px;font-size:11px">類題演習</span><span class="tchip published">公開中</span><span class="spc"></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></li></ul>
+          <ul class="lm-list"><li class="lm"><span class="lm-type"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></span><span class="nm">第7回 講義動画</span><span class="tchip published">公開中</span><span class="spc"></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></li><li class="lm"><span class="lm-type"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></span><a class="nm" href="P-Source.html">第7回 講義資料</a><span class="tchip type" style="height:20px;font-size:11px">演習の元</span><span class="tchip published">公開中</span><span class="spc"></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></li><li class="lm"><span class="lm-type ppr"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></span><a class="nm" href="G-Detail.html">第7回 確認クイズ</a><span class="tchip ppr" style="height:20px;font-size:11px">紙提出物</span><span class="tchip published">公開中</span><span class="spc"></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></li><li class="lm"><span class="lm-type"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></svg></span><a class="nm" href="P-Detail.html">第7回 類題演習（相関分析）</a><span class="tchip type" style="height:20px;font-size:11px">類題演習</span><span class="tchip published">公開中</span><span class="spc"></span><span class="ticon sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></li></ul>
           <div style="padding:4px 0 0 40px"><span class="tbtn sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>LOを追加</span></div>
         </div>
       </div>

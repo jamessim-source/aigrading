@@ -1977,6 +1977,9 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tseg span{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
 .tseg span+span{border-left:1px solid #BDBDBD}
 .tseg span.on{background:#1976D21F;color:#0B79D0}
+.tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap;border:0;background:none;cursor:pointer;font-family:inherit}
+.tseg button+button{border-left:1px solid #BDBDBD}
+.tseg button.on{background:#1976D21F;color:#0B79D0}
 .table-scroll{overflow-x:auto}
 table.m thead th.idx,table.m tbody td.idx{width:56px;color:#757575;padding-right:0}
 table.m thead th.idx::after{display:none}
@@ -2131,6 +2134,57 @@ table.m table.inner td .tchip{height:20px;padding:0 7px;font-size:11px}
 table.m table.inner tbody tr.det td{padding:0 12px 10px 28px;border-top:0;background:#FFFDF7}
 table.m table.inner tbody tr.det .tp-ins>span:first-of-type{flex:1 1 320px;min-width:0;white-space:normal}
 table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
+
+/* AI Grading — the paper LO */
+.lm-type.ppr{background:#EDE7F6;color:#5E35B1}
+.tchip.ppr{background:#EDE7F6;border-color:transparent;color:#5E35B1}
+.gradio{display:flex;align-items:center;gap:8px;font-size:14px}
+.gradio .rd{width:18px;height:18px;border-radius:50%;border:2px solid #757575;display:inline-flex;align-items:center;justify-content:center;flex:0 0 18px}
+.gradio.on .rd{border-color:#2196F3}.gradio.on .rd::after{content:"";width:10px;height:10px;border-radius:50%;background:#2196F3}
+.gradio.dis{color:#BDBDBD}.gradio.dis .rd{border-color:#BDBDBD}
+.gql{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+.gql th,.gql td{border:1px solid #E0E0E0;padding:6px 10px;text-align:left;vertical-align:middle;height:40px}
+.gql th{background:#FAFAFA;font-weight:500;color:#424242}
+.gql td.num,.gql th.num{text-align:right}
+.gql td.empty{color:#BDBDBD;font-style:italic}
+.gql .rowctl{display:flex;gap:4px;color:#9E9E9E;font-size:11px}
+.gql .rowctl span{width:18px;height:18px;border:1px solid #E0E0E0;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;background:#fff}
+.gpill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:12px;background:#F5F5F5;font-size:12px;color:#424242}
+.gpill b{color:#212121}
+.gsheet{background:#fff;border:1px solid #E0E0E0;box-shadow:0 1px 3px rgba(0,0,0,.12);padding:22px 26px;display:flex;flex-direction:column;gap:10px;font-size:11px;color:#424242}
+.gsheet .ln{height:8px;border-radius:2px;background:#EEEEEE}
+.gsheet .q{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed #EEEEEE}
+.gsheet .q b{width:34px;color:#212121}.gsheet .q .ln{flex:1}
+.gsheet .q .box{width:64px;height:22px;border:1px solid #9E9E9E;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;font-weight:500;color:#1A237E}
+.gsheet .q .ai{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.gsheet .q .ai.o{color:#2E7D32;border:2px solid #2E7D32}.gsheet .q .ai.x{color:#C62828}
+.gmc{text-align:center;font-weight:500;min-width:56px}
+.gmc.full{background:rgba(76,175,80,.14);color:#2E7D32}.gmc.zero{background:#FEEBEE;color:#C62828}.gmc.part{background:#FFF3E0;color:#C77700}.gmc.avg{background:#FAFAFA;color:#616161;font-weight:400}
+.gmc .of{color:#9E9E9E;font-weight:400;font-size:11px}
+.gstage{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #F5F5F5;font-size:14px}
+.gstage .st{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 22px}
+.gstage.done .st{background:rgba(76,175,80,.16);color:#2E7D32}.gstage.run .st{background:#E3F2FD;color:#0B79D0}
+.gstage.na{color:#9E9E9E}.gstage.na .st{background:#F5F5F5;color:#BDBDBD}.gstage.todo{color:#9E9E9E}.gstage.todo .st{border:2px solid #E0E0E0}
+.gstage .cnt{margin-left:auto;color:#757575;font-size:13px}
+.grow-err td{background:#FEEBEE}.grow-err .rerr{display:block;font-size:11px;color:#C62828;white-space:normal;margin-top:2px}
+.grow-hand td{background:#E3F2FD}
+.gsel{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);background:#212121;color:#fff;border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:16px;font-size:14px;box-shadow:0 6px 16px rgba(0,0,0,.3);z-index:20}
+.gsel a{color:#90CAF9}
+.gmk{display:grid;grid-template-columns:240px 1fr 380px;height:100%;min-height:0}
+.gmk .rail{border-right:1px solid #E0E0E0;background:#FAFAFA;display:flex;flex-direction:column;min-height:0}
+.gmk .stu{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:14px;cursor:pointer;border-left:3px solid transparent}
+.gmk .stu.on{background:#E3F2FD;border-left-color:#2196F3}
+.gmk .stu .dot{width:10px;height:10px;border-radius:50%;background:#BDBDBD;flex:0 0 10px}.gmk .stu.done .dot{background:#4CAF50}
+.gmk .viewer{background:#ECEFF1;display:flex;flex-direction:column;min-height:0}
+.gmk .panel{border-left:1px solid #E0E0E0;display:flex;flex-direction:column;min-height:0}
+.qrow{padding:10px 16px;border-bottom:1px solid #F0F0F0;display:flex;flex-direction:column;gap:6px}
+.qrow.hand{background:#E3F2FD}
+.qrow .qh{display:flex;justify-content:space-between;font-size:13px}.qrow .qh b{font-weight:500}.qrow .qh span{color:#757575}
+.qrow .qc{display:flex;align-items:center;gap:8px}
+.sbox{width:56px;height:32px;border:1px solid #BDBDBD;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;background:#fff}
+.sbox.full{border-color:#4CAF50;color:#2E7D32}.sbox.zero{border-color:#E57373;color:#C62828}.sbox.part{border-color:#FFB74D;color:#C77700}
+.mkb{width:32px;height:32px;border-radius:4px;border:1px solid #E0E0E0;background:#fff;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#757575;font-family:inherit}
+.mkb.o.on{background:rgba(76,175,80,.16);border-color:#4CAF50;color:#2E7D32}.mkb.t.on{background:#FFF3E0;border-color:#FFB74D;color:#C77700}.mkb.x.on{background:#FEEBEE;border-color:#E57373;color:#C62828}
 """
 
 THELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
@@ -2146,7 +2200,7 @@ TJA = dict(
     t_topics="トピック", t_add_chapter="チャプターを追加", t_add_topic="トピックを追加", t_add_lo="LOを追加",
     t_ch6="第6回　データの整理と代表値", t_ch7="第7回　データの分析と仮説検定", t_ch8="第8回　回帰分析",
     t_tp71="7-1　相関分析", t_tp72="7-2　仮説検定",
-    t_los=[("第7回 講義動画", "link", False), ("第7回 講義資料", "lo", False), ("第7回 確認クイズ", "lo", True)],
+    t_los=[("第7回 講義動画", "link", False), ("第7回 講義資料", "lo", False), ("第7回 確認クイズ", "paper", False)],
     t_new_lo="第7回 演習レポート", t_snack="LOを作成しました。", t_pub_snack="LOを公開しました。開始日から生徒の一覧に表示されます。",
     # Add Learning Objective dialog
     t_dlg_title="学習目標（LO）を追加", t_dlg_general="基本情報", t_dlg_settings="設定", t_dlg_select="LOタイプを選択",
@@ -2220,8 +2274,8 @@ TJA = dict(
     t_ext_cols=["学習項目", "コースの公開期間", "この生徒の終了日"], t_ext_plus="＋7日", t_ext_saved="{name} の締切を延長しました", t_ext_chip="締切延長あり",
     t_av_fb_help="AIフィードバックのLOは、開始日に生徒の「やること」に表示され、終了日（締切）まで提出・差し替えができます。締切のあとに先生が確認します。再提出締切は、再提出を許可したLOにだけあります。",
     t_av_rows=[("第6回　データの整理と代表値", [("6-1　度数分布とヒストグラム", [("第6回 講義動画", "link", "2026/10/30, 09:00", "", None), ("第6回 講義資料", "lo", "2026/10/30, 09:00", "", None)]),
-                                                ("6-2　代表値と散布度", [("第6回 確認クイズ", "lo", "2026/10/30, 09:00", "", None), ("第6回 演習レポート", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
-               ("第7回　データの分析と仮説検定", [("7-1　相関分析", [("第7回 講義動画", "link", "2026/11/06, 09:00", "", None), ("第7回 講義資料", "lo", "2026/11/06, 09:00", "", None), ("第7回 確認クイズ", "lo", "2026/11/06, 09:00", "", None),
+                                                ("6-2　代表値と散布度", [("第6回 確認クイズ", "paper", "2026/10/30, 09:00", "", None), ("第6回 演習レポート", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
+               ("第7回　データの分析と仮説検定", [("7-1　相関分析", [("第7回 講義動画", "link", "2026/11/06, 09:00", "", None), ("第7回 講義資料", "lo", "2026/11/06, 09:00", "", None), ("第7回 確認クイズ", "paper", "2026/11/06, 09:00", "", None),
                                                                    ("第7回 演習レポート", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59"), ("第7回 類題演習（相関分析）", "prac", "", "", None)]),
                                                 ("7-2　仮説検定", [("第7週 週次リフレクション", "fb", "2026/11/08, 09:00", "2026/11/15, 23:59", "off")])]),
                ("第8回　回帰分析", [("8-1　単回帰分析", [("第8回 講義資料", "lo", "2026/11/20, 09:00", "", None), ("第8回 演習レポート", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off"), ("第9回 演習レポート（追加）", "fb", "", "", "off")])])],
@@ -2394,7 +2448,7 @@ TEN = dict(
     t_topics="Topic(s)", t_add_chapter="Add chapter", t_add_topic="Add topic", t_add_lo="Add LO",
     t_ch6="Session 6 · Organising data and averages", t_ch7="Session 7 · Data analysis and hypothesis testing", t_ch8="Session 8 · Regression analysis",
     t_tp71="7-1 · Correlation analysis", t_tp72="7-2 · Hypothesis testing",
-    t_los=[("Session 7 lecture video", "link", False), ("Session 7 lecture slides", "lo", False), ("Session 7 check-up quiz", "lo", True)],
+    t_los=[("Session 7 lecture video", "link", False), ("Session 7 lecture slides", "lo", False), ("Session 7 check-up quiz", "paper", False)],
     t_new_lo="Session 7 exercise report", t_snack="You have created a new LO successfully.", t_pub_snack="LO published. Students see it in their list from the start date.",
     t_dlg_title="Add Learning Objective", t_dlg_general="General Info", t_dlg_settings="Settings", t_dlg_select="Select LO Type",
     t_types=["Random Activity", "Learning Objective", "Flash Card", "Recording Assignment", "Practice Submission", "External Content"],
@@ -2459,8 +2513,8 @@ TEN = dict(
     t_ext_cols=["Learning Objective", "Course window", "This student's end date"], t_ext_plus="+7 days", t_ext_saved="Due date extended for {name}", t_ext_chip="Due date extended",
     t_av_fb_help="An AI Feedback LO appears in the student's To-do on its start date; students can submit and replace their work until the end date (the due date), and the teacher reviews after it. Resubmission Due exists only for LOs that allow resubmission.",
     t_av_rows=[("Session 6 · Organising data and averages", [("6-1 · Frequency tables and histograms", [("Session 6 lecture video", "link", "2026/10/30, 09:00", "", None), ("Session 6 lecture slides", "lo", "2026/10/30, 09:00", "", None)]),
-                                                                ("6-2 · Averages and dispersion", [("Session 6 check-up quiz", "lo", "2026/10/30, 09:00", "", None), ("Session 6 exercise report", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
-               ("Session 7 · Data analysis and hypothesis testing", [("7-1 · Correlation analysis", [("Session 7 lecture video", "link", "2026/11/06, 09:00", "", None), ("Session 7 lecture slides", "lo", "2026/11/06, 09:00", "", None), ("Session 7 check-up quiz", "lo", "2026/11/06, 09:00", "", None),
+                                                                ("6-2 · Averages and dispersion", [("Session 6 check-up quiz", "paper", "2026/10/30, 09:00", "", None), ("Session 6 exercise report", "fb", "2026/10/30, 09:00", "2026/11/06, 23:59", "2026/11/13, 23:59")])]),
+               ("Session 7 · Data analysis and hypothesis testing", [("7-1 · Correlation analysis", [("Session 7 lecture video", "link", "2026/11/06, 09:00", "", None), ("Session 7 lecture slides", "lo", "2026/11/06, 09:00", "", None), ("Session 7 check-up quiz", "paper", "2026/11/06, 09:00", "", None),
                                                                                                     ("Session 7 exercise report", "fb", "2026/11/06, 09:00", "2026/11/13, 23:59", "2026/11/20, 23:59"), ("Session 7 similar-questions practice (correlation)", "prac", "", "", None)]),
                                                                     ("7-2 · Hypothesis testing", [("Week 7 weekly reflection", "fb", "2026/11/08, 09:00", "2026/11/15, 23:59", "off")])]),
                ("Session 8 · Regression analysis", [("8-1 · Simple regression", [("Session 8 lecture slides", "lo", "2026/11/20, 09:00", "", None), ("Session 8 exercise report", "fb", "2026/11/20, 09:00", "2026/11/27, 23:59", "off"), ("Session 9 exercise report (added)", "fb", "", "", "off")])])],
@@ -2706,19 +2760,21 @@ def tools(*names):
     return "".join(f'<span class="ticon sm{" dis" if n.endswith("!") else ""}">{mi(n.rstrip("!"), 18)}</span>' for n in names)
 
 def lm_row(S, L, name, kind, ai=False, pub="published", created=False, href=None, src=False):
-    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview", "prac": "spark"}[kind]
+    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview", "prac": "spark", "paper": "edit"}[kind]
     nm = f'<a class="nm" href="{href}">{name}</a>' if href else f'<span class="nm">{name}</span>'
     spark = f'<span class="ticon sm primary" title="AI Tutor">{mi("spark", 16)}</span>' if ai else ""
     # AI Practice (24 Sep): the source PDF LO carries a small 演習の元 chip; the practice LO its type chip
     spark += f'<span class="tchip type" style="height:20px;font-size:11px">{S["p_src_chip"]}</span>' if src else ""
     spark += f'<span class="tchip type" style="height:20px;font-size:11px">{S["p_type_short"]}</span>' if kind == "prac" else ""
+    # AI Grading (30 Sep): the paper LO — purple disc with the pencil, its own type chip
+    spark += f'<span class="tchip ppr" style="height:20px;font-size:11px">{S["g_type_short"]}</span>' if kind == "paper" else ""
     chip = f'<span class="tchip {pub}">{S["t_pub"] if pub == "published" else S["t_unpub"]}</span>'
-    return (f'<li class="lm{" just-created" if created else ""}"><span class="lm-type">{mi(icon, 16)}</span>{nm}{spark}{chip}'
+    return (f'<li class="lm{" just-created" if created else ""}"><span class="lm-type{" ppr" if kind == "paper" else ""}">{mi(icon, 16)}</span>{nm}{spark}{chip}'
             f'<span class="spc"></span><span class="ticon sm">{mi("more", 18)}</span></li>')
 
 def book_tree(S, L, created=False, add_href=None):
     """BookDetail: chapter accordions → topic accordions → learning-material rows."""
-    rows = "".join(lm_row(S, L, n, k, ai, src=(n == S["p_src_lo"]), href=(tfn("P-Source", L) if n == S["p_src_lo"] else None)) for n, k, ai in S["t_los"])
+    rows = "".join(lm_row(S, L, n, k, ai, src=(n == S["p_src_lo"]), href=(tfn("G-Detail", L) if k == "paper" else (tfn("P-Source", L) if n == S["p_src_lo"] else None))) for n, k, ai in S["t_los"])
     rows += lm_row(S, L, S["p_lo"], "prac", False, href=tfn("P-Detail", L))
     if created:
         rows += lm_row(S, L, S["t_new_lo"], "fb", False, "unpublished", created=True, href=tfn("T-Material", L))
@@ -2806,6 +2862,7 @@ def lo_dialog(S, L, edit=False):
         {types}
         <div class="it sel"><span class="lm-type" style="width:22px;height:22px">{mi("rateReview", 14)}</span><b>{S["t_type_fb"]}</b><span class="tchip new">{S["t_new"]}</span></div>
         <a class="it" href="{tfn("P-Dialog", L)}"><span class="lm-type" style="width:22px;height:22px">{mi("spark", 14)}</span><b>{S["p_type"]}</b><span class="tchip new">{S["t_new"]}</span></a>
+        <a class="it" href="{tfn("G-Dialog", L)}"><span class="lm-type ppr" style="width:22px;height:22px">{mi("edit", 14)}</span><b>{S["g_type"]}</b><span class="tchip new">{S["t_new"]}</span></a>
       </div></sc-if>'''
     if not edit:
       select = f'''<div style="position:relative">
@@ -3072,9 +3129,9 @@ def t_queue(S, L):
   {tcrumbs(S, "T-Queue", [(S["t_course"], "#"), (S["t_toreview"], None)])}
   <div class="tphead">
     <h1>{S["t_toreview"]}</h1>
-    <div class="acts"><span class="ticon">{mi("more", 24)}</span></div>
+    <div class="acts"><a class="ticon" href="{tfn("G-Import", L)}" title="{S["g_menu_import"]}" style="color:inherit">{mi("more", 24)}</a></div>
   </div>
-  <div class="tabs">{"".join(f'<span class="tab{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(S["t_sg_tabs"]))}</div>
+  <div class="tabs"><span class="tab on">{S["t_sg_tabs"][0]}</span><a class="tab" href="{tfn("G-LOs", L)}">{S["t_sg_tabs"][1]}</a></div>
   <div style="display:flex;flex-direction:column;gap:16px">
     {sg_filterbar(S, applied=[f'{S["t_lo_type"]}: {S["t_type_fb"]}'], hl_filter=True)}
     {sg_segments(S, counts)}
@@ -3901,7 +3958,7 @@ def av_table(S, L, edit=False):
     production table merges them; each LO has its type icon; Start / End show as text, or as inputs in
     edit mode. One column is added for AI Feedback: 再提出締切 Resubmission Due — the resubmission date
     had nowhere else to go once dates left the LO (proposal, not yet decided by the PM)."""
-    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview", "prac": "spark"}
+    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview", "prac": "spark", "paper": "edit"}
     def cell(v, kind="date"):
         if edit and kind == "date":
             return f'<input class="tinput" style="width:150px;height:36px;padding:0 8px;font-size:13px" value="{v}" placeholder="{S["t_av_ph"]}">'
@@ -3925,7 +3982,7 @@ def av_table(S, L, edit=False):
                 fb = kind == "fb"
                 fb_chip = f'<span class="tchip type" style="margin-left:4px">{S["t_type_fb"]}</span>' if fb else (f'<span class="tchip type" style="margin-left:4px">{S["p_type_short"]}</span>' if kind == "prac" else "")
                 bold = ' style="font-weight:500"' if fb else ""
-                lo_cell = (f'<span class="name-cell"><span class="lm-type" style="width:22px;height:22px;flex:0 0 22px">{mi(icon[kind], 14)}</span>'
+                lo_cell = (f'<span class="name-cell"><span class="lm-type{" ppr" if kind == "paper" else ""}" style="width:22px;height:22px;flex:0 0 22px">{mi(icon[kind], 14)}</span>'
                            f'<span{bold}>{name}</span>{fb_chip}</span>')
                 if not start and not end and kind != "prac":   # an LO added to the book after the dates were set: no window yet
                     # (a practice LO shows no dates at all — PM, 27 Sep: unconfirmed whether the type has a start/due concept)
@@ -4661,6 +4718,635 @@ PBUILDERS = {"P-Dialog": p_dialog, "P-Source": p_source, "P-Detail": p_detail,
 TO_MOBILE.update({"P-Sets": "M-PSets", "P-Crop": "M-PCrop", "P-Setup": "M-PSetup", "P-Wait": "M-PWait", "P-Practice": "M-PPractice", "P-Print": "M-PSets"})
 TO_PC.update({"M-PSets": "P-Sets", "M-PCrop": "P-Crop", "M-PSetup": "P-Setup", "M-PWait": "P-Wait", "M-PPractice": "P-Practice"})
 
+
+# =====================================================================================
+# AI GRADING — the Paper Submission LO (紙提出物 · AI採点), fitted into the Kindai course.
+# Source: the AI Grading prototype (claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn — US-1 dialog, US-3 upload,
+# US-4 flat question list, US-6 bulk import, US-7 overview matrix, US-8 marking review), redrawn on this
+# canvas's production components. The Session 7 check-up quiz becomes the paper LO: a 10-point quiz sat
+# on paper in class, scanned on the copier, bulk-imported, AI-marked, reviewed and returned — the
+# 9/10 the dashboards already show for it.
+# =====================================================================================
+G_JA = dict(
+    g_type="紙提出物（AI採点）", g_type_short="紙提出物", g_lo="第7回 確認クイズ", g_lo6="第6回 確認クイズ", g_ext="KU-STAT-Q07", g_ext6="KU-STAT-Q06",
+    g_titles={"dialog": "学習目標を追加 — 紙提出物", "detail": "紙提出物 — 問題リスト", "los": "提出物の採点 — 学習目標", "imp": "紙提出物の一括取り込み",
+              "proc": "一括取り込み — 処理と結果", "ov": "概要 — クラスの結果", "mark": "添削 — 生徒ごとの確認"},
+    # dialog (US-1)
+    g_dlg_name="第7回 確認クイズ", g_f_paper="レポート回", g_v_paper="1", g_mg="添削指導", g_mg_on="あり", g_mg_off="なし",
+    g_mg_note="この種類では「あり」で固定です",
+    g_apv="添削の承認フローを適用する", g_apv_help="返却の前に、管理者が採点を承認するステップが入ります。",
+    g_allow="生徒による提出を許可する", g_allow_off="なし：先生が生徒の代わりに提出します（複合機でまとめてスキャン）。生徒は返却後に結果を見られます。",
+    g_allow_on="あり：生徒は学習者アプリでこの学習項目を開始・提出できます。返却後に結果を見られます。",
+    g_pass="合格点", g_v_pass="6", g_cap="上限点", g_v_cap="10", g_pw="パスワード", g_pw_ph="任意",
+    g_dlg_desc="第7回の講義内容（相関係数・散布図・有意性）の確認クイズ。授業内に紙で実施します。",
+    # LO detail (US-3, US-4)
+    g_up_h="教材のアップロード", g_up_hint="問題（問題用紙）と解答（正答）のPDFをここにアップロードし、「読み取りを開始」を押すと、AIが問題番号を抽出し、読み取れた範囲で正答と配点を入力します。",
+    g_drop="ファイルをドラッグ＆ドロップ または ファイルを選択", g_drop_sub="問題・解答のPDF ・ 1ファイル 1GB まで ・ 複数可",
+    g_files=[("第7回確認クイズ_問題.pdf", "問題", "2ページ ・ 1.2 MB"), ("第7回確認クイズ_解答.pdf", "解答", "1ページ ・ 0.4 MB")],
+    g_detected="AI判別", g_process="読み取りを開始", g_processed="読み取り済み",
+    g_ql_h="問題リスト", g_ql_draft="下書き — 未保存です。AIが読み取れた内容のみ入力しています。空欄は読み取れなかった項目です。",
+    g_ql_saved="保存しました。この問題リストに対して採点します。", g_cols=["問題番号", "正答", "配点", "タグ"],
+    g_total_q="設問数：", g_total_s="学習項目の合計点数：", g_pts="点", g_save="✓ 保存", g_saved_chip="保存済み",
+    g_preview="プレビュー中", g_preview_hint="アップロードしたファイルを、右の抽出結果と見比べてください。", g_page="ページ", g_add_q="＋ 問題を追加",
+    g_tag_ph="— タグを選択", g_tags={"k": "知", "t": "考"}, g_tags_full={"k": "知識・技能", "t": "思考・判断"},
+    g_questions=[("1", "r = 0.82", 1, "k"), ("2(1)", "正の相関", 1, "k"), ("2(2)", "右下がり ・ r < 0", 1, "k"), ("3", "散布図に外れ値が1点", 2, "t"),
+                 ("4(1)", "", 1, "k"), ("4(2)", "", 1, "k"), ("5", "相関≠因果 ・ 第三の変数", 2, "t"), ("6", "n = 30, p < 0.05", 1, "t")],
+    # Learning Objectives tab (US-6 entry)
+    g_seg=["添削待ち", "添削済"], g_lo_cols=["#", "学習目標", "コース ・ 教材", "進捗"], g_marked="{m}/{n}件 添削済", g_returned="{m}/{n}件 返却済",
+    g_menu_import="紙提出物の一括取り込み", g_open_ov="概要を開く",
+    # bulk import (US-6)
+    g_imp_h="紙提出物の一括取り込み", g_layout="用紙レイアウト", g_layout_sub="スキャンしたPDFの用紙レイアウト",
+    g_single="A4片面", g_single_tag="フェーズ1 ・ MVP", g_single_help="1ページ＝1人の提出。ヘッダーに学習項目外部IDとユーザーネーム（QR）。全問が片面に収まるときはこれで十分です。",
+    g_double="A4両面", g_double_tag="複数枚対応", g_double_help="1枚両面＝1人の提出。IDは表面のみ。裏面は直後にスキャンされた表面に対応づけます。裏面が欠けると問題数の不一致として表示されます。",
+    g_imp_drop_sub="複合機（MFP）でスキャンしたPDF ・ 1ファイル 100ページ・100MB 以上に対応 ・ ストレージへ直接アップロード",
+    g_imp_files=[("scan_20261110_quiz07_A.pdf", "18ページ ・ 42 MB"), ("scan_20261110_quiz07_B.pdf", "12ページ ・ 28 MB")],
+    g_uploaded="アップロード完了", g_pages="アップロードしたページ数", g_expected="想定される提出物数",
+    g_read_hint="各ページの QR / ヘッダーから読み取って照合します：", g_read_items=["test_id — 学習項目外部ID（学習目標との照合）", "student_id — ユーザーネーム（生徒との照合）", "page X / Y — 使用しません"],
+    g_start="処理を開始", g_cancel_up="アップロードを中止",
+    # processing + result
+    g_bg="バックグラウンドで処理中", g_job="ジョブ", g_job_id="JOB-7A2F", g_job_note="この画面を離れても処理は続きます", g_leave="この画面を離れて通知を受け取る",
+    g_stages=[("ページを画像化", "30ページを読み込み", "done"), ("傾き補正・自動回転", "3件の傾きを補正", "done"), ("白紙・裏写りの除外", "0件の白紙を除外", "done"),
+              ("QR / OCR 読み取り", "30 / 30", "done"), ("裏面を表面と対応づける", "A4片面では使用しません", "na"), ("問題数を照合", "29 / 30", "run"),
+              ("生徒・学習項目と照合", "", "todo"), ("Learnosity問題を作成中", "", "todo")],
+    g_demo="DEMO：完了", g_res_h="提出物", g_res_cols=["#", "", "ユーザーネーム", "生徒名", "学習項目外部ID", "学習目標", "開始ページ"],
+    g_res_rows=[("KU-2041", "山田 花子", "KU-STAT-Q07", "1/30", ""), ("KU-2042", "佐藤 太郎", "KU-STAT-Q07", "2/30", ""), ("KU-2043", "鈴木 一郎", "KU-STAT-Q07", "3/30", ""),
+                ("", "", "KU-STAT-Q07", "4/30", "user"), ("KU-2045", "高橋 健", "KU-STAT-Q07", "5/30", "q"), ("KU-2046", "伊藤 さくら", "KU-STAT-Q07", "6/30", ""),
+                ("KU-2047", "渡辺 大輝", "KU-STAT-Q07", "7/30", ""), ("KU-2048", "中村 結衣", "KU-STAT-Q07", "8/30", "")],
+    g_res_more="…ほか 22件", g_err_user="ユーザーネームが読み取れませんでした — 必須です", g_err_q="8問中 7問の問題番号を読み取りました — この学習目標の8問と一致しません。再スキャンしてください。",
+    g_not_detected="読み取れませんでした", g_only_err="要対応の行のみ表示", g_res_hint="2件が要対応（ユーザーネーム 1 ・ 問題数 1） ・ 28件は今すぐ取り込めます。",
+    g_res_ok="✓ すべての行が入力済みです", g_aimark="AIで採点する（{n}件）", g_cell_hint="クリックすると値が消え、入力し直せます ・ リストから選択、または Enter で確定",
+    g_q_detail="{f} / {n}問 ・ {p}ページ", g_pageview="ページを開く",
+    # overview (US-7)
+    g_ov_h="概要", g_basic="基本情報", g_b_book="教材", g_b_course="コース", g_b_ext="学習項目外部ID", g_b_marker="添削担当", g_marker_v="安本 先生",
+    g_apv_short="承認フロー", g_role_t="講師", g_role_a="管理者", g_role_hint="この画面を見ている人。承認フローがある場合、2つの役割でできることが変わります。",
+    g_bulk_return="生徒に一括返却", g_bulk_finish="添削を一括で終了する", g_bulk_approve="添削を一括で承認する", g_start_mark="添削を開始",
+    g_return_dis="承認フローがあるため、講師は返却できません。管理者が承認して返却します。",
+    g_ov_cols=["生徒", "ステータス", "合計点数"], g_max="配点", g_avg="コース平均", g_subs_n="{n}件の提出",
+    g_status={"nc": "未確認", "c": "確認済", "rt": "返却済み"},
+    g_students=[("山田 花子", "KU-2041", "c", [1, 1, 1, 2, 1, 1, 1, 1]), ("佐藤 太郎", "KU-2042", "c", [1, 1, 0, 2, 1, 0, 2, 1]), ("鈴木 一郎", "KU-2043", "nc", [1, 0, 1, 1, 1, 1, 0, 1]),
+                ("田中 美咲", "KU-2044", "nc", [1, 1, 1, 2, 1, 1, 2, 1]), ("高橋 健", "KU-2045", "nc", [0, 1, 1, 0, 1, 0, 1, 0]), ("伊藤 さくら", "KU-2046", "nc", [1, 1, 1, 1, 0, 1, 2, 0]),
+                ("渡辺 大輝", "KU-2047", "nc", [1, 0, 0, 2, 1, 1, 1, 1])],
+    # marking (US-8)
+    g_mk_pos="生徒 {i} / {n}", g_summary="一覧", g_confirmed="確認済", g_not_confirmed="未確認", g_pdf_lbl="スキャン", g_zoom="80%",
+    g_score="得点", g_total="合計", g_close="閉じる", g_confirm_next="確定して次へ", g_edited="{n}問を修正",
+    g_mark_o="正解 — 配点を満点で付与", g_mark_t="部分正解 — 得点を入力（講師のみ）", g_mark_x="不正解 — 0点", g_back_hint="左の一覧から生徒を選ぶと、いつでも戻れます",
+    g_sheet_title="第7回 確認クイズ", g_sheet_sub="地域環境統計学 ・ 2026/11/10 ・ 氏名：", g_ai_line="AIの一次採点 ・ ○ / ✕ のみ ・ △ は先生だけが付けられます",
+)
+G_EN = dict(
+    g_type="Paper Submission (AI Grading)", g_type_short="Paper Submission", g_lo="Session 7 check-up quiz", g_lo6="Session 6 check-up quiz", g_ext="KU-STAT-Q07", g_ext6="KU-STAT-Q06",
+    g_titles={"dialog": "Add LO — Paper Submission", "detail": "Paper Submission — question list", "los": "Submission Grading — Learning Objectives", "imp": "Bulk Import Submissions",
+              "proc": "Bulk import — processing and result", "ov": "Overview — class results", "mark": "Marking — student review"},
+    g_dlg_name="Session 7 check-up quiz", g_f_paper="Paper Count", g_v_paper="1", g_mg="Manual Grading", g_mg_on="On", g_mg_off="Off",
+    g_mg_note="Fixed to On for this type",
+    g_apv="Apply marking-approval workflow", g_apv_help="An Admin approves the marks before they are returned to the students.",
+    g_allow="Allow student to submit", g_allow_off="Off: the teacher submits on the student's behalf (bulk scan on the copier). Students see the result once it is returned.",
+    g_allow_on="On: students can start and submit this LO in the learner app. They see the result once it is returned.",
+    g_pass="Score to Pass", g_v_pass="6", g_cap="Capped Score", g_v_cap="10", g_pw="Password", g_pw_ph="Optional",
+    g_dlg_desc="Check-up quiz on Session 7 (correlation coefficient, scatter plots, significance). Sat on paper in class.",
+    g_up_h="Upload materials", g_up_hint="Upload the Question sheet and the Answer key as PDFs, then press Process: AI extracts the question index and fills in Correct Answer and Max Score where it can read them.",
+    g_drop="Drag & drop your files or browse", g_drop_sub="Question and Answer PDFs · up to 1 GB per file · multiple files allowed",
+    g_files=[("quiz07_questions.pdf", "Question", "2 pages · 1.2 MB"), ("quiz07_answer_key.pdf", "Answer", "1 page · 0.4 MB")],
+    g_detected="AI detected", g_process="Process", g_processed="Processed",
+    g_ql_h="Question List", g_ql_draft="Draft — not saved yet. AI wrote what it could read; empty cells mean nothing was detected.",
+    g_ql_saved="Saved. Marking runs against this question list.", g_cols=["Question index", "Correct Answer", "Max Score", "Tag"],
+    g_total_q="Total questions:", g_total_s="LO Total Score:", g_pts="pts", g_save="✓ SAVE", g_saved_chip="Saved",
+    g_preview="Previewing", g_preview_hint="Compare the uploaded file against the extracted list on the right.", g_page="Page", g_add_q="+ add question",
+    g_tag_ph="— select tag", g_tags={"k": "K", "t": "T"}, g_tags_full={"k": "Knowledge & skills", "t": "Thinking & judgement"},
+    g_questions=[("1", "r = 0.82", 1, "k"), ("2(1)", "Positive correlation", 1, "k"), ("2(2)", "Downward · r < 0", 1, "k"), ("3", "One outlier on the scatter plot", 2, "t"),
+                 ("4(1)", "", 1, "k"), ("4(2)", "", 1, "k"), ("5", "Correlation ≠ causation · third variable", 2, "t"), ("6", "n = 30, p < 0.05", 1, "t")],
+    g_seg=["To Mark", "Marked"], g_lo_cols=["#", "Learning Objective", "Course · Book", "Progress"], g_marked="{m}/{n} marked", g_returned="{m}/{n} returned",
+    g_menu_import="Bulk Import Submissions", g_open_ov="Open overview",
+    g_imp_h="Bulk Import Submissions", g_layout="Layout", g_layout_sub="Sheet layout on the scanned PDF",
+    g_single="Single-sided A4", g_single_tag="Phase 1 · MVP", g_single_help="1 PDF page = 1 student submission. The header carries the External LO ID and the username (QR). Enough when every question fits on one side.",
+    g_double="Double-sided A4", g_double_tag="Multi-page policy", g_double_help="One sheet, both sides = 1 submission. The ID is on the front only; the back is matched to the front scanned just before it. A missing back surfaces as a question-count error.",
+    g_imp_drop_sub="PDFs scanned on the copier (MFP) · designed for 100+ pages and 100+ MB per file · uploaded direct to storage",
+    g_imp_files=[("scan_20261110_quiz07_A.pdf", "18 pages · 42 MB"), ("scan_20261110_quiz07_B.pdf", "12 pages · 28 MB")],
+    g_uploaded="Uploaded", g_pages="Pages uploaded", g_expected="Submissions expected",
+    g_read_hint="Read from the QR / header of every page to match it up:", g_read_items=["test_id — the External LO ID, matching the page to a learning objective", "student_id — the username, matching the page to a student", "page X / Y — not used"],
+    g_start="Start processing", g_cancel_up="Cancel upload",
+    g_bg="Processing in the background", g_job="Job", g_job_id="JOB-7A2F", g_job_note="you can leave this page, processing continues", g_leave="Leave and notify me",
+    g_stages=[("Rasterise pages", "30 pages in", "done"), ("Deskew & auto-rotate", "3 deskewed", "done"), ("Blank & bleed-through filter", "0 blank skipped", "done"),
+              ("QR / OCR extraction", "30 / 30", "done"), ("Pair each back with its front", "not used for single-sided A4", "na"), ("Verify the question count", "29 / 30", "run"),
+              ("Match to students and LOs", "", "todo"), ("Creating Learnosity questions", "", "todo")],
+    g_demo="DEMO: done", g_res_h="Submissions", g_res_cols=["#", "", "Username", "Student Name", "External LO ID", "Learning Objective", "Start Page"],
+    g_res_rows=[("KU-2041", "Hanako Yamada", "KU-STAT-Q07", "1/30", ""), ("KU-2042", "Taro Sato", "KU-STAT-Q07", "2/30", ""), ("KU-2043", "Ichiro Suzuki", "KU-STAT-Q07", "3/30", ""),
+                ("", "", "KU-STAT-Q07", "4/30", "user"), ("KU-2045", "Ken Takahashi", "KU-STAT-Q07", "5/30", "q"), ("KU-2046", "Sakura Ito", "KU-STAT-Q07", "6/30", ""),
+                ("KU-2047", "Daiki Watanabe", "KU-STAT-Q07", "7/30", ""), ("KU-2048", "Yui Nakamura", "KU-STAT-Q07", "8/30", "")],
+    g_res_more="… 22 more rows", g_err_user="Username not detected — required", g_err_q="7 of 8 question indexes found — does not match the 8 preset on this LO. Re-scan this sheet.",
+    g_not_detected="not detected", g_only_err="Show only rows that need attention", g_res_hint="2 rows need attention (1 Username · 1 question count) · 28 rows can be imported now.",
+    g_res_ok="✓ every row is complete", g_aimark="AI-mark {n} submissions", g_cell_hint="Click to clear this value and type a new one · pick from the list or press Enter",
+    g_q_detail="{f} of {n} questions · {p} page", g_pageview="Open page",
+    g_ov_h="Overview", g_basic="Basic info", g_b_book="Book", g_b_course="Course", g_b_ext="External LO ID", g_b_marker="Marker", g_marker_v="Prof. Yasumoto",
+    g_apv_short="Approval workflow", g_role_t="Teacher", g_role_a="Admin", g_role_hint="Who is looking at this screen. With an approval workflow the two roles can do different things.",
+    g_bulk_return="Bulk Return To Students", g_bulk_finish="Bulk Finish Marking", g_bulk_approve="Bulk Approve Marking", g_start_mark="Start Marking",
+    g_return_dis="An approval workflow is on, so the teacher cannot return. An Admin approves and returns.",
+    g_ov_cols=["Student", "Status", "Total Score"], g_max="Max", g_avg="Course average", g_subs_n="{n} submissions",
+    g_status={"nc": "Not Confirmed", "c": "Confirmed", "rt": "Returned"},
+    g_students=[("Hanako Yamada", "KU-2041", "c", [1, 1, 1, 2, 1, 1, 1, 1]), ("Taro Sato", "KU-2042", "c", [1, 1, 0, 2, 1, 0, 2, 1]), ("Ichiro Suzuki", "KU-2043", "nc", [1, 0, 1, 1, 1, 1, 0, 1]),
+                ("Misaki Tanaka", "KU-2044", "nc", [1, 1, 1, 2, 1, 1, 2, 1]), ("Ken Takahashi", "KU-2045", "nc", [0, 1, 1, 0, 1, 0, 1, 0]), ("Sakura Ito", "KU-2046", "nc", [1, 1, 1, 1, 0, 1, 2, 0]),
+                ("Daiki Watanabe", "KU-2047", "nc", [1, 0, 0, 2, 1, 1, 1, 1])],
+    g_mk_pos="Student {i} of {n}", g_summary="Summary", g_confirmed="Confirmed", g_not_confirmed="Not Confirmed", g_pdf_lbl="Scan", g_zoom="80%",
+    g_score="Score", g_total="Total", g_close="Close", g_confirm_next="Confirm and Next", g_edited="{n} changed",
+    g_mark_o="Correct — award full marks", g_mark_t="Partially correct — enter a score (teacher only)", g_mark_x="Incorrect — zero", g_back_hint="Pick any student from the list on the left to go back",
+    g_sheet_title="Session 7 check-up quiz", g_sheet_sub="Regional & Environmental Statistics · 10 Nov 2026 · Name:", g_ai_line="AI first pass · ○ / ✕ only · △ is for the teacher",
+)
+JA.update(G_JA); EN.update(G_EN)
+
+G_CSS = """
+/* AI Grading — the paper LO */
+.lm-type.ppr{background:#EDE7F6;color:#5E35B1}
+.tchip.ppr{background:#EDE7F6;border-color:transparent;color:#5E35B1}
+.gradio{display:flex;align-items:center;gap:8px;font-size:14px}
+.gradio .rd{width:18px;height:18px;border-radius:50%;border:2px solid #757575;display:inline-flex;align-items:center;justify-content:center;flex:0 0 18px}
+.gradio.on .rd{border-color:#2196F3}.gradio.on .rd::after{content:"";width:10px;height:10px;border-radius:50%;background:#2196F3}
+.gradio.dis{color:#BDBDBD}.gradio.dis .rd{border-color:#BDBDBD}
+.gql{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+.gql th,.gql td{border:1px solid #E0E0E0;padding:6px 10px;text-align:left;vertical-align:middle;height:40px}
+.gql th{background:#FAFAFA;font-weight:500;color:#424242}
+.gql td.num,.gql th.num{text-align:right}
+.gql td.empty{color:#BDBDBD;font-style:italic}
+.gql .rowctl{display:flex;gap:4px;color:#9E9E9E;font-size:11px}
+.gql .rowctl span{width:18px;height:18px;border:1px solid #E0E0E0;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;background:#fff}
+.gpill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:12px;background:#F5F5F5;font-size:12px;color:#424242}
+.gpill b{color:#212121}
+.gsheet{background:#fff;border:1px solid #E0E0E0;box-shadow:0 1px 3px rgba(0,0,0,.12);padding:22px 26px;display:flex;flex-direction:column;gap:10px;font-size:11px;color:#424242}
+.gsheet .ln{height:8px;border-radius:2px;background:#EEEEEE}
+.gsheet .q{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed #EEEEEE}
+.gsheet .q b{width:34px;color:#212121}.gsheet .q .ln{flex:1}
+.gsheet .q .box{width:64px;height:22px;border:1px solid #9E9E9E;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;font-family:'Noto Sans JP',sans-serif;font-weight:500;color:#1A237E}
+.gsheet .q .ai{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.gsheet .q .ai.o{color:#2E7D32;border:2px solid #2E7D32}.gsheet .q .ai.x{color:#C62828}
+.gmc{text-align:center;font-weight:500;min-width:56px}
+.gmc.full{background:rgba(76,175,80,.14);color:#2E7D32}.gmc.zero{background:#FEEBEE;color:#C62828}.gmc.part{background:#FFF3E0;color:#C77700}.gmc.avg{background:#FAFAFA;color:#616161;font-weight:400}
+.gmc .of{color:#9E9E9E;font-weight:400;font-size:11px}
+.gstage{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #F5F5F5;font-size:14px}
+.gstage .st{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 22px}
+.gstage.done .st{background:rgba(76,175,80,.16);color:#2E7D32}.gstage.run .st{background:#E3F2FD;color:#0B79D0}
+.gstage.na{color:#9E9E9E}.gstage.na .st{background:#F5F5F5;color:#BDBDBD}.gstage.todo{color:#9E9E9E}.gstage.todo .st{border:2px solid #E0E0E0}
+.gstage .cnt{margin-left:auto;color:#757575;font-size:13px}
+.grow-err td{background:#FEEBEE}.grow-err .rerr{display:block;font-size:11px;color:#C62828;white-space:normal;margin-top:2px}
+.grow-hand td{background:#E3F2FD}
+.gsel{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);background:#212121;color:#fff;border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:16px;font-size:14px;box-shadow:0 6px 16px rgba(0,0,0,.3);z-index:20}
+.gsel a{color:#90CAF9}
+.gmk{display:grid;grid-template-columns:240px 1fr 380px;height:100%;min-height:0}
+.gmk .rail{border-right:1px solid #E0E0E0;background:#FAFAFA;display:flex;flex-direction:column;min-height:0}
+.gmk .stu{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:14px;cursor:pointer;border-left:3px solid transparent}
+.gmk .stu.on{background:#E3F2FD;border-left-color:#2196F3}
+.gmk .stu .dot{width:10px;height:10px;border-radius:50%;background:#BDBDBD;flex:0 0 10px}.gmk .stu.done .dot{background:#4CAF50}
+.gmk .viewer{background:#ECEFF1;display:flex;flex-direction:column;min-height:0}
+.gmk .panel{border-left:1px solid #E0E0E0;display:flex;flex-direction:column;min-height:0}
+.qrow{padding:10px 16px;border-bottom:1px solid #F0F0F0;display:flex;flex-direction:column;gap:6px}
+.qrow.hand{background:#E3F2FD}
+.qrow .qh{display:flex;justify-content:space-between;font-size:13px}.qrow .qh b{font-weight:500}.qrow .qh span{color:#757575}
+.qrow .qc{display:flex;align-items:center;gap:8px}
+.sbox{width:56px;height:32px;border:1px solid #BDBDBD;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;background:#fff}
+.sbox.full{border-color:#4CAF50;color:#2E7D32}.sbox.zero{border-color:#E57373;color:#C62828}.sbox.part{border-color:#FFB74D;color:#C77700}
+.mkb{width:32px;height:32px;border-radius:4px;border:1px solid #E0E0E0;background:#fff;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#757575;font-family:inherit}
+.mkb.o.on{background:rgba(76,175,80,.16);border-color:#4CAF50;color:#2E7D32}.mkb.t.on{background:#FFF3E0;border-color:#FFB74D;color:#C77700}.mkb.x.on{background:#FEEBEE;border-color:#E57373;color:#C62828}
+"""
+
+def g_icon(size=16):
+    return mi("edit", size)
+
+def g_head(S, L, screen, crumbs, title, chip=True, acts="", sub=""):
+    return f'''{tcrumbs(S, screen, crumbs)}
+  <div class="tphead">
+    <h1>{title}{(f'<span class="tchip ppr">{g_icon(14)}{S["g_type_short"]}</span><span class="tchip published">{S["t_pub"]}</span>') if chip else ""}</h1>
+    <div class="acts">{acts}</div>
+  </div>{sub}'''
+
+# ---------- G1 · Add LO dialog, Paper Submission type (US-1) ----------
+G_DLG_LOGIC = """state = { apv: false, allow: false };
+  renderVals() { return { ap: this.state.apv ? "on" : "", apOn: this.state.apv, toggleAp: () => this.setState({ apv: !this.state.apv }),
+    al: this.state.allow ? "on" : "", alOn: this.state.allow, alOff: !this.state.allow, toggleAl: () => this.setState({ allow: !this.state.allow }) }; }"""
+
+def g_dialog(S, L):
+    """DialogCreateLearningMaterial with the Paper Submission type chosen (AI Grading US-1): General Info as for
+    any LO plus Paper Count; Settings — Manual Grading fixed to On (Off shown, disabled), the marking-approval
+    switch, the NEW Allow student to submit switch (default Off, help text per state), Score to Pass, Capped
+    Score, Password. Rules, URL tracking, Practice Mode, Enforce answer checking are not shown for this type."""
+    ro = ' style="background:#FAFAFA"'
+    dialog = f'''<div class="tscrim">
+  <div class="dlg">
+    <div class="dlg-head"><h2>{S["t_dlg_title"]}</h2><a class="ticon" href="{tfn("T-Book", L)}" aria-label="{S["t_cancel"]}">{mi("close", 24)}</a></div>
+    <div class="dlg-body">
+      <div class="lm-section">
+        <h3 class="sec-head">{S["t_dlg_general"]}</h3>
+        <div class="lm-grid">
+          <label class="field"><span class="lbl">{S["t_dlg_select"]} <span class="req">*</span></span><span class="in" style="gap:8px"><span class="lm-type ppr" style="width:22px;height:22px">{g_icon(14)}</span>{S["g_type"]}<span class="tchip new">{S["t_new"]}</span><span class="gr">{mi("expandMore", 22)}</span></span></label>
+          {field(S["t_f_name"], S["g_dlg_name"], required=True)}
+          <div class="span2">{field(S["t_f_desc"], S["g_dlg_desc"], area=True)}</div>
+          {field(S["t_f_ext"], S["g_ext"])}
+          {field(S["g_f_paper"], S["g_v_paper"])}
+        </div>
+      </div>
+      <div class="lm-section">
+        <h3 class="sec-head">{S["t_dlg_settings"]}</h3>
+        <div class="settings-list">
+          <div class="setting">
+            <span class="setting-label" style="font-weight:500">{S["g_mg"]}</span>
+            <div style="display:flex;gap:24px;align-items:center;margin-top:6px">
+              <span class="gradio dis"><span class="rd"></span>{S["g_mg_off"]}</span>
+              <span class="gradio on"><span class="rd"></span>{S["g_mg_on"]}</span>
+              <span class="helper" style="margin:0">{mi("lock", 14, "#9E9E9E")} {S["g_mg_note"]}</span>
+            </div>
+          </div>
+          <div class="setting">
+            <button class="switch {{{{ap}}}}" onClick="{{{{toggleAp}}}}"><span class="track"></span><span>{S["g_apv"]}</span></button>
+            <sc-if value="{{{{apOn}}}}" hint-placeholder-val="{{{{false}}}}"><span class="helper">{S["g_apv_help"]}</span></sc-if>
+          </div>
+          <div class="setting">
+            <button class="switch {{{{al}}}}" onClick="{{{{toggleAl}}}}"><span class="track"></span><span>{S["g_allow"]}</span><span class="tchip new" style="margin-left:8px">{S["t_new"]}</span></button>
+            <sc-if value="{{{{alOff}}}}" hint-placeholder-val="{{{{true}}}}"><span class="helper">{S["g_allow_off"]}</span></sc-if>
+            <sc-if value="{{{{alOn}}}}" hint-placeholder-val="{{{{false}}}}"><span class="helper">{S["g_allow_on"]}</span></sc-if>
+          </div>
+          <div class="setting">
+            <div class="lm-grid">
+              {field(S["g_pass"], S["g_v_pass"])}
+              {field(S["g_cap"], S["g_v_cap"])}
+              {field(S["g_pw"], S["g_pw_ph"], placeholder=True, icon="lock")}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dlg-foot"><a class="tbtn" href="{tfn("T-Book", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("G-Detail", L)}">{S["t_confirm"]}</a></div>
+  </div>
+</div>'''
+    return tpage(S, "G-Dialog", S["g_titles"]["dialog"], book_page(S, L, "G-Dialog", extra=dialog), logic=G_DLG_LOGIC)
+
+# ---------- G2 · LO detail — upload and the flat question list (US-3, US-4) ----------
+G_DET_LOGIC = """state = { saved: false, page: 1 };
+  renderVals() { return { draft: !this.state.saved, saved: this.state.saved, save: () => this.setState({ saved: true }),
+    pg: String(this.state.page), prev: () => this.setState({ page: 1 }), next: () => this.setState({ page: 2 }) }; }"""
+
+def g_sheet(S, scores=None, with_ai=False):
+    """A drawn quiz sheet: title line, name box, one line per question with the answer box; with_ai adds the
+    AI's ○ / ✕ per question (the marking screen)."""
+    rows = ""
+    for k, (idx, ans, mx, tag) in enumerate(S["g_questions"]):
+        ai = ""
+        if with_ai and scores is not None:
+            v = scores[k]
+            ai = f'<span class="ai {"o" if v >= mx else "x"}">{"○" if v >= mx else "✕"}</span>'
+        rows += f'<div class="q"><b>{idx}</b><span class="ln"></span><span class="ln" style="flex:.6"></span><span class="box">{ans[:6] if ans else ""}</span>{ai}</div>'
+    return f'''<div class="gsheet">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:14px;color:#212121">{S["g_sheet_title"]}</b><span style="font-family:monospace;font-size:10px;color:#757575">▣ {S["g_ext"]} ・ KU-2041</span></div>
+    <div style="font-size:10px;color:#757575">{S["g_sheet_sub"]} <span style="display:inline-block;width:120px;border-bottom:1px solid #9E9E9E"></span></div>
+    <div class="ln" style="width:70%"></div>
+    {rows}
+  </div>'''
+
+def g_detail(S, L):
+    """The paper LO under Submission Grading › Learning Objectives (US-3 upload, US-4 flat question list): one upload
+    area for Question and Answer PDFs — after Process each file shows what AI classified it as — then the
+    question list: the uploaded sheet on the left (paginated, zoom), the flat grid on the right (Question index ·
+    Correct Answer · Max Score · Tag; cells AI could not read stay empty), totals and per-tag pills, a draft
+    banner until SAVE. Click SAVE."""
+    files = "".join(f'<span class="tfile"><span class="fi" style="background:#FEEBEE;color:#C62828">{mi("description", 18)}</span>{n}<span class="cell-muted" style="font-size:12px">{sz}</span>'
+                    f'<span class="tchip type" style="height:20px;font-size:11px" title="{S["g_detected"]}">{mi("spark", 12)}{kind}</span><span class="ticon sm">{mi("close", 16)}</span></span>'
+                    for n, kind, sz in S["g_files"])
+    qs = S["g_questions"]
+    rows = ""
+    for i, (idx, ans, mx, tag) in enumerate(qs):
+        anscell = f'<td>{ans}</td>' if ans else f'<td class="empty">{S["g_not_detected"]}</td>'
+        tagcell = f'<span class="tchip filled" style="height:22px;font-size:12px">{S["g_tags"][tag]} {S["g_tags_full"][tag]}</span>' if tag else f'<span class="cell-muted">{S["g_tag_ph"]}</span>'
+        rows += (f'<tr><td style="width:36px;text-align:center"><span class="cbx-td"></span></td><td style="width:78px"><span class="rowctl"><span>+</span><span>▲</span><span>▼</span></span></td>'
+                 f'<td><b style="font-weight:500">{idx}</b></td>{anscell}<td class="num">{mx}</td><td>{tagcell}</td></tr>')
+    total_q = len(qs); total_s = sum(m for _, _, m, _ in qs)
+    pills = "".join(f'<span class="gpill">{S["g_tags"][t]}<b>{sum(m for _, _, m, tg in qs if tg == t)}{S["g_pts"]}</b></span>' for t in ("k", "t"))
+    body = tnav(S, "course") + f'''<div class="tmain">
+<div class="tscroll" style="padding-bottom:20px">
+  {g_head(S, L, "G-Detail", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_sg_tabs"][1], tfn("G-LOs", L)), (S["g_lo"], None)], S["g_lo"],
+           acts=f'<a class="tbtn" href="{tfn("G-Overview", L)}">{mi("dashboard", 18)}{S["g_open_ov"]}</a><a class="tbtn outlined" href="{tfn("G-Dialog", L)}">{mi("edit", 18)}{S["t_edit"]}</a><span class="ticon">{mi("more", 24)}</span>',
+           sub=f'<p class="helper" style="margin:-16px 0 20px;font-size:13px">{S["t_course_name"]} {S["sep"]} {S["t_book"]} {S["sep"]} {S["t_ch7"]} {S["sep"]} <span class="num">{S["g_ext"]}</span></p>')}
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tpaper">
+      <div class="ph"><h3>{S["g_up_h"]}</h3><span class="helper" style="margin:0;display:flex;gap:6px;align-items:center">{mi("info", 16, "#757575")}{S["g_up_hint"]}</span></div>
+      <div class="pb" style="display:flex;flex-direction:column;gap:14px">
+        <div class="tdrop">{mi("cloudUp", 22)}{S["g_drop"]}<span style="color:#757575;font-weight:400">{S["sep"]} {S["g_drop_sub"]}</span></div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">{files}<span class="tchip published" style="margin-left:6px">{mi("checkCircle", 14)}{S["g_processed"]}</span>
+          <span class="spc" style="flex:1"></span><span class="tbtn contained dis">{mi("spark", 18)}{S["g_process"]}</span></div>
+      </div>
+    </div>
+    <div class="tpaper">
+      <div class="ph"><h3>{S["g_ql_h"]}</h3>
+        <span style="display:flex;align-items:center;gap:10px"><span class="gpill">{S["g_total_q"]}<b>{total_q}</b></span><span class="gpill">{S["g_total_s"]}<b>{total_s} {S["g_pts"]}</b></span><span style="width:1px;height:20px;background:#E0E0E0"></span>{pills}</span></div>
+      <div class="pb" style="display:grid;grid-template-columns:38% 1fr;gap:20px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <span class="tchip filled" style="max-width:220px;overflow:hidden;text-overflow:ellipsis">{S["g_preview"]}: {S["g_files"][0][0]}</span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:#616161"><button class="ticon sm" onClick="{{{{prev}}}}">{mi("back", 16)}</button><span class="num">{{{{pg}}}} / 2</span><button class="ticon sm" onClick="{{{{next}}}}" style="transform:rotate(180deg)">{mi("back", 16)}</button><span style="margin-left:8px">− {S["g_zoom"]} +</span></span>
+          </div>
+          {g_sheet(S)}
+          <span class="helper" style="margin:0">{S["g_preview_hint"]}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+          <sc-if value="{{{{draft}}}}" hint-placeholder-val="{{{{true}}}}"><div class="alert warn">{mi("edit", 20, "#C77700")}<span>{S["g_ql_draft"]}</span></div></sc-if>
+          <sc-if value="{{{{saved}}}}" hint-placeholder-val="{{{{false}}}}"><div class="alert info" style="background:rgba(76,175,80,.12);color:#2E7D32">{mi("checkCircle", 20, "#2E7D32")}<span>{S["g_ql_saved"]}</span></div></sc-if>
+          <table class="gql"><thead><tr><th style="width:36px"><span class="cbx-th"></span></th><th style="width:78px"></th><th style="width:110px">{S["g_cols"][0]}</th><th>{S["g_cols"][1]}</th><th class="num" style="width:80px">{S["g_cols"][2]}</th><th style="width:170px">{S["g_cols"][3]}</th></tr></thead>
+            <tbody>{rows}</tbody></table>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span class="helper" style="margin:0">{S["g_add_q"]}</span>
+            <span><sc-if value="{{{{draft}}}}" hint-placeholder-val="{{{{true}}}}"><button class="tbtn contained" onClick="{{{{save}}}}">{S["g_save"]}</button></sc-if>
+            <sc-if value="{{{{saved}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip published">{mi("check", 14)}{S["g_saved_chip"]}</span></sc-if></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "G-Detail", S["g_titles"]["detail"], body, logic=G_DET_LOGIC)
+
+# ---------- G3 · Submission Grading, the Learning Objectives tab ----------
+G_LOS_LOGIC = """state = { seg: "tomark", menu: false };
+  renderVals() { return { tm: this.state.seg === "tomark", mk: this.state.seg === "marked", tmCls: this.state.seg === "tomark" ? "on" : "", mkCls: this.state.seg === "marked" ? "on" : "",
+    setTm: () => this.setState({ seg: "tomark" }), setMk: () => this.setState({ seg: "marked" }), menuOpen: this.state.menu, toggleMenu: () => this.setState({ menu: !this.state.menu }) }; }"""
+
+def g_lo_row(S, L, i, name, kind, ext, prog_txt, pct, href):
+    icon = (f'<span class="lm-type ppr" style="width:22px;height:22px">{g_icon(14)}</span>' if kind == "paper"
+            else f'<span class="lm-type" style="width:22px;height:22px">{mi("rateReview", 14)}</span>')
+    chip = f'<span class="tchip ppr" style="height:20px;font-size:11px">{S["g_type_short"]}</span>' if kind == "paper" else f'<span class="tchip type" style="height:20px;font-size:11px">{S["t_type_fb"]}</span>'
+    return (f'<tr><td class="idx num">{i}</td><td><span style="display:flex;align-items:center;gap:8px">{icon}<a class="cell-link" href="{href}">{name}</a></span>'
+            f'<span class="cell-muted" style="display:block;font-size:12px;margin:4px 0 0 30px"><span class="num">{ext}</span> ・ {chip}</span></td>'
+            f'<td>{S["t_course_name"]}<span class="cell-muted" style="display:block;font-size:12px">{S["t_book"]}</span></td>'
+            f'<td style="min-width:260px">{prog_txt}<span class="progress" style="display:flex;margin-top:6px;min-width:0"><span class="bar" style="flex:1"><i class="good" style="width:{pct}%"></i></span></span></td></tr>')
+
+def g_los(S, L):
+    """Submission Grading (ToReviewListPage) on its Learning Objectives tab: one row per LO with submissions —
+    the paper LOs with their marked / total progress, the AI Feedback LO with its returned / total — under
+    the To Mark / Marked segments; the LO name opens the LO's detail (paper) or overview (feedback). The ⋯
+    menu carries Bulk Import Submissions (US-6). Click the segments; click ⋯."""
+    tomark = (g_lo_row(S, L, 1, S["g_lo"], "paper", S["g_ext"], S["g_marked"].format(m=12, n=30), 40, tfn("G-Detail", L)) +
+              g_lo_row(S, L, 2, S["lo_fb7_name"], "fb", "KU-STAT-R07", S["g_returned"].format(m=3, n=12), 25, tfn("T-Detail", L)))
+    marked = (g_lo_row(S, L, 1, S["g_lo6"], "paper", S["g_ext6"], S["g_marked"].format(m=30, n=30), 100, tfn("G-Overview", L)) +
+              g_lo_row(S, L, 2, S["lo_fb6_name"], "fb", "KU-STAT-R06", S["g_returned"].format(m=28, n=30), 93, tfn("T-Detail", L)))
+    menu = f'''<span style="position:relative"><button class="ticon" onClick="{{{{toggleMenu}}}}">{mi("more", 24)}</button>
+      <sc-if value="{{{{menuOpen}}}}" hint-placeholder-val="{{{{true}}}}"><div class="tpop" style="right:0;top:44px;min-width:280px"><a class="it" href="{tfn("G-Import", L)}">{mi("cloudUp", 20, "#757575")}{S["g_menu_import"]}</a></div></sc-if></span>'''
+    head = "".join(f'<th{" class=idx" if i == 0 else ""}>{c}</th>' for i, c in enumerate(S["g_lo_cols"]))
+    body = tnav(S, "course") + f'''<div class="tmain">
+<div class="tscroll">
+  {tcrumbs(S, "G-LOs", [(S["t_course"], "#"), (S["t_toreview"], None)])}
+  <div class="tphead">
+    <h1>{S["t_toreview"]}</h1>
+    <div class="acts">{menu}</div>
+  </div>
+  <div class="tabs"><a class="tab" href="{tfn("T-Queue", L)}">{S["t_sg_tabs"][0]}</a><span class="tab on">{S["t_sg_tabs"][1]}</span></div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tfilterbar"><div class="left"><span class="tsearch">{mi("search", 20, "#757575")}<span>{S["t_sg_search"]}</span></span><span class="tbtn neutral">{mi("shuffle", 18)}{S["t_filters"]}</span></div></div>
+    <div class="tseg" role="group"><button class="{{{{tmCls}}}}" onClick="{{{{setTm}}}}" style="font-family:inherit;border:0;background:none;cursor:pointer">{S["g_seg"][0]} (2)</button><button class="{{{{mkCls}}}}" onClick="{{{{setMk}}}}" style="font-family:inherit;border:0;background:none;cursor:pointer">{S["g_seg"][1]} (2)</button></div>
+    <div class="tpaper" style="overflow:hidden">
+      <div class="table-scroll"><table class="m"><thead><tr>{head}</tr></thead>
+        <tbody><sc-if value="{{{{tm}}}}" hint-placeholder-val="{{{{true}}}}">{tomark}</sc-if><sc-if value="{{{{mk}}}}" hint-placeholder-val="{{{{false}}}}">{marked}</sc-if></tbody></table></div>
+      <div class="pagination"><span>{S["t_rows_pp"]} 50</span><span>1-2 / 2</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div>
+    </div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "G-LOs", S["g_titles"]["los"], body, logic=G_LOS_LOGIC)
+
+# ---------- G4 · Bulk Import Submissions — layout, upload, confirm (US-6) ----------
+G_IMP_LOGIC = """state = { layout: "single", info: false };
+  renderVals() { return { single: this.state.layout === "single", dbl: this.state.layout === "double", sCls: this.state.layout === "single" ? "on" : "", dCls: this.state.layout === "double" ? "on" : "",
+    setS: () => this.setState({ layout: "single" }), setD: () => this.setState({ layout: "double" }), infoOpen: this.state.info, toggleInfo: () => this.setState({ info: !this.state.info }) }; }"""
+
+def g_import(S, L):
+    """Bulk Import Submissions (US-6), a full screen reached from the ⋯ menu of Submission Grading: the sheet
+    layout (Single-sided A4 — Phase 1 MVP — or Double-sided A4, with the info panel behind ⓘ), the dropzone for
+    the copier's PDFs uploaded straight to storage, the two files listed as uploaded, the page and submission
+    counts and what is read from each page, then Start processing. Click the layouts; click ⓘ."""
+    files = "".join(f'<div class="titem"><span class="fi" style="width:32px;height:32px;border-radius:4px;background:#FEEBEE;color:#C62828;display:inline-flex;align-items:center;justify-content:center">{mi("description", 18)}</span><span style="flex:1">{n}<span class="cell-muted" style="display:block;font-size:12px">{sz}</span></span>'
+                    f'<span class="progress" style="width:200px;min-width:0"><span class="pct">100%</span><span class="bar"><i class="good" style="width:100%"></i></span></span><span class="tchip published" style="height:22px">{mi("checkCircle", 12)}{S["g_uploaded"]}</span><span class="ticon sm">{mi("close", 16)}</span></div>'
+                    for n, sz in S["g_imp_files"])
+    reads = "".join(f'<li style="margin:2px 0"><span class="num">{r}</span></li>' for r in S["g_read_items"])
+    def layout_card(hole_cls, hole_set, name, tag, help_, is_single):
+        sketch = ('<div style="width:44px;height:60px;border:1px solid #9E9E9E;border-radius:2px;background:#fff;position:relative"><span style="position:absolute;left:4px;top:4px;width:14px;height:14px;background:#212121;opacity:.8"></span><span style="position:absolute;left:6px;right:6px;top:26px;height:3px;background:#E0E0E0"></span><span style="position:absolute;left:6px;right:6px;top:34px;height:3px;background:#E0E0E0"></span><span style="position:absolute;left:6px;right:6px;top:42px;height:3px;background:#E0E0E0"></span></div>'
+                  if is_single else
+                  '<div style="display:flex;gap:4px"><div style="width:44px;height:60px;border:1px solid #9E9E9E;border-radius:2px;background:#fff;position:relative"><span style="position:absolute;left:4px;top:4px;width:14px;height:14px;background:#212121;opacity:.8"></span><span style="position:absolute;left:6px;right:6px;top:30px;height:3px;background:#E0E0E0"></span></div><div style="width:44px;height:60px;border:1px dashed #9E9E9E;border-radius:2px;background:#fff;position:relative"><span style="position:absolute;left:6px;right:6px;top:10px;height:3px;background:#E0E0E0"></span><span style="position:absolute;left:6px;right:6px;top:18px;height:3px;background:#E0E0E0"></span></div></div>')
+        return (f'<button class="check {{{{{hole_cls}}}}}" onClick="{{{{{hole_set}}}}}" style="align-items:flex-start;padding:14px 16px;border:1px solid #E0E0E0;border-radius:8px;gap:14px;text-align:left;flex:1">'
+                f'<span class="cbx" style="border-radius:50%;margin-top:2px">{mi("check", 14, "#fff")}</span>{sketch}<span style="flex:1"><b style="font-weight:500;display:block">{name} <span class="tchip filled" style="height:20px;font-size:11px;margin-left:6px">{tag}</span></b>'
+                f'<sc-if value="{{{{infoOpen}}}}" hint-placeholder-val="{{{{true}}}}"><span class="helper" style="margin:6px 0 0;white-space:normal;display:block">{help_}</span></sc-if></span></button>')
+    body = tnav(S, "course") + f'''<div class="tmain">
+<div class="tscroll" style="padding-bottom:20px">
+  {tcrumbs(S, "G-Import", [(S["t_course"], "#"), (S["t_toreview"], tfn("G-LOs", L)), (S["g_imp_h"], None)])}
+  <div class="tphead"><h1>{S["g_imp_h"]}</h1><div class="acts"></div></div>
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:1040px">
+    <div class="tpaper">
+      <div class="ph"><h3>{S["g_layout"]}</h3><span style="display:flex;align-items:center;gap:8px"><span class="helper" style="margin:0">{S["g_layout_sub"]}</span><button class="ticon sm" onClick="{{{{toggleInfo}}}}" title="{S["g_layout_sub"]}">{mi("info", 18, "#757575")}</button></span></div>
+      <div class="pb" style="display:flex;gap:16px">
+        {layout_card("sCls", "setS", S["g_single"], S["g_single_tag"], S["g_single_help"], True)}
+        {layout_card("dCls", "setD", S["g_double"], S["g_double_tag"], S["g_double_help"], False)}
+      </div>
+    </div>
+    <div class="tpaper">
+      <div class="ph"><h3>{S["g_uploaded"]}</h3></div>
+      <div class="pb" style="display:flex;flex-direction:column;gap:12px">
+        <div class="tdrop">{mi("cloudUp", 22)}{S["g_drop"]}<span style="color:#757575;font-weight:400">{S["sep"]} {S["g_imp_drop_sub"]}</span></div>
+        <div>{files}</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:16px;align-items:start;padding-top:8px;border-top:1px solid #EEEEEE">
+          <div><span class="cell-muted" style="font-size:12px">{S["g_pages"]}</span><b style="display:block;font-size:24px;font-weight:500">30</b></div>
+          <div><span class="cell-muted" style="font-size:12px">{S["g_expected"]}</span><b style="display:block;font-size:24px;font-weight:500">30</b><span class="helper" style="margin:0"><sc-if value="{{{{single}}}}" hint-placeholder-val="{{{{true}}}}">{S["g_single"]}: 1 {S["g_page"]} = 1</sc-if><sc-if value="{{{{dbl}}}}" hint-placeholder-val="{{{{false}}}}">{S["g_double"]}: 2 {S["g_page"]} = 1</sc-if></span></div>
+          <div><span class="cell-muted" style="font-size:12px">{S["g_read_hint"]}</span><ul style="margin:4px 0 0;padding-left:18px;font-size:13px">{reads}</ul></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:8px"><a class="tbtn" href="{tfn("G-LOs", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("G-Process", L)}">{mi("spark", 18)}{S["g_start"]}</a></div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "G-Import", S["g_titles"]["imp"], body, logic=G_IMP_LOGIC)
+
+# ---------- G5 · processing → result table (US-6) ----------
+G_PROC_LOGIC = """state = { stage: "proc", errOnly: false };
+  renderVals() { return { proc: this.state.stage === "proc", res: this.state.stage === "result", finish: () => this.setState({ stage: "result" }),
+    eo: this.state.errOnly ? "on" : "", hideOk: this.state.errOnly ? "hide" : "", toggleEo: () => this.setState({ errOnly: !this.state.errOnly }) }; }"""
+
+def g_process(S, L):
+    """Bulk import, after Start processing (US-6): the job runs in the background — pipeline stages with their
+    counts, a stage the layout does not need greyed, Leave and notify me — then the editable result table:
+    one row per detected submission (Username · Student · External LO ID · LO · Start Page, the page a link
+    into the PDF), red rows with the reason (a username not detected; a question count that does not match
+    the LO's), a filter to rows that need attention, the floating delete bar for the selected rows, and AI-mark
+    for the clean ones. DEMO finishes the job; click the filter."""
+    stages = "".join(f'<div class="gstage {st}"><span class="st">{mi("check", 14) if st == "done" else (mi("autorenew", 14) if st == "run" else "")}</span><span>{name}</span><span class="cnt">{cnt}</span></div>'
+                     for name, cnt, st in S["g_stages"])
+    rows = ""
+    for i, (u, name, ext, pg, err) in enumerate(S["g_res_rows"]):
+        bad = bool(err)
+        cls = ' class="grow-err"' if bad else ' class="{{hideOk}}"'
+        ucell = (f'<span class="cell-muted">—</span><span class="rerr">{S["g_err_user"]}</span>' if err == "user" else f'<span class="num">{u}</span>')
+        ncell = (f'<span class="cell-muted">—</span>' if err == "user" else name)
+        pcell = (f'<a class="cell-link num" href="#" title="{S["g_pageview"]}">{pg}</a>' + (f'<span class="rerr">{S["g_err_q"]}</span>' if err == "q" else f'<span class="cell-muted" style="display:block;font-size:11px">{S["g_q_detail"].format(f=8, n=8, p=1)}</span>'))
+        rows += (f'<tr{cls}><td class="idx num">{i+1}</td><td class="cb"><span class="cbx-td{" on" if bad else ""}"></span></td><td title="{S["g_cell_hint"]}">{ucell}</td><td>{ncell}</td>'
+                 f'<td><span class="num">{ext}</span></td><td><span style="display:flex;align-items:center;gap:6px"><span class="lm-type ppr" style="width:20px;height:20px">{g_icon(12)}</span>{S["g_lo"]}</span></td><td>{pcell}</td></tr>')
+    rows += f'<tr class="{{{{hideOk}}}}"><td colspan="7" style="text-align:center;color:#9E9E9E;font-size:13px">{S["g_res_more"]}</td></tr>'
+    head = "".join(f'<th{" class=idx" if i == 0 else (" class=cb" if i == 1 else "")}>{c}</th>' for i, c in enumerate(S["g_res_cols"]))
+    body = tnav(S, "course") + f'''<div class="tmain">
+<div class="tscroll" style="padding-bottom:20px">
+  {tcrumbs(S, "G-Process", [(S["t_course"], "#"), (S["t_toreview"], tfn("G-LOs", L)), (S["g_imp_h"], tfn("G-Import", L))])}
+  <div class="tphead"><h1>{S["g_imp_h"]}</h1><div class="acts"><span class="tchip filled num">{S["g_job"]} {S["g_job_id"]}</span></div></div>
+  <sc-if value="{{{{proc}}}}" hint-placeholder-val="{{{{true}}}}">
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+    <div class="tpaper">
+      <div class="ph"><h3>{S["g_bg"]}</h3><span class="helper" style="margin:0">{S["g_job_note"]}</span></div>
+      <div class="pb">
+        <span class="progress" style="display:flex;margin-bottom:12px"><span class="pct">62%</span><span class="bar" style="flex:1"><i class="good" style="width:62%"></i></span></span>
+        {stages}
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><a class="tbtn" href="{tfn("G-LOs", L)}">{mi("bell", 18)}{S["g_leave"]}</a><button class="tbtn outlined" onClick="{{{{finish}}}}">{S["g_demo"]}</button></div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+  <sc-if value="{{{{res}}}}" hint-placeholder-val="{{{{false}}}}">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <span style="display:flex;align-items:center;gap:12px"><b style="font-size:16px;font-weight:500">{S["g_res_h"]} 30</b><span class="tchip published">{mi("check", 14)}{S["g_stages"][3][0]} 30 / 30</span></span>
+      <button class="check {{{{eo}}}}" onClick="{{{{toggleEo}}}}"><span class="cbx">{mi("check", 14, "#fff")}</span><span>{S["g_only_err"]}</span></button>
+    </div>
+    <div class="tpaper" style="overflow:hidden;position:relative">
+      <div class="table-scroll"><table class="m"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></div>
+      <div class="gsel"><span>2 {S["t_selected"] if "t_selected" in S else ""}</span><a href="#">{S["g_unselect"] if "g_unselect" in S else "✕"}</a><a href="#" style="color:#EF9A9A">{mi("del", 16)} {S["t_delete"] if "t_delete" in S else "Delete"}</a></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center"><span class="helper" style="margin:0">{S["g_res_hint"]}</span>
+      <span style="display:flex;gap:8px"><a class="tbtn" href="{tfn("G-LOs", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("G-Overview", L)}">{mi("spark", 18)}{S["g_aimark"].format(n=28)}</a></span></div>
+  </div>
+  </sc-if>
+</div>
+</div>'''
+    return tpage(S, "G-Process", S["g_titles"]["proc"], body, logic=G_PROC_LOGIC)
+
+# ---------- G6 · Overview — the class results matrix (US-7) ----------
+G_OV_LOGIC = """state = { apv: false, role: "t" };
+  renderVals() { return { ap: this.state.apv ? "on" : "", apOn: this.state.apv, apOff: !this.state.apv, toggleAp: () => this.setState({ apv: !this.state.apv }),
+    isT: this.state.role === "t", isA: this.state.role === "a", tCls: this.state.role === "t" ? "on" : "", aCls: this.state.role === "a" ? "on" : "",
+    setT: () => this.setState({ role: "t" }), setA: () => this.setState({ role: "a" }) }; }"""
+
+def g_mcell(v, mx):
+    cls = "full" if v >= mx else ("zero" if v <= 0 else "part")
+    return f'<td class="gmc {cls}">{v}<span class="of">/{mx}</span></td>'
+
+def g_overview(S, L):
+    """The paper LO's Overview under Submission Grading (US-7): Basic info (Book · Course · External LO ID ·
+    Marker), the approval-workflow switch and the Teacher / Admin view switch — approval off: both see Bulk
+    Return To Students; on: the teacher sees Bulk Finish Marking with Return disabled and its reason, the Admin
+    sees Bulk Approve Marking — then the class matrix: only students with a submission, Status, Total Score,
+    one column per question index (score / max, green full · red zero · amber partial) and the course average
+    row. Student name → the marking review. Click the switches."""
+    qs = S["g_questions"]; maxes = [m for _, _, m, _ in qs]; total_max = sum(maxes)
+    heads = "".join(f'<th style="text-align:center;padding:10px 8px"><b style="font-weight:500">{idx}</b><span class="cell-muted" style="display:block;font-size:11px">{S["g_max"]}: {m}</span></th>' for idx, _, m, _ in qs)
+    rows = ""
+    n = len(S["g_students"]); col_sum = [0] * len(qs)
+    for name, user, st, scores in S["g_students"]:
+        tot = sum(scores); pct = int(tot / total_max * 100)
+        for k, v in enumerate(scores): col_sum[k] += v
+        stchip = {"nc": f'<span class="tchip st-default">{S["g_status"]["nc"]}</span>', "c": f'<span class="tchip st-success">{S["g_status"]["c"]}</span>', "rt": f'<span class="tchip" style="border-color:#BDBDBD">{S["g_status"]["rt"]}</span>'}[st]
+        rows += (f'<tr><td class="cb"><span class="cbx-td"></span></td><td><a class="cell-link" href="{tfn("G-Mark", L)}">{name}</a><span class="cell-muted num" style="display:block;font-size:12px">{user}</span></td><td>{stchip}</td>'
+                 f'<td><b style="font-weight:500">{tot}</b><span class="cell-muted">/{total_max}</span> <span class="cell-muted" style="font-size:12px">{pct}%</span></td>' + "".join(g_mcell(v, maxes[k]) for k, v in enumerate(scores)) + '</tr>')
+    avg = [s / n for s in col_sum]; avg_t = sum(avg)
+    foot = (f'<tr><td class="cb"></td><td><b style="font-weight:500">{S["g_avg"]}</b><span class="cell-muted" style="display:block;font-size:12px">{S["g_subs_n"].format(n=n)}</span></td><td></td>'
+            f'<td><b style="font-weight:500">{avg_t:.1f}</b><span class="cell-muted">/{total_max}</span> <span class="cell-muted" style="font-size:12px">{int(avg_t / total_max * 100)}%</span></td>' + "".join(f'<td class="gmc avg">{a:.1f}</td>' for a in avg) + '</tr>')
+    kv = "".join(f'<dt>{k}</dt><dd>{v}</dd>' for k, v in ((S["g_b_book"], S["t_book"]), (S["g_b_course"], S["t_course_name"]), (S["g_b_ext"], f'<span class="num">{S["g_ext"]}</span>'), (S["g_b_marker"], f'{S["g_marker_v"]} <span class="cell-muted">+ 1</span>')))
+    actions = f'''<sc-if value="{{{{apOff}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tbtn contained">{S["g_bulk_return"]}</span></sc-if>
+        <sc-if value="{{{{apOn}}}}" hint-placeholder-val="{{{{false}}}}">
+          <sc-if value="{{{{isT}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tbtn contained">{S["g_bulk_finish"]}</span><span class="tbtn dis" title="{S["g_return_dis"]}">{S["g_bulk_return"]}</span></sc-if>
+          <sc-if value="{{{{isA}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tbtn contained">{S["g_bulk_approve"]}</span></sc-if>
+        </sc-if>'''
+    body = tnav(S, "course") + f'''<div class="tmain">
+<div class="tscroll" style="padding-bottom:20px">
+  {g_head(S, L, "G-Overview", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_sg_tabs"][1], tfn("G-LOs", L)), (S["g_lo"], None)], S["g_lo"],
+           acts=f'<a class="tbtn outlined" href="{tfn("G-Detail", L)}">{mi("description", 18)}{S["g_ql_h"]}</a><a class="tbtn contained" href="{tfn("G-Mark", L)}">{mi("edit", 18)}{S["g_start_mark"]}</a>')}
+  <div class="tabs"><span class="tab on">{S["g_ov_h"]}</span><a class="tab" href="{tfn("G-Detail", L)}">{S["g_ql_h"]}</a></div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tpaper"><div class="ph"><h3>{S["g_basic"]}</h3></div><div class="pb"><dl class="tkv" style="grid-template-columns:160px 1fr 160px 1fr;max-width:none">{kv}</dl></div></div>
+    <div class="tpaper" style="overflow:hidden">
+      <div class="ph" style="flex-wrap:wrap;gap:12px"><h3>{S["g_ov_h"]}</h3>
+        <span style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <button class="switch {{{{ap}}}}" onClick="{{{{toggleAp}}}}"><span class="track"></span><span>{S["g_apv_short"]}</span></button>
+          <span class="toggle-group" title="{S["g_role_hint"]}"><button class="{{{{tCls}}}}" onClick="{{{{setT}}}}">{S["g_role_t"]}</button><button class="{{{{aCls}}}}" onClick="{{{{setA}}}}">{S["g_role_a"]}</button></span>
+          {actions}
+        </span></div>
+      <div class="table-scroll"><table class="m tight"><thead><tr><th class="cb"><span class="cbx-th"></span></th><th>{S["g_ov_cols"][0]}</th><th>{S["g_ov_cols"][1]}</th><th>{S["g_ov_cols"][2]}</th>{heads}</tr></thead>
+        <tbody>{rows}{foot}</tbody></table></div>
+    </div>
+  </div>
+</div>
+</div>'''
+    return tpage(S, "G-Overview", S["g_titles"]["ov"], body, logic=G_OV_LOGIC)
+
+# ---------- G7 · Student marking review (US-8) ----------
+def g_mark_logic(S):
+    """State: the current student, every student's scores (AI first pass) and the teacher's edits; ○ / △ / ✕ set a
+    question's score (△ seeds half marks to the nearest 0.5); Confirm and Next confirms and moves to the next
+    Not Confirmed student."""
+    maxes = [m for _, _, m, _ in S["g_questions"]]
+    stu = [{"n": n, "u": u, "st": st, "ai": sc} for n, u, st, sc in S["g_students"]]
+    return f"""state = {{ cur: 2, maxes: {json.dumps(maxes)}, stu: {json.dumps(stu, ensure_ascii=False)}, edits: {{}} }};
+  scoresOf(i) {{ const e = this.state.edits[i] || {{}}; return this.state.maxes.map((m, k) => (k in e) ? e[k] : this.state.stu[i].ai[k]); }}
+  setQ(k, mode) {{ const i = this.state.cur, m = this.state.maxes[k]; const v = mode === "o" ? m : (mode === "x" ? 0 : Math.max(0.5, Math.round(m / 2 * 2) / 2)); const e = Object.assign({{}}, this.state.edits); e[i] = Object.assign({{}}, e[i] || {{}}); e[i][k] = v; this.setState({{ edits: e }}); }}
+  renderVals() {{
+    const i = this.state.cur, s = this.state.stu[i], sc = this.scoresOf(i), tot = sc.reduce((a, b) => a + b, 0), max = this.state.maxes.reduce((a, b) => a + b, 0);
+    const done = this.state.stu.filter(x => x.st !== "nc").length, edited = Object.keys(this.state.edits[i] || {{}}).filter(k => this.state.edits[i][k] !== s.ai[k]).length;
+    const v = {{ name: s.n, user: s.u, pos: String(i + 1), n: String(this.state.stu.length), total: String(tot), max: String(max), done: String(done), todo: String(this.state.stu.length - done),
+      edited: String(edited), hasEdit: edited > 0, status: s.st, isNc: s.st === "nc",
+      next: () => {{ const st = this.state.stu.map((x, j) => j === i ? Object.assign({{}}, x, {{ st: "c" }}) : x); let j = st.findIndex((x, k) => k > i && x.st === "nc"); if (j < 0) j = st.findIndex(x => x.st === "nc"); this.setState({{ stu: st, cur: j < 0 ? i : j }}); }} }};
+    this.state.stu.forEach((x, j) => {{ v["stu" + j] = (x.st === "nc" ? "" : "done") + (j === i ? " on" : ""); v["pick" + j] = () => this.setState({{ cur: j }}); }});
+    sc.forEach((val, k) => {{ const m = this.state.maxes[k]; v["s" + k] = String(val); v["c" + k] = val >= m ? "full" : (val <= 0 ? "zero" : "part");
+      v["o" + k] = val >= m ? "on" : ""; v["t" + k] = (val > 0 && val < m) ? "on" : ""; v["x" + k] = val <= 0 ? "on" : ""; v["h" + k] = (k in (this.state.edits[i] || {{}}) && this.state.edits[i][k] !== s.ai[k]) ? "hand" : "";
+      v["so" + k] = () => this.setQ(k, "o"); v["st" + k] = () => this.setQ(k, "t"); v["sx" + k] = () => this.setQ(k, "x"); }});
+    return v;
+  }}"""
+
+def g_mark(S, L):
+    """The marking review, a full-screen overlay over the Overview (US-8): left, the students with a status
+    dot and the Confirmed / Not Confirmed counts; middle, the scanned sheet with the AI's ○ / ✕ beside each
+    answer, page and zoom controls; right, one row per question — Max, the score box, ○ / △ / ✕ (AI marks only
+    ○ or ✕; △ is the teacher's partial credit, seeded at half marks), a blue tint on rows the teacher changed
+    and an edit count in the header; the total; Close · Confirm and Next. Click ○ / △ / ✕, then Confirm and Next."""
+    qs = S["g_questions"]
+    stus = "".join(f'<button class="stu {{{{stu{j}}}}}" onClick="{{{{pick{j}}}}}" style="border-top:0;border-right:0;border-bottom:0;background:none;font-family:inherit;text-align:left;width:100%"><span class="dot"></span><span style="flex:1">{n}</span><span class="cell-muted num" style="font-size:11px">{u}</span></button>'
+                   for j, (n, u, st, sc) in enumerate(S["g_students"]))
+    qrows = "".join(f'''<div class="qrow {{{{h{k}}}}}"><div class="qh"><b>{idx}</b><span>{S["g_max"]}: {mx}</span></div>
+        <div class="qc"><span class="cell-muted" style="font-size:12px;width:36px">{S["g_score"]}</span><span class="sbox {{{{c{k}}}}}">{{{{s{k}}}}}</span><span class="cell-muted">/ {mx}</span>
+          <span style="display:flex;gap:6px;margin-left:auto"><button class="mkb o {{{{o{k}}}}}" onClick="{{{{so{k}}}}}" title="{S["g_mark_o"]}">○</button><button class="mkb t {{{{t{k}}}}}" onClick="{{{{st{k}}}}}" title="{S["g_mark_t"]}">△</button><button class="mkb x {{{{x{k}}}}}" onClick="{{{{sx{k}}}}}" title="{S["g_mark_x"]}">✕</button></span></div></div>'''
+                    for k, (idx, ans, mx, tag) in enumerate(qs))
+    # the sheet shows the AI's first pass for the student on screen (drawn for the default student, 鈴木)
+    body = f'''<div class="tscrim" style="padding:0;align-items:stretch">
+  <div style="background:#fff;width:100%;display:flex;flex-direction:column;min-height:0">
+    <div class="dlg-head" style="padding:10px 20px"><div style="display:flex;align-items:center;gap:12px;min-width:0"><span class="lm-type ppr" style="width:28px;height:28px">{g_icon(16)}</span><h2 style="font-size:18px">{S["g_lo"]}</h2><span class="cell-muted">{S["g_mk_pos"].replace("{i}", "{{pos}}").replace("{n}", "{{n}}")}</span>
+        <sc-if value="{{{{hasEdit}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip type">{mi("edit", 12)}{S["g_edited"].replace("{n}", "{{edited}}")}</span></sc-if></div>
+      <a class="ticon" href="{tfn("G-Overview", L)}" aria-label="{S["g_close"]}">{mi("close", 24)}</a></div>
+    <div class="gmk" style="flex:1">
+      <div class="rail">
+        <div style="padding:14px 16px;border-bottom:1px solid #E0E0E0"><b style="font-weight:500">{S["g_summary"]} ({{{{n}}}})</b>
+          <div style="display:flex;gap:14px;margin-top:6px;font-size:13px"><span style="display:flex;align-items:center;gap:6px"><span class="dot" style="width:10px;height:10px;border-radius:50%;background:#4CAF50;display:inline-block"></span>{S["g_confirmed"]} <b>{{{{done}}}}</b></span><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:#BDBDBD;display:inline-block"></span>{S["g_not_confirmed"]} <b>{{{{todo}}}}</b></span></div></div>
+        <div style="overflow:auto;flex:1">{stus}</div>
+        <div style="padding:10px 16px;border-top:1px solid #E0E0E0"><span class="helper" style="margin:0">{S["g_back_hint"]}</span></div>
+      </div>
+      <div class="viewer">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#fff;border-bottom:1px solid #E0E0E0;font-size:13px">
+          <span style="display:flex;align-items:center;gap:8px"><b style="font-weight:500">{{{{name}}}}</b><span class="cell-muted num">{{{{user}}}}</span><span class="tchip filled num" style="height:22px;font-size:11px">{S["g_pdf_lbl"]}: scan_20261110_quiz07_A.pdf</span></span>
+          <span style="display:flex;align-items:center;gap:8px;color:#616161">{mi("back", 16)}<span class="num">1 / 1</span><span style="transform:rotate(180deg);display:inline-flex">{mi("back", 16)}</span><span style="margin-left:10px">− {S["g_zoom"]} +</span>{mi("fileDownload", 16)}</span>
+        </div>
+        <div style="flex:1;overflow:auto;padding:24px;display:flex;justify-content:center;align-items:flex-start"><div style="width:560px">{g_sheet(S, S["g_students"][2][3], with_ai=True)}</div></div>
+        <div style="padding:6px 16px;background:#fff;border-top:1px solid #E0E0E0"><span class="helper" style="margin:0">{mi("spark", 14, "#757575")} {S["g_ai_line"]}</span></div>
+      </div>
+      <div class="panel">
+        <div style="padding:12px 16px;border-bottom:1px solid #E0E0E0;display:flex;justify-content:space-between;align-items:center"><b style="font-weight:500">{S["g_total"]}</b><span><b style="font-size:20px;font-weight:500">{{{{total}}}}</b><span class="cell-muted"> / {{{{max}}}}</span></span></div>
+        <div style="flex:1;overflow:auto">{qrows}</div>
+        <div style="padding:12px 16px;border-top:1px solid #E0E0E0;display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <sc-if value="{{{{isNc}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tchip st-default">{S["g_status"]["nc"]}</span></sc-if><sc-if value="{{{{isNc}}}}" hint-placeholder-val="{{{{true}}}}"></sc-if>
+          <span style="display:flex;gap:8px;margin-left:auto"><a class="tbtn outlined" href="{tfn("G-Overview", L)}">{S["g_close"]}</a><button class="tbtn contained" onClick="{{{{next}}}}">{S["g_confirm_next"]}{mi("chevron", 18)}</button></span></div>
+      </div>
+    </div>
+  </div>
+</div>'''
+    # the overview stays underneath; drawn static so the overlay reads as a layer over it
+    under = tnav(S, "course") + f'<div class="tmain"><div class="tscroll">{g_head(S, L, "G-Mark", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["g_lo"], None)], S["g_lo"])}</div></div>'
+    return tpage(S, "G-Mark", S["g_titles"]["mark"], under + body, logic=g_mark_logic(S))
+
+GSCREENS = ["G-Dialog", "G-Detail", "G-LOs", "G-Import", "G-Process", "G-Overview", "G-Mark"]
+GBUILDERS = {"G-Dialog": g_dialog, "G-Detail": g_detail, "G-LOs": g_los, "G-Import": g_import, "G-Process": g_process, "G-Overview": g_overview, "G-Mark": g_mark}
+
+
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
@@ -4828,6 +5514,42 @@ for screen in PSCREENS_ALL:
 notes["title_p"] = {"x": 0, "y": PROW_Y["ja"] - 300, "text": "AI Practice — the Similar Questions Practice LO, fitted into the same course: Back Office set-up (Add LO → source LO → practice LO) → student PC (sets → crop → count → create → practice → print) → mobile · 日本語", "kind": "title1", "maxW": 12800}
 notes["title_p_en"] = {"x": 0, "y": PROW_Y["en"] - 240, "text": "Same AI Practice flow in English", "kind": "title1", "maxW": 12800}
 
+# ---- AI Grading row (30 Sep) ----
+GROW_Y = {"ja": 12300, "en": 14000}
+gtitles = ["G1 · Add LO — the Paper Submission type: Manual Grading fixed On, approval workflow, Allow student to submit",
+           "G2 · Paper LO detail — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE",
+           "G3 · Submission Grading, Learning Objectives tab — paper and feedback LOs with their progress; ⋯ Bulk Import",
+           "G4 · Bulk Import Submissions — sheet layout, the copier's PDFs straight to storage, counts, Start processing",
+           "G5 · Bulk import — the background job's stages, then the editable result table with the rows that need attention",
+           "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the class results matrix",
+           "G7 · Marking review — students, the scanned sheet with the AI's ○ / ✕, per-question ○ △ ✕, Confirm and Next"]
+GX = {}
+for lang, S in (("ja", JA), ("en", EN)):
+    x = 0
+    for i, screen in enumerate(GSCREENS):
+        CUR = screen
+        name = fn(screen, lang)
+        with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+            f.write(GBUILDERS[screen](S, lang))
+        boards[name] = {"x": x, "y": GROW_Y[lang], "w": TW, "h": TH,
+                        "title": gtitles[i] + (" (EN)" if lang == "en" else " (JA)"), "is_interactive": True}
+        order.append(name)
+        GX[screen] = x
+        x += TW + TGAP
+GNOTES = {
+    "G-Dialog": "AI GRADING — the Paper Submission LO (source: the AI Grading prototype, claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn — US-1 to US-8; PM, 30 Sep: review these screens for Book Management and Submission Grading and fit them into the prototype). Redrawn on this canvas's production components and fitted into the Kindai course: the Session 7 確認クイズ becomes the paper LO — a 10-point quiz sat on paper in class, scanned on the copier, imported, AI-marked, reviewed, returned; the 9/10 the dashboards already show. THIS BOARD: DialogCreateLearningMaterial with 紙提出物（AI採点） as one more type (NEW, after the practice type in the T2 menu). General Info as for any LO plus レポート回 Paper Count. Settings: 添削指導 Manual Grading with なし shown but disabled and あり fixed (the source's rule; its info box was removed on request); 添削の承認フローを適用する as a switch; ★ NEW 生徒による提出を許可する, default OFF — off, the teacher submits on the student's behalf (bulk scan); on, the student starts and submits in the learner app; the help text follows the switch; 合格点 / 上限点 / パスワード as on the Learning Objective type. Not shown for this type, per the source: Rules, URL tracking, Practice Mode, Enforce answer checking, AI Tutor, Adaptive retry. Click the switches. OPEN (from the source): OQ-B does the approval workflow stay available with Allow student to submit on; OQ-C should Score to Pass / Capped Score stay editable when AI writes the first-pass score; OQ-D is Paper Count meaningful here; OQ-F AI Feedback as a separate LO type (as this canvas has it) rather than an option on this dialog — this canvas answers F: separate types.",
+    "G-Detail": "THE PAPER LO's DETAIL (US-3 upload, US-4 flat question list), reached from the tree (T1: the 確認クイズ row now carries the purple pencil disc and the 紙提出物 chip) and from Submission Grading › 学習目標. ONE upload area for the Question sheet and the Answer key — after 読み取りを開始 Process each file shows what AI classified it as (問題 / 解答); the source superseded its earlier two-box design with this. QUESTION LIST: the uploaded sheet on the left (38%, paginated, zoom) so the teacher checks the original against the extraction without scrolling; on the right the flat grid — 問題番号 Question index · 正答 Correct Answer · 配点 Max Score · タグ Tag — no 大問 / 小問 nesting, no question-content column (the wording is read from the paper beside it), cells AI could not read stay EMPTY rather than invented (4(1), 4(2) here). Per-row +, ▲▼; header select-all for bulk delete; totals and per-tag pills (知 / 考 summing Max Score) recalculate live. A draft banner until ✓ 保存 SAVE — click it; the saved list is what marking runs against. Tags come from the tenant's Question Tag master (US-5, out of this canvas's scope). OPEN: OQ-G AI extracts and stores the question text but it is not editable here — if a mis-read has to be fixable it needs a home (expandable row / side panel).",
+    "G-LOs": "SUBMISSION GRADING › 学習目標 Learning Objectives tab (the second tab of T9, now live): one row per LO with submissions, with the type disc and chip — the paper LOs with 添削済 marked / total and a progress line, the AI Feedback LOs with returned / total — under the 添削待ち To Mark / 添削済 Marked segments (click them). The LO name opens the paper LO's detail (G2) or the feedback LO's overview (T10). The ⋯ menu carries 紙提出物の一括取り込み Bulk Import Submissions (US-6) — click ⋯. On T9 the ⋯ opens it directly. The Submissions tab (T9) keeps the AI Feedback queue; a paper LO's rows would list there too with 得点 Raw / Final Score, Marker and Approver columns from the source — not drawn, to keep T9 the feedback demo.",
+    "G-Import": "BULK IMPORT SUBMISSIONS (US-6), a full screen with a breadcrumb back, not a modal. 用紙レイアウト Layout: A4片面 Single-sided (Phase 1 · MVP — 1 page = 1 submission, the header carries test_id = External LO ID and student_id = username as a QR) or A4両面 Double-sided (multi-page policy — one sheet both sides, the ID on the front only, the back matched to the front scanned just before it; a missing back surfaces as a question-count error). ⓘ opens the explanation on both cards; click the cards. The dropzone takes the copier's PDFs — 100+ pages, 100+ MB per file — uploaded straight to storage (presigned multipart; the app server is not in the path). Two files listed as uploaded, then the counts: 30 pages → 30 submissions expected (the layout decides the ratio) and what is read from every page. Cancel / 処理を開始 Start processing → G5. OPEN: OQ-H the layout guardrail's granularity (per file or per batch); OQ-I duplicate-submission detection — a student legitimately spans several rows on a multi-page layout, so repeats are not flagged.",
+    "G-Process": "THE JOB, THEN THE RESULT (US-6). PROCESSING runs in the background — ジョブ id, a progress bar, the pipeline stages with their counts (30ページを読み込み, 3件の傾きを補正, 0件の白紙を除外, QR/OCR 30/30, 問題数を照合 29/30 running, the two matching stages to come); the stage the layout does not need (裏面の対応づけ) is greyed; この画面を離れて通知を受け取る Leave and notify me. DEMO：完了 finishes it. RESULT: one editable row per detected submission — # · ☑ · ユーザーネーム · 生徒名 · 学習項目外部ID · 学習目標 · 開始ページ (a link into the PDF at that page, with n/N 問 · ページ beneath); red rows carry the reason in the cell — a username the QR/OCR could not read (required; click to type or pick a student), a sheet where only 7 of 8 question indexes were found (the LO presets 8 — re-scan, not a typo); nothing is invented into an empty field. 要対応の行のみ表示 filters to those rows (click it); the floating bar deletes the selected rows; AIで採点する AI-mark is enabled for the clean rows (28) and disabled while a selected row is red. Rows a teacher edits by hand turn blue. OPEN: OQ-K the blank-page filter's confidence threshold; OQ-L progress transport (WebSocket vs polling); OQ-M PDF retention and access.",
+    "G-Overview": "OVERVIEW (US-7), the paper LO's page under Submission Grading. 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting.",
+    "G-Mark": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No comment field, no AI annotation, by design. 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削.",
+}
+for screen in GSCREENS:
+    notes["g_" + screen] = {"x": GX[screen], "y": GROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 560, "text": GNOTES[screen]}
+notes["title_g"] = {"x": 0, "y": GROW_Y["ja"] - 300, "text": "AI Grading — the Paper Submission LO fitted into the same course: Book Management (Add LO → the paper LO's question list) → Submission Grading (Learning Objectives tab → Bulk Import → job → result → Overview → marking review) · 日本語", "kind": "title1", "maxW": 10600}
+notes["title_g_en"] = {"x": 0, "y": GROW_Y["en"] - 240, "text": "Same AI Grading flow in English", "kind": "title1", "maxW": 10600}
+
 canvas = {
     "v": 3,
     "createdOnFiles": {"v": 1, "at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")},
@@ -4926,6 +5648,8 @@ def site_index():
         ("Teacher (Back Office) · English", "1440 × 900", links(TSCREENS, "en", ttitles)),
         ("AI演習（類題演習 LO）・ 日本語", "BO 1440 ・ PC 1280 ・ モバイル 375", links(PSCREENS_ALL, "ja", ptitles)),
         ("AI Practice (Similar Questions Practice LO) · English", "BO 1440 · PC 1280 · Mobile 375", links(PSCREENS_ALL, "en", ptitles)),
+        ("AI採点（紙提出物 LO）・ 日本語", "BO 1440", links(GSCREENS, "ja", gtitles)),
+        ("AI Grading (Paper Submission LO) · English", "BO 1440", links(GSCREENS, "en", gtitles)),
     ]
     blocks = "".join(
         f'<section class="row"><h2>{name}<span>{size}</span></h2><div class="steps">{body}</div></section>'
@@ -4972,7 +5696,7 @@ footer{{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px s
 '''
 
 for lang in ("ja", "en"):
-    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL:
+    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL + GSCREENS:
         name = fn(screen, lang)
         with open(os.path.join(ROOT, name), encoding="utf-8") as f:
             src = f.read()
