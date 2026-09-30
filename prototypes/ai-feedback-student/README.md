@@ -209,7 +209,8 @@ Feedback and AI Practice LOs on the same surfaces:
   (Wrong assessment, Photo unclear — DEMO) → the pages carousel, Add More up to
   5 photos or 1 PDF, Confirm & Analyze with the analyzing progress → the
   analysis results (the AI's ○ / ✕ on the sheet, the question breakdown in
-  green / amber / red, the total; read-only — the student never edits a score,
+  green / amber / red with one line of AI feedback per question against the
+  LO's answer key (PM 30 Sep, in place of the question tag), the total; read-only — the student never edits a score,
   PM 30 Sep, so the source's self-marking mode is not carried) → Submit to Teacher → submitted (the AI's
   8/10, awaiting teacher review) → returned (the teacher's △ on Q5 from G7,
   9/10, the changed row labelled, teacher feedback). The student's sheet is

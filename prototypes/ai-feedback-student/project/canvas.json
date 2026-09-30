@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T14:52:55Z"
+    "at": "2026-09-30T15:04:44Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1697,7 +1697,7 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, each row carrying the question's tag from the teacher's question list (G2: 知識・技能 Knowledge & skills / 思考・判断 Thinking & judgment, spelled out for the student — PM, 30 Sep: what is K and T?) — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return)."
+      "text": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return)."
     },
     "q_Q-Done": {
       "x": 5440,
@@ -1711,7 +1711,7 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback."
+      "text": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review can edit these lines on G7 — not drawn) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback."
     },
     "q_MQ-Detail": {
       "x": 8160,

@@ -371,7 +371,7 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .qbanner.ai{background:#eef1ff;color:#2c48ae}.qbanner.ok{background:#e6f5ee;color:#1f7a4d}
 .qrow-s{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap;padding:10px 14px;border-radius:8px;border:1px solid rgba(28,30,44,.1);background:#fff}
 .qrow-s b{font-size:14px;min-width:44px}
-.qrow-s .qtag{font-size:11px;color:rgba(28,30,44,.6);background:#f2f2f4;border-radius:4px;padding:1px 6px;white-space:nowrap}
+.qrow-s .qfb{flex:1 1 100%;font-size:13px;line-height:19px;color:rgba(28,30,44,.72)}
 .qrow-s .qsv{margin-left:auto;display:flex;align-items:baseline;gap:2px}
 .qrow-s .qmax{font-size:13px;font-weight:700;color:rgba(28,30,44,.45)}
 .qsc{width:44px;height:36px;border:1.5px solid rgba(28,30,44,.16);border-radius:8px;text-align:center;font-size:16px;font-weight:700;font-family:inherit;background:#fff;color:inherit;display:inline-flex;align-items:center;justify-content:center;padding:0}
@@ -5420,7 +5420,7 @@ Q_JA = dict(
     q_analyzing="課題を分析中…", q_analyzed="分析が完了しました", q_see_results="分析結果を見る", q_checking="回答を確認しています。少々お待ちください。", q_progress="進行状況",
     # analysis result
     q_results="分析結果", q_ai_marked="AIがあなたの解答を採点しました。提出すると先生が確認します。",
-    q_breakdown="設問ごとの結果", q_ai_scores="AIによる採点結果", q_total="合計スコア",
+    q_breakdown="設問ごとの結果", q_ai_scores="AIの採点と、解答キー・採点基準にもとづくコメント", q_total="合計スコア",
     q_q_label="問{idx}", q_submit_teacher="先生に提出する",
     # confirmation
     q_success="提出が完了しました！", q_success_d="解答は先生に送られました。先生が確認すると返却されます。",
@@ -5430,6 +5430,10 @@ Q_JA = dict(
     q_teacher_reviewed="先生があなたの結果を確認しました。", q_teacher_badge="先生の確認済み", q_teacher_fb="先生のフィードバック",
     q_fb_body="問5は考え方は合っています。相関係数が大きくても因果関係は言えない、という指摘に「第三の変数」の例（例：気温）を一つ添えると満点でした。次回は散布図の外れ値にも触れてみてください。",
     q_score_lbl="スコア", q_changed="先生が修正", q_ai_lbl="AI",
+    q_fb_h="設問ごとのフィードバック", q_fb_sub="学習項目の解答キーと採点基準にもとづくAIのコメントです。",
+    q_qfb=["相関係数 r = 0.82 が正しく求められています。", "正の相関と判断できています。", "右下がりの散布図から負の相関（r < 0）と読み取れています。",
+           "外れ値が1点あることを正しく指摘しています。", "決定係数を正しく求められています。", "決定係数から相関の強さを「弱い」と判断できています。",
+           "「相関≠因果」は書けています。採点基準では第三の変数（例：気温）への言及も求めています。", "n = 30 で p < 0.05 となり、有意と判断できています。"],
     q_total_colon="合計スコア：",
     # LO row / to-do
     q_todo_when="11月10日 授業内", q_ret_when="11月12日 返却",
@@ -5451,7 +5455,7 @@ Q_EN = dict(
     q_add_more="Add More", q_pages_up="{n} of {m} pages uploaded", q_confirm_analyze="Confirm & Analyze", q_page_of="Page {i} of {n}",
     q_analyzing="Analyzing Your Work…", q_analyzed="Analysis complete", q_see_results="See the results", q_checking="We are checking your answers. This will take a moment.", q_progress="Progress",
     q_results="Analysis Results", q_ai_marked="AI has marked your work. Submit it and your teacher will review the result.",
-    q_breakdown="Question Breakdown", q_ai_scores="AI-generated scores for your submission", q_total="Total Score",
+    q_breakdown="Question Breakdown", q_ai_scores="AI scores and comments against the LO's answer key and marking guide", q_total="Total Score",
     q_q_label="Q{idx}", q_submit_teacher="Submit to Teacher",
     q_success="Successfully Submitted!", q_success_d="Your work has been sent to your teacher. It comes back once they have reviewed it.",
     q_sub_time="Submission Time", q_sub_time_v="Nov 10, 2026 16:42", q_correct="Questions Correct", q_back_class="Back to the course", q_view_details="View Submission Details",
@@ -5459,6 +5463,10 @@ Q_EN = dict(
     q_teacher_reviewed="Your teacher has reviewed your results.", q_teacher_badge="Teacher reviewed", q_teacher_fb="Teacher Feedback",
     q_fb_body="Q5 — your reasoning is right. A large correlation coefficient still says nothing about causation; naming one third variable (temperature, for example) would have earned full marks. Next time, mention the outlier in the scatter plot as well.",
     q_score_lbl="Score", q_changed="Changed by teacher", q_ai_lbl="AI",
+    q_fb_h="Feedback per question", q_fb_sub="AI comments against the LO's answer key and marking guide.",
+    q_qfb=["Correlation coefficient worked out correctly as r = 0.82.", "Correctly judged a positive correlation.", "Read the downward-sloping scatter as a negative correlation (r < 0) — correct.",
+           "Correctly spotted the single outlier.", "Coefficient of determination worked out correctly.", "Judged the correlation as weak from the coefficient — correct.",
+           "\"Correlation is not causation\" is there. The marking guide also asks for a third variable (temperature, for example).", "Significant at p < 0.05 with n = 30 — correct."],
     q_total_colon="Total Score:",
     q_todo_when="Nov 10, in class", q_ret_when="Returned Nov 12",
 )
@@ -5500,8 +5508,9 @@ def q_score_cls(v, mx):
 
 def q_breakdown_rows(S, scores, changed=None, mobile=False):
     """One row per question — index, score / max — coloured by full / partial / zero, as the source's getScoreColorClasses
-    does for the student context. Read-only: the student never edits a score (PM, 30 Sep) — the source's self-marking
-    mode (allowSelfMarking, from the Onigroup SOW) is not carried."""
+    does for the student context, with the AI's one-line feedback per question against the LO's answer key / marking guide
+    (PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, instead of the question tag). Read-only:
+    the student never edits a score (PM, 30 Sep) — the source's self-marking mode (allowSelfMarking) is not carried."""
     rows = ""
     for k, (idx, ans, mx, tag) in enumerate(S["g_questions"]):
         v = scores[k]
@@ -5509,7 +5518,7 @@ def q_breakdown_rows(S, scores, changed=None, mobile=False):
         cls = q_score_cls(v, mx)
         chg = (f'<span class="chip hl" style="height:20px;font-size:11px">{S["q_changed"]} ・ {S["q_ai_lbl"]} {changed[k]}</span>'
                if changed is not None and changed[k] != v else "")
-        rows += f'''<div class="qrow-s {cls}"><b>{S["q_q_label"].format(idx=idx)}</b><span class="qtag" title="{S["g_tags_full"][tag]}">{S["g_tags_full"][tag]}</span>{chg}<span class="qsv">{box}<span class="qmax">/{mx}</span></span></div>'''
+        rows += f'''<div class="qrow-s {cls}"><b>{S["q_q_label"].format(idx=idx)}</b>{chg}<span class="qsv">{box}<span class="qmax">/{mx}</span></span><span class="qfb">{S["q_qfb"][k]}</span></div>'''
     return rows
 
 def q_total_badge(S, hole=None, total=None, mx=10, mobile=False):
@@ -6174,9 +6183,9 @@ QNOTES = {
     "Q-Detail": "AI GRADING, THE STUDENT SIDE (source: jamessim-source/aigradingv1, apps/frontend/src/screens/student — the deprecated student SPA that is the acceptance spec: ClassDetail → AssignmentDetails → HomeworkSubmission → HomeworkSubmissionPreview → SubmissionAnalysisResult → SubmissionConfirmation → SubmissionReview; PM, 30 Sep: review the ai grading student interface from this repo and integrate the student experience into the student web and app). Redrawn on this canvas's student components and fitted into the Kindai course: the Session 7 確認クイズ (the paper LO of G1–G7) now has a row on the course tab (Main, M1) and in To-do (8) with the pencil disc and the 紙提出物 chip — it appears to students only because the LO's Allow student to submit (G1) is ON; off, the teacher bulk-scans and the student sees nothing until the return. THIS BOARD = AssignmentDetails: the LO, 指示 Instructions (the LO description from G1), 提出の詳細 Submission details (8問 · 10点満点 · photos or PDF), the three steps the AI Feedback assignment also shows (photo → AI marks → submit to the teacher), 課題を提出 Submit Your Work. The source's My Classes / Add Class by QR or code and the class card list are NOT drawn — the LMS course and the course QR (T6) already do that.",
     "Q-Submit": "HomeworkSubmission: 写真を撮る Take Photo or アップロード Upload (images or PDF, max 10 MB, at most 1 PDF, up to 5 photos — the source's limits), the four photo tips. On the phone Take Photo opens the camera (the AI Feedback M3 pattern); on PC both land on the pages screen. The bottom error popup the source shows when the analysis rejects the upload — 誤った課題 Wrong assessment (the sheet does not match the LO's questions) and 写真が不鮮明です Photo unclear — is raised by the DEMO buttons; 了解 closes it and the student retakes.",
     "Q-Preview": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then 分析結果を見る to the results (the source navigates on its own; here a link, so the board stays put). Click Confirm & Analyze to run it; the DEMO pill skips ahead.",
-    "Q-Result": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, each row carrying the question's tag from the teacher's question list (G2: 知識・技能 Knowledge & skills / 思考・判断 Thinking & judgment, spelled out for the student — PM, 30 Sep: what is K and T?) — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return).",
+    "Q-Result": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return).",
     "Q-Done": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state.",
-    "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
+    "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review can edit these lines on G7 — not drawn) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks), and 先生のフィードバック Teacher Feedback (the source's free-text feedback per submission; G7 has no feedback field yet — OPEN: add one, or the returned result carries no comment). This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
     "MQ-Detail": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出.",
     "MQ-Submit": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors.",
     "MQ-Preview": "Mobile pages: the carousel and thumbnails, さらに追加 and 確認して分析 fixed at the bottom; Confirm & Analyze runs the analyzing state in place.",
