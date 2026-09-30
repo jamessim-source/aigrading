@@ -183,10 +183,12 @@ Feedback and AI Practice LOs on the same surfaces:
   disc and the 紙提出物 chip; the Add LO type menu lists 紙提出物（AI採点）as
   NEW; the dialog has Paper Count, Manual Grading fixed On, the approval
   switch, the NEW Allow student to submit switch (default Off), Score to Pass /
-  Capped Score / Password. The LO's detail has one upload area for the Question
-  and Answer PDFs and the flat question list beside the sheet, draft until SAVE.
+  Capped Score / Password. The LO's Content tab (in Book Management, PM 30 Sep)
+  has one upload area for the Question and Answer PDFs and the flat question
+  list beside the sheet, draft until SAVE.
 - **Submission Grading (T9, G3–G7).** The Learning Objectives tab is live, with
-  paper and feedback LOs and their progress; ⋯ opens Bulk Import Submissions
+  paper and feedback LOs and their progress (a paper LO opens its submission
+  list); ⋯ opens Bulk Import Submissions
   (layout, upload, counts) → the background job and the editable result table
   with the rows that need attention → the Overview matrix (approval workflow,
   Teacher / Admin view, per-question scores, course average) → the marking

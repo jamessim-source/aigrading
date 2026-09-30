@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T13:41:08Z"
+    "at": "2026-09-30T13:55:14Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -775,7 +775,7 @@
       "y": 12300,
       "w": 1440,
       "h": 900,
-      "title": "G2 · Paper LO detail — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE (JA)",
+      "title": "G2 · Paper LO in Book Management — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE (JA)",
       "is_interactive": true
     },
     "G-LOs.dc.html": {
@@ -807,7 +807,7 @@
       "y": 12300,
       "w": 1440,
       "h": 900,
-      "title": "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the class results matrix (JA)",
+      "title": "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the submission list as a class results matrix (JA)",
       "is_interactive": true
     },
     "G-Mark.dc.html": {
@@ -831,7 +831,7 @@
       "y": 14000,
       "w": 1440,
       "h": 900,
-      "title": "G2 · Paper LO detail — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE (EN)",
+      "title": "G2 · Paper LO in Book Management — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE (EN)",
       "is_interactive": true
     },
     "G-LOs-en.dc.html": {
@@ -863,7 +863,7 @@
       "y": 14000,
       "w": 1440,
       "h": 900,
-      "title": "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the class results matrix (EN)",
+      "title": "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the submission list as a class results matrix (EN)",
       "is_interactive": true
     },
     "G-Mark-en.dc.html": {
@@ -1404,14 +1404,14 @@
       "y": 13260,
       "w": 640,
       "maxH": 560,
-      "text": "THE PAPER LO's DETAIL (US-3 upload, US-4 flat question list), reached from the tree (T1: the 確認クイズ row now carries the purple pencil disc and the 紙提出物 chip) and from Submission Grading › 学習目標. ONE upload area for the Question sheet and the Answer key — after 読み取りを開始 Process each file shows what AI classified it as (問題 / 解答); the source superseded its earlier two-box design with this. QUESTION LIST: the uploaded sheet on the left (38%, paginated, zoom) so the teacher checks the original against the extraction without scrolling; on the right the flat grid — 問題番号 Question index · 正答 Correct Answer · 配点 Max Score · タグ Tag — no 大問 / 小問 nesting, no question-content column (the wording is read from the paper beside it), cells AI could not read stay EMPTY rather than invented (4(1), 4(2) here). Per-row +, ▲▼; header select-all for bulk delete; totals and per-tag pills (知 / 考 summing Max Score) recalculate live. A draft banner until ✓ 保存 SAVE — click it; the saved list is what marking runs against. Tags come from the tenant's Question Tag master (US-5, out of this canvas's scope). OPEN: OQ-G AI extracts and stores the question text but it is not editable here — if a mis-read has to be fixable it needs a home (expandable row / side panel)."
+      "text": "THE PAPER LO's CONTENT TAB IN BOOK MANAGEMENT (US-3 upload, US-4 flat question list) — PM, 30 Sep: the question and answer key belong in Book Management, as T3 does for AI Feedback; Submission Grading keeps the student PDFs (G4, G5), the submission list (G6) and the submission detail (G7). Reached from the tree (T1: the 確認クイズ row carries the purple pencil disc and the 紙提出物 chip); 提出状況を見る leads to its submissions under Submission Grading. ONE upload area for the Question sheet and the Answer key — after 読み取りを開始 Process each file shows what AI classified it as (問題 / 解答); the source superseded its earlier two-box design with this. QUESTION LIST: the uploaded sheet on the left (38%, paginated, zoom) so the teacher checks the original against the extraction without scrolling; on the right the flat grid — 問題番号 Question index · 正答 Correct Answer · 配点 Max Score · タグ Tag — no 大問 / 小問 nesting, no question-content column (the wording is read from the paper beside it), cells AI could not read stay EMPTY rather than invented (4(1), 4(2) here). Per-row +, ▲▼; header select-all for bulk delete; totals and per-tag pills (知 / 考 summing Max Score) recalculate live. A draft banner until ✓ 保存 SAVE — click it; the saved list is what marking runs against. Tags come from the tenant's Question Tag master (US-5, out of this canvas's scope). OPEN: OQ-G AI extracts and stores the question text but it is not editable here — if a mis-read has to be fixable it needs a home (expandable row / side panel)."
     },
     "g_G-LOs": {
       "x": 3040,
       "y": 13260,
       "w": 640,
       "maxH": 560,
-      "text": "SUBMISSION GRADING › 学習目標 Learning Objectives tab (the second tab of T9, now live): one row per LO with submissions, with the type disc and chip — the paper LOs with 添削済 marked / total and a progress line, the AI Feedback LOs with returned / total — under the 添削待ち To Mark / 添削済 Marked segments (click them). The LO name opens the paper LO's detail (G2) or the feedback LO's overview (T10). The ⋯ menu carries 紙提出物の一括取り込み Bulk Import Submissions (US-6) — click ⋯. On T9 the ⋯ opens it directly. The Submissions tab (T9) keeps the AI Feedback queue; a paper LO's rows would list there too with 得点 Raw / Final Score, Marker and Approver columns from the source — not drawn, to keep T9 the feedback demo."
+      "text": "SUBMISSION GRADING › 学習目標 Learning Objectives tab (the second tab of T9, now live): one row per LO with submissions, with the type disc and chip — the paper LOs with 添削済 marked / total and a progress line, the AI Feedback LOs with returned / total — under the 添削待ち To Mark / 添削済 Marked segments (click them). The LO name opens the paper LO's submissions — the Overview (G6) — or the feedback LO's overview (T10); the question list is in Book Management (G2, PM 30 Sep). The ⋯ menu carries 紙提出物の一括取り込み Bulk Import Submissions (US-6) — click ⋯. On T9 the ⋯ opens it directly. The Submissions tab (T9) keeps the AI Feedback queue; a paper LO's rows would list there too with 得点 Raw / Final Score, Marker and Approver columns from the source — not drawn, to keep T9 the feedback demo."
     },
     "g_G-Import": {
       "x": 4560,
@@ -1432,7 +1432,7 @@
       "y": 13260,
       "w": 640,
       "maxH": 560,
-      "text": "OVERVIEW (US-7), the paper LO's page under Submission Grading. 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting."
+      "text": "OVERVIEW (US-7), the paper LO's page under Submission Grading — its 提出一覧 list of submissions (PM, 30 Sep: Submission Grading holds the student PDFs, the list and the detail; the question list moved to Book Management, ブック管理で編集 in the header). 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting."
     },
     "g_G-Mark": {
       "x": 9120,
