@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T15:59:23Z"
+    "at": "2026-09-30T16:56:01Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -807,7 +807,7 @@
       "y": 12300,
       "w": 1440,
       "h": 900,
-      "title": "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the submission list as a class results matrix (JA)",
+      "title": "G6 · Submission list with confidence triage — Needs review / Likely fail / Likely pass boxes, threshold preset, bulk confirm with spot checks, AI verdict, reason and confidence per row (JA)",
       "is_interactive": true
     },
     "G-Mark.dc.html": {
@@ -815,7 +815,15 @@
       "y": 12300,
       "w": 1440,
       "h": 900,
-      "title": "G7 · Marking review — students, the scanned sheet with the AI's ○ / ✕, per-question ○ △ ✕, Confirm and Next (JA)",
+      "title": "G7 · Marking review — students, the scan or the transcript with evidence highlighting, per-question ○ △ ✕ and feedback, Confirm and Next (JA)",
+      "is_interactive": true
+    },
+    "G-Compare.dc.html": {
+      "x": 10640,
+      "y": 12300,
+      "w": 1440,
+      "h": 900,
+      "title": "G8 · Compare by question — every answer to one question side by side, ✕ / △ / ○ columns, similar answers flagged (JA)",
       "is_interactive": true
     },
     "G-Dialog-en.dc.html": {
@@ -863,7 +871,7 @@
       "y": 14000,
       "w": 1440,
       "h": 900,
-      "title": "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the submission list as a class results matrix (EN)",
+      "title": "G6 · Submission list with confidence triage — Needs review / Likely fail / Likely pass boxes, threshold preset, bulk confirm with spot checks, AI verdict, reason and confidence per row (EN)",
       "is_interactive": true
     },
     "G-Mark-en.dc.html": {
@@ -871,7 +879,15 @@
       "y": 14000,
       "w": 1440,
       "h": 900,
-      "title": "G7 · Marking review — students, the scanned sheet with the AI's ○ / ✕, per-question ○ △ ✕, Confirm and Next (EN)",
+      "title": "G7 · Marking review — students, the scan or the transcript with evidence highlighting, per-question ○ △ ✕ and feedback, Confirm and Next (EN)",
+      "is_interactive": true
+    },
+    "G-Compare-en.dc.html": {
+      "x": 10640,
+      "y": 14000,
+      "w": 1440,
+      "h": 900,
+      "title": "G8 · Compare by question — every answer to one question side by side, ✕ / △ / ○ columns, similar answers flagged (EN)",
       "is_interactive": true
     },
     "Q-Detail.dc.html": {
@@ -903,7 +919,7 @@
       "y": 15800,
       "w": 1280,
       "h": 800,
-      "title": "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher (JA)",
+      "title": "Q4 · Student PC — analysis results: strengths / to improve / suggested fix, Ask AI, the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher (JA)",
       "is_interactive": true
     },
     "Q-Done.dc.html": {
@@ -919,55 +935,71 @@
       "y": 15800,
       "w": 1280,
       "h": 800,
-      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the per-question feedback (JA)",
+      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the summary and the per-question feedback (JA)",
+      "is_interactive": true
+    },
+    "Q-Chat.dc.html": {
+      "x": 8160,
+      "y": 15800,
+      "w": 1280,
+      "h": 800,
+      "title": "Q7 · Student PC — Ask AI: a question about the feedback, the answer guided along the textbook, suggested questions, the teacher can see the dialogue (JA)",
       "is_interactive": true
     },
     "MQ-Detail.dc.html": {
-      "x": 8160,
+      "x": 9520,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q7 · Mobile — the paper LO (JA)",
+      "title": "Q8 · Mobile — the paper LO (JA)",
       "is_interactive": true
     },
     "MQ-Submit.dc.html": {
-      "x": 8615,
+      "x": 9975,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q8 · Mobile — take or upload (JA)",
+      "title": "Q9 · Mobile — take or upload (JA)",
       "is_interactive": true
     },
     "MQ-Preview.dc.html": {
-      "x": 9070,
+      "x": 10430,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q9 · Mobile — pages, Confirm & Analyze (JA)",
+      "title": "Q10 · Mobile — pages, Confirm & Analyze (JA)",
       "is_interactive": true
     },
     "MQ-Result.dc.html": {
-      "x": 9525,
+      "x": 10885,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q10 · Mobile — analysis results (JA)",
+      "title": "Q11 · Mobile — analysis results with the summary and Ask AI (JA)",
       "is_interactive": true
     },
     "MQ-Done.dc.html": {
-      "x": 9980,
+      "x": 11340,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q11 · Mobile — submitted (JA)",
+      "title": "Q12 · Mobile — submitted (JA)",
       "is_interactive": true
     },
     "MQ-Review.dc.html": {
-      "x": 10435,
+      "x": 11795,
       "y": 15800,
       "w": 375,
       "h": 812,
-      "title": "Q12 · Mobile — returned (JA)",
+      "title": "Q13 · Mobile — returned (JA)",
+      "is_interactive": true
+    },
+    "MQ-Chat.dc.html": {
+      "x": 12250,
+      "y": 15800,
+      "w": 375,
+      "h": 812,
+      "title": "Q14 · Mobile — Ask AI (JA)",
       "is_interactive": true
     },
     "Q-Detail-en.dc.html": {
@@ -999,7 +1031,7 @@
       "y": 17500,
       "w": 1280,
       "h": 800,
-      "title": "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher (EN)",
+      "title": "Q4 · Student PC — analysis results: strengths / to improve / suggested fix, Ask AI, the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher (EN)",
       "is_interactive": true
     },
     "Q-Done-en.dc.html": {
@@ -1015,55 +1047,71 @@
       "y": 17500,
       "w": 1280,
       "h": 800,
-      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the per-question feedback (EN)",
+      "title": "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the summary and the per-question feedback (EN)",
+      "is_interactive": true
+    },
+    "Q-Chat-en.dc.html": {
+      "x": 8160,
+      "y": 17500,
+      "w": 1280,
+      "h": 800,
+      "title": "Q7 · Student PC — Ask AI: a question about the feedback, the answer guided along the textbook, suggested questions, the teacher can see the dialogue (EN)",
       "is_interactive": true
     },
     "MQ-Detail-en.dc.html": {
-      "x": 8160,
+      "x": 9520,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q7 · Mobile — the paper LO (EN)",
+      "title": "Q8 · Mobile — the paper LO (EN)",
       "is_interactive": true
     },
     "MQ-Submit-en.dc.html": {
-      "x": 8615,
+      "x": 9975,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q8 · Mobile — take or upload (EN)",
+      "title": "Q9 · Mobile — take or upload (EN)",
       "is_interactive": true
     },
     "MQ-Preview-en.dc.html": {
-      "x": 9070,
+      "x": 10430,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q9 · Mobile — pages, Confirm & Analyze (EN)",
+      "title": "Q10 · Mobile — pages, Confirm & Analyze (EN)",
       "is_interactive": true
     },
     "MQ-Result-en.dc.html": {
-      "x": 9525,
+      "x": 10885,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q10 · Mobile — analysis results (EN)",
+      "title": "Q11 · Mobile — analysis results with the summary and Ask AI (EN)",
       "is_interactive": true
     },
     "MQ-Done-en.dc.html": {
-      "x": 9980,
+      "x": 11340,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q11 · Mobile — submitted (EN)",
+      "title": "Q12 · Mobile — submitted (EN)",
       "is_interactive": true
     },
     "MQ-Review-en.dc.html": {
-      "x": 10435,
+      "x": 11795,
       "y": 17500,
       "w": 375,
       "h": 812,
-      "title": "Q12 · Mobile — returned (EN)",
+      "title": "Q13 · Mobile — returned (EN)",
+      "is_interactive": true
+    },
+    "MQ-Chat-en.dc.html": {
+      "x": 12250,
+      "y": 17500,
+      "w": 375,
+      "h": 812,
+      "title": "Q14 · Mobile — Ask AI (EN)",
       "is_interactive": true
     }
   },
@@ -1169,6 +1217,7 @@
     "G-Process.dc.html",
     "G-Overview.dc.html",
     "G-Mark.dc.html",
+    "G-Compare.dc.html",
     "G-Dialog-en.dc.html",
     "G-Detail-en.dc.html",
     "G-LOs-en.dc.html",
@@ -1176,30 +1225,35 @@
     "G-Process-en.dc.html",
     "G-Overview-en.dc.html",
     "G-Mark-en.dc.html",
+    "G-Compare-en.dc.html",
     "Q-Detail.dc.html",
     "Q-Submit.dc.html",
     "Q-Preview.dc.html",
     "Q-Result.dc.html",
     "Q-Done.dc.html",
     "Q-Review.dc.html",
+    "Q-Chat.dc.html",
     "MQ-Detail.dc.html",
     "MQ-Submit.dc.html",
     "MQ-Preview.dc.html",
     "MQ-Result.dc.html",
     "MQ-Done.dc.html",
     "MQ-Review.dc.html",
+    "MQ-Chat.dc.html",
     "Q-Detail-en.dc.html",
     "Q-Submit-en.dc.html",
     "Q-Preview-en.dc.html",
     "Q-Result-en.dc.html",
     "Q-Done-en.dc.html",
     "Q-Review-en.dc.html",
+    "Q-Chat-en.dc.html",
     "MQ-Detail-en.dc.html",
     "MQ-Submit-en.dc.html",
     "MQ-Preview-en.dc.html",
     "MQ-Result-en.dc.html",
     "MQ-Done-en.dc.html",
-    "MQ-Review-en.dc.html"
+    "MQ-Review-en.dc.html",
+    "MQ-Chat-en.dc.html"
   ],
   "notes": {
     "title": {
@@ -1648,14 +1702,21 @@
       "y": 13260,
       "w": 640,
       "maxH": 560,
-      "text": "OVERVIEW (US-7), the paper LO's page under Submission Grading — its 提出一覧 list of submissions (PM, 30 Sep: Submission Grading holds the student PDFs, the list and the detail; the question list moved to Book Management, ブック管理で編集 in the header). 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting."
+      "text": "CONFIDENCE TRIAGE (deck S27 slides 10, 13, 15, 23 and the p.27 grading queue; PM, 30 Sep: implement the confidence triage for the AI grading LO): three boxes — 要確認 Needs review (judgment needed), 不合格見込み Likely fail (reasons and comments drafted), 合格見込み Likely pass (incl. the spot checks) — click one to filter the list. The THRESHOLD preset — ゼロミス / 慎重 / 標準 — is the per-course setting the deck promises (slide 15: 'from zero misses to standard'); it belongs on Course Management and is switchable here only to show rows re-bucket (zero misses puts everything in Needs review). 合格見込みを一括確認 confirms every likely pass that is not a spot check (the toast says how many, and that the spot checks stay Not Confirmed); 抜き取り確認を開く opens the held-out ones on G7. Per row: the AI verdict with its REASON in words (a split verdict, an unclear read, a similar answer, below the pass mark), the CONFIDENCE bar, then status, total and the per-question scores; rows ordered needs-judgment first. The footer shows the false-pass counter against the course's limit — the stop rule on slide 23: over the limit, the course drops back to full review. Confidence and thresholds are 'in development' on the deck (p.42): the values here are illustrative. ORIGINAL OVERVIEW (US-7), the paper LO's page under Submission Grading — its 提出一覧 list of submissions (PM, 30 Sep: Submission Grading holds the student PDFs, the list and the detail; the question list moved to Book Management, ブック管理で編集 in the header). 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting."
     },
     "g_G-Mark": {
       "x": 9120,
       "y": 13260,
       "w": 640,
       "maxH": 560,
-      "text": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so."
+      "text": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. EVIDENCE (deck S27 p.28 'Evidence, rubric and draft comments on one review screen'): the viewer has two modes — スキャン the photo, and 読み取りテキスト the transcript, the default: for each question the answer as the AI read it, coloured 一致 green / 要確認 blue / 不足・不一致 red against the key, the reason line under it, the key and the rubric beside it, and an AIメモ where the models split (鈴木's 問2(1)) or a similar answer was found (伊藤, 渡辺). The header carries the AI verdict and the confidence for the student on screen, and the AIとの対話 count where the student used Ask AI (山田). この設問を並べて見る opens G8. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so."
+    },
+    "g_G-Compare": {
+      "x": 10640,
+      "y": 13260,
+      "w": 640,
+      "maxH": 560,
+      "text": "COMPARE BY QUESTION (deck S27 p.26 'Side-by-side', slide 10 'answers to the same question are compared, so equal content gets an equal verdict'): pick a question in the segment control; every student's answer box, as the AI read it, sits in one of three columns — ✕ differs from the key, △ needs review (partial or an uncertain read), ○ matches — with the AI mark, the confidence bar and the ○ △ ✕ buttons; two answers that match each other carry a 類似 chip (問5: 伊藤 and 渡辺). The key and the rubric for the question sit above the columns. Opens from G6's header and from G7's viewer. A mark changed here updates that student's review (not wired in the prototype). NEW against the source (US-8 is one student at a time)."
     },
     "title_g": {
       "x": 0,
@@ -1697,7 +1758,7 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return)."
+      "text": "FEEDBACK DISPLAY (deck S27 p.30 'Feedback splits into strengths, issues and fixes'): above the sheet, the headline (もう一歩 · 8問中7問正解 · 8/10点) and three cards — 強み Strengths, 改善点 To improve, 提案する修正 Suggested fix as a strike-through and a replacement — with the AIに質問する Ask AI button to Q7. Then, as before: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return)."
     },
     "q_Q-Done": {
       "x": 5440,
@@ -1711,49 +1772,63 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks). The whole-submission 先生のフィードバック Teacher Feedback card the source had was removed (PM, 30 Sep: not needed for now) — the per-question feedback is the comment. This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback."
+      "text": "SubmissionReview, AFTER the return — with the same summary cards (headline よくできました · 9/10点, teacher-confirmed) and Ask AI above the sheet: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks). The whole-submission 先生のフィードバック Teacher Feedback card the source had was removed (PM, 30 Sep: not needed for now) — the per-question feedback is the comment. This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback."
+    },
+    "q_Q-Chat": {
+      "x": 8160,
+      "y": 16660,
+      "w": 560,
+      "maxH": 560,
+      "text": "ASK AI (deck S27 p.30 'Ask AI on the spot — guides thinking along the textbook, not answers'): reached from the AIに質問する button on Q4 / Q6. The context card names the question being discussed (問5 and its improvement point) and says the teacher can see the dialogue. The thread: the student's question, the AI's answer with its textbook source line (第7回 §3 擬似相関), a nudge to summarise in the student's own words, then suggested questions as chips — click one, or type and send, and the exchange appends (the first chip has a written answer, the others a generic textbook pointer). The dialogue count shows on G7's header for the teacher. NEW against the source (no chat there); the deck lists AI Q&A chat and logs as available."
     },
     "q_MQ-Detail": {
-      "x": 8160,
+      "x": 9520,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出."
     },
     "q_MQ-Submit": {
-      "x": 8615,
+      "x": 9975,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors."
     },
     "q_MQ-Preview": {
-      "x": 9070,
+      "x": 10430,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile pages: the carousel and thumbnails, さらに追加 and 確認して分析 fixed at the bottom; Confirm & Analyze runs the analyzing state in place."
     },
     "q_MQ-Result": {
-      "x": 9525,
+      "x": 10885,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile analysis results: the banner, the marked sheet, the read-only breakdown with the total; 先生に提出する fixed at the bottom."
     },
     "q_MQ-Done": {
-      "x": 9980,
+      "x": 11340,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile submitted: the check, the LO card with time and the AI's score, 提出の詳細を表示 / コースに戻る. DEMO → returned."
     },
     "q_MQ-Review": {
-      "x": 10435,
+      "x": 11795,
       "y": 16672,
       "w": 375,
       "maxH": 560,
       "text": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled) with the per-question feedback, the marked sheet."
+    },
+    "q_MQ-Chat": {
+      "x": 12250,
+      "y": 16672,
+      "w": 375,
+      "maxH": 560,
+      "text": "Mobile Ask AI: the context card, the thread, the suggested-question chips, the input fixed at the bottom."
     },
     "title_q": {
       "x": 0,

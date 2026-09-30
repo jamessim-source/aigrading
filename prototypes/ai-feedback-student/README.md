@@ -24,9 +24,9 @@ sticky notes on the canvas are the per-screen record.
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 | AI Practice · 日本語 | `P-Dialog` → `P-Source` ↔ `P-Detail` (BO, 1440 × 900) · `P-Sets` → `P-Crop` → `P-Setup` → `P-Wait` → `P-Practice` · `P-Print` (PC, 1280 × 800) · `M-PSets` → `M-PCrop` → `M-PSetup` → `M-PWait` → `M-PPractice` (mobile, 375 × 812) | mixed |
 | AI Practice · English | same, `-en` suffix | mixed |
-| AI Grading · 日本語 | `G-Dialog` · `G-Detail` · `G-LOs` → `G-Import` → `G-Process` → `G-Overview` → `G-Mark` (BO, 1440 × 900) | 1440 × 900 |
+| AI Grading · 日本語 | `G-Dialog` · `G-Detail` · `G-LOs` → `G-Import` → `G-Process` → `G-Overview` → `G-Mark` · `G-Compare` (BO, 1440 × 900) | 1440 × 900 |
 | AI Grading · English | same, `-en` suffix | 1440 × 900 |
-| AI Grading, student side · 日本語 | `Q-Detail` → `Q-Submit` → `Q-Preview` → `Q-Result` → `Q-Done` → `Q-Review` (PC, 1280 × 800) · `MQ-Detail` → `MQ-Submit` → `MQ-Preview` → `MQ-Result` → `MQ-Done` → `MQ-Review` (mobile, 375 × 812) | mixed |
+| AI Grading, student side · 日本語 | `Q-Detail` → `Q-Submit` → `Q-Preview` → `Q-Result` → `Q-Done` → `Q-Review` · `Q-Chat` (PC, 1280 × 800) · `MQ-Detail` → `MQ-Submit` → `MQ-Preview` → `MQ-Result` → `MQ-Done` → `MQ-Review` · `MQ-Chat` (mobile, 375 × 812) | mixed |
 | AI Grading, student side · English | same, `-en` suffix | mixed |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
@@ -220,6 +220,22 @@ Feedback and AI Practice LOs on the same surfaces:
   the one the teacher marks on G7; the 9/10 is the score on T14 / T15. The
   source's My Classes and Add Class by QR / code are not carried — the LMS
   course and the course QR (T6) already do that.
+
+- **Grading operations from the Correspondence proposal deck (30 Sep, PM).**
+  From the Kindai Correspondence AI Feedback proposal (slides 10–15, 23,
+  27–30): confidence triage on G6 (Needs review / Likely fail / Likely pass
+  boxes that filter, a threshold preset that re-buckets rows, Confirm likely
+  passes with the spot checks held out, verdict / reason / confidence per
+  row, the false-pass counter); evidence highlighting on G7 (a transcript
+  mode with met / needs review / missing colouring, key and rubric beside
+  each answer, AI notes on split verdicts and similar answers, the verdict
+  and confidence in the header); `G-Compare`, every answer to one question
+  side by side in three columns with similar answers flagged; and on the
+  student side the strengths / to improve / suggested fix summary with Ask
+  AI on Q4, Q6 and the mobile pair, plus the Ask AI chat (`Q-Chat`,
+  `MQ-Chat`) guided along the textbook, visible to the teacher. Confidence,
+  thresholds and evidence highlighting are in development on the deck;
+  the values shown are illustrative.
 
 Not drawn: the Question Tag master and CSV book import (Master Data), the
 paper LO's rows in the Submissions tab, the student's row on the Overview

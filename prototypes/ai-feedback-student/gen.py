@@ -387,6 +387,20 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .qerr .ic{width:56px;height:56px;border-radius:50%;background:#fbe7e9;color:#d13842;display:flex;align-items:center;justify-content:center}
 .qkv{display:flex;flex-direction:column;gap:2px}.qkv .k{font-size:12px;color:rgba(28,30,44,.6)}.qkv .v{font-size:14px;font-weight:700}
 .qcheck{width:72px;height:72px;border-radius:50%;background:#1f7a4d;display:flex;align-items:center;justify-content:center;color:#fff}
+.qhead{display:flex;align-items:center;gap:12px;background:#1c1e2c;color:#fff;border-radius:8px;padding:12px 16px}
+.qhead b{font-size:20px;line-height:26px}.qhead span{font-size:13px;opacity:.85}
+.qsum{display:flex;flex-direction:column;gap:4px;border-left:4px solid;border-radius:6px;padding:10px 14px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08);font-size:14px;line-height:21px}
+.qsum b{font-size:14px}.qsum.s{border-color:#1f7a4d}.qsum.i{border-color:#395ad2}.qsum.f{border-color:#1c1e2c}
+.qsum s{background:#fbe7e9;color:#8a1f2a;padding:0 3px;border-radius:3px}.qsum mark{background:#e6f5ee;color:#1f7a4d;padding:0 3px;border-radius:3px;font-weight:700}
+.bub{max-width:82%;border-radius:14px;padding:10px 14px;font-size:14px;line-height:21px}
+.bub.u{align-self:flex-end;background:#395ad2;color:#fff;border-bottom-right-radius:4px}
+.bub.a{align-self:flex-start;background:#fff;border:1px solid rgba(28,30,44,.12);border-bottom-left-radius:4px}
+.bub.n{align-self:flex-start;background:#eef1ff;color:#2c48ae;font-size:13px}
+.bub .src{display:block;font-size:11px;color:rgba(28,30,44,.55);margin-top:4px}
+.chipq{border:1.5px solid #395ad2;color:#395ad2;background:#fff;border-radius:1000px;padding:6px 14px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;text-align:left}
+.chipq:hover{background:#eef1ff}
+.chatin{display:flex;gap:8px;align-items:center;background:#fff;border:1.5px solid rgba(28,30,44,.16);border-radius:1000px;padding:4px 4px 4px 16px}
+.chatin input{flex:1;border:0;outline:0;font:inherit;font-size:14px;background:transparent;min-width:0}
 """
 HELMET = ('<helmet><link rel="preconnect" href="https://fonts.googleapis.com">'
           '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">'
@@ -2196,6 +2210,29 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
 .gql td.num,.gql th.num{text-align:right}
 .gql td.empty{color:#BDBDBD;font-style:italic}
 .gql tr.rowoff{display:none}
+.trbox{flex:1 1 0;border:1px solid #E0E0E0;border-left:4px solid #2196F3;border-radius:4px;padding:12px 16px;background:#fff;display:flex;flex-direction:column;gap:2px;cursor:pointer;text-align:left;font-family:inherit;color:inherit}
+.trbox.on{box-shadow:0 0 0 2px rgba(33,150,243,.35)}
+.trbox.pass{border-left-color:#4CAF50}.trbox.fail{border-left-color:#1A237E}
+.trbox b{font-size:26px;font-weight:500;line-height:1.1}.trbox .lb{font-size:14px;font-weight:500}.trbox .trsub{font-size:12px;color:#757575}
+.conf{display:inline-flex;align-items:center;gap:8px}.conf .bar{width:64px;height:8px;border-radius:4px;background:#E0E0E0;overflow:hidden;display:inline-block}.conf .bar i{display:block;height:100%;border-radius:4px}
+.trreason{display:block;font-size:12px;color:#757575;white-space:normal;max-width:260px;line-height:1.35;margin-top:3px}
+.evwrap{width:640px;background:#fff;border:1px solid #E0E0E0;box-shadow:0 1px 3px rgba(0,0,0,.12);padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+.evlegend{display:flex;gap:10px;font-size:12px;margin-bottom:4px}
+.ev{display:inline-block;padding:1px 6px;border-radius:3px;font-size:14px;font-family:'Noto Sans JP',sans-serif;font-style:italic;color:#1A237E;border-bottom:2px solid}
+.ev.ok{background:#E8F5E9;border-color:#4CAF50}.ev.rv{background:#E8EAF6;border-color:#5C6BC0}.ev.ng{background:#FFEBEE;border-color:#E53935}
+.evrow{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed #EEEEEE}
+.evrow>b{width:34px;color:#212121;flex:0 0 34px;padding-top:2px}
+.evside{width:200px;flex:0 0 200px;display:flex;flex-direction:column;gap:2px;font-size:12px;color:#757575}
+.ainote{border-left:4px solid #3F51B5;background:#EEF1FB;padding:10px 14px;font-size:13px;line-height:1.5;color:#1A237E}
+.ainote b{display:block;font-weight:500;margin-bottom:2px}
+.cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cmpcol{display:flex;flex-direction:column;gap:10px}.cmpcol>h4{margin:0;font-size:13px;font-weight:500;color:#616161;display:flex;justify-content:space-between}
+.cmpcard{border:1px solid #E0E0E0;border-radius:4px;background:#fff;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.cmpcard .who{display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.cmpcard .box{border:1px solid #9E9E9E;border-radius:2px;background:#FDFDFB;padding:8px 10px;font-family:'Noto Sans JP',sans-serif;font-style:italic;color:#1A237E;font-size:16px;display:flex;justify-content:space-between;align-items:center}
+.cmpcard .box .ai{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-style:normal}
+.cmpcard .box .ai.o{color:#2E7D32;border:2px solid #2E7D32}.cmpcard .box .ai.x{color:#C62828}
+.cmpcard.ng{border-color:#FFCDD2}.cmpcard.rv{border-color:#C5CAE9}
 .gql .rowctl{display:flex;gap:4px;color:#9E9E9E;font-size:11px}
 .gql .rowctl span{width:18px;height:18px;border:1px solid #E0E0E0;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;background:#fff}
 .gpill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:12px;background:#F5F5F5;font-size:12px;color:#424242}
@@ -4835,7 +4872,7 @@ G_JA = dict(
     g_return_dis="承認フローがあるため、講師は返却できません。管理者が承認して返却します。",
     g_ov_cols=["生徒", "ステータス", "合計点数"], g_max="配点", g_avg="コース平均", g_subs_n="{n}件の提出",
     g_status={"nc": "未確認", "c": "確認済", "rt": "返却済み"},
-    g_students=[("山田 花子", "KU-2041", "c", [1, 1, 1, 2, 1, 1, 1, 1]), ("佐藤 太郎", "KU-2042", "c", [1, 1, 0, 2, 1, 0, 2, 1]), ("鈴木 一郎", "KU-2043", "nc", [1, 0, 1, 1, 1, 1, 0, 1]),
+    g_students=[("山田 花子", "KU-2041", "c", [1, 1, 1, 2, 1, 1, 1, 1]), ("佐藤 太郎", "KU-2042", "nc", [1, 1, 0, 2, 1, 0, 2, 1]), ("鈴木 一郎", "KU-2043", "nc", [1, 0, 1, 1, 1, 1, 0, 1]),
                 ("田中 美咲", "KU-2044", "nc", [1, 1, 1, 2, 1, 1, 2, 1]), ("高橋 健", "KU-2045", "nc", [0, 1, 1, 0, 1, 0, 1, 0]), ("伊藤 さくら", "KU-2046", "nc", [1, 1, 1, 1, 0, 1, 2, 0]),
                 ("渡辺 大輝", "KU-2047", "nc", [1, 0, 0, 2, 1, 1, 1, 1])],
     # marking (US-8)
@@ -4903,7 +4940,7 @@ G_EN = dict(
     g_return_dis="An approval workflow is on, so the teacher cannot return. An Admin approves and returns.",
     g_ov_cols=["Student", "Status", "Total Score"], g_max="Max", g_avg="Course average", g_subs_n="{n} submissions",
     g_status={"nc": "Not Confirmed", "c": "Confirmed", "rt": "Returned"},
-    g_students=[("Hanako Yamada", "KU-2041", "c", [1, 1, 1, 2, 1, 1, 1, 1]), ("Taro Sato", "KU-2042", "c", [1, 1, 0, 2, 1, 0, 2, 1]), ("Ichiro Suzuki", "KU-2043", "nc", [1, 0, 1, 1, 1, 1, 0, 1]),
+    g_students=[("Hanako Yamada", "KU-2041", "c", [1, 1, 1, 2, 1, 1, 1, 1]), ("Taro Sato", "KU-2042", "nc", [1, 1, 0, 2, 1, 0, 2, 1]), ("Ichiro Suzuki", "KU-2043", "nc", [1, 0, 1, 1, 1, 1, 0, 1]),
                 ("Misaki Tanaka", "KU-2044", "nc", [1, 1, 1, 2, 1, 1, 2, 1]), ("Ken Takahashi", "KU-2045", "nc", [0, 1, 1, 0, 1, 0, 1, 0]), ("Sakura Ito", "KU-2046", "nc", [1, 1, 1, 1, 0, 1, 2, 0]),
                 ("Daiki Watanabe", "KU-2047", "nc", [1, 0, 0, 2, 1, 1, 1, 1])],
     g_mk_pos="Student {i} of {n}", g_summary="Summary", g_confirmed="Confirmed", g_not_confirmed="Not Confirmed", g_pdf_lbl="Scan", g_zoom="80%",
@@ -5389,7 +5426,8 @@ def g_mark_logic(S):
     Not Confirmed student."""
     maxes = [m for _, _, m, _ in S["g_questions"]]
     stu = [{"n": n, "u": u, "st": st, "ai": sc} for n, u, st, sc in S["g_students"]]
-    return f"""state = {{ cur: 2, maxes: {json.dumps(maxes)}, stu: {json.dumps(stu, ensure_ascii=False)}, edits: {{}}, fbs: {{}}, fbOk: {json.dumps(S["q_qfb"], ensure_ascii=False)}, fbNg: {json.dumps(S["q_qfb_ng"], ensure_ascii=False)} }};
+    tri = {u: {"c": {"pass": "st-success", "review": "type", "fail": "st-error"}[tg_verdict(u, sum(ai))], "l": S["tg_" + tg_verdict(u, sum(ai))], "f": f"{TG_CONF[u]:.2f}", "n": 2 if u == "KU-2041" else 0} for _, u, _, ai in S["g_students"]}
+    return f"""state = {{ cur: 2, mode: "tr", tri: {json.dumps(tri, ensure_ascii=False)}, maxes: {json.dumps(maxes)}, stu: {json.dumps(stu, ensure_ascii=False)}, edits: {{}}, fbs: {{}}, fbOk: {json.dumps(S["q_qfb"], ensure_ascii=False)}, fbNg: {json.dumps(S["q_qfb_ng"], ensure_ascii=False)} }};
   setFb(k, on) {{ const i = this.state.cur; const f = Object.assign({{}}, this.state.fbs); f[i] = Object.assign({{}}, f[i] || {{}}); f[i][k] = on; this.setState({{ fbs: f }}); }}
   scoresOf(i) {{ const e = this.state.edits[i] || {{}}; return this.state.maxes.map((m, k) => (k in e) ? e[k] : this.state.stu[i].ai[k]); }}
   setQ(k, mode) {{ const i = this.state.cur, m = this.state.maxes[k]; const v = mode === "o" ? m : (mode === "x" ? 0 : Math.max(0.5, Math.round(m / 2 * 2) / 2)); const e = Object.assign({{}}, this.state.edits); e[i] = Object.assign({{}}, e[i] || {{}}); e[i][k] = v; this.setState({{ edits: e }}); }}
@@ -5399,7 +5437,9 @@ def g_mark_logic(S):
     const v = {{ name: s.n, user: s.u, pos: String(i + 1), n: String(this.state.stu.length), total: String(tot), max: String(max), done: String(done), todo: String(this.state.stu.length - done),
       edited: String(edited), hasEdit: edited > 0, status: s.st, isNc: s.st === "nc",
       next: () => {{ const st = this.state.stu.map((x, j) => j === i ? Object.assign({{}}, x, {{ st: "c" }}) : x); let j = st.findIndex((x, k) => k > i && x.st === "nc"); if (j < 0) j = st.findIndex(x => x.st === "nc"); this.setState({{ stu: st, cur: j < 0 ? i : j }}); }} }};
-    this.state.stu.forEach((x, j) => {{ v["stu" + j] = (x.st === "nc" ? "" : "done") + (j === i ? " on" : ""); v["pick" + j] = () => this.setState({{ cur: j }}); }});
+    this.state.stu.forEach((x, j) => {{ v["stu" + j] = (x.st === "nc" ? "" : "done") + (j === i ? " on" : ""); v["pick" + j] = () => this.setState({{ cur: j }}); v["tr" + j] = j === i; }});
+    const tri = this.state.tri[s.u]; v.vcls = tri.c; v.vlab = tri.l; v.conf = tri.f; v.hasChat = tri.n > 0; v.chatN = String(tri.n);
+    v.isScan = this.state.mode === "scan"; v.isTr = this.state.mode === "tr"; v.mScan = v.isScan ? "on" : ""; v.mTr = v.isTr ? "on" : ""; v.setScan = () => this.setState({{ mode: "scan" }}); v.setTr = () => this.setState({{ mode: "tr" }});
     sc.forEach((val, k) => {{ const m = this.state.maxes[k]; v["s" + k] = String(val); v["c" + k] = val >= m ? "full" : (val <= 0 ? "zero" : "part");
       v["o" + k] = val >= m ? "on" : ""; v["t" + k] = (val > 0 && val < m) ? "on" : ""; v["x" + k] = val <= 0 ? "on" : ""; v["h" + k] = (k in (this.state.edits[i] || {{}}) && this.state.edits[i][k] !== s.ai[k]) ? "hand" : "";
       v["so" + k] = () => this.setQ(k, "o"); v["st" + k] = () => this.setQ(k, "t"); v["sx" + k] = () => this.setQ(k, "x");
@@ -5422,10 +5462,11 @@ def g_mark(S, L):
         <sc-if value="{{{{fb{k}}}}}" hint-placeholder-val="{{{{true}}}}"><div class="qfbx"><span class="cell-muted" style="font-size:11px;display:flex;justify-content:space-between;align-items:center">{S["g_fb_lbl"]}<button class="ticon sm" style="width:24px;height:24px" onClick="{{{{rf{k}}}}}" title="{S["g_fb_del"]}" aria-label="{S["g_fb_del"]}">{mi("close", 14)}</button></span><textarea class="tinput" style="height:auto;min-height:44px;padding:6px 10px;font-size:12px;line-height:1.5;resize:vertical;width:100%" defaultValue="{{{{f{k}}}}}">{{{{f{k}}}}}</textarea></div></sc-if>
         <sc-if value="{{{{nofb{k}}}}}" hint-placeholder-val="{{{{false}}}}"><button class="tbtn neutral sm" style="align-self:flex-start;height:26px;font-size:12px" onClick="{{{{af{k}}}}}">{S["g_fb_add"]}</button></sc-if></div>'''
                     for k, (idx, ans, mx, tag) in enumerate(qs))
-    # the sheet shows the AI's first pass for the student on screen (drawn for the default student, 鈴木)
+    # the sheet shows the AI's first pass for the student on screen (drawn for the default student, 鈴木); the transcript is per student
+    trs = "".join(f'<sc-if value="{{{{tr{j}}}}}" hint-placeholder-val="{{{{{"true" if j == 2 else "false"}}}}}">{tg_transcript(S, u, ai)}</sc-if>' for j, (n_, u, st_, ai) in enumerate(S["g_students"]))
     body = f'''<div class="tscrim" style="padding:0;align-items:stretch">
   <div style="background:#fff;width:100%;display:flex;flex-direction:column;min-height:0">
-    <div class="dlg-head" style="padding:10px 20px"><div style="display:flex;align-items:center;gap:12px;min-width:0"><span class="lm-type ppr" style="width:28px;height:28px">{g_icon(16)}</span><h2 style="font-size:18px">{S["g_lo"]}</h2><span class="cell-muted">{S["g_mk_pos"].replace("{i}", "{{pos}}").replace("{n}", "{{n}}")}</span>
+    <div class="dlg-head" style="padding:10px 20px"><div style="display:flex;align-items:center;gap:12px;min-width:0"><span class="lm-type ppr" style="width:28px;height:28px">{g_icon(16)}</span><h2 style="font-size:18px">{S["g_lo"]}</h2><span class="cell-muted">{S["g_mk_pos"].replace("{i}", "{{pos}}").replace("{n}", "{{n}}")}</span><span class="tchip {{{{vcls}}}}">{{{{vlab}}}}</span><span class="tchip filled">{S["tg_conf"]} <b style="font-weight:500;margin-left:4px">{{{{conf}}}}</b></span><sc-if value="{{{{hasChat}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip filled">{mi("aiTutor", 12)}{S["tg_chatlog"].replace("{n}", "{{chatN}}")}</span></sc-if>
         <sc-if value="{{{{hasEdit}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip type">{mi("edit", 12)}{S["g_edited"].replace("{n}", "{{edited}}")}</span></sc-if></div>
       <a class="ticon" href="{tfn("G-Overview", L)}" aria-label="{S["g_close"]}">{mi("close", 24)}</a></div>
     <div class="gmk" style="flex:1">
@@ -5437,10 +5478,13 @@ def g_mark(S, L):
       </div>
       <div class="viewer">
         <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#fff;border-bottom:1px solid #E0E0E0;font-size:13px">
-          <span style="display:flex;align-items:center;gap:8px"><b style="font-weight:500">{{{{name}}}}</b><span class="cell-muted num">{{{{user}}}}</span><span class="tchip filled num" style="height:22px;font-size:11px">{S["g_pdf_lbl"]}: scan_20261110_quiz07_A.pdf</span></span>
-          <span style="display:flex;align-items:center;gap:8px;color:#616161">{mi("back", 16)}<span class="num">1 / 1</span><span style="transform:rotate(180deg);display:inline-flex">{mi("back", 16)}</span><span style="margin-left:10px">− {S["g_zoom"]} +</span>{mi("fileDownload", 16)}</span>
+          <span style="display:flex;align-items:center;gap:8px;white-space:nowrap;min-width:0"><b style="font-weight:500">{{{{name}}}}</b><span class="cell-muted num">{{{{user}}}}</span><span class="tchip filled num" style="height:22px;font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;display:inline-block;line-height:22px">{S["g_pdf_lbl"]}: scan_20261110_quiz07_A.pdf</span></span>
+          <span style="display:flex;align-items:center;gap:8px;color:#616161"><span class="tseg" style="height:28px"><button class="{{{{mScan}}}}" style="height:28px;padding:0 10px" onClick="{{{{setScan}}}}">{S["tg_mode_scan"]}</button><button class="{{{{mTr}}}}" style="height:28px;padding:0 10px" onClick="{{{{setTr}}}}">{S["tg_mode_tr"]}</button></span><a class="tbtn outlined sm" style="white-space:nowrap" href="{tfn("G-Compare", L)}">{S["tg_compare_q"]}</a><span style="white-space:nowrap;display:inline-flex;align-items:center;gap:6px">{mi("back", 16)}<span class="num">1 / 1</span><span style="transform:rotate(180deg);display:inline-flex">{mi("back", 16)}</span><span style="margin-left:10px">− {S["g_zoom"]} +</span>{mi("fileDownload", 16)}</span></span>
         </div>
-        <div style="flex:1;overflow:auto;padding:24px;display:flex;justify-content:center;align-items:flex-start"><div style="width:560px">{g_sheet(S, S["g_students"][2][3], with_ai=True)}</div></div>
+        <div style="flex:1;overflow:auto;padding:24px;display:flex;justify-content:center;align-items:flex-start">
+          <sc-if value="{{{{isScan}}}}" hint-placeholder-val="{{{{false}}}}"><div style="width:560px">{g_sheet(S, S["g_students"][2][3], with_ai=True)}</div></sc-if>
+          <sc-if value="{{{{isTr}}}}" hint-placeholder-val="{{{{true}}}}">{trs}</sc-if>
+        </div>
         <div style="padding:6px 16px;background:#fff;border-top:1px solid #E0E0E0"><span class="helper" style="margin:0">{mi("spark", 14, "#757575")} {S["g_ai_line"]}</span></div>
       </div>
       <div class="panel">
@@ -5774,7 +5818,7 @@ def q_result(S, L):
 <div class="body"><div class="col" style="width:880px">
   <div class="qbanner ai">{ic("sparkle", 18)}<span>{S["q_ai_marked"]}</span></div>
   <div style="display:flex;gap:16px;align-items:flex-start">
-    <div class="card" style="padding:16px;flex:0 0 400px">{q_carousel(S, 368, 400, del_btn=False, marks=Q_AI)}</div>
+    <div style="flex:0 0 400px;display:flex;flex-direction:column;gap:16px">{q_summary(S, L)}<div class="card" style="padding:16px">{q_carousel(S, 368, 400, del_btn=False, marks=Q_AI)}</div></div>
     <div class="card" style="padding:20px 24px;flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:12px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
         <div><p class="sub1">{S["q_breakdown"]}</p><p class="cap">{S["q_ai_scores"]}</p></div>
@@ -5840,6 +5884,7 @@ def q_review(S, L):
         <p class="cap" style="font-weight:700">{S["q_sub_details"]}</p>
         <p class="b2">{S["q_n_questions"].format(n=len(S["g_questions"]))} {S["sep"]} {S["q_total_colon"]} <b>{sum(Q_TEACHER)}/10</b></p>
       </div>
+      {q_summary(S, L, returned=True)}
       <div class="card" style="padding:16px">{q_carousel(S, 368, 380, del_btn=False, marks=Q_TEACHER)}</div>
     </div>
     <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:16px">
@@ -5951,6 +5996,7 @@ def mq_result(S, L):
     body = mheader(S, "MQ-Result", S["q_results"], back_href=fn("MQ-Preview", L)) + f'''
 <div class="mbody" style="padding-bottom:110px">
   <div class="qbanner ai" style="font-size:13px">{ic("sparkle", 18)}<span>{S["q_ai_marked"]}</span></div>
+  {q_summary(S, L, mobile=True)}
   <div class="mcard" style="padding:12px">{q_carousel(S, 319, 300, del_btn=False, marks=Q_AI)}</div>
   <div class="mcard" style="gap:10px">
     <div><p class="sub1" style="font-size:14px">{S["q_breakdown"]}</p><p class="cap">{S["q_ai_scores"]}</p></div>
@@ -6000,6 +6046,7 @@ def mq_review(S, L):
     <p class="cap">{S["q_sub_date"]} {S["q_sub_date_v"]}</p>
     <p class="b2">{S["q_n_questions"].format(n=len(S["g_questions"]))} {S["sep"]} {S["q_total_colon"]} <b>{sum(Q_TEACHER)}/10</b></p>
   </div>
+  {q_summary(S, L, returned=True, mobile=True)}
   <div class="mcard" style="padding:12px">{q_carousel(S, 319, 300, del_btn=False, marks=Q_TEACHER)}</div>
   <div class="mcard" style="gap:10px">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><p class="sub1" style="font-size:14px">{S["q_breakdown"]}</p><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12)}{S["q_teacher_badge"]}</span></div>
@@ -6019,6 +6066,332 @@ QBUILDERS = {"Q-Detail": q_detail, "Q-Submit": q_submit, "Q-Preview": q_preview,
              "MQ-Detail": mq_detail, "MQ-Submit": mq_submit, "MQ-Preview": mq_preview, "MQ-Result": mq_result, "MQ-Done": mq_done, "MQ-Review": mq_review}
 TO_MOBILE.update({w: m for w, m in zip(QSCREENS_W, QSCREENS_M)})
 TO_PC.update({m: w for w, m in zip(QSCREENS_W, QSCREENS_M)})
+
+# =====================================================================================
+# GRADING OPERATIONS for the paper LO — from the Kindai Correspondence proposal deck (S27, slides
+# 10, 13, 15, 23, 27–30): confidence-based triage on the submission list (G6), evidence highlighting
+# on the marking review (G7), a side-by-side view per question (G8), and the student's feedback
+# display with Ask AI (Q4 / Q6 and a chat board). Confidence, thresholds and evidence highlighting are
+# "in development" on the deck's p.42; drawn here as the control and the rule, not as measured values.
+# =====================================================================================
+TG_JA = dict(
+    tg_pass="合格見込み", tg_review="要確認", tg_fail="不合格見込み", tg_verdict="AI判定", tg_reason="根拠", tg_conf="信頼度",
+    tg_box_pass_sub="抜き取り確認 {n}件を含む", tg_box_review_sub="判断が必要", tg_box_fail_sub="理由とコメントの下書きあり",
+    tg_bulk="合格見込みを一括確認 ({n})", tg_spot="抜き取り確認を開く ({n})", tg_spot_chip="抜き取り", tg_spot_hint="抜き取りは無作為に選ばれ、一括確認から除かれます。",
+    tg_thr="しきい値", tg_thr_zero="ゼロミス", tg_thr_care="慎重", tg_thr_std="標準", tg_thr_hint="コースごとの設定（コース管理）。ここでは動作確認用に切り替えられます。",
+    tg_sort="要判断順", tg_all="すべて", tg_showing="{n}件を表示 ・ 要判断順 ・ 抜き取りは無作為", tg_toast="{n}件を確認済にしました。抜き取り {s}件は未確認のままです。",
+    tg_falsepass="抜き取りで見つかった誤合格：0件（上限 2件）", tg_compare="設問ごとに比較", tg_pass_line="合格点 6点",
+    tg_reasons={"KU-2041": "全問読み取り良好 ・ 解答キーと一致", "KU-2042": "問2(2)・問4(2) 解答キーと不一致 ・ 読み取り良好", "KU-2043": "問2(1) 手書きが不鮮明 ・ モデル間で判定が分かれた",
+                "KU-2044": "全問一致", "KU-2045": "合格点未満（4/10）・ 問1・問3 解答キーと不一致", "KU-2046": "問5 類似解答 2件（渡辺）", "KU-2047": "問5 類似解答 2件（伊藤）・ 問2(2) 読み取り不確か"},
+    # evidence (G7)
+    tg_mode_scan="スキャン", tg_mode_tr="読み取りテキスト", tg_ev_ok="解答キーと一致", tg_ev_rv="要確認", tg_ev_ng="不足・不一致", tg_ev_key="正答", tg_ev_rub="採点基準",
+    tg_ai_note="AIメモ", tg_chatlog="AIとの対話 {n}件", tg_compare_q="並べて比較",
+    tg_notes={"KU-2043": "問2(1) はモデル間で判定が分かれました。手書きが「正」か「負」か不鮮明です。ご判断ください。",
+              "KU-2046": "問5 の解答は 渡辺 さんの解答と類似しています（2件）。「設問ごとに比較」で並べて確認できます。",
+              "KU-2047": "問5 の解答は 伊藤 さんの解答と類似しています（2件）。「設問ごとに比較」で並べて確認できます。"},
+    tg_tr={"KU-2041": {6: ("相関≠因果", "rv")}, "KU-2042": {2: ("正", "ng"), 5: ("強い", "ng")},
+           "KU-2043": {1: ("負（不鮮明）", "rv"), 3: ("外れ値", "rv"), 6: ("因果あり", "ng")}, "KU-2044": {},
+           "KU-2045": {0: ("0.28", "ng"), 3: ("なし", "ng"), 5: ("強い", "ng"), 6: ("相関≠因果", "rv"), 7: ("有意でない", "ng")},
+           "KU-2046": {3: ("外れ値", "rv"), 4: ("0.53", "ng"), 7: ("n=30", "ng")}, "KU-2047": {1: ("負", "ng"), 2: ("正", "ng"), 6: ("相関≠因果", "rv")}},
+    # side by side (G8)
+    tg_cmp_title="設問ごとに比較", tg_cmp_sub="同じ設問の解答を並べて見る — 同じ内容には同じ判定を。", tg_cmp_q="設問", tg_similar="類似", tg_cmp_read="読み取り",
+    tg_cmp_cols=["✕ 不一致", "△ 要確認", "○ 一致"], tg_cmp_hint="判定を変えると、その生徒の添削画面に反映されます。",
+    tg_titles={"cmp": "添削 — 設問ごとに比較"},
+    # student feedback display + Ask AI
+    q_sum_head="もう一歩", q_sum_sub="8問中7問正解 ・ 8/10点", q_sum_head_ret="よくできました", q_sum_sub_ret="8問中7問正解 ・ 9/10点（先生が確認済み）",
+    q_strengths="強み", q_improve="改善点", q_fix="提案する修正", q_ask="AIに質問する", q_ask_short="質問する",
+    q_strengths_body="相関係数の計算と符号の解釈、散布図の読み取り、有意性の判断は正確です。",
+    q_improve_body="問5：「相関≠因果」は書けていますが、採点基準が求める第三の変数への言及がありません。",
+    q_fix_old="相関≠因果", q_fix_new="相関≠因果（例：気温という第三の変数が両方に影響している可能性）",
+    q_chat_title="AIに質問する", q_chat_sub="フィードバックについての質問", q_chat_ctx="質問中の設問", q_chat_note="この対話は先生も見ることができます。",
+    q_chat_ph="質問を入力…", q_chat_send="送信", q_chat_src="教科書 第7回 §3 擬似相関",
+    q_chat_u1="なぜ第三の変数への言及が必要なの？",
+    q_chat_a1="2つの変数の相関が、どちらにも影響する別の変数（第三の変数）から生まれることがあるからです。たとえばアイスの売上と水難事故は相関しますが、原因は気温です。第7回の教科書 §3 では、これを「擬似相関」として説明しています。",
+    q_chat_a1b="自分の言葉で、一文にまとめてみてください。",
+    q_chat_chips=["例をもう一つ見せて", "擬似相関とは？", "相関係数はいくつ以上で「強い」？"],
+    q_chat_u2="例をもう一つ見せて", q_chat_a2="都道府県別の「コンビニ数」と「交通事故件数」も相関します。どちらも人口という第三の変数に影響されています。あなたの解答の県別データでは、何が第三の変数になりそうですか？",
+    q_chat_generic="教科書 第7回 §3 に、この点の説明があります。まず該当箇所を読み、自分の言葉でまとめてみてください。",
+    q_chat_titles={"pc": "紙提出物 — AIに質問する", "m": "モバイル — AIに質問する"},
+)
+TG_EN = dict(
+    tg_pass="Likely pass", tg_review="Needs review", tg_fail="Likely fail", tg_verdict="AI verdict", tg_reason="Reason", tg_conf="Confidence",
+    tg_box_pass_sub="incl. {n} spot check", tg_box_review_sub="Judgment needed", tg_box_fail_sub="Reasons and comments drafted",
+    tg_bulk="Confirm likely passes ({n})", tg_spot="Open {n} spot check", tg_spot_chip="Spot check", tg_spot_hint="Spot checks are chosen at random and held out of the bulk action.",
+    tg_thr="Threshold", tg_thr_zero="Zero misses", tg_thr_care="Cautious", tg_thr_std="Standard", tg_thr_hint="A per-course setting (Course Management). Switchable here to see the effect.",
+    tg_sort="Needs judgment first", tg_all="All", tg_showing="Showing {n} · needs judgment first · spot checks are chosen at random", tg_toast="{n} confirmed. {s} spot check stays Not Confirmed.",
+    tg_falsepass="False passes found by spot checks: 0 (limit 2)", tg_compare="Compare by question", tg_pass_line="Pass mark 6",
+    tg_reasons={"KU-2041": "All answers read cleanly · match the key", "KU-2042": "Q2(2), Q4(2) differ from the key · read cleanly", "KU-2043": "Q2(1) handwriting unclear · models split",
+                "KU-2044": "All match", "KU-2045": "Below pass mark (4/10) · Q1, Q3 differ from the key", "KU-2046": "Q5: 2 similar answers (Watanabe)", "KU-2047": "Q5: 2 similar answers (Ito) · Q2(2) uncertain read"},
+    tg_mode_scan="Scan", tg_mode_tr="Transcript", tg_ev_ok="Matches key", tg_ev_rv="Needs review", tg_ev_ng="Missing / differs", tg_ev_key="Key", tg_ev_rub="Rubric",
+    tg_ai_note="AI note", tg_chatlog="AI dialogue · {n}", tg_compare_q="Side by side",
+    tg_notes={"KU-2043": "The models split on Q2(1): the handwriting could read 正 or 負. Please decide.",
+              "KU-2046": "The Q5 answer is similar to Watanabe's (2 found). Compare by question shows them side by side.",
+              "KU-2047": "The Q5 answer is similar to Ito's (2 found). Compare by question shows them side by side."},
+    tg_tr={"KU-2041": {6: ("相関≠因果", "rv")}, "KU-2042": {2: ("正", "ng"), 5: ("強い", "ng")},
+           "KU-2043": {1: ("負 (unclear)", "rv"), 3: ("外れ値", "rv"), 6: ("因果あり", "ng")}, "KU-2044": {},
+           "KU-2045": {0: ("0.28", "ng"), 3: ("なし", "ng"), 5: ("強い", "ng"), 6: ("相関≠因果", "rv"), 7: ("有意でない", "ng")},
+           "KU-2046": {3: ("外れ値", "rv"), 4: ("0.53", "ng"), 7: ("n=30", "ng")}, "KU-2047": {1: ("負", "ng"), 2: ("正", "ng"), 6: ("相関≠因果", "rv")}},
+    tg_cmp_title="Compare by question", tg_cmp_sub="Every answer to one question side by side — equal content gets an equal verdict.", tg_cmp_q="Question", tg_similar="Similar", tg_cmp_read="Read as",
+    tg_cmp_cols=["✕ Differs", "△ Needs review", "○ Matches"], tg_cmp_hint="Changing a mark here updates that student's marking review.",
+    tg_titles={"cmp": "Marking — compare by question"},
+    q_sum_head="Almost there", q_sum_sub="7 of 8 correct · 8/10", q_sum_head_ret="Well done", q_sum_sub_ret="7 of 8 correct · 9/10 (teacher reviewed)",
+    q_strengths="Strengths", q_improve="To improve", q_fix="Suggested fix", q_ask="Ask AI", q_ask_short="Ask",
+    q_strengths_body="Computing r and reading its sign, reading the scatter plot, and judging significance are all accurate.",
+    q_improve_body="Q5: \"correlation ≠ causation\" is there, but the marking guide also asks you to name a third variable.",
+    q_fix_old="correlation ≠ causation", q_fix_new="correlation ≠ causation (e.g. temperature, a third variable, may drive both)",
+    q_chat_title="Ask AI", q_chat_sub="A question about your feedback", q_chat_ctx="Question being discussed", q_chat_note="Your teacher can see this dialogue.",
+    q_chat_ph="Type a question…", q_chat_send="Send", q_chat_src="Textbook, Session 7 §3 Spurious correlation",
+    q_chat_u1="Why do I need to mention a third variable?",
+    q_chat_a1="Because a correlation between two variables can come from a third variable that drives both. Ice-cream sales and drownings correlate, but the cause is temperature. Session 7 §3 of the textbook calls this a spurious correlation.",
+    q_chat_a1b="Try summarising it in one sentence in your own words.",
+    q_chat_chips=["Show me another example", "What is a spurious correlation?", "How large is a \"strong\" r?"],
+    q_chat_u2="Show me another example", q_chat_a2="Convenience stores and traffic accidents per prefecture also correlate — both follow population, the third variable. In the prefectural data you analysed, what could the third variable be?",
+    q_chat_generic="Session 7 §3 of the textbook covers this point. Read that section first, then summarise it in your own words.",
+    q_chat_titles={"pc": "Paper Submission — Ask AI", "m": "Mobile — Ask AI"},
+)
+JA.update(TG_JA); EN.update(TG_EN)
+
+# confidence and the spot-check flag per submission (the deck's p.27 columns); the verdict follows the threshold at run time
+TG_CONF = {"KU-2041": 0.96, "KU-2042": 0.91, "KU-2043": 0.58, "KU-2044": 0.97, "KU-2045": 0.86, "KU-2046": 0.63, "KU-2047": 0.71}
+TG_SPOT = {"KU-2042"}
+TG_PASS_MARK = 6
+TG_THR = {"zero": 1.01, "care": 0.92, "std": 0.85}
+TG_HAND = ["0.82", "正", "負", "外れ値", "0.35", "弱い", "相関≠因果", "有意"]
+TG_RUB_OF = [0, 0, 1, 1, 2, 2, 3, 3]   # question → rubric row on G2
+
+def tg_verdict(user, tot, thr="std"):
+    c = TG_CONF[user]; t = TG_THR[thr]
+    return "pass" if (c >= t and tot >= TG_PASS_MARK) else ("fail" if (c >= t and tot < TG_PASS_MARK) else "review")
+
+def tg_chip(S, v, extra=""):
+    cls = {"pass": "st-success", "review": "type", "fail": "st-error"}[v]
+    return f'<span class="tchip {cls}"{extra}>{S["tg_" + v]}</span>'
+
+def tg_bar(c):
+    tone = "#4CAF50" if c >= 0.85 else ("#2196F3" if c >= 0.6 else "#1A237E")
+    return f'<span class="conf"><span class="bar"><i style="width:{int(c * 100)}%;background:{tone}"></i></span><span class="num">{c:.2f}</span></span>'
+
+def tg_transcript(S, user, ai):
+    """One student's transcript: the AI's reading of each answer box, coloured against the key (ok / rv / ng),
+    the key and the rubric beside it, the reason line."""
+    rows = ""
+    ov = S["tg_tr"].get(user, {})
+    for k, (idx, ans, mx, tag) in enumerate(S["g_questions"]):
+        if k in ov:
+            text, cls = ov[k]
+        else:
+            text = TG_HAND[k]; cls = "ok" if ai[k] >= mx else ("rv" if ai[k] > 0 else "ng")
+        why = S["q_qfb"][k] if cls == "ok" else S["q_qfb_ng"][k]
+        rub = S["g_rubrics"][TG_RUB_OF[k]][0]
+        rows += f'''<div class="evrow"><b>{idx}</b><div style="flex:1;min-width:0"><span class="ev {cls}">{text}</span><span class="cell-muted" style="display:block;font-size:12px;margin-top:4px">{why}</span></div>
+          <div class="evside"><span>{S["tg_ev_key"]}: <b>{ans or "—"}</b></span><span>{S["tg_ev_rub"]}: {rub}</span></div></div>'''
+    note = S["tg_notes"].get(user)
+    note_html = f'<div class="ainote"><b>{S["tg_ai_note"]}</b>{note}</div>' if note else ""
+    return f'''<div class="evwrap">
+      <div class="evlegend"><span class="ev ok">{S["tg_ev_ok"]}</span><span class="ev rv">{S["tg_ev_rv"]}</span><span class="ev ng">{S["tg_ev_ng"]}</span></div>
+      {rows}{note_html}</div>'''
+
+
+# ---------- G6 · the submission list with triage ----------
+G_OV_LOGIC2 = """state = { apv: false, role: "t", thr: "std", seg: "all", st: %s, toast: 0 };
+  renderVals() {
+    const st = this.state, T = { zero: 1.01, care: 0.92, std: 0.85 }[st.thr], conf = %s, tot = %s, spot = %s, users = %s;
+    const v = users.map((u, j) => (conf[j] >= T && tot[j] >= 6) ? "pass" : ((conf[j] >= T && tot[j] < 6) ? "fail" : "review"));
+    const nPass = v.filter(x => x === "pass").length, nRev = v.filter(x => x === "review").length, nFail = v.filter(x => x === "fail").length;
+    const nSpot = users.filter((u, j) => v[j] === "pass" && spot.includes(u)).length;
+    const bulk = users.map((u, j) => j).filter(j => v[j] === "pass" && !spot.includes(users[j]) && st.st[j] === "nc");
+    const out = { ap: st.apv ? "on" : "", apOn: st.apv, apOff: !st.apv, toggleAp: () => this.setState({ apv: !st.apv }),
+      isT: st.role === "t", isA: st.role === "a", tCls: st.role === "t" ? "on" : "", aCls: st.role === "a" ? "on" : "",
+      setT: () => this.setState({ role: "t" }), setA: () => this.setState({ role: "a" }),
+      nPass: String(nPass), nRev: String(nRev), nFail: String(nFail), nSpot: String(nSpot), nBulk: String(bulk.length), canBulk: bulk.length > 0, noBulk: bulk.length === 0,
+      segAll: st.seg === "all" ? "on" : "", segPass: st.seg === "pass" ? "on" : "", segRev: st.seg === "review" ? "on" : "", segFail: st.seg === "fail" ? "on" : "",
+      pickAll: () => this.setState({ seg: "all" }), pickPass: () => this.setState({ seg: st.seg === "pass" ? "all" : "pass" }), pickRev: () => this.setState({ seg: st.seg === "review" ? "all" : "review" }), pickFail: () => this.setState({ seg: st.seg === "fail" ? "all" : "fail" }),
+      thrZero: st.thr === "zero" ? "on" : "", thrCare: st.thr === "care" ? "on" : "", thrStd: st.thr === "std" ? "on" : "",
+      setZero: () => this.setState({ thr: "zero" }), setCare: () => this.setState({ thr: "care" }), setStd: () => this.setState({ thr: "std" }),
+      bulkOk: () => { const s = st.st.slice(); bulk.forEach(j => { s[j] = "c"; }); this.setState({ st: s, toast: bulk.length }); }, toastN: String(st.toast), toastS: String(nSpot), hasToast: st.toast > 0, closeToast: () => this.setState({ toast: 0 }),
+      nShown: String(v.filter(x => st.seg === "all" || x === st.seg).length) };
+    users.forEach((u, j) => { out["v" + j] = v[j]; out["vc" + j] = { pass: "st-success", review: "type", fail: "st-error" }[v[j]]; out["vl" + j] = { pass: "%s", review: "%s", fail: "%s" }[v[j]];
+      out["hid" + j] = (st.seg === "all" || v[j] === st.seg) ? "" : "hide"; out["ord" + j] = String(({ review: 0, fail: 1, pass: 2 }[v[j]]) * 10 + Math.round(conf[j] * 9));
+      out["stNc" + j] = st.st[j] === "nc"; out["stC" + j] = st.st[j] === "c"; });
+    return out;
+  }"""
+
+def g_overview2(S, L):
+    """The paper LO's submission list with confidence-based triage (deck p.27): the three boxes 要確認 / 不合格見込み /
+    合格見込み with counts (click to filter), the threshold preset (zero misses / cautious / standard — the per-course
+    setting, switchable here to see rows re-bucket), 合格見込みを一括確認 with the spot checks held out, and per row the
+    AI verdict, the reason, the confidence bar, then the existing status, total and per-question scores. Rows are
+    ordered needs-judgment first. The approval-workflow and Teacher / Admin switches stay."""
+    qs = S["g_questions"]; maxes = [m for _, _, m, _ in qs]; total_max = sum(maxes)
+    heads = "".join(f'<th style="text-align:center;padding:10px 6px"><b style="font-weight:500">{idx}</b><span class="cell-muted" style="display:block;font-size:11px">{S["g_max"]}: {m}</span></th>' for idx, _, m, _ in qs)
+    stu = S["g_students"]; n = len(stu); col_sum = [0] * len(qs)
+    users = [u for _, u, _, _ in stu]; tots = [sum(sc) for _, _, _, sc in stu]
+    order = sorted(range(n), key=lambda j: ({"review": 0, "fail": 1, "pass": 2}[tg_verdict(users[j], tots[j])], TG_CONF[users[j]]))
+    rows = ""
+    for j in order:
+        name, user, st, scores = stu[j]; tot = tots[j]; pct = int(tot / total_max * 100)
+        for k, val in enumerate(scores): col_sum[k] += val
+        spot = f'<span class="tchip wait" style="height:20px;font-size:11px;margin-left:6px" title="{S["tg_spot_hint"]}">{S["tg_spot_chip"]}</span>' if user in TG_SPOT else ""
+        stchip = (f'<sc-if value="{{{{stNc{j}}}}}" hint-placeholder-val="{{{{{"true" if st == "nc" else "false"}}}}}"><span class="tchip st-default">{S["g_status"]["nc"]}</span></sc-if>'
+                  f'<sc-if value="{{{{stC{j}}}}}" hint-placeholder-val="{{{{{"true" if st == "c" else "false"}}}}}"><span class="tchip st-success">{S["g_status"]["c"]}</span></sc-if>')
+        rows += (f'<tr class="{{{{hid{j}}}}}"><td class="cb"><span class="cbx-td"></span></td><td><a class="cell-link" href="{tfn("G-Mark", L)}">{name}</a>{spot}<span class="cell-muted num" style="display:block;font-size:12px">{user}</span></td>'
+                 f'<td><span class="tchip {{{{vc{j}}}}}">{{{{vl{j}}}}}</span><span class="trreason">{S["tg_reasons"][user]}</span></td><td>{tg_bar(TG_CONF[user])}</td><td>{stchip}</td>'
+                 f'<td><b style="font-weight:500">{tot}</b><span class="cell-muted">/{total_max}</span> <span class="cell-muted" style="font-size:12px">{pct}%</span></td>' + "".join(g_mcell(val, maxes[k]) for k, val in enumerate(scores)) + '</tr>')
+    avg = [s / n for s in col_sum]; avg_t = sum(avg)
+    foot = (f'<tr><td class="cb"></td><td><b style="font-weight:500">{S["g_avg"]}</b><span class="cell-muted" style="display:block;font-size:12px">{S["g_subs_n"].format(n=n)}</span></td><td colspan="3"><span class="cell-muted" style="font-size:12px">{S["tg_pass_line"]}</span></td>'
+            f'<td><b style="font-weight:500">{avg_t:.1f}</b><span class="cell-muted">/{total_max}</span> <span class="cell-muted" style="font-size:12px">{int(avg_t / total_max * 100)}%</span></td>' + "".join(f'<td class="gmc avg">{a:.1f}</td>' for a in avg) + '</tr>')
+    kv = "".join(f'<dt>{k}</dt><dd>{v}</dd>' for k, v in ((S["g_b_book"], S["t_book"]), (S["g_b_course"], S["t_course_name"]), (S["g_b_ext"], f'<span class="num">{S["g_ext"]}</span>'), (S["g_b_marker"], f'{S["g_marker_v"]}')))
+    actions = f'''<sc-if value="{{{{apOff}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tbtn contained">{S["g_bulk_return"]}</span></sc-if>
+        <sc-if value="{{{{apOn}}}}" hint-placeholder-val="{{{{false}}}}">
+          <sc-if value="{{{{isT}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tbtn contained">{S["g_bulk_finish"]}</span><span class="tbtn dis" title="{S["g_return_dis"]}">{S["g_bulk_return"]}</span></sc-if>
+          <sc-if value="{{{{isA}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tbtn contained">{S["g_bulk_approve"]}</span></sc-if>
+        </sc-if>'''
+    boxes = f'''<div style="display:flex;gap:12px;align-items:stretch">
+      <button class="trbox {{{{segRev}}}}" onClick="{{{{pickRev}}}}"><span class="lb">{S["tg_review"]}</span><b>{{{{nRev}}}}</b><span class="trsub">{S["tg_box_review_sub"]}</span></button>
+      <button class="trbox fail {{{{segFail}}}}" onClick="{{{{pickFail}}}}"><span class="lb">{S["tg_fail"]}</span><b>{{{{nFail}}}}</b><span class="trsub">{S["tg_box_fail_sub"]}</span></button>
+      <button class="trbox pass {{{{segPass}}}}" onClick="{{{{pickPass}}}}"><span class="lb">{S["tg_pass"]}</span><b>{{{{nPass}}}}</b><span class="trsub">{S["tg_box_pass_sub"].replace("{n}", "{{nSpot}}")}</span></button>
+      <div style="display:flex;flex-direction:column;gap:8px;justify-content:center;flex:0 0 300px">
+        <sc-if value="{{{{canBulk}}}}" hint-placeholder-val="{{{{true}}}}"><button class="tbtn contained" style="background:#43A047" onClick="{{{{bulkOk}}}}">{mi("checks", 18)}{S["tg_bulk"].replace("{n}", "{{nBulk}}")}</button></sc-if>
+        <sc-if value="{{{{noBulk}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tbtn dis">{mi("checks", 18)}{S["tg_bulk"].replace("{n}", "{{nBulk}}")}</span></sc-if>
+        <a class="tbtn outlined" href="{tfn("G-Mark", L)}">{S["tg_spot"].replace("{n}", "{{nSpot}}")}</a>
+      </div>
+    </div>
+    <sc-if value="{{{{hasToast}}}}" hint-placeholder-val="{{{{false}}}}"><div class="alert info" style="background:rgba(76,175,80,.12);color:#2E7D32;align-items:center">{mi("checkCircle", 20, "#2E7D32")}<span style="flex:1">{S["tg_toast"].replace("{n}", "{{toastN}}").replace("{s}", "{{toastS}}")}</span><button class="ticon sm" onClick="{{{{closeToast}}}}">{mi("close", 16)}</button></div></sc-if>'''
+    body = tnav(S, "course") + f'''<div class="tmain">
+<div class="tscroll" style="padding-bottom:20px">
+  {g_head(S, L, "G-Overview", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_sg_tabs"][1], tfn("G-LOs", L)), (S["g_lo"], None)], S["g_lo"],
+           acts=f'<a class="tbtn outlined" href="{tfn("G-Detail", L)}">{mi("edit", 18)}{S["t_edit_in_bm"]}</a><a class="tbtn outlined" href="{tfn("G-Compare", L)}">{mi("dashboard", 18)}{S["tg_compare"]}</a><a class="tbtn contained" href="{tfn("G-Mark", L)}">{mi("edit", 18)}{S["g_start_mark"]}</a>')}
+  <div class="tabs"><span class="tab on">{S["t_course_tabs"][0]}</span><span class="tab">{S["t_course_tabs"][1]}</span></div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tpaper"><div class="ph"><h3>{S["g_basic"]}</h3></div><div class="pb"><dl class="tkv" style="grid-template-columns:160px 1fr 160px 1fr;max-width:none">{kv}</dl></div></div>
+    <div class="tpaper" style="overflow:hidden">
+      <div class="ph" style="flex-wrap:wrap;gap:12px"><h3>{S["t_course_tabs"][1]}</h3>
+        <span style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#616161" title="{S["tg_thr_hint"]}">{S["tg_thr"]}<span class="toggle-group"><button class="{{{{thrZero}}}}" onClick="{{{{setZero}}}}">{S["tg_thr_zero"]}</button><button class="{{{{thrCare}}}}" onClick="{{{{setCare}}}}">{S["tg_thr_care"]}</button><button class="{{{{thrStd}}}}" onClick="{{{{setStd}}}}">{S["tg_thr_std"]}</button></span></span>
+          <button class="switch {{{{ap}}}}" onClick="{{{{toggleAp}}}}"><span class="track"></span><span>{S["g_apv_short"]}</span></button>
+          <span class="toggle-group" title="{S["g_role_hint"]}"><button class="{{{{tCls}}}}" onClick="{{{{setT}}}}">{S["g_role_t"]}</button><button class="{{{{aCls}}}}" onClick="{{{{setA}}}}">{S["g_role_a"]}</button></span>
+          {actions}
+        </span></div>
+      <div class="pb" style="display:flex;flex-direction:column;gap:12px;padding-bottom:12px">{boxes}</div>
+      <div class="table-scroll"><table class="m tight"><thead><tr><th class="cb"><span class="cbx-th"></span></th><th>{S["g_ov_cols"][0]}</th><th>{S["tg_verdict"]} ・ {S["tg_reason"]}</th><th>{S["tg_conf"]}</th><th>{S["g_ov_cols"][1]}</th><th>{S["g_ov_cols"][2]}</th>{heads}</tr></thead>
+        <tbody>{rows}{foot}</tbody></table></div>
+      <div style="padding:10px 20px;border-top:1px solid #E0E0E0;display:flex;justify-content:space-between;font-size:12px;color:#757575"><span>{S["tg_showing"].replace("{n}", "{{nShown}}")}</span><span>{S["tg_falsepass"]}</span></div>
+    </div>
+  </div>
+</div>
+</div>'''
+    logic = G_OV_LOGIC2 % (json.dumps([st for _, _, st, _ in stu]), json.dumps([TG_CONF[u] for u in users]), json.dumps(tots), json.dumps(sorted(TG_SPOT)), json.dumps(users),
+                           S["tg_pass"], S["tg_review"], S["tg_fail"])
+    return tpage(S, "G-Overview", S["g_titles"]["ov"], body, logic=logic)
+
+GBUILDERS["G-Overview"] = g_overview2
+
+# ---------- G8 · side by side, one question at a time ----------
+def g_compare(S, L):
+    """Every student's answer to one question in three columns — ✕ differs, △ needs review, ○ matches — each card
+    with the handwritten box as read, the AI mark and confidence, a 類似 chip where two answers match each other, and
+    the ○ △ ✕ buttons (deck p.26 'Side-by-side', slide 10 'Consistent side by side'). The key and the rubric for the
+    question sit above the columns."""
+    qs = S["g_questions"]
+    tabs = "".join(f'<button class="{{{{q{k}}}}}" onClick="{{{{pick{k}}}}}">{idx}</button>' for k, (idx, _, _, _) in enumerate(qs))
+    blocks = ""
+    for k, (idx, ans, mx, tag) in enumerate(qs):
+        cols = {"ng": [], "rv": [], "ok": []}
+        for name, user, st, ai in S["g_students"]:
+            ov = S["tg_tr"].get(user, {})
+            if k in ov: text, cls = ov[k]
+            else: text = TG_HAND[k]; cls = "ok" if ai[k] >= mx else ("rv" if ai[k] > 0 else "ng")
+            sim = f'<span class="tchip wait" style="height:18px;font-size:10px">{S["tg_similar"]}</span>' if (k == 6 and user in ("KU-2046", "KU-2047")) else ""
+            mark = "o" if ai[k] >= mx else "x"
+            cols[cls].append(f'''<div class="cmpcard {cls}"><div class="who"><span><b style="font-weight:500">{name}</b> <span class="cell-muted num" style="font-size:11px">{user}</span></span>{sim}</div>
+              <div class="box"><span>{text}</span><span class="ai {mark}">{"○" if mark == "o" else "✕"}</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">{tg_bar(TG_CONF[user])}<span style="display:flex;gap:4px"><button class="mkb o {"on" if ai[k] >= mx else ""}">○</button><button class="mkb t {"on" if 0 < ai[k] < mx else ""}">△</button><button class="mkb x {"on" if ai[k] <= 0 else ""}">✕</button></span></div></div>''')
+        rub = S["g_rubrics"][TG_RUB_OF[k]]
+        colhtml = "".join(f'<div class="cmpcol"><h4>{S["tg_cmp_cols"][i]}<span>{len(cols[key])}</span></h4>{"".join(cols[key]) or f"<span class=helper style=margin:0>—</span>"}</div>' for i, key in enumerate(("ng", "rv", "ok")))
+        blocks += f'''<sc-if value="{{{{is{k}}}}}" hint-placeholder-val="{{{{{"true" if k == 6 else "false"}}}}}">
+      <div class="alert info" style="align-items:center;gap:20px"><span><b style="font-weight:500">{S["tg_cmp_q"]} {idx}</b> ・ {S["tg_ev_key"]}: <b>{ans or "—"}</b> ・ {S["g_max"]} {mx}</span><span class="cell-muted">{S["tg_ev_rub"]}: {rub[0]} — {rub[1]}</span></div>
+      <div class="cmp">{colhtml}</div></sc-if>'''
+    body = tnav(S, "course") + f'''<div class="tmain">
+<div class="tscroll" style="padding-bottom:20px">
+  {g_head(S, L, "G-Compare", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["g_lo"], tfn("G-Overview", L)), (S["tg_cmp_title"], None)], S["tg_cmp_title"],
+           acts=f'<a class="tbtn outlined" href="{tfn("G-Overview", L)}">{S["g_close"]}</a><a class="tbtn contained" href="{tfn("G-Mark", L)}">{mi("edit", 18)}{S["g_start_mark"]}</a>')}
+  <span class="helper" style="margin:-16px 0 16px">{S["tg_cmp_sub"]} {S["tg_cmp_hint"]}</span>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><span style="font-size:13px;color:#616161">{S["tg_cmp_q"]}</span><span class="tseg">{tabs}</span></div>
+  <div style="display:flex;flex-direction:column;gap:16px">{blocks}</div>
+</div>
+</div>'''
+    logic = """state = { q: 6 };
+  renderVals() { const o = {}; for (let k = 0; k < 8; k++) { o["is" + k] = this.state.q === k; o["q" + k] = this.state.q === k ? "on" : ""; o["pick" + k] = () => this.setState({ q: k }); } return o; }"""
+    return tpage(S, "G-Compare", S["tg_titles"]["cmp"], body, logic=logic)
+
+GSCREENS.append("G-Compare"); GBUILDERS["G-Compare"] = g_compare
+
+# ---------- student: the feedback summary (strengths / to improve / suggested fix) and Ask AI ----------
+def q_summary(S, L, returned=False, mobile=False):
+    head = S["q_sum_head_ret"] if returned else S["q_sum_head"]; sub = S["q_sum_sub_ret"] if returned else S["q_sum_sub"]
+    chat = fn("MQ-Chat" if mobile else "Q-Chat", L)
+    card = "mcard" if mobile else "card"
+    return f'''<div class="{card}" style="padding:{"16px" if mobile else "20px 24px"};display:flex;flex-direction:column;gap:12px">
+    <div class="qhead"><b>{head}</b><span>{sub}</span></div>
+    <div class="qsum s"><b>{S["q_strengths"]}</b><span>{S["q_strengths_body"]}</span></div>
+    <div class="qsum i"><b>{S["q_improve"]}</b><span>{S["q_improve_body"]}</span></div>
+    <div class="qsum f"><b>{S["q_fix"]}</b><span><s>{S["q_fix_old"]}</s> → <mark>{S["q_fix_new"]}</mark></span></div>
+    <a class="{"mbtn" if mobile else "btn"} neutral" href="{chat}">{ic("message", 18)}{S["q_ask"]}</a>
+  </div>'''
+
+
+Q_CHAT_LOGIC = """state = { extra: [], draft: "" };
+  renderVals() {
+    const st = this.state, canned = %s, generic = %s, chips = %s;
+    const ask = (q) => { const i = chips.indexOf(q); this.setState({ extra: st.extra.concat([[q, i === 0 ? canned : generic]]), draft: "" }); };
+    const o = { draft: st.draft, onType: (e) => this.setState({ draft: e.target.value || "" }), send: () => { if (st.draft.trim()) ask(st.draft.trim()); }, hasDraft: st.draft.trim() !== "" };
+    chips.forEach((c, i) => { o["chip" + i] = () => ask(c); });
+    for (let i = 0; i < 3; i++) { o["x" + i] = i < st.extra.length; o["xu" + i] = st.extra[i] ? st.extra[i][0] : ""; o["xa" + i] = st.extra[i] ? st.extra[i][1] : ""; }
+    return o;
+  }"""
+
+def q_chat_body(S, L, mobile=False):
+    chips = "".join(f'<button class="chipq" onClick="{{{{chip{i}}}}}">{c}</button>' for i, c in enumerate(S["q_chat_chips"]))
+    extra = "".join(f'<sc-if value="{{{{x{i}}}}}" hint-placeholder-val="{{{{false}}}}"><div class="bub u">{{{{xu{i}}}}}</div><div class="bub a">{{{{xa{i}}}}}</div></sc-if>' for i in range(3))
+    ctx = f'''<div class="{"mcard" if mobile else "card"}" style="padding:{"12px 14px" if mobile else "16px 20px"};gap:6px;display:flex;flex-direction:column">
+      <span class="cap">{S["q_chat_ctx"]}</span><b class="b2">{S["q_q_label"].format(idx="5")} {S["sep"]} {S["q_improve_body"]}</b>
+      <span class="cap">{S["q_chat_note"]}</span></div>'''
+    thread = f'''<div style="display:flex;flex-direction:column;gap:10px">
+      <div class="bub u">{S["q_chat_u1"]}</div>
+      <div class="bub a">{S["q_chat_a1"]}<span class="src">{S["q_chat_src"]}</span></div>
+      <div class="bub n">{S["q_chat_a1b"]}</div>
+      {extra}
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">{chips}</div>
+    </div>'''
+    inp = f'''<div class="chatin"><input placeholder="{S["q_chat_ph"]}" defaultValue="{{{{draft}}}}" onInput="{{{{onType}}}}"><button class="btn primary" style="height:38px;padding:0 16px" onClick="{{{{send}}}}">{ic("right", 18, "#fff", 2.4)}</button></div>'''
+    return ctx, thread, inp
+
+def q_chat(S, L):
+    ctx, thread, inp = q_chat_body(S, L)
+    body = header(S, "Q-Chat", S["q_chat_title"], crumb=f'{S["g_lo"]} › {S["q_results"]}', back_href=fn("Q-Result", L)) + f'''
+<div class="body"><div class="col" style="width:760px">
+  {ctx}
+  <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;background:#f7f8fc">
+    {thread}
+    {inp}
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    return page(S, S["q_chat_titles"]["pc"], body, logic=Q_CHAT_LOGIC % (json.dumps(S["q_chat_a2"], ensure_ascii=False), json.dumps(S["q_chat_generic"], ensure_ascii=False), json.dumps(S["q_chat_chips"], ensure_ascii=False)))
+
+def mq_chat(S, L):
+    ctx, thread, inp = q_chat_body(S, L, mobile=True)
+    body = mheader(S, "MQ-Chat", S["q_chat_title"], back_href=fn("MQ-Result", L)) + f'''
+<div class="mbody" style="padding-bottom:96px;background:#f7f8fc">
+  {ctx}
+  {thread}
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:10px 12px 22px;z-index:20">{inp}</div>'''
+    return mpage(S, "MQ-Chat", S["q_chat_titles"]["m"], body, logic=Q_CHAT_LOGIC % (json.dumps(S["q_chat_a2"], ensure_ascii=False), json.dumps(S["q_chat_generic"], ensure_ascii=False), json.dumps(S["q_chat_chips"], ensure_ascii=False)))
+
+QSCREENS_W.append("Q-Chat"); QSCREENS_M.append("MQ-Chat"); QSCREENS_ALL = QSCREENS_W + QSCREENS_M
+QBUILDERS["Q-Chat"] = q_chat; QBUILDERS["MQ-Chat"] = mq_chat
+TO_MOBILE["Q-Chat"] = "MQ-Chat"; TO_PC["MQ-Chat"] = "Q-Chat"
 
 # ---------- write ----------
 boards, order = {}, []
@@ -6194,8 +6567,9 @@ gtitles = ["G1 · Add LO — the Paper Submission type: Manual Grading fixed On,
            "G3 · Submission Grading, Learning Objectives tab — paper and feedback LOs with their progress; ⋯ Bulk Import",
            "G4 · Bulk Import Submissions — sheet layout, the copier's PDFs straight to storage, counts, Start processing",
            "G5 · Bulk import — the background job's stages, then the editable result table with the rows that need attention",
-           "G6 · Overview — Basic info, approval workflow and Teacher / Admin view, the submission list as a class results matrix",
-           "G7 · Marking review — students, the scanned sheet with the AI's ○ / ✕, per-question ○ △ ✕, Confirm and Next"]
+           "G6 · Submission list with confidence triage — Needs review / Likely fail / Likely pass boxes, threshold preset, bulk confirm with spot checks, AI verdict, reason and confidence per row",
+           "G7 · Marking review — students, the scan or the transcript with evidence highlighting, per-question ○ △ ✕ and feedback, Confirm and Next",
+           "G8 · Compare by question — every answer to one question side by side, ✕ / △ / ○ columns, similar answers flagged"]
 GX = {}
 for lang, S in (("ja", JA), ("en", EN)):
     x = 0
@@ -6215,8 +6589,9 @@ GNOTES = {
     "G-LOs": "SUBMISSION GRADING › 学習目標 Learning Objectives tab (the second tab of T9, now live): one row per LO with submissions, with the type disc and chip — the paper LOs with 添削済 marked / total and a progress line, the AI Feedback LOs with returned / total — under the 添削待ち To Mark / 添削済 Marked segments (click them). The LO name opens the paper LO's submissions — the Overview (G6) — or the feedback LO's overview (T10); the question list is in Book Management (G2, PM 30 Sep). The ⋯ menu carries 紙提出物の一括取り込み Bulk Import Submissions (US-6) — click ⋯. On T9 the ⋯ opens it directly. The Submissions tab (T9) keeps the AI Feedback queue; a paper LO's rows would list there too with 得点 Raw / Final Score, Marker and Approver columns from the source — not drawn, to keep T9 the feedback demo.",
     "G-Import": "BULK IMPORT SUBMISSIONS (US-6), a full screen with a breadcrumb back, not a modal. 用紙レイアウト Layout: A4片面 Single-sided (Phase 1 · MVP — 1 page = 1 submission, the header carries test_id = External LO ID and student_id = username as a QR) or A4両面 Double-sided (multi-page policy — one sheet both sides, the ID on the front only, the back matched to the front scanned just before it; a missing back surfaces as a question-count error). ⓘ opens the explanation on both cards; click the cards. The dropzone takes the copier's PDFs — 100+ pages, 100+ MB per file — uploaded straight to storage (presigned multipart; the app server is not in the path). Two files listed as uploaded, then the counts: 30 pages → 30 submissions expected (the layout decides the ratio) and what is read from every page. Cancel / 処理を開始 Start processing → G5. OPEN: OQ-H the layout guardrail's granularity (per file or per batch); OQ-I duplicate-submission detection — a student legitimately spans several rows on a multi-page layout, so repeats are not flagged.",
     "G-Process": "THE JOB, THEN THE RESULT (US-6). PROCESSING runs in the background — ジョブ id, a progress bar, the pipeline stages with their counts (30ページを読み込み, 3件の傾きを補正, 0件の白紙を除外, QR/OCR 30/30, 問題数を照合 29/30 running, the two matching stages to come); the stage the layout does not need (裏面の対応づけ) is greyed; この画面を離れて通知を受け取る Leave and notify me. DEMO：完了 finishes it. RESULT: one editable row per detected submission — # · ☑ · ユーザーネーム · 生徒名 · 学習項目外部ID · 学習目標 · 開始ページ (a link into the PDF at that page, with n/N 問 · ページ beneath); red rows carry the reason in the cell — a username the QR/OCR could not read (required; click to type or pick a student), a sheet where only 7 of 8 question indexes were found (the LO presets 8 — re-scan, not a typo); nothing is invented into an empty field. 要対応の行のみ表示 filters to those rows (click it); the floating bar deletes the selected rows; AIで採点する AI-mark is enabled for the clean rows (28) and disabled while a selected row is red. Rows a teacher edits by hand turn blue. OPEN: OQ-K the blank-page filter's confidence threshold; OQ-L progress transport (WebSocket vs polling); OQ-M PDF retention and access.",
-    "G-Overview": "OVERVIEW (US-7), the paper LO's page under Submission Grading — its 提出一覧 list of submissions (PM, 30 Sep: Submission Grading holds the student PDFs, the list and the detail; the question list moved to Book Management, ブック管理で編集 in the header). 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting.",
-    "G-Mark": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so.",
+    "G-Overview": "CONFIDENCE TRIAGE (deck S27 slides 10, 13, 15, 23 and the p.27 grading queue; PM, 30 Sep: implement the confidence triage for the AI grading LO): three boxes — 要確認 Needs review (judgment needed), 不合格見込み Likely fail (reasons and comments drafted), 合格見込み Likely pass (incl. the spot checks) — click one to filter the list. The THRESHOLD preset — ゼロミス / 慎重 / 標準 — is the per-course setting the deck promises (slide 15: 'from zero misses to standard'); it belongs on Course Management and is switchable here only to show rows re-bucket (zero misses puts everything in Needs review). 合格見込みを一括確認 confirms every likely pass that is not a spot check (the toast says how many, and that the spot checks stay Not Confirmed); 抜き取り確認を開く opens the held-out ones on G7. Per row: the AI verdict with its REASON in words (a split verdict, an unclear read, a similar answer, below the pass mark), the CONFIDENCE bar, then status, total and the per-question scores; rows ordered needs-judgment first. The footer shows the false-pass counter against the course's limit — the stop rule on slide 23: over the limit, the course drops back to full review. Confidence and thresholds are 'in development' on the deck (p.42): the values here are illustrative. ORIGINAL OVERVIEW (US-7), the paper LO's page under Submission Grading — its 提出一覧 list of submissions (PM, 30 Sep: Submission Grading holds the student PDFs, the list and the detail; the question list moved to Book Management, ブック管理で編集 in the header). 基本情報 Basic info: 教材 Book · コース Course · 学習項目外部ID · 添削担当 Marker (-- until the first marker, then the most recent + N others). 承認フロー Approval workflow switch and the 講師 / 管理者 Teacher / Admin view switch (prototype-only: who is looking): approval OFF — both see 生徒に一括返却 Bulk Return To Students; approval ON — the teacher sees 添削を一括で終了する Bulk Finish Marking with Return disabled (hover for the reason), the Admin sees 添削を一括で承認する Bulk Approve Marking. Click both switches. THE CLASS MATRIX: only students with a submission; frozen 生徒 (username beneath) and ステータス — 未確認 Not Confirmed grey / 確認済 Confirmed green / 返却済み Returned outlined — then 合計点数 Total Score and one column per question index with 得点 / 配点 in green (full) · red (zero) · amber (partial); コース平均 Course average as the last row. Student name → G7 marking review; 添削を開始 Start Marking → the first Not Confirmed student. Shozemi runs approval OFF, Ohzora ON (source D6). OPEN: OQ-AA / OQ-AB what 返却済み means under each approval setting.",
+    "G-Compare": "COMPARE BY QUESTION (deck S27 p.26 'Side-by-side', slide 10 'answers to the same question are compared, so equal content gets an equal verdict'): pick a question in the segment control; every student's answer box, as the AI read it, sits in one of three columns — ✕ differs from the key, △ needs review (partial or an uncertain read), ○ matches — with the AI mark, the confidence bar and the ○ △ ✕ buttons; two answers that match each other carry a 類似 chip (問5: 伊藤 and 渡辺). The key and the rubric for the question sit above the columns. Opens from G6's header and from G7's viewer. A mark changed here updates that student's review (not wired in the prototype). NEW against the source (US-8 is one student at a time).",
+    "G-Mark": "MARKING REVIEW (US-8), a full-screen overlay over the Overview. LEFT: the students with a status dot (green confirmed, grey not) and the 確認済 / 未確認 counts; pick any student to jump — nothing is lost. MIDDLE: the scanned sheet (paginated, pinch-zoom; the original question wording is read here, not repeated on the right) with the AI's first pass — ○ / ✕ beside each answer; AI marks only ○ or ✕. RIGHT: one row per question — Max, the 得点 score box, ○ / △ / ✕: ○ awards the max, ✕ zero, △ is the TEACHER's partial credit (seeded at half marks to the nearest 0.5; AI never awards it); a row the teacher changed turns blue and the header counts the edits (the tint is derived — revert and it goes). 合計 Total live. No whole-submission comment field (the per-question feedback below is the comment). 閉じる Close · 確定して次へ Confirm and Next — confirms this student and opens the next 未確認 one; back on the Overview the statuses are updated. Click ○ △ ✕, then Confirm and Next. Terminology still to standardise (source): ユーザーネーム vs ユーザー名, 採点 vs 添削. EVIDENCE (deck S27 p.28 'Evidence, rubric and draft comments on one review screen'): the viewer has two modes — スキャン the photo, and 読み取りテキスト the transcript, the default: for each question the answer as the AI read it, coloured 一致 green / 要確認 blue / 不足・不一致 red against the key, the reason line under it, the key and the rubric beside it, and an AIメモ where the models split (鈴木's 問2(1)) or a similar answer was found (伊藤, 渡辺). The header carries the AI verdict and the confidence for the student on screen, and the AIとの対話 count where the student used Ask AI (山田). この設問を並べて見る opens G8. PER-QUESTION FEEDBACK (PM, 30 Sep: show the per question feedback here, editable, removable, addable; maximum one per question): under each question's score controls, the AI's one-line comment against the answer key and the rubrics (G2) in an editable text box, with ✕ to remove it and ＋ フィードバックを追加 to add one back — never more than one per question. What is confirmed here is what the student reads on Q6 / Q12 as the per-question feedback. The one hint under the list says so.",
 }
 for screen in GSCREENS:
     notes["g_" + screen] = {"x": GX[screen], "y": GROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 560, "text": GNOTES[screen]}
@@ -6228,11 +6603,12 @@ QROW_Y = {"ja": 15800, "en": 17500}
 qtitles = ["Q1 · Student PC — the paper LO: instructions, submission details, the three steps, Submit Your Work",
            "Q2 · Student PC — take or upload a photo, the photo tips; DEMO the two analysis errors",
            "Q3 · Student PC — the pages, Add More (5 photos or 1 PDF), Confirm & Analyze → analyzing",
-           "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher",
+           "Q4 · Student PC — analysis results: strengths / to improve / suggested fix, Ask AI, the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher",
            "Q5 · Student PC — submitted: the AI's first pass, awaiting teacher review",
-           "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the per-question feedback",
-           "Q7 · Mobile — the paper LO", "Q8 · Mobile — take or upload", "Q9 · Mobile — pages, Confirm & Analyze", "Q10 · Mobile — analysis results",
-           "Q11 · Mobile — submitted", "Q12 · Mobile — returned"]
+           "Q6 · Student PC — returned: the teacher's △ on Q5, 9/10, the summary and the per-question feedback",
+           "Q7 · Student PC — Ask AI: a question about the feedback, the answer guided along the textbook, suggested questions, the teacher can see the dialogue",
+           "Q8 · Mobile — the paper LO", "Q9 · Mobile — take or upload", "Q10 · Mobile — pages, Confirm & Analyze", "Q11 · Mobile — analysis results with the summary and Ask AI",
+           "Q12 · Mobile — submitted", "Q13 · Mobile — returned", "Q14 · Mobile — Ask AI"]
 QSIZE = {**{k: (W, H) for k in QSCREENS_W}, **{k: (MW, MH) for k in QSCREENS_M}}
 QX = {}
 for lang, S in (("ja", JA), ("en", EN)):
@@ -6252,13 +6628,15 @@ QNOTES = {
     "Q-Detail": "AI GRADING, THE STUDENT SIDE (source: jamessim-source/aigradingv1, apps/frontend/src/screens/student — the deprecated student SPA that is the acceptance spec: ClassDetail → AssignmentDetails → HomeworkSubmission → HomeworkSubmissionPreview → SubmissionAnalysisResult → SubmissionConfirmation → SubmissionReview; PM, 30 Sep: review the ai grading student interface from this repo and integrate the student experience into the student web and app). Redrawn on this canvas's student components and fitted into the Kindai course: the Session 7 確認クイズ (the paper LO of G1–G7) now has a row on the course tab (Main, M1) and in To-do (8) with the pencil disc and the 紙提出物 chip — it appears to students only because the LO's Allow student to submit (G1) is ON; off, the teacher bulk-scans and the student sees nothing until the return. THIS BOARD = AssignmentDetails: the LO, 指示 Instructions (the LO description from G1), 提出の詳細 Submission details (8問 · 10点満点 · photos or PDF), the three steps the AI Feedback assignment also shows (photo → AI marks → submit to the teacher), 課題を提出 Submit Your Work. The source's My Classes / Add Class by QR or code and the class card list are NOT drawn — the LMS course and the course QR (T6) already do that.",
     "Q-Submit": "HomeworkSubmission: 写真を撮る Take Photo or アップロード Upload (images or PDF, max 10 MB, at most 1 PDF, up to 5 photos — the source's limits), the four photo tips. On the phone Take Photo opens the camera (the AI Feedback M3 pattern); on PC both land on the pages screen. The bottom error popup the source shows when the analysis rejects the upload — 誤った課題 Wrong assessment (the sheet does not match the LO's questions) and 写真が不鮮明です Photo unclear — is raised by the DEMO buttons; 了解 closes it and the student retakes.",
     "Q-Preview": "HomeworkSubmissionPreview: the pages as a carousel (‹ ›, the page pill, delete on the page), the thumbnails, さらに追加 Add More until 5 photos or 1 PDF (a PDF cannot be mixed with photos; one PDF counts as all pages), N / 5 ページ, the tips again, 確認して分析 Confirm & Analyze → the 課題を分析中… state with its progress bar (the source polls the analysis job), then 分析結果を見る to the results (the source navigates on its own; here a link, so the board stays put). Click Confirm & Analyze to run it; the DEMO pill skips ahead.",
-    "Q-Result": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return).",
+    "Q-Result": "FEEDBACK DISPLAY (deck S27 p.30 'Feedback splits into strengths, issues and fixes'): above the sheet, the headline (もう一歩 · 8問中7問正解 · 8/10点) and three cards — 強み Strengths, 改善点 To improve, 提案する修正 Suggested fix as a strike-through and a replacement — with the AIに質問する Ask AI button to Q7. Then, as before: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule, and under each score the AI's ONE-LINE FEEDBACK for that question against the LO's answer key / marking guide (G2's 正答 column; PM, 30 Sep: per-question feedback based on the rubrics generated for the LO, in place of the question tag, which is the teacher's classification and meant nothing to a student) — the source has no per-question feedback for students, only the teacher's free text per submission, so this is NEW — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return).",
+    "Q-Chat": "ASK AI (deck S27 p.30 'Ask AI on the spot — guides thinking along the textbook, not answers'): reached from the AIに質問する button on Q4 / Q6. The context card names the question being discussed (問5 and its improvement point) and says the teacher can see the dialogue. The thread: the student's question, the AI's answer with its textbook source line (第7回 §3 擬似相関), a nudge to summarise in the student's own words, then suggested questions as chips — click one, or type and send, and the exchange appends (the first chip has a written answer, the others a generic textbook pointer). The dialogue count shows on G7's header for the teacher. NEW against the source (no chat there); the deck lists AI Q&A chat and logs as available.",
     "Q-Done": "SubmissionConfirmation: the green check, 提出が完了しました！, the LO card with the instructions, 提出時間 Submission Time and 正解した設問 Questions Correct (the AI's 8/10, marked AI — the teacher's review can change it), コースに戻る / 提出の詳細を表示. From here the submission is in Submission Grading: a row on G6 with status Not Confirmed, and the sheet on G7 for the teacher's review. The LO row on the course shows 先生の確認待ち. DEMO → the returned state.",
-    "Q-Review": "SubmissionReview, AFTER the return: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks). The whole-submission 先生のフィードバック Teacher Feedback card the source had was removed (PM, 30 Sep: not needed for now) — the per-question feedback is the comment. This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
+    "Q-Review": "SubmissionReview, AFTER the return — with the same summary cards (headline よくできました · 9/10点, teacher-confirmed) and Ask AI above the sheet: the LO with the 提出済み badge, the course, 提出日 Submitted Date, the sheet now with the teacher's marks, 設問ごとの結果 with the 先生の確認済み Teacher reviewed badge, the read-only scores with the per-question feedback (the teacher's review edits these lines on G7) — the row the teacher changed is labelled (先生が修正 · AI 0) — 9/10 (the teacher's △ on Q5 from G7, seeded at half marks). The whole-submission 先生のフィードバック Teacher Feedback card the source had was removed (PM, 30 Sep: not needed for now) — the per-question feedback is the comment. This 9/10 is the score T14 and T15 show for the quiz. Before the return the same screen shows the AI's 8/10 with 先生の確認待ち and no feedback.",
     "MQ-Detail": "MOBILE (the learner app; the paper LO's screens reuse manabie_ui and the AI Feedback M2–M5 patterns, not the source's Tailwind SPA): the paper LO from M1's new row — instructions, submission details, the three steps, 課題を提出.",
     "MQ-Submit": "Mobile take or upload: 写真を撮る opens the camera as M3 does; アップロード the file picker (photos or a PDF). The tips. DEMO raises the two analysis errors.",
     "MQ-Preview": "Mobile pages: the carousel and thumbnails, さらに追加 and 確認して分析 fixed at the bottom; Confirm & Analyze runs the analyzing state in place.",
     "MQ-Result": "Mobile analysis results: the banner, the marked sheet, the read-only breakdown with the total; 先生に提出する fixed at the bottom.",
+    "MQ-Chat": "Mobile Ask AI: the context card, the thread, the suggested-question chips, the input fixed at the bottom.",
     "MQ-Done": "Mobile submitted: the check, the LO card with time and the AI's score, 提出の詳細を表示 / コースに戻る. DEMO → returned.",
     "MQ-Review": "Mobile returned: the teacher-reviewed breakdown (9/10, the changed row labelled) with the per-question feedback, the marked sheet.",
 }
