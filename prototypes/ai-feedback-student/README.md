@@ -187,7 +187,10 @@ Feedback and AI Practice LOs on the same surfaces:
   switch, the NEW Allow student to submit switch (default Off), Score to Pass /
   Capped Score / Password. The LO's Content tab (in Book Management, PM 30 Sep)
   has one upload area for the Question and Answer PDFs and the flat question
-  list beside the sheet, draft until SAVE.
+  list beside the sheet, draft until SAVE, and (PM 30 Sep) an optional
+  Rubrics card: criteria with weights AI generates from the uploaded
+  materials, as an editable list (edit, delete, add, weights must total
+  100%), generated on demand or at Process time with a switch.
 - **Submission Grading (T9, G3–G7).** The Learning Objectives tab is live, with
   paper and feedback LOs and their progress (a paper LO opens its submission
   list); ⋯ opens Bulk Import Submissions

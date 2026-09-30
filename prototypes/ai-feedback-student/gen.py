@@ -2195,6 +2195,7 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
 .gql th{background:#FAFAFA;font-weight:500;color:#424242}
 .gql td.num,.gql th.num{text-align:right}
 .gql td.empty{color:#BDBDBD;font-style:italic}
+.gql tr.rowoff{display:none}
 .gql .rowctl{display:flex;gap:4px;color:#9E9E9E;font-size:11px}
 .gql .rowctl span{width:18px;height:18px;border:1px solid #E0E0E0;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;background:#fff}
 .gpill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:12px;background:#F5F5F5;font-size:12px;color:#424242}
@@ -4785,6 +4786,15 @@ G_JA = dict(
     g_drop="ファイルをドラッグ＆ドロップ または ファイルを選択", g_drop_sub="問題・解答のPDF ・ 1ファイル 1GB まで ・ 複数可",
     g_files=[("第7回確認クイズ_問題.pdf", "問題", "2ページ ・ 1.2 MB"), ("第7回確認クイズ_解答.pdf", "解答", "1ページ ・ 0.4 MB")],
     g_detected="AI判別", g_process="読み取りを開始", g_processed="読み取り済み",
+    g_rub_opt="読み取り時に採点基準（ルーブリック）も生成する", g_rub_opt_help="任意。教材から評価項目と配点の比重をAIが提案します。あとから生成することもできます。",
+    g_rub_h="採点基準（ルーブリック）", g_rub_optional="任意", g_rub_sub="AIが教材（問題用紙・解答）から生成した評価項目と比重です。項目は編集・削除・追加できます。採点時、AIはこの基準と正答を参照し、生徒には設問ごとのコメントとして返します。",
+    g_rub_empty="採点基準はまだありません。", g_rub_empty_sub="正答だけでも採点できます。採点基準をつくると、部分点の考え方と生徒へのコメントがそろいます。",
+    g_rub_gen="AIで採点基準を生成する", g_rub_gen_wait="生成中…", g_rub_cols=["評価項目", "対象設問", "比重"], g_rub_add="＋ 項目を追加", g_rub_total="合計", g_rub_total_ng="合計を100%にしてください",
+    g_rub_regen="再生成", g_rub_ai="AI生成", g_rub_ph="評価項目を入力",
+    g_rubrics=[("相関係数の計算と符号の解釈", "r の値を正しく求め、正負の相関を判断できる", "問1・問2", 30),
+               ("散布図の読み取りと外れ値の指摘", "散布図の傾きと外れ値を根拠を添えて説明できる", "問2(2)・問3", 25),
+               ("決定係数と相関の強さの判断", "r² を求め、相関の強さを判断できる", "問4", 15),
+               ("相関と因果の区別・有意性の判断", "相関≠因果を第三の変数の例とともに述べ、n と p 値から有意性を判断できる", "問5・問6", 30)],
     g_ql_h="問題リスト", g_ql_draft="下書き — 未保存です。AIが読み取れた内容のみ入力しています。空欄は読み取れなかった項目です。",
     g_ql_saved="保存しました。この問題リストに対して採点します。", g_cols=["問題番号", "正答", "配点", "タグ"],
     g_total_q="設問数：", g_total_s="学習項目の合計点数：", g_pts="点", g_save="✓ 保存", g_saved_chip="保存済み",
@@ -4848,6 +4858,15 @@ G_EN = dict(
     g_drop="Drag & drop your files or browse", g_drop_sub="Question and Answer PDFs · up to 1 GB per file · multiple files allowed",
     g_files=[("quiz07_questions.pdf", "Question", "2 pages · 1.2 MB"), ("quiz07_answer_key.pdf", "Answer", "1 page · 0.4 MB")],
     g_detected="AI detected", g_process="Process", g_processed="Processed",
+    g_rub_opt="Also generate rubrics when processing", g_rub_opt_help="Optional. AI proposes criteria and weights from the materials; you can generate them later instead.",
+    g_rub_h="Rubrics", g_rub_optional="Optional", g_rub_sub="Criteria and weights AI generated from the uploaded materials (Question sheet and Answer key). Edit, remove or add items. Marking uses them with the answer key, and the student sees them as the per-question comments.",
+    g_rub_empty="No rubrics yet.", g_rub_empty_sub="Marking works with the answer key alone. Rubrics add a shared view of partial credit and the comments students receive.",
+    g_rub_gen="Generate rubrics with AI", g_rub_gen_wait="Generating…", g_rub_cols=["Criterion", "Questions", "Weight"], g_rub_add="+ Add item", g_rub_total="Total", g_rub_total_ng="Weights must add up to 100%",
+    g_rub_regen="Regenerate", g_rub_ai="AI generated", g_rub_ph="Enter a criterion",
+    g_rubrics=[("Computing r and reading its sign", "Works out r correctly and judges positive vs negative correlation", "Q1 · Q2", 30),
+               ("Reading the scatter plot and spotting outliers", "Explains the slope of the scatter and the outlier with a reason", "Q2(2) · Q3", 25),
+               ("Coefficient of determination and strength", "Works out r² and judges the strength of the correlation", "Q4", 15),
+               ("Correlation vs causation, significance", "States correlation ≠ causation with a third-variable example; judges significance from n and p", "Q5 · Q6", 30)],
     g_ql_h="Question List", g_ql_draft="Draft — not saved yet. AI wrote what it could read; empty cells mean nothing was detected.",
     g_ql_saved="Saved. Marking runs against this question list.", g_cols=["Question index", "Correct Answer", "Max Score", "Tag"],
     g_total_q="Total questions:", g_total_s="LO Total Score:", g_pts="pts", g_save="✓ SAVE", g_saved_chip="Saved",
@@ -5017,9 +5036,24 @@ def g_dialog(S, L):
     return tpage(S, "G-Dialog", S["g_titles"]["dialog"], book_page(S, L, "G-Dialog", extra=dialog), logic=G_DLG_LOGIC)
 
 # ---------- G2 · LO detail — upload and the flat question list (US-3, US-4) ----------
-G_DET_LOGIC = """state = { saved: false, page: 1 };
-  renderVals() { return { draft: !this.state.saved, saved: this.state.saved, save: () => this.setState({ saved: true }),
-    pg: String(this.state.page), prev: () => this.setState({ page: 1 }), next: () => this.setState({ page: 2 }) }; }"""
+G_DET_LOGIC = """state = { saved: false, page: 1, rub: "none", opt: false, on: [true, true, true, true, false, false], w: [30, 25, 15, 30, 0, 0] };
+  renderVals() {
+    const st = this.state;
+    const out = { draft: !st.saved, saved: st.saved, save: () => this.setState({ saved: true }),
+      pg: String(st.page), prev: () => this.setState({ page: 1 }), next: () => this.setState({ page: 2 }),
+      optOn: st.opt ? "on" : "", toggleOpt: () => this.setState({ opt: !st.opt }),
+      rubNone: st.rub === "none", rubWait: st.rub === "wait", rubList: st.rub === "list",
+      gen: () => { this.setState({ rub: "wait" }); setTimeout(() => this.setState({ rub: "list", on: [true, true, true, true, false, false], w: [30, 25, 15, 30, 0, 0] }), 1400); },
+      add: () => { const on = st.on.slice(); const i = on.indexOf(false); if (i >= 0) { on[i] = true; this.setState({ on }); } } };
+    let total = 0;
+    for (let k = 0; k < 6; k++) {
+      out["h" + k] = st.on[k] ? "" : "rowoff"; out["w" + k] = String(st.w[k]); if (st.on[k]) total += st.w[k];
+      out["d" + k] = () => { const on = st.on.slice(); on[k] = false; this.setState({ on }); };
+      out["e" + k] = (e) => { const w = st.w.slice(); w[k] = Math.max(0, Math.min(100, parseInt(e.target.value || "0", 10) || 0)); this.setState({ w }); };
+    }
+    out.total = String(total); out.totalOk = total === 100; out.totalNg = total !== 100;
+    return out;
+  }"""
 
 def g_sheet(S, scores=None, with_ai=False):
     """A drawn quiz sheet: title line, name box, one line per question with the answer box; with_ai adds the
@@ -5070,6 +5104,7 @@ def g_detail(S, L):
         <div class="tdrop">{mi("cloudUp", 22)}{S["g_drop"]}<span style="color:#757575;font-weight:400">{S["sep"]} {S["g_drop_sub"]}</span></div>
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">{files}<span class="tchip published" style="margin-left:6px">{mi("checkCircle", 14)}{S["g_processed"]}</span>
           <span class="spc" style="flex:1"></span><span class="tbtn contained dis">{mi("spark", 18)}{S["g_process"]}</span></div>
+        <div style="display:flex;flex-direction:column;gap:2px"><button class="switch {{{{optOn}}}}" onClick="{{{{toggleOpt}}}}"><span class="track"></span><span>{S["g_rub_opt"]}</span><span class="tchip new" style="margin-left:8px">{S["t_new"]}</span></button><span class="helper" style="margin:0 0 0 52px">{S["g_rub_opt_help"]}</span></div>
       </div>
     </div>
     <div class="tpaper">
@@ -5095,10 +5130,44 @@ def g_detail(S, L):
         </div>
       </div>
     </div>
+    {g_rubrics(S, L)}
   </div>
 </div>
 </div>'''
     return tpage(S, "G-Detail", S["g_titles"]["detail"], body, logic=G_DET_LOGIC)
+
+def g_rubrics(S, L):
+    """The optional rubrics section (PM, 30 Sep): criteria with weights generated by AI from the uploaded materials, as an
+    editable list — edit the text and weight, delete a row, add a row; the weights must add up to 100%. Empty until
+    generated (or until Process ran with the option on)."""
+    rows = ""
+    for k in range(6):
+        if k < len(S["g_rubrics"]):
+            title, desc, qs, w = S["g_rubrics"][k]; ai = f'<span class="tchip type" style="height:18px;font-size:10px">{mi("spark", 10)}{S["g_rub_ai"]}</span>'
+        else:
+            title, desc, qs, w, ai = "", "", "", 0, ""
+        rows += f'''<tr class="{{{{h{k}}}}}">
+          <td style="width:36px;text-align:center"><span class="cbx-td"></span></td>
+          <td><input class="tinput" style="height:34px;width:100%" defaultValue="{title}" placeholder="{S["g_rub_ph"]}"><span style="display:flex;gap:8px;align-items:center;margin-top:4px"><span class="cell-muted" style="font-size:12px">{desc}</span>{ai}</span></td>
+          <td style="width:130px"><input class="tinput" style="height:34px;width:100%" defaultValue="{qs}"></td>
+          <td class="num" style="width:110px"><span style="display:inline-flex;align-items:center;gap:4px"><input class="tinput num" style="height:34px;width:64px;text-align:right" defaultValue="{{{{w{k}}}}}" onInput="{{{{e{k}}}}}" inputmode="numeric">%</span></td>
+          <td style="width:44px"><button class="ticon sm" onClick="{{{{d{k}}}}}" aria-label="delete">{mi("del", 18)}</button></td></tr>'''
+    return f'''<div class="tpaper">
+      <div class="ph"><h3 style="display:flex;align-items:center;gap:8px">{S["g_rub_h"]}<span class="tchip filled" style="height:20px;font-size:11px">{S["g_rub_optional"]}</span><span class="tchip new">{S["t_new"]}</span></h3>
+        <sc-if value="{{{{rubList}}}}" hint-placeholder-val="{{{{false}}}}"><span style="display:flex;align-items:center;gap:10px"><sc-if value="{{{{totalOk}}}}" hint-placeholder-val="{{{{true}}}}"><span class="gpill">{S["g_rub_total"]}<b>{{{{total}}}}%</b></span></sc-if><sc-if value="{{{{totalNg}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip red">{S["g_rub_total"]} {{{{total}}}}% ・ {S["g_rub_total_ng"]}</span></sc-if><button class="tbtn outlined sm" onClick="{{{{gen}}}}">{mi("autorenew", 16)}{S["g_rub_regen"]}</button></span></sc-if></div>
+      <div class="pb" style="display:flex;flex-direction:column;gap:12px">
+        <span class="helper" style="margin:0">{S["g_rub_sub"]}</span>
+        <sc-if value="{{{{rubNone}}}}" hint-placeholder-val="{{{{true}}}}"><div style="border:1px dashed #E0E0E0;border-radius:4px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+          <b style="font-size:14px;font-weight:500">{S["g_rub_empty"]}</b><span class="helper" style="margin:0;max-width:560px">{S["g_rub_empty_sub"]}</span>
+          <button class="tbtn contained" style="margin-top:8px" onClick="{{{{gen}}}}">{mi("spark", 18)}{S["g_rub_gen"]}</button></div></sc-if>
+        <sc-if value="{{{{rubWait}}}}" hint-placeholder-val="{{{{false}}}}"><div style="border:1px dashed #E0E0E0;border-radius:4px;padding:28px 20px;display:flex;align-items:center;justify-content:center;gap:12px;color:#757575"><span class="pspin" style="width:24px;height:24px;border-width:3px"></span>{S["g_rub_gen_wait"]}</div></sc-if>
+        <sc-if value="{{{{rubList}}}}" hint-placeholder-val="{{{{false}}}}">
+          <table class="gql"><thead><tr><th style="width:36px"><span class="cbx-th"></span></th><th>{S["g_rub_cols"][0]}</th><th style="width:130px">{S["g_rub_cols"][1]}</th><th class="num" style="width:110px">{S["g_rub_cols"][2]}</th><th style="width:44px"></th></tr></thead>
+            <tbody>{rows}</tbody></table>
+          <div style="display:flex;justify-content:space-between;align-items:center"><button class="tbtn neutral sm" onClick="{{{{add}}}}">{S["g_rub_add"]}</button><button class="tbtn contained">{S["g_save"]}</button></div>
+        </sc-if>
+      </div>
+    </div>'''
 
 # ---------- G3 · Submission Grading, the Learning Objectives tab ----------
 G_LOS_LOGIC = """state = { seg: "tomark", menu: false };
@@ -6121,7 +6190,7 @@ notes["title_p_en"] = {"x": 0, "y": PROW_Y["en"] - 240, "text": "Same AI Practic
 # ---- AI Grading row (30 Sep) ----
 GROW_Y = {"ja": 12300, "en": 14000}
 gtitles = ["G1 · Add LO — the Paper Submission type: Manual Grading fixed On, approval workflow, Allow student to submit",
-           "G2 · Paper LO in Book Management — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE",
+           "G2 · Paper LO in Book Management — upload Question and Answer PDFs, Process, the flat question list beside the sheet, SAVE; optional AI rubrics with weights",
            "G3 · Submission Grading, Learning Objectives tab — paper and feedback LOs with their progress; ⋯ Bulk Import",
            "G4 · Bulk Import Submissions — sheet layout, the copier's PDFs straight to storage, counts, Start processing",
            "G5 · Bulk import — the background job's stages, then the editable result table with the rows that need attention",
@@ -6142,7 +6211,7 @@ for lang, S in (("ja", JA), ("en", EN)):
         x += TW + TGAP
 GNOTES = {
     "G-Dialog": "AI GRADING — the Paper Submission LO (source: the AI Grading prototype, claude.ai/artifact/Y4bgKxLmeTo86Zi8cBBzvn — US-1 to US-8; PM, 30 Sep: review these screens for Book Management and Submission Grading and fit them into the prototype). Redrawn on this canvas's production components and fitted into the Kindai course: the Session 7 確認クイズ becomes the paper LO — a 10-point quiz sat on paper in class, scanned on the copier, imported, AI-marked, reviewed, returned; the 9/10 the dashboards already show. THIS BOARD: DialogCreateLearningMaterial with 紙提出物（AI採点） as one more type (NEW, after the practice type in the T2 menu). General Info as for any LO plus レポート回 Paper Count. Settings: 添削指導 Manual Grading with なし shown but disabled and あり fixed (the source's rule; its info box was removed on request); 添削の承認フローを適用する as a switch; ★ NEW 生徒による提出を許可する, default OFF — off, the teacher submits on the student's behalf (bulk scan); on, the student starts and submits in the learner app; the help text follows the switch; ON for this LO since 30 Sep, because the student boards (Q1–Q12) submit it from the app; 合格点 / 上限点 / パスワード as on the Learning Objective type. Not shown for this type, per the source: Rules, URL tracking, Practice Mode, Enforce answer checking, AI Tutor, Adaptive retry. Click the switches. OPEN (from the source): OQ-B does the approval workflow stay available with Allow student to submit on; OQ-C should Score to Pass / Capped Score stay editable when AI writes the first-pass score; OQ-D is Paper Count meaningful here; OQ-F AI Feedback as a separate LO type (as this canvas has it) rather than an option on this dialog — this canvas answers F: separate types.",
-    "G-Detail": "THE PAPER LO's CONTENT TAB IN BOOK MANAGEMENT (US-3 upload, US-4 flat question list) — PM, 30 Sep: the question and answer key belong in Book Management, as T3 does for AI Feedback; Submission Grading keeps the student PDFs (G4, G5), the submission list (G6) and the submission detail (G7). Reached from the tree (T1: the 確認クイズ row carries the purple pencil disc and the 紙提出物 chip); 提出状況を見る leads to its submissions under Submission Grading. ONE upload area for the Question sheet and the Answer key — after 読み取りを開始 Process each file shows what AI classified it as (問題 / 解答); the source superseded its earlier two-box design with this. QUESTION LIST: the uploaded sheet on the left (38%, paginated, zoom) so the teacher checks the original against the extraction without scrolling; on the right the flat grid — 問題番号 Question index · 正答 Correct Answer · 配点 Max Score · タグ Tag — no 大問 / 小問 nesting, no question-content column (the wording is read from the paper beside it), cells AI could not read stay EMPTY rather than invented (4(1), 4(2) here). Per-row +, ▲▼; header select-all for bulk delete; totals and per-tag pills (知 / 考 summing Max Score) recalculate live. A draft banner until ✓ 保存 SAVE — click it; the saved list is what marking runs against. Tags come from the tenant's Question Tag master (US-5, out of this canvas's scope). OPEN: OQ-G AI extracts and stores the question text but it is not editable here — if a mis-read has to be fixable it needs a home (expandable row / side panel).",
+    "G-Detail": "THE PAPER LO's CONTENT TAB IN BOOK MANAGEMENT (US-3 upload, US-4 flat question list) — PM, 30 Sep: the question and answer key belong in Book Management, as T3 does for AI Feedback; Submission Grading keeps the student PDFs (G4, G5), the submission list (G6) and the submission detail (G7). Reached from the tree (T1: the 確認クイズ row carries the purple pencil disc and the 紙提出物 chip); 提出状況を見る leads to its submissions under Submission Grading. ONE upload area for the Question sheet and the Answer key — after 読み取りを開始 Process each file shows what AI classified it as (問題 / 解答); the source superseded its earlier two-box design with this. QUESTION LIST: the uploaded sheet on the left (38%, paginated, zoom) so the teacher checks the original against the extraction without scrolling; on the right the flat grid — 問題番号 Question index · 正答 Correct Answer · 配点 Max Score · タグ Tag — no 大問 / 小問 nesting, no question-content column (the wording is read from the paper beside it), cells AI could not read stay EMPTY rather than invented (4(1), 4(2) here). Per-row +, ▲▼; header select-all for bulk delete; totals and per-tag pills (知 / 考 summing Max Score) recalculate live. A draft banner until ✓ 保存 SAVE — click it; the saved list is what marking runs against. Tags come from the tenant's Question Tag master (US-5, out of this canvas's scope). RUBRICS (PM, 30 Sep: add a section for rubrics with weights generated by AI from the uploaded material — a list, editable, removable, addable; optional, with an option to generate them upon uploading): a third card, 採点基準（ルーブリック）, marked 任意 Optional. Empty until generated — AIで採点基準を生成する (click it) — or generated at Process time when the new switch under the upload area, 読み取り時に採点基準も生成する, is on (default off). The list: 評価項目 criterion (text, with the AI's one-line description and an AI生成 tag), 対象設問 the questions it covers, 比重 weight in % (type a number — the total follows and turns red unless it is 100%), delete per row, ＋ 項目を追加 adds a blank row, 再生成 regenerates, 保存. Four rubrics for this quiz (30 / 25 / 15 / 30). Marking (G7) uses them with the answer key; the student's per-question comments (Q4, Q6) are written against them. OPEN: whether weights are % of the LO score or a multiplier on the question's Max Score; whether a rubric can change the per-question Max Score; NEW against the source (US-4 has only the answer key). OPEN: OQ-G AI extracts and stores the question text but it is not editable here — if a mis-read has to be fixable it needs a home (expandable row / side panel).",
     "G-LOs": "SUBMISSION GRADING › 学習目標 Learning Objectives tab (the second tab of T9, now live): one row per LO with submissions, with the type disc and chip — the paper LOs with 添削済 marked / total and a progress line, the AI Feedback LOs with returned / total — under the 添削待ち To Mark / 添削済 Marked segments (click them). The LO name opens the paper LO's submissions — the Overview (G6) — or the feedback LO's overview (T10); the question list is in Book Management (G2, PM 30 Sep). The ⋯ menu carries 紙提出物の一括取り込み Bulk Import Submissions (US-6) — click ⋯. On T9 the ⋯ opens it directly. The Submissions tab (T9) keeps the AI Feedback queue; a paper LO's rows would list there too with 得点 Raw / Final Score, Marker and Approver columns from the source — not drawn, to keep T9 the feedback demo.",
     "G-Import": "BULK IMPORT SUBMISSIONS (US-6), a full screen with a breadcrumb back, not a modal. 用紙レイアウト Layout: A4片面 Single-sided (Phase 1 · MVP — 1 page = 1 submission, the header carries test_id = External LO ID and student_id = username as a QR) or A4両面 Double-sided (multi-page policy — one sheet both sides, the ID on the front only, the back matched to the front scanned just before it; a missing back surfaces as a question-count error). ⓘ opens the explanation on both cards; click the cards. The dropzone takes the copier's PDFs — 100+ pages, 100+ MB per file — uploaded straight to storage (presigned multipart; the app server is not in the path). Two files listed as uploaded, then the counts: 30 pages → 30 submissions expected (the layout decides the ratio) and what is read from every page. Cancel / 処理を開始 Start processing → G5. OPEN: OQ-H the layout guardrail's granularity (per file or per batch); OQ-I duplicate-submission detection — a student legitimately spans several rows on a multi-page layout, so repeats are not flagged.",
     "G-Process": "THE JOB, THEN THE RESULT (US-6). PROCESSING runs in the background — ジョブ id, a progress bar, the pipeline stages with their counts (30ページを読み込み, 3件の傾きを補正, 0件の白紙を除外, QR/OCR 30/30, 問題数を照合 29/30 running, the two matching stages to come); the stage the layout does not need (裏面の対応づけ) is greyed; この画面を離れて通知を受け取る Leave and notify me. DEMO：完了 finishes it. RESULT: one editable row per detected submission — # · ☑ · ユーザーネーム · 生徒名 · 学習項目外部ID · 学習目標 · 開始ページ (a link into the PDF at that page, with n/N 問 · ページ beneath); red rows carry the reason in the cell — a username the QR/OCR could not read (required; click to type or pick a student), a sheet where only 7 of 8 question indexes were found (the LO presets 8 — re-scan, not a typo); nothing is invented into an empty field. 要対応の行のみ表示 filters to those rows (click it); the floating bar deletes the selected rows; AIで採点する AI-mark is enabled for the clean rows (28) and disabled while a selected row is red. Rows a teacher edits by hand turn blue. OPEN: OQ-K the blank-page filter's confidence threshold; OQ-L progress transport (WebSocket vs polling); OQ-M PDF retention and access.",
