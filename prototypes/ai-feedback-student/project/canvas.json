@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T14:31:00Z"
+    "at": "2026-09-30T14:49:50Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -903,7 +903,7 @@
       "y": 15800,
       "w": 1280,
       "h": 800,
-      "title": "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown, Submit to Teacher; DEMO self-marking (JA)",
+      "title": "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher (JA)",
       "is_interactive": true
     },
     "Q-Done.dc.html": {
@@ -999,7 +999,7 @@
       "y": 17500,
       "w": 1280,
       "h": 800,
-      "title": "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown, Submit to Teacher; DEMO self-marking (EN)",
+      "title": "Q4 · Student PC — analysis results: the AI's ○ / ✕ on the sheet, the question breakdown (read-only), Submit to Teacher (EN)",
       "is_interactive": true
     },
     "Q-Done-en.dc.html": {
@@ -1697,7 +1697,7 @@
       "y": 16660,
       "w": 560,
       "maxH": 560,
-      "text": "SubmissionAnalysisResult: the banner — AIがあなたの解答を採点しました when the LO is AI-marked, or the self-marking instruction when the assignment allows self-marking (the source's allowSelfMarking; the DEMO chip in the header flips it — this canvas has NO such setting on G1 yet, see OPEN) — the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule; read-only when AI-marked, inputs when self-marking (type a number, the total follows). 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: is self-marking a setting of the paper LO (G1) or off for this segment; does the student see the AI's score before submitting at all (the source shows it)."
+      "text": "SubmissionAnalysisResult: the banner AIがあなたの解答を採点しました, the sheet with the AI's ○ / ✕ per question (○ / ✕ only; a △ is the teacher's, G7), 設問ごとの結果 Question Breakdown with the 合計スコア Total Score badge and per question the score / max in green (full) · amber (partial) · red (zero), the source's colour rule — READ-ONLY: the student never edits a score (PM, 30 Sep: don't allow editing by student). The source's self-marking mode — the Onigroup SOW's 'configure student self-marking toggle' on the assignment and 'Student can remark' on this screen, built as allowSelfMarking (default off) — is NOT carried, so no such setting goes on G1. 先生に提出する Submit to Teacher sends it. The AI's first pass on 山田's sheet is 8/10 (Q5 ✕): this is the same sheet the teacher opens on G7. OPEN: does the student see the AI's score before submitting at all (the source shows it; the AI Grading BO prototype shows the result only after the return)."
     },
     "q_Q-Done": {
       "x": 5440,
@@ -1739,7 +1739,7 @@
       "y": 16672,
       "w": 375,
       "maxH": 560,
-      "text": "Mobile analysis results: the banner, the marked sheet, the breakdown with the total; 先生に提出する fixed at the bottom. The header chip flips self-marking (DEMO)."
+      "text": "Mobile analysis results: the banner, the marked sheet, the read-only breakdown with the total; 先生に提出する fixed at the bottom."
     },
     "q_MQ-Done": {
       "x": 9980,

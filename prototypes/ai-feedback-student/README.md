@@ -209,8 +209,8 @@ Feedback and AI Practice LOs on the same surfaces:
   (Wrong assessment, Photo unclear — DEMO) → the pages carousel, Add More up to
   5 photos or 1 PDF, Confirm & Analyze with the analyzing progress → the
   analysis results (the AI's ○ / ✕ on the sheet, the question breakdown in
-  green / amber / red, the total; a DEMO chip flips the source's self-marking
-  mode, where the scores are inputs) → Submit to Teacher → submitted (the AI's
+  green / amber / red, the total; read-only — the student never edits a score,
+  PM 30 Sep, so the source's self-marking mode is not carried) → Submit to Teacher → submitted (the AI's
   8/10, awaiting teacher review) → returned (the teacher's △ on Q5 from G7,
   9/10, the changed row labelled, teacher feedback). The student's sheet is
   the one the teacher marks on G7; the 9/10 is the score on T14 / T15. The
@@ -220,8 +220,8 @@ Feedback and AI Practice LOs on the same surfaces:
 Not drawn: the Question Tag master and CSV book import (Master Data), the
 paper LO's rows in the Submissions tab, the student's row on the Overview
 matrix as an app submission, a teacher-feedback field on the marking review
-(the returned result shows one, from the source), and self-marking as a
-setting of the paper LO (the source has it per assignment).
+(the returned result shows one, from the source). Student self-marking is
+out by decision, not omission (PM, 30 Sep).
 
 ## AI feedback before submission (2026-09-29, PM)
 

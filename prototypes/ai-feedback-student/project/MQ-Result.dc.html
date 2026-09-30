@@ -314,7 +314,7 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 .qtips b{display:block;font-size:14px;margin-bottom:6px}
 .qtips ul{margin:0;padding-left:16px}
 .qbanner{display:flex;gap:10px;align-items:flex-start;border-radius:8px;padding:12px 14px;font-size:14px;line-height:20px}
-.qbanner.ai{background:#eef1ff;color:#2c48ae}.qbanner.self{background:#fff3cc;color:#7a5a00}.qbanner.ok{background:#e6f5ee;color:#1f7a4d}
+.qbanner.ai{background:#eef1ff;color:#2c48ae}.qbanner.ok{background:#e6f5ee;color:#1f7a4d}
 .qrow-s{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;border:1px solid rgba(28,30,44,.1);background:#fff}
 .qrow-s b{font-size:14px;min-width:44px}
 .qrow-s .qtag{font-size:11px;color:rgba(28,30,44,.6);background:#f2f2f4;border-radius:4px;padding:1px 6px}
@@ -340,10 +340,9 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
       <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M1.5 4.2a9.5 9.5 0 0 1 13 0M4 7a6 6 0 0 1 8 0M6.5 9.7a2.5 2.5 0 0 1 3 0"/></svg>
       <svg width="27" height="13" viewBox="0 0 27 13" fill="none" aria-hidden="true"><rect x=".5" y=".5" width="23" height="12" rx="3" stroke="#000" opacity=".5"/><rect x="2" y="2" width="18" height="9" rx="1.6" fill="#000"/><path d="M25.5 4.5v4" stroke="#000" opacity=".5" stroke-width="1.4" stroke-linecap="round"/></svg>
     </span></div>
-<header class="mhdr"><a class="mib" href="MQ-Preview.dc.html" aria-label="もどる"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m15 6-6 6 6 6"/></svg></a><h1 class="mt">分析結果</h1><button class="chip pick {{selfOn}}" style="height:26px;font-size:11px;padding:0 10px" onClick="{{toggleSelf}}">自己採点モード</button><div class="mseg" role="group" aria-label="言語"><span class="seg-i on">日本語</span><a class="seg-i" href="MQ-Result-en.dc.html" lang="en">EN</a></div></header>
+<header class="mhdr"><a class="mib" href="MQ-Preview.dc.html" aria-label="もどる"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m15 6-6 6 6 6"/></svg></a><h1 class="mt">分析結果</h1><div class="mseg" role="group" aria-label="言語"><span class="seg-i on">日本語</span><a class="seg-i" href="MQ-Result-en.dc.html" lang="en">EN</a></div></header>
 <div class="mbody" style="padding-bottom:110px">
-  <sc-if value="{{isAi}}" hint-placeholder-val="{{true}}"><div class="qbanner ai" style="font-size:13px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg><span>AIがあなたの解答を採点しました。提出すると先生が確認します。</span></div></sc-if>
-  <sc-if value="{{isSelf}}" hint-placeholder-val="{{false}}"><div class="qbanner self" style="font-size:13px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 20h4L20 8a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>自分の解答を見直し、設問ごとに正直に採点してください。先生があなたの自己採点を確認します。</span></div></sc-if>
+  <div class="qbanner ai" style="font-size:13px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg><span>AIがあなたの解答を採点しました。提出すると先生が確認します。</span></div>
   <div class="mcard" style="padding:12px"><div class="qcar" style="height:300px">
     <sc-if value="{{isFirst}}" hint-placeholder-val="{{true}}"><span class="qphoto" style="width:319px;height:300px;flex:0 0 319px"><span class="desk"></span><span class="qsheet"><div class="gsheet">
     <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:14px;color:#212121">第7回 確認クイズ</b><span style="font-family:monospace;font-size:10px;color:#757575">▣ KU-STAT-Q07 ・ KU-2041</span></div><div style="font-size:10px;color:#757575">地域環境統計学 ・ 2026/11/10 ・ 氏名： <span style="display:inline-block;width:120px;border-bottom:1px solid #9E9E9E;font-family:'Noto Sans JP';color:#1A237E;font-style:italic">山田 花子</span></div>
@@ -361,12 +360,9 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
     <span class="pg">{{idx}} / 2 ページ</span>
   </div></div>
   <div class="mcard" style="gap:10px">
-    <div><p class="sub1" style="font-size:14px">設問ごとの結果</p>
-      <sc-if value="{{isAi}}" hint-placeholder-val="{{true}}"><p class="cap">AIによる採点結果</p></sc-if>
-      <sc-if value="{{isSelf}}" hint-placeholder-val="{{false}}"><p class="cap">設問ごとに自分で採点 ・ 数字をタップして修正</p></sc-if>
-    </div>
-    <div class="qtotal"><span>合計スコア</span><b>{{total}}<i>/10</i></b></div>
-    <div style="display:flex;flex-direction:column;gap:6px"><div class="qrow-s {{c0}}"><b>問1</b><span class="qtag">知</span><span class="qsv"><input class="qsc" defaultValue="{{s0}}" onInput="{{e0}}" inputmode="numeric" aria-label="問1"><span class="qmax">/1</span></span></div><div class="qrow-s {{c1}}"><b>問2(1)</b><span class="qtag">知</span><span class="qsv"><input class="qsc" defaultValue="{{s1}}" onInput="{{e1}}" inputmode="numeric" aria-label="問2(1)"><span class="qmax">/1</span></span></div><div class="qrow-s {{c2}}"><b>問2(2)</b><span class="qtag">知</span><span class="qsv"><input class="qsc" defaultValue="{{s2}}" onInput="{{e2}}" inputmode="numeric" aria-label="問2(2)"><span class="qmax">/1</span></span></div><div class="qrow-s {{c3}}"><b>問3</b><span class="qtag">考</span><span class="qsv"><input class="qsc" defaultValue="{{s3}}" onInput="{{e3}}" inputmode="numeric" aria-label="問3"><span class="qmax">/2</span></span></div><div class="qrow-s {{c4}}"><b>問4(1)</b><span class="qtag">知</span><span class="qsv"><input class="qsc" defaultValue="{{s4}}" onInput="{{e4}}" inputmode="numeric" aria-label="問4(1)"><span class="qmax">/1</span></span></div><div class="qrow-s {{c5}}"><b>問4(2)</b><span class="qtag">知</span><span class="qsv"><input class="qsc" defaultValue="{{s5}}" onInput="{{e5}}" inputmode="numeric" aria-label="問4(2)"><span class="qmax">/1</span></span></div><div class="qrow-s {{c6}}"><b>問5</b><span class="qtag">考</span><span class="qsv"><input class="qsc" defaultValue="{{s6}}" onInput="{{e6}}" inputmode="numeric" aria-label="問5"><span class="qmax">/2</span></span></div><div class="qrow-s {{c7}}"><b>問6</b><span class="qtag">考</span><span class="qsv"><input class="qsc" defaultValue="{{s7}}" onInput="{{e7}}" inputmode="numeric" aria-label="問6"><span class="qmax">/1</span></span></div></div>
+    <div><p class="sub1" style="font-size:14px">設問ごとの結果</p><p class="cap">AIによる採点結果</p></div>
+    <div class="qtotal"><span>合計スコア</span><b>8<i>/10</i></b></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><div class="qrow-s full"><b>問1</b><span class="qtag">知</span><span class="qsv"><span class="qsc ro">1</span><span class="qmax">/1</span></span></div><div class="qrow-s full"><b>問2(1)</b><span class="qtag">知</span><span class="qsv"><span class="qsc ro">1</span><span class="qmax">/1</span></span></div><div class="qrow-s full"><b>問2(2)</b><span class="qtag">知</span><span class="qsv"><span class="qsc ro">1</span><span class="qmax">/1</span></span></div><div class="qrow-s full"><b>問3</b><span class="qtag">考</span><span class="qsv"><span class="qsc ro">2</span><span class="qmax">/2</span></span></div><div class="qrow-s full"><b>問4(1)</b><span class="qtag">知</span><span class="qsv"><span class="qsc ro">1</span><span class="qmax">/1</span></span></div><div class="qrow-s full"><b>問4(2)</b><span class="qtag">知</span><span class="qsv"><span class="qsc ro">1</span><span class="qmax">/1</span></span></div><div class="qrow-s zero"><b>問5</b><span class="qtag">考</span><span class="qsv"><span class="qsc ro">0</span><span class="qmax">/2</span></span></div><div class="qrow-s full"><b>問6</b><span class="qtag">考</span><span class="qsv"><span class="qsc ro">1</span><span class="qmax">/1</span></span></div></div>
   </div>
 </div>
 <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20">
@@ -377,25 +373,8 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":375,"height":812}}'>
 class Component extends DCLogic {
-  state = { i: 0, s0: 1, s1: 1, s2: 1, s3: 2, s4: 1, s5: 1, s6: 0, s7: 1, self: false };
-  renderVals() {
-    const st = this.state;
-    const cls = (v, m) => v >= m ? "full" : (v === 0 ? "zero" : "part");
-    const total = st.s0 + st.s1 + st.s2 + st.s3 + st.s4 + st.s5 + st.s6 + st.s7;
-    return {
-      idx: String(st.i + 1), isFirst: st.i === 0, isLast: st.i === 1, prev: () => this.setState({ i: 0 }), next: () => this.setState({ i: 1 }),
-      s0: String(st.s0), c0: cls(st.s0, 1), e0: (e) => { const v = Math.max(0, Math.min(1, parseInt(e.target.value || "0", 10) || 0)); this.setState({ s0: v }); },
-      s1: String(st.s1), c1: cls(st.s1, 1), e1: (e) => { const v = Math.max(0, Math.min(1, parseInt(e.target.value || "0", 10) || 0)); this.setState({ s1: v }); },
-      s2: String(st.s2), c2: cls(st.s2, 1), e2: (e) => { const v = Math.max(0, Math.min(1, parseInt(e.target.value || "0", 10) || 0)); this.setState({ s2: v }); },
-      s3: String(st.s3), c3: cls(st.s3, 2), e3: (e) => { const v = Math.max(0, Math.min(2, parseInt(e.target.value || "0", 10) || 0)); this.setState({ s3: v }); },
-      s4: String(st.s4), c4: cls(st.s4, 1), e4: (e) => { const v = Math.max(0, Math.min(1, parseInt(e.target.value || "0", 10) || 0)); this.setState({ s4: v }); },
-      s5: String(st.s5), c5: cls(st.s5, 1), e5: (e) => { const v = Math.max(0, Math.min(1, parseInt(e.target.value || "0", 10) || 0)); this.setState({ s5: v }); },
-      s6: String(st.s6), c6: cls(st.s6, 2), e6: (e) => { const v = Math.max(0, Math.min(2, parseInt(e.target.value || "0", 10) || 0)); this.setState({ s6: v }); },
-      s7: String(st.s7), c7: cls(st.s7, 1), e7: (e) => { const v = Math.max(0, Math.min(1, parseInt(e.target.value || "0", 10) || 0)); this.setState({ s7: v }); },
-      total: String(total), isSelf: st.self, isAi: !st.self, selfOn: st.self ? "sel" : "",
-      toggleSelf: () => this.setState({ self: !st.self }),
-    };
-  }
+  state = { i: 0 };
+  renderVals() { const st = this.state; return { idx: String(st.i + 1), isFirst: st.i === 0, isLast: st.i === 1, prev: () => this.setState({ i: 0 }), next: () => this.setState({ i: 1 }) }; }
 }
 </script>
 </body>
