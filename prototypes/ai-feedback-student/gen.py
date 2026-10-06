@@ -6660,37 +6660,45 @@ QSCREENS_ALL = QSCREENS_W + QSCREENS_M
 
 # ===== AI DASHBOARD (6 Oct): production's AI Tutor Dashboard (school-portal-admin, syllabus squad,
 # Dashboard/modules/ai-dashboard: AIDashboardContainer → AIDashboardForm, AIDashboardOverview,
-# AIDashboardTable with AIInteractionHistoryTable in the expanded row) with the AI Feedback data
-# from the group and student dashboards folded in, and a viewer for the actual submission and
-# the generated feedback (PM, 6 Oct: v1 of AI Feedback reports inside the AI Dashboard). =====
+# AIDashboardTable with AIInteractionHistoryTable in the expanded row) with the AI FEEDBACK DATA AS THE
+# BACK OFFICE CODE HAS IT (PM comment on T16, 6 Oct: the AI feedback code is not linked to the LO —
+# replace with what is actually available): AI Feedback there is the AI Tutor's feedback SNAP
+# (AITutorgraphType FEEDBACK beside TUTOR = Snap-to-ask), optionally tied to an AI TUTOR ASSIGNMENT
+# (title, subject, overall question, acceptance criteria / rubric content, publish + due date; the
+# analysis Started / Snaps / Completed — AssignmentReportProgress), counted by GetStudentUsageAnalytics
+# .total_feedback_generated, each snap a tutoring-session thread (ListTutoringSessionsByStudent) whose
+# detail is the thread page (AIDashboardDetailGeneralInfo + QuestionTabPanel: overview, the student's
+# comment on a dislike, the AI response). A viewer drawer shows that thread here. =====
 MI["thumbUp"] = "M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2zm-2 0v2l-3 7H9V9l4.34-4.34L12 10h9zM1 9h4v12H1z"
 MI["thumbDown"] = "M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm0 12l-4.34 4.34L12 14H3v-2l3-7h9v10zm4-12h4v12h-4z"
+MI["snap"] = "M5 15H3v4c0 1.1.9 2 2 2h4v-2H5v-4zM5 5h4V3H5c-1.1 0-2 .9-2 2v4h2V5zm14-2h-4v2h4v4h2V5c0-1.1-.9-2-2-2zm0 16h-4v2h4c1.1 0 2-.9 2-2v-4h-2v4zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+MI["flag"] = "M12.36 6l.4 2H18v6h-3.36l-.4-2H7V6h5.36M14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6L14 4z"
 
 AD_JA = dict(
     ad_h="AIチューターダッシュボード", ad_add="生徒の追加",
-    ad_lens="レンズ", ad_lens_v=["すべて", "数学", "理科", "英語"], ad_start="開始日", ad_end="終了日",
+    ad_lens="レンズ", ad_lens_v=["何でも", "数学", "理科", "英語"], ad_start="開始日", ad_end="終了日",
     ad_start_v="2026/11/01", ad_end_v="2026/11/30",
     ad_ov_h="概要", ad_period="期間: 2026/11/01 00:00 – 2026/11/30 23:59",
     ad_grp=["AIチューター", "AIフィードバック", "類題演習"],
     ad_cards_tutor=[("people", "blue", "生徒数", "10", "", ""), ("aiTutor", "", "AIチューターへの質問数", "1,284", "", ""),
                     ("thumbUp", "green", "高評価数", "312", "", ""), ("thumbDown", "orange", "低評価数", "41", "", "")],
-    ad_cards_fb=[("rateReview", "blue", "生成されたフィードバック数", "41", "/ 90", "3 LO ・ 30人"), ("schedule", "orange", "確認待ち", "9", "", "先生の確認を待つ下書き"),
-                 ("checkCircle", "green", "返却済み", "27", "", "うち自動返却 21"), ("autorenew", "", "再提出", "4", "", "差し戻し 1 を含む"),
-                 ("star", "", "クラスで紹介", "4", "", "先生が★を付けた提出")],
+    # production's AI Feedback card (totalFeedbacksGenerated) then the assignment's analysis (Started / Snaps / Completed)
+    ad_cards_fb=[("rateReview", "blue", "生成されたフィードバック数", "22", "", "フィードバック用スナップ ・ 10人"),
+                 ("flag", "", "開始済み", "24", "/ 30", "スナップが1件以上ある生徒"), ("snap", "", "スナップ", "63", "", "Snap-to-ask と AIフィードバックの合計"),
+                 ("checks", "green", "完了", "18", "/ 30", "「完了にする」を押した生徒")],
+    ad_assign="AIチューター課題: 第7回 相関分析レポート", ad_assign_due="期限 2026/11/13 23:59",
     ad_cards_prac=[("spark", "", "生成された類似問題数", "28", "", "7セット ・ 5人"), ("checks", "", "試行済み", "22", "", ""),
                    ("checkCircle", "green", "正解", "16", "", ""), ("close", "orange", "不正解", "6", "", "")],
     ad_usage_h="生徒の利用状況", ad_updated="最終更新: 2026/11/16 09:00", ad_search="生徒名で検索",
     ad_cols_grp=["AIチューター", "AIフィードバック"],
-    ad_cols=["生徒名", "ユーザー名", "質問数", "高評価数", "低評価数", "提出", "確認待ち", "返却済み", "受けたコメント"],
+    ad_cols=["生徒名", "ユーザー名", "質問数", "高評価数", "低評価数", "フィードバック数", "課題"],
     ad_extra=["中村 葵", "小林 蓮", "加藤 結衣"],
-    ad_rows=[("hanako.yamada", "142", "38", "4", "3/3", "1", "2", "8", "3", "5"), ("taro.sato", "96", "21", "9", "3/3", "2", "1", "5", "1", "4"),
-             ("ichiro.suzuki", "210", "61", "3", "3/3", "1", "2", "4", "2", "2"), ("misaki.tanaka", "173", "52", "2", "3/3", "0", "3", "8", "5", "3"),
-             ("ken.takahashi", "64", "12", "7", "2/3", "0", "2", "5", "2", "3"), ("sakura.ito", "88", "19", "5", "2/3", "1", "1", "3", "1", "2"),
-             ("daiki.watanabe", "51", "8", "6", "2/3", "0", "1", "5", "1", "4"),
-             ("aoi.nakamura", "203", "47", "1", None, None, None, None, None, None), ("ren.kobayashi", "139", "30", "3", None, None, None, None, None, None),
-             ("yui.kato", "118", "24", "1", None, None, None, None, None, None)],
-    ad_cm_lbl=("良い点", "改善点"), ad_back_n="差し戻し 1",
-    ad_hist_h="質問履歴", ad_hist_cols=["作成日時", "レンズ", "アイテムの概要", "質問数", "フィードバック", "コメント"],
+    # (user, questions, likes, dislikes, assignment status: done / started / none)
+    ad_rows=[("hanako.yamada", "142", "38", "4", "done"), ("taro.sato", "96", "21", "9", "started"), ("ichiro.suzuki", "210", "61", "3", "done"),
+             ("misaki.tanaka", "173", "52", "2", "done"), ("ken.takahashi", "64", "12", "7", "started"), ("sakura.ito", "88", "19", "5", "started"),
+             ("daiki.watanabe", "51", "8", "6", "none"), ("aoi.nakamura", "203", "47", "1", "done"), ("ren.kobayashi", "139", "30", "3", "done"), ("yui.kato", "118", "24", "1", "started")],
+    ad_asg_st={"done": ("完了", "published"), "started": ("開始済み", "wait"), "none": ("未開始", "unpublished")},
+    ad_hist_h="質問履歴（Snap-to-ask）", ad_hist_cols=["作成日時", "レンズ", "アイテムの概要", "質問数", "フィードバック", "コメント"],
     ad_hist=[[("2026/11/13 21:08", 1, "相関係数 r の意味と、外れ値があるときの解釈について", "6", "up", "1"), ("2026/11/10 19:42", 1, "T.TEST と相関係数の検定の違い", "4", "", "--")],
              [("2026/11/11 17:30", 1, "散布図の作り方（Excel）と近似曲線の追加", "9", "down", "1")],
              [("2026/11/14 08:02", 1, "p値が 0.05 より小さいときの結論の書き方", "5", "up", "--"), ("2026/11/09 22:15", 1, "帰無仮説と対立仮説の立て方", "7", "up", "--")],
@@ -6701,30 +6709,42 @@ AD_JA = dict(
              [("2026/11/15 10:12", 1, "回帰直線の傾きの読み方", "12", "up", "2")],
              [("2026/11/14 16:40", 1, "ヒストグラムと棒グラフの違い", "7", "", "--")],
              [("2026/11/12 09:05", 1, "標準偏差を手計算で求める手順", "10", "up", "--")]],
-    ad_fb_h="AIフィードバックの提出", ad_fb_cols=["LO名", "状態", "提出日時", "返却日時", "コメント", ""],
-    ad_view="見る", ad_none_fb="この期間にAIフィードバックの提出はありません", ad_hl="注目",
-    ad_dates=[("2026/11/05 20:14", "2026/11/07 10:30"), ("2026/11/12 19:40", "2026/11/14 10:05"), ("2026/11/15 21:30", "2026/11/16 00:05")],
-    ad_v_h="提出物と生成されたフィードバック", ad_v_sub="提出物", ad_v_fb="生成されたフィードバック",
-    ad_v_vis={"nr": ("下書き ・ 生徒には未公開", "st-default"), "ir": ("下書き ・ 生徒には未公開", "st-warning"), "ret": ("生徒に公開中", "st-success"), "back": ("差し戻し ・ 生徒に公開中", "st-error")},
-    ad_v_open="提出物の採点で開く", ad_v_close="閉じる", ad_v_note="先生からのひとこと", ad_v_fixed="再提出で修正済み", ad_v_att=["1回目", "2回目"],
-    ad_v_sublbl=("生徒", "提出", "返却"), ad_v_cm="コメント", ad_v_cms="件のコメント",
-    ad_lo2_raw=["今週は相関分析を学んだ。講義で扱った人口密度と所得の例では、散布図を見るだけでは分からない関係が相関係数で数値化できることが印象に残った。",
-                "一方で、相関があるからといって原因と結果が決まるわけではないという点は、演習レポートで自分も間違えていたので、ニュースで「〜と〜に相関」と聞いたときに因果と混同していないか確認する癖をつけたい。",
-                "疑問に思ったのは、相関係数が 0.3 くらいのとき「弱い相関」と言ってよいのか、分野によって基準が違うのかという点。次回までに調べてみたい。"],
-    ad_lo2_cards=[("good", "解釈", "演習レポートで自分も間違えていたので、ニュースで「〜と〜に相関」と聞いたときに因果と混同していないか確認する癖をつけたい。",
-                   "講義の内容を自分のレポートの失敗と結びつけ、日常の場面に持ち出して確認しようとしている点がとても良いです。学んだことを「使う場面」で言い直せているのは、理解が定着している証拠です。", "第5回 講義資料 p.8「相関と因果」", False),
-                  ("ask", "論理構成", "相関係数が 0.3 くらいのとき「弱い相関」と言ってよいのか、分野によって基準が違うのか",
-                   "よい問いです。相関の強さの目安は分野によって異なります（心理学では 0.3 を「中程度」とみなすことが多い一方、物理計測では 0.9 以上が普通です）。次回までに、自分の分野ではどの目安が使われているか、出典を一つ見つけて書き添えてみてください。", "第7回 講義資料 p.6「相関係数の目安」", False)],
-    ad_lo0_raw=["本演習では、47都道府県の人口（2025年）について度数分布表とヒストグラムを作成し、代表値と散布度を求めた。階級幅は 100万人とし、Excel の FREQUENCY 関数で度数を集計した。",
-                "平均は 262万人、中央値は 160万人であり、平均が中央値を大きく上回っている。これは東京都・神奈川県・大阪府などの大都市圏が分布の右側に長い裾をつくっているためと考えられる（1回目では「ほぼ同じ」と書いていたが、再計算して修正した）。",
-                "散らばりの指標として標準偏差（268万人）に加え四分位範囲（162万人）を求めた。外れ値の影響を受けにくい四分位範囲のほうが、この分布の典型的な散らばりをよく表している。"],
-    ad_lo0_cards=[("good", "統計処理", "散らばりの指標として標準偏差（268万人）に加え四分位範囲（162万人）を求めた。",
-                   "標準偏差だけでなく四分位範囲を併記し、分布の形に合わせて指標を選び直した点が良いです。1回目には標準偏差のみだったので、指摘を踏まえて指標の「意味」から考え直せています。", "第6回 講義資料 p.9「散布度の指標」", True),
-                  ("good", "解釈", "平均は 262万人、中央値は 160万人であり、平均が中央値を大きく上回っている。",
-                   "平均と中央値の差を分布の歪みと結びつけて説明できています。1回目の「ほぼ同じ」から正しく直りました。あと一歩：右に裾が長いことをヒストグラムのどの階級から読み取ったか、図を指して一文添えると読者が確認できます。", "第6回 講義資料 p.5「分布の形と代表値」", True),
-                  ("todo", "図表の見やすさ", "階級幅は 100万人とし、Excel の FREQUENCY 関数で度数を集計した。",
-                   "ヒストグラムの縦軸に単位（都道府県数）が入っていません。軸ラベルと単位は図を読む人への最低限の案内です。次回は図のタイトル・軸ラベル・単位の3点を提出前に確認してください。", "第6回 講義資料 p.3「図表の基本」", False)],
-    ad_help="本番の AI チューターダッシュボード（生徒の追加、レンズ・期間で絞り込み、概要カード、生徒の利用状況）に、AIフィードバックの数値を加えたものです。概要の2行目はグループダッシュボードの数（生成されたフィードバック＝提出数、確認待ち、返却済み、再提出、★）、表の右4列は生徒ダッシュボードの数（提出、確認待ち、返却済み、受けたコメント）です。行を開くと本番の質問履歴の下にその生徒のAIフィードバックの提出が並び、「見る」で提出物と生成されたフィードバックをここで確認できます。率は使いません。",
+    # the feedback snaps (AITutorgraphType FEEDBACK): (created, lens, assignment key or "", item overview, like/dislike, comments)
+    ad_fb_h="AIフィードバック（答案のスナップ）", ad_fb_cols=["作成日時", "レンズ", "課題", "アイテムの概要", "フィードバック", "コメント", ""],
+    ad_asg={"a7": "第7回 相関分析レポート", "a6": "第6回 度数分布とヒストグラム"}, ad_asg_none="課題なし（自由スナップ）",
+    ad_fb=[[("2026/11/12 19:40", 1, "a7", "相関係数の計算と散布図 — 手書きノート2ページ", "up", "--"), ("2026/11/09 21:15", 1, "", "仮説検定の答案 — p値の解釈", "down", "1"), ("2026/11/05 20:14", 1, "a6", "度数分布表とヒストグラム — 階級幅 100万人", "up", "--")],
+           [("2026/11/11 18:05", 1, "a7", "散布図と相関係数の下書き", "", "--"), ("2026/11/04 17:20", 1, "a6", "度数分布表（1回目）", "down", "1")],
+           [("2026/11/12 08:12", 1, "a7", "相関係数 r = 0.62 の計算過程", "up", "--"), ("2026/11/10 22:30", 1, "", "検定統計量の計算", "up", "--"), ("2026/11/06 19:50", 1, "a6", "ヒストグラムの作図", "up", "--")],
+           [("2026/11/12 21:40", 1, "a7", "外れ値を除いた再計算のメモ", "up", "--"), ("2026/11/08 20:05", 1, "", "相関と因果の整理ノート", "up", "--"), ("2026/11/05 18:30", 1, "a6", "代表値と散布度の計算", "up", "--")],
+           [("2026/11/13 23:10", 1, "a7", "散布図の作図（途中）", "", "--"), ("2026/11/06 21:00", 1, "a6", "度数分布表", "up", "--")],
+           [("2026/11/13 22:58", 1, "a7", "相関係数の計算", "down", "1"), ("2026/11/07 19:15", 1, "a6", "ヒストグラムの階級幅", "up", "--")],
+           [("2026/11/04 22:40", 1, "a6", "度数分布表 — 階級幅 50万人", "down", "1")],
+           [("2026/11/15 10:40", 1, "a7", "回帰直線を含む散布図", "up", "--"), ("2026/11/11 20:20", 1, "", "分散の計算練習", "up", "--"), ("2026/11/06 18:00", 1, "a6", "ヒストグラムと度数分布表", "up", "--")],
+           [("2026/11/14 17:05", 1, "a7", "相関係数の計算メモ", "up", "--"), ("2026/11/07 20:30", 1, "a6", "度数分布表", "", "--")],
+           [("2026/11/12 09:30", 1, "a7", "散布図の下書き", "", "--")]],
+    ad_view="見る", ad_none_fb="この期間にAIフィードバックのスナップはありません",
+    ad_v_h="スナップとAIフィードバック", ad_v_snap="スナップ（生徒の答案）", ad_v_resp="AIチューター解説", ad_v_ov="質問概要",
+    ad_v_meta=("生徒", "作成日時", "レンズ", "課題"), ad_v_open="AIチューターダッシュボードで開く", ad_v_close="閉じる",
+    ad_v_ocr="読み取ったテキスト", ad_v_photo="写真 1枚", ad_v_fbl="フィードバック", ad_v_like="高評価", ad_v_dislike="低評価", ad_v_nofb="評価なし",
+    ad_v_cmt="生徒コメント", ad_v_cmt_txt="解説が分かりにくかった",
+    ad_v_rub="受け入れ基準との照合", ad_v_sec=("良い点", "改善点", "次の一歩"),
+    # the three thread variants: assignment 7 (like), a free snap (dislike + comment), assignment 6 (like)
+    ad_vA=dict(snap=["人口密度 x と県民所得 y の相関", "Σ(x−x̄)(y−ȳ) = 1,842,300", "Sx = 1,120  Sy = 2,641", "r = 1,842,300 ÷ (1,120 × 2,641) ≈ 0.62", "散布図：右上がり。東京が右上に離れている"],
+               rub=[("ok", "相関係数を計算し、式と途中の値を示している"), ("ok", "散布図を描き、関係の向きを読み取っている"), ("ng", "外れ値（東京）の影響を検討していない")],
+               good="計算の途中の値（偏差の積和、標準偏差）を書き残しているので、どこで r = 0.62 になったか追えます。散布図で右上がりを確認してから数値を出している順番も正しいです。",
+               imp="散布図で東京が離れていると気づいているのに、そのまま r を結論にしています。外れ値が相関係数を押し上げている可能性があります。",
+               next="東京を除いた46都道府県で r を計算し直し、二つの値を並べて「どちらを根拠にするか」を一行で書いてみましょう。"),
+    ad_vB=dict(snap=["H0: ρ = 0,  H1: ρ ≠ 0", "t = r√(n−2) / √(1−r²) = 0.62×√45 / √(1−0.38) ≈ 5.28", "p < 0.05 なので H0 を棄却", "→ 人口密度が所得を上げている"],
+               rub=[],
+               good="帰無仮説と対立仮説を書き、相関係数の検定統計量を正しい式で計算しています。t ≈ 5.28 も合っています。",
+               imp="最後の一文は検定の結論ではありません。p < 0.05 が言えるのは「相関がゼロではない」ことまでで、「密度が所得を上げる」という因果は検定からは出てきません。",
+               next="結論を「人口密度と県民所得には統計的に有意な相関がある（r = 0.62, p < 0.05）」と書き直してみましょう。因果について述べたい場合は、別の根拠が必要です。"),
+    ad_vC=dict(snap=["階級（万人）  度数", "0–100   17", "100–200  13", "200–300   7", "300–500   6", "500–    4", "平均 262  中央値 160"],
+               rub=[("ok", "階級幅を決めて度数分布表を作っている"), ("ok", "代表値（平均・中央値）を求めている"), ("ok", "ヒストグラムを描いている")],
+               good="階級幅をそろえて度数を数え、平均と中央値を両方出しています。右に裾の長い分布で平均が中央値より大きくなることを、表から読み取れる形になっています。",
+               imp="最後の階級だけ幅が違う（500万人以上）ので、ヒストグラムの棒の高さをそのまま比べられません。",
+               next="最後の階級を「500–1500」のように閉じるか、幅が違う旨を注記して、縦軸に単位（都道府県数）を書き加えましょう。"),
+    ad_help="本番の AI チューターダッシュボード（生徒の追加、レンズ・期間で絞り込み、概要カード、生徒の利用状況）に、AIフィードバックをバックオフィスのコードにある形で加えたものです（PM, 10月6日: AIフィードバックのコードはLOに紐づいていないので、実際にあるものに置き換える）。コード上のAIフィードバックは AIチューターの「フィードバック用スナップ」（Snap-to-ask と並ぶもう一つのスナップ）で、AIチューター課題（タイトル・科目・全体的な質問・受け入れ基準、公開と期限）に紐づけることができます。概要の2行目は本番の「生成されたフィードバック数」カードと課題の分析（開始済み・スナップ・完了）、表の右2列は生徒ごとのフィードバック数と課題の状態、行を開くと Snap-to-ask の質問履歴の下にフィードバック用スナップが並び、「見る」でそのスレッド（答案の写真と AI チューター解説、高評価・低評価と生徒コメント）をここで確認できます。",
     ad_title="BO — AIダッシュボード",
 )
 AD_EN = dict(
@@ -6735,23 +6755,21 @@ AD_EN = dict(
     ad_grp=["AI Tutor", "AI Feedback", "Similar questions practice"],
     ad_cards_tutor=[("people", "blue", "Number of Students", "10", "", ""), ("aiTutor", "", "Total Questions Asked", "1,284", "", ""),
                     ("thumbUp", "green", "Total Likes", "312", "", ""), ("thumbDown", "orange", "Total Dislikes", "41", "", "")],
-    ad_cards_fb=[("rateReview", "blue", "Feedbacks generated", "41", "/ 90", "3 LOs · 30 students"), ("schedule", "orange", "Waiting for review", "9", "", "drafts waiting on a teacher"),
-                 ("checkCircle", "green", "Returned", "27", "", "21 of them auto-returned"), ("autorenew", "", "Resubmissions", "4", "", "including 1 sent back"),
-                 ("star", "", "Highlighted for class", "4", "", "submissions the teacher starred")],
+    ad_cards_fb=[("rateReview", "blue", "Feedbacks generated", "22", "", "feedback snaps · 10 students"),
+                 ("flag", "", "Started", "24", "/ 30", "students with at least one snap"), ("snap", "", "Snaps", "63", "", "Snap-to-ask and AI feedback together"),
+                 ("checks", "green", "Completed", "18", "/ 30", "students who tapped Mark as Complete")],
+    ad_assign="AI Tutor Assignment: Session 7 correlation analysis report", ad_assign_due="due 2026/11/13, 23:59",
     ad_cards_prac=[("spark", "", "Similar questions generated", "28", "", "7 sets · 5 students"), ("checks", "", "Attempted", "22", "", ""),
                    ("checkCircle", "green", "Correct", "16", "", ""), ("close", "orange", "Wrong", "6", "", "")],
     ad_usage_h="Student Usages", ad_updated="Last Updated: 2026/11/16, 09:00", ad_search="Search by Student Name",
     ad_cols_grp=["AI Tutor", "AI Feedback"],
-    ad_cols=["Student Name", "User Name", "Total Questions", "Total Likes", "Total Dislikes", "Submitted", "Waiting", "Returned", "Comments received"],
+    ad_cols=["Student Name", "User Name", "Total Questions", "Total Likes", "Total Dislikes", "Feedbacks", "Assignment"],
     ad_extra=["Aoi Nakamura", "Ren Kobayashi", "Yui Kato"],
-    ad_rows=[("hanako.yamada", "142", "38", "4", "3/3", "1", "2", "8", "3", "5"), ("taro.sato", "96", "21", "9", "3/3", "2", "1", "5", "1", "4"),
-             ("ichiro.suzuki", "210", "61", "3", "3/3", "1", "2", "4", "2", "2"), ("misaki.tanaka", "173", "52", "2", "3/3", "0", "3", "8", "5", "3"),
-             ("ken.takahashi", "64", "12", "7", "2/3", "0", "2", "5", "2", "3"), ("sakura.ito", "88", "19", "5", "2/3", "1", "1", "3", "1", "2"),
-             ("daiki.watanabe", "51", "8", "6", "2/3", "0", "1", "5", "1", "4"),
-             ("aoi.nakamura", "203", "47", "1", None, None, None, None, None, None), ("ren.kobayashi", "139", "30", "3", None, None, None, None, None, None),
-             ("yui.kato", "118", "24", "1", None, None, None, None, None, None)],
-    ad_cm_lbl=("strengths", "to improve"), ad_back_n="1 sent back",
-    ad_hist_h="Chat History Overview", ad_hist_cols=["Created At", "Lens", "Item Overview", "No. of Questions", "Feedback Type", "Comments"],
+    ad_rows=[("hanako.yamada", "142", "38", "4", "done"), ("taro.sato", "96", "21", "9", "started"), ("ichiro.suzuki", "210", "61", "3", "done"),
+             ("misaki.tanaka", "173", "52", "2", "done"), ("ken.takahashi", "64", "12", "7", "started"), ("sakura.ito", "88", "19", "5", "started"),
+             ("daiki.watanabe", "51", "8", "6", "none"), ("aoi.nakamura", "203", "47", "1", "done"), ("ren.kobayashi", "139", "30", "3", "done"), ("yui.kato", "118", "24", "1", "started")],
+    ad_asg_st={"done": ("Completed", "published"), "started": ("Started", "wait"), "none": ("Not started", "unpublished")},
+    ad_hist_h="Chat History Overview (Snap-to-ask)", ad_hist_cols=["Created At", "Lens", "Item Overview", "No. of Questions", "Feedback Type", "Comments"],
     ad_hist=[[("2026/11/13, 21:08", 1, "What the correlation coefficient r means, and how to read it when there is an outlier", "6", "up", "1"), ("2026/11/10, 19:42", 1, "The difference between T.TEST and the test for a correlation coefficient", "4", "", "--")],
              [("2026/11/11, 17:30", 1, "Drawing a scatter plot in Excel and adding a trend line", "9", "down", "1")],
              [("2026/11/14, 08:02", 1, "How to word the conclusion when p is below 0.05", "5", "up", "--"), ("2026/11/09, 22:15", 1, "Setting up the null and alternative hypotheses", "7", "up", "--")],
@@ -6762,30 +6780,40 @@ AD_EN = dict(
              [("2026/11/15, 10:12", 1, "Reading the slope of a regression line", "12", "up", "2")],
              [("2026/11/14, 16:40", 1, "Histogram versus bar chart", "7", "", "--")],
              [("2026/11/12, 09:05", 1, "Computing a standard deviation by hand", "10", "up", "--")]],
-    ad_fb_h="AI Feedback submissions", ad_fb_cols=["Learning Objective", "Status", "Submitted", "Returned", "Comments", ""],
-    ad_view="View", ad_none_fb="No AI Feedback submissions in this period", ad_hl="Highlighted",
-    ad_dates=[("2026/11/05, 20:14", "2026/11/07, 10:30"), ("2026/11/12, 19:40", "2026/11/14, 10:05"), ("2026/11/15, 21:30", "2026/11/16, 00:05")],
-    ad_v_h="Submission and generated feedback", ad_v_sub="Submission", ad_v_fb="Generated feedback",
-    ad_v_vis={"nr": ("Draft · not visible to the student", "st-default"), "ir": ("Draft · not visible to the student", "st-warning"), "ret": ("Visible to the student", "st-success"), "back": ("Sent back · visible to the student", "st-error")},
-    ad_v_open="Open in Submission Grading", ad_v_close="Close", ad_v_note="A note from the teacher", ad_v_fixed="Fixed in the resubmission", ad_v_att=["1st attempt", "2nd attempt"],
-    ad_v_sublbl=("Student", "Submitted", "Returned"), ad_v_cm="Comment", ad_v_cms="comments",
-    ad_lo2_raw=["This week we learned correlation analysis. In the lecture's example of population density and income, what stayed with me is that a correlation coefficient puts a number on a relationship a scatter plot alone does not show.",
-                "On the other hand, a correlation does not settle which is cause and which is effect. I made exactly this mistake in the exercise report, so when the news says “X is correlated with Y” I want to get into the habit of checking whether I am confusing it with causation.",
-                "One thing I wondered: when r is around 0.3, is it right to call that a “weak” correlation, or does the yardstick differ by field? I would like to look this up before next week."],
-    ad_lo2_cards=[("good", "Interpretation", "I made exactly this mistake in the exercise report, so when the news says “X is correlated with Y” I want to get into the habit of checking whether I am confusing it with causation.",
-                   "Linking the lecture to the mistake in your own report, and then carrying it into an everyday situation, is very good. Restating what you learned in the place where you would use it is a sign that the understanding has settled.", "Session 5 slides p.8 “Correlation and causation”", False),
-                  ("ask", "Structure", "when r is around 0.3, is it right to call that a “weak” correlation, or does the yardstick differ by field?",
-                   "A good question. The yardstick does differ by field: psychology often treats 0.3 as “moderate”, while in physical measurement anything under 0.9 is unusual. Before next week, find one source for the yardstick used in your own field and add it in a line.", "Session 7 slides p.6 “Rules of thumb for r”", False)],
-    ad_lo0_raw=["In this exercise I built a frequency table and a histogram of the 47 prefectures' populations (2025) and computed measures of centre and spread. The class width was 1 million and the counts came from Excel's FREQUENCY function.",
-                "The mean is 2.62 million and the median 1.60 million, so the mean is well above the median. This is because the metropolitan prefectures (Tokyo, Kanagawa, Osaka) form a long right tail. (In the first attempt I wrote that they were “about the same”; I recomputed and corrected this.)",
-                "For spread I computed the interquartile range (1.62 million) alongside the standard deviation (2.68 million). The IQR, which is less affected by outliers, describes the typical spread of this distribution better."],
-    ad_lo0_cards=[("good", "Statistics", "For spread I computed the interquartile range (1.62 million) alongside the standard deviation (2.68 million).",
-                   "Reporting the IQR alongside the standard deviation, and choosing the measure to fit the shape of the distribution, is good. The first attempt had only the standard deviation, so you have gone back to what the measure means.", "Session 6 slides p.9 “Measures of spread”", True),
-                  ("good", "Interpretation", "The mean is 2.62 million and the median 1.60 million, so the mean is well above the median.",
-                   "You now tie the gap between mean and median to the skew of the distribution — corrected from “about the same” in the first attempt. One more step: say which bars of the histogram show the long right tail, so a reader can check it in the figure.", "Session 6 slides p.5 “Shape and centre”", True),
-                  ("todo", "Charts", "The class width was 1 million and the counts came from Excel's FREQUENCY function.",
-                   "The histogram's vertical axis has no unit (number of prefectures). Axis labels and units are the minimum guidance a reader needs. Next time check title, axis labels and units before submitting.", "Session 6 slides p.3 “Chart basics”", False)],
-    ad_help="Production's AI Tutor Dashboard (Add Student, the lens and period filter, the overview cards, Student Usages) with the AI Feedback numbers added. The overview's second row carries the Group Dashboard's counts (feedbacks generated = submissions, waiting, returned, resubmissions, ★); the table's four right-hand columns carry the Student Dashboard's (submitted, waiting, returned, comments received). Expanding a row lists that student's AI Feedback submissions beneath production's chat history, and View opens the submission and its generated feedback here. Counts, never rates.",
+    ad_fb_h="AI Feedback (snaps of the student's work)", ad_fb_cols=["Created At", "Lens", "Assignment", "Item Overview", "Feedback Type", "Comments", ""],
+    ad_asg={"a7": "Session 7 correlation analysis report", "a6": "Session 6 frequency table and histogram"}, ad_asg_none="No assignment (free snap)",
+    ad_fb=[[("2026/11/12, 19:40", 1, "a7", "Correlation coefficient and scatter plot — two handwritten pages", "up", "--"), ("2026/11/09, 21:15", 1, "", "Hypothesis test answer — reading the p-value", "down", "1"), ("2026/11/05, 20:14", 1, "a6", "Frequency table and histogram — class width 1 million", "up", "--")],
+           [("2026/11/11, 18:05", 1, "a7", "Draft scatter plot and correlation coefficient", "", "--"), ("2026/11/04, 17:20", 1, "a6", "Frequency table (first try)", "down", "1")],
+           [("2026/11/12, 08:12", 1, "a7", "Working for r = 0.62", "up", "--"), ("2026/11/10, 22:30", 1, "", "Computing the test statistic", "up", "--"), ("2026/11/06, 19:50", 1, "a6", "Drawing the histogram", "up", "--")],
+           [("2026/11/12, 21:40", 1, "a7", "Notes on recomputing without the outlier", "up", "--"), ("2026/11/08, 20:05", 1, "", "Notes sorting correlation from causation", "up", "--"), ("2026/11/05, 18:30", 1, "a6", "Measures of centre and spread", "up", "--")],
+           [("2026/11/13, 23:10", 1, "a7", "Scatter plot (in progress)", "", "--"), ("2026/11/06, 21:00", 1, "a6", "Frequency table", "up", "--")],
+           [("2026/11/13, 22:58", 1, "a7", "Computing the correlation coefficient", "down", "1"), ("2026/11/07, 19:15", 1, "a6", "Class width of the histogram", "up", "--")],
+           [("2026/11/04, 22:40", 1, "a6", "Frequency table — class width 500,000", "down", "1")],
+           [("2026/11/15, 10:40", 1, "a7", "Scatter plot with a regression line", "up", "--"), ("2026/11/11, 20:20", 1, "", "Variance practice", "up", "--"), ("2026/11/06, 18:00", 1, "a6", "Histogram and frequency table", "up", "--")],
+           [("2026/11/14, 17:05", 1, "a7", "Working for the correlation coefficient", "up", "--"), ("2026/11/07, 20:30", 1, "a6", "Frequency table", "", "--")],
+           [("2026/11/12, 09:30", 1, "a7", "Draft scatter plot", "", "--")]],
+    ad_view="View", ad_none_fb="No AI Feedback snaps in this period",
+    ad_v_h="Snap and AI feedback", ad_v_snap="Snap (the student's work)", ad_v_resp="AI Response", ad_v_ov="Item Overview",
+    ad_v_meta=("Student", "Created At", "Lens", "Assignment"), ad_v_open="Open in the AI Tutor Dashboard", ad_v_close="Close",
+    ad_v_ocr="Recognised text", ad_v_photo="1 photo", ad_v_fbl="Feedback", ad_v_like="Like", ad_v_dislike="Dislike", ad_v_nofb="No rating",
+    ad_v_cmt="Student's Comment", ad_v_cmt_txt="Solution was not clear enough",
+    ad_v_rub="Against the acceptance criteria", ad_v_sec=("Strengths", "To improve", "Next step"),
+    ad_vA=dict(snap=["Correlation of population density x and prefectural income y", "Σ(x−x̄)(y−ȳ) = 1,842,300", "Sx = 1,120  Sy = 2,641", "r = 1,842,300 ÷ (1,120 × 2,641) ≈ 0.62", "Scatter plot: rising to the right. Tokyo sits apart, top right"],
+               rub=[("ok", "Computes the correlation coefficient, showing the formula and intermediate values"), ("ok", "Draws the scatter plot and reads the direction of the relationship"), ("ng", "Does not consider the effect of the outlier (Tokyo)")],
+               good="You kept the intermediate values (the sum of deviation products, the standard deviations), so a reader can follow how r = 0.62 came about. Checking the direction on the scatter plot before computing is the right order too.",
+               imp="You noticed Tokyo sits apart on the scatter plot, yet r is taken as the conclusion as it stands. The outlier may be pulling the coefficient up.",
+               next="Recompute r for the 46 prefectures without Tokyo, put the two values side by side, and write one line on which one you will rely on and why."),
+    ad_vB=dict(snap=["H0: ρ = 0,  H1: ρ ≠ 0", "t = r√(n−2) / √(1−r²) = 0.62×√45 / √(1−0.38) ≈ 5.28", "p < 0.05, so reject H0", "→ population density raises income"],
+               rub=[],
+               good="You state the null and alternative hypotheses and compute the test statistic for a correlation coefficient with the right formula. t ≈ 5.28 is correct.",
+               imp="The last line is not the conclusion of the test. p < 0.05 lets you say the correlation is not zero; it says nothing about density causing income.",
+               next="Rewrite the conclusion as “there is a statistically significant correlation between population density and prefectural income (r = 0.62, p < 0.05)”. A causal claim needs other evidence."),
+    ad_vC=dict(snap=["Class (10k people)  Count", "0–100   17", "100–200  13", "200–300   7", "300–500   6", "500–    4", "Mean 262  Median 160"],
+               rub=[("ok", "Chooses a class width and builds the frequency table"), ("ok", "Computes measures of centre (mean, median)"), ("ok", "Draws the histogram")],
+               good="Equal class widths, counts per class, and both the mean and the median. The table lets a reader see why the mean exceeds the median in a right-skewed distribution.",
+               imp="The last class has a different width (5 million and above), so the heights of the histogram bars cannot be compared directly.",
+               next="Close the last class (for example 500–1500) or note that its width differs, and add the unit (number of prefectures) to the vertical axis."),
+    ad_help="Production's AI Tutor Dashboard (Add Student, the lens and period filter, the overview cards, Student Usages) with AI Feedback added in the shape the Back Office code has it (PM, 6 Oct: the AI feedback code is not linked to the LO, so replace with what is actually available). In the code, AI Feedback is the AI Tutor's feedback snap — the second snap type beside Snap-to-ask — which can be tied to an AI Tutor Assignment (title, subject, overall question, acceptance criteria, publish and due date). The overview's second row carries production's Feedbacks generated card and the assignment's analysis (Started / Snaps / Completed); the table's two right-hand columns carry each student's feedback count and assignment status; expanding a row lists the feedback snaps under the Snap-to-ask chat history, and View opens that thread here — the photo of the work and the AI response, with the like / dislike and the student's comment.",
     ad_title="BO — AI Dashboard",
 )
 JA.update(AD_JA); EN.update(AD_EN)
@@ -6809,8 +6837,8 @@ table.m thead tr.grp th::after{display:none}
 table.m thead tr.grp th.g{border-bottom:1px solid #E0E0E0;padding-bottom:6px}
 .ad-sub{display:flex;flex-direction:column;gap:20px;padding:16px 0 4px}
 .ad-sub h4{margin:0 0 10px;font-size:14px;font-weight:500}
-.ad-sub table.inner td,.ad-sub table.inner th{white-space:nowrap}
-.ad-sub table.inner td.ov{white-space:normal;max-width:420px;line-height:1.5}
+table.m .ad-sub table.inner td,table.m .ad-sub table.inner th{white-space:nowrap}
+table.m .ad-sub table.inner td.ov{white-space:normal;max-width:360px;line-height:1.5}
 .ad-scrim{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:80;border:0;padding:0;cursor:pointer}
 .ad-drawer{position:absolute;top:0;right:0;bottom:0;width:980px;background:#fff;z-index:81;display:flex;flex-direction:column;box-shadow:-8px 0 24px rgba(0,0,0,.18)}
 .ad-drawer .hide{display:none!important}
@@ -6818,125 +6846,101 @@ table.m thead tr.grp th.g{border-bottom:1px solid #E0E0E0;padding-bottom:6px}
 .ad-dh h2{margin:0;font-size:20px;font-weight:500;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .ad-dh .meta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#757575;margin-top:6px}
 .ad-dh .meta b{font-weight:500;color:#212121}
-.ad-db{flex:1 1 auto;overflow:auto;padding:20px 24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.ad-db{flex:1 1 auto;overflow:auto;padding:20px 24px 28px;display:grid;grid-template-columns:5fr 6fr;gap:20px;align-items:start}
 .ad-db .ad-col{display:flex;flex-direction:column;gap:12px;min-width:0}
 .ad-db .col-h{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:500}
-.ad-db .q-item{border:1px solid #E0E0E0;border-radius:4px;padding:16px}
-.ad-db .q-item.fixed{background:#F3FAF4;box-shadow:inset 3px 0 0 #4CAF50}
-.ad-db .q-answer{margin-bottom:10px}
+.ad-photo{border:1px solid #E0E0E0;border-radius:4px;background:#FAFAFA;padding:14px 16px 16px}
+.ad-photo .frame{background:#fff;border:1px solid #E0E0E0;border-radius:3px;padding:18px 20px;font-family:'Noto Sans JP',system-ui,sans-serif;line-height:2.1;font-size:15px;color:#2b2f45;background-image:repeating-linear-gradient(transparent,transparent 31px,#E8EAF6 31px,#E8EAF6 32px);min-height:180px;transform:rotate(-.4deg);box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.ad-resp{background:#FAFAFA;border:1px solid #E0E0E0;border-radius:4px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.ad-resp h5{margin:0 0 6px;font-size:13px;font-weight:500;color:#212121}
+.ad-resp p{margin:0;line-height:1.7;font-size:14px}
+.ad-rub{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.ad-rub li{display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.ad-rub li svg{margin-top:2px}
+.ad-cmt{background:rgba(227,27,12,.05);border-radius:4px;padding:12px 14px;font-size:13px}
+.ad-cmt b{display:block;font-weight:500;margin-bottom:4px}
 """
-
-def ad_fb_entries(S):
-    """Per student, the AI Feedback submissions in the period, read from the LO Dashboard's matrix
-    (status, comment count, secondary chip, ★ reason) with dates from Submission Grading's rows where
-    one exists, else the LO's typical dates. Entries: [loIdx, status, secondary, n, submitted, returned, hl]."""
-    subs = {}
-    for d in S["t_subs"] + S["t_subs_extra"]:
-        subs[(d["student"], d["lo"])] = d  # a resubmission's row replaces the first attempt's
-    los = [n for n, k, _ in S["t_mx_los"] if k == "fb"]
-    out = []
-    for name, cells in S["t_mx_students"]:
-        rows = []
-        for li, c in enumerate(cells[:3]):
-            if c[0] != "fb":
-                continue
-            _, st, n, sec = c[:4]
-            hl = c[4] if len(c) > 4 else ""
-            d = subs.get((name, los[li]))
-            sub = d["sub"] if d else S["ad_dates"][li][0]
-            if d:
-                ret = d["ret"] if d["ret"] != "--" else ""
-            else:
-                ret = S["ad_dates"][li][1] if st == "ret" else ""
-            rows.append([li, st, sec, n, sub, ret, hl])
-        out.append((name, rows))
-    for name in S["ad_extra"]:
-        out.append((name, []))
-    return out
 
 def ad_cards(S, L, cards):
     return '<div class="ov-row ad-cards" style="margin-bottom:0;flex-wrap:nowrap">' + "".join(ov_card(i, t, l, v, u, s, None, L) for i, t, l, v, u, s in cards) + '</div>'
 
+def ad_thumb(kind, size=18):
+    if kind == "up":
+        return mi("thumbUp", size, "#3B873E")
+    if kind == "down":
+        return mi("thumbDown", size, "#E31B0C")
+    return '<span class="dd">--</span>'
+
 def ad_viewer(S, L):
-    """The drawer: one submission with its generated feedback, the way the teacher sees it in Review
-    and return (T12) but read-only and reachable from the dashboard row. Header fields are holes
-    filled from the clicked row; the body is one of three LO variants (the exercise report of
-    Session 7 — T12's content —, the Week 7 reflection, the Session 6 report's second attempt)."""
-    def item(n, kind, crit, quote, bodytext, ref, fixed):
-        return (f'<div class="q-item{" fixed" if fixed else ""}"><div class="q-top"><span class="q-no">{S["ad_v_cm"]} {n}</span>'
-                f'<span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="tchip">{crit}</span>'
-                + (f'<span class="tchip published">{mi("check", 12)}{S["ad_v_fixed"]}</span>' if fixed else "")
-                + f'</div><div class="q-answer"><span class="who">{S["t_passage"]}</span>{quote}</div><p class="q-prompt" style="margin-bottom:6px">{bodytext}</p>'
-                f'<span class="helper" style="margin:0">{mi("description", 12)} {ref}</span></div>')
-    def variant(k, raw, cards, note_hole=None, att=False):
-        rawp = "".join(f'<p style="margin:0 0 10px">{p}</p>' for p in raw)
-        att_html = (f'<span class="toggle-group {{{{vAtt}}}}" style="height:30px"><a href="#" style="height:28px;font-size:13px">{S["ad_v_att"][0]}</a><span class="on" style="height:28px;font-size:13px">{S["ad_v_att"][1]}</span></span>' if att else "")
-        left = (f'<div class="ad-col"><div class="col-h"><span>{S["ad_v_sub"]}</span>{att_html}</div>'
-                f'<div class="q-item"><div class="q-top" style="margin-bottom:8px"><span class="q-title">{S["a_file"]}</span><span class="tchip">{S["t_recognised"]}</span></div>'
-                f'<div class="q-answer" style="margin-bottom:0">{rawp}</div></div></div>')
-        items = "".join(item(i + 1, *c) for i, c in enumerate(cards))
-        note = (f'<div class="q-item {{{{vNote}}}}" style="background:#FFFDF7"><div class="q-top" style="margin-bottom:8px"><span class="q-no">{S["ad_v_note"]}</span><span class="tchip">{S["t_teacher"]}</span></div>'
-                f'<p class="q-prompt" style="margin:0">{S["t_rev_note"]}</p></div>' if note_hole else "")
-        right = (f'<div class="ad-col"><div class="col-h"><span>{S["ad_v_fb"]}</span><span class="helper" style="margin:0;display:inline-flex;align-items:center;gap:4px;white-space:nowrap">{mi("spark", 12)}{len(cards)} {S["ad_v_cms"]}</span></div>{items}{note}</div>')
+    """The drawer: one feedback thread as production's thread page shows it (AIDashboardDetailGeneralInfo
+    → QuestionTabPanel): the item overview, the student's comment on a dislike, the AI response — here
+    with the snapped work beside it. Header fields are holes filled from the clicked row; the body is one
+    of three thread variants keyed by the assignment (Session 7, free snap, Session 6)."""
+    g, i_, n_ = S["ad_v_sec"]
+    def variant(k, V):
+        snap = "".join(f'<div>{ln}</div>' for ln in V["snap"])
+        left = (f'<div class="ad-col"><div class="col-h"><span>{S["ad_v_snap"]}</span><span class="tchip">{mi("camera", 12)}{S["ad_v_photo"]}</span></div>'
+                f'<div class="ad-photo"><div class="frame">{snap}</div></div>'
+                f'<div class="q-item" style="padding:12px 14px"><div class="q-top" style="margin-bottom:6px"><span class="q-no">{S["ad_v_ov"]}</span></div><p class="q-prompt" style="margin:0">{{{{vOv}}}}</p></div>'
+                f'<div class="ad-cmt {{{{vCmtC}}}}"><b>{S["ad_v_cmt"]}</b>{S["ad_v_cmt_txt"]}</div></div>')
+        rub = ""
+        if V["rub"]:
+            rub = (f'<div><h5>{S["ad_v_rub"]}</h5><ul class="ad-rub">'
+                   + "".join(f'<li>{mi("checkCircle" if ok == "ok" else "warning", 16, "#4CAF50" if ok == "ok" else "#ED6C02")}<span>{t}</span></li>' for ok, t in V["rub"]) + '</ul></div>')
+        right = (f'<div class="ad-col"><div class="col-h"><span>{S["ad_v_resp"]}</span><span class="helper" style="margin:0;display:inline-flex;align-items:center;gap:6px;white-space:nowrap">{S["ad_v_fbl"]}: {{{{vThumb}}}}</span></div>'
+                 f'<div class="ad-resp">{rub}<div><h5>{g}</h5><p>{V["good"]}</p></div><div><h5>{i_}</h5><p>{V["imp"]}</p></div><div><h5>{n_}</h5><p>{V["next"]}</p></div></div></div>')
         return f'<div class="ad-vb {{{{vb{k}}}}}" style="display:contents">{left}{right}</div>'
-    # the three LO variants; T12's cards (kind, criterion, passage, comment, reference) carry no fixed flag
-    v1 = variant(1, S["raw"], [(*c, False) for c in S["cards"]], note_hole=True)
-    v2 = variant(2, S["ad_lo2_raw"], S["ad_lo2_cards"])
-    v0 = variant(0, S["ad_lo0_raw"], S["ad_lo0_cards"], att=True)
-    a, b, c = S["ad_v_sublbl"]
+    body = variant(0, S["ad_vA"]) + variant(1, S["ad_vB"]) + variant(2, S["ad_vC"])
+    a, b, c, d = S["ad_v_meta"]
     return f'''<sc-if value="{{{{vOpen}}}}" hint-placeholder-val="{{{{false}}}}">
   <button class="ad-scrim" onClick="{{{{closeV}}}}" aria-label="{S["ad_v_close"]}"></button>
   <aside class="ad-drawer" role="dialog" aria-label="{S["ad_v_h"]}">
     <div class="ad-dh">
       <div style="min-width:0">
-        <h2>{{{{vLo}}}}<span class="tchip {{{{vStC}}}}">{{{{vStL}}}}</span><span class="tchip st-secondary {{{{vSecC}}}}" style="height:20px;padding:0 6px;font-size:11px">{{{{vSecL}}}}</span></h2>
-        <div class="meta"><span>{a}: <b>{{{{vStu}}}}</b></span><span class="num">{b}: <b>{{{{vSub}}}}</b></span><span class="num">{c}: <b>{{{{vRet}}}}</b></span><span class="tchip {{{{vVisC}}}}" style="height:20px;padding:0 8px;font-size:11px">{{{{vVisL}}}}</span></div>
+        <h2><span class="lm-type" style="width:28px;height:28px;flex:0 0 28px">{mi("rateReview", 16)}</span>{{{{vOv}}}}<span class="{{{{vLikeC}}}}" style="display:inline-flex">{mi("thumbUp", 20, "#3B873E")}</span><span class="{{{{vDisC}}}}" style="display:inline-flex">{mi("thumbDown", 20, "#E31B0C")}</span></h2>
+        <div class="meta"><span>{a}: <b>{{{{vStu}}}}</b></span><span class="num">{b}: <b>{{{{vAt}}}}</b></span><span>{c}: <b>{{{{vLens}}}}</b></span><span>{d}: <b>{{{{vAsg}}}}</b></span></div>
       </div>
-      <div style="display:flex;align-items:center;gap:8px;flex:0 0 auto"><a class="tbtn outlined" href="{tfn("T-Review", L)}">{S["ad_v_open"]}</a><button class="ticon" onClick="{{{{closeV}}}}" aria-label="{S["ad_v_close"]}">{mi("close", 22)}</button></div>
+      <div style="display:flex;align-items:center;gap:8px;flex:0 0 auto"><a class="tbtn outlined" href="#" title="dashboard/ai_dashboard/{{thread}}/show">{S["ad_v_open"]}</a><button class="ticon" onClick="{{{{closeV}}}}" aria-label="{S["ad_v_close"]}">{mi("close", 22)}</button></div>
     </div>
-    <div class="ad-db">{v0}{v1}{v2}</div>
+    <div class="ad-db">{body}</div>
   </aside>
 </sc-if>'''
 
 def ad_logic(S):
     import json as _json
-    fb = [[e[:6] for e in rows] for _, rows in ad_fb_entries(S)]
-    stu = [n for n, _ in ad_fb_entries(S)]
-    los = [n for n, k, _ in S["t_mx_los"] if k == "fb"]
-    st = {k: list(v) for k, v in S["t_status"].items()}
-    vis = {k: list(v) for k, v in S["ad_v_vis"].items()}
+    stu = [n for n, _ in S["t_mx_students"]] + S["ad_extra"]
+    fb = [[[at, lens, asg, ov, fbk] for at, lens, asg, ov, fbk, _ in rows] for rows in S["ad_fb"]]
+    asg = dict(S["ad_asg"]); asg[""] = S["ad_asg_none"]
     return ("""state = { o: -1, v: false, vi: 0, vj: 0 };
   renderVals() {
-    const FB = %FB%, ST = %ST%, SEC = %SEC%, LO = %LO%, STU = %STU%, VIS = %VIS%;
+    const FB = %FB%, STU = %STU%, LENS = %LENS%, ASG = %ASG%, VAR = %VAR%;
     const v = { vOpen: this.state.v, closeV: () => this.setState({ v: false }) };
     for (let i = 0; i < FB.length; i++) {
       v["s" + i] = this.state.o === i ? "" : "hide"; v["oc" + i] = this.state.o === i ? "on" : "";
       v["t" + i] = () => this.setState({ o: this.state.o === i ? -1 : i });
       for (let j = 0; j < FB[i].length; j++) v["v" + i + "_" + j] = () => this.setState({ v: true, vi: i, vj: j });
     }
-    const e = (FB[this.state.vi] || [])[this.state.vj] || [1, "nr", "", 0, "", ""];
-    const lo = e[0], st = e[1], sec = e[2];
-    v.vLo = LO[lo]; v.vStu = STU[this.state.vi]; v.vSub = e[4]; v.vRet = e[5] || "--";
-    v.vStL = ST[st][0]; v.vStC = ST[st][1];
-    v.vSecL = SEC[sec] || ""; v.vSecC = sec ? "" : "hide";
-    v.vVisL = VIS[st][0]; v.vVisC = VIS[st][1];
-    for (let k = 0; k < 3; k++) v["vb" + k] = lo === k ? "" : "hide";
-    v.vNote = (lo === 1 && st === "ret") ? "" : "hide";
-    v.vAtt = (lo === 0 && sec === "resub") ? "" : "hide";
+    const e = (FB[this.state.vi] || [])[this.state.vj] || ["", 1, "a7", "", ""];
+    v.vStu = STU[this.state.vi]; v.vAt = e[0]; v.vLens = LENS[e[1]]; v.vAsg = ASG[e[2]]; v.vOv = e[3];
+    v.vLikeC = e[4] === "up" ? "" : "hide"; v.vDisC = e[4] === "down" ? "" : "hide"; v.vCmtC = e[4] === "down" ? "" : "hide";
+    v.vThumb = e[4] === "up" ? "%LIKE%" : (e[4] === "down" ? "%DISLIKE%" : "%NOFB%");
+    const k = VAR[e[2]];
+    for (let x = 0; x < 3; x++) v["vb" + x] = k === x ? "" : "hide";
     return v;
   }"""
-            .replace("%FB%", _json.dumps(fb, ensure_ascii=False)).replace("%ST%", _json.dumps(st, ensure_ascii=False))
-            .replace("%SEC%", _json.dumps(S["t_sec"], ensure_ascii=False)).replace("%LO%", _json.dumps(los, ensure_ascii=False))
-            .replace("%STU%", _json.dumps(stu, ensure_ascii=False)).replace("%VIS%", _json.dumps(vis, ensure_ascii=False)))
+            .replace("%FB%", _json.dumps(fb, ensure_ascii=False)).replace("%STU%", _json.dumps(stu, ensure_ascii=False))
+            .replace("%LENS%", _json.dumps(S["ad_lens_v"], ensure_ascii=False)).replace("%ASG%", _json.dumps(asg, ensure_ascii=False))
+            .replace("%VAR%", _json.dumps({"a7": 0, "": 1, "a6": 2}))
+            .replace("%LIKE%", S["ad_v_like"]).replace("%DISLIKE%", S["ad_v_dislike"]).replace("%NOFB%", S["ad_v_nofb"]))
 
 def t_dash_ai(S, L):
     """AIDashboardContainer as production renders it — the AI Tutor Dashboard title with Add Student,
     AIDashboardForm (Lens multi-select, start and end date, Apply), one paper holding AIDashboardOverview
     (period line, the count cards) and the Student Usages table (last updated, search, expandable rows
-    with the Chat History Overview) — with the AI Feedback data folded in (PM, 6 Oct): a second card
-    row from the Group Dashboard's counts, four columns from the Student Dashboard's per-student
-    counts, the student's feedback submissions in the expanded row, and View → the drawer with the
-    actual submission and its generated feedback."""
+    with the Chat History Overview) — with AI Feedback in the shape the code has it (PM, 6 Oct): the
+    feedback snap and the AI Tutor Assignment. A second card row (production's Feedbacks generated, the
+    assignment's Started / Snaps / Completed), two per-student columns (feedback count, assignment
+    status), the student's feedback snaps in the expanded row, and View → the thread in a drawer."""
     g1, g2, g3 = S["ad_grp"]
     lens = "".join(f'<span class="tchip">{c}<span class="tx" style="background:rgba(0,0,0,.26)">{mi("close", 12, "#fff")}</span></span>' for c in S["ad_lens_v"])
     def date_field(lbl, v):
@@ -6948,60 +6952,50 @@ def t_dash_ai(S, L):
       </div>
       <span class="vr"></span><span class="tbtn outlined">{S["t_apply"]}</span>
     </div>'''
-    # overview: production's cards, then the AI Feedback row (from T13/T14's counts), then the practice row
+    fb_cap = (f'<span class="ad-grp" style="margin-top:16px;display:flex;align-items:center;gap:6px"><span class="lm-type" style="width:18px;height:18px;flex:0 0 18px">{mi("rateReview", 11)}</span>{g2}'
+              f'<span style="font-weight:400;margin-left:8px">・ {S["ad_assign"]}</span><span class="num" style="font-weight:400;margin-left:8px">{S["ad_assign_due"]}</span></span>')
     overview = f'''<div style="padding:20px 20px 4px">
       <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:12px"><h3 style="margin:0;font-size:16px;font-weight:500">{S["ad_ov_h"]}</h3><span class="helper num" style="margin:0">{S["ad_period"]}</span></div>
       <span class="ad-grp">{g1}</span>{ad_cards(S, L, S["ad_cards_tutor"])}
-      <span class="ad-grp" style="margin-top:16px;display:flex;align-items:center;gap:6px"><span class="lm-type" style="width:18px;height:18px;flex:0 0 18px">{mi("rateReview", 11)}</span>{g2}</span>{ad_cards(S, L, S["ad_cards_fb"])}
+      {fb_cap}{ad_cards(S, L, S["ad_cards_fb"])}
       <span class="ad-grp" style="margin-top:16px;display:flex;align-items:center;gap:6px"><span class="lm-type" style="width:18px;height:18px;flex:0 0 18px">{mi("spark", 11)}</span>{g3}</span>{ad_cards(S, L, S["ad_cards_prac"])}
     </div>'''
-    # the usages table
-    entries = ad_fb_entries(S)
-    los = [n for n, k, _ in S["t_mx_los"] if k == "fb"]
-    gl, il = S["ad_cm_lbl"]
+    names = [n for n, _ in S["t_mx_students"]] + S["ad_extra"]
     dd = '<span class="dd">--</span>'
     rows = ""
-    for i, ((name, fbs), r) in enumerate(zip(entries, S["ad_rows"])):
-        user, q, lk, dl, sub, wait, ret, cm, good, imp = r
-        if sub is None:
-            fbc = f'<td class="num" style="text-align:right">{dd}</td>' * 3 + f'<td>{dd}</td>'
-        else:
-            back = any(e[1] == "back" for e in fbs)
-            ret_cell = f'{ret}' + (f'<span class="cell-muted" style="font-size:12px;display:block">{S["ad_back_n"]}</span>' if back else "")
-            fbc = (f'<td class="num" style="text-align:right">{sub}</td><td class="num" style="text-align:right">{wait if wait != "0" else dd}</td>'
-                   f'<td class="num" style="text-align:right">{ret_cell}</td>'
-                   f'<td class="num"><b style="font-weight:500">{cm}</b> <span class="cell-muted" style="font-size:12px">{gl} {good} ・ {il} {imp}</span></td>')
+    for i, (name, r, fbs) in enumerate(zip(names, S["ad_rows"], S["ad_fb"])):
+        user, q, lk, dl, asg_st = r
+        lbl, tone = S["ad_asg_st"][asg_st]
         rows += (f'<tr><td class="idx num">{i + 1}</td><td style="width:44px;padding-right:0"><button class="ticon sm ad-x {{{{oc{i}}}}}" onClick="{{{{t{i}}}}}" aria-label="expand">{mi("expandMore", 20)}</button></td>'
                  f'<td><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a></td><td class="cell-muted">{user}</td>'
-                 f'<td class="num" style="text-align:right">{q}</td><td class="num" style="text-align:right;color:#3B873E">{lk}</td><td class="num" style="text-align:right;color:#E31B0C">{dl}</td>{fbc}</tr>')
-        # expanded row: production's Chat History Overview, then the AI Feedback submissions (PM, 6 Oct)
+                 f'<td class="num" style="text-align:right">{q}</td><td class="num" style="text-align:right;color:#3B873E">{lk}</td><td class="num" style="text-align:right;color:#E31B0C">{dl}</td>'
+                 f'<td class="num" style="text-align:right">{len(fbs) if fbs else dd}</td><td><span class="tchip {tone}">{lbl}</span></td></tr>')
         hist = "".join(
             f'<tr><td class="idx num">{k + 1}</td><td class="num"><a class="cell-link" href="#">{d}</a></td><td>{S["ad_lens_v"][lens_i]}</td><td class="ov">{ov}</td><td class="num" style="text-align:right">{n}</td>'
-            f'<td>{(mi("thumbUp", 18, "#3B873E") if fbk == "up" else (mi("thumbDown", 18, "#E31B0C") if fbk == "down" else dd))}</td><td class="num" style="text-align:right">{cmt}</td></tr>'
+            f'<td>{ad_thumb(fbk)}</td><td class="num" style="text-align:right">{cmt}</td></tr>'
             for k, (d, lens_i, ov, n, fbk, cmt) in enumerate(S["ad_hist"][i]))
         if fbs:
-            fbrows = ""
-            for j, (li, st, sec, n, sb, rt, hl) in enumerate(fbs):
-                sec_chip = f'<span class="tchip st-secondary" style="height:20px;padding:0 6px;font-size:11px">{S["t_sec"][sec]}</span>' if sec else ""
-                star = f'<span class="tchip" style="color:#ED6C02;gap:2px;height:20px;padding:0 6px;font-size:11px" title="{hl}">{mi("star", 12)}{S["ad_hl"]}</span>' if hl else ""
-                fbrows += (f'<tr><td class="idx num">{j + 1}</td><td><a class="cell-link" href="{tfn("T-Detail", L)}">{los[li]}</a>{f"<span class=hl-why style=display:block;margin-top:2px>{hl}</span>" if hl else ""}</td>'
-                           f'<td><span style="display:flex;gap:4px;align-items:center;flex-wrap:wrap">{st_chip(S, st)}{sec_chip}{star}</span></td>'
-                           f'<td class="num">{sb}</td><td class="num">{rt or dd}</td><td class="num" style="text-align:right">{n}</td>'
-                           f'<td style="text-align:right"><button class="tbtn sm outlined" onClick="{{{{v{i}_{j}}}}}">{mi("eye", 16)}{S["ad_view"]}</button></td></tr>')
-            fb_head = "".join(f'<th{" style=text-align:right" if c2 == 4 else ""}>{c}</th>' for c2, c in enumerate(S["ad_fb_cols"]))
+            none_cell = f'<span class="cell-muted">{S["ad_asg_none"]}</span>'
+            fbrows = "".join(
+                f'<tr><td class="idx num">{j + 1}</td><td class="num"><button class="cell-link" style="background:none;border:0;padding:0;font:inherit;cursor:pointer" onClick="{{{{v{i}_{j}}}}}">{at}</button></td><td>{S["ad_lens_v"][lens_i]}</td>'
+                f'<td>{S["ad_asg"][asg] if asg else none_cell}</td><td class="ov">{ov}</td>'
+                f'<td>{ad_thumb(fbk)}</td><td class="num" style="text-align:right">{cmt}</td>'
+                f'<td style="text-align:right"><button class="tbtn sm outlined" onClick="{{{{v{i}_{j}}}}}">{mi("eye", 16)}{S["ad_view"]}</button></td></tr>'
+                for j, (at, lens_i, asg, ov, fbk, cmt) in enumerate(fbs))
+            fb_head = "".join(f'<th{" style=text-align:right" if c2 == 5 else ""}>{c}</th>' for c2, c in enumerate(S["ad_fb_cols"]))
             fbt = f'<table class="m inner" style="table-layout:auto"><thead><tr><th class="idx"></th>{fb_head}</tr></thead><tbody>{fbrows}</tbody></table>'
         else:
             fbt = f'<p class="helper" style="margin:0">{S["ad_none_fb"]}</p>'
-        rows += (f'<tr class="sub {{{{s{i}}}}}"><td colspan="11"><div class="ad-sub">'
+        rows += (f'<tr class="sub {{{{s{i}}}}}"><td colspan="9"><div class="ad-sub">'
                  f'<div><h4>{S["ad_hist_h"]}</h4><table class="m inner" style="table-layout:auto"><thead><tr><th class="idx"></th>{"".join(f"<th>{c}</th>" for c in S["ad_hist_cols"])}</tr></thead><tbody>{hist}</tbody></table></div>'
                  f'<div><h4 style="display:flex;align-items:center;gap:6px"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("rateReview", 12)}</span>{S["ad_fb_h"]}</h4>{fbt}</div>'
                  f'</div></td></tr>')
     ga, gb = S["ad_cols_grp"]
-    head = (f'<tr class="grp"><th colspan="4"></th><th colspan="3" class="g">{ga}</th><th colspan="4" class="g" style="color:#0B79D0">{gb}</th></tr>'
-            f'<tr><th class="idx"></th><th style="width:44px"></th>' + "".join(f'<th{" style=text-align:right" if 2 <= k <= 7 else ""}>{c}</th>' for k, c in enumerate(S["ad_cols"])) + '</tr>')
+    head = (f'<tr class="grp"><th colspan="4"></th><th colspan="3" class="g">{ga}</th><th colspan="2" class="g" style="color:#0B79D0">{gb}</th></tr>'
+            f'<tr><th class="idx"></th><th style="width:44px"></th>' + "".join(f'<th{" style=text-align:right" if 2 <= k <= 5 else ""}>{c}</th>' for k, c in enumerate(S["ad_cols"])) + '</tr>')
     table = f'''<div style="padding:16px 20px 20px;border-top:1px solid #E0E0E0;margin-top:16px">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px">
-        <div style="display:flex;align-items:baseline;gap:12px"><h3 style="margin:0;font-size:16px;font-weight:500">{S["ad_usage_h"]} ({len(entries)})</h3><span class="helper num" style="margin:0">{S["ad_updated"]}</span></div>
+        <div style="display:flex;align-items:baseline;gap:12px"><h3 style="margin:0;font-size:16px;font-weight:500">{S["ad_usage_h"]} ({len(names)})</h3><span class="helper num" style="margin:0">{S["ad_updated"]}</span></div>
         <span class="tsearch" style="flex:0 1 320px">{mi("search", 20, "#757575")}<span>{S["ad_search"]}</span></span>
       </div>
       <div class="table-scroll"><table class="m tight"><thead>{head}</thead><tbody>{rows}</tbody></table></div>
@@ -7063,7 +7057,7 @@ ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objecti
            "T6 · Course Management — the course list, two courses on one book, Add course, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab, Extend due date (V2)", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course; an LO with no window yet",
            "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
            "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback",
-           "T16 · AI Dashboard — production's AI Tutor Dashboard with the AI Feedback counts, per-student usage, and the submission + generated feedback viewer"]
+           "T16 · AI Dashboard — production's AI Tutor Dashboard with AI Feedback as the code has it: feedback snaps, the AI Tutor Assignment, and a thread viewer"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen

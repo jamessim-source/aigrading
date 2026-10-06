@@ -300,14 +300,16 @@ Feedback LO rather than in a separate demo:
 - **AI Dashboard (T16, `T-DashAI`, 6 Oct).** Production's AI Tutor Dashboard
   (`Dashboard/modules/ai-dashboard` on the `backoffice` branch: Add Student, the
   Lens / start / end date form, the overview cards, Student Usages with the Chat
-  History Overview in the expanded row) with the AI Feedback data folded in, as v1 of
-  AI Feedback reports there (PM, 6 Oct): a labelled card row from the Group
-  Dashboard's counts (feedbacks generated = submissions, waiting, returned, resubmissions,
-  ★), a practice row (generated / attempted / correct / wrong), four per-student columns
-  from the Student Dashboard (submitted, waiting, returned, comments received), the
-  student's feedback submissions under the chat history, and **View → a drawer with the
-  actual submission and its generated feedback** (read-only; Open in Submission Grading
-  to act). Counts only, no rates, as on the other dashboards.
+  History Overview in the expanded row) with AI Feedback **as the Back Office code has
+  it** (PM, 6 Oct: the AI feedback code is not linked to the LO; replace with what is
+  actually available). There, AI Feedback is the AI Tutor's feedback snap (graph type
+  FEEDBACK beside Snap-to-ask), optionally tied to an AI Tutor Assignment (title,
+  subject, overall question, acceptance criteria, publish + due date; Started / Snaps /
+  Completed). The board adds: production's Feedbacks generated card plus the
+  assignment's analysis, two per-student columns (feedback snaps, assignment status),
+  the student's feedback snaps under the chat history, and **View → a drawer with the
+  thread** (the photographed work, item overview, the student's comment on a dislike,
+  the AI response against the acceptance criteria). Counts only, no rates.
 - **Student PC (Main, 05-Todo, P4–P9)** and **mobile (M-Main, P10–P14).** The
   LO list and To-do gain the ✦ practice card (set count only, no completion
   chip). The practice screen follows Koki's prototype trimmed to the PRD
