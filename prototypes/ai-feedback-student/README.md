@@ -310,8 +310,8 @@ Feedback LO rather than in a separate demo:
   the student's feedback snaps under the chat history, and **View → a drawer with the
   thread** in the learner app's AI Feedback format (PM screenshots, 6 Oct), side by
   side: the extracted text with numbered teal / red markers and dashed underlines on the
-  left, a Summary card and numbered per-criterion cards (quote, comment, Ask AI) on the
-  right. No like / dislike or comments — the PM confirmed the feedback flow
+  left, a Summary card and numbered per-criterion cards (quote, comment; no Ask AI for the teacher) on
+  the right. No like / dislike or comments — the PM confirmed the feedback flow
   has none. Counts only, no rates.
 - **Student PC (Main, 05-Todo, P4–P9)** and **mobile (M-Main, P10–P14).** The
   LO list and To-do gain the ✦ practice card (set count only, no completion
