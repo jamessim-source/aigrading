@@ -2517,7 +2517,7 @@ TJA = dict(
     t_titles={"book": "BO — ブック管理（ブック詳細）", "dialog": "BO — LOを追加（AIフィードバック）", "created": "BO — 作成後のツリー",
               "courses": "BO — コース管理", "course": "BO — コース詳細（教材）", "cbook": "BO — 学習項目の公開期間",
               "mat": "BO — LO 内容（教材と提出条件）", "set": "BO — LO 設定", "queue": "BO — コース › 提出物の採点", "det": "BO — 提出状況 概要", "list": "BO — 提出一覧", "rev": "BO — 確認して返却",
-              "dt": "BO — グループダッシュボード（トピック）", "dg": "BO — グループダッシュボード（LO）", "ds": "BO — 生徒ダッシュボード"},
+              "dt": "BO — グループダッシュボード（トピック）", "dg": "BO — グループダッシュボード（LO）", "ds": "BO — 生徒ダッシュボード", "dai": "BO — AIダッシュボード"},
 )
 TEN = dict(
     t_lang="en", t_org="LMS 2.0",
@@ -2746,7 +2746,7 @@ TEN = dict(
     t_titles={"book": "BO — Book Management (book detail)", "dialog": "BO — Add LO (AI Feedback)", "created": "BO — Tree after creating",
               "courses": "BO — Course Management", "course": "BO — Course detail (Books)", "cbook": "BO — Learning Objectives Availability",
               "mat": "BO — LO content (material and requirements)", "set": "BO — LO settings", "queue": "BO — Course › Submission Grading", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return",
-              "dt": "BO — Group Dashboard (Topic)", "dg": "BO — Group Dashboard (LO)", "ds": "BO — Student Dashboard"},
+              "dt": "BO — Group Dashboard (Topic)", "dg": "BO — Group Dashboard (LO)", "ds": "BO — Student Dashboard", "dai": "BO — AI Dashboard"},
 )
 JA.update(TJA); EN.update(TEN)
 
@@ -3347,7 +3347,7 @@ TREV_LOGIC = """state = { more: false };
 def dash_head(S, L, screen, tab):
     """Dashboard page head as the Back Office renders it: h1, the four dashboard tabs (Group /
     Student link to each other), with the language toggle and FOR TESTING chip on the right."""
-    hrefs = [tfn("T-DashTopic", L), tfn("T-DashStudent", L), None, None]
+    hrefs = [tfn("T-DashTopic", L), tfn("T-DashStudent", L), None, tfn("T-DashAI", L)]
     tabs = "".join(
         (f'<a class="tab{" on" if i == tab else ""}" href="{h}">{t}</a>' if h else f'<span class="tab">{t}</span>')
         for i, (t, h) in enumerate(zip(S["t_dash_tabs"], hrefs)))
@@ -6657,6 +6657,372 @@ for _w, _m, _fw, _fm in (("Q-Resub1", "MQ-Resub1", q_resub1, mq_resub1), ("Q-Res
     QSCREENS_W.append(_w); QSCREENS_M.append(_m); QBUILDERS[_w] = _fw; QBUILDERS[_m] = _fm; TO_MOBILE[_w] = _m; TO_PC[_m] = _w
 QSCREENS_ALL = QSCREENS_W + QSCREENS_M
 
+
+# ===== AI DASHBOARD (6 Oct): production's AI Tutor Dashboard (school-portal-admin, syllabus squad,
+# Dashboard/modules/ai-dashboard: AIDashboardContainer → AIDashboardForm, AIDashboardOverview,
+# AIDashboardTable with AIInteractionHistoryTable in the expanded row) with the AI Feedback data
+# from the group and student dashboards folded in, and a viewer for the actual submission and
+# the generated feedback (PM, 6 Oct: v1 of AI Feedback reports inside the AI Dashboard). =====
+MI["thumbUp"] = "M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2zm-2 0v2l-3 7H9V9l4.34-4.34L12 10h9zM1 9h4v12H1z"
+MI["thumbDown"] = "M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm0 12l-4.34 4.34L12 14H3v-2l3-7h9v10zm4-12h4v12h-4z"
+
+AD_JA = dict(
+    ad_h="AIチューターダッシュボード", ad_add="生徒の追加",
+    ad_lens="レンズ", ad_lens_v=["すべて", "数学", "理科", "英語"], ad_start="開始日", ad_end="終了日",
+    ad_start_v="2026/11/01", ad_end_v="2026/11/30",
+    ad_ov_h="概要", ad_period="期間: 2026/11/01 00:00 – 2026/11/30 23:59",
+    ad_grp=["AIチューター", "AIフィードバック", "類題演習"],
+    ad_cards_tutor=[("people", "blue", "生徒数", "10", "", ""), ("aiTutor", "", "AIチューターへの質問数", "1,284", "", ""),
+                    ("thumbUp", "green", "高評価数", "312", "", ""), ("thumbDown", "orange", "低評価数", "41", "", "")],
+    ad_cards_fb=[("rateReview", "blue", "生成されたフィードバック数", "41", "/ 90", "3 LO ・ 30人"), ("schedule", "orange", "確認待ち", "9", "", "先生の確認を待つ下書き"),
+                 ("checkCircle", "green", "返却済み", "27", "", "うち自動返却 21"), ("autorenew", "", "再提出", "4", "", "差し戻し 1 を含む"),
+                 ("star", "", "クラスで紹介", "4", "", "先生が★を付けた提出")],
+    ad_cards_prac=[("spark", "", "生成された類似問題数", "28", "", "7セット ・ 5人"), ("checks", "", "試行済み", "22", "", ""),
+                   ("checkCircle", "green", "正解", "16", "", ""), ("close", "orange", "不正解", "6", "", "")],
+    ad_usage_h="生徒の利用状況", ad_updated="最終更新: 2026/11/16 09:00", ad_search="生徒名で検索",
+    ad_cols_grp=["AIチューター", "AIフィードバック"],
+    ad_cols=["生徒名", "ユーザー名", "質問数", "高評価数", "低評価数", "提出", "確認待ち", "返却済み", "受けたコメント"],
+    ad_extra=["中村 葵", "小林 蓮", "加藤 結衣"],
+    ad_rows=[("hanako.yamada", "142", "38", "4", "3/3", "1", "2", "8", "3", "5"), ("taro.sato", "96", "21", "9", "3/3", "2", "1", "5", "1", "4"),
+             ("ichiro.suzuki", "210", "61", "3", "3/3", "1", "2", "4", "2", "2"), ("misaki.tanaka", "173", "52", "2", "3/3", "0", "3", "8", "5", "3"),
+             ("ken.takahashi", "64", "12", "7", "2/3", "0", "2", "5", "2", "3"), ("sakura.ito", "88", "19", "5", "2/3", "1", "1", "3", "1", "2"),
+             ("daiki.watanabe", "51", "8", "6", "2/3", "0", "1", "5", "1", "4"),
+             ("aoi.nakamura", "203", "47", "1", None, None, None, None, None, None), ("ren.kobayashi", "139", "30", "3", None, None, None, None, None, None),
+             ("yui.kato", "118", "24", "1", None, None, None, None, None, None)],
+    ad_cm_lbl=("良い点", "改善点"), ad_back_n="差し戻し 1",
+    ad_hist_h="質問履歴", ad_hist_cols=["作成日時", "レンズ", "アイテムの概要", "質問数", "フィードバック", "コメント"],
+    ad_hist=[[("2026/11/13 21:08", 1, "相関係数 r の意味と、外れ値があるときの解釈について", "6", "up", "1"), ("2026/11/10 19:42", 1, "T.TEST と相関係数の検定の違い", "4", "", "--")],
+             [("2026/11/11 17:30", 1, "散布図の作り方（Excel）と近似曲線の追加", "9", "down", "1")],
+             [("2026/11/14 08:02", 1, "p値が 0.05 より小さいときの結論の書き方", "5", "up", "--"), ("2026/11/09 22:15", 1, "帰無仮説と対立仮説の立て方", "7", "up", "--")],
+             [("2026/11/12 20:50", 1, "相関と因果の違いを説明する例", "3", "up", "1")],
+             [("2026/11/08 23:11", 1, "度数分布表の階級幅の決め方", "8", "down", "--")],
+             [("2026/11/13 18:24", 1, "中央値と平均値のどちらを使うべきか", "5", "", "--")],
+             [("2026/11/07 21:36", 1, "四分位範囲の求め方（Excel の QUARTILE.INC）", "6", "up", "--")],
+             [("2026/11/15 10:12", 1, "回帰直線の傾きの読み方", "12", "up", "2")],
+             [("2026/11/14 16:40", 1, "ヒストグラムと棒グラフの違い", "7", "", "--")],
+             [("2026/11/12 09:05", 1, "標準偏差を手計算で求める手順", "10", "up", "--")]],
+    ad_fb_h="AIフィードバックの提出", ad_fb_cols=["LO名", "状態", "提出日時", "返却日時", "コメント", ""],
+    ad_view="見る", ad_none_fb="この期間にAIフィードバックの提出はありません", ad_hl="注目",
+    ad_dates=[("2026/11/05 20:14", "2026/11/07 10:30"), ("2026/11/12 19:40", "2026/11/14 10:05"), ("2026/11/15 21:30", "2026/11/16 00:05")],
+    ad_v_h="提出物と生成されたフィードバック", ad_v_sub="提出物", ad_v_fb="生成されたフィードバック",
+    ad_v_vis={"nr": ("下書き ・ 生徒には未公開", "st-default"), "ir": ("下書き ・ 生徒には未公開", "st-warning"), "ret": ("生徒に公開中", "st-success"), "back": ("差し戻し ・ 生徒に公開中", "st-error")},
+    ad_v_open="提出物の採点で開く", ad_v_close="閉じる", ad_v_note="先生からのひとこと", ad_v_fixed="再提出で修正済み", ad_v_att=["1回目", "2回目"],
+    ad_v_sublbl=("生徒", "提出", "返却"), ad_v_cm="コメント", ad_v_cms="件のコメント",
+    ad_lo2_raw=["今週は相関分析を学んだ。講義で扱った人口密度と所得の例では、散布図を見るだけでは分からない関係が相関係数で数値化できることが印象に残った。",
+                "一方で、相関があるからといって原因と結果が決まるわけではないという点は、演習レポートで自分も間違えていたので、ニュースで「〜と〜に相関」と聞いたときに因果と混同していないか確認する癖をつけたい。",
+                "疑問に思ったのは、相関係数が 0.3 くらいのとき「弱い相関」と言ってよいのか、分野によって基準が違うのかという点。次回までに調べてみたい。"],
+    ad_lo2_cards=[("good", "解釈", "演習レポートで自分も間違えていたので、ニュースで「〜と〜に相関」と聞いたときに因果と混同していないか確認する癖をつけたい。",
+                   "講義の内容を自分のレポートの失敗と結びつけ、日常の場面に持ち出して確認しようとしている点がとても良いです。学んだことを「使う場面」で言い直せているのは、理解が定着している証拠です。", "第5回 講義資料 p.8「相関と因果」", False),
+                  ("ask", "論理構成", "相関係数が 0.3 くらいのとき「弱い相関」と言ってよいのか、分野によって基準が違うのか",
+                   "よい問いです。相関の強さの目安は分野によって異なります（心理学では 0.3 を「中程度」とみなすことが多い一方、物理計測では 0.9 以上が普通です）。次回までに、自分の分野ではどの目安が使われているか、出典を一つ見つけて書き添えてみてください。", "第7回 講義資料 p.6「相関係数の目安」", False)],
+    ad_lo0_raw=["本演習では、47都道府県の人口（2025年）について度数分布表とヒストグラムを作成し、代表値と散布度を求めた。階級幅は 100万人とし、Excel の FREQUENCY 関数で度数を集計した。",
+                "平均は 262万人、中央値は 160万人であり、平均が中央値を大きく上回っている。これは東京都・神奈川県・大阪府などの大都市圏が分布の右側に長い裾をつくっているためと考えられる（1回目では「ほぼ同じ」と書いていたが、再計算して修正した）。",
+                "散らばりの指標として標準偏差（268万人）に加え四分位範囲（162万人）を求めた。外れ値の影響を受けにくい四分位範囲のほうが、この分布の典型的な散らばりをよく表している。"],
+    ad_lo0_cards=[("good", "統計処理", "散らばりの指標として標準偏差（268万人）に加え四分位範囲（162万人）を求めた。",
+                   "標準偏差だけでなく四分位範囲を併記し、分布の形に合わせて指標を選び直した点が良いです。1回目には標準偏差のみだったので、指摘を踏まえて指標の「意味」から考え直せています。", "第6回 講義資料 p.9「散布度の指標」", True),
+                  ("good", "解釈", "平均は 262万人、中央値は 160万人であり、平均が中央値を大きく上回っている。",
+                   "平均と中央値の差を分布の歪みと結びつけて説明できています。1回目の「ほぼ同じ」から正しく直りました。あと一歩：右に裾が長いことをヒストグラムのどの階級から読み取ったか、図を指して一文添えると読者が確認できます。", "第6回 講義資料 p.5「分布の形と代表値」", True),
+                  ("todo", "図表の見やすさ", "階級幅は 100万人とし、Excel の FREQUENCY 関数で度数を集計した。",
+                   "ヒストグラムの縦軸に単位（都道府県数）が入っていません。軸ラベルと単位は図を読む人への最低限の案内です。次回は図のタイトル・軸ラベル・単位の3点を提出前に確認してください。", "第6回 講義資料 p.3「図表の基本」", False)],
+    ad_help="本番の AI チューターダッシュボード（生徒の追加、レンズ・期間で絞り込み、概要カード、生徒の利用状況）に、AIフィードバックの数値を加えたものです。概要の2行目はグループダッシュボードの数（生成されたフィードバック＝提出数、確認待ち、返却済み、再提出、★）、表の右4列は生徒ダッシュボードの数（提出、確認待ち、返却済み、受けたコメント）です。行を開くと本番の質問履歴の下にその生徒のAIフィードバックの提出が並び、「見る」で提出物と生成されたフィードバックをここで確認できます。率は使いません。",
+    ad_title="BO — AIダッシュボード",
+)
+AD_EN = dict(
+    ad_h="AI Tutor Dashboard", ad_add="Add Student",
+    ad_lens="Lens", ad_lens_v=["Any", "Math", "Science", "English"], ad_start="Start Date", ad_end="End Date",
+    ad_start_v="2026/11/01", ad_end_v="2026/11/30",
+    ad_ov_h="AI Tutor Overview", ad_period="Period: 2026/11/01 00:00 – 2026/11/30 23:59",
+    ad_grp=["AI Tutor", "AI Feedback", "Similar questions practice"],
+    ad_cards_tutor=[("people", "blue", "Number of Students", "10", "", ""), ("aiTutor", "", "Total Questions Asked", "1,284", "", ""),
+                    ("thumbUp", "green", "Total Likes", "312", "", ""), ("thumbDown", "orange", "Total Dislikes", "41", "", "")],
+    ad_cards_fb=[("rateReview", "blue", "Feedbacks generated", "41", "/ 90", "3 LOs · 30 students"), ("schedule", "orange", "Waiting for review", "9", "", "drafts waiting on a teacher"),
+                 ("checkCircle", "green", "Returned", "27", "", "21 of them auto-returned"), ("autorenew", "", "Resubmissions", "4", "", "including 1 sent back"),
+                 ("star", "", "Highlighted for class", "4", "", "submissions the teacher starred")],
+    ad_cards_prac=[("spark", "", "Similar questions generated", "28", "", "7 sets · 5 students"), ("checks", "", "Attempted", "22", "", ""),
+                   ("checkCircle", "green", "Correct", "16", "", ""), ("close", "orange", "Wrong", "6", "", "")],
+    ad_usage_h="Student Usages", ad_updated="Last Updated: 2026/11/16, 09:00", ad_search="Search by Student Name",
+    ad_cols_grp=["AI Tutor", "AI Feedback"],
+    ad_cols=["Student Name", "User Name", "Total Questions", "Total Likes", "Total Dislikes", "Submitted", "Waiting", "Returned", "Comments received"],
+    ad_extra=["Aoi Nakamura", "Ren Kobayashi", "Yui Kato"],
+    ad_rows=[("hanako.yamada", "142", "38", "4", "3/3", "1", "2", "8", "3", "5"), ("taro.sato", "96", "21", "9", "3/3", "2", "1", "5", "1", "4"),
+             ("ichiro.suzuki", "210", "61", "3", "3/3", "1", "2", "4", "2", "2"), ("misaki.tanaka", "173", "52", "2", "3/3", "0", "3", "8", "5", "3"),
+             ("ken.takahashi", "64", "12", "7", "2/3", "0", "2", "5", "2", "3"), ("sakura.ito", "88", "19", "5", "2/3", "1", "1", "3", "1", "2"),
+             ("daiki.watanabe", "51", "8", "6", "2/3", "0", "1", "5", "1", "4"),
+             ("aoi.nakamura", "203", "47", "1", None, None, None, None, None, None), ("ren.kobayashi", "139", "30", "3", None, None, None, None, None, None),
+             ("yui.kato", "118", "24", "1", None, None, None, None, None, None)],
+    ad_cm_lbl=("strengths", "to improve"), ad_back_n="1 sent back",
+    ad_hist_h="Chat History Overview", ad_hist_cols=["Created At", "Lens", "Item Overview", "No. of Questions", "Feedback Type", "Comments"],
+    ad_hist=[[("2026/11/13, 21:08", 1, "What the correlation coefficient r means, and how to read it when there is an outlier", "6", "up", "1"), ("2026/11/10, 19:42", 1, "The difference between T.TEST and the test for a correlation coefficient", "4", "", "--")],
+             [("2026/11/11, 17:30", 1, "Drawing a scatter plot in Excel and adding a trend line", "9", "down", "1")],
+             [("2026/11/14, 08:02", 1, "How to word the conclusion when p is below 0.05", "5", "up", "--"), ("2026/11/09, 22:15", 1, "Setting up the null and alternative hypotheses", "7", "up", "--")],
+             [("2026/11/12, 20:50", 1, "Examples that separate correlation from causation", "3", "up", "1")],
+             [("2026/11/08, 23:11", 1, "Choosing the class width of a frequency table", "8", "down", "--")],
+             [("2026/11/13, 18:24", 1, "Median or mean — which to use", "5", "", "--")],
+             [("2026/11/07, 21:36", 1, "Finding the interquartile range (QUARTILE.INC in Excel)", "6", "up", "--")],
+             [("2026/11/15, 10:12", 1, "Reading the slope of a regression line", "12", "up", "2")],
+             [("2026/11/14, 16:40", 1, "Histogram versus bar chart", "7", "", "--")],
+             [("2026/11/12, 09:05", 1, "Computing a standard deviation by hand", "10", "up", "--")]],
+    ad_fb_h="AI Feedback submissions", ad_fb_cols=["Learning Objective", "Status", "Submitted", "Returned", "Comments", ""],
+    ad_view="View", ad_none_fb="No AI Feedback submissions in this period", ad_hl="Highlighted",
+    ad_dates=[("2026/11/05, 20:14", "2026/11/07, 10:30"), ("2026/11/12, 19:40", "2026/11/14, 10:05"), ("2026/11/15, 21:30", "2026/11/16, 00:05")],
+    ad_v_h="Submission and generated feedback", ad_v_sub="Submission", ad_v_fb="Generated feedback",
+    ad_v_vis={"nr": ("Draft · not visible to the student", "st-default"), "ir": ("Draft · not visible to the student", "st-warning"), "ret": ("Visible to the student", "st-success"), "back": ("Sent back · visible to the student", "st-error")},
+    ad_v_open="Open in Submission Grading", ad_v_close="Close", ad_v_note="A note from the teacher", ad_v_fixed="Fixed in the resubmission", ad_v_att=["1st attempt", "2nd attempt"],
+    ad_v_sublbl=("Student", "Submitted", "Returned"), ad_v_cm="Comment", ad_v_cms="comments",
+    ad_lo2_raw=["This week we learned correlation analysis. In the lecture's example of population density and income, what stayed with me is that a correlation coefficient puts a number on a relationship a scatter plot alone does not show.",
+                "On the other hand, a correlation does not settle which is cause and which is effect. I made exactly this mistake in the exercise report, so when the news says “X is correlated with Y” I want to get into the habit of checking whether I am confusing it with causation.",
+                "One thing I wondered: when r is around 0.3, is it right to call that a “weak” correlation, or does the yardstick differ by field? I would like to look this up before next week."],
+    ad_lo2_cards=[("good", "Interpretation", "I made exactly this mistake in the exercise report, so when the news says “X is correlated with Y” I want to get into the habit of checking whether I am confusing it with causation.",
+                   "Linking the lecture to the mistake in your own report, and then carrying it into an everyday situation, is very good. Restating what you learned in the place where you would use it is a sign that the understanding has settled.", "Session 5 slides p.8 “Correlation and causation”", False),
+                  ("ask", "Structure", "when r is around 0.3, is it right to call that a “weak” correlation, or does the yardstick differ by field?",
+                   "A good question. The yardstick does differ by field: psychology often treats 0.3 as “moderate”, while in physical measurement anything under 0.9 is unusual. Before next week, find one source for the yardstick used in your own field and add it in a line.", "Session 7 slides p.6 “Rules of thumb for r”", False)],
+    ad_lo0_raw=["In this exercise I built a frequency table and a histogram of the 47 prefectures' populations (2025) and computed measures of centre and spread. The class width was 1 million and the counts came from Excel's FREQUENCY function.",
+                "The mean is 2.62 million and the median 1.60 million, so the mean is well above the median. This is because the metropolitan prefectures (Tokyo, Kanagawa, Osaka) form a long right tail. (In the first attempt I wrote that they were “about the same”; I recomputed and corrected this.)",
+                "For spread I computed the interquartile range (1.62 million) alongside the standard deviation (2.68 million). The IQR, which is less affected by outliers, describes the typical spread of this distribution better."],
+    ad_lo0_cards=[("good", "Statistics", "For spread I computed the interquartile range (1.62 million) alongside the standard deviation (2.68 million).",
+                   "Reporting the IQR alongside the standard deviation, and choosing the measure to fit the shape of the distribution, is good. The first attempt had only the standard deviation, so you have gone back to what the measure means.", "Session 6 slides p.9 “Measures of spread”", True),
+                  ("good", "Interpretation", "The mean is 2.62 million and the median 1.60 million, so the mean is well above the median.",
+                   "You now tie the gap between mean and median to the skew of the distribution — corrected from “about the same” in the first attempt. One more step: say which bars of the histogram show the long right tail, so a reader can check it in the figure.", "Session 6 slides p.5 “Shape and centre”", True),
+                  ("todo", "Charts", "The class width was 1 million and the counts came from Excel's FREQUENCY function.",
+                   "The histogram's vertical axis has no unit (number of prefectures). Axis labels and units are the minimum guidance a reader needs. Next time check title, axis labels and units before submitting.", "Session 6 slides p.3 “Chart basics”", False)],
+    ad_help="Production's AI Tutor Dashboard (Add Student, the lens and period filter, the overview cards, Student Usages) with the AI Feedback numbers added. The overview's second row carries the Group Dashboard's counts (feedbacks generated = submissions, waiting, returned, resubmissions, ★); the table's four right-hand columns carry the Student Dashboard's (submitted, waiting, returned, comments received). Expanding a row lists that student's AI Feedback submissions beneath production's chat history, and View opens the submission and its generated feedback here. Counts, never rates.",
+    ad_title="BO — AI Dashboard",
+)
+JA.update(AD_JA); EN.update(AD_EN)
+JA["t_titles"]["dai"] = AD_JA["ad_title"]; EN["t_titles"]["dai"] = AD_EN["ad_title"]
+
+AD_CSS = """
+.ad-form{display:flex;align-items:center;gap:32px}
+.ad-form .fs{display:flex;gap:16px;flex:1 1 auto;min-width:0}
+.ad-form .fs .field{flex:1 1 0}
+.ad-form .fs .field.lens{flex:2 1 0}
+.ad-form .vr{width:1px;align-self:stretch;background:#E0E0E0}
+.ad-lens{display:flex;gap:4px;flex-wrap:nowrap;overflow:hidden}
+.ad-lens .tchip{height:24px;background:#EEEEEE;border-color:transparent;padding-right:4px}
+.ad-cards .ov-card{flex:1 1 0;min-width:0;padding:10px 12px}
+.ad-cards .ov-card .lbl-sm,.ad-cards .ov-card .sub{white-space:normal;font-size:13px}
+.ad-cards .ov-card .sub{font-size:12px}
+.ad-grp{display:block;font-size:12px;font-weight:500;color:#757575;letter-spacing:.04em;margin:4px 0 8px}
+.ad-x svg{transition:transform .15s}.ad-x.on svg{transform:rotate(180deg)}
+table.m thead tr.grp th{font-size:12px;color:#757575;font-weight:500;text-align:center;padding:10px 16px 0;border-bottom:0;background:#fff}
+table.m thead tr.grp th::after{display:none}
+table.m thead tr.grp th.g{border-bottom:1px solid #E0E0E0;padding-bottom:6px}
+.ad-sub{display:flex;flex-direction:column;gap:20px;padding:16px 0 4px}
+.ad-sub h4{margin:0 0 10px;font-size:14px;font-weight:500}
+.ad-sub table.inner td,.ad-sub table.inner th{white-space:nowrap}
+.ad-sub table.inner td.ov{white-space:normal;max-width:420px;line-height:1.5}
+.ad-scrim{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:80;border:0;padding:0;cursor:pointer}
+.ad-drawer{position:absolute;top:0;right:0;bottom:0;width:980px;background:#fff;z-index:81;display:flex;flex-direction:column;box-shadow:-8px 0 24px rgba(0,0,0,.18)}
+.ad-drawer .hide{display:none!important}
+.ad-dh{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:16px 24px;border-bottom:1px solid #E0E0E0}
+.ad-dh h2{margin:0;font-size:20px;font-weight:500;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ad-dh .meta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#757575;margin-top:6px}
+.ad-dh .meta b{font-weight:500;color:#212121}
+.ad-db{flex:1 1 auto;overflow:auto;padding:20px 24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.ad-db .ad-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ad-db .col-h{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:500}
+.ad-db .q-item{border:1px solid #E0E0E0;border-radius:4px;padding:16px}
+.ad-db .q-item.fixed{background:#F3FAF4;box-shadow:inset 3px 0 0 #4CAF50}
+.ad-db .q-answer{margin-bottom:10px}
+"""
+
+def ad_fb_entries(S):
+    """Per student, the AI Feedback submissions in the period, read from the LO Dashboard's matrix
+    (status, comment count, secondary chip, ★ reason) with dates from Submission Grading's rows where
+    one exists, else the LO's typical dates. Entries: [loIdx, status, secondary, n, submitted, returned, hl]."""
+    subs = {}
+    for d in S["t_subs"] + S["t_subs_extra"]:
+        subs[(d["student"], d["lo"])] = d  # a resubmission's row replaces the first attempt's
+    los = [n for n, k, _ in S["t_mx_los"] if k == "fb"]
+    out = []
+    for name, cells in S["t_mx_students"]:
+        rows = []
+        for li, c in enumerate(cells[:3]):
+            if c[0] != "fb":
+                continue
+            _, st, n, sec = c[:4]
+            hl = c[4] if len(c) > 4 else ""
+            d = subs.get((name, los[li]))
+            sub = d["sub"] if d else S["ad_dates"][li][0]
+            if d:
+                ret = d["ret"] if d["ret"] != "--" else ""
+            else:
+                ret = S["ad_dates"][li][1] if st == "ret" else ""
+            rows.append([li, st, sec, n, sub, ret, hl])
+        out.append((name, rows))
+    for name in S["ad_extra"]:
+        out.append((name, []))
+    return out
+
+def ad_cards(S, L, cards):
+    return '<div class="ov-row ad-cards" style="margin-bottom:0;flex-wrap:nowrap">' + "".join(ov_card(i, t, l, v, u, s, None, L) for i, t, l, v, u, s in cards) + '</div>'
+
+def ad_viewer(S, L):
+    """The drawer: one submission with its generated feedback, the way the teacher sees it in Review
+    and return (T12) but read-only and reachable from the dashboard row. Header fields are holes
+    filled from the clicked row; the body is one of three LO variants (the exercise report of
+    Session 7 — T12's content —, the Week 7 reflection, the Session 6 report's second attempt)."""
+    def item(n, kind, crit, quote, bodytext, ref, fixed):
+        return (f'<div class="q-item{" fixed" if fixed else ""}"><div class="q-top"><span class="q-no">{S["ad_v_cm"]} {n}</span>'
+                f'<span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="tchip">{crit}</span>'
+                + (f'<span class="tchip published">{mi("check", 12)}{S["ad_v_fixed"]}</span>' if fixed else "")
+                + f'</div><div class="q-answer"><span class="who">{S["t_passage"]}</span>{quote}</div><p class="q-prompt" style="margin-bottom:6px">{bodytext}</p>'
+                f'<span class="helper" style="margin:0">{mi("description", 12)} {ref}</span></div>')
+    def variant(k, raw, cards, note_hole=None, att=False):
+        rawp = "".join(f'<p style="margin:0 0 10px">{p}</p>' for p in raw)
+        att_html = (f'<span class="toggle-group {{{{vAtt}}}}" style="height:30px"><a href="#" style="height:28px;font-size:13px">{S["ad_v_att"][0]}</a><span class="on" style="height:28px;font-size:13px">{S["ad_v_att"][1]}</span></span>' if att else "")
+        left = (f'<div class="ad-col"><div class="col-h"><span>{S["ad_v_sub"]}</span>{att_html}</div>'
+                f'<div class="q-item"><div class="q-top" style="margin-bottom:8px"><span class="q-title">{S["a_file"]}</span><span class="tchip">{S["t_recognised"]}</span></div>'
+                f'<div class="q-answer" style="margin-bottom:0">{rawp}</div></div></div>')
+        items = "".join(item(i + 1, *c) for i, c in enumerate(cards))
+        note = (f'<div class="q-item {{{{vNote}}}}" style="background:#FFFDF7"><div class="q-top" style="margin-bottom:8px"><span class="q-no">{S["ad_v_note"]}</span><span class="tchip">{S["t_teacher"]}</span></div>'
+                f'<p class="q-prompt" style="margin:0">{S["t_rev_note"]}</p></div>' if note_hole else "")
+        right = (f'<div class="ad-col"><div class="col-h"><span>{S["ad_v_fb"]}</span><span class="helper" style="margin:0;display:inline-flex;align-items:center;gap:4px;white-space:nowrap">{mi("spark", 12)}{len(cards)} {S["ad_v_cms"]}</span></div>{items}{note}</div>')
+        return f'<div class="ad-vb {{{{vb{k}}}}}" style="display:contents">{left}{right}</div>'
+    # the three LO variants; T12's cards (kind, criterion, passage, comment, reference) carry no fixed flag
+    v1 = variant(1, S["raw"], [(*c, False) for c in S["cards"]], note_hole=True)
+    v2 = variant(2, S["ad_lo2_raw"], S["ad_lo2_cards"])
+    v0 = variant(0, S["ad_lo0_raw"], S["ad_lo0_cards"], att=True)
+    a, b, c = S["ad_v_sublbl"]
+    return f'''<sc-if value="{{{{vOpen}}}}" hint-placeholder-val="{{{{false}}}}">
+  <button class="ad-scrim" onClick="{{{{closeV}}}}" aria-label="{S["ad_v_close"]}"></button>
+  <aside class="ad-drawer" role="dialog" aria-label="{S["ad_v_h"]}">
+    <div class="ad-dh">
+      <div style="min-width:0">
+        <h2>{{{{vLo}}}}<span class="tchip {{{{vStC}}}}">{{{{vStL}}}}</span><span class="tchip st-secondary {{{{vSecC}}}}" style="height:20px;padding:0 6px;font-size:11px">{{{{vSecL}}}}</span></h2>
+        <div class="meta"><span>{a}: <b>{{{{vStu}}}}</b></span><span class="num">{b}: <b>{{{{vSub}}}}</b></span><span class="num">{c}: <b>{{{{vRet}}}}</b></span><span class="tchip {{{{vVisC}}}}" style="height:20px;padding:0 8px;font-size:11px">{{{{vVisL}}}}</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex:0 0 auto"><a class="tbtn outlined" href="{tfn("T-Review", L)}">{S["ad_v_open"]}</a><button class="ticon" onClick="{{{{closeV}}}}" aria-label="{S["ad_v_close"]}">{mi("close", 22)}</button></div>
+    </div>
+    <div class="ad-db">{v0}{v1}{v2}</div>
+  </aside>
+</sc-if>'''
+
+def ad_logic(S):
+    import json as _json
+    fb = [[e[:6] for e in rows] for _, rows in ad_fb_entries(S)]
+    stu = [n for n, _ in ad_fb_entries(S)]
+    los = [n for n, k, _ in S["t_mx_los"] if k == "fb"]
+    st = {k: list(v) for k, v in S["t_status"].items()}
+    vis = {k: list(v) for k, v in S["ad_v_vis"].items()}
+    return ("""state = { o: -1, v: false, vi: 0, vj: 0 };
+  renderVals() {
+    const FB = %FB%, ST = %ST%, SEC = %SEC%, LO = %LO%, STU = %STU%, VIS = %VIS%;
+    const v = { vOpen: this.state.v, closeV: () => this.setState({ v: false }) };
+    for (let i = 0; i < FB.length; i++) {
+      v["s" + i] = this.state.o === i ? "" : "hide"; v["oc" + i] = this.state.o === i ? "on" : "";
+      v["t" + i] = () => this.setState({ o: this.state.o === i ? -1 : i });
+      for (let j = 0; j < FB[i].length; j++) v["v" + i + "_" + j] = () => this.setState({ v: true, vi: i, vj: j });
+    }
+    const e = (FB[this.state.vi] || [])[this.state.vj] || [1, "nr", "", 0, "", ""];
+    const lo = e[0], st = e[1], sec = e[2];
+    v.vLo = LO[lo]; v.vStu = STU[this.state.vi]; v.vSub = e[4]; v.vRet = e[5] || "--";
+    v.vStL = ST[st][0]; v.vStC = ST[st][1];
+    v.vSecL = SEC[sec] || ""; v.vSecC = sec ? "" : "hide";
+    v.vVisL = VIS[st][0]; v.vVisC = VIS[st][1];
+    for (let k = 0; k < 3; k++) v["vb" + k] = lo === k ? "" : "hide";
+    v.vNote = (lo === 1 && st === "ret") ? "" : "hide";
+    v.vAtt = (lo === 0 && sec === "resub") ? "" : "hide";
+    return v;
+  }"""
+            .replace("%FB%", _json.dumps(fb, ensure_ascii=False)).replace("%ST%", _json.dumps(st, ensure_ascii=False))
+            .replace("%SEC%", _json.dumps(S["t_sec"], ensure_ascii=False)).replace("%LO%", _json.dumps(los, ensure_ascii=False))
+            .replace("%STU%", _json.dumps(stu, ensure_ascii=False)).replace("%VIS%", _json.dumps(vis, ensure_ascii=False)))
+
+def t_dash_ai(S, L):
+    """AIDashboardContainer as production renders it — the AI Tutor Dashboard title with Add Student,
+    AIDashboardForm (Lens multi-select, start and end date, Apply), one paper holding AIDashboardOverview
+    (period line, the count cards) and the Student Usages table (last updated, search, expandable rows
+    with the Chat History Overview) — with the AI Feedback data folded in (PM, 6 Oct): a second card
+    row from the Group Dashboard's counts, four columns from the Student Dashboard's per-student
+    counts, the student's feedback submissions in the expanded row, and View → the drawer with the
+    actual submission and its generated feedback."""
+    g1, g2, g3 = S["ad_grp"]
+    lens = "".join(f'<span class="tchip">{c}<span class="tx" style="background:rgba(0,0,0,.26)">{mi("close", 12, "#fff")}</span></span>' for c in S["ad_lens_v"])
+    def date_field(lbl, v):
+        return field(lbl, f'<span class="num">{v}</span>', required=True, icon="calendar")
+    form = f'''<div class="ad-form">
+      <div class="fs">
+        <label class="field lens"><span class="lbl">{S["ad_lens"]} <span class="req">*</span></span><span class="in" style="padding-left:8px"><span class="ad-lens">{lens}</span>{mi("expandMore", 20, "rgba(0,0,0,.54)")}</span></label>
+        {date_field(S["ad_start"], S["ad_start_v"])}{date_field(S["ad_end"], S["ad_end_v"])}
+      </div>
+      <span class="vr"></span><span class="tbtn outlined">{S["t_apply"]}</span>
+    </div>'''
+    # overview: production's cards, then the AI Feedback row (from T13/T14's counts), then the practice row
+    overview = f'''<div style="padding:20px 20px 4px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:12px"><h3 style="margin:0;font-size:16px;font-weight:500">{S["ad_ov_h"]}</h3><span class="helper num" style="margin:0">{S["ad_period"]}</span></div>
+      <span class="ad-grp">{g1}</span>{ad_cards(S, L, S["ad_cards_tutor"])}
+      <span class="ad-grp" style="margin-top:16px;display:flex;align-items:center;gap:6px"><span class="lm-type" style="width:18px;height:18px;flex:0 0 18px">{mi("rateReview", 11)}</span>{g2}</span>{ad_cards(S, L, S["ad_cards_fb"])}
+      <span class="ad-grp" style="margin-top:16px;display:flex;align-items:center;gap:6px"><span class="lm-type" style="width:18px;height:18px;flex:0 0 18px">{mi("spark", 11)}</span>{g3}</span>{ad_cards(S, L, S["ad_cards_prac"])}
+    </div>'''
+    # the usages table
+    entries = ad_fb_entries(S)
+    los = [n for n, k, _ in S["t_mx_los"] if k == "fb"]
+    gl, il = S["ad_cm_lbl"]
+    dd = '<span class="dd">--</span>'
+    rows = ""
+    for i, ((name, fbs), r) in enumerate(zip(entries, S["ad_rows"])):
+        user, q, lk, dl, sub, wait, ret, cm, good, imp = r
+        if sub is None:
+            fbc = f'<td class="num" style="text-align:right">{dd}</td>' * 3 + f'<td>{dd}</td>'
+        else:
+            back = any(e[1] == "back" for e in fbs)
+            ret_cell = f'{ret}' + (f'<span class="cell-muted" style="font-size:12px;display:block">{S["ad_back_n"]}</span>' if back else "")
+            fbc = (f'<td class="num" style="text-align:right">{sub}</td><td class="num" style="text-align:right">{wait if wait != "0" else dd}</td>'
+                   f'<td class="num" style="text-align:right">{ret_cell}</td>'
+                   f'<td class="num"><b style="font-weight:500">{cm}</b> <span class="cell-muted" style="font-size:12px">{gl} {good} ・ {il} {imp}</span></td>')
+        rows += (f'<tr><td class="idx num">{i + 1}</td><td style="width:44px;padding-right:0"><button class="ticon sm ad-x {{{{oc{i}}}}}" onClick="{{{{t{i}}}}}" aria-label="expand">{mi("expandMore", 20)}</button></td>'
+                 f'<td><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a></td><td class="cell-muted">{user}</td>'
+                 f'<td class="num" style="text-align:right">{q}</td><td class="num" style="text-align:right;color:#3B873E">{lk}</td><td class="num" style="text-align:right;color:#E31B0C">{dl}</td>{fbc}</tr>')
+        # expanded row: production's Chat History Overview, then the AI Feedback submissions (PM, 6 Oct)
+        hist = "".join(
+            f'<tr><td class="idx num">{k + 1}</td><td class="num"><a class="cell-link" href="#">{d}</a></td><td>{S["ad_lens_v"][lens_i]}</td><td class="ov">{ov}</td><td class="num" style="text-align:right">{n}</td>'
+            f'<td>{(mi("thumbUp", 18, "#3B873E") if fbk == "up" else (mi("thumbDown", 18, "#E31B0C") if fbk == "down" else dd))}</td><td class="num" style="text-align:right">{cmt}</td></tr>'
+            for k, (d, lens_i, ov, n, fbk, cmt) in enumerate(S["ad_hist"][i]))
+        if fbs:
+            fbrows = ""
+            for j, (li, st, sec, n, sb, rt, hl) in enumerate(fbs):
+                sec_chip = f'<span class="tchip st-secondary" style="height:20px;padding:0 6px;font-size:11px">{S["t_sec"][sec]}</span>' if sec else ""
+                star = f'<span class="tchip" style="color:#ED6C02;gap:2px;height:20px;padding:0 6px;font-size:11px" title="{hl}">{mi("star", 12)}{S["ad_hl"]}</span>' if hl else ""
+                fbrows += (f'<tr><td class="idx num">{j + 1}</td><td><a class="cell-link" href="{tfn("T-Detail", L)}">{los[li]}</a>{f"<span class=hl-why style=display:block;margin-top:2px>{hl}</span>" if hl else ""}</td>'
+                           f'<td><span style="display:flex;gap:4px;align-items:center;flex-wrap:wrap">{st_chip(S, st)}{sec_chip}{star}</span></td>'
+                           f'<td class="num">{sb}</td><td class="num">{rt or dd}</td><td class="num" style="text-align:right">{n}</td>'
+                           f'<td style="text-align:right"><button class="tbtn sm outlined" onClick="{{{{v{i}_{j}}}}}">{mi("eye", 16)}{S["ad_view"]}</button></td></tr>')
+            fb_head = "".join(f'<th{" style=text-align:right" if c2 == 4 else ""}>{c}</th>' for c2, c in enumerate(S["ad_fb_cols"]))
+            fbt = f'<table class="m inner" style="table-layout:auto"><thead><tr><th class="idx"></th>{fb_head}</tr></thead><tbody>{fbrows}</tbody></table>'
+        else:
+            fbt = f'<p class="helper" style="margin:0">{S["ad_none_fb"]}</p>'
+        rows += (f'<tr class="sub {{{{s{i}}}}}"><td colspan="11"><div class="ad-sub">'
+                 f'<div><h4>{S["ad_hist_h"]}</h4><table class="m inner" style="table-layout:auto"><thead><tr><th class="idx"></th>{"".join(f"<th>{c}</th>" for c in S["ad_hist_cols"])}</tr></thead><tbody>{hist}</tbody></table></div>'
+                 f'<div><h4 style="display:flex;align-items:center;gap:6px"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("rateReview", 12)}</span>{S["ad_fb_h"]}</h4>{fbt}</div>'
+                 f'</div></td></tr>')
+    ga, gb = S["ad_cols_grp"]
+    head = (f'<tr class="grp"><th colspan="4"></th><th colspan="3" class="g">{ga}</th><th colspan="4" class="g" style="color:#0B79D0">{gb}</th></tr>'
+            f'<tr><th class="idx"></th><th style="width:44px"></th>' + "".join(f'<th{" style=text-align:right" if 2 <= k <= 7 else ""}>{c}</th>' for k, c in enumerate(S["ad_cols"])) + '</tr>')
+    table = f'''<div style="padding:16px 20px 20px;border-top:1px solid #E0E0E0;margin-top:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px">
+        <div style="display:flex;align-items:baseline;gap:12px"><h3 style="margin:0;font-size:16px;font-weight:500">{S["ad_usage_h"]} ({len(entries)})</h3><span class="helper num" style="margin:0">{S["ad_updated"]}</span></div>
+        <span class="tsearch" style="flex:0 1 320px">{mi("search", 20, "#757575")}<span>{S["ad_search"]}</span></span>
+      </div>
+      <div class="table-scroll"><table class="m tight"><thead>{head}</thead><tbody>{rows}</tbody></table></div>
+      <p class="helper" style="margin:12px 0 0">{S["ad_help"]}</p>
+    </div>'''
+    body = f'<style>{AD_CSS}</style>' + tnav(S, "dash") + f'''<div class="tmain">
+<div class="tscroll">
+  {dash_head(S, L, "T-DashAI", 3)}
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px"><h2 class="dash-h2">{S["ad_h"]}</h2><span class="tbtn contained">{mi("add", 18)}{S["ad_add"]}</span></div>
+    {form}
+    <div class="tpaper" style="overflow:hidden">{overview}{table}</div>
+  </div>
+</div>
+{ad_viewer(S, L)}
+</div>'''
+    return tpage(S, "T-DashAI", S["t_titles"]["dai"], body, logic=ad_logic(S))
+
+TSCREENS.append("T-DashAI")
+TBUILDERS["T-DashAI"] = t_dash_ai
+
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
@@ -6696,7 +7062,8 @@ ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objecti
            "T3 · Created → LO content — material, requirements, criteria", "T4 · LO settings tab — what the dialog collected, read-only", "T5 · Back in the tree — Unpublished until published",
            "T6 · Course Management — the course list, two courses on one book, Add course, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab, Extend due date (V2)", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course; an LO with no window yet",
            "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
-           "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback"]
+           "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback",
+           "T16 · AI Dashboard — production's AI Tutor Dashboard with the AI Feedback counts, per-student usage, and the submission + generated feedback viewer"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -6755,6 +7122,7 @@ TNOTES = {
     "t10": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard in TOPIC DASHBOARD mode, production's default view and where the Dashboard menu lands — Course / Book / Filters / Apply, the Enrollment and Duration chips (FILTERS opens production's panel — 在籍状況 Enrollment status, 期間 Duration — with an AI Feedback section added, PM 20 Sep: 開始日 start-date and 締切日 due-date ranges that keep only the feedback LOs falling inside them; the applied ranges show as chips beside Enrollment and Duration — AIフィードバック 開始日: 11/01 – 11/30, 締切日: 11/06 – 11/30 (PM, 20 Sep: show the selected ranges here); click Filters, it opens; same panel on the LO and Student dashboards), the paper with search and the Topic / LO Dashboard toggle, then production's topic table: Chapter Name, Topic Name (a link that opens the LO Dashboard for that topic, T11 →), Average Score as the progress bar over the topic's scored LOs (quizzes; -- where there is none) and Completion as the number of students who completed the topic. ADDED FOR AI FEEDBACK (PM, 20 Sep: the topic dashboard, per production, but for AI Feedback data): one column, AIフィードバック, with the topic's feedback LO (a link to its overview), its 開始 start and 締切 due dates under the name (PM, 20 Sep; since 22 Sep these are the course's dates from T8, not the LO's own) and its counts — 提出 12/30, 確認待ち 8 (a link into the LO's submissions when there are any), 返却済み 3 — and the ★ number of submissions the teacher picked to show the class. Topics without a feedback LO (6-1, 8-1) were shown with “no AI Feedback LO” and are left off the board for a clearer demo (PM, 20 Sep); in the product every topic of the book is listed, as production does. Counts, never rates (PRD §1.6.4); no score is invented for a feedback LO, so Average Score stays what production computes from the quizzes. 6-2, 7-1 and 7-2 carry the three feedback LOs the LO Dashboard shows. INSIGHTS (PM, 20 Sep: merged here from the LO Dashboard's overview paper, which is gone; the 詳しく Details expansion that opened the full insight with quotes and counts was then removed too — PM, 20 Sep: the teacher checks the submissions themself, the line only has to alert them; then broadened, PM 20 Sep, from strictly 'what the class missed' to insights of several kinds — 見落とし what was missed, 良い傾向 what is going well, 紹介候補 what is worth showing the class, 提出状況 how submissions stand — with the LLM ranking them and the top one shown per LO): under each feedback LO's counts, one line with its kind as a tag, read by an LLM pass over that LO's submissions and their generated draft feedback along the rubric — 6-2 良い傾向: 21/30 compare before and after the outlier; 7-1 見落とし: 有意性の検定に進まない下書きが 8/12件, 次回冒頭の候補; 7-2 紹介候補: 4 asked a question of their own — nothing more: no expansion, no quotes, no counts on this board (the LO's overview and submissions are one click away). It is generated from the submissions and their draft feedback, so it is there before anything is returned (PM, 20 Sep), refreshes itself whenever a submission or a draft changes (a Regenerate button was tried and removed, PM 20 Sep: no reason a teacher should have to ask), and is teacher-facing only. The rubric is the prompt's structure; every claim must trace to a count in the data. PRACTICE BLOCK (PM, 27 Sep: add similar question LO stats here as well): under 7-1's feedback LO, the topic's practice LO in the same shape — name (a link to P3), NO DATE LINE (PM, 27 Sep: remove the date — it is unconfirmed whether a similar-questions practice LO will have a start and due date concept at all; T8 shows its row with empty date cells for the same reason; and remove the no-due-date — in general, when there is not going to be something, do not state it; the same rule then took the \"no completion status\" caption, the \"no re-practice\" aside, the hidden-fields alert on P1, the \"not printed\" footer on P9 and the \"no set is created\" line on P6 off the boards), TWO chips (PM, 27 Sep: keep just students with sets, remove the others, add students who completed their sets): セットのある生徒 5人/30人 = students who created at least one set; セットを完了した生徒 3人/30人 = students who finished every set they themselves generated (on T14: 佐藤 4/4 and 田中 6/6 are complete, 山田 8/10 and 伊藤 2/6 are not, one student below the fold is complete). The sets-created / answered / correct chips drawn earlier that day are gone from this board; T14 keeps the per-student done ・ correct, one 見落とし insight naming the source question with the lowest accuracy (Q3 相関と因果 45%; a link to LO mode), (the ad hoc widget line was drawn and removed — PM, 28 Sep: not required). Practice sets only; no completion, no max score, no rate invented beyond correct/done.",
     "t11": "GroupDashboard in LO DASHBOARD mode, reached from a topic name on T10 or from the toggle. This is GroupDashboard as production renders it — the same filter row and chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; and the whole toggle — Latest Score and Highest Score — is greyed out when nothing in the matrix carries a score (PM, 20 Sep) — as here; it comes back live when a quiz or other scored LO is in view. For a clearer demo the matrix shows only AI Feedback LOs (PM, 20 Sep): the Session 6 report (all returned, one 差し戻し, two 再提出), the Session 7 report and the weekly reflection, so all four statuses and both secondary chips are on screen; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header, and the ★ 注目のみ / Highlighted only chip beside the score toggle narrows the matrix to students with a highlighted submission (PM, 20 Sep; it works — click it); sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). A tile row (production's Questions Solved via AI, then AI Feedback count tiles) was tried and removed (PM, 20 Sep: not required). In its place, on the PM's 'try it' (20 Sep), an OVERVIEW PAPER was built from the PRD — the three C10.3a jobs, B2's revision outcome and the §1.6.4 rules — and then taken apart block by block, so that this board is the matrix alone: (1) 未提出 Not submitted was here as counts and names per LO and was removed (PM, 20 Sep): the matrix header's 提出 12/30 and the tinted -- cells already carry it; (2) 先生の確認待ち Waiting on you — drafts awaiting approval per LO with the oldest one's age — was tried and removed as well (PM, 20 Sep: not required; the matrix header's 確認待ち count and Submission Grading carry it); (3) 今週クラスが見落とした点 What the class missed: first a templated sentence over the criteria counts; then, on the PM's 'try it' (20 Sep), an INSIGHT written by an LLM pass over the week's SUBMISSIONS AND THEIR DRAFT FEEDBACK grouped by rubric criterion (PM, 20 Sep: not the returned comments — the teacher opens this dashboard after the due date, before anything is returned, so the basis is every draft the checks produced; a returned comment counts the same, and the teacher's edits flow in once made) — what the recurring mistake actually is (8 of 12 drafts stop before the significance test, 3 read r ≈ 0.4 as causation) and one recap point — grounded two ways: the criterion counts stay beneath it as the anchor, and two quoted passages link into the submissions they come from. Teacher-facing only, one call per LO per week, the rubric as the prompt's structure; it refreshes itself when the drafts change (a Regenerate button was tried and removed, PM 20 Sep). It is also a review aid: it tells the teacher what the drafts are about to say to the class before they approve them. The PM's question that led here: is the criterion just a count (yes: drafts with an improvement comment per criterion) and could a generic agent read the feedback against the rubric instead (this is that); (4) フィードバックを活かした Acted on the feedback — resubmitted, points resolved, rewrote in their own words — was tried and removed (PM, 20 Sep: not required); (5) ★ Highlighted for class — the teacher's picks with the few-word reason typed when highlighting, each a link into the submission — was a block here and was MERGED INTO THE MATRIX (PM, 20 Sep): a highlighted cell now shows that reason under the status with a small ★ before it (★ 外れ値の扱いが的確, ★ 相関と因果を区別している…; the separate ★ icon beside the status was dropped as redundant, PM 20 Sep) and opens the submission's review screen, the LO header keeps the ★ count, and the ★ 注目のみ chip narrows the matrix to those students — and block 3 itself, What the class missed, was merged into the Topic Dashboard (T10, PM 20 Sep), one line per feedback LO with the full insight in an expanded row; so the overview paper is gone. Not shown, deliberately: score or completion-rate tiles, per-student comparisons, average time to return. Block 3 depends on criterion keys being fixed per assignment (PRD §1.6.5, U22); block 5 is collectable today. THE MATRIX below is the drill-down: in it, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered (確認待ち links to the LO's submissions), and each cell is the submission status in the marking tones with a 再提出 secondary chip where the submission is a resubmission (the 自動返却 Auto-returned chip was shown too and removed, PM 20 Sep: not needed in the matrix — it stays in Submission Grading and on the student dashboard rows; a per-cell comment count was tried and removed, PM 20 Sep: use case unclear — it stays in Submission Grading); the cell opens the LO's submissions. Two insight panels below the matrix — comments by rubric criterion and the requirements that stopped a submission at the pre-check — were tried and removed (PM, 20 Sep: not required). Student name → the student dashboard.",
     "t12": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with -- under Latest Score and Highest Score (a feedback LO has none; 再提出 1回 sat there first and was moved under the submission date, PM 21 Sep: it describes the submission, not a score). WHAT IS NEW is in the LO table itself (PM, 20 Sep: merged into the existing matrix rather than a table of its own; then, PM 20 Sep, fitted as columns rather than a detail row — the submission date was already a column): three feedback columns after production's four — 状態 Status (for every LO, PM 21 Sep: production writes 完了 Completed into the score columns of a video or slide deck, which read as statuses in score columns once a Status column existed, so 完了 moved here and the score columns show -- for anything unscored; for a feedback LO the status chip with its 再提出 / 自動返却 secondary chip and the date it was reached beneath, PM 21 Sep: a column of its own rather than sitting where a score would be), 指摘された観点 Flagged criteria — the rubric criteria that drew an improvement comment, with 再提出で修正済み where the resubmission fixed them (a コメント count column — 3, 良い点 1 ・ 改善点 2 — sat between and was dropped, PM 21 Sep: not useful; where the student stumbles is, and it is here), and 確認する / 見る into the review — the feedback LO's name a link to its overview (T7, PM 20 Sep), with the ★ reason under it where the teacher highlighted it; other LO rows show -- there. A separate paper below the table — count tiles, a submissions table and a by-criterion profile — was built first and removed in the merge. 7-2 is expanded so the weekly reflection shows too. PRACTICE ROW (24 Sep; PM, 28 Sep): the 類題演習 LO row reads 最新スコア 6/8 = questions correct / answered across the student's sets so far, no label (PM: remove \"correct\", it is understood), and 最高スコア 5/6 = the student's best single set (PM: add highest score) — Set 1 5/6, Set 2 1/2 so far; Status 途中 with the sets line; no flagged criteria; セット一覧 opens LO mode.",
+    "t13": "AI DASHBOARD (PM, 6 Oct: implement the AI Dashboard in the prototype from the Back Office code and the production screenshot; v1 of AI Feedback reports inside it). This is AIDashboardContainer as the syllabus squad renders it: the Dashboard tabs with AI Dashboard active, the AI Tutor Dashboard title with 生徒の追加 Add Student (SearchStudentDialog: the students on this board are the ones added, 10 here, not the course roster), AIDashboardForm — Lens multi-select (the subjects, Any / Math / Science / English as in production), start and end date, a divider, Apply — then one paper: AIDashboardOverview (the 期間 Period line, the cards Number of Students / Total Questions Asked / Total Likes / Total Dislikes) and the Student Usages table (count in the title, Last Updated from the sync time, search by student name, index column, expand chevron, Student Name linking to the student, User Name, Total Questions, Total Likes in green, Total Dislikes in red). WHAT IS ADDED, as the PM asked: (1) the overview grows two labelled rows — AI FEEDBACK with the Group Dashboard's counts (生成されたフィードバック数 Feedbacks generated is production's existing card under the AI Feedback flag, here = the 41 submissions that got a draft, over 90 possible; 確認待ち, 返却済み with the auto-returned share, 再提出 with the sent-back one, ★ highlighted for class), and 類題演習 Similar questions practice (generated / attempted / correct / wrong, production's cards under the similar-questions flag, with the numbers from the practice LO); (2) the table grows four AI FEEDBACK columns from the Student Dashboard's per-student counts — 提出 (feedback LOs submitted / assigned), 確認待ち, 返却済み (with 差し戻し where one was sent back), 受けたコメント with its strengths / to-improve split; students who only use the AI Tutor show --; (3) the expanded row keeps production's 質問履歴 Chat History Overview (Created At → the thread, Lens, Item Overview, No. of Questions, Feedback Type thumbs, Comments) and adds AIフィードバックの提出 — this student's feedback submissions in the period: LO (→ its overview), status with the 再提出 / 自動返却 chip and ★, submitted, returned, comment count, and 見る View; (4) View opens a DRAWER with the actual submission and the generated feedback, side by side as in T12 but read-only: LO, status, student, submitted, returned, a visibility chip (下書き・生徒には未公開 for drafts, 生徒に公開中 once returned), the recognised submission on the left, the generated comments on the right (kind badge, criterion, the passage, the comment, its source reference), the teacher's note where one was returned with it, the 1回目 / 2回目 toggle on a resubmission with the points marked 再提出で修正済み, and 提出物の採点で開く to go and act on it in Submission Grading — the dashboard is for viewing, grading stays in Submission Grading. Try: expand 山田 花子, View the Session 7 report (a draft, T12's content), the Week 7 reflection (auto-returned, two comments), the Session 6 report (second attempt, two of three fixed); 渡辺 大輝's Session 6 row is the sent-back one. Rates are not used anywhere; counts only, as on the other dashboards.",
 }
 MNOTES = {
     "m1": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →",
@@ -6800,7 +7168,7 @@ notes = {
 }
 for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "m10"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
-for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12"]):
+for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12", "t13"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
 PNOTES = {
     "P-Dialog": "AI PRACTICE — the Similar Questions Practice LO (jamessim-source/AIpractice: docs/prototype-plan.md, docs/c10-finalized-logic.md = PRD C10 as decided by the PM on 24 Sep; the clickable prototype on branch `prototype`). Redrawn here on this canvas's production components and fitted into the Kindai course: the practice LO sits in Topic 7-1 beside the AI Feedback LO, linked to the Session 7 lecture slides PDF, so Book Management, Course Management, the dashboards and the student app all show it as one more LO. THIS BOARD: DialogCreateLearningMaterial with the new frontend sub-type chosen (a plain LEARNING_OBJECTIVE with ai_practice=true, like Random Activity or Paper Submission — not a new proto type). Type name decided: Similar Questions Practice LO (JA 類題演習 LO is a placeholder; Random Activity already uses AI演習). General Info as for any LO; Settings = the required リンク元の LO picker, fed by the book's LOs whose 演習の元として利用可 switch is on — one here — with the empty-state copy (turn the switch on a PDF LO first); the note of the fields hidden for this type; the flag + tenant-setting gate. Creation and linking are one save. One eligible LO may be linked by several practice LOs. Confirm → P3. T2's type menu also lists this type (click it).",

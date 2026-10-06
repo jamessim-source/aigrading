@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-09-30T17:06:18Z"
+    "at": "2026-10-06T07:11:03Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -418,6 +418,14 @@
       "title": "T15 · Student Dashboard — one student's AI Feedback (JA)",
       "is_interactive": true
     },
+    "T-DashAI.dc.html": {
+      "x": 22800,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "T16 · AI Dashboard — production's AI Tutor Dashboard with the AI Feedback counts, per-student usage, and the submission + generated feedback viewer (JA)",
+      "is_interactive": true
+    },
     "T-Book-en.dc.html": {
       "x": 0,
       "y": 7000,
@@ -536,6 +544,14 @@
       "w": 1440,
       "h": 900,
       "title": "T15 · Student Dashboard — one student's AI Feedback (EN)",
+      "is_interactive": true
+    },
+    "T-DashAI-en.dc.html": {
+      "x": 22800,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "T16 · AI Dashboard — production's AI Tutor Dashboard with the AI Feedback counts, per-student usage, and the submission + generated feedback viewer (EN)",
       "is_interactive": true
     },
     "P-Dialog.dc.html": {
@@ -1295,6 +1311,7 @@
     "T-DashTopic.dc.html",
     "T-DashGroup.dc.html",
     "T-DashStudent.dc.html",
+    "T-DashAI.dc.html",
     "T-Book-en.dc.html",
     "T-Dialog-en.dc.html",
     "T-Material-en.dc.html",
@@ -1310,6 +1327,7 @@
     "T-DashTopic-en.dc.html",
     "T-DashGroup-en.dc.html",
     "T-DashStudent-en.dc.html",
+    "T-DashAI-en.dc.html",
     "P-Dialog.dc.html",
     "P-Source.dc.html",
     "P-Detail.dc.html",
@@ -1693,6 +1711,13 @@
       "w": 640,
       "maxH": 460,
       "text": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with -- under Latest Score and Highest Score (a feedback LO has none; 再提出 1回 sat there first and was moved under the submission date, PM 21 Sep: it describes the submission, not a score). WHAT IS NEW is in the LO table itself (PM, 20 Sep: merged into the existing matrix rather than a table of its own; then, PM 20 Sep, fitted as columns rather than a detail row — the submission date was already a column): three feedback columns after production's four — 状態 Status (for every LO, PM 21 Sep: production writes 完了 Completed into the score columns of a video or slide deck, which read as statuses in score columns once a Status column existed, so 完了 moved here and the score columns show -- for anything unscored; for a feedback LO the status chip with its 再提出 / 自動返却 secondary chip and the date it was reached beneath, PM 21 Sep: a column of its own rather than sitting where a score would be), 指摘された観点 Flagged criteria — the rubric criteria that drew an improvement comment, with 再提出で修正済み where the resubmission fixed them (a コメント count column — 3, 良い点 1 ・ 改善点 2 — sat between and was dropped, PM 21 Sep: not useful; where the student stumbles is, and it is here), and 確認する / 見る into the review — the feedback LO's name a link to its overview (T7, PM 20 Sep), with the ★ reason under it where the teacher highlighted it; other LO rows show -- there. A separate paper below the table — count tiles, a submissions table and a by-criterion profile — was built first and removed in the merge. 7-2 is expanded so the weekly reflection shows too. PRACTICE ROW (24 Sep; PM, 28 Sep): the 類題演習 LO row reads 最新スコア 6/8 = questions correct / answered across the student's sets so far, no label (PM: remove \"correct\", it is understood), and 最高スコア 5/6 = the student's best single set (PM: add highest score) — Set 1 5/6, Set 2 1/2 so far; Status 途中 with the sets line; no flagged criteria; セット一覧 opens LO mode."
+    },
+    "t13": {
+      "x": 22800,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "AI DASHBOARD (PM, 6 Oct: implement the AI Dashboard in the prototype from the Back Office code and the production screenshot; v1 of AI Feedback reports inside it). This is AIDashboardContainer as the syllabus squad renders it: the Dashboard tabs with AI Dashboard active, the AI Tutor Dashboard title with 生徒の追加 Add Student (SearchStudentDialog: the students on this board are the ones added, 10 here, not the course roster), AIDashboardForm — Lens multi-select (the subjects, Any / Math / Science / English as in production), start and end date, a divider, Apply — then one paper: AIDashboardOverview (the 期間 Period line, the cards Number of Students / Total Questions Asked / Total Likes / Total Dislikes) and the Student Usages table (count in the title, Last Updated from the sync time, search by student name, index column, expand chevron, Student Name linking to the student, User Name, Total Questions, Total Likes in green, Total Dislikes in red). WHAT IS ADDED, as the PM asked: (1) the overview grows two labelled rows — AI FEEDBACK with the Group Dashboard's counts (生成されたフィードバック数 Feedbacks generated is production's existing card under the AI Feedback flag, here = the 41 submissions that got a draft, over 90 possible; 確認待ち, 返却済み with the auto-returned share, 再提出 with the sent-back one, ★ highlighted for class), and 類題演習 Similar questions practice (generated / attempted / correct / wrong, production's cards under the similar-questions flag, with the numbers from the practice LO); (2) the table grows four AI FEEDBACK columns from the Student Dashboard's per-student counts — 提出 (feedback LOs submitted / assigned), 確認待ち, 返却済み (with 差し戻し where one was sent back), 受けたコメント with its strengths / to-improve split; students who only use the AI Tutor show --; (3) the expanded row keeps production's 質問履歴 Chat History Overview (Created At → the thread, Lens, Item Overview, No. of Questions, Feedback Type thumbs, Comments) and adds AIフィードバックの提出 — this student's feedback submissions in the period: LO (→ its overview), status with the 再提出 / 自動返却 chip and ★, submitted, returned, comment count, and 見る View; (4) View opens a DRAWER with the actual submission and the generated feedback, side by side as in T12 but read-only: LO, status, student, submitted, returned, a visibility chip (下書き・生徒には未公開 for drafts, 生徒に公開中 once returned), the recognised submission on the left, the generated comments on the right (kind badge, criterion, the passage, the comment, its source reference), the teacher's note where one was returned with it, the 1回目 / 2回目 toggle on a resubmission with the points marked 再提出で修正済み, and 提出物の採点で開く to go and act on it in Submission Grading — the dashboard is for viewing, grading stays in Submission Grading. Try: expand 山田 花子, View the Session 7 report (a draft, T12's content), the Week 7 reflection (auto-returned, two comments), the Session 6 report (second attempt, two of three fixed); 渡辺 大輝's Session 6 row is the sent-back one. Rates are not used anywhere; counts only, as on the other dashboards."
     },
     "p_P-Dialog": {
       "x": 0,

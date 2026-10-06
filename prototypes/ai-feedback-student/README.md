@@ -20,7 +20,7 @@ sticky notes on the canvas are the per-screen record.
 | PC · English | same, `-en` suffix | 1280 × 800 |
 | Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
 | Mobile · English | same, `-en` suffix | 375 × 812 |
-| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` ↔ `T-Settings` → `T-Created` · `T-Courses` → `T-Course` → `T-CourseBook` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashTopic` → `T-DashGroup` ↔ `T-DashStudent` | 1440 × 900 |
+| Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` ↔ `T-Settings` → `T-Created` · `T-Courses` → `T-Course` → `T-CourseBook` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashTopic` → `T-DashGroup` ↔ `T-DashStudent` · `T-DashAI` | 1440 × 900 |
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
 | AI Practice · 日本語 | `P-Dialog` → `P-Source` ↔ `P-Detail` (BO, 1440 × 900) · `P-Sets` → `P-Crop` → `P-Setup` → `P-Wait` → `P-Practice` · `P-Print` (PC, 1280 × 800) · `M-PSets` → `M-PCrop` → `M-PSetup` → `M-PWait` → `M-PPractice` (mobile, 375 × 812) | mixed |
 | AI Practice · English | same, `-en` suffix | mixed |
@@ -297,6 +297,17 @@ Feedback LO rather than in a separate demo:
   the student's sets, Highest Score the best single set — and the Latest /
   Highest Score toggle is live when a practice LO is in view (PM, 28 Sep). Student Dashboard: the practice
   row shows 途中 with its sets line, no score, and a link into the group view.
+- **AI Dashboard (T16, `T-DashAI`, 6 Oct).** Production's AI Tutor Dashboard
+  (`Dashboard/modules/ai-dashboard` on the `backoffice` branch: Add Student, the
+  Lens / start / end date form, the overview cards, Student Usages with the Chat
+  History Overview in the expanded row) with the AI Feedback data folded in, as v1 of
+  AI Feedback reports there (PM, 6 Oct): a labelled card row from the Group
+  Dashboard's counts (feedbacks generated = submissions, waiting, returned, resubmissions,
+  ★), a practice row (generated / attempted / correct / wrong), four per-student columns
+  from the Student Dashboard (submitted, waiting, returned, comments received), the
+  student's feedback submissions under the chat history, and **View → a drawer with the
+  actual submission and its generated feedback** (read-only; Open in Submission Grading
+  to act). Counts only, no rates, as on the other dashboards.
 - **Student PC (Main, 05-Todo, P4–P9)** and **mobile (M-Main, P10–P14).** The
   LO list and To-do gain the ✦ practice card (set count only, no completion
   chip). The practice screen follows Koki's prototype trimmed to the PRD
