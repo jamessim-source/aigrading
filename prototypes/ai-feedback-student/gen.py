@@ -6727,24 +6727,43 @@ AD_JA = dict(
     ad_v_meta=("生徒", "作成日時", "レンズ", "課題"), ad_v_open="AIチューターダッシュボードで開く", ad_v_close="閉じる",
     ad_v_ocr="読み取ったテキスト", ad_v_photo="写真 1枚", ad_v_fbl="フィードバック", ad_v_like="高評価", ad_v_dislike="低評価", ad_v_nofb="評価なし",
     ad_v_cmt="生徒コメント", ad_v_cmt_txt="解説が分かりにくかった",
-    ad_v_rub="受け入れ基準との照合", ad_v_sec=("良い点", "改善点", "次の一歩"),
     # the three thread variants: assignment 7 (like), a free snap (dislike + comment), assignment 6 (like)
-    ad_vA=dict(snap=["人口密度 x と県民所得 y の相関", "Σ(x−x̄)(y−ȳ) = 1,842,300", "Sx = 1,120  Sy = 2,641", "r = 1,842,300 ÷ (1,120 × 2,641) ≈ 0.62", "散布図：右上がり。東京が右上に離れている"],
-               rub=[("ok", "相関係数を計算し、式と途中の値を示している"), ("ok", "散布図を描き、関係の向きを読み取っている"), ("ng", "外れ値（東京）の影響を検討していない")],
-               good="計算の途中の値（偏差の積和、標準偏差）を書き残しているので、どこで r = 0.62 になったか追えます。散布図で右上がりを確認してから数値を出している順番も正しいです。",
-               imp="散布図で東京が離れていると気づいているのに、そのまま r を結論にしています。外れ値が相関係数を押し上げている可能性があります。",
-               next="東京を除いた46都道府県で r を計算し直し、二つの値を並べて「どちらを根拠にするか」を一行で書いてみましょう。"),
-    ad_vB=dict(snap=["H0: ρ = 0,  H1: ρ ≠ 0", "t = r√(n−2) / √(1−r²) = 0.62×√45 / √(1−0.38) ≈ 5.28", "p < 0.05 なので H0 を棄却", "→ 人口密度が所得を上げている"],
-               rub=[],
-               good="帰無仮説と対立仮説を書き、相関係数の検定統計量を正しい式で計算しています。t ≈ 5.28 も合っています。",
-               imp="最後の一文は検定の結論ではありません。p < 0.05 が言えるのは「相関がゼロではない」ことまでで、「密度が所得を上げる」という因果は検定からは出てきません。",
-               next="結論を「人口密度と県民所得には統計的に有意な相関がある（r = 0.62, p < 0.05）」と書き直してみましょう。因果について述べたい場合は、別の根拠が必要です。"),
-    ad_vC=dict(snap=["階級（万人）  度数", "0–100   17", "100–200  13", "200–300   7", "300–500   6", "500–    4", "平均 262  中央値 160"],
-               rub=[("ok", "階級幅を決めて度数分布表を作っている"), ("ok", "代表値（平均・中央値）を求めている"), ("ok", "ヒストグラムを描いている")],
-               good="階級幅をそろえて度数を数え、平均と中央値を両方出しています。右に裾の長い分布で平均が中央値より大きくなることを、表から読み取れる形になっています。",
-               imp="最後の階級だけ幅が違う（500万人以上）ので、ヒストグラムの棒の高さをそのまま比べられません。",
-               next="最後の階級を「500–1500」のように閉じるか、幅が違う旨を注記して、縦軸に単位（都道府県数）を書き加えましょう。"),
-    ad_help="本番の AI チューターダッシュボード（生徒の追加、レンズ・期間で絞り込み、概要カード、生徒の利用状況）に、AIフィードバックをバックオフィスのコードにある形で加えたものです（PM, 10月6日: AIフィードバックのコードはLOに紐づいていないので、実際にあるものに置き換える）。コード上のAIフィードバックは AIチューターの「フィードバック用スナップ」（Snap-to-ask と並ぶもう一つのスナップ）で、AIチューター課題（タイトル・科目・全体的な質問・受け入れ基準、公開と期限）に紐づけることができます。概要の2行目は本番の「生成されたフィードバック数」カードと課題の分析（開始済み・スナップ・完了）、表の右2列は生徒ごとのフィードバック数と課題の状態、行を開くと Snap-to-ask の質問履歴の下にフィードバック用スナップが並び、「見る」でそのスレッド（答案の写真と AI チューター解説）をここで確認できます。フィードバック用スナップには高評価・低評価や生徒コメントはありません（PM, 10月6日）— それは Snap-to-ask の質問履歴にだけあります。",
+    ad_v_seg=("読み取ったテキスト", "フィードバック"), ad_v_summary="まとめ", ad_v_asklbl="AIに質問",
+    ad_vA=dict(summary="計算の手順と途中の値がそろっていて、散布図で関係の向きを確かめてから数値を出す順番も正しい、しっかりした分析です。残っているのは外れ値の扱いだけです。東京都を除いた r を並べて示せば、結論は見違えるほど強くなります。",
+               text=["人口密度 x と県民所得 y の関係を調べた。",
+                     (1, "t", "偏差の積和 Σ(x−x̄)(y−ȳ) = 1,842,300、Sx = 1,120、Sy = 2,641 より、r = 1,842,300 ÷ (1,120 × 2,641) ≈ 0.62 となった。"),
+                     (2, "t", "散布図は右上がりで、正の相関がみられる。"),
+                     (3, "r", "東京都が右上に大きく離れているが、r = 0.62 を結論とする。"),
+                     "よって人口密度と県民所得には中程度の正の相関があるといえる。"],
+               cards=[("t", "統計処理", "偏差の積和 Σ(x−x̄)(y−ȳ) = 1,842,300、Sx = 1,120、Sy = 2,641 より、r = 1,842,300 ÷ (1,120 × 2,641) ≈ 0.62 となった。",
+                       "計算の途中の値（偏差の積和、標準偏差）を書き残しているので、どこで r = 0.62 になったかを追うことができます。式と値がそろった、再現できる計算です。"),
+                      ("t", "図表", "散布図は右上がりで、正の相関がみられる。",
+                       "散布図で関係の向きを確かめてから相関係数を出している順番が正しいです。数値だけに頼らず、図で形を見る習慣ができています。"),
+                      ("r", "解釈", "東京都が右上に大きく離れているが、r = 0.62 を結論とする。",
+                       "東京都が離れていると気づいているのに、そのまま r を結論にしています。外れ値が相関係数を押し上げている可能性があります。東京都を除いた46都道府県で r を計算し直し、二つの値を並べて「どちらを根拠にするか」を一行で書いてみましょう。")]),
+    ad_vB=dict(summary="帰無仮説と対立仮説の立て方、検定統計量の計算はどちらも正しく、t ≈ 5.28 も合っています。最後の一文だけが検定から言えることを越えています。相関が有意であることと、因果があることは別です。",
+               text=[(1, "t", "H0: ρ = 0、H1: ρ ≠ 0 とする。"),
+                     (2, "t", "t = r√(n−2) / √(1−r²) = 0.62 × √45 / √(1−0.38) ≈ 5.28。"),
+                     "自由度 45 の t 分布で p < 0.05 となる。",
+                     (3, "r", "したがって H0 を棄却し、人口密度が所得を上げているといえる。")],
+               cards=[("t", "仮説の設定", "H0: ρ = 0、H1: ρ ≠ 0 とする。",
+                       "母相関係数についての帰無仮説と対立仮説を正しく書けています。両側検定にしている判断も、向きを決めつけていないので適切です。"),
+                      ("t", "統計処理", "t = r√(n−2) / √(1−r²) = 0.62 × √45 / √(1−0.38) ≈ 5.28。",
+                       "相関係数の検定統計量を正しい式で計算しています。T.TEST ではなくこの式を選べているのは、第7回の内容が身についている証拠です。"),
+                      ("r", "結論", "したがって H0 を棄却し、人口密度が所得を上げているといえる。",
+                       "p < 0.05 から言えるのは「相関がゼロではない」ことまでです。「密度が所得を上げる」という因果は検定からは出てきません。結論を「人口密度と県民所得には統計的に有意な相関がある（r = 0.62, p < 0.05）」と書き直してみましょう。")]),
+    ad_vC=dict(summary="階級幅をそろえて度数を数え、平均と中央値を両方出し、分布の形と結びつけて説明できています。直すところは一か所、最後の階級の幅と、図の縦軸の単位です。",
+               text=["47都道府県の人口（2025年）を階級幅 100万人で整理した。",
+                     (1, "t", "0–100万人: 17、100–200: 13、200–300: 7、300–500: 6、500以上: 4。"),
+                     (2, "t", "平均は 262万人、中央値は 160万人で、右に裾が長いため平均が中央値を上回る。"),
+                     (3, "r", "ヒストグラムの最後の階級は 500万人以上とし、縦軸は度数とした。")],
+               cards=[("t", "統計処理", "0–100万人: 17、100–200: 13、200–300: 7、300–500: 6、500以上: 4。",
+                       "階級幅をそろえて度数を数え、合計が 47 になることも確認できます。度数分布表としての手順は正しいです。"),
+                      ("t", "代表値", "平均は 262万人、中央値は 160万人で、右に裾が長いため平均が中央値を上回る。",
+                       "平均と中央値の差を分布の歪みと結びつけて説明できています。数値を出すだけでなく、なぜそうなるかまで書けているのが良い点です。"),
+                      ("r", "図表", "ヒストグラムの最後の階級は 500万人以上とし、縦軸は度数とした。",
+                       "最後の階級だけ幅が違うので、棒の高さをそのまま比べられません。「500–1500」のように閉じるか、幅が違う旨を注記しましょう。縦軸には単位（都道府県数）を書き加えてください。")]),
+    ad_help="本番の AI チューターダッシュボード（生徒の追加、レンズ・期間で絞り込み、概要カード、生徒の利用状況）に、AIフィードバックをバックオフィスのコードにある形で加えたものです（PM, 10月6日: AIフィードバックのコードはLOに紐づいていないので、実際にあるものに置き換える）。コード上のAIフィードバックは AIチューターの「フィードバック用スナップ」（Snap-to-ask と並ぶもう一つのスナップ）で、AIチューター課題（タイトル・科目・全体的な質問・受け入れ基準、公開と期限）に紐づけることができます。概要の2行目は本番の「生成されたフィードバック数」カードと課題の分析（開始済み・スナップ・完了）、表の右2列は生徒ごとのフィードバック数と課題の状態、行を開くと Snap-to-ask の質問履歴の下にフィードバック用スナップが並び、「見る」でそのスレッドを学習者アプリの AIフィードバック画面と同じ形で確認できます — 「読み取ったテキスト」（番号付きの印と点線で指摘箇所を示す）と「フィードバック」（まとめ、観点ごとの番号付きカード：引用・コメント）の切り替え。フィードバック用スナップには高評価・低評価や生徒コメントはありません（PM, 10月6日）— それは Snap-to-ask の質問履歴にだけあります。",
     ad_title="BO — AIダッシュボード",
 )
 AD_EN = dict(
@@ -6797,23 +6816,42 @@ AD_EN = dict(
     ad_v_meta=("Student", "Created At", "Lens", "Assignment"), ad_v_open="Open in the AI Tutor Dashboard", ad_v_close="Close",
     ad_v_ocr="Recognised text", ad_v_photo="1 photo", ad_v_fbl="Feedback", ad_v_like="Like", ad_v_dislike="Dislike", ad_v_nofb="No rating",
     ad_v_cmt="Student's Comment", ad_v_cmt_txt="Solution was not clear enough",
-    ad_v_rub="Against the acceptance criteria", ad_v_sec=("Strengths", "To improve", "Next step"),
-    ad_vA=dict(snap=["Correlation of population density x and prefectural income y", "Σ(x−x̄)(y−ȳ) = 1,842,300", "Sx = 1,120  Sy = 2,641", "r = 1,842,300 ÷ (1,120 × 2,641) ≈ 0.62", "Scatter plot: rising to the right. Tokyo sits apart, top right"],
-               rub=[("ok", "Computes the correlation coefficient, showing the formula and intermediate values"), ("ok", "Draws the scatter plot and reads the direction of the relationship"), ("ng", "Does not consider the effect of the outlier (Tokyo)")],
-               good="You kept the intermediate values (the sum of deviation products, the standard deviations), so a reader can follow how r = 0.62 came about. Checking the direction on the scatter plot before computing is the right order too.",
-               imp="You noticed Tokyo sits apart on the scatter plot, yet r is taken as the conclusion as it stands. The outlier may be pulling the coefficient up.",
-               next="Recompute r for the 46 prefectures without Tokyo, put the two values side by side, and write one line on which one you will rely on and why."),
-    ad_vB=dict(snap=["H0: ρ = 0,  H1: ρ ≠ 0", "t = r√(n−2) / √(1−r²) = 0.62×√45 / √(1−0.38) ≈ 5.28", "p < 0.05, so reject H0", "→ population density raises income"],
-               rub=[],
-               good="You state the null and alternative hypotheses and compute the test statistic for a correlation coefficient with the right formula. t ≈ 5.28 is correct.",
-               imp="The last line is not the conclusion of the test. p < 0.05 lets you say the correlation is not zero; it says nothing about density causing income.",
-               next="Rewrite the conclusion as “there is a statistically significant correlation between population density and prefectural income (r = 0.62, p < 0.05)”. A causal claim needs other evidence."),
-    ad_vC=dict(snap=["Class (10k people)  Count", "0–100   17", "100–200  13", "200–300   7", "300–500   6", "500–    4", "Mean 262  Median 160"],
-               rub=[("ok", "Chooses a class width and builds the frequency table"), ("ok", "Computes measures of centre (mean, median)"), ("ok", "Draws the histogram")],
-               good="Equal class widths, counts per class, and both the mean and the median. The table lets a reader see why the mean exceeds the median in a right-skewed distribution.",
-               imp="The last class has a different width (5 million and above), so the heights of the histogram bars cannot be compared directly.",
-               next="Close the last class (for example 500–1500) or note that its width differs, and add the unit (number of prefectures) to the vertical axis."),
-    ad_help="Production's AI Tutor Dashboard (Add Student, the lens and period filter, the overview cards, Student Usages) with AI Feedback added in the shape the Back Office code has it (PM, 6 Oct: the AI feedback code is not linked to the LO, so replace with what is actually available). In the code, AI Feedback is the AI Tutor's feedback snap — the second snap type beside Snap-to-ask — which can be tied to an AI Tutor Assignment (title, subject, overall question, acceptance criteria, publish and due date). The overview's second row carries production's Feedbacks generated card and the assignment's analysis (Started / Snaps / Completed); the table's two right-hand columns carry each student's feedback count and assignment status; expanding a row lists the feedback snaps under the Snap-to-ask chat history, and View opens that thread here — the photo of the work and the AI response. Feedback snaps carry no like / dislike or student comment (PM, 6 Oct); those exist only on the Snap-to-ask chat history.",
+    ad_v_seg=("Extracted text", "Feedback"), ad_v_summary="Summary", ad_v_asklbl="Ask AI",
+    ad_vA=dict(summary="A solid analysis: the working and the intermediate values are all there, and you checked the direction on the scatter plot before computing, which is the right order. Only the outlier is left. Put r without Tokyo next to r with it and the conclusion becomes much stronger.",
+               text=["I examined the relationship between population density x and prefectural income y.",
+                     (1, "t", "From the sum of deviation products Σ(x−x̄)(y−ȳ) = 1,842,300, Sx = 1,120 and Sy = 2,641, r = 1,842,300 ÷ (1,120 × 2,641) ≈ 0.62."),
+                     (2, "t", "The scatter plot rises to the right, showing a positive correlation."),
+                     (3, "r", "Tokyo sits far apart at the top right, but I take r = 0.62 as the conclusion."),
+                     "Therefore population density and prefectural income have a moderate positive correlation."],
+               cards=[("t", "Statistics", "From the sum of deviation products Σ(x−x̄)(y−ȳ) = 1,842,300, Sx = 1,120 and Sy = 2,641, r = 1,842,300 ÷ (1,120 × 2,641) ≈ 0.62.",
+                       "You kept the intermediate values (the sum of deviation products, the standard deviations), so a reader can follow how r = 0.62 came about. Formula and values together make a reproducible calculation."),
+                      ("t", "Charts", "The scatter plot rises to the right, showing a positive correlation.",
+                       "Checking the direction on the scatter plot before computing the coefficient is the right order. You are reading the shape in the figure rather than relying on the number alone."),
+                      ("r", "Interpretation", "Tokyo sits far apart at the top right, but I take r = 0.62 as the conclusion.",
+                       "You noticed Tokyo sits apart, yet r is taken as the conclusion as it stands. The outlier may be pulling the coefficient up. Recompute r for the 46 prefectures without Tokyo, put the two values side by side, and write one line on which one you rely on and why.")]),
+    ad_vB=dict(summary="The hypotheses and the test statistic are both right, and t ≈ 5.28 is correct. Only the last sentence goes beyond what the test can say: a significant correlation is not the same as a cause.",
+               text=[(1, "t", "Let H0: ρ = 0 and H1: ρ ≠ 0."),
+                     (2, "t", "t = r√(n−2) / √(1−r²) = 0.62 × √45 / √(1−0.38) ≈ 5.28."),
+                     "With 45 degrees of freedom, p < 0.05.",
+                     (3, "r", "Therefore H0 is rejected and population density raises income.")],
+               cards=[("t", "Hypotheses", "Let H0: ρ = 0 and H1: ρ ≠ 0.",
+                       "The null and alternative hypotheses about the population correlation are stated correctly. Choosing a two-sided test is appropriate, since you do not presume the direction."),
+                      ("t", "Statistics", "t = r√(n−2) / √(1−r²) = 0.62 × √45 / √(1−0.38) ≈ 5.28.",
+                       "The test statistic for a correlation coefficient is computed with the right formula. Picking this over T.TEST shows Session 7 has landed."),
+                      ("r", "Conclusion", "Therefore H0 is rejected and population density raises income.",
+                       "p < 0.05 lets you say the correlation is not zero. It says nothing about density causing income. Rewrite the conclusion as “there is a statistically significant correlation between population density and prefectural income (r = 0.62, p < 0.05)”.")]),
+    ad_vC=dict(summary="Equal class widths, counts per class, both the mean and the median, and the link to the shape of the distribution — all in place. One thing to fix: the width of the last class, and the unit on the vertical axis.",
+               text=["I organised the 47 prefectures' populations (2025) with a class width of 1 million.",
+                     (1, "t", "0–1M: 17, 1–2M: 13, 2–3M: 7, 3–5M: 6, 5M and above: 4."),
+                     (2, "t", "The mean is 2.62 million and the median 1.60 million; the long right tail puts the mean above the median."),
+                     (3, "r", "The last class of the histogram is 5 million and above, and the vertical axis is the frequency.")],
+               cards=[("t", "Statistics", "0–1M: 17, 1–2M: 13, 2–3M: 7, 3–5M: 6, 5M and above: 4.",
+                       "Equal class widths and counts per class, and the total comes to 47. The frequency table is built correctly."),
+                      ("t", "Measures of centre", "The mean is 2.62 million and the median 1.60 million; the long right tail puts the mean above the median.",
+                       "You tie the gap between mean and median to the skew of the distribution — not just the numbers, but why they come out that way."),
+                      ("r", "Charts", "The last class of the histogram is 5 million and above, and the vertical axis is the frequency.",
+                       "The last class has a different width, so the bars cannot be compared directly. Close it (for example 5–15M) or note that its width differs, and add the unit (number of prefectures) to the vertical axis.")]),
+    ad_help="Production's AI Tutor Dashboard (Add Student, the lens and period filter, the overview cards, Student Usages) with AI Feedback added in the shape the Back Office code has it (PM, 6 Oct: the AI feedback code is not linked to the LO, so replace with what is actually available). In the code, AI Feedback is the AI Tutor's feedback snap — the second snap type beside Snap-to-ask — which can be tied to an AI Tutor Assignment (title, subject, overall question, acceptance criteria, publish and due date). The overview's second row carries production's Feedbacks generated card and the assignment's analysis (Started / Snaps / Completed); the table's two right-hand columns carry each student's feedback count and assignment status; expanding a row lists the feedback snaps under the Snap-to-ask chat history, and View opens that thread here in the learner app's AI Feedback format — an Extracted text / Feedback toggle: the work as read with numbered markers and dashed underlines on the passages, then a Summary card and one numbered card per point (criterion, quote, comment). Feedback snaps carry no like / dislike or student comment (PM, 6 Oct); those exist only on the Snap-to-ask chat history.",
     ad_title="BO — AI Dashboard",
 )
 JA.update(AD_JA); EN.update(AD_EN)
@@ -6846,9 +6884,24 @@ table.m .ad-sub table.inner td.ov{white-space:normal;max-width:360px;line-height
 .ad-dh h2{margin:0;font-size:20px;font-weight:500;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .ad-dh .meta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#757575;margin-top:6px}
 .ad-dh .meta b{font-weight:500;color:#212121}
-.ad-db{flex:1 1 auto;overflow:auto;padding:20px 24px 28px;display:grid;grid-template-columns:5fr 6fr;gap:20px;align-items:start}
+.ad-db{flex:1 1 auto;overflow:auto;padding:20px 24px 28px}
+.ad-db .ad-col{max-width:760px;margin:0 auto}
 .ad-db .ad-col{display:flex;flex-direction:column;gap:12px;min-width:0}
 .ad-db .col-h{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:500}
+.ad-seg{display:inline-flex;background:#EEEEEE;border-radius:999px;padding:3px;margin:0 auto}
+.ad-seg button{border:0;background:none;padding:7px 20px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer;color:#424242}
+.ad-seg button.on{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.18);color:#212121}
+.ad-text{font-size:15px;line-height:2;color:#2b2f45;padding:4px 2px}
+.ad-mk{display:inline-flex;width:20px;height:20px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center;margin:0 6px 0 2px;vertical-align:-4px}
+.ad-mk.t,.ad-chip.t .ad-mk{background:#14B4A6}.ad-mk.r,.ad-chip.r .ad-mk{background:#E0334C}
+.ad-ul{border-bottom:2px dashed #14B4A6;padding-bottom:1px}.ad-ul.r{border-bottom-color:#E0334C}
+.ad-fcard{border:1px solid #E0E0E0;border-radius:12px;padding:16px 18px 12px;background:#fff;display:flex;flex-direction:column;gap:10px}
+.ad-chip{display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 5px;border-radius:8px;font-size:13px;font-weight:500;align-self:flex-start}
+.ad-chip.t{background:#E3F6F4;color:#0E8F86}.ad-chip.r{background:#FDE7EA;color:#C62839}.ad-chip.g{background:#EEEEEE;color:#424242;padding-left:12px}
+.ad-chip .ad-mk{margin:0}
+.ad-q{border-left:3px solid #BDBDBD;padding-left:10px;color:#757575;font-size:13px;line-height:1.6;margin:0}
+.ad-fcard p{margin:0;font-size:14px;line-height:1.7}
+.ad-fcard .ask{align-self:flex-end;color:#2E62D9;display:inline-flex;align-items:center;gap:4px;font-size:12px}
 .ad-photo{border:1px solid #E0E0E0;border-radius:4px;background:#FAFAFA;padding:14px 16px 16px}
 .ad-photo .frame{background:#fff;border:1px solid #E0E0E0;border-radius:3px;padding:18px 20px;font-family:'Noto Sans JP',system-ui,sans-serif;line-height:2.1;font-size:15px;color:#2b2f45;background-image:repeating-linear-gradient(transparent,transparent 31px,#E8EAF6 31px,#E8EAF6 32px);min-height:180px;transform:rotate(-.4deg);box-shadow:0 2px 6px rgba(0,0,0,.08)}
 .ad-resp{background:#FAFAFA;border:1px solid #E0E0E0;border-radius:4px;padding:16px;display:flex;flex-direction:column;gap:14px}
@@ -6872,24 +6925,29 @@ def ad_thumb(kind, size=18):
     return '<span class="dd">--</span>'
 
 def ad_viewer(S, L):
-    """The drawer: one feedback thread as production's thread page shows it (AIDashboardDetailGeneralInfo
-    → QuestionTabPanel): the item overview, the student's comment on a dislike, the AI response — here
-    with the snapped work beside it. Header fields are holes filled from the clicked row; the body is one
-    of three thread variants keyed by the assignment (Session 7, free snap, Session 6)."""
-    g, i_, n_ = S["ad_v_sec"]
+    """The drawer: one feedback thread in the learner app's AI Feedback format (PM screenshots, 6 Oct):
+    header, then an Extracted text / Feedback toggle. Extracted text = the work as read, with numbered
+    markers and dashed underlines in teal (strength) / red (to improve) on the passages the feedback
+    points at. Feedback = a Summary card, then one numbered card per point — criterion chip, the quoted
+    passage, the comment, Ask AI. Header fields are holes filled from the clicked row; the body is one
+    of three thread variants keyed by the assignment."""
+    seg_t, seg_f = S["ad_v_seg"]
     def variant(k, V):
-        snap = "".join(f'<div>{ln}</div>' for ln in V["snap"])
-        left = (f'<div class="ad-col"><div class="col-h"><span>{S["ad_v_snap"]}</span><span class="tchip">{mi("camera", 12)}{S["ad_v_photo"]}</span></div>'
-                f'<div class="ad-photo"><div class="frame">{snap}</div></div>'
-                f'<div class="q-item" style="padding:12px 14px"><div class="q-top" style="margin-bottom:6px"><span class="q-no">{S["ad_v_ov"]}</span></div><p class="q-prompt" style="margin:0">{{{{vOv}}}}</p></div>'
-                f'</div>')
-        rub = ""
-        if V["rub"]:
-            rub = (f'<div><h5>{S["ad_v_rub"]}</h5><ul class="ad-rub">'
-                   + "".join(f'<li>{mi("checkCircle" if ok == "ok" else "warning", 16, "#4CAF50" if ok == "ok" else "#ED6C02")}<span>{t}</span></li>' for ok, t in V["rub"]) + '</ul></div>')
-        right = (f'<div class="ad-col"><div class="col-h"><span>{S["ad_v_resp"]}</span><span class="helper" style="margin:0;display:inline-flex;align-items:center;gap:4px;white-space:nowrap">{mi("spark", 12)}AI</span></div>'
-                 f'<div class="ad-resp">{rub}<div><h5>{g}</h5><p>{V["good"]}</p></div><div><h5>{i_}</h5><p>{V["imp"]}</p></div><div><h5>{n_}</h5><p>{V["next"]}</p></div></div></div>')
-        return f'<div class="ad-vb {{{{vb{k}}}}}" style="display:contents">{left}{right}</div>'
+        text = ""
+        for seg in V["text"]:
+            if isinstance(seg, str):
+                text += seg + " "
+            else:
+                n, tone, t = seg
+                text += f'<span class="ad-mk {tone}">{n}</span><span class="ad-ul {tone}">{t}</span> '
+        extracted = (f'<div class="ad-col {{{{showT}}}}"><div class="helper" style="margin:0 0 6px;display:flex;align-items:center;gap:6px">{mi("camera", 14)}{S["ad_v_photo"]} ・ {S["ad_v_ocr"]}</div>'
+                     f'<div class="ad-text">{text}</div></div>')
+        ask = f'<span class="ask">{mi("aiTutor", 16)}{S["ad_v_asklbl"]}</span>'
+        cards = (f'<div class="ad-fcard"><span class="ad-chip g">{S["ad_v_summary"]}</span><p>{V["summary"]}</p>{ask}</div>'
+                 + "".join(f'<div class="ad-fcard"><span class="ad-chip {tone}"><span class="ad-mk">{i + 1}</span>{lbl}</span><blockquote class="ad-q">{q}</blockquote><p>{c}</p>{ask}</div>'
+                           for i, (tone, lbl, q, c) in enumerate(V["cards"])))
+        feedback = f'<div class="ad-col {{{{showF}}}}" style="display:flex;flex-direction:column;gap:14px">{cards}</div>'
+        return f'<div class="ad-vb {{{{vb{k}}}}}">{extracted}{feedback}</div>'
     body = variant(0, S["ad_vA"]) + variant(1, S["ad_vB"]) + variant(2, S["ad_vC"])
     a, b, c, d = S["ad_v_meta"]
     return f'''<sc-if value="{{{{vOpen}}}}" hint-placeholder-val="{{{{false}}}}">
@@ -6902,6 +6960,7 @@ def ad_viewer(S, L):
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex:0 0 auto"><a class="tbtn outlined" href="#" title="dashboard/ai_dashboard/{{thread}}/show">{S["ad_v_open"]}</a><button class="ticon" onClick="{{{{closeV}}}}" aria-label="{S["ad_v_close"]}">{mi("close", 22)}</button></div>
     </div>
+    <div style="display:flex;justify-content:center;padding:16px 24px 0"><div class="ad-seg"><button class="{{{{segT}}}}" onClick="{{{{toT}}}}">{seg_t}</button><button class="{{{{segF}}}}" onClick="{{{{toF}}}}">{seg_f}</button></div></div>
     <div class="ad-db">{body}</div>
   </aside>
 </sc-if>'''
@@ -6911,10 +6970,12 @@ def ad_logic(S):
     stu = [n for n, _ in S["t_mx_students"]] + S["ad_extra"]
     fb = [[[at, lens, asg, ov, fbk] for at, lens, asg, ov, fbk, _ in rows] for rows in S["ad_fb"]]
     asg = dict(S["ad_asg"]); asg[""] = S["ad_asg_none"]
-    return ("""state = { o: -1, v: false, vi: 0, vj: 0 };
+    return ("""state = { o: -1, v: false, vi: 0, vj: 0, seg: "fb" };
   renderVals() {
     const FB = %FB%, STU = %STU%, LENS = %LENS%, ASG = %ASG%, VAR = %VAR%;
-    const v = { vOpen: this.state.v, closeV: () => this.setState({ v: false }) };
+    const v = { vOpen: this.state.v, closeV: () => this.setState({ v: false }),
+      segT: this.state.seg === "text" ? "on" : "", segF: this.state.seg === "fb" ? "on" : "", showT: this.state.seg === "text" ? "" : "hide", showF: this.state.seg === "fb" ? "" : "hide",
+      toT: () => this.setState({ seg: "text" }), toF: () => this.setState({ seg: "fb" }) };
     for (let i = 0; i < FB.length; i++) {
       v["s" + i] = this.state.o === i ? "" : "hide"; v["oc" + i] = this.state.o === i ? "on" : "";
       v["t" + i] = () => this.setState({ o: this.state.o === i ? -1 : i });
@@ -6922,16 +6983,13 @@ def ad_logic(S):
     }
     const e = (FB[this.state.vi] || [])[this.state.vj] || ["", 1, "a7", "", ""];
     v.vStu = STU[this.state.vi]; v.vAt = e[0]; v.vLens = LENS[e[1]]; v.vAsg = ASG[e[2]]; v.vOv = e[3];
-    v.vLikeC = e[4] === "up" ? "" : "hide"; v.vDisC = e[4] === "down" ? "" : "hide"; v.vCmtC = e[4] === "down" ? "" : "hide";
-    v.vThumb = e[4] === "up" ? "%LIKE%" : (e[4] === "down" ? "%DISLIKE%" : "%NOFB%");
     const k = VAR[e[2]];
     for (let x = 0; x < 3; x++) v["vb" + x] = k === x ? "" : "hide";
     return v;
   }"""
             .replace("%FB%", _json.dumps(fb, ensure_ascii=False)).replace("%STU%", _json.dumps(stu, ensure_ascii=False))
             .replace("%LENS%", _json.dumps(S["ad_lens_v"], ensure_ascii=False)).replace("%ASG%", _json.dumps(asg, ensure_ascii=False))
-            .replace("%VAR%", _json.dumps({"a7": 0, "": 1, "a6": 2}))
-            .replace("%LIKE%", S["ad_v_like"]).replace("%DISLIKE%", S["ad_v_dislike"]).replace("%NOFB%", S["ad_v_nofb"]))
+            .replace("%VAR%", _json.dumps({"a7": 0, "": 1, "a6": 2})))
 
 def t_dash_ai(S, L):
     """AIDashboardContainer as production renders it — the AI Tutor Dashboard title with Add Student,
@@ -7115,7 +7173,7 @@ TNOTES = {
     "t10": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard in TOPIC DASHBOARD mode, production's default view and where the Dashboard menu lands — Course / Book / Filters / Apply, the Enrollment and Duration chips (FILTERS opens production's panel — 在籍状況 Enrollment status, 期間 Duration — with an AI Feedback section added, PM 20 Sep: 開始日 start-date and 締切日 due-date ranges that keep only the feedback LOs falling inside them; the applied ranges show as chips beside Enrollment and Duration — AIフィードバック 開始日: 11/01 – 11/30, 締切日: 11/06 – 11/30 (PM, 20 Sep: show the selected ranges here); click Filters, it opens; same panel on the LO and Student dashboards), the paper with search and the Topic / LO Dashboard toggle, then production's topic table: Chapter Name, Topic Name (a link that opens the LO Dashboard for that topic, T11 →), Average Score as the progress bar over the topic's scored LOs (quizzes; -- where there is none) and Completion as the number of students who completed the topic. ADDED FOR AI FEEDBACK (PM, 20 Sep: the topic dashboard, per production, but for AI Feedback data): one column, AIフィードバック, with the topic's feedback LO (a link to its overview), its 開始 start and 締切 due dates under the name (PM, 20 Sep; since 22 Sep these are the course's dates from T8, not the LO's own) and its counts — 提出 12/30, 確認待ち 8 (a link into the LO's submissions when there are any), 返却済み 3 — and the ★ number of submissions the teacher picked to show the class. Topics without a feedback LO (6-1, 8-1) were shown with “no AI Feedback LO” and are left off the board for a clearer demo (PM, 20 Sep); in the product every topic of the book is listed, as production does. Counts, never rates (PRD §1.6.4); no score is invented for a feedback LO, so Average Score stays what production computes from the quizzes. 6-2, 7-1 and 7-2 carry the three feedback LOs the LO Dashboard shows. INSIGHTS (PM, 20 Sep: merged here from the LO Dashboard's overview paper, which is gone; the 詳しく Details expansion that opened the full insight with quotes and counts was then removed too — PM, 20 Sep: the teacher checks the submissions themself, the line only has to alert them; then broadened, PM 20 Sep, from strictly 'what the class missed' to insights of several kinds — 見落とし what was missed, 良い傾向 what is going well, 紹介候補 what is worth showing the class, 提出状況 how submissions stand — with the LLM ranking them and the top one shown per LO): under each feedback LO's counts, one line with its kind as a tag, read by an LLM pass over that LO's submissions and their generated draft feedback along the rubric — 6-2 良い傾向: 21/30 compare before and after the outlier; 7-1 見落とし: 有意性の検定に進まない下書きが 8/12件, 次回冒頭の候補; 7-2 紹介候補: 4 asked a question of their own — nothing more: no expansion, no quotes, no counts on this board (the LO's overview and submissions are one click away). It is generated from the submissions and their draft feedback, so it is there before anything is returned (PM, 20 Sep), refreshes itself whenever a submission or a draft changes (a Regenerate button was tried and removed, PM 20 Sep: no reason a teacher should have to ask), and is teacher-facing only. The rubric is the prompt's structure; every claim must trace to a count in the data. PRACTICE BLOCK (PM, 27 Sep: add similar question LO stats here as well): under 7-1's feedback LO, the topic's practice LO in the same shape — name (a link to P3), NO DATE LINE (PM, 27 Sep: remove the date — it is unconfirmed whether a similar-questions practice LO will have a start and due date concept at all; T8 shows its row with empty date cells for the same reason; and remove the no-due-date — in general, when there is not going to be something, do not state it; the same rule then took the \"no completion status\" caption, the \"no re-practice\" aside, the hidden-fields alert on P1, the \"not printed\" footer on P9 and the \"no set is created\" line on P6 off the boards), TWO chips (PM, 27 Sep: keep just students with sets, remove the others, add students who completed their sets): セットのある生徒 5人/30人 = students who created at least one set; セットを完了した生徒 3人/30人 = students who finished every set they themselves generated (on T14: 佐藤 4/4 and 田中 6/6 are complete, 山田 8/10 and 伊藤 2/6 are not, one student below the fold is complete). The sets-created / answered / correct chips drawn earlier that day are gone from this board; T14 keeps the per-student done ・ correct, one 見落とし insight naming the source question with the lowest accuracy (Q3 相関と因果 45%; a link to LO mode), (the ad hoc widget line was drawn and removed — PM, 28 Sep: not required). Practice sets only; no completion, no max score, no rate invented beyond correct/done.",
     "t11": "GroupDashboard in LO DASHBOARD mode, reached from a topic name on T10 or from the toggle. This is GroupDashboard as production renders it — the same filter row and chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; and the whole toggle — Latest Score and Highest Score — is greyed out when nothing in the matrix carries a score (PM, 20 Sep) — as here; it comes back live when a quiz or other scored LO is in view. For a clearer demo the matrix shows only AI Feedback LOs (PM, 20 Sep): the Session 6 report (all returned, one 差し戻し, two 再提出), the Session 7 report and the weekly reflection, so all four statuses and both secondary chips are on screen; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header, and the ★ 注目のみ / Highlighted only chip beside the score toggle narrows the matrix to students with a highlighted submission (PM, 20 Sep; it works — click it); sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). A tile row (production's Questions Solved via AI, then AI Feedback count tiles) was tried and removed (PM, 20 Sep: not required). In its place, on the PM's 'try it' (20 Sep), an OVERVIEW PAPER was built from the PRD — the three C10.3a jobs, B2's revision outcome and the §1.6.4 rules — and then taken apart block by block, so that this board is the matrix alone: (1) 未提出 Not submitted was here as counts and names per LO and was removed (PM, 20 Sep): the matrix header's 提出 12/30 and the tinted -- cells already carry it; (2) 先生の確認待ち Waiting on you — drafts awaiting approval per LO with the oldest one's age — was tried and removed as well (PM, 20 Sep: not required; the matrix header's 確認待ち count and Submission Grading carry it); (3) 今週クラスが見落とした点 What the class missed: first a templated sentence over the criteria counts; then, on the PM's 'try it' (20 Sep), an INSIGHT written by an LLM pass over the week's SUBMISSIONS AND THEIR DRAFT FEEDBACK grouped by rubric criterion (PM, 20 Sep: not the returned comments — the teacher opens this dashboard after the due date, before anything is returned, so the basis is every draft the checks produced; a returned comment counts the same, and the teacher's edits flow in once made) — what the recurring mistake actually is (8 of 12 drafts stop before the significance test, 3 read r ≈ 0.4 as causation) and one recap point — grounded two ways: the criterion counts stay beneath it as the anchor, and two quoted passages link into the submissions they come from. Teacher-facing only, one call per LO per week, the rubric as the prompt's structure; it refreshes itself when the drafts change (a Regenerate button was tried and removed, PM 20 Sep). It is also a review aid: it tells the teacher what the drafts are about to say to the class before they approve them. The PM's question that led here: is the criterion just a count (yes: drafts with an improvement comment per criterion) and could a generic agent read the feedback against the rubric instead (this is that); (4) フィードバックを活かした Acted on the feedback — resubmitted, points resolved, rewrote in their own words — was tried and removed (PM, 20 Sep: not required); (5) ★ Highlighted for class — the teacher's picks with the few-word reason typed when highlighting, each a link into the submission — was a block here and was MERGED INTO THE MATRIX (PM, 20 Sep): a highlighted cell now shows that reason under the status with a small ★ before it (★ 外れ値の扱いが的確, ★ 相関と因果を区別している…; the separate ★ icon beside the status was dropped as redundant, PM 20 Sep) and opens the submission's review screen, the LO header keeps the ★ count, and the ★ 注目のみ chip narrows the matrix to those students — and block 3 itself, What the class missed, was merged into the Topic Dashboard (T10, PM 20 Sep), one line per feedback LO with the full insight in an expanded row; so the overview paper is gone. Not shown, deliberately: score or completion-rate tiles, per-student comparisons, average time to return. Block 3 depends on criterion keys being fixed per assignment (PRD §1.6.5, U22); block 5 is collectable today. THE MATRIX below is the drill-down: in it, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered (確認待ち links to the LO's submissions), and each cell is the submission status in the marking tones with a 再提出 secondary chip where the submission is a resubmission (the 自動返却 Auto-returned chip was shown too and removed, PM 20 Sep: not needed in the matrix — it stays in Submission Grading and on the student dashboard rows; a per-cell comment count was tried and removed, PM 20 Sep: use case unclear — it stays in Submission Grading); the cell opens the LO's submissions. Two insight panels below the matrix — comments by rubric criterion and the requirements that stopped a submission at the pre-check — were tried and removed (PM, 20 Sep: not required). Student name → the student dashboard.",
     "t12": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with -- under Latest Score and Highest Score (a feedback LO has none; 再提出 1回 sat there first and was moved under the submission date, PM 21 Sep: it describes the submission, not a score). WHAT IS NEW is in the LO table itself (PM, 20 Sep: merged into the existing matrix rather than a table of its own; then, PM 20 Sep, fitted as columns rather than a detail row — the submission date was already a column): three feedback columns after production's four — 状態 Status (for every LO, PM 21 Sep: production writes 完了 Completed into the score columns of a video or slide deck, which read as statuses in score columns once a Status column existed, so 完了 moved here and the score columns show -- for anything unscored; for a feedback LO the status chip with its 再提出 / 自動返却 secondary chip and the date it was reached beneath, PM 21 Sep: a column of its own rather than sitting where a score would be), 指摘された観点 Flagged criteria — the rubric criteria that drew an improvement comment, with 再提出で修正済み where the resubmission fixed them (a コメント count column — 3, 良い点 1 ・ 改善点 2 — sat between and was dropped, PM 21 Sep: not useful; where the student stumbles is, and it is here), and 確認する / 見る into the review — the feedback LO's name a link to its overview (T7, PM 20 Sep), with the ★ reason under it where the teacher highlighted it; other LO rows show -- there. A separate paper below the table — count tiles, a submissions table and a by-criterion profile — was built first and removed in the merge. 7-2 is expanded so the weekly reflection shows too. PRACTICE ROW (24 Sep; PM, 28 Sep): the 類題演習 LO row reads 最新スコア 6/8 = questions correct / answered across the student's sets so far, no label (PM: remove \"correct\", it is understood), and 最高スコア 5/6 = the student's best single set (PM: add highest score) — Set 1 5/6, Set 2 1/2 so far; Status 途中 with the sets line; no flagged criteria; セット一覧 opens LO mode.",
-    "t13": "AI DASHBOARD (PM, 6 Oct: implement the AI Dashboard in the prototype from the Back Office code and the production screenshot; v1 of AI Feedback reports inside it. Then, on this board: the AI feedback code on the aigrading repo is not linked to the LO — replace with what is actually available in the AI feedback code; and there is no user-generated feedback in the AI feedback feature). PRODUCTION FIRST: AIDashboardContainer as the syllabus squad renders it — the Dashboard tabs with AI Dashboard active, the AI Tutor Dashboard title with 生徒の追加 Add Student (SearchStudentDialog: the students on this board are the ones added, 10 here), AIDashboardForm (Lens = the subjects, start and end date, a divider, Apply), one paper: AIDashboardOverview (the 期間 Period line; Number of Students / Total Questions Asked / Total Likes / Total Dislikes) and the Student Usages table (count in the title, Last Updated from the sync time, search by student name, index column, expand chevron, Student Name → the student, User Name, Total Questions, Likes in green, Dislikes in red), the expanded row showing AIInteractionHistoryTable (Created At → the thread, Lens, Item Overview, No. of Questions, Feedback Type, Comments). WHAT AI FEEDBACK IS IN THAT CODE (backoffice branch): not an LO. It is the AI Tutor's FEEDBACK SNAP — AITutorgraphType FEEDBACK beside TUTOR (Snap-to-ask): the student photographs their own work and the AI responds to it — optionally tied to an AI TUTOR ASSIGNMENT (AITutorAssignment: title, subject, overall question, acceptance criteria / rubric content generated by AI, publish with a due date; the student taps Mark as Complete; analysis Started / Snaps / Completed from AssignmentReportProgress), counted on this dashboard by GetStudentUsageAnalytics.total_feedback_generated (production's Feedbacks generated card, shown under the syllabus.ai_tutor.ai_feedback flag), every snap a tutoring-session thread whose detail page (AIDashboardDetailGeneralInfo + QuestionTabPanel) shows the item overview and the AI response. SO ON THIS BOARD: (1) the AI Feedback card row = production's Feedbacks generated plus the assignment's Started / Snaps / Completed, captioned with the assignment and its due date; (2) two per-student columns — feedback snaps in the period, and the student's status on the assignment (Completed / Started / Not started); (3) the expanded row keeps the Snap-to-ask chat history and lists the student's FEEDBACK SNAPS beneath it: created at, lens, the assignment it was tied to (or 課題なし free snap), item overview, 見る View — no like / dislike or comments column: the PM confirmed (6 Oct) the feedback flow has no user-generated feedback, the thumbs and comments (UpsertQuestionFeedback) belong to Snap-to-ask only; (4) View opens a DRAWER with the thread: the photographed work as read, the item overview, and the AI response — checked against the assignment's acceptance criteria where there is one, then strengths / to improve / next step — with a link to the thread page in the AI Tutor Dashboard. ITEM OVERVIEW (PM question, 6 Oct) is the thread's question_overview, written by the AI when the snap is processed and only rendered by the Back Office; what it says for a feedback snap is a prompt decision — drawn as a one-line summary of the work in the photo (task or topic, what the student produced), without the verdict and without repeating the assignment name. What was here before (the AI Feedback LO's submissions per student, the returned feedback and the Review-and-return viewer) is removed from this board: the LO's data stays on T13–T15 and in Submission Grading. Try: expand 山田 花子, View the three snaps — the Session 7 assignment, the free snap on the hypothesis test, the Session 6 assignment. Counts only, no rates.",
+    "t13": "AI DASHBOARD (PM, 6 Oct: implement the AI Dashboard in the prototype from the Back Office code and the production screenshot; v1 of AI Feedback reports inside it. Then, on this board: the AI feedback code on the aigrading repo is not linked to the LO — replace with what is actually available in the AI feedback code; and there is no user-generated feedback in the AI feedback feature). PRODUCTION FIRST: AIDashboardContainer as the syllabus squad renders it — the Dashboard tabs with AI Dashboard active, the AI Tutor Dashboard title with 生徒の追加 Add Student (SearchStudentDialog: the students on this board are the ones added, 10 here), AIDashboardForm (Lens = the subjects, start and end date, a divider, Apply), one paper: AIDashboardOverview (the 期間 Period line; Number of Students / Total Questions Asked / Total Likes / Total Dislikes) and the Student Usages table (count in the title, Last Updated from the sync time, search by student name, index column, expand chevron, Student Name → the student, User Name, Total Questions, Likes in green, Dislikes in red), the expanded row showing AIInteractionHistoryTable (Created At → the thread, Lens, Item Overview, No. of Questions, Feedback Type, Comments). WHAT AI FEEDBACK IS IN THAT CODE (backoffice branch): not an LO. It is the AI Tutor's FEEDBACK SNAP — AITutorgraphType FEEDBACK beside TUTOR (Snap-to-ask): the student photographs their own work and the AI responds to it — optionally tied to an AI TUTOR ASSIGNMENT (AITutorAssignment: title, subject, overall question, acceptance criteria / rubric content generated by AI, publish with a due date; the student taps Mark as Complete; analysis Started / Snaps / Completed from AssignmentReportProgress), counted on this dashboard by GetStudentUsageAnalytics.total_feedback_generated (production's Feedbacks generated card, shown under the syllabus.ai_tutor.ai_feedback flag), every snap a tutoring-session thread whose detail page (AIDashboardDetailGeneralInfo + QuestionTabPanel) shows the item overview and the AI response. SO ON THIS BOARD: (1) the AI Feedback card row = production's Feedbacks generated plus the assignment's Started / Snaps / Completed, captioned with the assignment and its due date; (2) two per-student columns — feedback snaps in the period, and the student's status on the assignment (Completed / Started / Not started); (3) the expanded row keeps the Snap-to-ask chat history and lists the student's FEEDBACK SNAPS beneath it: created at, lens, the assignment it was tied to (or 課題なし free snap), item overview, 見る View — no like / dislike or comments column: the PM confirmed (6 Oct) the feedback flow has no user-generated feedback, the thumbs and comments (UpsertQuestionFeedback) belong to Snap-to-ask only; (4) View opens a DRAWER with the thread IN THE LEARNER APP'S AI FEEDBACK FORMAT (PM screenshots, 6 Oct: use these as the format): an Extracted text / Feedback pill toggle; Extracted text = the work as read, with numbered markers and dashed underlines — teal for a strength, red for a point to improve — on the passages the feedback points at; Feedback = a Summary card, then one numbered card per point with the criterion chip, the quoted passage, the comment and Ask AI, the numbers matching the markers in the text; a link to the thread page in the AI Tutor Dashboard. ITEM OVERVIEW (PM question, 6 Oct) is the thread's question_overview, written by the AI when the snap is processed and only rendered by the Back Office; what it says for a feedback snap is a prompt decision — drawn as a one-line summary of the work in the photo (task or topic, what the student produced), without the verdict and without repeating the assignment name. What was here before (the AI Feedback LO's submissions per student, the returned feedback and the Review-and-return viewer) is removed from this board: the LO's data stays on T13–T15 and in Submission Grading. Try: expand 山田 花子, View the three snaps — the Session 7 assignment, the free snap on the hypothesis test, the Session 6 assignment. Counts only, no rates.",
 }
 MNOTES = {
     "m1": "MOBILE. Same LMS hierarchy: this is the LO list under Topic 7-1 (Figma Home/Course-ChapterList/TopicList: navigate header, primary banner, 343-wide LO cards, bottom nav). AI Feedback is the new LO type, with the yellow sparkle and the due chip. Tap the row →",

@@ -308,9 +308,11 @@ Feedback LO rather than in a separate demo:
   Completed). The board adds: production's Feedbacks generated card plus the
   assignment's analysis, two per-student columns (feedback snaps, assignment status),
   the student's feedback snaps under the chat history, and **View → a drawer with the
-  thread** (the photographed work, item overview, the AI response against the
-  acceptance criteria; no like / dislike or comments — the PM confirmed the feedback
-  flow has none). Counts only, no rates.
+  thread** in the learner app's AI Feedback format (PM screenshots, 6 Oct): an
+  Extracted text / Feedback toggle — the work as read with numbered teal / red markers
+  and dashed underlines, then a Summary card and numbered per-criterion cards (quote,
+  comment, Ask AI). No like / dislike or comments — the PM confirmed the feedback flow
+  has none. Counts only, no rates.
 - **Student PC (Main, 05-Todo, P4–P9)** and **mobile (M-Main, P10–P14).** The
   LO list and To-do gain the ✦ practice card (set count only, no completion
   chip). The practice screen follows Koki's prototype trimmed to the PRD
