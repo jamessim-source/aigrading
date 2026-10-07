@@ -7001,7 +7001,6 @@ def ad_export(S, L):
     return f'''<sc-if value="{{{{exOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tscrim"><div class="dlg" style="max-width:860px">
     <div class="dlg-head"><h2>{S["ad_x_h"]}</h2><button class="ticon" onClick="{{{{closeEx}}}}" aria-label="{S["ad_x_cancel"]}">{mi("close", 22)}</button></div>
     <div class="dlg-body">
-      <p class="helper" style="margin:0">{S["ad_x_sub"]}</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
         {field(S["ad_x_class"], S["ad_x_class_v"], required=True, icon="expandMore")}
         {field(S["ad_x_asg"], S["ad_x_asg_v"], icon="expandMore")}
