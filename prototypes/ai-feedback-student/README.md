@@ -312,7 +312,9 @@ Feedback LO rather than in a separate demo:
   side: the extracted text with numbered teal / red markers and dashed underlines on the
   left, a Summary card and numbered per-criterion cards (quote, comment; no Ask AI for the teacher) on
   the right. No like / dislike or comments — the PM confirmed the feedback flow
-  has none. Counts only, no rates.
+  has none. **Export Chat** (7 Oct) beside the search: per class, a CSV of the feedback
+  snaps in the period with User ID, Student Name, Subject, Question, Feedback, Chat.
+  Counts only, no rates.
 - **Student PC (Main, 05-Todo, P4–P9)** and **mobile (M-Main, P10–P14).** The
   LO list and To-do gain the ✦ practice card (set count only, no completion
   chip). The practice screen follows Koki's prototype trimmed to the PRD
