@@ -2759,7 +2759,8 @@ def role_toggle(S):
     """Prototype-only: jump between the teacher's Back Office and the student's screen.
     It sits in the drawer, in flow, so it never covers the page's own controls."""
     L = S["t_lang"]
-    student = f'<a class="dev-i" href="{fn("Main", L)}">{S["t_role_s"]}</a>'
+    # on the Kindai Excel board (X1) the student side is the trial's own upload screen (X2), not the generic app home
+    student = f'<a class="dev-i" href="{fn("X-Upload" if CUR == "X-Assign" else "Main", L)}">{S["t_role_s"]}</a>'
     teacher = f'<span class="dev-i on">{S["t_role_t"]}</span>'
     return f'<div class="dev" role="group" aria-label="{S["t_role_aria"]}">{teacher}{student}</div>'
 
