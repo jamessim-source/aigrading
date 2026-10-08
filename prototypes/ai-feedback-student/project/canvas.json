@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-10-07T09:30:33Z"
+    "at": "2026-10-08T15:04:18Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1257,6 +1257,54 @@
       "h": 812,
       "title": "Q22 · Mobile — returned (version 2) (EN)",
       "is_interactive": true
+    },
+    "X-Assign.dc.html": {
+      "x": 0,
+      "y": 19200,
+      "w": 1440,
+      "h": 900,
+      "title": "X1 · BO — AI Tutor › Assignments: the class, the assignment list, New Assignment with .xlsx / .pptx attachments, a role per file (exercise / model answer / criteria), Generate by AI from the criteria, the Gem tone in Your message (JA)",
+      "is_interactive": true
+    },
+    "X-Upload.dc.html": {
+      "x": 1520,
+      "y": 19200,
+      "w": 375,
+      "h": 812,
+      "title": "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the Classroom note (JA)",
+      "is_interactive": true
+    },
+    "X-Feedback.dc.html": {
+      "x": 1975,
+      "y": 19200,
+      "w": 375,
+      "h": 812,
+      "title": "X3 · Mobile — AI Feedback result for an Excel submission: Extracted text (the sheets as tables with markers) / Feedback (Summary in the Gem's three-part tone, cards against the model answer) (JA)",
+      "is_interactive": true
+    },
+    "X-Assign-en.dc.html": {
+      "x": 0,
+      "y": 20700,
+      "w": 1440,
+      "h": 900,
+      "title": "X1 · BO — AI Tutor › Assignments: the class, the assignment list, New Assignment with .xlsx / .pptx attachments, a role per file (exercise / model answer / criteria), Generate by AI from the criteria, the Gem tone in Your message (EN)",
+      "is_interactive": true
+    },
+    "X-Upload-en.dc.html": {
+      "x": 1520,
+      "y": 20700,
+      "w": 375,
+      "h": 812,
+      "title": "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the Classroom note (EN)",
+      "is_interactive": true
+    },
+    "X-Feedback-en.dc.html": {
+      "x": 1975,
+      "y": 20700,
+      "w": 375,
+      "h": 812,
+      "title": "X3 · Mobile — AI Feedback result for an Excel submission: Extracted text (the sheets as tables with markers) / Feedback (Summary in the Gem's three-part tone, cards against the model answer) (EN)",
+      "is_interactive": true
     }
   },
   "order": [
@@ -1415,7 +1463,13 @@
     "MQ-Resub1-en.dc.html",
     "MQ-Resub2-en.dc.html",
     "MQ-Resub3-en.dc.html",
-    "MQ-Resub4-en.dc.html"
+    "MQ-Resub4-en.dc.html",
+    "X-Assign.dc.html",
+    "X-Upload.dc.html",
+    "X-Feedback.dc.html",
+    "X-Assign-en.dc.html",
+    "X-Upload-en.dc.html",
+    "X-Feedback-en.dc.html"
   ],
   "notes": {
     "title": {
@@ -2068,6 +2122,41 @@
       "text": "Same student flow in English",
       "kind": "title1",
       "maxW": 10600
+    },
+    "x_X-Assign": {
+      "x": 0,
+      "y": 20160,
+      "w": 640,
+      "maxH": 600,
+      "text": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) each attached file gets a ROLE — exercise file, model answer (the reference for the gaps), evaluation criteria — one select per file, no new entity; (3) Generate by AI reads the criteria file and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is."
+    },
+    "x_X-Upload": {
+      "x": 1520,
+      "y": 20072,
+      "w": 375,
+      "maxH": 600,
+      "text": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and the note that the final goes through Google Classroom (the two-step flow agreed on 10/8). Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide."
+    },
+    "x_X-Feedback": {
+      "x": 1975,
+      "y": 20072,
+      "w": 375,
+      "maxH": 600,
+      "text": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: fix it and check again (version 2) → the same upload; submit the final in Google Classroom. Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
+    },
+    "title_x": {
+      "x": 0,
+      "y": 18900,
+      "text": "Kindai sociology trial — Excel assignments on the AI Tutor Assignment and the feedback snap: the model-answer workbook as the Excel rubric, the student's workbook as the submission, the feedback against it · 日本語",
+      "kind": "title1",
+      "maxW": 2600
+    },
+    "title_x_en": {
+      "x": 0,
+      "y": 20460,
+      "text": "Same in English",
+      "kind": "title1",
+      "maxW": 2600
     }
   },
   "designSystems": [],

@@ -2776,6 +2776,8 @@ def tnav(S, side="book"):
         branch = " branch" if (i == 4 and side == "book") or (i == 3 and side in ("course", "cm")) else ""
         if i == 0 and side == "dash":
             branch = " on"
+        if i == 1 and side == "ai":
+            branch = " on"
         caret = f'<span class="caret">{mi("expandLess" if i in opened else "expandMore", 20)}</span>' if i in groups else ""
         lb = f'<a class="lb" href="{tfn("T-DashTopic", L)}" style="color:inherit">{label}</a>' if i == 0 else f'<span class="lb">{label}</span>'
         out += f'<div class="tn{branch}"><span class="mi">{mi(icons[i], 22)}</span>{lb}{caret}</div>'
@@ -7119,6 +7121,281 @@ def t_dash_ai(S, L):
 TSCREENS.append("T-DashAI")
 TBUILDERS["T-DashAI"] = t_dash_ai
 
+
+# =====================================================================================
+# EXCEL ASSIGNMENTS FOR THE KINDAI SOCIOLOGY TRIAL (PM, 8 Oct): the trial's every assignment is an
+# Excel workbook the student fills in (4 sheets); the Excel "rubric" is the teacher's model-answer
+# workbook (gap feedback, no criteria list); slides use the 6-criterion rubric already received; the
+# student pre-checks in Manabie, then submits the final to Google Classroom. Least-dev-effort update on
+# what the Back Office code already has (the AI Tutor Assignment with its attachments and rubric
+# content, the feedback snap in the app, the AI Dashboard):
+#   X1 (BO)  ClassAssignmentPage + CreateAssignmentDialog as the code renders them, with the upload
+#            accepting .xlsx / .pptx and one ROLE per attached file (exercise file / model answer /
+#            evaluation criteria); Generate by AI reads the criteria file; Your message carries the
+#            teacher's tone instructions. No new screen, no new entity.
+#   X2 (app) The feedback snap's input gains "choose a file" beside the camera: the workbook, every
+#            sheet read, then AI check — the existing snap flow with a file instead of a photo.
+#   X3 (app) The AI Feedback page as the app has it: Extracted text (the sheets as tables, numbered
+#            markers) / Feedback (Summary + numbered cards against the model answer, the Gem tone).
+# =====================================================================================
+X_JA = dict(
+    x_titles={"assign": "BO — AIチューター課題（Excel 模範回答・評価基準）", "upload": "モバイル — Excel をアップロード", "fb": "モバイル — AIフィードバック（Excel）"},
+    # X1 — BO
+    x_crumb=["AIチューター", "課題"], x_h="課題", x_new="新規", x_classes=[("地域環境統計学 ・ 3年A組", "150人 ・ 保本"), ("データ分析入門 ・ 2年", "41人"), ("統計学演習 ・ 3年B組", "28人")],
+    x_asg_list=[("第8回 相関分析(2)", "open", "期限 11/13 23:59", "Excel"), ("第9回 回帰分析", "draft", "作成中", "Excel"), ("第10回 データ処理演習(3) 購入計画", "closed", "未公開", "Excel ・ スライド")],
+    x_st={"open": ("公開中", "published"), "draft": ("下書き", "wait"), "closed": ("非公開", "unpublished")},
+    x_dlg_h="新規課題", x_f_title="タイトル", x_f_title_v="第9回 回帰分析", x_f_subject="科目", x_f_subject_v="数学", x_f_msg="メッセージ",
+    x_f_msg_v="数学が苦手な2年生向けに、親しみやすいTAとして答えてください。毎回 400〜600字で、①具体的に褒める → ②気づきを促す問いかけ → ③具体的で段階的な改善案 の順に。完成品は作らず、添削と改善案にとどめること。配布資料にないことは「配布資料には記載がありませんが…」と前置きし、末尾に参照した資料名を書くこと。",
+    x_f_msg_help="Gem の指示文をそのまま。フィードバックの型とトーン（Q1〜Q4）はこの欄で指定します — 新しい設定画面は作りません",
+    x_rub_sec="フィードバック用ルーブリックを作成（任意）", x_f_qov="質問概要", x_f_qov_v="入試の点数と入学後のGPAの相関係数・回帰式を Excel で求め、決定係数と偏相関まで計算する",
+    x_f_up="ファイルをアップロード", x_f_drop="ここにファイルをドラッグ＆ドロップ、または", x_f_browse="ファイルを選択", x_f_types="対応形式: PDF, PNG, JPG, XLSX, PPTX",
+    x_files=[("演習_09_回帰.xlsx", "xlsx", "48 KB ・ 4シート", "task"), ("演習_09_回帰_模範回答.xlsx", "xlsx", "51 KB ・ 4シート", "model"), ("課題の評価基準.pdf", "pdf", "212 KB", "rubric")],
+    x_role_lbl="役割", x_roles={"task": "課題ファイル（学生が埋める）", "model": "模範回答（ギャップの基準）", "rubric": "評価基準（観点）"},
+    x_role_help="模範回答があれば、AIは学生の回答と模範回答の差を観点ごとに返します。評価基準があれば「AIによる生成」がその観点をルーブリック内容に書き起こします。",
+    x_f_rub="ルーブリック内容", x_f_rub_v="評価基準（課題の評価基準.pdf）より。この回は ①②③④ を使う：\n① エクセルスキル — 関数（CORREL・SLOPE・INTERCEPT・RSQ）とセル参照が正しく使えている\n② 見やすさ — 表・ラベル・単位が読み取れる\n③ 処理 — 相関係数・回帰式・決定係数・偏相関が模範回答と一致する（差があれば指摘）\n④ 考察 — 数値の意味を一文で書けている（どの変数が家賃を最も説明するか）\n各観点 0〜3、優れたものは 5（目安として返す）",
+    x_gen="AIによる生成", x_gen_hint="評価基準ファイルと質問概要から生成", x_due="期限を設定する", x_due_v="2026/11/20 23:59", x_cancel="キャンセル", x_create="作成",
+    x_new_chip="NEW", x_detail_h="課題の詳細", x_det_edit="編集", x_det_open="開く", x_det_close="閉じる", x_det_files="添付ファイル", x_det_rub="ルーブリック内容", x_det_msg="メッセージ",
+    x_det_sel=("第8回 相関分析(2)", "公開中 ・ 期限 2026/11/13 23:59", "演習_08_相関(2).xlsx ・ 演習_08_相関(2)_模範回答.xlsx ・ 課題の評価基準.pdf"),
+    x_det_rub_v="① エクセルスキル ② 見やすさ ③ 処理（層別・外れ値・相関行列が模範回答と一致） ④ 考察",
+    x_det_stats=("開始済み 118 / 150", "スナップ 203", "完了 64 / 150"),
+    # X2 — app upload
+    x_up_title="AIフィードバック", x_up_asg_lbl="課題", x_up_asg="第9回 回帰分析", x_up_due="期限 11/20 23:59 ・ 提出前に必ずAIチェック",
+    x_up_h="答案をアップロード", x_up_sub="Excel のまま送れます。すべてのシートを読み込みます。", x_up_camera="写真を撮る", x_up_file="ファイルを選ぶ", x_up_types="Excel (.xlsx) ・ PowerPoint (.pptx) ・ PDF ・ 写真",
+    x_up_picked="演習_09_回帰.xlsx", x_up_picked_meta="48 KB ・ 4シート ・ 11/13 20:38", x_up_sheets_h="読み込むシート",
+    x_up_sheets=[("回帰直線・回帰式(1)", "B3:L22"), ("回帰直線・回帰式(2)", "A3:F50"), ("決定係数", "A1:I51"), ("偏相関", "A3:I22")], x_up_read="読み込み済み",
+    x_up_btn="AIチェックを受ける", x_up_note="AIのフィードバックを受けて直したら、最終版は Google Classroom から提出してください（成績はそちらで付きます）。",
+    x_up_prev="前回の版：なし ・ 1回目のチェック",
+    # X3 — app feedback
+    x_fb_title="AIフィードバック", x_fb_seg=("読み取ったテキスト", "フィードバック"), x_fb_ver="版 1 ・ 11/13 20:40 ・ 模範回答と比較",
+    x_fb_summary_lbl="まとめ",
+    x_fb_summary="4つのシートすべてで計算が最後まで進んでいて、特に「回帰直線・回帰式(1)」では偏差から共分散・相関係数・回帰式まで手順どおりに求められています。計算式で出した値と関数で出した値が一致しているのも、確認の習慣ができている証拠です。ひとつ考えてみてください。「偏相関」シートの偏相関係数は 1.01 になっていますが、相関係数が取りうる範囲はいくつからいくつまででしょうか。模範回答では 0.58 です。分母の √(1−r²) にどの r を入れたか、セルの参照先を一度たどってみましょう。次の一歩は三つです。① 偏相関の式のセル参照を見直して再計算する。② 「決定係数」シートで、三つの R² のうちどれが家賃をいちばん説明するかを一文で書く。③ 直したら最終版を Google Classroom に提出する。参照：第9回 講義資料 p.12「偏相関係数」、p.8「決定係数の読み方」",
+    x_fb_cards=[("t", "処理", "回帰直線・回帰式(1)", "相関係数 0.7618（計算式 K8）＝ 0.7618（関数 K13）", "計算式と関数の両方で求めて値を突き合わせています。模範回答と一致。偏差積の平均（共分散）39.52 から r を出す流れも正しいです。"),
+                ("t", "エクセルスキル", "回帰直線・回帰式(1)", "回帰式の傾き 0.00807 ・ 切片 −1.797", "模範回答と一致。ここまで書けたら、「入試の点数が1点上がるとGPAが約0.008上がる」という一文を添えると、数値が意味を持ちます。"),
+                ("r", "考察", "決定係数", "使用部分面積 vs 家賃 R² 0.508 ／ 交通 R² 0.076 ／ 築年数 R² 0.360 — 解釈は未記入", "数値は三つとも模範回答と一致していますが、模範回答にはこの下に「築年数と面積が家賃を説明し、駅からの徒歩分数はほとんど関係しない」の一文があります。どの変数が家賃を最も説明するか、一文だけ書いてみましょう。"),
+                ("r", "処理", "偏相関", "偏相関係数 (r_12.3) = 1.0105", "相関係数は −1 から 1 の間に収まります。1 を超えているので、式のどこかで参照がずれています。模範回答は 0.58 です。(r12 − r13·r23) ÷ √((1−r13²)(1−r23²)) の r13 と r23 に、相関行列のどのセルを入れたか確かめてみてください。")],
+    x_fb_sheets=[("回帰直線・回帰式(1)", [("平均（点数 ・ GPA）", "534.05 ・ 2.51", ""), ("標準偏差", "69.99 ・ 0.741", ""), ("偏差積の平均（共分散）", "39.52", ""), ("相関係数", "0.7618", "1"), ("回帰式の傾き", "0.00807", "2"), ("回帰式の切片", "−1.797", "")]),
+                 ("回帰直線・回帰式(2)", [("相関係数 (r)", "0.998", ""), ("決定係数 (R²)", "0.996", ""), ("回帰式の傾き (b)", "0.323", ""), ("回帰式の切片 (a)", "35,329.5", "")]),
+                 ("決定係数", [("使用部分面積 vs 家賃", "r 0.713 ・ R² 0.508", ""), ("交通（徒歩分数） vs 家賃", "r 0.276 ・ R² 0.076", ""), ("築年数 vs 家賃", "r −0.600 ・ R² 0.360", ""), ("解釈", "（未記入）", "3")]),
+                 ("偏相関", [("r12 入試×GPA", "0.762", ""), ("r13 入試×評定", "0.691", ""), ("r23 GPA×評定", "0.607", ""), ("偏相関係数 (r_12.3)", "1.0105", "4")])],
+    x_fb_cols=("項目", "値"), x_fb_again="直してもう一度チェック（版2）", x_fb_final="Google Classroom に最終版を提出", x_fb_ask="AIに質問",
+)
+X_EN = dict(
+    x_titles={"assign": "BO — AI Tutor Assignment (Excel model answer, criteria)", "upload": "Mobile — upload the Excel", "fb": "Mobile — AI Feedback (Excel)"},
+    x_crumb=["AI Tutor", "Assignments"], x_h="Assignments", x_new="New", x_classes=[("Regional & Environmental Statistics · Year 3 A", "150 students · Yasumoto"), ("Intro to Data Analysis · Year 2", "41 students"), ("Statistics Exercises · Year 3 B", "28 students")],
+    x_asg_list=[("Session 8 Correlation (2)", "open", "due 11/13 23:59", "Excel"), ("Session 9 Regression", "draft", "being created", "Excel"), ("Session 10 Data processing (3) Purchase planning", "closed", "not open", "Excel · slides")],
+    x_st={"open": ("Open", "published"), "draft": ("Draft", "wait"), "closed": ("Closed", "unpublished")},
+    x_dlg_h="New Assignment", x_f_title="Title", x_f_title_v="Session 9 Regression", x_f_subject="Subject", x_f_subject_v="Math", x_f_msg="Your message",
+    x_f_msg_v="Answer as a friendly TA for second-year students who are not comfortable with math. Each response 400–600 characters, in three parts: specific praise → a question that prompts reflection → concrete, step-by-step suggestions. Never produce the finished work; correct and suggest only. Preface anything not in the course materials with “This isn't in the course materials, but…” and name the materials you referred to at the end.",
+    x_f_msg_help="The Gem instructions as they are. The feedback's shape and tone (Q1–Q4) live in this field — no new settings screen",
+    x_rub_sec="Create feedback rubric (Optional)", x_f_qov="Question overview", x_f_qov_v="Compute the correlation coefficient and regression line between entrance-exam score and GPA in Excel, then the coefficient of determination and the partial correlation",
+    x_f_up="Upload files", x_f_drop="Drag and drop files here, or", x_f_browse="Choose files to upload", x_f_types="Allowed file types: PDF, PNG, JPG, XLSX, PPTX",
+    x_files=[("Exercise_09_Regression.xlsx", "xlsx", "48 KB · 4 sheets", "task"), ("Exercise_09_Regression_model_answer.xlsx", "xlsx", "51 KB · 4 sheets", "model"), ("Assignment_evaluation_criteria.pdf", "pdf", "212 KB", "rubric")],
+    x_role_lbl="Role", x_roles={"task": "Exercise file (student fills in)", "model": "Model answer (gap reference)", "rubric": "Evaluation criteria"},
+    x_role_help="With a model answer, the AI returns the gaps between the student's answer and the model, point by point. With evaluation criteria, Generate by AI writes those criteria into the rubric content.",
+    x_f_rub="Rubric content", x_f_rub_v="From the evaluation criteria (Assignment_evaluation_criteria.pdf). This session uses (1)–(4):\n(1) Excel skills — functions (CORREL, SLOPE, INTERCEPT, RSQ) and cell references used correctly\n(2) Readability — tables, labels and units can be read\n(3) Processing — correlation, regression line, R² and partial correlation match the model answer (flag any gap)\n(4) Analysis — one sentence on what the numbers mean (which variable explains rent most)\n0–3 per criterion, 5 for outstanding work (returned as an indication)",
+    x_gen="Generate by AI", x_gen_hint="from the criteria file and the question overview", x_due="Set a due date", x_due_v="2026/11/20 23:59", x_cancel="Cancel", x_create="Create",
+    x_new_chip="NEW", x_detail_h="Assignment detail", x_det_edit="Edit", x_det_open="Open", x_det_close="Close", x_det_files="Attached files", x_det_rub="Rubric content", x_det_msg="Your message",
+    x_det_sel=("Session 8 Correlation (2)", "Open · due 2026/11/13 23:59", "Exercise_08_Correlation(2).xlsx · Exercise_08_Correlation(2)_model_answer.xlsx · Assignment_evaluation_criteria.pdf"),
+    x_det_rub_v="(1) Excel skills (2) Readability (3) Processing (stratified analysis, outliers and the correlation matrix match the model answer) (4) Analysis",
+    x_det_stats=("Started 118 / 150", "Snaps 203", "Completed 64 / 150"),
+    x_up_title="AI Feedback", x_up_asg_lbl="Assignment", x_up_asg="Session 9 Regression", x_up_due="due 11/20 23:59 · AI check required before submitting",
+    x_up_h="Upload your work", x_up_sub="Send the Excel file as it is. Every sheet is read.", x_up_camera="Take a photo", x_up_file="Choose a file", x_up_types="Excel (.xlsx) · PowerPoint (.pptx) · PDF · photos",
+    x_up_picked="Exercise_09_Regression.xlsx", x_up_picked_meta="48 KB · 4 sheets · 11/13 20:38", x_up_sheets_h="Sheets to read",
+    x_up_sheets=[("Regression line (1)", "B3:L22"), ("Regression line (2)", "A3:F50"), ("R²", "A1:I51"), ("Partial correlation", "A3:I22")], x_up_read="read",
+    x_up_btn="Get AI feedback", x_up_note="Once you have fixed it along the AI's feedback, submit the final version through Google Classroom — that is where it is graded.",
+    x_up_prev="Previous version: none · first check",
+    x_fb_title="AI Feedback", x_fb_seg=("Extracted text", "Feedback"), x_fb_ver="Version 1 · 11/13 20:40 · compared with the model answer",
+    x_fb_summary_lbl="Summary",
+    x_fb_summary="All four sheets are worked through to the end, and on “Regression line (1)” you went from the deviations to the covariance, the correlation coefficient and the regression line in the right order. The value from the formula and the value from the function agree, which shows you are in the habit of checking. One thing to think about: on the “Partial correlation” sheet the coefficient comes out as 1.01 — what range can a correlation coefficient take? The model answer gives 0.58. Trace which r went into the √(1−r²) in the denominator. Three next steps: (1) re-check the cell references in the partial-correlation formula and recompute; (2) on the “R²” sheet, write one sentence on which of the three R² explains rent best; (3) once fixed, submit the final version in Google Classroom. Referred to: Session 9 slides p.12 “Partial correlation”, p.8 “Reading R²”",
+    x_fb_cards=[("t", "Processing", "Regression line (1)", "Correlation 0.7618 (formula, K8) = 0.7618 (function, K13)", "Computed both by formula and by function, and they agree. Matches the model answer. Going from the mean deviation product (covariance 39.52) to r is also right."),
+                ("t", "Excel skills", "Regression line (1)", "Slope 0.00807 · intercept −1.797", "Matches the model answer. Add one sentence — “one more exam point raises GPA by about 0.008” — and the numbers mean something."),
+                ("r", "Analysis", "R²", "Floor area vs rent R² 0.508 / walk time R² 0.076 / building age R² 0.360 — no interpretation written", "All three numbers match the model answer, but the model answer has one sentence under them: “age and floor area explain rent; walking time from the station hardly matters.” Write one sentence on which variable explains rent most."),
+                ("r", "Processing", "Partial correlation", "Partial correlation (r_12.3) = 1.0105", "A correlation coefficient lies between −1 and 1. Above 1 means a reference in the formula is off. The model answer gives 0.58. Check which cells of the correlation matrix went into r13 and r23 in (r12 − r13·r23) ÷ √((1−r13²)(1−r23²)).")],
+    x_fb_sheets=[("Regression line (1)", [("Mean (score · GPA)", "534.05 · 2.51", ""), ("Std. dev.", "69.99 · 0.741", ""), ("Mean deviation product (covariance)", "39.52", ""), ("Correlation", "0.7618", "1"), ("Slope", "0.00807", "2"), ("Intercept", "−1.797", "")]),
+                 ("Regression line (2)", [("Correlation (r)", "0.998", ""), ("R²", "0.996", ""), ("Slope (b)", "0.323", ""), ("Intercept (a)", "35,329.5", "")]),
+                 ("R²", [("Floor area vs rent", "r 0.713 · R² 0.508", ""), ("Walk time vs rent", "r 0.276 · R² 0.076", ""), ("Building age vs rent", "r −0.600 · R² 0.360", ""), ("Interpretation", "(not written)", "3")]),
+                 ("Partial correlation", [("r12 exam × GPA", "0.762", ""), ("r13 exam × HS grade", "0.691", ""), ("r23 GPA × HS grade", "0.607", ""), ("Partial correlation (r_12.3)", "1.0105", "4")])],
+    x_fb_cols=("Item", "Value"), x_fb_again="Fix it and check again (version 2)", x_fb_final="Submit the final in Google Classroom", x_fb_ask="Ask AI",
+)
+JA.update(X_JA); EN.update(X_EN)
+
+X_CSS = """
+.xf{display:flex;flex-direction:column;gap:12px}
+.xfile{display:flex;align-items:center;gap:12px;border:1px solid #E0E0E0;border-radius:4px;padding:10px 12px;background:#fff}
+.xfile .fi{width:34px;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex:0 0 34px;font-size:11px;font-weight:700}
+.xfile .fi.xlsx{background:#E8F5E9;color:#1B7F3B}.xfile .fi.pdf{background:#FEEBEE;color:#C62828}.xfile .fi.pptx{background:#FFF3E0;color:#E65100}
+.xfile .nm{flex:1 1 auto;min-width:0;font-size:14px}.xfile .nm small{display:block;color:#757575;font-size:12px}
+.xfile .field{width:290px;flex:0 0 290px}
+.xfile .field .in{white-space:nowrap}
+.xnew{display:inline-flex;align-items:center;height:18px;padding:0 6px;border-radius:9px;background:#FFF4E5;color:#663C00;font-size:10px;font-weight:700;margin-left:8px;vertical-align:middle}
+.xcls{display:flex;gap:12px;overflow:auto;padding-bottom:4px}
+.xcl{width:200px;min-width:200px;height:92px;border:1px solid #E0E0E0;border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between;background:#fff}
+.xcl.on{border-bottom:4px solid #2196F3}
+.xcl b{font-weight:600;font-size:14px}.xcl span{font-size:12px;color:#757575}
+.xasg{display:flex;flex-direction:column;gap:8px}
+.xai{border:1px solid #E0E0E0;border-radius:4px;padding:12px 14px;display:flex;align-items:center;gap:12px;background:#fff}
+.xai.on{border-color:#2196F3;background:#F5FAFF}
+.xai .t{flex:1 1 auto;min-width:0;font-size:14px}.xai .t small{display:block;color:#757575;font-size:12px}
+.xkv{display:grid;grid-template-columns:140px 1fr;gap:10px 16px;font-size:14px;margin:0}
+.xkv dt{color:#757575;margin:0}.xkv dd{margin:0;white-space:pre-wrap;line-height:1.6}
+/* app */
+.xsheet{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(28,30,44,.08)}
+.xsheet:last-child{border-bottom:0}
+.xsheet .ico{width:32px;height:32px;border-radius:8px;background:#e6f5ee;color:#1f7a4d;display:flex;align-items:center;justify-content:center;flex:0 0 32px}
+.xsheet .nm{flex:1 1 auto;min-width:0;font-size:14px;font-weight:500}.xsheet .nm small{display:block;color:rgba(28,30,44,.6);font-size:12px;font-weight:400}
+.xpick{display:flex;align-items:center;gap:12px;background:#eef1ff;border-radius:8px;padding:12px}
+.xpick .ico{width:40px;height:40px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;color:#1B7F3B;flex:0 0 40px;font-weight:700;font-size:11px}
+.xseg{display:inline-flex;background:#eeeef1;border-radius:999px;padding:3px;margin:0 auto}
+.xseg button{border:0;background:none;padding:7px 18px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer;color:#424564}
+.xseg button.on{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.18);color:#1c1e2c;font-weight:700}
+.xmk{display:inline-flex;width:18px;height:18px;border-radius:50%;color:#fff;font-size:10px;font-weight:700;align-items:center;justify-content:center;margin-right:6px;vertical-align:-3px;flex:0 0 18px}
+.xmk.t{background:#14B4A6}.xmk.r{background:#E0334C}
+.xtbl{width:100%;border-collapse:collapse;font-size:13px}
+.xtbl td{padding:6px 4px;border-bottom:1px solid rgba(28,30,44,.08);vertical-align:top}
+.xtbl td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.xtbl tr:last-child td{border-bottom:0}
+.xul{border-bottom:2px dashed #14B4A6;padding-bottom:1px}.xul.r{border-bottom-color:#E0334C}
+.xcard{background:#fff;border-radius:12px;border:1px solid rgba(28,30,44,.12);padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px}
+.xchip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 5px;border-radius:8px;font-size:12px;font-weight:700;align-self:flex-start}
+.xchip.t{background:#E3F6F4;color:#0E8F86}.xchip.r{background:#FDE7EA;color:#C62839}.xchip.g{background:#eeeef1;color:#424564;padding-left:10px}
+.xchip .xmk{margin:0}
+.xq{border-left:3px solid #BDBDBD;padding-left:8px;color:rgba(28,30,44,.6);font-size:12px;line-height:1.5;margin:0}
+.xcard p{margin:0;font-size:14px;line-height:1.7}
+.xcard .ask{align-self:flex-end;color:#395ad2;font-size:12px;display:inline-flex;align-items:center;gap:4px}
+.xhide{display:none!important}
+"""
+
+def _xfile(S, name, kind, meta, role):
+    opts = "".join(f'<option{" selected" if k == role else ""}>{v}</option>' for k, v in S["x_roles"].items())
+    return (f'<div class="xfile"><span class="fi {kind}">{kind.upper()}</span><span class="nm">{name}<small>{meta}</small></span>'
+            f'<label class="field"><span class="lbl">{S["x_role_lbl"]}</span><span class="in" style="padding-right:8px"><span class="ell">{S["x_roles"][role]}</span>{mi("expandMore", 18, "rgba(0,0,0,.54)")}</span></label>'
+            f'<span class="ticon sm">{mi("close", 16)}</span></div>')
+
+def x_assign(S, L):
+    """ClassAssignmentPage as the code renders it — class cards, the assignment list, the detail — with
+    CreateAssignmentDialog open on top (Title, Subject, Your message, the rubric section: question
+    overview, upload, rubric content, Generate by AI, due date). The least-effort additions are marked
+    NEW: .xlsx / .pptx accepted, a role per attached file, Generate by AI reading the criteria file."""
+    ro = ' style="background:#FAFAFA"'
+    new = f'<span class="xnew">{S["x_new_chip"]}</span>'
+    cls = "".join(f'<div class="xcl{" on" if i == 0 else ""}"><b>{n}</b><span>{m}</span></div>' for i, (n, m) in enumerate(S["x_classes"]))
+    asg = ""
+    for i, (t, st, due, kind) in enumerate(S["x_asg_list"]):
+        lbl, tone = S["x_st"][st]
+        asg += f'<div class="xai{" on" if i == 0 else ""}"><span class="lm-type" style="width:28px;height:28px;flex:0 0 28px">{mi("rateReview", 14)}</span><span class="t">{t}<small>{kind} ・ {due}</small></span><span class="tchip {tone}">{lbl}</span></div>'
+    dt, dsub, dfiles = S["x_det_sel"]
+    stats = "".join(f'<span class="tchip">{x}</span>' for x in S["x_det_stats"])
+    files = "".join(_xfile(S, *f) for f in S["x_files"])
+    rub = S["x_f_rub_v"].replace("\n", "<br>")
+    dialog = f'''<div class="tscrim"><div class="dlg" style="max-width:900px">
+    <div class="dlg-head"><h2>{S["x_dlg_h"]}</h2><span class="ticon">{mi("close", 22)}</span></div>
+    <div class="dlg-body" style="gap:18px">
+      <div style="display:grid;grid-template-columns:1fr 240px;gap:16px">{field(S["x_f_title"], S["x_f_title_v"], required=True)}{field(S["x_f_subject"], S["x_f_subject_v"], required=True, icon="expandMore")}</div>
+      <div>{field(S["x_f_msg"], S["x_f_msg_v"], area=True)}<span class="helper">{S["x_f_msg_help"]}</span></div>
+      <div style="display:flex;align-items:center;gap:6px;margin:-4px 0 -8px"><b style="font-size:14px;font-weight:500">{S["x_rub_sec"]}</b><span class="ticon sm">{mi("expandLess", 20)}</span></div>
+      {field(S["x_f_qov"], S["x_f_qov_v"], area=True)}
+      <div class="xf">
+        <b style="font-size:14px;font-weight:500">{S["x_f_up"]}{new}</b>
+        <div class="tdrop">{mi("cloudUp", 22)}{S["x_f_drop"]} <a href="#">{S["x_f_browse"]}</a><span style="color:#757575;font-weight:400;margin-left:auto">{S["x_f_types"]}</span></div>
+        {files}
+        <span class="helper" style="margin:0">{S["x_role_help"]}</span>
+      </div>
+      <div>{field(S["x_f_rub"], rub, area=True)}<div style="display:flex;align-items:center;gap:10px;margin-top:8px"><span class="tbtn sm" style="color:#2196F3">{mi("spark", 16)}{S["x_gen"]}</span><span class="helper" style="margin:0">{S["x_gen_hint"]}{new}</span></div></div>
+      {field(S["x_due"], f'<span class="num">{S["x_due_v"]}</span>', icon="calendar")}
+    </div>
+    <div class="dlg-foot"><span class="tbtn">{S["x_cancel"]}</span><span class="tbtn contained">{S["x_create"]}</span></div>
+  </div></div>'''
+    body = f'<style>{X_CSS}</style>' + tnav(S, "ai") + f'''<div class="tmain">
+<div class="tscroll">
+  {tcrumbs(S, "X-Assign", [(S["x_crumb"][0], "#"), (S["x_crumb"][1], None)])}
+  <div class="tphead" style="margin-bottom:16px"><h1>{S["x_h"]}</h1><div class="acts"><span class="tbtn contained">{mi("add", 18)}{S["x_new"]}</span></div></div>
+  <div class="xcls">{cls}</div>
+  <div style="display:grid;grid-template-columns:380px 1fr;gap:24px;margin-top:20px;align-items:start">
+    <div class="xasg">{asg}</div>
+    <div class="tpaper"><div class="ph"><h3>{dt}</h3><div style="display:flex;gap:8px"><span class="tbtn sm">{mi("edit", 16)}{S["x_det_edit"]}</span><span class="tbtn sm outlined">{S["x_det_close"]}</span></div></div>
+      <div class="pb" style="display:flex;flex-direction:column;gap:14px">
+        <span class="helper num" style="margin:0">{dsub}</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">{stats}</div>
+        <dl class="xkv"><dt>{S["x_det_files"]}</dt><dd>{dfiles}</dd><dt>{S["x_det_rub"]}</dt><dd>{S["x_det_rub_v"]}</dd><dt>{S["x_det_msg"]}</dt><dd style="color:#757575">{S["x_f_msg_v"][:80]}…</dd></dl>
+      </div></div>
+  </div>
+</div>
+{dialog}
+</div>'''
+    return tpage(S, "X-Assign", S["x_titles"]["assign"], body)
+
+def x_upload(S, L):
+    """The feedback snap's input with a file: the assignment, Take a photo / Choose a file (NEW), the
+    chosen workbook with its sheets all read, Get AI feedback, and the Classroom note."""
+    sheets = "".join(f'<div class="xsheet"><span class="ico">{ic("table", 18)}</span><span class="nm">{n}<small>{rng}</small></span><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12, "#1f7a4d", 2.6)}{S["x_up_read"]}</span></div>' for n, rng in S["x_up_sheets"])
+    body = f'<style>{X_CSS}</style>' + mheader(S, "X-Upload", S["x_up_title"], back_href=fn("M-Main", L)) + f'''
+<div class="mbody" style="padding-bottom:120px">
+  <div class="mcard" style="gap:4px">
+    <p class="cap">{S["x_up_asg_lbl"]} {ic("down", 14)}</p>
+    <p class="sub1">{S["x_up_asg"]}</p>
+    <p class="cap">{S["x_up_due"]}</p>
+  </div>
+  <div class="mcard">
+    <p class="sub1" style="font-size:14px">{S["x_up_h"]}</p>
+    <p class="cap">{S["x_up_sub"]}</p>
+    <div style="display:flex;gap:10px">
+      <span class="qopt">{ic("camera", 28)}{S["x_up_camera"]}</span>
+      <span class="qopt pri" style="position:relative">{ic("file", 28)}{S["x_up_file"]}<span class="xnew" style="position:absolute;top:8px;right:8px;margin:0">{S["x_new_chip"]}</span></span>
+    </div>
+    <p class="cap">{S["x_up_types"]}</p>
+  </div>
+  <div class="mcard" style="gap:8px">
+    <div class="xpick"><span class="ico">XLSX</span><span style="min-width:0;flex:1 1 auto"><b style="font-size:14px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{S["x_up_picked"]}</b><span class="cap">{S["x_up_picked_meta"]}</span></span>{ic("x", 18, "rgba(28,30,44,.6)")}</div>
+    <p class="sub1" style="font-size:14px;margin-top:4px">{S["x_up_sheets_h"]}</p>
+    <div>{sheets}</div>
+    <p class="cap">{S["x_up_prev"]}</p>
+  </div>
+  <p class="cap" style="line-height:18px;padding:0 4px">{S["x_up_note"]}</p>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:12px 16px 24px;z-index:20">
+  <a class="mbtn primary" href="{fn("X-Feedback", L)}">{ic("sparkle", 18, "#fff")}{S["x_up_btn"]}</a>
+</div>'''
+    return mpage(S, "X-Upload", S["x_titles"]["upload"], body)
+
+def x_feedback(S, L):
+    """The AI Feedback page as the app has it (PM screenshots, 6 Oct), for an Excel submission:
+    Extracted text = each sheet as a small table with the numbered markers on the cells the feedback
+    points at; Feedback = the Summary (the Gem's praise → question → steps, 400–600 characters) and
+    one numbered card per point, teal for a match with the model answer, red for a gap."""
+    a, b = S["x_fb_seg"]
+    sheets = ""
+    for name, rows in S["x_fb_sheets"]:
+        trs = ""
+        for k, v, mk in rows:
+            if mk:
+                tone = next(t for t, *_ in [S["x_fb_cards"][int(mk) - 1]])
+                trs += f'<tr><td><span class="xmk {tone}">{mk}</span><span class="xul {tone}">{k}</span></td><td><span class="xul {tone}">{v}</span></td></tr>'
+            else:
+                trs += f'<tr><td>{k}</td><td>{v}</td></tr>'
+        sheets += f'<div class="mcard" style="gap:6px;padding:12px 14px"><div style="display:flex;align-items:center;gap:8px"><span class="xsheet" style="padding:0;border:0"><span class="ico">{ic("table", 16)}</span></span><b style="font-size:14px">{name}</b></div><table class="xtbl">{trs}</table></div>'
+    cards = f'<div class="xcard"><span class="xchip g">{S["x_fb_summary_lbl"]}</span><p>{S["x_fb_summary"]}</p><span class="ask">{ic("sparkle", 14)}{S["x_fb_ask"]}</span></div>'
+    cards += "".join(f'<div class="xcard"><span class="xchip {t}"><span class="xmk {t}">{i + 1}</span>{lbl}</span><blockquote class="xq">{sheet} ・ {q}</blockquote><p>{c}</p><span class="ask">{ic("sparkle", 14)}{S["x_fb_ask"]}</span></div>' for i, (t, lbl, sheet, q, c) in enumerate(S["x_fb_cards"]))
+    body = f'<style>{X_CSS}</style>' + mheader(S, "X-Feedback", S["x_fb_title"], back_href=fn("X-Upload", L)) + f'''
+<div class="mbody" style="padding-bottom:140px;background:#f7f8fc">
+  <div class="mcard" style="gap:4px;padding:12px 16px"><p class="cap">{S["x_up_asg_lbl"]} {ic("down", 14)}</p><p class="sub1">{S["x_up_asg"]}</p><p class="cap">{S["x_fb_ver"]}</p></div>
+  <div style="display:flex;justify-content:center"><div class="xseg"><button class="{{{{segT}}}}" onClick="{{{{toT}}}}">{a}</button><button class="{{{{segF}}}}" onClick="{{{{toF}}}}">{b}</button></div></div>
+  <div class="{{{{showT}}}}" style="display:flex;flex-direction:column;gap:12px">{sheets}</div>
+  <div class="{{{{showF}}}}" style="display:flex;flex-direction:column;gap:12px">{cards}</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:10px 16px 22px;z-index:20;display:flex;flex-direction:column;gap:8px">
+  <a class="mbtn neutral" href="{fn("X-Upload", L)}">{ic("upload", 18)}{S["x_fb_again"]}</a>
+  <span class="mbtn primary">{ic("globe", 18, "#fff")}{S["x_fb_final"]}</span>
+</div>'''
+    logic = """state = { seg: "fb" };
+  renderVals() { const s = this.state.seg; return { segT: s === "text" ? "on" : "", segF: s === "fb" ? "on" : "", showT: s === "text" ? "" : "xhide", showF: s === "fb" ? "" : "xhide",
+    toT: () => this.setState({ seg: "text" }), toF: () => this.setState({ seg: "fb" }) }; }"""
+    return mpage(S, "X-Feedback", S["x_titles"]["fb"], body, logic=logic)
+
+XSCREENS = ["X-Assign", "X-Upload", "X-Feedback"]
+XBUILDERS = {"X-Assign": x_assign, "X-Upload": x_upload, "X-Feedback": x_feedback}
+# the mobile boards have no PC twin (the app is the student's surface in this trial): the device toggle points at the board itself
+TO_PC["X-Upload"] = "X-Upload"; TO_PC["X-Feedback"] = "X-Feedback"
+
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
@@ -7387,6 +7664,37 @@ for screen in QSCREENS_ALL:
 notes["title_q"] = {"x": 0, "y": QROW_Y["ja"] - 300, "text": "AI Grading, the student side — the Paper Submission LO in the student web and app when Allow student to submit is on: details → take or upload the photo → pages → Confirm & Analyze → the AI's marks → Submit to Teacher → submitted → returned with the teacher's marks and per-question feedback · 日本語", "kind": "title1", "maxW": 10600}
 notes["title_q_en"] = {"x": 0, "y": QROW_Y["en"] - 240, "text": "Same student flow in English", "kind": "title1", "maxW": 10600}
 
+# Excel assignments for the Kindai sociology trial (8 Oct): BO assignment with the model answer, the app upload, the app feedback
+XROW_Y = {"ja": 19200, "en": 20700}
+xtitles = ["X1 · BO — AI Tutor › Assignments: the class, the assignment list, New Assignment with .xlsx / .pptx attachments, a role per file (exercise / model answer / criteria), Generate by AI from the criteria, the Gem tone in Your message",
+           "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the Classroom note",
+           "X3 · Mobile — AI Feedback result for an Excel submission: Extracted text (the sheets as tables with markers) / Feedback (Summary in the Gem's three-part tone, cards against the model answer)"]
+XSIZE = {"X-Assign": (TW, TH), "X-Upload": (MW, MH), "X-Feedback": (MW, MH)}
+XX = {}
+for lang, S in (("ja", JA), ("en", EN)):
+    x = 0
+    for i, screen in enumerate(XSCREENS):
+        CUR = screen
+        name = fn(screen, lang)
+        with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+            f.write(XBUILDERS[screen](S, lang))
+        w, h = XSIZE[screen]
+        boards[name] = {"x": x, "y": XROW_Y[lang], "w": w, "h": h,
+                        "title": xtitles[i] + (" (EN)" if lang == "en" else " (JA)"), "is_interactive": True}
+        order.append(name)
+        XX[screen] = x
+        x += w + 80
+XNOTES = {
+    "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) each attached file gets a ROLE — exercise file, model answer (the reference for the gaps), evaluation criteria — one select per file, no new entity; (3) Generate by AI reads the criteria file and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is.",
+    "X-Upload": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and the note that the final goes through Google Classroom (the two-step flow agreed on 10/8). Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide.",
+    "X-Feedback": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: fix it and check again (version 2) → the same upload; submit the final in Google Classroom. Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
+}
+for screen in XSCREENS:
+    w = TNW if screen == "X-Assign" else MNW
+    notes["x_" + screen] = {"x": XX[screen], "y": XROW_Y["ja"] + XSIZE[screen][1] + 60, "w": w, "maxH": 600, "text": XNOTES[screen]}
+notes["title_x"] = {"x": 0, "y": XROW_Y["ja"] - 300, "text": "Kindai sociology trial — Excel assignments on the AI Tutor Assignment and the feedback snap: the model-answer workbook as the Excel rubric, the student's workbook as the submission, the feedback against it · 日本語", "kind": "title1", "maxW": 2600}
+notes["title_x_en"] = {"x": 0, "y": XROW_Y["en"] - 240, "text": "Same in English", "kind": "title1", "maxW": 2600}
+
 canvas = {
     "v": 3,
     "createdOnFiles": {"v": 1, "at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")},
@@ -7489,6 +7797,8 @@ def site_index():
         ("AI Grading (Paper Submission LO) · English", "BO 1440", links(GSCREENS, "en", gtitles)),
         ("AI採点 — 生徒側（写真で提出）・ 日本語", "PC 1280 ・ モバイル 375", links(QSCREENS_ALL, "ja", qtitles)),
         ("AI Grading — student side (photo submission) · English", "PC 1280 · Mobile 375", links(QSCREENS_ALL, "en", qtitles)),
+        ("近畿大学 総合社会学部トライアル — Excel 課題 ・ 日本語", "BO 1440 ・ モバイル 375", links(XSCREENS, "ja", xtitles)),
+        ("Kindai sociology trial — Excel assignments · English", "BO 1440 · Mobile 375", links(XSCREENS, "en", xtitles)),
     ]
     blocks = "".join(
         f'<section class="row"><h2>{name}<span>{size}</span></h2><div class="steps">{body}</div></section>'
@@ -7535,7 +7845,7 @@ footer{{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px s
 '''
 
 for lang in ("ja", "en"):
-    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL + GSCREENS + QSCREENS_ALL:
+    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL + GSCREENS + QSCREENS_ALL + XSCREENS:
         name = fn(screen, lang)
         with open(os.path.join(ROOT, name), encoding="utf-8") as f:
             src = f.read()

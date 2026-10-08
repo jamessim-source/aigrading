@@ -28,6 +28,8 @@ sticky notes on the canvas are the per-screen record.
 | AI Grading · English | same, `-en` suffix | 1440 × 900 |
 | AI Grading, student side · 日本語 | `Q-Detail` → `Q-Submit` → `Q-Preview` → `Q-Result` → `Q-Done` → `Q-Review` · `Q-Chat` · `Q-Resub1` → `Q-Resub2` → `Q-Resub3` → `Q-Resub4` (PC, 1280 × 800) · `MQ-Detail` → … → `MQ-Review` · `MQ-Chat` · `MQ-Resub1` → … → `MQ-Resub4` (mobile, 375 × 812) | mixed |
 | AI Grading, student side · English | same, `-en` suffix | mixed |
+| Kindai trial, Excel · 日本語 | `X-Assign` (BO, 1440 × 900) · `X-Upload` → `X-Feedback` (mobile, 375 × 812) | mixed |
+| Kindai trial, Excel · English | same, `-en` suffix | mixed |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
 PC / Mobile / 先生（BO） pill (bottom-left) that jumps to the twin screen or into
@@ -338,3 +340,16 @@ The canvas is a Claude Design artifact. To republish after editing `gen.py`,
 regenerate, then publish `project/canvas.json` and the changed `project/*.dc.html`
 to the artifact URL above (the index must be merged onto the live copy first,
 because viewers can move notes and boards on the page).
+
+## Kindai sociology trial — Excel assignments (X1–X3, 8 Oct)
+
+The least-dev-effort fit of the trial's Excel assignments onto what the Back
+Office code already has. **X1** is the AI Tutor Assignment dialog with `.xlsx` /
+`.pptx` accepted and a role per attached file (exercise file, model answer as the
+gap reference, evaluation criteria); Generate by AI reads the criteria file; Your
+message carries the teacher's Gem instructions. **X2** is the feedback snap with
+Choose a file beside the camera, the workbook with every sheet read, and the note
+that the final goes to Google Classroom. **X3** is the AI Feedback result in the
+app's format: the sheets as tables with numbered markers, the Summary in the
+Gem's three-part tone, one card per point against the model answer. PRD C11.14
+has the requirement mapping and the dev-effort notes.
