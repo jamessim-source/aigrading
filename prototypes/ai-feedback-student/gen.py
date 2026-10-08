@@ -7173,10 +7173,6 @@ X_JA = dict(
                 ("t", "エクセルスキル", "回帰直線・回帰式(1)", "回帰式の傾き 0.00807 ・ 切片 −1.797", "模範回答と一致。ここまで書けたら、「入試の点数が1点上がるとGPAが約0.008上がる」という一文を添えると、数値が意味を持ちます。"),
                 ("r", "考察", "決定係数", "使用部分面積 vs 家賃 R² 0.508 ／ 交通 R² 0.076 ／ 築年数 R² 0.360 — 解釈は未記入", "数値は三つとも模範回答と一致していますが、模範回答にはこの下に「築年数と面積が家賃を説明し、駅からの徒歩分数はほとんど関係しない」の一文があります。どの変数が家賃を最も説明するか、一文だけ書いてみましょう。"),
                 ("r", "処理", "偏相関", "偏相関係数 (r_12.3) = 1.0105", "相関係数は −1 から 1 の間に収まります。1 を超えているので、式のどこかで参照がずれています。模範回答は 0.58 です。(r12 − r13·r23) ÷ √((1−r13²)(1−r23²)) の r13 と r23 に、相関行列のどのセルを入れたか確かめてみてください。")],
-    x_fb_sheets=[("回帰直線・回帰式(1)", [("平均（点数 ・ GPA）", "534.05 ・ 2.51", ""), ("標準偏差", "69.99 ・ 0.741", ""), ("偏差積の平均（共分散）", "39.52", ""), ("相関係数", "0.7618", "1"), ("回帰式の傾き", "0.00807", "2"), ("回帰式の切片", "−1.797", "")]),
-                 ("回帰直線・回帰式(2)", [("相関係数 (r)", "0.998", ""), ("決定係数 (R²)", "0.996", ""), ("回帰式の傾き (b)", "0.323", ""), ("回帰式の切片 (a)", "35,329.5", "")]),
-                 ("決定係数", [("使用部分面積 vs 家賃", "r 0.713 ・ R² 0.508", ""), ("交通（徒歩分数） vs 家賃", "r 0.276 ・ R² 0.076", ""), ("築年数 vs 家賃", "r −0.600 ・ R² 0.360", ""), ("解釈", "（未記入）", "3")]),
-                 ("偏相関", [("r12 入試×GPA", "0.762", ""), ("r13 入試×評定", "0.691", ""), ("r23 GPA×評定", "0.607", ""), ("偏相関係数 (r_12.3)", "1.0105", "4")])],
     x_fb_cols=("項目", "値"), x_fb_again="直してもう一度チェック（版2）", x_fb_final="完了にする", x_fb_ask="AIに質問",
 )
 X_EN = dict(
@@ -7211,10 +7207,6 @@ X_EN = dict(
                 ("t", "Excel skills", "Regression line (1)", "Slope 0.00807 · intercept −1.797", "Matches the model answer. Add one sentence — “one more exam point raises GPA by about 0.008” — and the numbers mean something."),
                 ("r", "Analysis", "R²", "Floor area vs rent R² 0.508 / walk time R² 0.076 / building age R² 0.360 — no interpretation written", "All three numbers match the model answer, but the model answer has one sentence under them: “age and floor area explain rent; walking time from the station hardly matters.” Write one sentence on which variable explains rent most."),
                 ("r", "Processing", "Partial correlation", "Partial correlation (r_12.3) = 1.0105", "A correlation coefficient lies between −1 and 1. Above 1 means a reference in the formula is off. The model answer gives 0.58. Check which cells of the correlation matrix went into r13 and r23 in (r12 − r13·r23) ÷ √((1−r13²)(1−r23²)).")],
-    x_fb_sheets=[("Regression line (1)", [("Mean (score · GPA)", "534.05 · 2.51", ""), ("Std. dev.", "69.99 · 0.741", ""), ("Mean deviation product (covariance)", "39.52", ""), ("Correlation", "0.7618", "1"), ("Slope", "0.00807", "2"), ("Intercept", "−1.797", "")]),
-                 ("Regression line (2)", [("Correlation (r)", "0.998", ""), ("R²", "0.996", ""), ("Slope (b)", "0.323", ""), ("Intercept (a)", "35,329.5", "")]),
-                 ("R²", [("Floor area vs rent", "r 0.713 · R² 0.508", ""), ("Walk time vs rent", "r 0.276 · R² 0.076", ""), ("Building age vs rent", "r −0.600 · R² 0.360", ""), ("Interpretation", "(not written)", "3")]),
-                 ("Partial correlation", [("r12 exam × GPA", "0.762", ""), ("r13 exam × HS grade", "0.691", ""), ("r23 GPA × HS grade", "0.607", ""), ("Partial correlation (r_12.3)", "1.0105", "4")])],
     x_fb_cols=("Item", "Value"), x_fb_again="Fix it and check again (version 2)", x_fb_final="Mark as Complete", x_fb_ask="Ask AI",
 )
 JA.update(X_JA); EN.update(X_EN)
@@ -7356,37 +7348,23 @@ def x_upload(S, L):
     return mpage(S, "X-Upload", S["x_titles"]["upload"], body)
 
 def x_feedback(S, L):
-    """The AI Feedback page as the app has it (PM screenshots, 6 Oct), for an Excel submission:
-    Extracted text = each sheet as a small table with the numbered markers on the cells the feedback
-    points at; Feedback = the Summary (the Gem's praise → question → steps, 400–600 characters) and
-    one numbered card per point, teal for a match with the model answer, red for a gap."""
-    a, b = S["x_fb_seg"]
-    sheets = ""
-    for name, rows in S["x_fb_sheets"]:
-        trs = ""
-        for k, v, mk in rows:
-            if mk:
-                tone = next(t for t, *_ in [S["x_fb_cards"][int(mk) - 1]])
-                trs += f'<tr><td><span class="xmk {tone}">{mk}</span><span class="xul {tone}">{k}</span></td><td><span class="xul {tone}">{v}</span></td></tr>'
-            else:
-                trs += f'<tr><td>{k}</td><td>{v}</td></tr>'
-        sheets += f'<div class="mcard" style="gap:6px;padding:12px 14px"><div style="display:flex;align-items:center;gap:8px"><span class="xsheet" style="padding:0;border:0"><span class="ico">{ic("table", 16)}</span></span><b style="font-size:14px">{name}</b></div><table class="xtbl">{trs}</table></div>'
+    """The AI Feedback page as the app has it (PM screenshots, 6 Oct), for an Excel submission — simplified for
+    the trial (PM, 8 Oct: one week to go; showing the sheets accurately costs dev and evaluation effort): no
+    Extracted text view for a workbook, so no table renderer and no cell markers to align. Only the Feedback
+    view the app already has: the Summary (the Gem's praise → question → steps, 400–600 characters) and one
+    numbered card per point, teal for a match with the model answer, red for a gap, each naming the sheet and
+    cell in words — text the prompt returns, nothing the app has to map onto the workbook."""
     cards = f'<div class="xcard"><span class="xchip g">{S["x_fb_summary_lbl"]}</span><p>{S["x_fb_summary"]}</p><span class="ask">{ic("sparkle", 14)}{S["x_fb_ask"]}</span></div>'
     cards += "".join(f'<div class="xcard"><span class="xchip {t}"><span class="xmk {t}">{i + 1}</span>{lbl}</span><blockquote class="xq">{sheet} ・ {q}</blockquote><p>{c}</p><span class="ask">{ic("sparkle", 14)}{S["x_fb_ask"]}</span></div>' for i, (t, lbl, sheet, q, c) in enumerate(S["x_fb_cards"]))
     body = f'<style>{X_CSS}</style>' + mheader(S, "X-Feedback", S["x_fb_title"], back_href=fn("X-Upload", L)) + f'''
 <div class="mbody" style="padding-bottom:100px;background:#f7f8fc">
   <div class="mcard" style="gap:4px;padding:12px 16px"><p class="cap">{S["x_up_asg_lbl"]} {ic("down", 14)}</p><p class="sub1">{S["x_up_asg"]}</p><p class="cap">{S["x_fb_ver"]}</p></div>
-  <div style="display:flex;justify-content:center"><div class="xseg"><button class="{{{{segT}}}}" onClick="{{{{toT}}}}">{a}</button><button class="{{{{segF}}}}" onClick="{{{{toF}}}}">{b}</button></div></div>
-  <div class="{{{{showT}}}}" style="display:flex;flex-direction:column;gap:12px">{sheets}</div>
-  <div class="{{{{showF}}}}" style="display:flex;flex-direction:column;gap:12px">{cards}</div>
+  <div style="display:flex;flex-direction:column;gap:12px">{cards}</div>
 </div>
 <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:10px 16px 22px;z-index:20;display:flex;flex-direction:column;gap:8px">
   <span class="mbtn primary">{ic("check", 18, "#fff", 2.6)}{S["x_fb_final"]}</span>
 </div>'''
-    logic = """state = { seg: "fb" };
-  renderVals() { const s = this.state.seg; return { segT: s === "text" ? "on" : "", segF: s === "fb" ? "on" : "", showT: s === "text" ? "" : "xhide", showF: s === "fb" ? "" : "xhide",
-    toT: () => this.setState({ seg: "text" }), toF: () => this.setState({ seg: "fb" }) }; }"""
-    return mpage(S, "X-Feedback", S["x_titles"]["fb"], body, logic=logic)
+    return mpage(S, "X-Feedback", S["x_titles"]["fb"], body)
 
 XSCREENS = ["X-Assign", "X-Upload", "X-Feedback"]
 XBUILDERS = {"X-Assign": x_assign, "X-Upload": x_upload, "X-Feedback": x_feedback}
@@ -7665,7 +7643,7 @@ notes["title_q_en"] = {"x": 0, "y": QROW_Y["en"] - 240, "text": "Same student fl
 XROW_Y = {"ja": 19200, "en": 20700}
 xtitles = ["X1 · BO — AI Tutor › Assignments: the class, the assignment list, New Assignment with .xlsx / .pptx attachments, Generate by AI making the rubric out of the uploaded question, the Gem tone in Your message",
            "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the note on the final submission",
-           "X3 · Mobile — AI Feedback result for an Excel submission: Extracted text (the sheets as tables with markers) / Feedback (Summary in the Gem's three-part tone, cards against the model answer)"]
+           "X3 · Mobile — AI Feedback result for an Excel submission, simplified for the trial: the Feedback view only (Summary in the Gem's three-part tone, cards against the model answer naming the sheet and cell) — no extracted-sheet view"]
 XSIZE = {"X-Assign": (TW, TH), "X-Upload": (MW, MH), "X-Feedback": (MW, MH)}
 XX = {}
 for lang, S in (("ja", JA), ("en", EN)):
@@ -7684,7 +7662,7 @@ for lang, S in (("ja", JA), ("en", EN)):
 XNOTES = {
     "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is.",
     "X-Upload": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and a note that the final is submitted the way the teacher asks — the product never names Google Classroom (PM, 8 Oct: a competitor), though the trial's agreed two-step flow is that the final goes there. Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide.",
-    "X-Feedback": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: Mark as Complete only — the AI Tutor Assignment's own action in the code (the 'fix it and check again' button was removed, PM 8 Oct: not needed; another upload from the assignment is the next version) (PM, 8 Oct: no Google Classroom button, it is a competitor; the final goes wherever the teacher says). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
+    "X-Feedback": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). A workbook gets NO Extracted text view — so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. What is shown is the Feedback view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: Mark as Complete only — the AI Tutor Assignment's own action in the code (no 'check again' button, PM 8 Oct; another upload from the assignment is the next version; no Google Classroom button, it is a competitor — the final goes wherever the teacher says). Dev effort left on this board: the app hides the Extracted text tab when the snap is a workbook (one condition); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
 }
 for screen in XSCREENS:
     w = TNW if screen == "X-Assign" else MNW

@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-10-08T15:23:22Z"
+    "at": "2026-10-08T15:27:48Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1279,7 +1279,7 @@
       "y": 19200,
       "w": 375,
       "h": 812,
-      "title": "X3 · Mobile — AI Feedback result for an Excel submission: Extracted text (the sheets as tables with markers) / Feedback (Summary in the Gem's three-part tone, cards against the model answer) (JA)",
+      "title": "X3 · Mobile — AI Feedback result for an Excel submission, simplified for the trial: the Feedback view only (Summary in the Gem's three-part tone, cards against the model answer naming the sheet and cell) — no extracted-sheet view (JA)",
       "is_interactive": true
     },
     "X-Assign-en.dc.html": {
@@ -1303,7 +1303,7 @@
       "y": 20700,
       "w": 375,
       "h": 812,
-      "title": "X3 · Mobile — AI Feedback result for an Excel submission: Extracted text (the sheets as tables with markers) / Feedback (Summary in the Gem's three-part tone, cards against the model answer) (EN)",
+      "title": "X3 · Mobile — AI Feedback result for an Excel submission, simplified for the trial: the Feedback view only (Summary in the Gem's three-part tone, cards against the model answer naming the sheet and cell) — no extracted-sheet view (EN)",
       "is_interactive": true
     }
   },
@@ -2142,7 +2142,7 @@
       "y": 20072,
       "w": 375,
       "maxH": 600,
-      "text": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: Mark as Complete only — the AI Tutor Assignment's own action in the code (the 'fix it and check again' button was removed, PM 8 Oct: not needed; another upload from the assignment is the next version) (PM, 8 Oct: no Google Classroom button, it is a competitor; the final goes wherever the teacher says). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
+      "text": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). A workbook gets NO Extracted text view — so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. What is shown is the Feedback view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: Mark as Complete only — the AI Tutor Assignment's own action in the code (no 'check again' button, PM 8 Oct; another upload from the assignment is the next version; no Google Classroom button, it is a competitor — the final goes wherever the teacher says). Dev effort left on this board: the app hides the Extracted text tab when the snap is a workbook (one condition); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
     },
     "title_x": {
       "x": 0,
