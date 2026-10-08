@@ -7160,6 +7160,8 @@ X_JA = dict(
     x_role_help="「AIによる生成」は、アップロードした課題（と、あれば模範回答・評価基準）を読んでルーブリック内容を作成します。役割の指定は不要です。",
     x_f_rub="ルーブリック内容", x_f_rub_v="アップロードした課題と模範回答・評価基準から生成。この回は ①②③④ を使う：\n① エクセルスキル — 関数（CORREL・SLOPE・INTERCEPT・RSQ）とセル参照が正しく使えている\n② 見やすさ — 表・ラベル・単位が読み取れる\n③ 処理 — 相関係数・回帰式・決定係数・偏相関が模範回答と一致する（差があれば指摘）\n④ 考察 — 数値の意味を一文で書けている（どの変数が家賃を最も説明するか）\n各観点 0〜3、優れたものは 5（目安として返す）",
     x_gen="AIによる生成", x_gen_hint="アップロードした課題から生成", x_due="期限を設定する", x_due_v="2026/11/20 23:59", x_cancel="キャンセル", x_create="作成",
+    x_snack_created="作成しました", x_det_pub="公開", x_det_created="下書き ・ 作成 2026/10/08 14:02", x_view_less="表示を減らす", x_an_h="分析",
+    x_an=[("flag", "開始済み", "0 / 150", "受講生150人のうち0人が、この課題に紐づくスナップを1件以上送信しています"), ("snap", "スナップ", "0", "この課題に紐づくスナップの総数（全生徒、Snap-to-ask と AIフィードバックの両方）"), ("checkCircle", "完了", "0 / 150", "受講生150人のうち0人が、この課題で「完了にする」をタップしています")],
     x_new_chip="NEW", x_detail_h="課題の詳細", x_det_edit="編集", x_det_open="開く", x_det_close="閉じる", x_det_files="添付ファイル", x_det_rub="ルーブリック内容", x_det_msg="メッセージ",
     x_det_sel=("第8回 相関分析(2)", "公開中 ・ 期限 2026/11/13 23:59", "演習_08_相関(2).xlsx ・ 演習_08_相関(2)_模範回答.xlsx ・ 課題の評価基準.pdf"),
     x_det_rub_v="① エクセルスキル ② 見やすさ ③ 処理（層別・外れ値・相関行列が模範回答と一致） ④ 考察",
@@ -7196,6 +7198,8 @@ X_EN = dict(
     x_role_help="Generate by AI reads the uploaded question (and the model answer and criteria, when attached) and writes the rubric content. No role to pick.",
     x_f_rub="Rubric content", x_f_rub_v="Generated from the uploaded question, the model answer and the criteria. This session uses (1)–(4):\n(1) Excel skills — functions (CORREL, SLOPE, INTERCEPT, RSQ) and cell references used correctly\n(2) Readability — tables, labels and units can be read\n(3) Processing — correlation, regression line, R² and partial correlation match the model answer (flag any gap)\n(4) Analysis — one sentence on what the numbers mean (which variable explains rent most)\n0–3 per criterion, 5 for outstanding work (returned as an indication)",
     x_gen="Generate by AI", x_gen_hint="from the uploaded question", x_due="Set a due date", x_due_v="2026/11/20 23:59", x_cancel="Cancel", x_create="Create",
+    x_snack_created="Created successfully", x_det_pub="Publish", x_det_created="Draft · created 2026/10/08 14:02", x_view_less="View Less", x_an_h="Analysis",
+    x_an=[("flag", "Started", "0 / 150", "0 of 150 enrolled students have at least one snap tied to this assignment"), ("snap", "Snaps", "0", "Total count of snaps tied to this assignment across all students, counting all snap types (both Snap-to-ask and AI feedback)"), ("checkCircle", "Completed", "0 / 150", "0 of 150 enrolled students have tapped Mark as Complete on this assignment.")],
     x_new_chip="NEW", x_detail_h="Assignment detail", x_det_edit="Edit", x_det_open="Open", x_det_close="Close", x_det_files="Attached files", x_det_rub="Rubric content", x_det_msg="Your message",
     x_det_sel=("Session 8 Correlation (2)", "Open · due 2026/11/13 23:59", "Exercise_08_Correlation(2).xlsx · Exercise_08_Correlation(2)_model_answer.xlsx · Assignment_evaluation_criteria.pdf"),
     x_det_rub_v="(1) Excel skills (2) Readability (3) Processing (stratified analysis, outliers and the correlation matrix match the model answer) (4) Analysis",
@@ -7234,6 +7238,10 @@ X_CSS = """
 .xai{border:1px solid #E0E0E0;border-radius:4px;padding:12px 14px;display:flex;align-items:center;gap:12px;background:#fff}
 .xai.on{border-color:#2196F3;background:#F5FAFF}
 .xai .t{flex:1 1 auto;min-width:0;font-size:14px}.xai .t small{display:block;color:#757575;font-size:12px}
+.xsec{display:flex;flex-direction:column;gap:6px}.xsec h4{margin:0;font-size:14px;font-weight:600;color:#212121}.xsec p{margin:0;font-size:14px;line-height:1.7;color:#424242;white-space:pre-wrap}
+.xlink{display:inline-flex;align-items:center;gap:6px;color:#2196F3;font-size:13px;margin-right:14px}
+.xan{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.xan .c{border:1px solid #E0E0E0;border-radius:4px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.xan .h{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600}.xan .n{margin-left:auto;background:#424242;color:#fff;border-radius:3px;padding:1px 7px;font-size:12px;font-weight:600}.xan small{font-size:12px;color:#757575;line-height:1.5}
 .xkv{display:grid;grid-template-columns:140px 1fr;gap:10px 16px;font-size:14px;margin:0}
 .xkv dt{color:#757575;margin:0}.xkv dd{margin:0;white-space:pre-wrap;line-height:1.6}
 /* app */
@@ -7271,20 +7279,26 @@ def x_assign(S, L):
     """ClassAssignmentPage as the code renders it — class cards, the assignment list, the detail — with
     CreateAssignmentDialog open on top (Title, Subject, Your message, the rubric section: question
     overview, upload, rubric content, Generate by AI, due date). The least-effort additions are marked
-    NEW: .xlsx / .pptx accepted, Generate by AI making the rubric out of the uploaded question (PM, 8 Oct: no role per file)."""
+    NEW: .xlsx / .pptx accepted, Generate by AI making the rubric out of the uploaded question (PM, 8 Oct: no role per file).
+    Create does what the page's create handler does in the code (PM, 8 Oct): the "Created successfully"
+    snackbar, the dialog closes, the list is refetched and the new assignment is selected, so the detail
+    panel shows it — question overview, attached files, rubric content, and the Analysis cards at zero."""
     ro = ' style="background:#FAFAFA"'
     new = f'<span class="xnew">{S["x_new_chip"]}</span>'
     cls = "".join(f'<div class="xcl{" on" if i == 0 else ""}"><b>{n}</b><span>{m}</span></div>' for i, (n, m) in enumerate(S["x_classes"]))
-    asg = ""
-    for i, (t, st, due, kind) in enumerate(S["x_asg_list"]):
+    def row(i, t, st, due, kind, cls):
         lbl, tone = S["x_st"][st]
-        asg += f'<div class="xai{" on" if i == 0 else ""}"><span class="lm-type" style="width:28px;height:28px;flex:0 0 28px">{mi("rateReview", 14)}</span><span class="t">{t}<small>{kind} ・ {due}</small></span><span class="tchip {tone}">{lbl}</span></div>'
+        return f'<div class="{cls}"><span class="lm-type" style="width:28px;height:28px;flex:0 0 28px">{mi("rateReview", 14)}</span><span class="t">{t}<small>{kind} ・ {due}</small></span><span class="tchip {tone}">{lbl}</span></div>'
+    a0, a1, a2 = S["x_asg_list"]
+    asg = row(0, *a0, cls="xai {{on0}}")
+    asg += f'<sc-if value="{{{{created}}}}" hint-placeholder-val="{{{{false}}}}">' + row(1, a1[0], "draft", S["x_det_created"].split(" ・ ")[-1].split(" · ")[-1], a1[3], cls="xai on") + "</sc-if>"
+    asg += row(2, *a2, cls="xai")
     dt, dsub, dfiles = S["x_det_sel"]
     stats = "".join(f'<span class="tchip">{x}</span>' for x in S["x_det_stats"])
     files = "".join(_xfile(S, *f) for f in S["x_files"])
     rub = S["x_f_rub_v"].replace("\n", "<br>")
-    dialog = f'''<div class="tscrim"><div class="dlg" style="max-width:900px">
-    <div class="dlg-head"><h2>{S["x_dlg_h"]}</h2><span class="ticon">{mi("close", 22)}</span></div>
+    dialog = f'''<sc-if value="{{{{dlgOpen}}}}" hint-placeholder-val="{{{{true}}}}"><div class="tscrim"><div class="dlg" style="max-width:900px">
+    <div class="dlg-head"><h2>{S["x_dlg_h"]}</h2><button class="ticon" onClick="{{{{closeDlg}}}}" aria-label="{S["x_cancel"]}">{mi("close", 22)}</button></div>
     <div class="dlg-body" style="gap:18px">
       <div style="display:grid;grid-template-columns:1fr 240px;gap:16px">{field(S["x_f_title"], S["x_f_title_v"], required=True)}{field(S["x_f_subject"], S["x_f_subject_v"], required=True, icon="expandMore")}</div>
       <div>{field(S["x_f_msg"], S["x_f_msg_v"], area=True)}<span class="helper">{S["x_f_msg_help"]}</span></div>
@@ -7299,26 +7313,43 @@ def x_assign(S, L):
       <div>{field(S["x_f_rub"], rub, area=True)}<div style="display:flex;align-items:center;gap:10px;margin-top:8px"><span class="tbtn sm" style="color:#2196F3">{mi("spark", 16)}{S["x_gen"]}</span><span class="helper" style="margin:0">{S["x_gen_hint"]}{new}</span></div></div>
       {field(S["x_due"], f'<span class="num">{S["x_due_v"]}</span>', icon="calendar")}
     </div>
-    <div class="dlg-foot"><span class="tbtn">{S["x_cancel"]}</span><span class="tbtn contained">{S["x_create"]}</span></div>
-  </div></div>'''
-    body = f'<style>{X_CSS}</style>' + tnav(S, "ai") + f'''<div class="tmain">
-<div class="tscroll">
-  {tcrumbs(S, "X-Assign", [(S["x_crumb"][0], "#"), (S["x_crumb"][1], None)])}
-  <div class="tphead" style="margin-bottom:16px"><h1>{S["x_h"]}</h1><div class="acts"><span class="tbtn contained">{mi("add", 18)}{S["x_new"]}</span></div></div>
-  <div class="xcls">{cls}</div>
-  <div style="display:grid;grid-template-columns:380px 1fr;gap:24px;margin-top:20px;align-items:start">
-    <div class="xasg">{asg}</div>
-    <div class="tpaper"><div class="ph"><h3>{dt}</h3><div style="display:flex;gap:8px"><span class="tbtn sm">{mi("edit", 16)}{S["x_det_edit"]}</span><span class="tbtn sm outlined">{S["x_det_close"]}</span></div></div>
+    <div class="dlg-foot"><button class="tbtn" onClick="{{{{closeDlg}}}}">{S["x_cancel"]}</button><button class="tbtn contained" onClick="{{{{doCreate}}}}">{S["x_create"]}</button></div>
+  </div></div></sc-if>
+<sc-if value="{{{{snack}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack">{mi("checkCircle", 18, "#fff")}<span style="margin-left:8px">{S["x_snack_created"]}</span><button class="ticon sm" style="color:#fff;margin-left:12px" onClick="{{{{hideSnack}}}}" aria-label="close">{mi("close", 16)}</button></div></sc-if>'''
+    # the detail after Create — production's layout (the PM's screenshot, 8 Oct): title + subject, edit pencil, the status action,
+    # Question overview, Attached files, Rubric Content with View Less, then the Analysis cards
+    flinks = "".join(f'<span class="xlink">{mi("attachFile", 16) if "attachFile" in MI else mi("description", 16)}{n}</span>' for n, *_ in S["x_files"])
+    an = "".join(f'<div class="c"><div class="h">{mi(ic_, 18)}{lbl}<span class="n num">{n}</span></div><small>{d}</small></div>' for ic_, lbl, n, d in S["x_an"])
+    det_new = f'''<div class="tpaper"><div class="ph"><h3>{S["x_f_title_v"]} <span class="helper" style="margin:0 0 0 10px;font-weight:400">{S["x_f_subject_v"]}</span></h3><div style="display:flex;gap:8px;align-items:center"><span class="ticon sm" style="color:#2196F3">{mi("edit", 18)}</span><span class="tbtn contained sm">{S["x_det_pub"]}</span></div></div>
+      <div class="pb" style="display:flex;flex-direction:column;gap:18px">
+        <span class="helper num" style="margin:0">{S["x_det_created"]}</span>
+        <div class="xsec"><h4>{S["x_f_qov"]}</h4><p>{S["x_f_qov_v"]}</p></div>
+        <div class="xsec"><h4>{S["x_det_files"]}</h4><div>{flinks}</div></div>
+        <div class="xsec"><h4>{S["x_f_rub"]}</h4><p>{S["x_f_rub_v"]}</p><a href="#" class="xlink" style="margin-left:auto">{S["x_view_less"]}</a></div>
+        <div class="xsec"><h4 style="font-size:16px">{S["x_an_h"]}</h4><div class="xan">{an}</div></div>
+      </div></div>'''
+    det_old = f'''<div class="tpaper"><div class="ph"><h3>{dt}</h3><div style="display:flex;gap:8px"><span class="tbtn sm">{mi("edit", 16)}{S["x_det_edit"]}</span><span class="tbtn sm outlined">{S["x_det_close"]}</span></div></div>
       <div class="pb" style="display:flex;flex-direction:column;gap:14px">
         <span class="helper num" style="margin:0">{dsub}</span>
         <div style="display:flex;gap:8px;flex-wrap:wrap">{stats}</div>
         <dl class="xkv"><dt>{S["x_det_files"]}</dt><dd>{dfiles}</dd><dt>{S["x_det_rub"]}</dt><dd>{S["x_det_rub_v"]}</dd><dt>{S["x_det_msg"]}</dt><dd style="color:#757575">{S["x_f_msg_v"][:80]}…</dd></dl>
-      </div></div>
+      </div></div>'''
+    body = f'<style>{X_CSS}</style>' + tnav(S, "ai") + f'''<div class="tmain">
+<div class="tscroll">
+  {tcrumbs(S, "X-Assign", [(S["x_crumb"][0], "#"), (S["x_crumb"][1], None)])}
+  <div class="tphead" style="margin-bottom:16px"><h1>{S["x_h"]}</h1><div class="acts"><button class="tbtn contained" onClick="{{{{openDlg}}}}">{mi("add", 18)}{S["x_new"]}</button></div></div>
+  <div class="xcls">{cls}</div>
+  <div style="display:grid;grid-template-columns:380px 1fr;gap:24px;margin-top:20px;align-items:start">
+    <div class="xasg">{asg}</div>
+    <div><sc-if value="{{{{notCreated}}}}" hint-placeholder-val="{{{{true}}}}">{det_old}</sc-if><sc-if value="{{{{created}}}}" hint-placeholder-val="{{{{false}}}}">{det_new}</sc-if></div>
   </div>
 </div>
 {dialog}
 </div>'''
-    return tpage(S, "X-Assign", S["x_titles"]["assign"], body)
+    logic = """state = { dlg: true, created: false, snack: false };
+  renderVals() { const c = this.state.created; return { dlgOpen: this.state.dlg, notCreated: !c, created: c, snack: this.state.snack, on0: c ? "" : "on",
+    openDlg: () => this.setState({ dlg: true, snack: false }), closeDlg: () => this.setState({ dlg: false }), doCreate: () => this.setState({ dlg: false, created: true, snack: true }), hideSnack: () => this.setState({ snack: false }) }; }"""
+    return tpage(S, "X-Assign", S["x_titles"]["assign"], body, logic=logic)
 
 def x_upload(S, L):
     """The feedback snap's input with a file: the assignment, Take a photo / Choose a file (NEW), the
@@ -7674,7 +7705,7 @@ for lang, S in (("ja", JA), ("en", EN)):
         XX[screen] = x
         x += w + 80
 XNOTES = {
-    "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is.",
+    "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is. CREATE (PM, 8 Oct: enable the Create button so it lists the assignment): the button does what the page's create handler does in the code — the 'Created successfully' snackbar, the dialog closes, the list is refetched with the new assignment selected, and the detail panel shows it in production's layout (title and subject, the edit pencil and the Publish action for a draft, Question overview, Attached files, Rubric Content with View Less, then the Analysis cards Started 0 / 150, Snaps 0, Completed 0 / 150 with production's captions). Cancel or the X closes the dialog without creating; + New opens it again. No new screen — the teacher stays on Assignments; Publish is the separate action that makes it visible in the app.",
     "X-Upload": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and a note that the final is submitted the way the teacher asks — the product never names Google Classroom (PM, 8 Oct: a competitor), though the trial's agreed two-step flow is that the final goes there. Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide.",
     "X-Feedback": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: Mark as Complete only — the AI Tutor Assignment's own action in the code (no 'check again' button, PM 8 Oct; another upload from the assignment is the next version; no Google Classroom button, it is a competitor — the final goes wherever the teacher says). Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
 }
