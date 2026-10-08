@@ -7151,9 +7151,9 @@ X_JA = dict(
     x_f_up="ファイルをアップロード", x_f_drop="ここにファイルをドラッグ＆ドロップ、または", x_f_browse="ファイルを選択", x_f_types="対応形式: PDF, PNG, JPG, XLSX, PPTX",
     x_files=[("演習_09_回帰.xlsx", "xlsx", "48 KB ・ 4シート", "task"), ("演習_09_回帰_模範回答.xlsx", "xlsx", "51 KB ・ 4シート", "model"), ("課題の評価基準.pdf", "pdf", "212 KB", "rubric")],
     x_role_lbl="役割", x_roles={"task": "課題ファイル（学生が埋める）", "model": "模範回答（ギャップの基準）", "rubric": "評価基準（観点）"},
-    x_role_help="模範回答があれば、AIは学生の回答と模範回答の差を観点ごとに返します。評価基準があれば「AIによる生成」がその観点をルーブリック内容に書き起こします。",
-    x_f_rub="ルーブリック内容", x_f_rub_v="評価基準（課題の評価基準.pdf）より。この回は ①②③④ を使う：\n① エクセルスキル — 関数（CORREL・SLOPE・INTERCEPT・RSQ）とセル参照が正しく使えている\n② 見やすさ — 表・ラベル・単位が読み取れる\n③ 処理 — 相関係数・回帰式・決定係数・偏相関が模範回答と一致する（差があれば指摘）\n④ 考察 — 数値の意味を一文で書けている（どの変数が家賃を最も説明するか）\n各観点 0〜3、優れたものは 5（目安として返す）",
-    x_gen="AIによる生成", x_gen_hint="評価基準ファイルと質問概要から生成", x_due="期限を設定する", x_due_v="2026/11/20 23:59", x_cancel="キャンセル", x_create="作成",
+    x_role_help="「AIによる生成」は、アップロードした課題（と、あれば模範回答・評価基準）を読んでルーブリック内容を作成します。役割の指定は不要です。",
+    x_f_rub="ルーブリック内容", x_f_rub_v="アップロードした課題と模範回答・評価基準から生成。この回は ①②③④ を使う：\n① エクセルスキル — 関数（CORREL・SLOPE・INTERCEPT・RSQ）とセル参照が正しく使えている\n② 見やすさ — 表・ラベル・単位が読み取れる\n③ 処理 — 相関係数・回帰式・決定係数・偏相関が模範回答と一致する（差があれば指摘）\n④ 考察 — 数値の意味を一文で書けている（どの変数が家賃を最も説明するか）\n各観点 0〜3、優れたものは 5（目安として返す）",
+    x_gen="AIによる生成", x_gen_hint="アップロードした課題から生成", x_due="期限を設定する", x_due_v="2026/11/20 23:59", x_cancel="キャンセル", x_create="作成",
     x_new_chip="NEW", x_detail_h="課題の詳細", x_det_edit="編集", x_det_open="開く", x_det_close="閉じる", x_det_files="添付ファイル", x_det_rub="ルーブリック内容", x_det_msg="メッセージ",
     x_det_sel=("第8回 相関分析(2)", "公開中 ・ 期限 2026/11/13 23:59", "演習_08_相関(2).xlsx ・ 演習_08_相関(2)_模範回答.xlsx ・ 課題の評価基準.pdf"),
     x_det_rub_v="① エクセルスキル ② 見やすさ ③ 処理（層別・外れ値・相関行列が模範回答と一致） ④ 考察",
@@ -7191,9 +7191,9 @@ X_EN = dict(
     x_f_up="Upload files", x_f_drop="Drag and drop files here, or", x_f_browse="Choose files to upload", x_f_types="Allowed file types: PDF, PNG, JPG, XLSX, PPTX",
     x_files=[("Exercise_09_Regression.xlsx", "xlsx", "48 KB · 4 sheets", "task"), ("Exercise_09_Regression_model_answer.xlsx", "xlsx", "51 KB · 4 sheets", "model"), ("Assignment_evaluation_criteria.pdf", "pdf", "212 KB", "rubric")],
     x_role_lbl="Role", x_roles={"task": "Exercise file (student fills in)", "model": "Model answer (gap reference)", "rubric": "Evaluation criteria"},
-    x_role_help="With a model answer, the AI returns the gaps between the student's answer and the model, point by point. With evaluation criteria, Generate by AI writes those criteria into the rubric content.",
-    x_f_rub="Rubric content", x_f_rub_v="From the evaluation criteria (Assignment_evaluation_criteria.pdf). This session uses (1)–(4):\n(1) Excel skills — functions (CORREL, SLOPE, INTERCEPT, RSQ) and cell references used correctly\n(2) Readability — tables, labels and units can be read\n(3) Processing — correlation, regression line, R² and partial correlation match the model answer (flag any gap)\n(4) Analysis — one sentence on what the numbers mean (which variable explains rent most)\n0–3 per criterion, 5 for outstanding work (returned as an indication)",
-    x_gen="Generate by AI", x_gen_hint="from the criteria file and the question overview", x_due="Set a due date", x_due_v="2026/11/20 23:59", x_cancel="Cancel", x_create="Create",
+    x_role_help="Generate by AI reads the uploaded question (and the model answer and criteria, when attached) and writes the rubric content. No role to pick.",
+    x_f_rub="Rubric content", x_f_rub_v="Generated from the uploaded question, the model answer and the criteria. This session uses (1)–(4):\n(1) Excel skills — functions (CORREL, SLOPE, INTERCEPT, RSQ) and cell references used correctly\n(2) Readability — tables, labels and units can be read\n(3) Processing — correlation, regression line, R² and partial correlation match the model answer (flag any gap)\n(4) Analysis — one sentence on what the numbers mean (which variable explains rent most)\n0–3 per criterion, 5 for outstanding work (returned as an indication)",
+    x_gen="Generate by AI", x_gen_hint="from the uploaded question", x_due="Set a due date", x_due_v="2026/11/20 23:59", x_cancel="Cancel", x_create="Create",
     x_new_chip="NEW", x_detail_h="Assignment detail", x_det_edit="Edit", x_det_open="Open", x_det_close="Close", x_det_files="Attached files", x_det_rub="Rubric content", x_det_msg="Your message",
     x_det_sel=("Session 8 Correlation (2)", "Open · due 2026/11/13 23:59", "Exercise_08_Correlation(2).xlsx · Exercise_08_Correlation(2)_model_answer.xlsx · Assignment_evaluation_criteria.pdf"),
     x_det_rub_v="(1) Excel skills (2) Readability (3) Processing (stratified analysis, outliers and the correlation matrix match the model answer) (4) Analysis",
@@ -7265,17 +7265,15 @@ X_CSS = """
 .xhide{display:none!important}
 """
 
-def _xfile(S, name, kind, meta, role):
-    opts = "".join(f'<option{" selected" if k == role else ""}>{v}</option>' for k, v in S["x_roles"].items())
+def _xfile(S, name, kind, meta, role=None):
     return (f'<div class="xfile"><span class="fi {kind}">{kind.upper()}</span><span class="nm">{name}<small>{meta}</small></span>'
-            f'<label class="field"><span class="lbl">{S["x_role_lbl"]}</span><span class="in" style="padding-right:8px"><span class="ell">{S["x_roles"][role]}</span>{mi("expandMore", 18, "rgba(0,0,0,.54)")}</span></label>'
             f'<span class="ticon sm">{mi("close", 16)}</span></div>')
 
 def x_assign(S, L):
     """ClassAssignmentPage as the code renders it — class cards, the assignment list, the detail — with
     CreateAssignmentDialog open on top (Title, Subject, Your message, the rubric section: question
     overview, upload, rubric content, Generate by AI, due date). The least-effort additions are marked
-    NEW: .xlsx / .pptx accepted, a role per attached file, Generate by AI reading the criteria file."""
+    NEW: .xlsx / .pptx accepted, Generate by AI making the rubric out of the uploaded question (PM, 8 Oct: no role per file)."""
     ro = ' style="background:#FAFAFA"'
     new = f'<span class="xnew">{S["x_new_chip"]}</span>'
     cls = "".join(f'<div class="xcl{" on" if i == 0 else ""}"><b>{n}</b><span>{m}</span></div>' for i, (n, m) in enumerate(S["x_classes"]))
@@ -7666,7 +7664,7 @@ notes["title_q_en"] = {"x": 0, "y": QROW_Y["en"] - 240, "text": "Same student fl
 
 # Excel assignments for the Kindai sociology trial (8 Oct): BO assignment with the model answer, the app upload, the app feedback
 XROW_Y = {"ja": 19200, "en": 20700}
-xtitles = ["X1 · BO — AI Tutor › Assignments: the class, the assignment list, New Assignment with .xlsx / .pptx attachments, a role per file (exercise / model answer / criteria), Generate by AI from the criteria, the Gem tone in Your message",
+xtitles = ["X1 · BO — AI Tutor › Assignments: the class, the assignment list, New Assignment with .xlsx / .pptx attachments, Generate by AI making the rubric out of the uploaded question, the Gem tone in Your message",
            "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the Classroom note",
            "X3 · Mobile — AI Feedback result for an Excel submission: Extracted text (the sheets as tables with markers) / Feedback (Summary in the Gem's three-part tone, cards against the model answer)"]
 XSIZE = {"X-Assign": (TW, TH), "X-Upload": (MW, MH), "X-Feedback": (MW, MH)}
@@ -7685,7 +7683,7 @@ for lang, S in (("ja", JA), ("en", EN)):
         XX[screen] = x
         x += w + 80
 XNOTES = {
-    "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) each attached file gets a ROLE — exercise file, model answer (the reference for the gaps), evaluation criteria — one select per file, no new entity; (3) Generate by AI reads the criteria file and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is.",
+    "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is.",
     "X-Upload": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and the note that the final goes through Google Classroom (the two-step flow agreed on 10/8). Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide.",
     "X-Feedback": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: fix it and check again (version 2) → the same upload; submit the final in Google Classroom. Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
 }
