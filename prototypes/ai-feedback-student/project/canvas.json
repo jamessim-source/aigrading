@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-10-08T15:16:13Z"
+    "at": "2026-10-08T15:21:48Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1271,7 +1271,7 @@
       "y": 19200,
       "w": 375,
       "h": 812,
-      "title": "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the Classroom note (JA)",
+      "title": "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the note on the final submission (JA)",
       "is_interactive": true
     },
     "X-Feedback.dc.html": {
@@ -1295,7 +1295,7 @@
       "y": 20700,
       "w": 375,
       "h": 812,
-      "title": "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the Classroom note (EN)",
+      "title": "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the note on the final submission (EN)",
       "is_interactive": true
     },
     "X-Feedback-en.dc.html": {
@@ -2135,14 +2135,14 @@
       "y": 20072,
       "w": 375,
       "maxH": 600,
-      "text": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and the note that the final goes through Google Classroom (the two-step flow agreed on 10/8). Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide."
+      "text": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and a note that the final is submitted the way the teacher asks — the product never names Google Classroom (PM, 8 Oct: a competitor), though the trial's agreed two-step flow is that the final goes there. Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide."
     },
     "x_X-Feedback": {
       "x": 1975,
       "y": 20072,
       "w": 375,
       "maxH": 600,
-      "text": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: fix it and check again (version 2) → the same upload; submit the final in Google Classroom. Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
+      "text": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: fix it and check again (version 2) → the same upload; Mark as Complete — the AI Tutor Assignment's own action in the code (PM, 8 Oct: no Google Classroom button, it is a competitor; the final goes wherever the teacher says). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
     },
     "title_x": {
       "x": 0,

@@ -347,8 +347,8 @@ The least-dev-effort fit of the trial's Excel assignments onto what the Back
 Office code already has. **X1** is the AI Tutor Assignment dialog with `.xlsx` /
 `.pptx` accepted and Generate by AI making the rubric out of the uploaded question
 (no role per file — PM, 8 Oct); Your message carries the teacher's Gem instructions. **X2** is the feedback snap with
-Choose a file beside the camera, the workbook with every sheet read, and the note
-that the final goes to Google Classroom. **X3** is the AI Feedback result in the
+Choose a file beside the camera, the workbook with every sheet read, and a note on
+submitting the final the teacher's way (the product never names Classroom). **X3** is the AI Feedback result in the
 app's format: the sheets as tables with numbered markers, the Summary in the
 Gem's three-part tone, one card per point against the model answer. PRD C11.14
 has the requirement mapping and the dev-effort notes.

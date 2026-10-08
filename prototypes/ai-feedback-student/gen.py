@@ -7163,12 +7163,12 @@ X_JA = dict(
     x_up_h="答案をアップロード", x_up_sub="Excel のまま送れます。すべてのシートを読み込みます。", x_up_camera="写真を撮る", x_up_file="ファイルを選ぶ", x_up_types="Excel (.xlsx) ・ PowerPoint (.pptx) ・ PDF ・ 写真",
     x_up_picked="演習_09_回帰.xlsx", x_up_picked_meta="48 KB ・ 4シート ・ 11/13 20:38", x_up_sheets_h="読み込むシート",
     x_up_sheets=[("回帰直線・回帰式(1)", "B3:L22"), ("回帰直線・回帰式(2)", "A3:F50"), ("決定係数", "A1:I51"), ("偏相関", "A3:I22")], x_up_read="読み込み済み",
-    x_up_btn="AIチェックを受ける", x_up_note="AIのフィードバックを受けて直したら、最終版は Google Classroom から提出してください（成績はそちらで付きます）。",
+    x_up_btn="AIチェックを受ける", x_up_note="AIのフィードバックを受けて直したら、先生の指示どおりに最終版を提出してください。",
     x_up_prev="前回の版：なし ・ 1回目のチェック",
     # X3 — app feedback
     x_fb_title="AIフィードバック", x_fb_seg=("読み取ったテキスト", "フィードバック"), x_fb_ver="版 1 ・ 11/13 20:40 ・ 模範回答と比較",
     x_fb_summary_lbl="まとめ",
-    x_fb_summary="4つのシートすべてで計算が最後まで進んでいて、特に「回帰直線・回帰式(1)」では偏差から共分散・相関係数・回帰式まで手順どおりに求められています。計算式で出した値と関数で出した値が一致しているのも、確認の習慣ができている証拠です。ひとつ考えてみてください。「偏相関」シートの偏相関係数は 1.01 になっていますが、相関係数が取りうる範囲はいくつからいくつまででしょうか。模範回答では 0.58 です。分母の √(1−r²) にどの r を入れたか、セルの参照先を一度たどってみましょう。次の一歩は三つです。① 偏相関の式のセル参照を見直して再計算する。② 「決定係数」シートで、三つの R² のうちどれが家賃をいちばん説明するかを一文で書く。③ 直したら最終版を Google Classroom に提出する。参照：第9回 講義資料 p.12「偏相関係数」、p.8「決定係数の読み方」",
+    x_fb_summary="4つのシートすべてで計算が最後まで進んでいて、特に「回帰直線・回帰式(1)」では偏差から共分散・相関係数・回帰式まで手順どおりに求められています。計算式で出した値と関数で出した値が一致しているのも、確認の習慣ができている証拠です。ひとつ考えてみてください。「偏相関」シートの偏相関係数は 1.01 になっていますが、相関係数が取りうる範囲はいくつからいくつまででしょうか。模範回答では 0.58 です。分母の √(1−r²) にどの r を入れたか、セルの参照先を一度たどってみましょう。次の一歩は三つです。① 偏相関の式のセル参照を見直して再計算する。② 「決定係数」シートで、三つの R² のうちどれが家賃をいちばん説明するかを一文で書く。③ 直したら、先生の指示どおりに最終版を提出する。参照：第9回 講義資料 p.12「偏相関係数」、p.8「決定係数の読み方」",
     x_fb_cards=[("t", "処理", "回帰直線・回帰式(1)", "相関係数 0.7618（計算式 K8）＝ 0.7618（関数 K13）", "計算式と関数の両方で求めて値を突き合わせています。模範回答と一致。偏差積の平均（共分散）39.52 から r を出す流れも正しいです。"),
                 ("t", "エクセルスキル", "回帰直線・回帰式(1)", "回帰式の傾き 0.00807 ・ 切片 −1.797", "模範回答と一致。ここまで書けたら、「入試の点数が1点上がるとGPAが約0.008上がる」という一文を添えると、数値が意味を持ちます。"),
                 ("r", "考察", "決定係数", "使用部分面積 vs 家賃 R² 0.508 ／ 交通 R² 0.076 ／ 築年数 R² 0.360 — 解釈は未記入", "数値は三つとも模範回答と一致していますが、模範回答にはこの下に「築年数と面積が家賃を説明し、駅からの徒歩分数はほとんど関係しない」の一文があります。どの変数が家賃を最も説明するか、一文だけ書いてみましょう。"),
@@ -7177,7 +7177,7 @@ X_JA = dict(
                  ("回帰直線・回帰式(2)", [("相関係数 (r)", "0.998", ""), ("決定係数 (R²)", "0.996", ""), ("回帰式の傾き (b)", "0.323", ""), ("回帰式の切片 (a)", "35,329.5", "")]),
                  ("決定係数", [("使用部分面積 vs 家賃", "r 0.713 ・ R² 0.508", ""), ("交通（徒歩分数） vs 家賃", "r 0.276 ・ R² 0.076", ""), ("築年数 vs 家賃", "r −0.600 ・ R² 0.360", ""), ("解釈", "（未記入）", "3")]),
                  ("偏相関", [("r12 入試×GPA", "0.762", ""), ("r13 入試×評定", "0.691", ""), ("r23 GPA×評定", "0.607", ""), ("偏相関係数 (r_12.3)", "1.0105", "4")])],
-    x_fb_cols=("項目", "値"), x_fb_again="直してもう一度チェック（版2）", x_fb_final="Google Classroom に最終版を提出", x_fb_ask="AIに質問",
+    x_fb_cols=("項目", "値"), x_fb_again="直してもう一度チェック（版2）", x_fb_final="完了にする", x_fb_ask="AIに質問",
 )
 X_EN = dict(
     x_titles={"assign": "BO — AI Tutor Assignment (Excel model answer, criteria)", "upload": "Mobile — upload the Excel", "fb": "Mobile — AI Feedback (Excel)"},
@@ -7202,11 +7202,11 @@ X_EN = dict(
     x_up_h="Upload your work", x_up_sub="Send the Excel file as it is. Every sheet is read.", x_up_camera="Take a photo", x_up_file="Choose a file", x_up_types="Excel (.xlsx) · PowerPoint (.pptx) · PDF · photos",
     x_up_picked="Exercise_09_Regression.xlsx", x_up_picked_meta="48 KB · 4 sheets · 11/13 20:38", x_up_sheets_h="Sheets to read",
     x_up_sheets=[("Regression line (1)", "B3:L22"), ("Regression line (2)", "A3:F50"), ("R²", "A1:I51"), ("Partial correlation", "A3:I22")], x_up_read="read",
-    x_up_btn="Get AI feedback", x_up_note="Once you have fixed it along the AI's feedback, submit the final version through Google Classroom — that is where it is graded.",
+    x_up_btn="Get AI feedback", x_up_note="Once you have fixed it along the AI's feedback, submit the final version the way your teacher asks.",
     x_up_prev="Previous version: none · first check",
     x_fb_title="AI Feedback", x_fb_seg=("Extracted text", "Feedback"), x_fb_ver="Version 1 · 11/13 20:40 · compared with the model answer",
     x_fb_summary_lbl="Summary",
-    x_fb_summary="All four sheets are worked through to the end, and on “Regression line (1)” you went from the deviations to the covariance, the correlation coefficient and the regression line in the right order. The value from the formula and the value from the function agree, which shows you are in the habit of checking. One thing to think about: on the “Partial correlation” sheet the coefficient comes out as 1.01 — what range can a correlation coefficient take? The model answer gives 0.58. Trace which r went into the √(1−r²) in the denominator. Three next steps: (1) re-check the cell references in the partial-correlation formula and recompute; (2) on the “R²” sheet, write one sentence on which of the three R² explains rent best; (3) once fixed, submit the final version in Google Classroom. Referred to: Session 9 slides p.12 “Partial correlation”, p.8 “Reading R²”",
+    x_fb_summary="All four sheets are worked through to the end, and on “Regression line (1)” you went from the deviations to the covariance, the correlation coefficient and the regression line in the right order. The value from the formula and the value from the function agree, which shows you are in the habit of checking. One thing to think about: on the “Partial correlation” sheet the coefficient comes out as 1.01 — what range can a correlation coefficient take? The model answer gives 0.58. Trace which r went into the √(1−r²) in the denominator. Three next steps: (1) re-check the cell references in the partial-correlation formula and recompute; (2) on the “R²” sheet, write one sentence on which of the three R² explains rent best; (3) once fixed, submit the final version the way your teacher asks. Referred to: Session 9 slides p.12 “Partial correlation”, p.8 “Reading R²”",
     x_fb_cards=[("t", "Processing", "Regression line (1)", "Correlation 0.7618 (formula, K8) = 0.7618 (function, K13)", "Computed both by formula and by function, and they agree. Matches the model answer. Going from the mean deviation product (covariance 39.52) to r is also right."),
                 ("t", "Excel skills", "Regression line (1)", "Slope 0.00807 · intercept −1.797", "Matches the model answer. Add one sentence — “one more exam point raises GPA by about 0.008” — and the numbers mean something."),
                 ("r", "Analysis", "R²", "Floor area vs rent R² 0.508 / walk time R² 0.076 / building age R² 0.360 — no interpretation written", "All three numbers match the model answer, but the model answer has one sentence under them: “age and floor area explain rent; walking time from the station hardly matters.” Write one sentence on which variable explains rent most."),
@@ -7215,7 +7215,7 @@ X_EN = dict(
                  ("Regression line (2)", [("Correlation (r)", "0.998", ""), ("R²", "0.996", ""), ("Slope (b)", "0.323", ""), ("Intercept (a)", "35,329.5", "")]),
                  ("R²", [("Floor area vs rent", "r 0.713 · R² 0.508", ""), ("Walk time vs rent", "r 0.276 · R² 0.076", ""), ("Building age vs rent", "r −0.600 · R² 0.360", ""), ("Interpretation", "(not written)", "3")]),
                  ("Partial correlation", [("r12 exam × GPA", "0.762", ""), ("r13 exam × HS grade", "0.691", ""), ("r23 GPA × HS grade", "0.607", ""), ("Partial correlation (r_12.3)", "1.0105", "4")])],
-    x_fb_cols=("Item", "Value"), x_fb_again="Fix it and check again (version 2)", x_fb_final="Submit the final in Google Classroom", x_fb_ask="Ask AI",
+    x_fb_cols=("Item", "Value"), x_fb_again="Fix it and check again (version 2)", x_fb_final="Mark as Complete", x_fb_ask="Ask AI",
 )
 JA.update(X_JA); EN.update(X_EN)
 
@@ -7324,7 +7324,7 @@ def x_assign(S, L):
 
 def x_upload(S, L):
     """The feedback snap's input with a file: the assignment, Take a photo / Choose a file (NEW), the
-    chosen workbook with its sheets all read, Get AI feedback, and the Classroom note."""
+    chosen workbook with its sheets all read, Get AI feedback, and the note on the final submission."""
     sheets = "".join(f'<div class="xsheet"><span class="ico">{ic("table", 18)}</span><span class="nm">{n}<small>{rng}</small></span><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12, "#1f7a4d", 2.6)}{S["x_up_read"]}</span></div>' for n, rng in S["x_up_sheets"])
     body = f'<style>{X_CSS}</style>' + mheader(S, "X-Upload", S["x_up_title"], back_href=fn("M-Main", L)) + f'''
 <div class="mbody" style="padding-bottom:120px">
@@ -7382,7 +7382,7 @@ def x_feedback(S, L):
 </div>
 <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:10px 16px 22px;z-index:20;display:flex;flex-direction:column;gap:8px">
   <a class="mbtn neutral" href="{fn("X-Upload", L)}">{ic("upload", 18)}{S["x_fb_again"]}</a>
-  <span class="mbtn primary">{ic("globe", 18, "#fff")}{S["x_fb_final"]}</span>
+  <span class="mbtn primary">{ic("check", 18, "#fff", 2.6)}{S["x_fb_final"]}</span>
 </div>'''
     logic = """state = { seg: "fb" };
   renderVals() { const s = this.state.seg; return { segT: s === "text" ? "on" : "", segF: s === "fb" ? "on" : "", showT: s === "text" ? "" : "xhide", showF: s === "fb" ? "" : "xhide",
@@ -7665,7 +7665,7 @@ notes["title_q_en"] = {"x": 0, "y": QROW_Y["en"] - 240, "text": "Same student fl
 # Excel assignments for the Kindai sociology trial (8 Oct): BO assignment with the model answer, the app upload, the app feedback
 XROW_Y = {"ja": 19200, "en": 20700}
 xtitles = ["X1 · BO — AI Tutor › Assignments: the class, the assignment list, New Assignment with .xlsx / .pptx attachments, Generate by AI making the rubric out of the uploaded question, the Gem tone in Your message",
-           "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the Classroom note",
+           "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the note on the final submission",
            "X3 · Mobile — AI Feedback result for an Excel submission: Extracted text (the sheets as tables with markers) / Feedback (Summary in the Gem's three-part tone, cards against the model answer)"]
 XSIZE = {"X-Assign": (TW, TH), "X-Upload": (MW, MH), "X-Feedback": (MW, MH)}
 XX = {}
@@ -7684,8 +7684,8 @@ for lang, S in (("ja", JA), ("en", EN)):
         x += w + 80
 XNOTES = {
     "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is.",
-    "X-Upload": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and the note that the final goes through Google Classroom (the two-step flow agreed on 10/8). Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide.",
-    "X-Feedback": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: fix it and check again (version 2) → the same upload; submit the final in Google Classroom. Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
+    "X-Upload": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and a note that the final is submitted the way the teacher asks — the product never names Google Classroom (PM, 8 Oct: a competitor), though the trial's agreed two-step flow is that the final goes there. Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide.",
+    "X-Feedback": "THE FEEDBACK, in the app's own format (the PM's screenshots, 6 Oct). Extracted text = each sheet as a small table — the cells the feedback points at carry the numbered teal / red markers (teal = matches the model answer, red = a gap). Feedback = the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to, and the comment. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: fix it and check again (version 2) → the same upload; Mark as Complete — the AI Tutor Assignment's own action in the code (PM, 8 Oct: no Google Classroom button, it is a competitor; the final goes wherever the teacher says). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
 }
 for screen in XSCREENS:
     w = TNW if screen == "X-Assign" else MNW
