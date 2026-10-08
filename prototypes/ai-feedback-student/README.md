@@ -350,7 +350,7 @@ Office code already has. **X1** is the AI Tutor Assignment dialog with `.xlsx` /
 Choose a file beside the camera, the workbook with every sheet read, and a note on
 submitting the final the teacher's way (the product never names Classroom). **X3** is the AI Feedback result in the
 app's format, simplified for the trial (PM, 8 Oct: one week to go): the Feedback
-view only — the Summary in the Gem's three-part tone and one card per point against
-the model answer, naming the sheet and cell in words; a workbook gets no
-extracted-sheet view, so no table renderer and no markers to evaluate. PRD C11.14
-has the requirement mapping and the dev-effort notes.
+tab is the Summary in the Gem's three-part tone and one card per point against
+the model answer, naming the sheet and cell in words; the Extracted text tab lists
+only the workbook's sheet names, so no table renderer and no markers to evaluate.
+PRD C11.14 has the requirement mapping and the dev-effort notes.
