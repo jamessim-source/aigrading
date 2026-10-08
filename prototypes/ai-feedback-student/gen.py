@@ -2779,7 +2779,12 @@ def tnav(S, side="book"):
         if i == 1 and side == "ai":
             branch = " on"
         caret = f'<span class="caret">{mi("expandLess" if i in opened else "expandMore", 20)}</span>' if i in groups else ""
-        lb = f'<a class="lb" href="{tfn("T-DashTopic", L)}" style="color:inherit">{label}</a>' if i == 0 else f'<span class="lb">{label}</span>'
+        if i == 0:
+            lb = f'<a class="lb" href="{tfn("T-DashTopic", L)}" style="color:inherit">{label}</a>'
+        elif i == 1:  # AI Tutor › Assignments (X1) — reachable from every Back Office board (PM, 8 Oct)
+            lb = f'<a class="lb" href="{tfn("X-Assign", L)}" style="color:inherit">{label}</a>'
+        else:
+            lb = f'<span class="lb">{label}</span>'
         out += f'<div class="tn{branch}"><span class="mi">{mi(icons[i], 22)}</span>{lb}{caret}</div>'
         if i == 3:
             for j, sub in enumerate(S["t_nav_course"]):
