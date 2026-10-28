@@ -14,7 +14,7 @@ trial will produce) and `ai_feedback_chat_export_sample_en.csv` (the same rows i
 | 4 | `Title` | the AI Tutor Assignment's title the snap is tied to | **empty** when the feedback snap is a free snap, not tied to an assignment |
 | 5 | `Subject` | the assignment's subject (or the class subject for a free snap) | |
 | 6 | `Question` | the thread's `question_overview` — the AI-written summary of what the student submitted and asked | |
-| 7 | `Chat` | the whole thread, every message in order, one per line: `[YYYY/MM/DD HH:MM] AI: …` / `[YYYY/MM/DD HH:MM] 生徒: …` (`Student:` in English) | the AI's feedback is the first message of the thread, so there is no separate Feedback column |
+| 7 | `Chat` | the whole thread, every message in order, one per line: `[YYYY/MM/DD HH:MM] AI: …` / `[YYYY/MM/DD HH:MM] 生徒: …` (`Student:` in English) | the AI's feedback is the first message of the thread, so there is no separate Feedback column  An image the student sent in the chat is a line of its own, `[YYYY/MM/DD HH:MM] 生徒: [画像] <file name>` (`[image]` in English) — images were missing from the export until the 27 Oct fix (Slack thread [S30], 22 Oct) |
 
 ## Rows
 
