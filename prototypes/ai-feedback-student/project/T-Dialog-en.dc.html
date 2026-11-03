@@ -885,7 +885,7 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
           </div>
           <div class="setting">
             <span class="setting-label" style="font-weight:500">How students submit</span>
-            <div style="display:flex;flex-direction:column;gap:2px;margin-top:4px"><button class="check {{c0}}" onClick="{{t0}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>File (PDF · Word · Excel · PowerPoint)</span></button><button class="check {{c1}}" onClick="{{t1}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>Photos (several at once)</span></button><button class="check {{c2}}" onClick="{{t2}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>Typed answer<span class="helper" style="margin:0">500-character limit</span></span></button></div>
+            <div style="display:flex;flex-direction:column;gap:2px;margin-top:4px"><button class="check {{c0}}" onClick="{{t0}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>File (PDF · Word · Excel · PowerPoint)</span></button><button class="check {{c1}}" onClick="{{t1}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>Photos (several at once)</span></button><button class="check {{c2}}" onClick="{{t2}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>Typed answer<span class="helper" style="margin:0">2,000-character limit (tenant setting)</span></span></button></div>
           </div>
           <div class="setting">
             <span class="setting-label" style="font-weight:500">Teacher review</span>
@@ -899,10 +899,10 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
             <span class="helper" style="margin:0">Applies to the feedback and to Ask AI. The tenant cap is 2.</span>
           </div>
           <div class="setting">
-            <!-- AI feedback before submission (PM, 29 Sep): a per-LO switch, default off -->
+            <!-- AI feedback before submission (PM, 29 Sep; default ON since 3 Nov, PRD v1.18): a per-LO switch -->
             <span class="setting-label" style="font-weight:500">AI feedback before submission</span>
             <button class="switch {{pr}}" onClick="{{togglePr}}"><span class="track"></span><span>Students can get AI feedback before they submit</span></button>
-            <sc-if value="{{prOn}}" hint-placeholder-val="{{false}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>Students get AI feedback on a draft and can revise before submitting. It is not reviewed by the teacher and does not count as a submission.</span></div></sc-if>
+            <sc-if value="{{prOn}}" hint-placeholder-val="{{true}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>Students get AI feedback on a draft and can revise before submitting. It is not reviewed by the teacher and does not count as a submission. Unlimited until the due date (a tenant may cap it); the Student Dashboard shows each student's count.</span></div></sc-if>
           </div>
         </div>
       </div>
@@ -915,7 +915,7 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
-  state = { menu: false, review: true, resub: true, pre: false, lvl: 1, m0: true, m1: true, m2: true };
+  state = { menu: false, review: true, resub: true, pre: true, lvl: 1, m0: true, m1: true, m2: true };
   renderVals() {
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {

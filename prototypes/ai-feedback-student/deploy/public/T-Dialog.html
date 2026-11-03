@@ -900,7 +900,7 @@ body{background:#fff}</style>
           </div>
           <div class="setting">
             <span class="setting-label" style="font-weight:500">提出方法</span>
-            <div style="display:flex;flex-direction:column;gap:2px;margin-top:4px"><button class="check {{c0}}" onClick="{{t0}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>ファイル（PDF ・ Word ・ Excel ・ PowerPoint）</span></button><button class="check {{c1}}" onClick="{{t1}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>写真（複数枚まとめて）</span></button><button class="check {{c2}}" onClick="{{t2}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>直接入力<span class="helper" style="margin:0">文字数の上限 500字</span></span></button></div>
+            <div style="display:flex;flex-direction:column;gap:2px;margin-top:4px"><button class="check {{c0}}" onClick="{{t0}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>ファイル（PDF ・ Word ・ Excel ・ PowerPoint）</span></button><button class="check {{c1}}" onClick="{{t1}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>写真（複数枚まとめて）</span></button><button class="check {{c2}}" onClick="{{t2}}"><span class="cbx"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span><span>直接入力<span class="helper" style="margin:0">文字数の上限 2,000字（テナント設定）</span></span></button></div>
           </div>
           <div class="setting">
             <span class="setting-label" style="font-weight:500">先生の確認</span>
@@ -914,10 +914,10 @@ body{background:#fff}</style>
             <span class="helper" style="margin:0">フィードバックと「AIに質問」の両方に適用されます。テナントの上限は 2 です。</span>
           </div>
           <div class="setting">
-            <!-- AI feedback before submission (PM, 29 Sep): a per-LO switch, default off -->
+            <!-- AI feedback before submission (PM, 29 Sep; default ON since 3 Nov, PRD v1.18): a per-LO switch -->
             <span class="setting-label" style="font-weight:500">提出前のAIフィードバック</span>
             <button class="switch {{pr}}" onClick="{{togglePr}}"><span class="track"></span><span>提出前にAIフィードバックを受けられるようにする</span></button>
-            <sc-if value="{{prOn}}" hint-placeholder-val="{{false}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>生徒は下書きにAIフィードバックを受け、直してから提出できます。先生の確認はなく、提出回数には数えません。</span></div></sc-if>
+            <sc-if value="{{prOn}}" hint-placeholder-val="{{true}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>生徒は下書きにAIフィードバックを受け、直してから提出できます。先生の確認はなく、提出回数には数えません。締切まで何度でも受けられます（回数の上限はテナント設定、既定は無制限）。先生は生徒ごとの回数を生徒ダッシュボードで見られます。</span></div></sc-if>
           </div>
         </div>
       </div>
@@ -931,7 +931,7 @@ body{background:#fff}</style>
 <script>
 
 class Component extends DCLogic {
-  state = { menu: false, review: true, resub: true, pre: false, lvl: 1, m0: true, m1: true, m2: true };
+  state = { menu: false, review: true, resub: true, pre: true, lvl: 1, m0: true, m1: true, m2: true };
   renderVals() {
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {

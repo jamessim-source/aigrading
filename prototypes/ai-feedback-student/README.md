@@ -66,8 +66,9 @@ Mobile snap → crop → pages flow follows the unifiedapp student mock
 - No AI-use declaration, no self-check (self-report is not evidence).
 - No AI "next step" card — guidance stays inside each 改善点; next steps are the
   teacher's, in their note.
-- 提出の基本条件 (basic requirements) is a Back Office field on the assignment,
-  separate from the rubric; the six criteria chips are the rubric criteria.
+- 提出の基本条件 (basic requirements) was a Back Office field on the assignment,
+  separate from the rubric; REMOVED 3 Nov (PRD v1.18) — the pre-submission AI
+  feedback is the hint path. The six criteria chips are the rubric criteria.
 - Resubmission is a per-assignment Back Office setting, default off.
 - Submission modes: file / photos of handwritten pages / typed answer
   (500-character limit, confirm before the checks run); which modes an
@@ -379,3 +380,18 @@ tab is the Summary in the Gem's three-part tone and one card per point against
 the model answer, naming the sheet and cell in words; the Extracted text tab lists
 only the workbook's sheet names, so no table renderer and no markers to evaluate.
 PRD C11.14 has the requirement mapping and the dev-effort notes.
+
+## PRD v1.18 (3 Nov, PM's answers to C2 / C3) — boards updated
+
+- Basic-requirement checks removed everywhere: the 提出の基本条件 paper on
+  T-Material, the checklist cards on 02-Assignment, 06-Resubmit, M-Assignment,
+  M-File, M-Type and M-Pages, and the `t_reqf` dashboard data. In their place a
+  提出前のAIフィードバック / AI feedback before you submit card: unlimited
+  drafts until the due date, not reviewed, not a submission; once a file is
+  picked or the text confirmed, "Get feedback on this draft" opens X3.
+- Pre-submission AI feedback is on by default in the Add LO dialog (T-Dialog)
+  and the Settings tab (T-Settings): 許可する ・ 回数制限なし / On · unlimited.
+- Typed answer: 2,000 characters (Env default, Tenant-level), the unfinished
+  answer saved on the device (02-Assignment, M-Type, dialog and settings copy).
+- T-DashStudent versions line and the Usage export column show the draft-check
+  count instead of done / not done.

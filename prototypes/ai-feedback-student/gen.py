@@ -447,13 +447,11 @@ JA = dict(
     a_photos_name="答案の写真 3枚", a_photos_meta="JPG ・ 合計 4.1 MB ・ ページ順 ・ いま選択", a_photos_add="写真を追加",
     a_mode_file="ファイル・写真をアップロード", a_mode_text="直接入力する",
     a_ta_ph="ここに入力してください。週次リフレクションなど短い課題はファイルなしで提出できます。",
-    a_ta_target="目安 300字", a_ta_unit="文字", a_ta_note="入力内容はそのまま先生に届きます。提出後も期限までは書き直せます。",
-    a_ta_confirm="回答を確定する", a_ta_confirm_note="確定すると、提出の基本条件を確認します", a_ta_confirmed="回答を確定しました", a_ta_edit="編集する",
+    a_ta_target="目安 300字", a_ta_unit="文字", a_ta_note="入力内容はそのまま先生に届きます。入力途中の内容はこの端末に保存され、提出後も期限までは書き直せます。",
+    a_ta_confirm="回答を確定する", a_ta_confirm_note="確定した内容がそのまま提出されます", a_ta_confirmed="回答を確定しました", a_ta_edit="編集する",
     a_pick="ファイルを選ぶ", a_note="提出すると先生に届きます。フィードバックは期限のあとに返却されます。",
     a_submit="この答案を提出する", a_file="第7回_演習_山田花子.pdf", a_file_meta="3ページ ・ 1.2 MB ・ いま選択", a_remove="ファイルを外す",
-    pc_h="提出の基本条件", pc_note="この課題で必ず含めるもの", pc_wait="",
-    pc_items=[("ok","散布図が含まれている",""),("ok","相関係数が記載されている",""),("ok","有意性の検定が記載されている",""),
-              ("warn","参照した講義資料の記載","見つかりませんでした。提出前に確認してください"),("ok","ページ数 3（目安は 2 枚程度）","")],
+    pf_h="提出前のAIフィードバック", pf_note="提出する前に、下書きへのAIフィードバックを何度でも受けられます（締切まで）。先生の確認はなく、提出回数には数えません。", pf_btn="下書きにフィードバックをもらう", pf_count="下書きチェック 0回",
     decl_h="AI 利用の申告", decl_sub="任意",
     decl_note="申告は、安本先生が「生成AIリテラシー」の観点を見るときに参照します。AI がこれを使って不正を判定することはありません。",
     decl=["使っていない","数式・関数の確認","文章の校正","構成の相談"], decl_kept="AI の文をそのまま残した箇所があれば書いてください（任意）",
@@ -579,13 +577,11 @@ EN = dict(
     a_photos_name="3 photos of your work", a_photos_meta="JPG · 4.1 MB total · in page order · just selected", a_photos_add="Add photos",
     a_mode_file="Upload a file or photos", a_mode_text="Type your answer",
     a_ta_ph="Write here. Short pieces such as weekly reflections can be submitted without a file.",
-    a_ta_target="Target about 300 characters", a_ta_unit="characters", a_ta_note="Your text goes to your teacher as written. You can edit it until the due date.",
-    a_ta_confirm="Confirm answer", a_ta_confirm_note="Confirming checks it against the basic requirements", a_ta_confirmed="Answer confirmed", a_ta_edit="Edit answer",
+    a_ta_target="Target about 300 characters", a_ta_unit="characters", a_ta_note="Your text goes to your teacher as written. An unfinished answer is saved on this device. You can edit it until the due date.",
+    a_ta_confirm="Confirm answer", a_ta_confirm_note="The confirmed text is what is submitted", a_ta_confirmed="Answer confirmed", a_ta_edit="Edit answer",
     a_pick="Choose a file", a_note="Your submission goes to your teacher. Feedback is returned after the due date.",
     a_submit="Submit this work", a_file="Session7_Exercise_HanakoYamada.pdf", a_file_meta="3 pages · 1.2 MB · just selected", a_remove="Remove file",
-    pc_h="Basic requirements", pc_note="What this submission must include", pc_wait="",
-    pc_items=[("ok","Scatter plot included",""),("ok","Correlation coefficient stated",""),("ok","Significance test stated",""),
-              ("warn","Lecture material referenced","Not found. Check before you submit"),("ok","3 pages (guide: about 2)","")],
+    pf_h="AI feedback before you submit", pf_note="Get AI feedback on your draft as many times as you like until the due date. Your teacher does not review it and it does not count as a submission.", pf_btn="Get feedback on this draft", pf_count="Draft checks: 0",
     decl_h="AI-use declaration", decl_sub="optional",
     decl_note="Your teacher refers to this when looking at the \"generative-AI literacy\" criterion. The AI never uses it to judge misconduct.",
     decl=["Did not use","Checking formulas","Proofreading","Planning the structure"], decl_kept="Passages kept from AI output, if any (optional)",
@@ -689,7 +685,7 @@ MJA = dict(
     m_read_title="読み取り内容の確認", m_read_note="読み取りにくかった箇所は「未確認」です。タップして直せます。未確認のままの箇所は、誤字や字数として指摘されません。",
     m_read_count="未確認 2か所", m_read_unconf="未確認", m_read_ok="合っている ・ フィードバックを受ける", m_read_edit="ここを直す", m_read_sheet_h="読み取り候補",
     m_read_spans=[("東京都", ["東京都", "東京部"]), ("0.03", ["0.03", "0.08"])],
-    m_pages_title="提出するページ", m_pages_hint="長押しで並べ替え ・ タップで確認", m_pages_count="1 / 2", m_pc_pages="ページ数 2（目安は 2 枚程度）",
+    m_pages_title="提出するページ", m_pages_hint="長押しで並べ替え ・ タップで確認", m_pages_count="1 / 2",
     m_file_title="ファイル・写真を選ぶ", m_type_title="直接入力する",
     m_pending_pages="2ページ ・ 写真 ・ 11月11日 14:32", m_pending_replace="差し替える",
     m_fb_doc_h="提出した答案（読み取ったテキスト）", m_fb_points="コメント 3件 ・ 下線をタップすると開きます",
@@ -712,7 +708,7 @@ MEN = dict(
     m_read_title="Check the reading", m_read_note="Hard-to-read spots are marked unconfirmed. Tap one to correct it. Spots left unconfirmed are never counted as typos or in the character count.",
     m_read_count="2 unconfirmed", m_read_unconf="unconfirmed", m_read_ok="Looks right · get feedback", m_read_edit="Correct this", m_read_sheet_h="Reading candidates",
     m_read_spans=[("Tokyo", ["Tokyo", "Tokyu"]), ("0.03", ["0.03", "0.08"])],
-    m_pages_title="Pages to submit", m_pages_hint="Hold to reorder · tap to preview", m_pages_count="1 / 2", m_pc_pages="2 pages (guide: about 2)",
+    m_pages_title="Pages to submit", m_pages_hint="Hold to reorder · tap to preview", m_pages_count="1 / 2",
     m_file_title="Choose a file or photos", m_type_title="Type your answer",
     m_pending_pages="2 pages · Photos · Nov 11, 14:32", m_pending_replace="Replace",
     m_fb_doc_h="Your submission (recognised text)", m_fb_points="3 comments · tap an underline to open one",
@@ -813,17 +809,16 @@ def sect(title, right="", muted=False):
     <p class="sub1{" muted" if muted else ""}">{title}</p>{right}</div>'''
 
 # ---------- shared blocks ----------
-def precheck_block(S, pending_hole=None):
-    """Pre-submission structural checks. When pending_hole is given the block renders a waiting state under that sc-if."""
-    items = ""
-    for st, label, note in S["pc_items"]:
-        icon = ic("check",14,"currentColor",3) if st == "ok" else ic("alert",14,"currentColor",2.4)
-        items += f'<div class="pc {st}"><span class="st">{icon}</span><div class="tt"><b>{label}</b>{("<br><span class=cap>" + note + "</span>") if note else ""}</div></div>'
-    waiting = "".join(f'<div class="pc pend"><span class="st">{ic("minus",14,"currentColor",3)}</span><div class="tt muted">{label}</div></div>' for _, label, _ in S["pc_items"])
-    return f'''<div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:8px">
-    <div style="display:flex;align-items:center;justify-content:space-between"><p class="sub1">{S["pc_h"]}</p><span class="cap">{S["pc_note"]}</span></div>
-    <sc-if value="{{{{empty}}}}" hint-placeholder-val="{{{{true}}}}">{waiting}</sc-if>
-    <sc-if value="{{{{picked}}}}" hint-placeholder-val="{{{{false}}}}">{items}</sc-if>
+def prefb_block(S, L, mobile=False):
+    """AI feedback before submission (PRD v1.18, 3 Nov): the basic-requirement checks are removed; the hint
+    path is draft feedback from the same engine, on by default, unlimited until the due date, never a submission."""
+    btn = "mbtn neutral" if mobile else "btn neutral"
+    pad = "" if mobile else ' style="padding:20px 24px;display:flex;flex-direction:column;gap:10px"'
+    cls = "mcard" if mobile else "card"
+    return f'''<div class="{cls}"{pad}>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><p class="sub1"{' style="font-size:14px"' if mobile else ''}>{S["pf_h"]}</p><span class="cap">{S["pf_count"]}</span></div>
+    <p class="cap">{S["pf_note"]}</p>
+    <sc-if value="{{{{picked}}}}" hint-placeholder-val="{{{{false}}}}"><a class="{btn}" style="align-self:flex-start" href="{fn("X-Feedback", L)}">{ic("sparkle",18)}{S["pf_btn"]}</a></sc-if>
   </div>'''
 
 def decl_block(S):
@@ -973,10 +968,10 @@ def assignment(S, L):
     </sc-if>
     <sc-if value="{{{{isTyping}}}}" hint-placeholder-val="{{{{false}}}}">
       <label class="cap" for="ta-answer" style="display:none">{S["a_mode_text"]}</label>
-      <textarea id="ta-answer" class="ta" placeholder="{S["a_ta_ph"]}" maxlength="500" defaultValue="{{{{ttext}}}}" onInput="{{{{onType}}}}"></textarea>
+      <textarea id="ta-answer" class="ta" placeholder="{S["a_ta_ph"]}" maxlength="2000" defaultValue="{{{{ttext}}}}" onInput="{{{{onType}}}}"></textarea>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
         <span class="cap">{S["a_ta_note"]}</span>
-        <span class="cap" style="white-space:nowrap;font-weight:700">{{{{tcount}}}} / 500 {S["a_ta_unit"]}</span>
+        <span class="cap" style="white-space:nowrap;font-weight:700">{{{{tcount}}}} / 2,000 {S["a_ta_unit"]}</span>
       </div>
       <div style="display:flex;align-items:center;justify-content:flex-end;gap:16px">
         <sc-if value="{{{{noText}}}}" hint-placeholder-val="{{{{true}}}}"><span class="btn dis">{ic("check",18,"rgba(28,30,44,.38)")}{S["a_ta_confirm"]}</span></sc-if>
@@ -994,7 +989,7 @@ def assignment(S, L):
       </div>
     </sc-if>
   </div>
-  {precheck_block(S)}
+  {prefb_block(S, L)}
   {decl_block(S)}
   <div class="card" style="padding:16px 24px">
     {submit_row(S, S["a_submit"], S["a_note"], fn("03-Pending",L))}
@@ -1227,7 +1222,7 @@ def resubmit(S, L):
       </div>
       {upload_block(S, S["r_submit"], S["r_file"], S["r_file_meta"], S["r_note"], fn("07-Pending2",L))}
     </div>
-    {precheck_block(S)}
+    {prefb_block(S, L)}
     {decl_block(S)}
     <div class="card" style="padding:16px 24px">
       {submit_row(S, S["r_submit"], S["r_note"], fn("07-Pending2",L))}
@@ -1448,7 +1443,6 @@ def m_main(S, L):
 
 def m_assignment(S, L):
     crit = "".join(f'<span class="chip neutral">{c}</span>' for c in S["criteria"])
-    pcs = "".join(f'<div class="pc pend"><span class="st">{ic("minus",14,"currentColor",3)}</span><div class="tt muted">{label}</div></div>' for _, label, _ in S["pc_items"])
     body = mheader(S, "M-Assignment", S["lo_fb7_name"], back_href=fn("M-Main",L)) + f'''
 <div class="mbody">
   <div class="mcard">
@@ -1470,8 +1464,8 @@ def m_assignment(S, L):
     <p class="cap">{S["a_note"]}</p>
   </div>
   <div class="mcard" style="gap:4px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;gap:8px"><p class="sub1" style="font-size:14px">{S["pc_h"]}</p><span class="cap">{S["pc_note"]}</span></div>
-    {pcs}
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;gap:8px"><p class="sub1" style="font-size:14px">{S["pf_h"]}</p><span class="cap">{S["pf_count"]}</span></div>
+    <p class="cap">{S["pf_note"]}</p>
   </div>
 </div>'''
     return mpage(S, "M-Assignment", S["m_titles"]["assign"], body)
@@ -1553,7 +1547,7 @@ def m_file(S, L):
     <p class="cap">{S["a_upload_meta"]}</p>
     {upload_block(S, S["a_submit"], S["a_file"], S["a_file_meta"], S["a_note"], fn("M-Pending",L))}
   </div>
-  {precheck_block(S)}
+  {prefb_block(S, L, mobile=True)}
   {m_submit_row(S, fn("M-Pending",L))}
   <div style="height:8px"></div>
 </div>'''
@@ -1572,17 +1566,17 @@ def m_file(S, L):
     return mpage(S, "M-File", S["m_titles"]["file"], body, logic=logic)
 
 def m_type(S, L):
-    """The typed-answer path on the phone: 500-character limit, confirm, then the checks."""
+    """The typed-answer path on the phone: 2,000-character limit (tenant setting), saved on the device, confirm, then submit."""
     body = mheader(S, "M-Type", S["m_type_title"], back_href=fn("M-Assignment",L)) + f'''
 <div class="mbody">
   <div class="mcard">
     <p class="sub1" style="font-size:14px">{S["a_upload_h"]}</p>
     <sc-if value="{{{{isTyping}}}}" hint-placeholder-val="{{{{true}}}}">
       <label class="cap" for="ta-answer" style="display:none">{S["m_type_title"]}</label>
-      <textarea id="ta-answer" class="ta" style="min-height:220px" placeholder="{S["a_ta_ph"]}" maxlength="500" defaultValue="{{{{ttext}}}}" onInput="{{{{onType}}}}"></textarea>
+      <textarea id="ta-answer" class="ta" style="min-height:220px" placeholder="{S["a_ta_ph"]}" maxlength="2000" defaultValue="{{{{ttext}}}}" onInput="{{{{onType}}}}"></textarea>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
         <span class="cap">{S["a_ta_note"]}</span>
-        <span class="cap" style="white-space:nowrap;font-weight:700">{{{{tcount}}}} / 500 {S["a_ta_unit"]}</span>
+        <span class="cap" style="white-space:nowrap;font-weight:700">{{{{tcount}}}} / 2,000 {S["a_ta_unit"]}</span>
       </div>
       <sc-if value="{{{{noText}}}}" hint-placeholder-val="{{{{true}}}}"><span class="mbtn dis">{ic("check",18,"rgba(28,30,44,.38)")}{S["a_ta_confirm"]}</span></sc-if>
       <sc-if value="{{{{hasText}}}}" hint-placeholder-val="{{{{false}}}}"><button class="mbtn neutral" onClick="{{{{confirm}}}}">{ic("check",18)}{S["a_ta_confirm"]}</button></sc-if>
@@ -1598,7 +1592,7 @@ def m_type(S, L):
       <button class="mbtn neutral" onClick="{{{{edit}}}}">{S["a_ta_edit"]}</button>
     </sc-if>
   </div>
-  {precheck_block(S)}
+  {prefb_block(S, L, mobile=True)}
   {m_submit_row(S, fn("M-Pending",L))}
   <div style="height:8px"></div>
 </div>'''
@@ -1620,11 +1614,6 @@ def m_type(S, L):
     return mpage(S, "M-Type", S["m_titles"]["type"], body, logic=logic)
 
 def m_pages(S, L):
-    items = ""
-    for st, label, note in S["pc_items"][:-1]:
-        icon = ic("check",14,"currentColor",3) if st == "ok" else ic("alert",14,"currentColor",2.4)
-        items += f'<div class="pc {st}"><span class="st">{icon}</span><div class="tt"><b>{label}</b>{("<br><span class=cap>" + note + "</span>") if note else ""}</div></div>'
-    items += f'<div class="pc ok"><span class="st">{ic("check",14,"currentColor",3)}</span><div class="tt"><b>{S["m_pc_pages"]}</b></div></div>'
     body = mheader(S, "M-Pages", S["m_pages_title"], back_href=fn("M-Crop",L)) + f'''
 <div class="mbody">
   <div class="mcard" style="gap:10px">
@@ -1637,8 +1626,8 @@ def m_pages(S, L):
     <div class="preview">{paper_inline(200, 275)}<span class="pg">{S["m_pages_count"]}</span></div>
   </div>
   <div class="mcard" style="gap:4px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;gap:8px"><p class="sub1" style="font-size:14px">{S["pc_h"]}</p><span class="cap">{S["pc_note"]}</span></div>
-    {items}
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;gap:8px"><p class="sub1" style="font-size:14px">{S["pf_h"]}</p><span class="cap">{S["pf_count"]}</span></div>
+    <p class="cap">{S["pf_note"]}</p>
   </div>
   <a class="mbtn primary" href="{fn("M-Read",L)}">{ic("sparkle",18,"#fff")}{S["a_submit"]}</a>
   <p class="cap" style="text-align:center">{S["a_note"]}</p>
@@ -2359,9 +2348,9 @@ TJA = dict(
     t_when_link="コース管理で日程を設定する",
     t_f_resub="再提出を許可する", t_v_resub="2026/11/20 23:59 まで", t_resub_note="再提出の締切はコース管理で設定します",
     t_s_how="提出方法", t_how=["ファイル（PDF ・ Word ・ Excel ・ PowerPoint）", "写真（複数枚まとめて）", "直接入力"],
-    t_how_limit="文字数の上限 500字",
+    t_how_limit="文字数の上限 2,000字（テナント設定）",
     t_s_review="先生の確認", t_review_on="返却前に先生が確認する",
-    t_s_pre="提出前のAIフィードバック", t_pre_on="提出前にAIフィードバックを受けられるようにする", t_pre_help="生徒は下書きにAIフィードバックを受け、直してから提出できます。先生の確認はなく、提出回数には数えません。", t_set_pre_off="許可しない",
+    t_s_pre="提出前のAIフィードバック", t_pre_on="提出前にAIフィードバックを受けられるようにする", t_pre_help="生徒は下書きにAIフィードバックを受け、直してから提出できます。先生の確認はなく、提出回数には数えません。締切まで何度でも受けられます（回数の上限はテナント設定、既定は無制限）。先生は生徒ごとの回数を生徒ダッシュボードで見られます。", t_set_pre_off="許可しない",
     t_review_body="下書きは締切のあとに作成され、先生が確認・編集して返却するまで生徒には表示されません。生徒には先生からのフィードバックとして届きます。",
     t_review_off="締切のあと、先生の確認なしに自動で返却されます。",
     t_cancel="キャンセル", t_confirm="確定",
@@ -2371,9 +2360,9 @@ TJA = dict(
     # Settings tab (read-only; Edit reopens the dialog prefilled)
     t_set_gen=[("種類", "AIフィードバック"), ("学習目標", "第7回 演習レポート"), ("外部LO ID", "—"), ("課題の説明（生徒に表示）", "__desc__")],
     t_set_set=[("公開期間と締切", "__course__"), ("再提出", "許可する"),
-               ("提出方法", "ファイル（PDF ・ Word ・ Excel ・ PowerPoint） ・ 写真（複数枚まとめて） ・ 直接入力（上限 500字）"), ("先生の確認", "あり ・ 返却前に先生が確認する"), ("提出前のAIフィードバック", "許可しない"), ("AIが示す範囲", "1 ・ ヒントと参照先（テナント上限 2）")],
+               ("提出方法", "ファイル（PDF ・ Word ・ Excel ・ PowerPoint） ・ 写真（複数枚まとめて） ・ 直接入力（上限 2,000字）"), ("先生の確認", "あり ・ 返却前に先生が確認する"), ("提出前のAIフィードバック", "許可する ・ 回数制限なし（締切まで）"), ("AIが示す範囲", "1 ・ ヒントと参照先（テナント上限 2）")],
     t_set_h_status="公開状態", t_set_status=[("状態", "__status__"), ("作成", "2026/11/05 14:12 ・ HTN Admin"), ("最終更新", "2026/11/05 14:40 ・ HTN Admin")],
-    t_set_note="設定はLOを追加したダイアログで入力した内容です。「設定を編集」で同じダイアログが入力済みで開きます。公開期間と締切はコースごとにコース管理で設定します。教材・提出条件・観点は「内容」タブにあります。",
+    t_set_note="設定はLOを追加したダイアログで入力した内容です。「設定を編集」で同じダイアログが入力済みで開きます。公開期間と締切はコースごとにコース管理で設定します。教材・評価項目・観点は「内容」タブにあります。",
     t_set_course_lead="コース管理で設定（コースごと）", t_edit_dates="コース管理で日程を編集",
     t_set_courses=[("地域環境統計学（2026年度）", "2026/11/06 09:00 — 2026/11/13 23:59", "再提出 2026/11/20 23:59 まで"),
                    ("地域環境統計学（2026年度・金曜クラス）", "2026/11/07 09:00 — 2026/11/14 23:59", "再提出 2026/11/21 23:59 まで")],
@@ -2427,16 +2416,11 @@ TJA = dict(
     t_queue_cols=["LO", "コース", "締切", "提出", "確認待ち", "返却済み", ""], t_open="開く", t_f_course="コース", t_filters="フィルター",
     t_queue=[("第7回 演習レポート", "11月13日 23:59", "12 / 30", "12", "9"), ("第7週 週次リフレクション", "11月15日 23:59", "21 / 30", "0", "21"),
              ("第6回 演習レポート", "11月6日 23:59", "30 / 30", "0", "30")],
-    t_s_mat="この課題の教材", t_mat_note="教材をアップロードすると、提出条件とコメントの観点が自動で生成されます。",
+    t_s_mat="この課題の教材", t_mat_note="教材をアップロードすると、評価項目の候補とコメントの観点が生成されます。",
     t_drop="ファイルをドラッグ＆ドロップ、またはファイルを選ぶ", t_drop_types="PDF ・ Word ・ PNG ・ JPG",
     t_file1="第7回_課題説明.pdf", t_file2="評価基準_2026.docx",
     t_extracted="アップロード時に自動生成済み",
-    t_s_cond="提出の基本条件", t_cond_note="生徒の提出画面に表示され、ファイルを選んだ時点で確認されます。",
-    t_conds=[("散布図が含まれている", "課題説明 p.1"), ("相関係数が記載されている", "課題説明 p.1"),
-             ("有意性の検定が記載されている", "課題説明 p.2"), ("参照した講義資料の記載", "評価基準 2.(3)"),
-             ("ページ数 2枚程度", "課題説明 p.1")],
-    t_add_cond="条件を追加", t_req_ph="例：データの出典が記載されている", t_req_src_me="先生が追加", t_add="追加", t_req_toggle="提出前に条件を確認する",
-    t_req_off="オフのとき、条件は生徒に表示されず、提出時の確認も行いません。",
+    t_add="追加",
     t_items_h="評価項目", t_items_note="先生が入力した項目が、そのまま1対1でルーブリックの観点になります。AIは項目をまとめたり省いたりしません。",
     t_items=[("Excelスキル", False), ("図表の見やすさ", False), ("統計処理", True), ("解釈", True), ("論理構成", False), ("生成AIリテラシー", False)],
     t_items_key="重点", t_items_add="項目を追加", t_gen_items="項目からルーブリックを生成", t_rub_ver="6観点 ・ 6項目から生成 ・ バージョン 1", t_items_src="先生の入力",
@@ -2444,9 +2428,9 @@ TJA = dict(
     t_levels=[("0", "問い返しのみ", "答え・結果・完成した文章は示さず、質問で考えさせる"), ("1", "ヒントと参照先", "どこを見直すか、教材のどこを読むかを示す"), ("2", "別の題材で型を示す", "同じ型の例を別の題材で示す"), ("3", "解説まで", "解き方まで説明する（上限により選べません）")],
     t_set_level=("AIが示す範囲", "1 ・ ヒントと参照先（テナント上限 2）"),
     t_vd={"flag": "✓ 要改善", "ok": "― 問題なし"}, f_cov_h="観点ごとの判定", f_cov="6観点すべてにコメントがあります",
-    t_stu_ver={"第7回 演習レポート": "v2 ・ 11/16 14:02 ・ 質問 4件 ・ 事前チェック済み"}, t_stu_ver_lbl="版",
+    t_stu_ver={"第7回 演習レポート": "v2 ・ 11/16 14:02 ・ 質問 4件 ・ 下書きチェック 2回"}, t_stu_ver_lbl="版",
     t_due_seg=["すべて", "今週が期限", "期限超過"], t_due_col="締切",
-    ad_x_shape_h="形式", ad_x_shapes=[("チャットとフィードバック", ["ユーザーID", "生徒名", "クラス", "タイトル", "科目", "質問", "チャット"]), ("観点別の結果", ["ユーザーID", "生徒名", "LO", "版", "観点", "判定", "コメント", "ルーブリック版"]), ("利用状況", ["ユーザーID", "生徒名", "LO", "事前チェック", "版数", "質問数", "初回", "最新"])],
+    ad_x_shape_h="形式", ad_x_shapes=[("チャットとフィードバック", ["ユーザーID", "生徒名", "クラス", "タイトル", "科目", "質問", "チャット"]), ("観点別の結果", ["ユーザーID", "生徒名", "LO", "版", "観点", "判定", "コメント", "ルーブリック版"]), ("利用状況", ["ユーザーID", "生徒名", "LO", "下書きチェック回数", "版数", "質問数", "初回", "最新"])],
     ad_x_dict="データ辞書（列の定義）を同梱 ・ 期間・絞り込み・ルーブリック版をファイルに記録",
     t_dis="却下", t_dis_reasons=["指摘ではない", "厳しすぎる", "観点が違う", "場所が違う"], t_dis_tag="却下 ・ ", t_missed="見落としを追加", t_missed_h="見落としを追加",
     t_missed_passage="該当箇所（提出物から選択）", t_missed_passage_v="p 値は 0.03 であった。したがって帰無仮説は棄却され", t_missed_crit="観点", t_missed_crit_v="統計処理", t_missed_note="メモ", t_missed_note_v="T.TEST は平均の差の検定。相関の有意性には無相関の検定を使う点を指摘する",
@@ -2581,8 +2565,6 @@ TJA = dict(
               b5_link="提出物の採点で開く", b5_open="この提出を開く", b5_why="理由は先生が「クラスで紹介する」を押すときに一言で入力します"),
     t_crit_h="観点別の指摘 ・ 第7回 演習レポート", t_crit_sub="下書き12件のうち、改善点のコメントが付いた割合",
     t_crit_rows=[("統計処理", 8), ("解釈", 6), ("図表の見やすさ", 4), ("論理構成", 3), ("Excelスキル", 2), ("生成AIリテラシー", 1)], t_crit_of=12,
-    t_reqf_h="提出前チェックで止まった条件", t_reqf_sub="ファイル選択時に満たされていなかった回数（提出前に修正）",
-    t_reqf_rows=[("有意性の検定が記載されている", 9), ("散布図が含まれている", 4), ("ページ数 2枚程度", 3), ("参照した講義資料の記載", 2), ("相関係数が記載されている", 0)],
     t_times="回",
     # Student Dashboard
     t_stu_list="生徒リスト",
@@ -2640,9 +2622,9 @@ TEN = dict(
     t_when_link="Set the dates in Course Management",
     t_f_resub="Allow resubmission", t_v_resub="until 20 Nov 2026, 23:59", t_resub_note="The resubmission deadline is set in Course Management",
     t_s_how="How students submit", t_how=["File (PDF · Word · Excel · PowerPoint)", "Photos (several at once)", "Typed answer"],
-    t_how_limit="500-character limit",
+    t_how_limit="2,000-character limit (tenant setting)",
     t_s_review="Teacher review", t_review_on="I review the feedback before it is returned",
-    t_s_pre="AI feedback before submission", t_pre_on="Students can get AI feedback before they submit", t_pre_help="Students get AI feedback on a draft and can revise before submitting. It is not reviewed by the teacher and does not count as a submission.", t_set_pre_off="Off",
+    t_s_pre="AI feedback before submission", t_pre_on="Students can get AI feedback before they submit", t_pre_help="Students get AI feedback on a draft and can revise before submitting. It is not reviewed by the teacher and does not count as a submission. Unlimited until the due date (a tenant may cap it); the Student Dashboard shows each student's count.", t_set_pre_off="Off",
     t_review_body="The draft is written after the due date and stays hidden until you review, edit and return it. Students receive it as feedback from you.",
     t_review_off="Feedback is returned to students automatically after the due date, without a review step.",
     t_cancel="Cancel", t_confirm="Confirm",
@@ -2650,9 +2632,9 @@ TEN = dict(
     t_lo_tabs=["Content", "Settings"], t_course_tabs=["Overview", "Submissions"], t_publish="Publish", t_edit="Edit settings", t_save="Save",
     t_set_gen=[("Type", "AI Feedback"), ("Learning Objective", "Session 7 exercise report"), ("External LO ID", "—"), ("Assignment description (shown to students)", "__desc__")],
     t_set_set=[("Availability and due date", "__course__"), ("Resubmission", "Allowed"),
-               ("Submission methods", "File (PDF · Word · Excel · PowerPoint) · Photos (several at once) · Typed (500-character limit)"), ("Teacher review", "On · the teacher reviews before it is returned"), ("AI feedback before submission", "Off"), ("AI answer level", "1 · Hints and where to look (tenant cap 2)")],
+               ("Submission methods", "File (PDF · Word · Excel · PowerPoint) · Photos (several at once) · Typed (2,000-character limit)"), ("Teacher review", "On · the teacher reviews before it is returned"), ("AI feedback before submission", "On · unlimited drafts until the due date"), ("AI answer level", "1 · Hints and where to look (tenant cap 2)")],
     t_set_h_status="Publishing", t_set_status=[("Status", "__status__"), ("Created", "5 Nov 2026, 14:12 · HTN Admin"), ("Last updated", "5 Nov 2026, 14:40 · HTN Admin")],
-    t_set_note="These are the values entered in the Add LO dialog. Edit settings reopens that dialog prefilled. The availability and due dates are set per course in Course Management. The material, the submission requirements and the criteria live on the Content tab.",
+    t_set_note="These are the values entered in the Add LO dialog. Edit settings reopens that dialog prefilled. The availability and due dates are set per course in Course Management. The material, the evaluation items and the criteria live on the Content tab.",
     t_set_course_lead="Set in Course Management, per course", t_edit_dates="Edit dates in Course Management",
     t_set_courses=[("Regional & Environmental Statistics (2026)", "2026/11/06, 09:00 — 2026/11/13, 23:59", "resubmission until 2026/11/20, 23:59"),
                    ("Regional & Environmental Statistics (2026 · Friday class)", "2026/11/07, 09:00 — 2026/11/14, 23:59", "resubmission until 2026/11/21, 23:59")],
@@ -2701,16 +2683,11 @@ TEN = dict(
     t_queue_cols=["LO", "Course", "Due", "Submitted", "Waiting for you", "Returned", ""], t_open="Open", t_f_course="Course", t_filters="Filters",
     t_queue=[("Session 7 exercise report", "13 Nov, 23:59", "12 / 30", "12", "9"), ("Week 7 weekly reflection", "15 Nov, 23:59", "21 / 30", "0", "21"),
              ("Session 6 exercise report", "6 Nov, 23:59", "30 / 30", "0", "30")],
-    t_s_mat="Material for this assignment", t_mat_note="The submission requirements and the comment criteria are generated automatically from what you upload.",
+    t_s_mat="Material for this assignment", t_mat_note="Evaluation-item candidates and the comment criteria are generated from what you upload.",
     t_drop="Drag and drop a file, or choose one", t_drop_types="PDF · Word · PNG · JPG",
     t_file1="Session7_assignment_brief.pdf", t_file2="Marking_criteria_2026.docx",
     t_extracted="Generated automatically on upload",
-    t_s_cond="Basic requirements", t_cond_note="Shown on the student's submit screen and checked as soon as they choose a file.",
-    t_conds=[("A scatter plot is included", "brief p.1"), ("The correlation coefficient is stated", "brief p.1"),
-             ("The test of significance is stated", "brief p.2"), ("The lecture material is cited", "criteria 2.(3)"),
-             ("About 2 pages", "brief p.1")],
-    t_add_cond="Add a requirement", t_req_ph="e.g. The data source is cited", t_req_src_me="Added by you", t_add="Add", t_req_toggle="Check requirements before submission",
-    t_req_off="Off: the requirements are not shown to the student and nothing is checked at submission.",
+    t_add="Add",
     t_items_h="Evaluation items", t_items_note="The items the teacher enters become the rubric's criteria one to one. The AI never merges or drops an item.",
     t_items=[("Excel skills", False), ("Clarity of charts", False), ("Statistical processing", True), ("Interpretation", True), ("Logical structure", False), ("Generative-AI literacy", False)],
     t_items_key="Key", t_items_add="Add item", t_gen_items="Generate rubric from items", t_rub_ver="6 criteria · from 6 items · version 1", t_items_src="Entered by teacher",
@@ -2718,9 +2695,9 @@ TEN = dict(
     t_levels=[("0", "Ask back only", "No answers, results or finished text; questions that make the student think"), ("1", "Hints and where to look", "What to re-check and where in the materials to read"), ("2", "A pattern on another topic", "A worked example of the same shape on a different topic"), ("3", "Full explanation", "Explains the method (not selectable under the cap)")],
     t_set_level=("AI answer level", "1 · Hints and where to look (tenant cap 2)"),
     t_vd={"flag": "✓ Needs work", "ok": "― No issue"}, f_cov_h="Verdict per criterion", f_cov="Every one of the 6 criteria has a comment",
-    t_stu_ver={"Session 7 exercise report": "v2 · 16 Nov 14:02 · 4 questions · pre-check done"}, t_stu_ver_lbl="Versions",
+    t_stu_ver={"Session 7 exercise report": "v2 · 16 Nov 14:02 · 4 questions · 2 draft checks"}, t_stu_ver_lbl="Versions",
     t_due_seg=["All", "Due this week", "Overdue"], t_due_col="Due",
-    ad_x_shape_h="Shape", ad_x_shapes=[("Chat and feedback", ["User ID", "Student Name", "Class", "Title", "Subject", "Question", "Chat"]), ("Results per criterion", ["User ID", "Student Name", "LO", "Version", "Criterion", "Verdict", "Comment", "Rubric version"]), ("Usage", ["User ID", "Student Name", "LO", "Pre-check", "Versions", "Questions", "First", "Latest"])],
+    ad_x_shape_h="Shape", ad_x_shapes=[("Chat and feedback", ["User ID", "Student Name", "Class", "Title", "Subject", "Question", "Chat"]), ("Results per criterion", ["User ID", "Student Name", "LO", "Version", "Criterion", "Verdict", "Comment", "Rubric version"]), ("Usage", ["User ID", "Student Name", "LO", "Draft checks", "Versions", "Questions", "First", "Latest"])],
     ad_x_dict="Data dictionary (column definitions) included · period, filters and rubric version stamped in the file",
     t_dis="Dismiss", t_dis_reasons=["Not an issue", "Too strict", "Wrong criterion", "Wrong location"], t_dis_tag="Dismissed · ", t_missed="Add a missed issue", t_missed_h="Add a missed issue",
     t_missed_passage="Passage (select in the submission)", t_missed_passage_v="which gave a p-value of 0.03. The null hypothesis is therefore rejected", t_missed_crit="Criterion", t_missed_crit_v="Statistical processing", t_missed_note="Note", t_missed_note_v="T.TEST tests a difference of means; point out that the significance of a correlation needs a test of no correlation",
@@ -2847,8 +2824,6 @@ TEN = dict(
               b5_link="Open in Submission Grading", b5_open="Open this submission", b5_why="The reason is a few words the teacher types when pressing Highlight for class"),
     t_crit_h="Comments by criterion · Session 7 exercise report", t_crit_sub="Share of the 12 drafts with an improvement comment on each criterion",
     t_crit_rows=[("Statistical processing", 8), ("Interpretation", 6), ("Clarity of charts", 4), ("Logical structure", 3), ("Excel skills", 2), ("Generative-AI literacy", 1)], t_crit_of=12,
-    t_reqf_h="Requirements that stopped a submission", t_reqf_sub="Times a requirement was unmet when a file was chosen (fixed before submitting)",
-    t_reqf_rows=[("The test of significance is stated", 9), ("A scatter plot is included", 4), ("About 2 pages", 3), ("The lecture material is cited", 2), ("The correlation coefficient is stated", 0)],
     t_times="×",
     t_stu_list="Student List",
     t_students=[("Hanako Yamada", "Year 3 · KU-2041"), ("Taro Sato", "Year 3 · KU-2042"), ("Ichiro Suzuki", "Year 3 · KU-2043"), ("Misaki Tanaka", "Year 2 · KU-2044"), ("Ken Takahashi", "Year 3 · KU-2045")],
@@ -2879,7 +2854,7 @@ TEN = dict(
     t_prof_lbl=("Strengths", "To improve", "Fixed"),
     t_titles={"book": "BO — Book Management (book detail)", "dialog": "BO — Add LO (AI Feedback)", "created": "BO — Tree after creating",
               "courses": "BO — Course Management", "course": "BO — Course detail (Books)", "cbook": "BO — Learning Objectives Availability",
-              "mat": "BO — LO content (material and requirements)", "set": "BO — LO settings", "queue": "BO — Course › Submission Grading", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return",
+              "mat": "BO — LO content (material, items, rubric)", "set": "BO — LO settings", "queue": "BO — Course › Submission Grading", "det": "BO — Submissions overview", "list": "BO — Submissions", "rev": "BO — Review and return",
               "dt": "BO — Group Dashboard (Topic)", "dg": "BO — Group Dashboard (LO)", "ds": "BO — Student Dashboard", "dai": "BO — AI Dashboard"},
 )
 JA.update(TJA); EN.update(TEN)
@@ -3040,7 +3015,7 @@ def t_book(S, L):
 def t_created(S, L):
     return tpage(S, "T-Created", S["t_titles"]["created"], book_page(S, L, "T-Created", created=True, add_href=tfn("T-Dialog", L)))
 
-TDLG_LOGIC = """state = { menu: false, review: true, resub: true, pre: false, lvl: 1, m0: true, m1: true, m2: true };
+TDLG_LOGIC = """state = { menu: false, review: true, resub: true, pre: true, lvl: 1, m0: true, m1: true, m2: true };
   renderVals() {
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {
@@ -3139,10 +3114,10 @@ def lo_dialog(S, L, edit=False):
             <span class="helper" style="margin:0">{S["t_level_help"]}</span>
           </div>
           <div class="setting">
-            <!-- AI feedback before submission (PM, 29 Sep): a per-LO switch, default off -->
+            <!-- AI feedback before submission (PM, 29 Sep; default ON since 3 Nov, PRD v1.18): a per-LO switch -->
             <span class="setting-label" style="font-weight:500">{S["t_s_pre"]}</span>
             <button class="switch {{{{pr}}}}" onClick="{{{{togglePr}}}}"><span class="track"></span><span>{S["t_pre_on"]}</span></button>
-            <sc-if value="{{{{prOn}}}}" hint-placeholder-val="{{{{false}}}}"><div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["t_pre_help"]}</span></div></sc-if>
+            <sc-if value="{{{{prOn}}}}" hint-placeholder-val="{{{{true}}}}"><div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["t_pre_help"]}</span></div></sc-if>
           </div>
         </div>
       </div>
@@ -3192,39 +3167,12 @@ def lo_head(S, L, screen, tab, pub, side="book", edit_action=False):
   </div>{sub}
   <div class="tabs">{tabs}</div>'''
 
-TMAT_LOGIC = """state = { req: true, adding: false, draft: "", r: [true, true, true, true, true], a: ["", "", ""], pub: false };
+TMAT_LOGIC = """state = { pub: false };
   renderVals() {
-    const v = { rq: this.state.req ? "on" : "", rqOn: this.state.req, rqOff: !this.state.req,
-                pubOn: this.state.pub, pubOff: !this.state.pub, doPublish: () => this.setState({ pub: true }),
-                toggleRq: () => this.setState({ req: !this.state.req }),
-                adding: this.state.adding, draft: this.state.draft,
-                addDis: this.state.draft.trim() ? "" : "dis",
-                startAdd: () => this.setState({ adding: true }),
-                cancelAdd: () => this.setState({ adding: false, draft: "" }),
-                onDraft: (e) => this.setState({ draft: e.target.value || "" }),
-                commitAdd: () => {
-                  const t = this.state.draft.trim(); if (!t) return;
-                  const a = this.state.a.slice(); const i = a.indexOf("");
-                  if (i >= 0) a[i] = t;
-                  this.setState({ a, adding: false, draft: "" });
-                } };
-    this.state.r.forEach((on, i) => { v["r" + i] = on; v["d" + i] = () => { const r = this.state.r.slice(); r[i] = false; this.setState({ r }); }; });
-    this.state.a.forEach((t, j) => { v["a" + j + "on"] = !!t; v["a" + j] = t; v["da" + j] = () => { const a = this.state.a.slice(); a[j] = ""; this.setState({ a }); }; });
-    return v;
+    return { pubOn: this.state.pub, pubOff: !this.state.pub, doPublish: () => this.setState({ pub: true }) };
   }"""
 
 def t_material(S, L):
-    conds = "".join(f'<sc-if value="{{{{r{i}}}}}" hint-placeholder-val="{{{{true}}}}"><div class="titem">{mi("checkCircle", 20, "#4CAF50")}<span>{c}</span><span class="src">{s}</span>'
-                    f'<button class="ticon sm" onClick="{{{{d{i}}}}}" aria-label="{S["t_rev_drop"]}">{mi("close", 16)}</button></div></sc-if>'
-                    for i, (c, s) in enumerate(S["t_conds"]))
-    # rows the teacher adds by hand, up to three in the prototype
-    conds += "".join(f'<sc-if value="{{{{a{j}on}}}}" hint-placeholder-val="{{{{false}}}}"><div class="titem">{mi("checkCircle", 20, "#4CAF50")}<span>{{{{a{j}}}}}</span><span class="src">{S["t_req_src_me"]}</span>'
-                     f'<button class="ticon sm" onClick="{{{{da{j}}}}}" aria-label="{S["t_rev_drop"]}">{mi("close", 16)}</button></div></sc-if>' for j in range(3))
-    conds += f'''<sc-if value="{{{{adding}}}}" hint-placeholder-val="{{{{false}}}}"><div class="titem" style="gap:8px;border-bottom:0;padding-top:12px">
-            <input id="req-new" class="tinput" placeholder="{S["t_req_ph"]}" defaultValue="{{{{draft}}}}" onInput="{{{{onDraft}}}}">
-            <button class="tbtn contained sm {{{{addDis}}}}" onClick="{{{{commitAdd}}}}">{S["t_add"]}</button>
-            <button class="tbtn sm" onClick="{{{{cancelAdd}}}}">{S["t_cancel"]}</button>
-          </div></sc-if>'''
     rubric = "".join(f"<li><b>{n}</b> — {d}</li>" for n, d in S["t_rubric"])
     # Evaluation items (3 Nov; [S35] #1-2, [S31] F6, [S33]): the teacher's own list, kept 1:1 by Generate
     items_rows = "".join(f'<div class="titem"><span class="no">{i + 1}</span><span>{n}</span>' + (f'<span class="key">{mi("star", 11, "#ED6C02")}{S["t_items_key"]}</span>' if key else "") + f'<span class="src">{S["t_items_src"]}</span><span class="ticon sm">{mi("close", 16)}</span></div>' for i, (n, key) in enumerate(S["t_items"]))
@@ -3243,15 +3191,7 @@ def t_material(S, L):
         </div>
       </div>
     </div>
-    <div class="tpaper">
-      <div class="ph"><h3>{S["t_s_cond"]}</h3>
-        <span style="display:flex;align-items:center;gap:16px">
-          <button class="switch {{{{rq}}}}" onClick="{{{{toggleRq}}}}"><span class="track"></span><span>{S["t_req_toggle"]}</span></button>
-          <sc-if value="{{{{rqOn}}}}" hint-placeholder-val="{{{{true}}}}"><button class="tbtn sm" onClick="{{{{startAdd}}}}">{mi("add", 18)}{S["t_add_cond"]}</button></sc-if>
-        </span></div>
-      <sc-if value="{{{{rqOn}}}}" hint-placeholder-val="{{{{true}}}}"><div class="pb" style="padding-top:8px"><p class="helper" style="margin:0 0 6px">{S["t_cond_note"]}</p>{conds}</div></sc-if>
-      <sc-if value="{{{{rqOff}}}}" hint-placeholder-val="{{{{false}}}}"><div class="pb"><p class="helper" style="margin:0">{S["t_req_off"]}</p></div></sc-if>
-    </div>
+    <!-- the 提出の基本条件 paper (structural checks) sat here and was removed (PM, 3 Nov; PRD v1.18): the pre-submission AI feedback is the hint path -->
     <div class="tpaper">
       <div class="ph"><h3>{S["t_items_h"]}</h3><span class="tbtn sm">{mi("add", 18)}{S["t_items_add"]}</span></div>
       <div class="pb" style="padding-top:8px"><p class="helper" style="margin:0 0 6px">{S["t_items_note"]}</p>{items_rows}
@@ -3904,7 +3844,7 @@ def t_dash_student(S, L):
 </div>'''
     return tpage(S, "T-DashStudent", S["t_titles"]["ds"], body, logic=DFILT_LOGIC)
 
-TSET_LOGIC = """state = { pub: false, editing: false, review: true, resub: true, pre: false, lvl: 1, m0: true, m1: true, m2: true };
+TSET_LOGIC = """state = { pub: false, editing: false, review: true, resub: true, pre: true, lvl: 1, m0: true, m1: true, m2: true };
   renderVals() {
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {
@@ -7802,7 +7742,7 @@ for lang, S in (("ja", JA), ("en", EN)):
 TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
-           "T3 · Created → LO content — material, requirements, criteria", "T4 · LO settings tab — what the dialog collected, read-only", "T5 · Back in the tree — Unpublished until published",
+           "T3 · Created → LO content — material, evaluation items, rubric", "T4 · LO settings tab — what the dialog collected, read-only", "T5 · Back in the tree — Unpublished until published",
            "T6 · Course Management — the course list, two courses on one book, Add course, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab, Extend due date (V2)", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course; an LO with no window yet",
            "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
            "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback",
@@ -7869,7 +7809,7 @@ TNOTES = {
     "t13": "AI DASHBOARD (PM, 6 Oct: implement the AI Dashboard in the prototype from the Back Office code and the production screenshot; v1 of AI Feedback reports inside it. Then, on this board: the AI feedback code on the aigrading repo is not linked to the LO — replace with what is actually available in the AI feedback code; and there is no user-generated feedback in the AI feedback feature). PRODUCTION FIRST: AIDashboardContainer as the syllabus squad renders it — the Dashboard tabs with AI Dashboard active, the AI Tutor Dashboard title with 生徒の追加 Add Student (SearchStudentDialog: the students on this board are the ones added, 10 here), AIDashboardForm (Lens = the subjects, start and end date, a divider, Apply), one paper: AIDashboardOverview (the 期間 Period line; Number of Students / Total Questions Asked / Total Likes / Total Dislikes) and the Student Usages table (count in the title, Last Updated from the sync time, search by student name, index column, expand chevron, Student Name → the student, User Name, Total Questions, Likes in green, Dislikes in red), the expanded row showing AIInteractionHistoryTable (Created At → the thread, Lens, Item Overview, No. of Questions, Feedback Type, Comments). WHAT AI FEEDBACK IS IN THAT CODE (backoffice branch): not an LO. It is the AI Tutor's FEEDBACK SNAP — AITutorgraphType FEEDBACK beside TUTOR (Snap-to-ask): the student photographs their own work and the AI responds to it — optionally tied to an AI TUTOR ASSIGNMENT (AITutorAssignment: title, subject, overall question, acceptance criteria / rubric content generated by AI, publish with a due date; the student taps Mark as Complete; analysis Started / Snaps / Completed from AssignmentReportProgress), counted on this dashboard by GetStudentUsageAnalytics.total_feedback_generated (production's Feedbacks generated card, shown under the syllabus.ai_tutor.ai_feedback flag), every snap a tutoring-session thread whose detail page (AIDashboardDetailGeneralInfo + QuestionTabPanel) shows the item overview and the AI response. SO ON THIS BOARD: (1) the overview = production's five cards in one row — Number of Students, Total Questions Asked, Total Likes, Total Dislikes and Feedbacks generated (the card production shows under the AI Feedback flag; here the feedback snaps in the period). The AI Feedback caption with the assignment and its due date, the assignment's Started / Snaps / Completed cards and the similar-questions practice row were all removed on the PM's comments (7 Oct); (2) two per-student columns — feedback snaps in the period, and the student's status on the assignment (Completed / Started / Not started); (3) the expanded row keeps the Snap-to-ask chat history and lists the student's FEEDBACK SNAPS beneath it: created at, lens, the assignment it was tied to (or 課題なし free snap), item overview, 見る View — no like / dislike or comments column: the PM confirmed (6 Oct) the feedback flow has no user-generated feedback, the thumbs and comments (UpsertQuestionFeedback) belong to Snap-to-ask only; (4) View opens a DRAWER with the thread IN THE LEARNER APP'S AI FEEDBACK FORMAT (PM screenshots, 6 Oct: use these as the format): Extracted text and Feedback SIDE BY SIDE (PM, 6 Oct: side by side instead of a toggle); Extracted text, left = the work as read, with numbered markers and dashed underlines — teal for a strength, red for a point to improve — on the passages the feedback points at; Feedback, right = a Summary card, then one numbered card per point with the criterion chip, the quoted passage and the comment (the app's Ask AI link is not shown here — PM, 6 Oct: it is the student's action), the numbers matching the markers in the text; the link to the thread page that sat in the drawer header was removed (PM, 6 Oct). SUBJECT, not Lens, is the label on the feedback-snap rows and in the drawer, and QUESTION OVERVIEW (the AI Tutor Assignment's own i18n key) rather than Item Overview on the feedback-snap rows (PM, 6 Oct); production's form and chat history keep Lens and Item Overview. EXPORT CHAT (PM, 7 Oct: an export chat function per AI feedback class): the button beside the search opens a dialog with one read-only line naming the exported columns (the class, assignment and period fields were removed — PM, 8 Oct; the export follows the dashboard's own filters, which the dialog does not repeat) (PM, 7 Oct: the chips-and-explanation block and the preview table were removed, then the columns asked for back as one line), the file name and row count in the footer — one row per feedback snap with the columns User ID / Student Name / Class / Title / Subject / Question / Chat (PM, 8 Oct; Title = the AI Tutor Assignment's title, empty for a free snap; Question = the question overview; Chat = the thread's AI / student messages in order, the AI's feedback being the first message, so there is no separate Feedback column; sample file and format rules for the developers in PRDs/samples/ai_feedback_chat_export.md) and confirms with a snackbar naming the file and the row count. ITEM OVERVIEW (PM question, 6 Oct) is the thread's question_overview, written by the AI when the snap is processed and only rendered by the Back Office; what it says for a feedback snap is a prompt decision — drawn as a one-line summary of the work in the photo (task or topic, what the student produced), without the verdict and without repeating the assignment name. What was here before (the AI Feedback LO's submissions per student, the returned feedback and the Review-and-return viewer) is removed from this board: the LO's data stays on T13–T15 and in Submission Grading. Try: expand 山田 花子, View the three snaps — the Session 7 assignment, the free snap on the hypothesis test, the Session 6 assignment. Counts only, no rates.",
 }
 TNOTES["t14"] = "TEACHER-ONLY IMPORT (3 Nov; PRD A2 / C2 — the PM assigned the teacher-only mode to AI Feedback; DLSC spec F1). Students never touch Manabie: staff or the teacher upload the reports exported from the external LMS (KULeD) as a ZIP of PDF / Word or an XLSX / CSV with one row per report, into a named batch. The field mapping fixes the external ID, submission time, return due date, the four answers, and the optional past grade and comment; names and student numbers are dropped on import and only the external ID is kept. Unreadable files are listed; the AI check starts right after import and the batch lands on Submission Grading ordered by return due date (T9's Due segment). The page reuses the AI Grading import layout (G4) — one import module, two shapes."
-for _k, _a in {"t2": " ADDED 3 Nov — AI ANSWER LEVEL (PRD C3; universities memo's 0–3 dial, Okayama, Kindai 10/22): a per-LO setting under Settings — 0 ask back only · 1 hints and where to look (default) · 2 a pattern on another topic · 3 full explanation; the tenant cap (2 here) greys out the levels above it. It applies to the feedback comments and to the Ask AI chat.", "t3": " ADDED 3 Nov — EVALUATION ITEMS (PRD C3 criteria fidelity; Kyushu Sangyo demo #1–3, DLSC F6, Okayama): the teacher's own numbered list, ★ on the key items, between the requirements and the rubric; 'Generate rubric from items' writes exactly one criterion per item in the teacher's order — never merges, drops or adds — and the rubric header now reads '6 criteria · from 6 items · version 1'. Regenerating after adding files replaces the text (the 21 Oct 'Generate ignored the new files' bug is the negative case). Feedback uses this rubric as-is; the learner side never makes its own.", "t4": " ADDED 3 Nov — the Settings tab lists the AI answer level ('1 · Hints and where to look (tenant cap 2)') with the other per-LO settings.", "t6": " ADDED 3 Nov — DUE-DATE VIEW (DLSC F2, Kindai): a second segment beside the status counts — All · Due this week · Overdue — and a Due column at the end of the table, so a teacher who grades in batches against the return date can work the queue in due order without leaving the page.", "tc2": " ADDED 3 Nov — REFERENCE LIBRARY tab (change list P2; Kindai T2 / Q4, DLSC F7, Okayama): the course's textbook (page / line index), lecture PDFs and the faculty's report-writing guide, each with two switches — Grounding (the feedback cites page and line from it) and Quote check (a deterministic, character-level match of quoted passages). One entity, two uses; an LO picks from it. The textbook text needs the publisher's permission first (open).", "t9": " ADDED 3 Nov — VERDICT PER COMMENT (PRD C3 feedback shape): each draft comment carries ✓ Needs work or ― No issue beside its criterion, the same verdict the student sees. CORRECT THE AI (PRD C2 phase 1, 3 Nov; DLSC F5, Okayama, universities memo): Dismiss ▾ on every comment with a reason (not an issue · too strict · wrong criterion · wrong location) greys it and tags it; Add a missed issue at the report head opens passage / criterion / note and appends it as a teacher-added comment; the info panel counts them as pending criteria changes, and Approve changes (v2) is the phase-2 action that makes the rubric version 2 for every generation from then on. Past comments keep their version.", "t12": " ADDED 3 Nov — VERSIONS LINE: under a feedback LO's status the student's latest version, its time, the chat questions and the pre-check state ('v2 · 16 Nov 14:02 · 4 questions · pre-check done'), so the teacher sees iterations without the student pressing Complete (Kindai 2-2 A, Kyushu #8, DLSC F3).", "t13": " ADDED 3 Nov — EXPORT SHAPES (PRD C7): the export dialog gains a Shape switch — Chat and feedback · Results per criterion · Usage — the columns line follows the shape, and every file ships with a data dictionary and the period, filters and rubric version stamped (Kindai D, DLSC F8–F9, Okayama, universities memo)."}.items():
+for _k, _a in {"t2": " UPDATED 3 Nov (PRD v1.18): 提出前のAIフィードバック is now ON BY DEFAULT — unlimited drafts until the due date, a tenant may cap it, the teacher sees each student's count; the typed limit is 2,000 characters (Env default, Tenant-level). ADDED 3 Nov — AI ANSWER LEVEL (PRD C3; universities memo's 0–3 dial, Okayama, Kindai 10/22): a per-LO setting under Settings — 0 ask back only · 1 hints and where to look (default) · 2 a pattern on another topic · 3 full explanation; the tenant cap (2 here) greys out the levels above it. It applies to the feedback comments and to the Ask AI chat.", "t3": " UPDATED 3 Nov (PRD v1.18): the 提出の基本条件 paper is REMOVED — the PM dropped the structural checks (a page-count rule cannot apply to a workbook); what the teacher wants checked goes into the evaluation items and comes back as a verdict per criterion, and the student's hint path is the pre-submission AI feedback. ADDED 3 Nov — EVALUATION ITEMS (PRD C3 criteria fidelity; Kyushu Sangyo demo #1–3, DLSC F6, Okayama): the teacher's own numbered list, ★ on the key items, between the requirements and the rubric; 'Generate rubric from items' writes exactly one criterion per item in the teacher's order — never merges, drops or adds — and the rubric header now reads '6 criteria · from 6 items · version 1'. Regenerating after adding files replaces the text (the 21 Oct 'Generate ignored the new files' bug is the negative case). Feedback uses this rubric as-is; the learner side never makes its own.", "t4": " UPDATED 3 Nov (PRD v1.18): 提出前のAIフィードバック reads 許可する ・ 回数制限なし / On · unlimited drafts, and 直接入力 carries the 2,000-character limit. ADDED 3 Nov — the Settings tab lists the AI answer level ('1 · Hints and where to look (tenant cap 2)') with the other per-LO settings.", "t6": " ADDED 3 Nov — DUE-DATE VIEW (DLSC F2, Kindai): a second segment beside the status counts — All · Due this week · Overdue — and a Due column at the end of the table, so a teacher who grades in batches against the return date can work the queue in due order without leaving the page.", "tc2": " ADDED 3 Nov — REFERENCE LIBRARY tab (change list P2; Kindai T2 / Q4, DLSC F7, Okayama): the course's textbook (page / line index), lecture PDFs and the faculty's report-writing guide, each with two switches — Grounding (the feedback cites page and line from it) and Quote check (a deterministic, character-level match of quoted passages). One entity, two uses; an LO picks from it. The textbook text needs the publisher's permission first (open).", "t9": " ADDED 3 Nov — VERDICT PER COMMENT (PRD C3 feedback shape): each draft comment carries ✓ Needs work or ― No issue beside its criterion, the same verdict the student sees. CORRECT THE AI (PRD C2 phase 1, 3 Nov; DLSC F5, Okayama, universities memo): Dismiss ▾ on every comment with a reason (not an issue · too strict · wrong criterion · wrong location) greys it and tags it; Add a missed issue at the report head opens passage / criterion / note and appends it as a teacher-added comment; the info panel counts them as pending criteria changes, and Approve changes (v2) is the phase-2 action that makes the rubric version 2 for every generation from then on. Past comments keep their version.", "t12": " ADDED 3 Nov — VERSIONS LINE: under a feedback LO's status the student's latest version, its time, the chat questions and the draft-check count ('v2 · 16 Nov 14:02 · 4 questions · 2 draft checks' — PRD v1.18: the teacher sees how many pre-submission checks each student used), so the teacher sees iterations without the student pressing Complete (Kindai 2-2 A, Kyushu #8, DLSC F3).", "t13": " ADDED 3 Nov — EXPORT SHAPES (PRD C7): the export dialog gains a Shape switch — Chat and feedback · Results per criterion · Usage — the columns line follows the shape, and every file ships with a data dictionary and the period, filters and rubric version stamped (Kindai D, DLSC F8–F9, Okayama, universities memo)."}.items():
     TNOTES[_k] += _a
 MNOTES = {
     "m5b": "READ-CHECK (3 Nov; Kyushu Sangyo demo requirements #5, Okayama brief's confirm-and-correct step, PRD C3 'OCR / image uncertainty is never the student's error'). After the pages are set, the app shows what it read: low-confidence spans are dashed and marked unconfirmed; tapping one opens the reading candidates and a free correction; spans left unconfirmed are excluded from typo, format and character-count findings, and a figure the pipeline cannot read is reported as unread, not judged. 'Looks right · get feedback' continues to the waiting screen. Handwritten and photographed input only — a file upload skips this step.",
@@ -7877,8 +7817,8 @@ MNOTES = {
     "m2": "Assignment on the phone: same criteria chips, same 提出条件 list, and three ways to submit. 撮影して提出 is the primary option — the snap flow from unifiedapp (Snap → Crop → Review), adapted from 'ask about a question' to 'submit a handwritten answer'. File / photos and typed input are the other two (per the PC decisions of 18 Sep). Tap 撮影して提出 →",
     "m3": "Camera, as in the unifiedapp Snap tab: full-bleed dark viewfinder, scrim, blue 68-px shutter with gallery (left) and flash (right), close top-left. New here: a corner-bracket page guide and a page counter (1ページ目), because a handwritten answer is photographed one page at a time. Tap the shutter →",
     "m4": "Crop, the unifiedapp CropScreen adapted: dark stage, the photo with veils outside the frame, a blue band with four corner handles. For a paper answer the band is a rectangle that should hug the page edges, so 自動で合わせる snaps it to the paper (tap it — works in the prototype; handles are static here, draggable in the product). Thumbs strip below with ページを追加 → back to the camera for page 2. 次へ →",
-    "m5": "Pages review (unifiedapp ReviewScreen shape, light theme): thumbnails in page order, hold to reorder, add a page, big preview. The basic-requirements check runs on the photographed pages (via the AI Grading OCR path, PRD C1) exactly as it does on a file or typed answer on PC. Submit →",
-    "m6": "The file / photos path, reached from ファイル・写真を選ぶ on M2. Same upload block as PC: choose a file, or choose several photos at once — the picked state shows them as numbered thumbnails in page order (tap 答案の写真を選ぶ to see it). The 提出の基本条件 list fills in against whatever was picked, exactly as on PC, and only then does the submit button go live.",
+    "m5": "Pages review (unifiedapp ReviewScreen shape, light theme): thumbnails in page order, hold to reorder, add a page, big preview. The basic-requirements check that ran here was REMOVED (PM, 3 Nov; PRD v1.18); the card now explains the pre-submission AI feedback instead. Continue → the read-check (M-Read), then feedback.",
+    "m6": "The file / photos path, reached from ファイル・写真を選ぶ on M2. Same upload block as PC: choose a file, or choose several photos at once — the picked state shows them as numbered thumbnails in page order (tap 答案の写真を選ぶ to see it). The submit button goes live once something is picked. UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the 提出の基本条件 list is gone; the pre-submission AI feedback card (unlimited drafts until the due date, 'Get feedback on this draft' once a file is picked) stands in its place.",
     "m7": "The typed-answer path, reached from 直接入力する on M2, for short pieces like the weekly reflection. Type into the box (it counts up to the 500-character limit), then 回答を確定する — the checks run on the confirmed text, not while typing (PM, 18 Sep), and 編集する reopens the box. Which of the three paths an assignment offers is a Back Office setting on the Feedback LO.",
     "m8": "Waiting state on the phone: identical rules to PC — no AI mentioned, teacher gives the feedback after the due date, notification when returned, pages viewable / replaceable until the due date. Steps are vertical for the narrow screen. DEMO pill →",
     "m9": "Returned, on the phone: teacher's note (with the ★ line when the teacher chose this work as an example for the class, PM 20 Sep), summary, then the recognised text of the answer with the same underlines. One layout for every submission type (PM, 18 Sep). Tapping an underline — or one of the three comment chips — opens the bottom sheet for that point (PM, 18 Sep) and highlights the passage. Resubmit and PDF export at the end.",
@@ -7890,13 +7830,13 @@ notes = {
     "n1": {"x": 0, "y": H + 60, "w": NW, "maxH": 260, "text":
         "Entry from the course, following the LMS hierarchy Book → Chapter → Topic → LO (Book Management PRD): the book is named on the course card, sessions are chapters, topics sit under them, and each row is an LO with its LO type as a small chip. AI Feedback is a NEW LO type (yellow chip + sparkle) alongside Learning Objective / Flashcard / Recording / Practice / External Content / Paper Submission; the assignment is created at the LO level. A course-level 'AI Feedback 対応' chip sat on the course card and was removed (PM, 19 Sep): the LO type chip already says which LOs have it. NAMING (PM, 19 Sep): 'AI' is gone from every student-facing label — the LO type reads フィードバック / Feedback, as do the screen titles and To-do rows — because the teacher may review the draft and return it as their own endorsed feedback. AI Feedback stays the internal / Back Office name. The two AI words a student still sees are the 生成AIリテラシー rubric criterion (Kindai's own, about the student's AI use) and AI演習 / AI Practice, a different product. Week 8 is dimmed: its start date has not passed. Click the 第7回 演習レポート row →"},
     "n2": {"x": 1 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
-        "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) A lock line under the criteria stated the L0 boundary ('AI never writes your answer'); it was reworded on 19 Sep to drop the AI mention and then removed entirely (PM): once the student is not told AI is involved, the line answers a question nobody asked. The boundary itself is unchanged — it belongs in the teacher's brief and the PRD, not on the submit screen. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel / PowerPoint and photos (PM, 18–19 Sep) — office files go in as they are rather than being exported to PDF, which matters for the Kindai exercise because the Excel-skill criterion is judged on the workbook itself; photos are picked several at a time and kept in page order (click 答案の写真を選ぶ to see that state), and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run."},
+        "Two additions here. (a) 提出前チェック — structural checks only (chart present, coefficient stated, test stated, lecture material cited, page count), a separate 提出条件 field on the assignment in Back Office, not the rubric; for Kindai Correspondence this becomes the 13-rule check that would have removed 36% of resubmissions. (b) A lock line under the criteria stated the L0 boundary ('AI never writes your answer'); it was reworded on 19 Sep to drop the AI mention and then removed entirely (PM): once the student is not told AI is involved, the line answers a question nobody asked. The boundary itself is unchanged — it belongs in the teacher's brief and the PRD, not on the submit screen. An AI-use declaration was here and was removed on 18 Sep (PM decision: self-report is not evidence); the 生成AIリテラシー criterion stays the professor's to judge. (c) Upload accepts PDF / Word / Excel / PowerPoint and photos (PM, 18–19 Sep) — office files go in as they are rather than being exported to PDF, which matters for the Kindai exercise because the Excel-skill criterion is judged on the workbook itself; photos are picked several at a time and kept in page order (click 答案の写真を選ぶ to see that state), and photo submissions go through the AI Grading OCR path (PRD C1) before feedback. (d) A 直接入力 / Type-your-answer mode (PM, 18 Sep) for short pieces like the weekly reflection: textarea with a live count against a 500-character limit shown under the box (PM, 18 Sep: a target line in the header was tried and removed), then a 回答を確定する / Confirm answer step — the basic-requirements checks run on the confirmed text, exactly as they run on a chosen file (PM, 18 Sep), and 編集する reopens the box; which modes an assignment accepts is a Back Office setting on the Feedback LO. Choose a file, or type, to see the checks run. UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the BASIC-REQUIREMENTS CHECKS ARE REMOVED — a page-count rule cannot apply to a workbook, and the hint path is now the AI FEEDBACK BEFORE SUBMISSION card in their place: on by default per LO, unlimited drafts until the due date (a tenant may cap it), never teacher-reviewed, never a submission; once a file is picked or the text confirmed, 'Get feedback on this draft' opens the draft-feedback screen (X3). The typed limit is 2,000 characters (Env default, Tenant-level) and an unfinished answer is saved on the device."},
     "n3": {"x": 2 * (W + GAP), "y": H + 60, "w": NW, "maxH": 280, "text":
         "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →"},
     "n4": {"x": 3 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
         "Draft-1 return. Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD. The ★ line in the teacher's note card (PM, 20 Sep) appears only when the teacher chose this submission as an example to show the class — set from the Back Office review screen — so the student is told before it comes up in class."},
     "n5": {"x": 4 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
-        "THE BIG ADDITION. Left: last time's comments as a checklist — the student ticks what they addressed; strengths are shown as 'check it still holds'. The teacher's note travels with it. Right: upload and the basic-requirements list. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission →"},
+        "THE BIG ADDITION. Left: last time's comments as a checklist — the student ticks what they addressed; strengths are shown as 'check it still holds'. The teacher's note travels with it. Right: upload and the basic-requirements list. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission → UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the basic-requirements list on the right is gone; the pre-submission AI feedback card stands in its place."},
     "n6": {"x": 5 * (W + GAP), "y": H + 60, "w": NW, "maxH": 220, "text":
         "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →"},
     "n7": {"x": 6 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
