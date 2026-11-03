@@ -30,6 +30,8 @@ sticky notes on the canvas are the per-screen record.
 | AI Grading, student side · English | same, `-en` suffix | mixed |
 | Kindai trial, Excel · 日本語 | `X-Assign` (BO, 1440 × 900) · `X-Upload` → `X-Feedback` (mobile, 375 × 812) | mixed |
 | Kindai trial, Excel · English | same, `-en` suffix | mixed |
+| Ask-back mode · 日本語 | `A-Idea` → `A-Dialogue` → `A-Revise` (PC, 1280 × 800) · `A-Rate` (BO, 1440 × 900) | mixed |
+| Ask-back mode · English | same, `-en` suffix | mixed |
 
 Every board has a 日本語 / English toggle (header). The student boards carry a
 PC / Mobile / 先生（BO） pill (bottom-left) that jumps to the twin screen or into
@@ -354,6 +356,13 @@ unconfirmed spans dashed, tap for candidates; unconfirmed spans are never counte
 **Versions line** under a feedback LO's status on the Student Dashboard (`T-DashStudent`).
 **Due-date segment and Due column** on Submission Grading (`T-Queue`). **Export shapes** — chat and
 feedback · results per criterion · usage — on the AI Dashboard's export dialog (`T-DashAI`).
+
+The five P2 boards followed the PM's four decisions the same day: **Correct the AI** on `T-Review`
+(dismiss with a reason, add a missed issue, pending criteria changes → version 2); the course
+**Reference library** tab on `T-Course`; format chips on `02-Assignment`; **`T-Import`** for the
+teacher-only mode (ZIP / CSV keyed by the external ID, names dropped); and the **ask-back row**
+`A-Idea` → `A-Dialogue` → `A-Revise` → `A-Rate` (first idea locked, questions only, revision and
+reflection, the teacher's rating against versioned criteria).
 
 ## Kindai sociology trial — Excel assignments (X1–X3, 8 Oct)
 

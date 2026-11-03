@@ -1280,7 +1280,13 @@ Source [S30], read in full on 28 Oct. The PM's own decisions in the thread are r
 | N6 | `T-Queue` | **Due segment** (All · Due this week · Overdue) and a **Due** column | C2 teacher-only mode's queue, [S31] F2 |
 | N7 | `T-DashAI` | **Export shapes**: chat and feedback · results per criterion · usage; columns follow the shape; data-dictionary and stamp line | C7 export module |
 
-Not drawn yet (P2 of the change list, after the mode decisions): correct-the-AI controls on `T-Review`, the course reference library, PC web submission formats on `02-Assignment`, the ask-back boards, teacher-only import.
+| N8 | `T-Review` | **Correct the AI** (C2 phase 1): Dismiss ▾ with a reason on every comment (greys and tags it), **Add a missed issue** (passage, criterion, note → a teacher-added comment), a **Criteria changes (pending)** counter in the info panel with Approve changes (v2) as the phase-2 action | C2 corrections, C3 teacher corrections |
+| N9 | `T-Course` | **Reference library** tab (NEW): textbook with page / line index, lecture PDFs, the faculty's report-writing guide; two switches per item — Grounding and Quote check; the publisher-permission warning | C2 grounding, [S31] F7, [S33] |
+| N10 | `02-Assignment` | Format chips on the PC upload block: PDF · Word · Excel · PowerPoint · Photos, "the same formats from a PC browser" | C9.1 PC web |
+| N11 | `T-Import` (new, end of the Back Office row) | **Teacher-only import**: batch name, ZIP / CSV drop, field mapping (external ID, times, due, answers 1–4, optional past grade and comment), names dropped on import, counts, unreadable files, Import and start the check → Submission Grading | A2 / C2 teacher-only mode, [S31] F1 |
+| N12 | `A-Idea` → `A-Dialogue` → `A-Revise` (PC, new row) · `A-Rate` (BO) | **Ask-back mode**: the task with materials and "the part you think through"; the first idea locked; the Socratic dialogue at level 0 with each turn tagged by move; the revised explanation and reflection; the teacher's rating per criterion with Unrated apart from zero, evidence turns, criteria and prompt / model versions, share with the student | A2 / C2 ask-back mode, C3 answer level, [S33], [S34] |
+
+All seven P1 boards and the five P2 boards of the change list are drawn; what remains undrawn is the thesis board (U34's template first) and voice input (Okayama-only).
 
 ### C11.9 Questions the review raised and did not close
 

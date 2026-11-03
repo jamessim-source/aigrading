@@ -103,6 +103,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .badge.next{background:#ffc20a;color:#1c1e2c}
 .badge .n{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-style:normal}
 .badge.good .n{background:#1f7a4d}.badge.ask .n{background:#395ad2}.badge.todo .n{background:#d13842}
+.q-item.dismissed{opacity:.55}.q-item.added{background:#FFFDF5;box-shadow:inset 3px 0 0 #ED6C02}
+.amv{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#395ad2;background:#eef1ff;border-radius:6px;padding:2px 8px;align-self:flex-start;font-weight:700}
+.alock{border:1px dashed rgba(28,30,44,.3);border-radius:8px;padding:12px 14px;background:#fafafa;font-size:14px;line-height:22px}
+.fmt{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:12px;border:1px solid rgba(28,30,44,.16);font-size:12px;color:rgba(28,30,44,.7);background:#fff}
 .vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
 .vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
 .cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
@@ -854,34 +858,49 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
         <h3>先生からのひとこと（任意）</h3>
         <label class="field"><span class="lbl"></span><span class="in area">東京都を除いて再計算したところ、よく気づきました。②の点は次回の授業でも取り上げるので、自分の考えを用意しておいてください。</span></label>
       </div>
+      <div class="info-sec">
+        <h3>基準の変更（保留） <span class="tchip filled" style="height:20px;font-size:11px">{{pendN}} 件</span></h3>
+        <p class="helper" style="margin:0 0 8px">却下と追加は基準の変更候補として保存されます。承認するとルーブリックはバージョン 2 になり、以後の生成に反映されます。過去のコメントは変わりません。</p>
+        <span class="tbtn sm outlined"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>変更を承認（v2）</span>
+      </div>
     </div>
     <!-- a Comments section (drafts 3 / edited 1 / criteria 6) closed the panel and was removed
          (PM, 20 Sep: not useful when the comments are right there in the report) -->
     <div class="report">
-      <div class="report-head"><strong style="font-weight:500">フィードバックの下書き</strong><span class="helper" style="margin:0">3件 ・ 観点 6</span></div>
+      <div class="report-head"><strong style="font-weight:500">フィードバックの下書き</strong><span class="helper" style="margin:0">3件 ・ 観点 6</span><button class="tbtn sm" style="margin-left:auto" onClick="{{openAdd}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>見落としを追加</button></div>
       <div class="q-item">
         <div class="q-top"><span class="q-no">提出物</span><span class="q-title">第7回_演習_山田花子.pdf</span><span class="tchip">読み取ったテキスト</span></div>
         <div class="q-answer" style="margin-bottom:0"><p style="margin:0 0 10px">本演習では、総務省「社会生活統計指標」から47都道府県の人口密度と一人当たり県民所得のデータを取得し、両者の関係を分析した。Excel の CORREL 関数を用いて相関係数を算出したところ、r = 0.62 となり、正の相関が確認された。</p><p style="margin:0 0 10px">散布図を作成した結果、東京都が他の道府県から大きく離れた位置にあることが分かった。そこで東京都を除いて再計算すると r = 0.41 に低下し、東京都の値が相関係数を押し上げていることが確認できた。</p><p style="margin:0 0 10px">この結果から、人口密度が高い地域ほど所得が高くなるといえる。都市部に企業が集中し、雇用機会が多いためだと考えられる。</p><p style="margin:0 0 10px">有意性を確認するため T.TEST 関数を実行したところ、p 値は 0.03 であった。したがって帰無仮説は棄却され、2つの変数の間には統計的に有意な関係があるといえる。</p><p style="margin:0 0 10px">今後は、第三の変数として高齢化率を加えた分析を行い、地域差の背景をより多角的に捉えたい。</p></div>
       </div>
-      <div class="q-item">
+      <div class="q-item {{dc1}}">
       <div class="q-top"><span class="q-no">コメント 1</span><span class="badge good"><i class="n">1</i>優れた点</span><span class="tchip">統計処理</span><span class="vd ok">― 問題なし</span>
-        </div>
+        <sc-if value="{{dd1}}" hint-placeholder-val="{{false}}"><span class="tchip st-secondary">却下 ・ {{dw1}}</span></sc-if></div>
       <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>そこで東京都を除いて再計算すると r = 0.41 に低下し、東京都の値が相関係数を押し上げていることが確認できた。</div>
       <p class="q-prompt">外れ値の影響を疑い、除外前後の相関係数を並べて示した点がとても良いです。数値がどう変わったかを具体的に書いているので、読む側も判断の根拠を追うことができます。第6回で扱った「外れ値の扱い」がしっかり生かされています。</p>
-      <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>削除</span></div>
-    </div><div class="q-item">
+      <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span style="position:relative"><button class="tbtn sm danger" onClick="{{tm1}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>却下<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></button><sc-if value="{{dm1}}" hint-placeholder-val="{{false}}"><div class="tpop" style="left:0;top:36px;min-width:220px"><button class="it" onClick="{{dr1_0}}">指摘ではない</button><button class="it" onClick="{{dr1_1}}">厳しすぎる</button><button class="it" onClick="{{dr1_2}}">観点が違う</button><button class="it" onClick="{{dr1_3}}">場所が違う</button></div></sc-if></span></div>
+    </div><div class="q-item {{dc2}}">
       <div class="q-top"><span class="q-no">コメント 2</span><span class="badge ask"><i class="n">2</i>問いかけ</span><span class="tchip">解釈</span><span class="vd flag">✓ 要改善</span>
-        </div>
+        <sc-if value="{{dd2}}" hint-placeholder-val="{{false}}"><span class="tchip st-secondary">却下 ・ {{dw2}}</span></sc-if></div>
       <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>この結果から、人口密度が高い地域ほど所得が高くなるといえる。</div>
       <p class="q-prompt">相関係数が正だったことから「人口密度が高いほど所得が高くなる」と述べていますが、これは因果関係の主張になっています。逆に「所得が高い地域に人が集まる」という説明も、同じデータから成り立ちませんか。相関と因果のちがいを、この文の前後で一度整理してみてください。</p>
-      <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>削除</span></div>
-    </div><div class="q-item edited">
+      <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span style="position:relative"><button class="tbtn sm danger" onClick="{{tm2}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>却下<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></button><sc-if value="{{dm2}}" hint-placeholder-val="{{false}}"><div class="tpop" style="left:0;top:36px;min-width:220px"><button class="it" onClick="{{dr2_0}}">指摘ではない</button><button class="it" onClick="{{dr2_1}}">厳しすぎる</button><button class="it" onClick="{{dr2_2}}">観点が違う</button><button class="it" onClick="{{dr2_3}}">場所が違う</button></div></sc-if></span></div>
+    </div><div class="q-item edited {{dc3}}">
       <div class="q-top"><span class="q-no">コメント 3</span><span class="badge todo"><i class="n">3</i>改善点</span><span class="tchip">統計処理</span><span class="vd flag">✓ 要改善</span>
-        <span class="tchip type">編集済み</span></div>
+        <span class="tchip type">編集済み</span><sc-if value="{{dd3}}" hint-placeholder-val="{{false}}"><span class="tchip st-secondary">却下 ・ {{dw3}}</span></sc-if></div>
       <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>有意性を確認するため T.TEST 関数を実行したところ、p 値は 0.03 であった。</div>
       <p class="q-prompt">T.TEST は2つのグループの平均の差を検定する関数です。2つの変数の相関が有意かどうかを調べたい場合は、相関係数の検定（t = r√(n−2) ／ √(1−r²)）を用います。どの検定が何を調べているのかを講義資料の表で確認してから、計算式を書き直してみましょう。</p>
-      <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>削除</span></div>
-    </div>
+      <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span style="position:relative"><button class="tbtn sm danger" onClick="{{tm3}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>却下<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></button><sc-if value="{{dm3}}" hint-placeholder-val="{{false}}"><div class="tpop" style="left:0;top:36px;min-width:220px"><button class="it" onClick="{{dr3_0}}">指摘ではない</button><button class="it" onClick="{{dr3_1}}">厳しすぎる</button><button class="it" onClick="{{dr3_2}}">観点が違う</button><button class="it" onClick="{{dr3_3}}">場所が違う</button></div></sc-if></span></div>
+    </div><sc-if value="{{addOpen}}" hint-placeholder-val="{{false}}"><div class="q-item" style="background:#FAFAFA">
+      <div class="q-top"><span class="q-no">見落としを追加</span></div>
+      <label class="field"><span class="lbl">該当箇所（提出物から選択）</span><span class="in">p 値は 0.03 であった。したがって帰無仮説は棄却され</span></label>
+      <div style="display:grid;grid-template-columns:260px 1fr;gap:16px;margin-top:12px"><label class="field"><span class="lbl">観点</span><span class="in">統計処理<span class="gr"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></span></label><label class="field"><span class="lbl">メモ</span><span class="in area">T.TEST は平均の差の検定。相関の有意性には無相関の検定を使う点を指摘する</span></label></div>
+      <div class="tdacts" style="justify-content:flex-end;margin-top:10px"><button class="tbtn sm" onClick="{{closeAdd}}">キャンセル</button><button class="tbtn contained sm" onClick="{{commitAdd}}">追加</button></div>
+    </div></sc-if>
+    <sc-if value="{{added}}" hint-placeholder-val="{{false}}"><div class="q-item added">
+      <div class="q-top"><span class="q-no">コメント 4</span><span class="badge todo"><i class="n">4</i>改善点</span><span class="tchip">統計処理</span><span class="vd flag">✓ 要改善</span><span class="tchip type">先生が追加</span></div>
+      <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>p 値は 0.03 であった。したがって帰無仮説は棄却され</div>
+      <p class="q-prompt">T.TEST は平均の差の検定。相関の有意性には無相関の検定を使う点を指摘する</p>
+    </div></sc-if>
     </div>
   </div>
 </div>
@@ -890,8 +909,19 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
-  state = { more: false };
-  renderVals() { return { moreOpen: this.state.more, toggleMore: () => this.setState({ more: !this.state.more }) }; }
+  state = { more: false, dm: -1, dis: {}, add: false, added: false };
+  renderVals() {
+    const R = ["指摘ではない", "厳しすぎる", "観点が違う", "場所が違う"]; const v = { moreOpen: this.state.more, toggleMore: () => this.setState({ more: !this.state.more }),
+      addOpen: this.state.add, openAdd: () => this.setState({ add: true }), closeAdd: () => this.setState({ add: false }), commitAdd: () => this.setState({ add: false, added: true }), added: this.state.added };
+    let pend = this.state.added ? 1 : 0;
+    for (let n = 1; n <= 3; n++) {
+      const d = this.state.dis[n]; if (d !== undefined) pend++;
+      v["dm" + n] = this.state.dm === n; v["tm" + n] = () => this.setState({ dm: this.state.dm === n ? -1 : n });
+      v["dd" + n] = d !== undefined; v["dw" + n] = d !== undefined ? R[d] : ""; v["dc" + n] = d !== undefined ? "dismissed" : "";
+      for (let j = 0; j < R.length; j++) v["dr" + n + "_" + j] = () => { const dis = Object.assign({}, this.state.dis); dis[n] = j; this.setState({ dis, dm: -1 }); };
+    }
+    v.pendN = String(pend); return v;
+  }
 }
 </script>
 </body>

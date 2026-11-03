@@ -157,6 +157,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .badge.next{background:#ffc20a;color:#1c1e2c}
 .badge .n{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-style:normal}
 .badge.good .n{background:#1f7a4d}.badge.ask .n{background:#395ad2}.badge.todo .n{background:#d13842}
+.q-item.dismissed{opacity:.55}.q-item.added{background:#FFFDF5;box-shadow:inset 3px 0 0 #ED6C02}
+.amv{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#395ad2;background:#eef1ff;border-radius:6px;padding:2px 8px;align-self:flex-start;font-weight:700}
+.alock{border:1px dashed rgba(28,30,44,.3);border-radius:8px;padding:12px 14px;background:#fafafa;font-size:14px;line-height:22px}
+.fmt{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:12px;border:1px solid rgba(28,30,44,.16);font-size:12px;color:rgba(28,30,44,.7);background:#fff}
 .vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
 .vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
 .cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
@@ -846,6 +850,7 @@ def upload_block(S, submit_label, file_name, file_meta, note, href):
         <span style="width:56px;height:56px;border-radius:50%;background:#eef1ff;display:flex;align-items:center;justify-content:center;color:#395ad2">{ic("upload",28)}</span>
         <p class="b1" style="font-weight:700">{S["a_drop"]}</p>
         <p class="b2 muted" style="max-width:520px;text-align:center">{S["a_drop_s"]}</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">{"".join(f'<span class="fmt">{f}</span>' for f in S["a_formats"])}</div>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center">
           <button class="btn neutral" onClick="{{{{pick}}}}">{ic("file",18)}{S["a_pick"]}</button>
           <button class="btn neutral" onClick="{{{{pickPhotos}}}}">{ic("camera",18)}{S["a_photo"]}</button>
@@ -2443,6 +2448,30 @@ TJA = dict(
     t_due_seg=["すべて", "今週が期限", "期限超過"], t_due_col="締切",
     ad_x_shape_h="形式", ad_x_shapes=[("チャットとフィードバック", ["ユーザーID", "生徒名", "クラス", "タイトル", "科目", "質問", "チャット"]), ("観点別の結果", ["ユーザーID", "生徒名", "LO", "版", "観点", "判定", "コメント", "ルーブリック版"]), ("利用状況", ["ユーザーID", "生徒名", "LO", "事前チェック", "版数", "質問数", "初回", "最新"])],
     ad_x_dict="データ辞書（列の定義）を同梱 ・ 期間・絞り込み・ルーブリック版をファイルに記録",
+    t_dis="却下", t_dis_reasons=["指摘ではない", "厳しすぎる", "観点が違う", "場所が違う"], t_dis_tag="却下 ・ ", t_missed="見落としを追加", t_missed_h="見落としを追加",
+    t_missed_passage="該当箇所（提出物から選択）", t_missed_passage_v="p 値は 0.03 であった。したがって帰無仮説は棄却され", t_missed_crit="観点", t_missed_crit_v="統計処理", t_missed_note="メモ", t_missed_note_v="T.TEST は平均の差の検定。相関の有意性には無相関の検定を使う点を指摘する",
+    t_added_tag="先生が追加", t_pend_h="基準の変更（保留）", t_pend_line="却下と追加は基準の変更候補として保存されます。承認するとルーブリックはバージョン 2 になり、以後の生成に反映されます。過去のコメントは変わりません。", t_pend_approve="変更を承認（v2）", t_pend_n="件",
+    a_formats=["PDF", "Word", "Excel（.xlsx）", "PowerPoint（.pptx）", "写真（複数枚）"], a_formats_note="PC のブラウザからも同じ形式で提出できます",
+    t_lib_tab="参考資料", t_lib_h="コースの参考資料", t_lib_note="AIフィードバックの根拠（教材のページ・行を引用）と、引用チェック（教科書の文と一字単位で照合）に使う資料。LO を作るときにここから選びます。",
+    t_lib_files=[("教科書 第1〜15章（ページ・行の索引つき）", "PDF ・ 312ページ ・ 索引済み", "book", True, True), ("第7回 講義資料.pdf", "24ページ ・ 索引済み", "pdf", True, False), ("第8回 講義資料.pdf", "28ページ ・ 索引済み", "pdf", True, False), ("レポート作成の手引き（学部）", "PDF ・ 9ページ ・ 索引済み", "pdf", True, True)],
+    t_lib_ground="根拠に使う", t_lib_quote="引用チェック", t_lib_add="資料を追加", t_lib_cols=["資料", "状態", "根拠に使う", "引用チェック"], t_lib_rights="教科書本文の読み込みは、出版社の許諾を確認してから行います（未確認）",
+    t_imp_h="提出物の一括取り込み（先生のみの利用）", t_imp_sub="学生はManabieを使いません。事務または先生が外部LMSから書き出した提出物をまとめて取り込み、AIのチェックを先生が確認します。",
+    t_imp_batch="バッチ名", t_imp_batch_v="民法総則 第3回レポート ・ 11/10 返却分", t_imp_drop="ZIP（PDF / Word）または XLSX / CSV（1行 = 1レポート）をドロップ", t_imp_files=[("minpo_r03_batch1.zip", "48 ファイル ・ 112 MB"), ("minpo_r03_list.csv", "50 行")],
+    t_imp_map_h="列の対応", t_imp_map=[("外部ID（KULeD ID）", "student_id", "必須"), ("提出日時", "submitted_at", "必須"), ("返却期限", "due_at", "必須"), ("設問1〜4の回答", "answer_1 〜 answer_4", "必須"), ("過去の評点", "grade", "任意"), ("過去のコメント", "comment", "任意")],
+    t_imp_anon="氏名・学籍番号は取り込み時に削除し、外部IDだけを残します。学生には何も届きません。", t_imp_counts=[("レポート", "50"), ("設問", "4 / レポート"), ("読み込めないファイル", "1")], t_imp_auto="取り込み後すぐにAIチェックを開始し、返却期限順にキューへ並べます", t_imp_start="取り込んでチェックを開始", t_imp_unread="読み込めないファイル: minpo_r03_031.docx（破損）",
+    a_t_task="課題", a_t_title="バスの本数と図書館の利用", a_t_goal="学習目標：比較の条件をそろえてから結論を出す", a_t_q="バスの本数が多い地区ほど図書館の利用が多い。ここから何が言えるか。",
+    a_t_cols=["地区", "人口", "1日のバス本数", "月間の図書館来館者"], a_t_rows=[("A", "50,000", "120", "6,000"), ("B", "30,000", "60", "3,300"), ("C", "20,000", "20", "2,000")],
+    a_t_think="自分で考える部分：数字を比べるときにそろえるべき条件", a_level_chip="レベル 0 ・ 問い返しのみ（答えは出ません）",
+    a_idea_h="最初の考え", a_idea_note="ここに書いたものは、そのまま記録されます。対話のあとに「書き直した説明」と見比べます。", a_idea_v="バスが多いほど図書館の利用が多いので、バスを増やせば来館者も増えると思う。", a_idea_lock="この考えを確定して対話を始める", a_idea_locked="確定した最初の考え",
+    a_moves=[("1", "課題をつかむ"), ("2", "根拠を示す"), ("3", "別の見方を考える"), ("4", "説明を書き直す")],
+    a_chat=[("u", "バスが多いほど図書館の利用が多いので、バスを増やせば来館者も増えると思う。", "1"), ("a", "どの数字とどの数字を比べましたか？ 地区ごとに違う条件のうち、来館者数にも影響しそうなものはありますか。", "1"), ("u", "人口が違う。人口1,000人あたりにすると120、110、100で、合計とは傾向が違う。", "2"), ("a", "いいところに気づきました。では、この比較から「言えること」と「まだ確かめていないこと」を分けて書けますか。", "3"), ("u", "答えを教えてください。", "3"), ("a", "答えは出せませんが、確かめる条件は示せます。人口のほかに、地区ごとに違う条件を一つ挙げてみてください。", "3")],
+    a_chat_ph="考えたことを書く…", a_chat_hint="「答えを教えて」「私の考えは正しい前提で」には、条件や根拠を尋ねる形で返します。", a_to_revise="説明を書き直す",
+    a_rev_h="書き直した説明", a_rev_v="来館者数だけではバスの本数が原因とは言えない。人口をそろえて比べる必要があり、交通以外の地区の違いも確かめていない。", a_ref_h="ふり返り：最初の考えから何が変わったか、まだ言えないことは何か", a_ref_v="合計の数字だけで決めつけていた。1,000人あたりで見ると差は小さく、原因かどうかはまだ言えない。",
+    a_submit="提出する", a_submitted="提出済み ・ ふり返り済み", a_saved_note="最初の考え・対話・書き直し・ふり返りは、この課題のIDに紐づいて保存されます（プロンプト版 v5 ・ モデル版を記録）",
+    a_rate_title="評価（先生）", a_rate_crumb="提出物の採点", a_rate_student="生徒", a_rate_student_v="S-2041（氏名は非表示）", a_rate_task="課題", a_rate_ver="基準バージョン", a_rate_ver_v="v1（2026/10/30）", a_rate_prompt="プロンプト / モデル", a_rate_prompt_v="v5 / gemini-3.8-flash",
+    a_rate_first="最初の考え", a_rate_revised="書き直した説明", a_rate_turns="対話（根拠にする発言にチェック）", a_rate_crit_h="観点ごとの評価", a_crit=["問いを具体化する", "根拠のある説明", "別の見方の検討", "考えの修正"],
+    a_levels=["未評価", "1", "2", "3"], a_rate_reason="理由（根拠の発言番号を添える）", a_rate_reason_v="T2 で人口をそろえる必要に自分で気づき、T4 で「まだ言えないこと」を分けて書けた。", a_rate_share="この評価を生徒に表示する", a_rate_save="保存", a_rate_note="未評価は 0 点とは区別して集計されます。評価には基準バージョンと根拠の発言IDが自動で付きます。",
+    a_titles={"idea": "問い返し — 最初の考え", "dlg": "問い返し — 対話", "rev": "問い返し — 書き直しとふり返り", "rate": "BO — 問い返しの評価"},
     t_s_crit="コメントの観点（ルーブリック）",
     t_crit_note="提出物はこの観点に沿って読まれ、各コメントには対応する観点が付きます。",
     t_rubric_h="評価基準",
@@ -2693,6 +2722,30 @@ TEN = dict(
     t_due_seg=["All", "Due this week", "Overdue"], t_due_col="Due",
     ad_x_shape_h="Shape", ad_x_shapes=[("Chat and feedback", ["User ID", "Student Name", "Class", "Title", "Subject", "Question", "Chat"]), ("Results per criterion", ["User ID", "Student Name", "LO", "Version", "Criterion", "Verdict", "Comment", "Rubric version"]), ("Usage", ["User ID", "Student Name", "LO", "Pre-check", "Versions", "Questions", "First", "Latest"])],
     ad_x_dict="Data dictionary (column definitions) included · period, filters and rubric version stamped in the file",
+    t_dis="Dismiss", t_dis_reasons=["Not an issue", "Too strict", "Wrong criterion", "Wrong location"], t_dis_tag="Dismissed · ", t_missed="Add a missed issue", t_missed_h="Add a missed issue",
+    t_missed_passage="Passage (select in the submission)", t_missed_passage_v="which gave a p-value of 0.03. The null hypothesis is therefore rejected", t_missed_crit="Criterion", t_missed_crit_v="Statistical processing", t_missed_note="Note", t_missed_note_v="T.TEST tests a difference of means; point out that the significance of a correlation needs a test of no correlation",
+    t_added_tag="Added by teacher", t_pend_h="Criteria changes (pending)", t_pend_line="Dismissals and added issues are kept as candidate criteria changes. Approving them makes the rubric version 2, used for every generation from then on. Comments already written do not change.", t_pend_approve="Approve changes (v2)", t_pend_n="",
+    a_formats=["PDF", "Word", "Excel (.xlsx)", "PowerPoint (.pptx)", "Photos (several)"], a_formats_note="The same formats can be submitted from a PC browser",
+    t_lib_tab="Reference library", t_lib_h="Course reference library", t_lib_note="Material the AI Feedback grounds its comments in (page and line references) and checks quotes against (character by character). An LO picks from this list.",
+    t_lib_files=[("Textbook, chapters 1–15 (page / line index)", "PDF · 312 pages · indexed", "book", True, True), ("Session 7 slides.pdf", "24 pages · indexed", "pdf", True, False), ("Session 8 slides.pdf", "28 pages · indexed", "pdf", True, False), ("Report-writing guide (faculty)", "PDF · 9 pages · indexed", "pdf", True, True)],
+    t_lib_ground="Grounding", t_lib_quote="Quote check", t_lib_add="Add material", t_lib_cols=["Material", "Status", "Grounding", "Quote check"], t_lib_rights="Loading the textbook text needs the publisher's permission first (not confirmed)",
+    t_imp_h="Bulk import of submissions (teacher-only mode)", t_imp_sub="Students do not use Manabie. Staff or the teacher upload the reports exported from the external LMS in one batch; the teacher reviews the AI's findings.",
+    t_imp_batch="Batch name", t_imp_batch_v="Civil Law · Report 3 · return 10 Nov", t_imp_drop="Drop a ZIP (PDF / Word) or an XLSX / CSV (one row per report)", t_imp_files=[("minpo_r03_batch1.zip", "48 files · 112 MB"), ("minpo_r03_list.csv", "50 rows")],
+    t_imp_map_h="Field mapping", t_imp_map=[("External ID (KULeD ID)", "student_id", "required"), ("Submission time", "submitted_at", "required"), ("Return due date", "due_at", "required"), ("Answers 1–4", "answer_1 … answer_4", "required"), ("Past grade", "grade", "optional"), ("Past comment", "comment", "optional")],
+    t_imp_anon="Names and student numbers are dropped on import; only the external ID is kept. Nothing reaches students.", t_imp_counts=[("Reports", "50"), ("Questions", "4 per report"), ("Unreadable files", "1")], t_imp_auto="The AI check starts right after import and the batch is queued by return due date", t_imp_start="Import and start the check", t_imp_unread="Unreadable: minpo_r03_031.docx (corrupt)",
+    a_t_task="Task", a_t_title="Bus services and library visits", a_t_goal="Learning goal: equalise the conditions before drawing a conclusion", a_t_q="Districts with more buses have more library visits. What can we conclude?",
+    a_t_cols=["District", "Population", "Buses per day", "Library visits per month"], a_t_rows=[("A", "50,000", "120", "6,000"), ("B", "30,000", "60", "3,300"), ("C", "20,000", "20", "2,000")],
+    a_t_think="The part you think through yourself: which conditions must be equal before the numbers can be compared", a_level_chip="Level 0 · ask-back only (no answers)",
+    a_idea_h="First idea", a_idea_note="What you write here is kept as written. After the dialogue you compare it with your revised explanation.", a_idea_v="More buses means more library use, so adding buses would raise visits.", a_idea_lock="Lock this idea and start the dialogue", a_idea_locked="Locked first idea",
+    a_moves=[("1", "Frame the task"), ("2", "Give evidence"), ("3", "Consider another view"), ("4", "Revise the explanation")],
+    a_chat=[("u", "More buses means more library use, so adding buses would raise visits.", "1"), ("a", "Which numbers did you compare? Among the conditions that differ by district, which might also affect visits?", "1"), ("u", "Population differs. Per 1,000 residents it is 120, 110 and 100 visits, a different trend from the totals.", "2"), ("a", "Good catch. Can you separate what this comparison shows from what you have not yet checked?", "3"), ("u", "Just tell me the answer.", "3"), ("a", "I can't give the answer, but I can name what to check. Besides population, which other condition differs between the districts?", "3")],
+    a_chat_ph="Write what you are thinking…", a_chat_hint="\"Just tell me the answer\" and \"assume I'm right\" get a question about conditions and evidence, never the answer.", a_to_revise="Revise my explanation",
+    a_rev_h="Revised explanation", a_rev_v="Visit counts alone cannot show that bus services are the cause. Population has to be equalised first, and non-transport differences between the districts have not been checked.", a_ref_h="Reflection: what changed from the first idea, and what cannot be claimed yet", a_ref_v="I had decided from the totals alone. Per 1,000 residents the gap is small, and whether buses are the cause cannot be said yet.",
+    a_submit="Submit", a_submitted="Submitted · reflected", a_saved_note="The first idea, the dialogue, the revision and the reflection are stored under this task's ID (prompt version v5 and the model version logged)",
+    a_rate_title="Rating (teacher)", a_rate_crumb="Submission Grading", a_rate_student="Student", a_rate_student_v="S-2041 (name hidden)", a_rate_task="Task", a_rate_ver="Criteria version", a_rate_ver_v="v1 (30 Oct 2026)", a_rate_prompt="Prompt / model", a_rate_prompt_v="v5 / gemini-3.8-flash",
+    a_rate_first="First idea", a_rate_revised="Revised explanation", a_rate_turns="Dialogue (tick the turns you cite as evidence)", a_rate_crit_h="Rating per criterion", a_crit=["Making the question concrete", "Evidence-backed explanation", "Considering another view", "Revising one's thinking"],
+    a_levels=["Unrated", "1", "2", "3"], a_rate_reason="Reason (cite the turn numbers)", a_rate_reason_v="Noticed in T2 that population must be equalised, and in T4 separated what cannot yet be claimed.", a_rate_share="Share this rating with the student", a_rate_save="Save", a_rate_note="Unrated is aggregated apart from zero. Every rating is stamped with the criteria version and the evidence turn IDs.",
+    a_titles={"idea": "Ask-back — first idea", "dlg": "Ask-back — dialogue", "rev": "Ask-back — revision and reflection", "rate": "BO — rating an ask-back task"},
     t_s_crit="Comment criteria (rubric)",
     t_crit_note="Each submission is read against these criteria, and every comment is tagged with the one it concerns.",
     t_rubric_h="Rubric",
@@ -3382,13 +3435,27 @@ def t_review(S, L):
     for i, (kind, crit, quote, bodytext, ref) in enumerate(S["cards"]):
         n = i + 1
         edited = (n == 3)
-        items += f'''<div class="q-item{" edited" if edited else ""}">
+        reasons = "".join(f'<button class="it" onClick="{{{{dr{n}_{j}}}}}">{r}</button>' for j, r in enumerate(S["t_dis_reasons"]))
+        menu = f'<sc-if value="{{{{dm{n}}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tpop" style="left:0;top:36px;min-width:220px">{reasons}</div></sc-if>'
+        items += f'''<div class="q-item{" edited" if edited else ""} {{{{dc{n}}}}}">
       <div class="q-top"><span class="q-no">{S["t_comment"]} {n}</span><span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="tchip">{crit}</span><span class="vd {"ok" if kind == "good" else "flag"}">{S["t_vd"]["ok" if kind == "good" else "flag"]}</span>
-        {f'<span class="tchip type">{S["t_rev_edited"]}</span>' if edited else ""}</div>
+        {f'<span class="tchip type">{S["t_rev_edited"]}</span>' if edited else ""}<sc-if value="{{{{dd{n}}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip st-secondary">{S["t_dis_tag"]}{{{{dw{n}}}}}</span></sc-if></div>
       <div class="q-answer"><span class="who">{S["t_passage"]}</span>{quote}</div>
       <p class="q-prompt">{bodytext}</p>
-      <div class="tdacts"><span class="tbtn sm">{mi("edit", 16)}{S["t_rev_edit"]}</span><span class="tbtn sm danger">{mi("del", 16)}{S["t_rev_drop"]}</span></div>
+      <div class="tdacts"><span class="tbtn sm">{mi("edit", 16)}{S["t_rev_edit"]}</span><span style="position:relative"><button class="tbtn sm danger" onClick="{{{{tm{n}}}}}">{mi("close", 16)}{S["t_dis"]}{mi("expandMore", 16)}</button>{menu}</span></div>
     </div>'''
+    # a missed issue the teacher adds (PRD C2 phase 1): select the passage, pick the criterion, note — appended as a comment
+    items += f'''<sc-if value="{{{{addOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="q-item" style="background:#FAFAFA">
+      <div class="q-top"><span class="q-no">{S["t_missed_h"]}</span></div>
+      {field(S["t_missed_passage"], S["t_missed_passage_v"])}
+      <div style="display:grid;grid-template-columns:260px 1fr;gap:16px;margin-top:12px">{field(S["t_missed_crit"], S["t_missed_crit_v"], icon="expandMore")}{field(S["t_missed_note"], S["t_missed_note_v"], area=True)}</div>
+      <div class="tdacts" style="justify-content:flex-end;margin-top:10px"><button class="tbtn sm" onClick="{{{{closeAdd}}}}">{S["t_cancel"]}</button><button class="tbtn contained sm" onClick="{{{{commitAdd}}}}">{S["t_add"]}</button></div>
+    </div></sc-if>
+    <sc-if value="{{{{added}}}}" hint-placeholder-val="{{{{false}}}}"><div class="q-item added">
+      <div class="q-top"><span class="q-no">{S["t_comment"]} 4</span><span class="badge todo"><i class="n">4</i>{S["labels"]["todo"]}</span><span class="tchip">{S["t_missed_crit_v"]}</span><span class="vd flag">{S["t_vd"]["flag"]}</span><span class="tchip type">{S["t_added_tag"]}</span></div>
+      <div class="q-answer"><span class="who">{S["t_passage"]}</span>{S["t_missed_passage_v"]}</div>
+      <p class="q-prompt">{S["t_missed_note_v"]}</p>
+    </div></sc-if>'''
     raw = "".join(f'<p style="margin:0 0 10px">{p}</p>' for p in S["raw"])
     # ⋮ — production's kebab on the grading page; here it holds the secondary actions that do not
     # merit a button (PM, 20 Sep: asked what it is for): history, download, regenerate, preview
@@ -3431,11 +3498,16 @@ def t_review(S, L):
         <h3>{S["t_rev_note_h"]}</h3>
         {field("", S["t_rev_note"], area=True)}
       </div>
+      <div class="info-sec">
+        <h3>{S["t_pend_h"]} <span class="tchip filled" style="height:20px;font-size:11px">{{{{pendN}}}} {S["t_pend_n"]}</span></h3>
+        <p class="helper" style="margin:0 0 8px">{S["t_pend_line"]}</p>
+        <span class="tbtn sm outlined">{mi("autorenew", 16)}{S["t_pend_approve"]}</span>
+      </div>
     </div>
     <!-- a Comments section (drafts 3 / edited 1 / criteria 6) closed the panel and was removed
          (PM, 20 Sep: not useful when the comments are right there in the report) -->
     <div class="report">
-      <div class="report-head"><strong style="font-weight:500">{S["t_rev_right"]}</strong><span class="helper" style="margin:0">{S["t_rev_right_n"]}</span></div>
+      <div class="report-head"><strong style="font-weight:500">{S["t_rev_right"]}</strong><span class="helper" style="margin:0">{S["t_rev_right_n"]}</span><button class="tbtn sm" style="margin-left:auto" onClick="{{{{openAdd}}}}">{mi("add", 16)}{S["t_missed"]}</button></div>
       <div class="q-item">
         <div class="q-top"><span class="q-no">{S["t_rev_left"]}</span><span class="q-title">{S["a_file"]}</span><span class="tchip">{S["t_recognised"]}</span></div>
         <div class="q-answer" style="margin-bottom:0">{raw}</div>
@@ -3445,10 +3517,21 @@ def t_review(S, L):
   </div>
 </div>
 </div>'''
-    return tpage(S, "T-Review", S["t_titles"]["rev"], body, logic=TREV_LOGIC)
+    return tpage(S, "T-Review", S["t_titles"]["rev"], body, logic=TREV_LOGIC.replace("%R%", json.dumps(S["t_dis_reasons"], ensure_ascii=False)))
 
-TREV_LOGIC = """state = { more: false };
-  renderVals() { return { moreOpen: this.state.more, toggleMore: () => this.setState({ more: !this.state.more }) }; }"""
+TREV_LOGIC = """state = { more: false, dm: -1, dis: {}, add: false, added: false };
+  renderVals() {
+    const R = %R%; const v = { moreOpen: this.state.more, toggleMore: () => this.setState({ more: !this.state.more }),
+      addOpen: this.state.add, openAdd: () => this.setState({ add: true }), closeAdd: () => this.setState({ add: false }), commitAdd: () => this.setState({ add: false, added: true }), added: this.state.added };
+    let pend = this.state.added ? 1 : 0;
+    for (let n = 1; n <= 3; n++) {
+      const d = this.state.dis[n]; if (d !== undefined) pend++;
+      v["dm" + n] = this.state.dm === n; v["tm" + n] = () => this.setState({ dm: this.state.dm === n ? -1 : n });
+      v["dd" + n] = d !== undefined; v["dw" + n] = d !== undefined ? R[d] : ""; v["dc" + n] = d !== undefined ? "dismissed" : "";
+      for (let j = 0; j < R.length; j++) v["dr" + n + "_" + j] = () => { const dis = Object.assign({}, this.state.dis); dis[n] = j; this.setState({ dis, dm: -1 }); };
+    }
+    v.pendN = String(pend); return v;
+  }"""
 
 def dash_head(S, L, screen, tab):
     """Dashboard page head as the Back Office renders it: h1, the four dashboard tabs (Group /
@@ -3959,7 +4042,7 @@ def tcourse_logic(S):
              closeShare: () => this.setState({{ share: false, copied: false }}),
              menuOpen: this.state.menu, toggleMenu: () => this.setState({{ menu: !this.state.menu }}),
              copied: this.state.copied, copyCode: () => this.setState({{ copied: true }}),
-             booksOn: this.state.tab === "books", stuOn: this.state.tab === "students",
+             booksOn: this.state.tab === "books", stuOn: this.state.tab === "students", libOn: this.state.tab === "lib", tabLib: this.state.tab === "lib" ? "on" : "", showLib: () => this.setState({{ tab: "lib" }}),
              tabBooks: this.state.tab === "books" ? "on" : "", tabStu: this.state.tab === "students" ? "on" : "",
              showBooks: () => this.setState({{ tab: "books" }}), showStu: () => this.setState({{ tab: "students" }}),
              extOpen: this.state.ext >= 0, extName: this.state.ext >= 0 ? names[this.state.ext] : (this.state.extSavedFor >= 0 ? names[this.state.extSavedFor] : ""),
@@ -4112,7 +4195,16 @@ def t_course(S, L):
         if i == 0: return f'<button class="tab {{{{tabBooks}}}}" onClick="{{{{showBooks}}}}">{t}</button>'
         if i == 3: return f'<button class="tab {{{{tabStu}}}}" onClick="{{{{showStu}}}}">{t}</button>'
         return f'<span class="tab">{t}</span>'
-    tabs = "".join(tab(i, t) for i, t in enumerate(S["t_c_tabs"]))
+    tabs = "".join(tab(i, t) for i, t in enumerate(S["t_c_tabs"])) + f'<button class="tab {{{{tabLib}}}}" onClick="{{{{showLib}}}}">{S["t_lib_tab"]}<span class="tchip new" style="margin-left:6px">{S["t_new"]}</span></button>'
+    # Course reference library (3 Nov, change list P2; [S28] T2/Q4, [S31] F7, [S33]): one entity, two uses — grounding and quote check
+    lib_rows = "".join(f'<tr><td><span style="display:flex;align-items:center;gap:10px"><span class="fi" style="width:32px;height:32px;border-radius:4px;background:{"#E8F5E9" if k == "book" else "#FEEBEE"};color:{"#1B7F3B" if k == "book" else "#C62828"};display:inline-flex;align-items:center;justify-content:center">{mi("library" if k == "book" else "description", 18)}</span><span>{n}<span class="cell-muted" style="display:block;font-size:12px">{m}</span></span></span></td>'
+                       f'<td><span class="tchip published">{mi("checkCircle", 12, "#1B7F3B")}{m.split("・")[-1].split("·")[-1].strip()}</span></td><td><span class="switch{" on" if g else ""}"><span class="track"></span></span></td><td><span class="switch{" on" if q else ""}"><span class="track"></span></span></td></tr>' for n, m, k, g, q in S["t_lib_files"])
+    lib = f'''<div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tpaper"><div class="ph"><h3>{S["t_lib_h"]}</h3><span class="tbtn sm">{mi("add", 18)}{S["t_lib_add"]}</span></div>
+      <div class="pb" style="padding-top:8px"><p class="helper" style="margin:0 0 10px">{S["t_lib_note"]}</p>
+        <div class="table-scroll"><table class="m"><thead><tr>{"".join(f"<th>{c}</th>" for c in S["t_lib_cols"])}</tr></thead><tbody>{lib_rows}</tbody></table></div>
+        <div class="alert warn" style="margin-top:12px">{mi("info", 20, "#ED6C02")}<span>{S["t_lib_rights"]}</span></div>
+      </div></div></div>'''
     row = (f'<tr><td class="idx num">1</td><td><a class="cell-link" href="{tfn("T-CourseBook", L)}">{S["t_book"]}</a></td></tr>')
     body = tnav(S, "cm") + f'''<div class="tmain">
 <div class="tscroll">
@@ -4130,6 +4222,7 @@ def t_course(S, L):
     </div>
   </div></sc-if>
   <sc-if value="{{{{stuOn}}}}" hint-placeholder-val="{{{{false}}}}">{student_tab(S, L)}</sc-if>
+  <sc-if value="{{{{libOn}}}}" hint-placeholder-val="{{{{false}}}}">{lib}</sc-if>
 </div>
 </div>
 {share_dialog(S, L)}
@@ -7528,6 +7621,151 @@ XBUILDERS = {"X-Assign": x_assign, "X-Upload": x_upload, "X-Feedback": x_feedbac
 # the mobile boards have no PC twin (the app is the student's surface in this trial): the device toggle points at the board itself
 TO_PC["X-Upload"] = "X-Upload"; TO_PC["X-Feedback"] = "X-Feedback"
 
+# ===== TEACHER-ONLY IMPORT and ASK-BACK DIALOGUE (3 Nov) — the two engine modes the PM assigned to AI Feedback =====
+def t_import(S, L):
+    """Teacher-only mode (PRD A2 / C2, 3 Nov; DLSC spec F1): staff bulk-upload the reports exported from the
+    external LMS — a ZIP of PDF / Word or an XLSX / CSV keyed by the external ID — into a named batch; names
+    are dropped on import; the AI check auto-starts and the batch lands on Submission Grading by return due date.
+    Reuses the AI Grading import page's layout (G4)."""
+    files = "".join(f'<div class="titem"><span class="fi" style="width:32px;height:32px;border-radius:4px;background:#E3F2FD;color:#0B79D0;display:inline-flex;align-items:center;justify-content:center">{mi("description", 18)}</span><span style="flex:1">{n}<span class="cell-muted" style="display:block;font-size:12px">{m}</span></span><span class="tchip published" style="height:22px">{mi("checkCircle", 12, "#1B7F3B")}100%</span></div>' for n, m in S["t_imp_files"])
+    maprows = "".join(f'<tr><td>{a}</td><td><span class="num cell-muted">{b}</span></td><td><span class="tchip{" filled" if c in ("必須", "required") else ""}" style="height:22px">{c}</span></td></tr>' for a, b, c in S["t_imp_map"])
+    counts = "".join(f'<div><span class="cell-muted" style="font-size:12px">{k}</span><b style="display:block;font-size:24px;font-weight:500">{v}</b></div>' for k, v in S["t_imp_counts"])
+    body = tnav(S, "course") + f"""<div class="tmain">
+<div class="tscroll" style="padding-bottom:20px">
+  {tcrumbs(S, "T-Import", [(S["t_course"], "#"), (S["t_toreview"], tfn("T-Queue", L)), (S["t_imp_h"], None)])}
+  <div class="tphead"><h1>{S["t_imp_h"]}</h1><div class="acts"></div></div>
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:1040px">
+    <p class="helper" style="margin:-8px 0 0">{S["t_imp_sub"]}</p>
+    <div class="tpaper"><div class="pb" style="display:flex;flex-direction:column;gap:14px">
+      {field(S["t_imp_batch"], S["t_imp_batch_v"], required=True)}
+      <div class="tdrop">{mi("cloudUp", 22)}{S["t_imp_drop"]}</div>
+      <div>{files}</div>
+      <div class="alert warn">{mi("info", 20, "#ED6C02")}<span>{S["t_imp_unread"]}</span></div>
+    </div></div>
+    <div class="tpaper"><div class="ph"><h3>{S["t_imp_map_h"]}</h3></div>
+      <div class="table-scroll"><table class="m"><tbody>{maprows}</tbody></table></div>
+      <div class="pb"><div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["t_imp_anon"]}</span></div></div></div>
+    <div class="tpaper"><div class="pb" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">{counts}</div>
+      <div class="pb" style="padding-top:0"><span class="helper" style="margin:0">{mi("spark", 14)} {S["t_imp_auto"]}</span></div></div>
+    <div style="display:flex;justify-content:flex-end;gap:8px"><a class="tbtn" href="{tfn("T-Queue", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Queue", L)}">{mi("spark", 18)}{S["t_imp_start"]}</a></div>
+  </div>
+</div>
+</div>"""
+    return tpage(S, "T-Import", S["t_imp_h"], body)
+TSCREENS.append("T-Import"); TBUILDERS["T-Import"] = t_import
+
+def a_task_card(S, compact=False):
+    rows = "".join("<tr>" + "".join(f"<td class=num>{c}</td>" for c in r) + "</tr>" for r in S["a_t_rows"])
+    chip = "" if compact else f'<span class="chip neutral" style="height:28px;flex:0 0 auto">{ic("sparkle",14)}{S["a_level_chip"]}</span>'
+    return f"""<div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="min-width:0;flex:1"><p class="cap">{S["a_t_task"]}</p><h2 class="h3">{S["a_t_title"]}</h2><p class="b2 muted">{S["a_t_goal"]}</p></div>{chip}</div>
+    <p class="b1" style="font-weight:700">{S["a_t_q"]}</p>
+    <table class="m" style="font-size:13px"><thead><tr>{"".join(f"<th>{c}</th>" for c in S["a_t_cols"])}</tr></thead><tbody>{rows}</tbody></table>
+    <p class="cap" style="display:flex;align-items:center;gap:6px">{ic("alert",14)}{S["a_t_think"]}</p>
+  </div>"""
+
+def a_idea(S, L):
+    """Ask-back mode, step 1 (PRD C2 modes; [S33] 'the four moves', [S34]): the task with its materials and
+    'the part you think through yourself'; the student's FIRST IDEA, locked before the dialogue so the revised
+    explanation can be compared with it on the same task."""
+    body = header(S, "A-Idea", S["a_titles"]["idea"], crumb=S["a_crumb"], back_href=fn("Main", L)) + f"""
+<div class="body"><div class="col">
+  {a_task_card(S)}
+  <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:10px">
+    <p class="sub1">{S["a_idea_h"]}</p>
+    <textarea class="ta" style="min-height:120px" defaultValue="{S["a_idea_v"]}">{S["a_idea_v"]}</textarea>
+    <p class="cap">{S["a_idea_note"]}</p>
+    <div style="display:flex;justify-content:flex-end"><a class="btn primary" href="{fn("A-Dialogue", L)}">{ic("sparkle",18,"#fff")}{S["a_idea_lock"]}</a></div>
+  </div>
+</div></div>"""
+    return page(S, S["a_titles"]["idea"], body)
+
+def a_dialogue(S, L):
+    """Ask-back mode, step 2: the locked first idea beside the Socratic dialogue — every AI turn is a question
+    about numbers compared, conditions, evidence; 'just tell me the answer' gets a question about what to check.
+    Each turn is tagged with its move (frame / evidence / another view / revise) and stored with the prompt and
+    model version. Answer level 0."""
+    moves = dict(S["a_moves"])
+    turns = "".join(f'<div style="display:flex;flex-direction:column;gap:4px;align-items:{"flex-end" if who == "u" else "flex-start"}"><span class="amv">{ic("sparkle",11)}{m} {moves[m]} ・ T{i + 1}</span><div class="bub {who}">{txt}</div></div>' for i, (who, txt, m) in enumerate(S["a_chat"]))
+    body = header(S, "A-Dialogue", S["a_titles"]["dlg"], crumb=S["a_crumb"], back_href=fn("A-Idea", L)) + f"""
+<div class="body"><div style="display:flex;gap:16px;width:1120px;margin:0 auto;align-items:flex-start">
+  <div style="width:400px;flex:0 0 400px;display:flex;flex-direction:column;gap:16px">
+    <div class="card" style="padding:16px 20px;display:flex;flex-direction:column;gap:8px"><p class="sub1" style="display:flex;align-items:center;gap:6px">{ic("check",16,"#1f7a4d",2.6)}{S["a_idea_locked"]}</p><div class="alock">{S["a_idea_v"]}</div></div>
+    {a_task_card(S, compact=True)}
+  </div>
+  <div class="card" style="flex:1;padding:20px 24px;display:flex;flex-direction:column;gap:14px;background:#f7f8fc">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><span class="cap">{S["a_chat_hint"]}</span><span class="chip neutral">{S["a_level_chip"]}</span></div>
+    <div style="display:flex;flex-direction:column;gap:12px">{turns}</div>
+    <div class="chatin"><input placeholder="{S["a_chat_ph"]}"><button class="btn primary" style="height:38px;padding:0 16px">{ic("right",18,"#fff",2.4)}</button></div>
+    <div style="display:flex;justify-content:flex-end"><a class="btn primary" href="{fn("A-Revise", L)}">{S["a_to_revise"]}{ic("right",18,"#fff",2.4)}</a></div>
+  </div>
+</div></div>"""
+    return page(S, S["a_titles"]["dlg"], body)
+
+def a_revise(S, L):
+    """Ask-back mode, step 3: the first idea (locked) beside the REVISED EXPLANATION, then the REFLECTION —
+    what changed and what cannot be claimed yet — and Submit. All four fields are stored separately under the
+    task ID so the teacher can rate the change in thinking."""
+    body = header(S, "A-Revise", S["a_titles"]["rev"], crumb=S["a_crumb"], back_href=fn("A-Dialogue", L)) + f"""
+<div class="body"><div class="col" style="width:1000px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="card" style="padding:16px 20px;display:flex;flex-direction:column;gap:8px"><p class="sub1" style="display:flex;align-items:center;gap:6px">{ic("check",16,"#1f7a4d",2.6)}{S["a_idea_locked"]}</p><div class="alock">{S["a_idea_v"]}</div></div>
+    <div class="card" style="padding:16px 20px;display:flex;flex-direction:column;gap:8px"><p class="sub1">{S["a_rev_h"]}</p><textarea class="ta" style="min-height:110px">{S["a_rev_v"]}</textarea></div>
+  </div>
+  <div class="card" style="padding:16px 20px;display:flex;flex-direction:column;gap:8px"><p class="sub1">{S["a_ref_h"]}</p><textarea class="ta" style="min-height:90px">{S["a_ref_v"]}</textarea>
+    <p class="cap">{S["a_saved_note"]}</p>
+    <div style="display:flex;justify-content:flex-end;gap:12px;align-items:center"><span class="chip done" style="height:28px">{ic("check",14,"#1f7a4d",2.6)}{S["a_submitted"]}</span><a class="btn primary" href="{tfn("A-Rate", L)}">{S["a_submit"]}{ic("right",18,"#fff",2.4)}</a></div>
+  </div>
+</div></div>"""
+    return page(S, S["a_titles"]["rev"], body)
+
+A_RATE_LOGIC = """state = { r: [0, 0, 0, 0], share: false };
+  renderVals() {
+    const v = { sh: this.state.share ? "on" : "", toggleSh: () => this.setState({ share: !this.state.share }) };
+    this.state.r.forEach((lv, i) => { for (let k = 0; k < 4; k++) { v["c" + i + "_" + k] = lv === k ? "on" : ""; v["s" + i + "_" + k] = () => { const r = this.state.r.slice(); r[i] = k; this.setState({ r }); }; } });
+    return v;
+  }"""
+
+def a_rate(S, L):
+    """Teacher side of the ask-back mode ([S33] teacher features): first idea and revised explanation side by
+    side, the dialogue turns with the ones cited as evidence, a rating per school-defined criterion with
+    'unrated' distinct from zero, the reason, the criteria version and prompt / model version stamped, and
+    'share this rating with the student'. Not auto-grading: an AI rating, if ever shown, is a candidate."""
+    moves = dict(S["a_moves"])
+    turns = "".join(f'<div class="titem" style="align-items:flex-start"><span class="cbx-td{" on" if i in (1, 3) else ""}" style="margin-top:3px"></span><span class="num cell-muted" style="width:28px;flex:0 0 28px">T{i + 1}</span><span style="flex:1"><span class="cell-muted" style="font-size:12px">{"生徒" if (who == "u" and S["lang"] == "ja") else ("Student" if who == "u" else "AI")} ・ {moves[m]}</span><br>{txt}</span></div>' for i, (who, txt, m) in enumerate(S["a_chat"]))
+    def seg(i):
+        return "".join('<button class="{{c%d_%d}}" style="border:0;background:none;font:inherit;cursor:pointer" onClick="{{s%d_%d}}">%s</button>' % (i, k, i, k, lv) for k, lv in enumerate(S["a_levels"]))
+    crit = "".join(f'<div class="setting"><span class="setting-label" style="font-weight:500">{c}</span><div class="tseg" role="group">{seg(i)}</div></div>' for i, c in enumerate(S["a_crit"]))
+    body = tnav(S, "course") + f"""<div class="tmain">
+<div class="tscroll">
+  {tcrumbs(S, "A-Rate", [(S["t_course"], "#"), (S["a_rate_crumb"], tfn("T-Queue", L)), (S["a_t_title"], None)])}
+  <div class="tphead"><h1>{S["a_rate_title"]}<span class="tchip type">{mi("rateReview", 14)}{S["a_t_title"]}</span></h1><div class="acts"><span class="tbtn contained">{S["a_rate_save"]}</span></div></div>
+  <div class="grade-layout">
+    <div class="info-panel">
+      <div class="info-sec"><h3>{S["t_sub_info"]}</h3><dl class="info-rows"><dt>{S["a_rate_student"]}</dt><dd>{S["a_rate_student_v"]}</dd><dt>{S["a_rate_task"]}</dt><dd>{S["a_t_title"]}</dd><dt>{S["a_rate_ver"]}</dt><dd class="num">{S["a_rate_ver_v"]}</dd><dt>{S["a_rate_prompt"]}</dt><dd class="num">{S["a_rate_prompt_v"]}</dd></dl></div>
+      <div class="info-sec"><h3>{S["a_rate_crit_h"]}</h3><div class="settings-list">{crit}</div></div>
+      <div class="info-sec"><h3>{S["a_rate_reason"]}</h3>{field("", S["a_rate_reason_v"], area=True)}
+        <button class="switch {{{{sh}}}}" onClick="{{{{toggleSh}}}}" style="margin-top:10px"><span class="track"></span><span>{S["a_rate_share"]}</span></button>
+        <p class="helper" style="margin:8px 0 0">{S["a_rate_note"]}</p></div>
+    </div>
+    <div class="report">
+      <div class="report-head"><strong style="font-weight:500">{S["a_rate_first"]} / {S["a_rate_revised"]}</strong></div>
+      <div class="q-item" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div><span class="q-no">{S["a_rate_first"]}</span><div class="q-answer" style="margin-top:8px">{S["a_idea_v"]}</div></div>
+        <div><span class="q-no">{S["a_rate_revised"]}</span><div class="q-answer" style="margin-top:8px;border-color:#9ddcbb;background:#f3fbf6">{S["a_rev_v"]}</div><p class="q-prompt" style="margin:10px 0 0;font-size:13px;color:#616161">{S["a_ref_h"]}: {S["a_ref_v"]}</p></div>
+      </div>
+      <div class="q-item"><div class="q-top"><span class="q-no">{S["a_rate_turns"]}</span></div>{turns}</div>
+    </div>
+  </div>
+</div>
+</div>"""
+    return tpage(S, "A-Rate", S["a_titles"]["rate"], body, logic=A_RATE_LOGIC)
+
+ASCREENS = ["A-Idea", "A-Dialogue", "A-Revise", "A-Rate"]
+ABUILDERS = {"A-Idea": a_idea, "A-Dialogue": a_dialogue, "A-Revise": a_revise, "A-Rate": a_rate}
+for _a in ("A-Idea", "A-Dialogue", "A-Revise"):
+    TO_MOBILE[_a] = _a; TO_PC[_a] = _a
+
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
@@ -7569,6 +7807,7 @@ ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objecti
            "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
            "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback",
            "T16 · AI Dashboard — production's AI Tutor Dashboard with AI Feedback as the code has it: feedback snaps, the AI Tutor Assignment, and a thread viewer"]
+ttitles.append("T17 · Bulk import of submissions — the teacher-only mode: ZIP / CSV keyed by the external ID, names dropped, AI check auto-starts (3 Nov)")
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -7629,7 +7868,8 @@ TNOTES = {
     "t12": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with -- under Latest Score and Highest Score (a feedback LO has none; 再提出 1回 sat there first and was moved under the submission date, PM 21 Sep: it describes the submission, not a score). WHAT IS NEW is in the LO table itself (PM, 20 Sep: merged into the existing matrix rather than a table of its own; then, PM 20 Sep, fitted as columns rather than a detail row — the submission date was already a column): three feedback columns after production's four — 状態 Status (for every LO, PM 21 Sep: production writes 完了 Completed into the score columns of a video or slide deck, which read as statuses in score columns once a Status column existed, so 完了 moved here and the score columns show -- for anything unscored; for a feedback LO the status chip with its 再提出 / 自動返却 secondary chip and the date it was reached beneath, PM 21 Sep: a column of its own rather than sitting where a score would be), 指摘された観点 Flagged criteria — the rubric criteria that drew an improvement comment, with 再提出で修正済み where the resubmission fixed them (a コメント count column — 3, 良い点 1 ・ 改善点 2 — sat between and was dropped, PM 21 Sep: not useful; where the student stumbles is, and it is here), and 確認する / 見る into the review — the feedback LO's name a link to its overview (T7, PM 20 Sep), with the ★ reason under it where the teacher highlighted it; other LO rows show -- there. A separate paper below the table — count tiles, a submissions table and a by-criterion profile — was built first and removed in the merge. 7-2 is expanded so the weekly reflection shows too. PRACTICE ROW (24 Sep; PM, 28 Sep): the 類題演習 LO row reads 最新スコア 6/8 = questions correct / answered across the student's sets so far, no label (PM: remove \"correct\", it is understood), and 最高スコア 5/6 = the student's best single set (PM: add highest score) — Set 1 5/6, Set 2 1/2 so far; Status 途中 with the sets line; no flagged criteria; セット一覧 opens LO mode.",
     "t13": "AI DASHBOARD (PM, 6 Oct: implement the AI Dashboard in the prototype from the Back Office code and the production screenshot; v1 of AI Feedback reports inside it. Then, on this board: the AI feedback code on the aigrading repo is not linked to the LO — replace with what is actually available in the AI feedback code; and there is no user-generated feedback in the AI feedback feature). PRODUCTION FIRST: AIDashboardContainer as the syllabus squad renders it — the Dashboard tabs with AI Dashboard active, the AI Tutor Dashboard title with 生徒の追加 Add Student (SearchStudentDialog: the students on this board are the ones added, 10 here), AIDashboardForm (Lens = the subjects, start and end date, a divider, Apply), one paper: AIDashboardOverview (the 期間 Period line; Number of Students / Total Questions Asked / Total Likes / Total Dislikes) and the Student Usages table (count in the title, Last Updated from the sync time, search by student name, index column, expand chevron, Student Name → the student, User Name, Total Questions, Likes in green, Dislikes in red), the expanded row showing AIInteractionHistoryTable (Created At → the thread, Lens, Item Overview, No. of Questions, Feedback Type, Comments). WHAT AI FEEDBACK IS IN THAT CODE (backoffice branch): not an LO. It is the AI Tutor's FEEDBACK SNAP — AITutorgraphType FEEDBACK beside TUTOR (Snap-to-ask): the student photographs their own work and the AI responds to it — optionally tied to an AI TUTOR ASSIGNMENT (AITutorAssignment: title, subject, overall question, acceptance criteria / rubric content generated by AI, publish with a due date; the student taps Mark as Complete; analysis Started / Snaps / Completed from AssignmentReportProgress), counted on this dashboard by GetStudentUsageAnalytics.total_feedback_generated (production's Feedbacks generated card, shown under the syllabus.ai_tutor.ai_feedback flag), every snap a tutoring-session thread whose detail page (AIDashboardDetailGeneralInfo + QuestionTabPanel) shows the item overview and the AI response. SO ON THIS BOARD: (1) the overview = production's five cards in one row — Number of Students, Total Questions Asked, Total Likes, Total Dislikes and Feedbacks generated (the card production shows under the AI Feedback flag; here the feedback snaps in the period). The AI Feedback caption with the assignment and its due date, the assignment's Started / Snaps / Completed cards and the similar-questions practice row were all removed on the PM's comments (7 Oct); (2) two per-student columns — feedback snaps in the period, and the student's status on the assignment (Completed / Started / Not started); (3) the expanded row keeps the Snap-to-ask chat history and lists the student's FEEDBACK SNAPS beneath it: created at, lens, the assignment it was tied to (or 課題なし free snap), item overview, 見る View — no like / dislike or comments column: the PM confirmed (6 Oct) the feedback flow has no user-generated feedback, the thumbs and comments (UpsertQuestionFeedback) belong to Snap-to-ask only; (4) View opens a DRAWER with the thread IN THE LEARNER APP'S AI FEEDBACK FORMAT (PM screenshots, 6 Oct: use these as the format): Extracted text and Feedback SIDE BY SIDE (PM, 6 Oct: side by side instead of a toggle); Extracted text, left = the work as read, with numbered markers and dashed underlines — teal for a strength, red for a point to improve — on the passages the feedback points at; Feedback, right = a Summary card, then one numbered card per point with the criterion chip, the quoted passage and the comment (the app's Ask AI link is not shown here — PM, 6 Oct: it is the student's action), the numbers matching the markers in the text; the link to the thread page that sat in the drawer header was removed (PM, 6 Oct). SUBJECT, not Lens, is the label on the feedback-snap rows and in the drawer, and QUESTION OVERVIEW (the AI Tutor Assignment's own i18n key) rather than Item Overview on the feedback-snap rows (PM, 6 Oct); production's form and chat history keep Lens and Item Overview. EXPORT CHAT (PM, 7 Oct: an export chat function per AI feedback class): the button beside the search opens a dialog with one read-only line naming the exported columns (the class, assignment and period fields were removed — PM, 8 Oct; the export follows the dashboard's own filters, which the dialog does not repeat) (PM, 7 Oct: the chips-and-explanation block and the preview table were removed, then the columns asked for back as one line), the file name and row count in the footer — one row per feedback snap with the columns User ID / Student Name / Class / Title / Subject / Question / Chat (PM, 8 Oct; Title = the AI Tutor Assignment's title, empty for a free snap; Question = the question overview; Chat = the thread's AI / student messages in order, the AI's feedback being the first message, so there is no separate Feedback column; sample file and format rules for the developers in PRDs/samples/ai_feedback_chat_export.md) and confirms with a snackbar naming the file and the row count. ITEM OVERVIEW (PM question, 6 Oct) is the thread's question_overview, written by the AI when the snap is processed and only rendered by the Back Office; what it says for a feedback snap is a prompt decision — drawn as a one-line summary of the work in the photo (task or topic, what the student produced), without the verdict and without repeating the assignment name. What was here before (the AI Feedback LO's submissions per student, the returned feedback and the Review-and-return viewer) is removed from this board: the LO's data stays on T13–T15 and in Submission Grading. Try: expand 山田 花子, View the three snaps — the Session 7 assignment, the free snap on the hypothesis test, the Session 6 assignment. Counts only, no rates.",
 }
-for _k, _a in {"t2": " ADDED 3 Nov — AI ANSWER LEVEL (PRD C3; universities memo's 0–3 dial, Okayama, Kindai 10/22): a per-LO setting under Settings — 0 ask back only · 1 hints and where to look (default) · 2 a pattern on another topic · 3 full explanation; the tenant cap (2 here) greys out the levels above it. It applies to the feedback comments and to the Ask AI chat.", "t3": " ADDED 3 Nov — EVALUATION ITEMS (PRD C3 criteria fidelity; Kyushu Sangyo demo #1–3, DLSC F6, Okayama): the teacher's own numbered list, ★ on the key items, between the requirements and the rubric; 'Generate rubric from items' writes exactly one criterion per item in the teacher's order — never merges, drops or adds — and the rubric header now reads '6 criteria · from 6 items · version 1'. Regenerating after adding files replaces the text (the 21 Oct 'Generate ignored the new files' bug is the negative case). Feedback uses this rubric as-is; the learner side never makes its own.", "t4": " ADDED 3 Nov — the Settings tab lists the AI answer level ('1 · Hints and where to look (tenant cap 2)') with the other per-LO settings.", "t6": " ADDED 3 Nov — DUE-DATE VIEW (DLSC F2, Kindai): a second segment beside the status counts — All · Due this week · Overdue — and a Due column at the end of the table, so a teacher who grades in batches against the return date can work the queue in due order without leaving the page.", "t9": " ADDED 3 Nov — VERDICT PER COMMENT (PRD C3 feedback shape): each draft comment carries ✓ Needs work or ― No issue beside its criterion, the same verdict the student sees. The teacher's dismiss-with-reason and 'add a missed issue' (PRD C2, phase 1 of corrections → criteria versions) are the next change on this board.", "t12": " ADDED 3 Nov — VERSIONS LINE: under a feedback LO's status the student's latest version, its time, the chat questions and the pre-check state ('v2 · 16 Nov 14:02 · 4 questions · pre-check done'), so the teacher sees iterations without the student pressing Complete (Kindai 2-2 A, Kyushu #8, DLSC F3).", "t13": " ADDED 3 Nov — EXPORT SHAPES (PRD C7): the export dialog gains a Shape switch — Chat and feedback · Results per criterion · Usage — the columns line follows the shape, and every file ships with a data dictionary and the period, filters and rubric version stamped (Kindai D, DLSC F8–F9, Okayama, universities memo)."}.items():
+TNOTES["t14"] = "TEACHER-ONLY IMPORT (3 Nov; PRD A2 / C2 — the PM assigned the teacher-only mode to AI Feedback; DLSC spec F1). Students never touch Manabie: staff or the teacher upload the reports exported from the external LMS (KULeD) as a ZIP of PDF / Word or an XLSX / CSV with one row per report, into a named batch. The field mapping fixes the external ID, submission time, return due date, the four answers, and the optional past grade and comment; names and student numbers are dropped on import and only the external ID is kept. Unreadable files are listed; the AI check starts right after import and the batch lands on Submission Grading ordered by return due date (T9's Due segment). The page reuses the AI Grading import layout (G4) — one import module, two shapes."
+for _k, _a in {"t2": " ADDED 3 Nov — AI ANSWER LEVEL (PRD C3; universities memo's 0–3 dial, Okayama, Kindai 10/22): a per-LO setting under Settings — 0 ask back only · 1 hints and where to look (default) · 2 a pattern on another topic · 3 full explanation; the tenant cap (2 here) greys out the levels above it. It applies to the feedback comments and to the Ask AI chat.", "t3": " ADDED 3 Nov — EVALUATION ITEMS (PRD C3 criteria fidelity; Kyushu Sangyo demo #1–3, DLSC F6, Okayama): the teacher's own numbered list, ★ on the key items, between the requirements and the rubric; 'Generate rubric from items' writes exactly one criterion per item in the teacher's order — never merges, drops or adds — and the rubric header now reads '6 criteria · from 6 items · version 1'. Regenerating after adding files replaces the text (the 21 Oct 'Generate ignored the new files' bug is the negative case). Feedback uses this rubric as-is; the learner side never makes its own.", "t4": " ADDED 3 Nov — the Settings tab lists the AI answer level ('1 · Hints and where to look (tenant cap 2)') with the other per-LO settings.", "t6": " ADDED 3 Nov — DUE-DATE VIEW (DLSC F2, Kindai): a second segment beside the status counts — All · Due this week · Overdue — and a Due column at the end of the table, so a teacher who grades in batches against the return date can work the queue in due order without leaving the page.", "tc2": " ADDED 3 Nov — REFERENCE LIBRARY tab (change list P2; Kindai T2 / Q4, DLSC F7, Okayama): the course's textbook (page / line index), lecture PDFs and the faculty's report-writing guide, each with two switches — Grounding (the feedback cites page and line from it) and Quote check (a deterministic, character-level match of quoted passages). One entity, two uses; an LO picks from it. The textbook text needs the publisher's permission first (open).", "t9": " ADDED 3 Nov — VERDICT PER COMMENT (PRD C3 feedback shape): each draft comment carries ✓ Needs work or ― No issue beside its criterion, the same verdict the student sees. CORRECT THE AI (PRD C2 phase 1, 3 Nov; DLSC F5, Okayama, universities memo): Dismiss ▾ on every comment with a reason (not an issue · too strict · wrong criterion · wrong location) greys it and tags it; Add a missed issue at the report head opens passage / criterion / note and appends it as a teacher-added comment; the info panel counts them as pending criteria changes, and Approve changes (v2) is the phase-2 action that makes the rubric version 2 for every generation from then on. Past comments keep their version.", "t12": " ADDED 3 Nov — VERSIONS LINE: under a feedback LO's status the student's latest version, its time, the chat questions and the pre-check state ('v2 · 16 Nov 14:02 · 4 questions · pre-check done'), so the teacher sees iterations without the student pressing Complete (Kindai 2-2 A, Kyushu #8, DLSC F3).", "t13": " ADDED 3 Nov — EXPORT SHAPES (PRD C7): the export dialog gains a Shape switch — Chat and feedback · Results per criterion · Usage — the columns line follows the shape, and every file ships with a data dictionary and the period, filters and rubric version stamped (Kindai D, DLSC F8–F9, Okayama, universities memo)."}.items():
     TNOTES[_k] += _a
 MNOTES = {
     "m5b": "READ-CHECK (3 Nov; Kyushu Sangyo demo requirements #5, Okayama brief's confirm-and-correct step, PRD C3 'OCR / image uncertainty is never the student's error'). After the pages are set, the app shows what it read: low-confidence spans are dashed and marked unconfirmed; tapping one opens the reading candidates and a free correction; spans left unconfirmed are excluded from typo, format and character-count findings, and a figure the pipeline cannot read is reported as unread, not judged. 'Looks right · get feedback' continues to the waiting screen. Handwritten and photographed input only — a file upload skips this step.",
@@ -7678,7 +7918,7 @@ for _k, _a in {"m9": " ADDED 3 Nov — VERDICT PER CRITERION (PRD C3 feedback sh
     MNOTES[_k] += _a
 for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m5b", "m6", "m7", "m8", "m9", "m10"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
-for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12", "t13"]):
+for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12", "t13", "t14"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
 PNOTES = {
     "P-Dialog": "AI PRACTICE — the Similar Questions Practice LO (jamessim-source/AIpractice: docs/prototype-plan.md, docs/c10-finalized-logic.md = PRD C10 as decided by the PM on 24 Sep; the clickable prototype on branch `prototype`). Redrawn here on this canvas's production components and fitted into the Kindai course: the practice LO sits in Topic 7-1 beside the AI Feedback LO, linked to the Session 7 lecture slides PDF, so Book Management, Course Management, the dashboards and the student app all show it as one more LO. THIS BOARD: DialogCreateLearningMaterial with the new frontend sub-type chosen (a plain LEARNING_OBJECTIVE with ai_practice=true, like Random Activity or Paper Submission — not a new proto type). Type name decided: Similar Questions Practice LO (JA 類題演習 LO is a placeholder; Random Activity already uses AI演習). General Info as for any LO; Settings = the required リンク元の LO picker, fed by the book's LOs whose 演習の元として利用可 switch is on — one here — with the empty-state copy (turn the switch on a PDF LO first); the note of the fields hidden for this type; the flag + tenant-setting gate. Creation and linking are one save. One eligible LO may be linked by several practice LOs. Confirm → P3. T2's type menu also lists this type (click it).",
@@ -7831,6 +8071,36 @@ for screen in XSCREENS:
     notes["x_" + screen] = {"x": XX[screen], "y": XROW_Y["ja"] + XSIZE[screen][1] + 60, "w": w, "maxH": 600, "text": XNOTES[screen]}
 notes["title_x"] = {"x": 0, "y": XROW_Y["ja"] - 300, "text": "Kindai sociology trial — Excel assignments on the AI Tutor Assignment and the feedback snap: the model-answer workbook as the Excel rubric, the student's workbook as the submission, the feedback against it · 日本語", "kind": "title1", "maxW": 2600}
 notes["title_x_en"] = {"x": 0, "y": XROW_Y["en"] - 240, "text": "Same in English", "kind": "title1", "maxW": 2600}
+# ask-back row (3 Nov): three student boards at PC width, the teacher's rating board at BO width
+AROW_Y = {"ja": XROW_Y["ja"] + 3000, "en": XROW_Y["en"] + 3000}
+atitles = ["A1 · Ask-back — the task, its materials, 'the part you think through yourself', and the FIRST IDEA locked before the dialogue",
+           "A2 · Ask-back — the Socratic dialogue beside the locked idea: questions only (level 0), each turn tagged with its move, 'just tell me the answer' answered with a question",
+           "A3 · Ask-back — the revised explanation beside the first idea, the reflection, Submit; four fields stored under the task ID with prompt and model versions",
+           "A4 · BO — rating an ask-back task: first idea vs revision, the turns cited as evidence, a level per criterion with Unrated apart from zero, criteria version stamped, share with the student"]
+ASIZE = {"A-Idea": (W, H), "A-Dialogue": (W, H), "A-Revise": (W, H), "A-Rate": (TW, TH)}
+AX = {}
+for lang, S in (("ja", JA), ("en", EN)):
+    x = 0
+    for i, screen in enumerate(ASCREENS):
+        CUR = screen
+        name = fn(screen, lang)
+        with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+            f.write(ABUILDERS[screen](S, lang))
+        w, h = ASIZE[screen]
+        boards[name] = {"x": x, "y": AROW_Y[lang], "w": w, "h": h, "title": atitles[i] + (" (EN)" if lang == "en" else " (JA)"), "is_interactive": True}
+        order.append(name)
+        AX[screen] = x
+        x += w + 80
+ANOTES = {
+    "A-Idea": "ASK-BACK MODE (3 Nov; PRD A2 — the PM assigned the ask-back dialogue mode to AI Feedback; Okayama Gen-AI brief [S33], Ask-Back AI for Universities memo [S34]). Not a free chat: a task-anchored worksheet. The task carries its learning goal, the materials (here the bus / library table from the Okayama lesson example), and 'the part the student must think through'. The student writes a FIRST IDEA and locks it before any dialogue — locking is what makes the core measurement possible: comparing the first idea with the revised explanation on the same task. The level chip shows AI answer level 0 (PRD C3): questions only, never an answer, a result or finished text. Boards A1–A3 are PC width because the prefecture requires a browser, no install (Chrome OS, Windows, iOS Safari).",
+    "A-Dialogue": "THE DIALOGUE: the locked idea and the task stay on the left; on the right every AI turn asks — which numbers were compared, which conditions differ, what can be claimed and what has not been checked — and is tagged with its move (1 frame the task · 2 give evidence · 3 consider another view · 4 revise). 'Just tell me the answer' and 'assume I'm right' get a question about the missing condition, never the answer; a student who is stuck is pointed back to the teacher's materials. Every turn is stored with its ID, input method, and the prompt and model version, so the partner's response test can be re-run after any change. Level 0 here; a university course may set 1 (hints and where to look).",
+    "A-Revise": "REVISE AND REFLECT: the first idea (read-only) beside the revised explanation, then the reflection — what changed and what still cannot be claimed. Submit stores the four fields (first idea, dialogue, revision, reflection) as separate records under the task ID, not a flat chat log, so the teacher can later pull 'how this student's thinking on this task changed'. The chip on the right is the submitted state the task list shows ('Reflected').",
+    "A-Rate": "TEACHER RATING (BO): first idea vs revised explanation side by side, the dialogue turns with the ones the teacher ticks as evidence, a level per school-defined criterion (here the four initial candidates: making the question concrete, evidence-backed explanation, considering another view, revising one's thinking) with UNRATED as its own state apart from zero, the reason citing turn numbers, and 'share this rating with the student'. The criteria version and the prompt / model version are stamped on the rating; a changed criteria definition becomes a new version and results across versions are never compared as equal. Not auto-grading — if an AI rating is ever shown it is a candidate with an accept / reject trail.",
+}
+for screen in ASCREENS:
+    notes["a_" + screen] = {"x": AX[screen], "y": AROW_Y["ja"] + ASIZE[screen][1] + 60, "w": TNW, "maxH": 600, "text": ANOTES[screen]}
+notes["title_a"] = {"x": 0, "y": AROW_Y["ja"] - 300, "text": "Ask-back dialogue mode — the Okayama / universities shape of AI Feedback on the same engine: first idea → questions → revised explanation → reflection, and the teacher's rating against versioned criteria · 日本語", "kind": "title1", "maxW": 3 * W + TW + 3 * 80}
+notes["title_a_en"] = {"x": 0, "y": AROW_Y["en"] - 240, "text": "Same in English", "kind": "title1", "maxW": 3 * W + TW + 3 * 80}
 
 canvas = {
     "v": 3,
@@ -7936,6 +8206,8 @@ def site_index():
         ("AI Grading — student side (photo submission) · English", "PC 1280 · Mobile 375", links(QSCREENS_ALL, "en", qtitles)),
         ("近畿大学 総合社会学部トライアル — Excel 課題 ・ 日本語", "BO 1440 ・ モバイル 375", links(XSCREENS, "ja", xtitles)),
         ("Kindai sociology trial — Excel assignments · English", "BO 1440 · Mobile 375", links(XSCREENS, "en", xtitles)),
+        ("問い返しモード（最初の考え → 対話 → 書き直し → 先生の評価）・ 日本語", "PC 1280 ・ BO 1440", links(ASCREENS, "ja", atitles)),
+        ("Ask-back mode (first idea → dialogue → revision → teacher rating) · English", "PC 1280 · BO 1440", links(ASCREENS, "en", atitles)),
     ]
     blocks = "".join(
         f'<section class="row"><h2>{name}<span>{size}</span></h2><div class="steps">{body}</div></section>'
@@ -7982,7 +8254,7 @@ footer{{font-size:12px;line-height:20px;color:rgba(28,30,44,.6);border-top:1px s
 '''
 
 for lang in ("ja", "en"):
-    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL + GSCREENS + QSCREENS_ALL + XSCREENS:
+    for screen in SCREENS + MSCREENS + TSCREENS + PSCREENS_ALL + GSCREENS + QSCREENS_ALL + XSCREENS + ASCREENS:
         name = fn(screen, lang)
         with open(os.path.join(ROOT, name), encoding="utf-8") as f:
             src = f.read()
