@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-11-03T14:52:02Z"
+    "at": "2026-11-03T14:55:21Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1327,7 +1327,7 @@
       "y": 19200,
       "w": 1280,
       "h": 800,
-      "title": "X5 · Learner web (PC) — X3's result on the desktop: Extracted text (workbook + sheet names) and the Feedback side by side, no action (JA)",
+      "title": "X5 · Learner web (PC) — X3's result on the desktop: Extracted text (workbook + sheet names) and the Feedback side by side, Upload a fixed version (JA)",
       "is_interactive": true
     },
     "X-Assign-en.dc.html": {
@@ -1367,7 +1367,7 @@
       "y": 20700,
       "w": 1280,
       "h": 800,
-      "title": "X5 · Learner web (PC) — X3's result on the desktop: Extracted text (workbook + sheet names) and the Feedback side by side, no action (EN)",
+      "title": "X5 · Learner web (PC) — X3's result on the desktop: Extracted text (workbook + sheet names) and the Feedback side by side, Upload a fixed version (EN)",
       "is_interactive": true
     },
     "A-Idea.dc.html": {
@@ -2300,7 +2300,7 @@
       "y": 20072,
       "w": 375,
       "maxH": 600,
-      "text": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: none — Mark as Complete (the AI Tutor Assignment's own action in the code) was the footer and was removed (PM, 3 Nov: the actual submission is the real signal; the feedback, versions and chat are logged on every AI check, so Completed adds nothing); no 'check again' button (PM 8 Oct; another upload from the assignment is the next version); no Google Classroom button, it is a competitor — the final goes wherever the teacher says. Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
+      "text": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: 'Upload a fixed version (version 2)' — a plain link back to X2 (PM, 3 Nov: make the resubmission path visible from the result; the next upload is the next version). Mark as Complete (the AI Tutor Assignment's own action in the code) was the footer and was removed (PM, 3 Nov: the actual submission is the real signal; the feedback, versions and chat are logged on every AI check, so Completed adds nothing); no 'check again' button (PM 8 Oct; another upload from the assignment is the next version); no Google Classroom button, it is a competitor — the final goes wherever the teacher says. Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
     },
     "x_X-UploadPC": {
       "x": 2430,
@@ -2314,7 +2314,7 @@
       "y": 20060,
       "w": 560,
       "maxH": 600,
-      "text": "LEARNER WEB (PC) TWIN OF X3. The phone's two segments become two panes: Extracted text (the workbook and its SHEET NAMES only, the X2 list — the same trial simplification as the phone, no cell contents) on the left, and the Feedback on the right — the Summary in the Gem's three-part tone and one card per point with the criterion, the sheet and cell in words, teal = matches the model answer, red = a gap. No action on the page — Mark as Complete was here and was removed (PM, 3 Nov: the actual submission is the real signal; the feedback, versions and chat are logged on every AI check). Nothing new to build on the backend: the same payload, laid out for a 1280-px window."
+      "text": "LEARNER WEB (PC) TWIN OF X3. The phone's two segments become two panes: Extracted text (the workbook and its SHEET NAMES only, the X2 list — the same trial simplification as the phone, no cell contents) on the left, and the Feedback on the right — the Summary in the Gem's three-part tone and one card per point with the criterion, the sheet and cell in words, teal = matches the model answer, red = a gap. The one action, top-right, is 'Upload a fixed version (version 2)' (PM, 3 Nov: 'how can the student resubmit after reading the feedback?' — a plain link back to X4; the next upload is the next version, compared with the same model answer, every version kept for the teacher). Mark as Complete was here and was removed (PM, 3 Nov: the actual submission is the real signal). Nothing new to build on the backend: the same payload, laid out for a 1280-px window."
     },
     "title_x": {
       "x": 0,
