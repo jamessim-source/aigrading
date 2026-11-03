@@ -7301,6 +7301,7 @@ X_JA = dict(
     x_s8_qov="都道府県別の統計データから、2つの変数の相関係数と散布図を Excel で求め、外れ値（東京都）の影響を層別して確かめる", x_det_rub_v="① エクセルスキル ② 見やすさ ③ 処理（層別・外れ値・相関行列が模範回答と一致） ④ 考察",
     x_det_stats=("開始済み 118 / 150", "スナップ 203", "完了 64 / 150"),
     # X2 — app upload
+    x_pc_crumb="AIチューター ・ 課題", x_pc_up_title="AIフィードバック ・ 答案のアップロード", x_pc_fb_title="AIフィードバック ・ 結果", x_pc_drop="ここにファイルをドロップ、またはファイルを選ぶ", x_pc_drop_s="Excel のまま送れます。すべてのシートを読み込みます。写真はスマホのアプリから。", x_pc_remove="ファイルを外す", x_pc_web="学習者Web（PC）— アプリと同じ流れ",
     x_up_title="AIフィードバック", x_up_asg_lbl="課題", x_up_asg="第9回 回帰分析", x_up_due="期限 11/20 23:59 ・ 提出前に必ずAIチェック",
     x_up_h="答案をアップロード", x_up_sub="Excel のまま送れます。すべてのシートを読み込みます。", x_up_camera="写真を撮る", x_up_file="ファイルを選ぶ", x_up_types="Excel (.xlsx) ・ PowerPoint (.pptx) ・ PDF ・ 写真",
     x_up_picked="演習_09_回帰.xlsx", x_up_picked_meta="48 KB ・ 4シート ・ 11/13 20:38", x_up_sheets_h="読み込むシート",
@@ -7338,6 +7339,7 @@ X_EN = dict(
     x_det_sel=("Session 8 Correlation (2)", "Open · due 2026/11/13 23:59", "Exercise_08_Correlation(2).xlsx · Exercise_08_Correlation(2)_model_answer.xlsx · Assignment_evaluation_criteria.pdf"),
     x_s8_qov="From the prefecture statistics, compute the correlation coefficient and scatter plot of two variables in Excel, then check the effect of the outlier (Tokyo) by stratifying", x_det_rub_v="(1) Excel skills (2) Readability (3) Processing (stratified analysis, outliers and the correlation matrix match the model answer) (4) Analysis",
     x_det_stats=("Started 118 / 150", "Snaps 203", "Completed 64 / 150"),
+    x_pc_crumb="AI Tutor · Assignments", x_pc_up_title="AI Feedback · Upload your work", x_pc_fb_title="AI Feedback · Result", x_pc_drop="Drop a file here, or choose one", x_pc_drop_s="Send the Excel file as it is. Every sheet is read. Photos go through the phone app.", x_pc_remove="Remove file", x_pc_web="Learner web (PC) — the same flow as the app",
     x_up_title="AI Feedback", x_up_asg_lbl="Assignment", x_up_asg="Session 9 Regression", x_up_due="due 11/20 23:59 · AI check required before submitting",
     x_up_h="Upload your work", x_up_sub="Send the Excel file as it is. Every sheet is read.", x_up_camera="Take a photo", x_up_file="Choose a file", x_up_types="Excel (.xlsx) · PowerPoint (.pptx) · PDF · photos",
     x_up_picked="Exercise_09_Regression.xlsx", x_up_picked_meta="48 KB · 4 sheets · 11/13 20:38", x_up_sheets_h="Sheets to read",
@@ -7556,10 +7558,73 @@ def x_feedback(S, L):
     toT: () => this.setState({ seg: "text" }), toF: () => this.setState({ seg: "fb" }) }; }"""
     return mpage(S, "X-Feedback", S["x_titles"]["fb"], body, logic=logic)
 
-XSCREENS = ["X-Assign", "X-Upload", "X-Feedback"]
-XBUILDERS = {"X-Assign": x_assign, "X-Upload": x_upload, "X-Feedback": x_feedback}
-# the mobile boards have no PC twin (the app is the student's surface in this trial): the device toggle points at the board itself
-TO_PC["X-Upload"] = "X-Upload"; TO_PC["X-Feedback"] = "X-Feedback"
+def x_sheets(S):
+    return "".join(f'<div class="xsheet"><span class="ico">{ic("table", 18)}</span><span class="nm">{n}<small>{rng}</small></span><span class="chip done" style="height:22px;font-size:11px">{ic("check", 12, "#1f7a4d", 2.6)}{S["x_up_read"]}</span></div>' for n, rng in S["x_up_sheets"])
+
+def x_upload_pc(S, L):
+    """X2 on the learner web (PC) — asked for on the X3 board, 3 Nov; PRD C9.1 makes PC web submission a Must
+    for universities. Same flow as the app: the assignment, choose a file (no camera on PC), the workbook with
+    every sheet read, Get AI feedback, the note on the final submission."""
+    body = f'<style>{X_CSS}</style>' + header(S, "X-UploadPC", S["x_pc_up_title"], crumb=S["x_pc_crumb"], back_href=fn("Main", L)) + f'''
+<div class="body"><div class="col">
+  <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:6px">
+    <p class="cap">{S["x_up_asg_lbl"]}</p><h2 class="h3">{S["x_up_asg"]}</h2><p class="cap">{S["x_up_due"]}</p>
+  </div>
+  <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between"><p class="sub1">{S["x_up_h"]}</p><span class="cap">{S["x_up_types"]}</span></div>
+    <sc-if value="{{{{empty}}}}" hint-placeholder-val="{{{{false}}}}">
+      <div class="drop">
+        <span style="width:56px;height:56px;border-radius:50%;background:#eef1ff;display:flex;align-items:center;justify-content:center;color:#395ad2">{ic("upload",28)}</span>
+        <p class="b1" style="font-weight:700">{S["x_pc_drop"]}</p>
+        <p class="b2 muted" style="max-width:520px;text-align:center">{S["x_pc_drop_s"]}</p>
+        <button class="btn neutral" onClick="{{{{pick}}}}">{ic("file",18)}{S["x_up_file"]}<span class="xnew">{S["x_new_chip"]}</span></button>
+      </div>
+    </sc-if>
+    <sc-if value="{{{{picked}}}}" hint-placeholder-val="{{{{true}}}}">
+      <div class="xpick"><span class="ico">XLSX</span><span style="min-width:0;flex:1 1 auto"><b style="font-size:14px;display:block">{S["x_up_picked"]}</b><span class="cap">{S["x_up_picked_meta"]}</span></span><button class="ibtn" style="border:0" onClick="{{{{clear}}}}" aria-label="{S["x_pc_remove"]}">{ic("x",20)}</button></div>
+      <p class="sub1" style="font-size:14px">{S["x_up_sheets_h"]}</p>
+      <div>{x_sheets(S)}</div>
+      <p class="cap">{S["x_up_prev"]}</p>
+    </sc-if>
+  </div>
+  <div class="card" style="padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <span class="cap" style="max-width:720px;line-height:18px">{S["x_up_note"]}</span>
+    <sc-if value="{{{{empty}}}}" hint-placeholder-val="{{{{false}}}}"><span class="btn dis">{ic("sparkle",18,"rgba(28,30,44,.38)")}{S["x_up_btn"]}</span></sc-if>
+    <sc-if value="{{{{picked}}}}" hint-placeholder-val="{{{{true}}}}"><a class="btn primary" href="{fn("X-FeedbackPC", L)}">{ic("sparkle",18,"#fff")}{S["x_up_btn"]}</a></sc-if>
+  </div>
+</div></div>'''
+    logic = """state = { picked: true };
+  renderVals() { return { picked: this.state.picked, empty: !this.state.picked, pick: () => this.setState({ picked: true }), clear: () => this.setState({ picked: false }) }; }"""
+    return page(S, S["x_titles"]["upload"] + " (PC)", body, logic)
+
+def x_feedback_pc(S, L):
+    """X3 on the learner web (PC): the two tabs of the phone become two panes — Extracted text (the workbook
+    and its sheet names, nothing more) on the left, the Feedback (Summary + cards) on the right; Mark as
+    Complete at the bottom. Same content and the same simplification as the phone."""
+    a, b = S["x_fb_seg"]
+    cards = f'<div class="xcard"><span class="xchip g">{S["x_fb_summary_lbl"]}</span><p>{S["x_fb_summary"]}</p><span class="ask">{ic("sparkle", 14)}{S["x_fb_ask"]}</span></div>'
+    cards += "".join(f'<div class="xcard"><span class="xchip {t}"><span class="xmk {t}">{i + 1}</span>{lbl}</span><blockquote class="xq">{sheet} ・ {q}</blockquote><p>{c}</p><span class="ask">{ic("sparkle", 14)}{S["x_fb_ask"]}</span></div>' for i, (t, lbl, sheet, q, c) in enumerate(S["x_fb_cards"]))
+    body = f'<style>{X_CSS}</style>' + header(S, "X-FeedbackPC", S["x_pc_fb_title"], crumb=S["x_pc_crumb"], back_href=fn("X-UploadPC", L)) + f'''
+<div class="body" style="display:flex;flex-direction:column;gap:16px;overflow:hidden">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex:0 0 auto">
+    <div><p class="cap">{S["x_up_asg_lbl"]}</p><h2 class="h3">{S["x_up_asg"]}</h2><p class="cap">{S["x_fb_ver"]}</p></div>
+    <span class="btn primary">{ic("check", 18, "#fff", 2.6)}{S["x_fb_final"]}</span>
+  </div>
+  <div style="display:grid;grid-template-columns:400px minmax(0,1fr);gap:16px;flex:1 1 auto;min-height:0">
+    <div class="pane"><div class="pane-h"><p class="sub1">{a}</p></div><div class="pane-b" style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:8px"><span class="ico" style="width:34px;height:34px;border-radius:6px;background:#E8F5E9;color:#1B7F3B;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:0 0 34px">XLSX</span><div><b style="font-size:14px">{S["x_up_picked"]}</b><p class="cap">{S["x_up_picked_meta"]}</p></div></div>
+      <p class="sub1" style="font-size:14px">{S["x_up_sheets_h"]}</p>{x_sheets(S)}
+    </div></div>
+    <div class="pane"><div class="pane-h"><p class="sub1">{b}</p></div><div class="pane-b" style="display:flex;flex-direction:column;gap:12px;background:#f7f8fc">{cards}</div></div>
+  </div>
+</div>'''
+    return page(S, S["x_titles"]["fb"] + " (PC)", body)
+
+XSCREENS = ["X-Assign", "X-Upload", "X-Feedback", "X-UploadPC", "X-FeedbackPC"]
+XBUILDERS = {"X-Assign": x_assign, "X-Upload": x_upload, "X-Feedback": x_feedback, "X-UploadPC": x_upload_pc, "X-FeedbackPC": x_feedback_pc}
+# the learner-web twins (3 Nov, asked for on X3): the device toggle switches between the phone and the PC version
+TO_PC["X-Upload"] = "X-UploadPC"; TO_PC["X-Feedback"] = "X-FeedbackPC"
+TO_MOBILE["X-UploadPC"] = "X-Upload"; TO_MOBILE["X-FeedbackPC"] = "X-Feedback"
 
 # ===== TEACHER-ONLY IMPORT and ASK-BACK DIALOGUE (3 Nov) — the two engine modes the PM assigned to AI Feedback =====
 def t_import(S, L):
@@ -7985,8 +8050,10 @@ notes["title_q_en"] = {"x": 0, "y": QROW_Y["en"] - 240, "text": "Same student fl
 XROW_Y = {"ja": 19200, "en": 20700}
 xtitles = ["X1 · BO — AI Tutor › Assignments: the class, the assignment list, New Assignment with .xlsx / .pptx attachments, Generate by AI making the rubric out of the uploaded question, the Gem tone in Your message",
            "X2 · Mobile — AI Feedback: choose a file beside the camera, the workbook with every sheet read, Get AI feedback, the note on the final submission",
-           "X3 · Mobile — AI Feedback result for an Excel submission, simplified for the trial: Extracted text = the workbook and its sheet names only / Feedback (Summary in the Gem's three-part tone, cards against the model answer naming the sheet and cell)"]
-XSIZE = {"X-Assign": (TW, TH), "X-Upload": (MW, MH), "X-Feedback": (MW, MH)}
+           "X3 · Mobile — AI Feedback result for an Excel submission, simplified for the trial: Extracted text = the workbook and its sheet names only / Feedback (Summary in the Gem's three-part tone, cards against the model answer naming the sheet and cell)",
+           "X4 · Learner web (PC) — X2's upload on the desktop: choose a file (no camera), the workbook with every sheet read, Get AI feedback",
+           "X5 · Learner web (PC) — X3's result on the desktop: Extracted text (workbook + sheet names) and the Feedback side by side, Mark as Complete"]
+XSIZE = {"X-Assign": (TW, TH), "X-Upload": (MW, MH), "X-Feedback": (MW, MH), "X-UploadPC": (W, H), "X-FeedbackPC": (W, H)}
 XX = {}
 for lang, S in (("ja", JA), ("en", EN)):
     x = 0
@@ -8004,10 +8071,12 @@ for lang, S in (("ja", JA), ("en", EN)):
 XNOTES = {
     "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is. LAYOUT (PM, 8 Oct: follow the production screenshot exactly): the admin view of ClassAssignmentPage — the class name and its subject chip as the page header, no class-card row, the + New button at the top of the assignment column on the left, the assignments listed as name + status dot (green = published, grey = draft, red = past due), a vertical divider, and the detail beside it with the edit pencil and Open / Close, the auto-close line when published, Question overview, Attached files, Rubric Content with View Less, and the Analysis cards. CREATE (PM, 8 Oct: enable the Create button so it lists the assignment): the button does what the page's create handler does in the code — the 'Created successfully' snackbar, the dialog closes, the list is refetched with the new assignment selected, and the detail panel shows it in production's layout (title and subject, the edit pencil and the Publish action for a draft, Question overview, Attached files, Rubric Content with View Less, then the Analysis cards Started 0 / 150, Snaps 0, Completed 0 / 150 with production's captions). The page opens with the list, as production does; + New opens the dialog, Cancel or the X closes it without creating. No new screen — the teacher stays on Assignments; Publish is the separate action that makes it visible in the app.",
     "X-Upload": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and a note that the final is submitted the way the teacher asks — the product never names Google Classroom (PM, 8 Oct: a competitor), though the trial's agreed two-step flow is that the final goes there. Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide.",
+    "X-UploadPC": "LEARNER WEB (PC) TWIN OF X2 — asked for on the X3 board (3 Nov: 'create the desktop web version as well'); PRD C9.1 / C2 make PC web submission a Must for universities (Kindai 10/22 'in development', Okayama browser-only, DLSC / universities memo Word). Same flow and the same data as the phone: the assignment with its due line, Upload your work with Choose a file (no camera on PC — photos go through the app), the picked workbook with every sheet read, the previous-version line, the note on the final submission, Get AI feedback. The phone / PC toggle at the bottom switches between the two. Remove the file to see the empty drop zone.",
+    "X-FeedbackPC": "LEARNER WEB (PC) TWIN OF X3. The phone's two segments become two panes: Extracted text (the workbook and its SHEET NAMES only, the X2 list — the same trial simplification as the phone, no cell contents) on the left, and the Feedback on the right — the Summary in the Gem's three-part tone and one card per point with the criterion, the sheet and cell in words, teal = matches the model answer, red = a gap. Mark as Complete top-right is the only action, as on the phone. Nothing new to build on the backend: the same payload, laid out for a 1280-px window.",
     "X-Feedback": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: Mark as Complete only — the AI Tutor Assignment's own action in the code (no 'check again' button, PM 8 Oct; another upload from the assignment is the next version; no Google Classroom button, it is a competitor — the final goes wherever the teacher says). Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
 }
 for screen in XSCREENS:
-    w = TNW if screen == "X-Assign" else MNW
+    w = TNW if screen == "X-Assign" else (NW if screen.endswith("PC") else MNW)
     notes["x_" + screen] = {"x": XX[screen], "y": XROW_Y["ja"] + XSIZE[screen][1] + 60, "w": w, "maxH": 600, "text": XNOTES[screen]}
 notes["title_x"] = {"x": 0, "y": XROW_Y["ja"] - 300, "text": "Kindai sociology trial — Excel assignments on the AI Tutor Assignment and the feedback snap: the model-answer workbook as the Excel rubric, the student's workbook as the submission, the feedback against it · 日本語", "kind": "title1", "maxW": 2600}
 notes["title_x_en"] = {"x": 0, "y": XROW_Y["en"] - 240, "text": "Same in English", "kind": "title1", "maxW": 2600}
@@ -8144,8 +8213,8 @@ def site_index():
         ("AI Grading (Paper Submission LO) · English", "BO 1440", links(GSCREENS, "en", gtitles)),
         ("AI採点 — 生徒側（写真で提出）・ 日本語", "PC 1280 ・ モバイル 375", links(QSCREENS_ALL, "ja", qtitles)),
         ("AI Grading — student side (photo submission) · English", "PC 1280 · Mobile 375", links(QSCREENS_ALL, "en", qtitles)),
-        ("近畿大学 総合社会学部トライアル — Excel 課題 ・ 日本語", "BO 1440 ・ モバイル 375", links(XSCREENS, "ja", xtitles)),
-        ("Kindai sociology trial — Excel assignments · English", "BO 1440 · Mobile 375", links(XSCREENS, "en", xtitles)),
+        ("近畿大学 総合社会学部トライアル — Excel 課題 ・ 日本語", "BO 1440 ・ モバイル 375 ・ PC 1280", links(XSCREENS, "ja", xtitles)),
+        ("Kindai sociology trial — Excel assignments · English", "BO 1440 · Mobile 375 · PC 1280", links(XSCREENS, "en", xtitles)),
         ("問い返しモード（最初の考え → 対話 → 書き直し → 先生の評価）・ 日本語", "PC 1280 ・ BO 1440", links(ASCREENS, "ja", atitles)),
         ("Ask-back mode (first idea → dialogue → revision → teacher rating) · English", "PC 1280 · BO 1440", links(ASCREENS, "en", atitles)),
     ]

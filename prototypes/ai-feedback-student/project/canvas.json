@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-11-03T14:43:52Z"
+    "at": "2026-11-03T14:49:15Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -1314,6 +1314,22 @@
       "title": "X3 · Mobile — AI Feedback result for an Excel submission, simplified for the trial: Extracted text = the workbook and its sheet names only / Feedback (Summary in the Gem's three-part tone, cards against the model answer naming the sheet and cell) (JA)",
       "is_interactive": true
     },
+    "X-UploadPC.dc.html": {
+      "x": 2430,
+      "y": 19200,
+      "w": 1280,
+      "h": 800,
+      "title": "X4 · Learner web (PC) — X2's upload on the desktop: choose a file (no camera), the workbook with every sheet read, Get AI feedback (JA)",
+      "is_interactive": true
+    },
+    "X-FeedbackPC.dc.html": {
+      "x": 3790,
+      "y": 19200,
+      "w": 1280,
+      "h": 800,
+      "title": "X5 · Learner web (PC) — X3's result on the desktop: Extracted text (workbook + sheet names) and the Feedback side by side, Mark as Complete (JA)",
+      "is_interactive": true
+    },
     "X-Assign-en.dc.html": {
       "x": 0,
       "y": 20700,
@@ -1336,6 +1352,22 @@
       "w": 375,
       "h": 812,
       "title": "X3 · Mobile — AI Feedback result for an Excel submission, simplified for the trial: Extracted text = the workbook and its sheet names only / Feedback (Summary in the Gem's three-part tone, cards against the model answer naming the sheet and cell) (EN)",
+      "is_interactive": true
+    },
+    "X-UploadPC-en.dc.html": {
+      "x": 2430,
+      "y": 20700,
+      "w": 1280,
+      "h": 800,
+      "title": "X4 · Learner web (PC) — X2's upload on the desktop: choose a file (no camera), the workbook with every sheet read, Get AI feedback (EN)",
+      "is_interactive": true
+    },
+    "X-FeedbackPC-en.dc.html": {
+      "x": 3790,
+      "y": 20700,
+      "w": 1280,
+      "h": 800,
+      "title": "X5 · Learner web (PC) — X3's result on the desktop: Extracted text (workbook + sheet names) and the Feedback side by side, Mark as Complete (EN)",
       "is_interactive": true
     },
     "A-Idea.dc.html": {
@@ -1567,9 +1599,13 @@
     "X-Assign.dc.html",
     "X-Upload.dc.html",
     "X-Feedback.dc.html",
+    "X-UploadPC.dc.html",
+    "X-FeedbackPC.dc.html",
     "X-Assign-en.dc.html",
     "X-Upload-en.dc.html",
     "X-Feedback-en.dc.html",
+    "X-UploadPC-en.dc.html",
+    "X-FeedbackPC-en.dc.html",
     "A-Idea.dc.html",
     "A-Dialogue.dc.html",
     "A-Revise.dc.html",
@@ -2265,6 +2301,20 @@
       "w": 375,
       "maxH": 600,
       "text": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: Mark as Complete only — the AI Tutor Assignment's own action in the code (no 'check again' button, PM 8 Oct; another upload from the assignment is the next version; no Google Classroom button, it is a competitor — the final goes wherever the teacher says). Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
+    },
+    "x_X-UploadPC": {
+      "x": 2430,
+      "y": 20060,
+      "w": 560,
+      "maxH": 600,
+      "text": "LEARNER WEB (PC) TWIN OF X2 — asked for on the X3 board (3 Nov: 'create the desktop web version as well'); PRD C9.1 / C2 make PC web submission a Must for universities (Kindai 10/22 'in development', Okayama browser-only, DLSC / universities memo Word). Same flow and the same data as the phone: the assignment with its due line, Upload your work with Choose a file (no camera on PC — photos go through the app), the picked workbook with every sheet read, the previous-version line, the note on the final submission, Get AI feedback. The phone / PC toggle at the bottom switches between the two. Remove the file to see the empty drop zone."
+    },
+    "x_X-FeedbackPC": {
+      "x": 3790,
+      "y": 20060,
+      "w": 560,
+      "maxH": 600,
+      "text": "LEARNER WEB (PC) TWIN OF X3. The phone's two segments become two panes: Extracted text (the workbook and its SHEET NAMES only, the X2 list — the same trial simplification as the phone, no cell contents) on the left, and the Feedback on the right — the Summary in the Gem's three-part tone and one card per point with the criterion, the sheet and cell in words, teal = matches the model answer, red = a gap. Mark as Complete top-right is the only action, as on the phone. Nothing new to build on the backend: the same payload, laid out for a 1280-px window."
     },
     "title_x": {
       "x": 0,
