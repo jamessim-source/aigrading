@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-11-03T15:03:51Z"
+    "at": "2026-11-03T15:07:46Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -74,6 +74,14 @@
       "title": "8 · To-do — awaiting resubmission (JA)",
       "is_interactive": true
     },
+    "F-Chat.dc.html": {
+      "x": 10880,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "9 · Ask AI from a comment — ask-back only (3 Nov) (JA)",
+      "is_interactive": true
+    },
     "Main-en.dc.html": {
       "x": 0,
       "y": 1400,
@@ -136,6 +144,14 @@
       "w": 1280,
       "h": 800,
       "title": "8 · To-do — awaiting resubmission (EN)",
+      "is_interactive": true
+    },
+    "F-Chat-en.dc.html": {
+      "x": 10880,
+      "y": 1400,
+      "w": 1280,
+      "h": 800,
+      "title": "9 · Ask AI from a comment — ask-back only (3 Nov) (EN)",
       "is_interactive": true
     },
     "M-Main.dc.html": {
@@ -226,6 +242,14 @@
       "title": "M10 · Returned — comment sheet open (JA)",
       "is_interactive": true
     },
+    "MF-Chat.dc.html": {
+      "x": 5005,
+      "y": 2900,
+      "w": 375,
+      "h": 812,
+      "title": "M11 · Ask AI from a comment — ask-back only (3 Nov) (JA)",
+      "is_interactive": true
+    },
     "M-Main-en.dc.html": {
       "x": 0,
       "y": 4100,
@@ -312,6 +336,14 @@
       "w": 375,
       "h": 812,
       "title": "M10 · Returned — comment sheet open (EN)",
+      "is_interactive": true
+    },
+    "MF-Chat-en.dc.html": {
+      "x": 5005,
+      "y": 4100,
+      "w": 375,
+      "h": 812,
+      "title": "M11 · Ask AI from a comment — ask-back only (3 Nov) (EN)",
       "is_interactive": true
     },
     "T-Book.dc.html": {
@@ -1444,6 +1476,7 @@
     "07-Pending2.dc.html",
     "08-Feedback2.dc.html",
     "05-Todo.dc.html",
+    "F-Chat.dc.html",
     "Main-en.dc.html",
     "02-Assignment-en.dc.html",
     "03-Pending-en.dc.html",
@@ -1452,6 +1485,7 @@
     "07-Pending2-en.dc.html",
     "08-Feedback2-en.dc.html",
     "05-Todo-en.dc.html",
+    "F-Chat-en.dc.html",
     "M-Main.dc.html",
     "M-Assignment.dc.html",
     "M-Camera.dc.html",
@@ -1463,6 +1497,7 @@
     "M-Pending.dc.html",
     "M-Feedback.dc.html",
     "M-Sheet.dc.html",
+    "MF-Chat.dc.html",
     "M-Main-en.dc.html",
     "M-Assignment-en.dc.html",
     "M-Camera-en.dc.html",
@@ -1474,6 +1509,7 @@
     "M-Pending-en.dc.html",
     "M-Feedback-en.dc.html",
     "M-Sheet-en.dc.html",
+    "MF-Chat-en.dc.html",
     "T-Book.dc.html",
     "T-Dialog.dc.html",
     "T-Material.dc.html",
@@ -1656,7 +1692,7 @@
       "y": 860,
       "w": 560,
       "maxH": 300,
-      "text": "Draft-1 return. Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD. The ★ line in the teacher's note card (PM, 20 Sep) appears only when the teacher chose this submission as an example to show the class — set from the Back Office review screen — so the student is told before it comes up in class."
+      "text": "Draft-1 return. UPDATED 3 Nov: every card carries an 'Ask AI (asks you back)' link that opens board 9 — the ask-back-only chat on that comment (Okayama's requirement). Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD. The ★ line in the teacher's note card (PM, 20 Sep) appears only when the teacher chose this submission as an example to show the class — set from the Back Office review screen — so the student is told before it comes up in class."
     },
     "n5": {
       "x": 5440,
@@ -1685,6 +1721,13 @@
       "w": 560,
       "maxH": 240,
       "text": "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date."
+    },
+    "n9": {
+      "x": 10880,
+      "y": 860,
+      "w": 560,
+      "maxH": 420,
+      "text": "ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."
     },
     "n_lang": {
       "x": 0,
@@ -1811,6 +1854,13 @@
       "w": 375,
       "maxH": 420,
       "text": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close."
+    },
+    "m11": {
+      "x": 5005,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Mobile twin of board 9. ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."
     },
     "t1": {
       "x": 0,

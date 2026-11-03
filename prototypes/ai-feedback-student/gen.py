@@ -467,6 +467,16 @@ JA = dict(
     p2_file_meta="3ページ ・ 1.3 MB ・ 11月19日 16:05",
     f_chip="返却済み ・ 11月13日", f_meta="提出 11月11日 14:32 ・ 返却 11月13日 18:42",
     f_decl_echo="AI 利用の申告: 数式・関数の確認 ・ 残した文: なし",
+    f_ask_ai="AIに質問（問い返しのみ）", f_chat_title="AIに質問", f_chat_titles={"pc": "返却画面 — AIに質問（問い返しのみ）", "m": "モバイル — AIに質問（問い返しのみ）"},
+    f_chat_ctx="質問しているコメント", f_chat_lvl="問い返しのみ", f_chat_note="AIは答えを言わず、考えるための問いを返します。この対話は先生も見ることができます。",
+    f_chat_u1="「相関がある＝因果がある」じゃないなら、正しい解釈は何て書けばいい？",
+    f_chat_a1="まず確かめたいことがあります。r = 0.42 という値は、2つの変数の「向き」と「強さ」について何を言っていますか。そして「Aが増えるとBが増える」と「AがBを引き起こす」の違いは、あなたのデータのどこで区別できますか。",
+    f_chat_src="教科書 第7回 §3 擬似相関",
+    f_chat_a1b="その2点を一文ずつ書いてみてください。書けたら、次に考える問いを返します。",
+    f_chat_chips=["答えを教えて", "第三の変数って何？", "例を一つ出して"],
+    f_chat_a2="ここでは答えは言いません。代わりに：この2つの変数の両方に影響しそうな「別の要因」を、あなたの都道府県データの中から一つ挙げるとしたら何ですか。",
+    f_chat_generic="教科書 第7回 §3 に手がかりがあります。該当箇所を読んで、自分の言葉で一文にすると、どうなりますか。",
+    f_chat_ph="質問を入力…",
     f_ask="先生に質問する", f_resubmit="修正して再提出する", f_resub_due="再提出は 11月20日 23:59 まで", f_pages="3ページ", f_save="コメントを PDF で保存",
     f_legend="コメントの番号は本文の下線と対応しています",
     f_raw_title="第7回 演習　都道府県別データによる相関分析", f_raw_meta="応用社会学部 2年　山田 花子　　提出: 2026年11月11日",
@@ -597,6 +607,16 @@ EN = dict(
     p2_file_meta="3 pages · 1.3 MB · Nov 19, 16:05",
     f_chip="Returned · Nov 13", f_meta="Submitted Nov 11, 14:32 · Returned Nov 13, 18:42",
     f_decl_echo="AI-use declaration: checking formulas · kept passages: none",
+    f_ask_ai="Ask AI (asks you back)", f_chat_title="Ask AI", f_chat_titles={"pc": "Returned — Ask AI (ask-back only)", "m": "Mobile — Ask AI (ask-back only)"},
+    f_chat_ctx="The comment you are asking about", f_chat_lvl="Ask-back only", f_chat_note="The AI never gives the answer; it asks questions that help you think. Your teacher can see this dialogue.",
+    f_chat_u1="If correlation isn't causation, what should the correct interpretation say?",
+    f_chat_a1="Two things to check first. What does r = 0.42 tell you about the direction and the strength of the relationship? And where in your data could you tell the difference between \"B rises when A rises\" and \"A causes B\"?",
+    f_chat_src="Textbook, Session 7 §3 Spurious correlation",
+    f_chat_a1b="Write one sentence for each. When you have, I will ask the next question.",
+    f_chat_chips=["Just tell me the answer", "What is a third variable?", "Give me one example"],
+    f_chat_a2="I won't give the answer here. Instead: if you had to name one other factor in your prefectural data that could drive both variables, what would it be?",
+    f_chat_generic="There is a clue in the textbook, Session 7 §3. Read that passage and put it in one sentence of your own: what would it say?",
+    f_chat_ph="Type a question…",
     f_ask="Ask your teacher", f_resubmit="Revise and resubmit", f_resub_due="Resubmit by Nov 20, 23:59", f_pages="3 pages", f_save="Save comments as PDF",
     f_legend="Comment numbers match the underlined passages",
     f_raw_title="Session 7 Exercise: Correlation analysis using prefectural data", f_raw_meta="Faculty of Applied Sociology, Year 2 · Hanako Yamada · Submitted Nov 11, 2026",
@@ -1104,7 +1124,7 @@ def feedback_cards(S, cards, jump_prefix="j"):
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="ctag">{crit}</span><span class="vd {vd}">{S["t_vd"][vd]}</span></div>
       <blockquote class="quote {kind}">“{quote}”</blockquote>
       <p class="fbody">{body}</p>
-      <span class="ref">{ic("book",14)}{ref}</span>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap"><span class="ref">{ic("book",14)}{ref}</span><a class="cap" style="color:#395ad2;font-weight:700;display:inline-flex;align-items:center;gap:4px;text-decoration:none" href="{fn("F-Chat", S["lang"])}">{ic("message",14)}{S["f_ask_ai"]}</a></div>
       <button class="jump" onClick="{{{{jc{n}}}}}" aria-label="{S["f_jump"]}">{ic("scan",18)}</button>
     </div>'''
     return out
@@ -1702,7 +1722,7 @@ def m_sheet_block(S, n, kind, crit, quote, body, ref):
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="ctag">{crit}</span><span class="vd {vd}">{S["t_vd"][vd]}</span></div>
       <blockquote class="quote {kind}">“{quote}”</blockquote>
       <p class="fbody">{body}</p>
-      <span class="ref">{ic("book",14)}{ref}</span>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap"><span class="ref">{ic("book",14)}{ref}</span><a class="cap" style="color:#395ad2;font-weight:700;display:inline-flex;align-items:center;gap:4px;text-decoration:none" href="{fn("MF-Chat", S["lang"])}">{ic("message",14)}{S["f_ask_ai"]}</a></div>
     </sc-if>'''
 
 def m_feedback(S, L, init=0):
@@ -6526,6 +6546,56 @@ def mq_chat(S, L):
 <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:10px 12px 22px;z-index:20">{inp}</div>'''
     return mpage(S, "MQ-Chat", S["q_chat_titles"]["m"], body, logic=Q_CHAT_LOGIC % (json.dumps(S["q_chat_a2"], ensure_ascii=False), json.dumps(S["q_chat_generic"], ensure_ascii=False), json.dumps(S["q_chat_chips"], ensure_ascii=False)))
 
+def f_chat_body(S, L, mobile=False):
+    """Ask AI from a feedback card (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow
+    students to interact with the AI on ask back only interaction' — Okayama's requirement). Ask-back only:
+    every AI turn is a question; 'just tell me the answer' gets a question about the missing condition."""
+    kind, crit, quote, body, ref = S["cards"][1]
+    chips = "".join(f'<button class="chipq" onClick="{{{{chip{i}}}}}">{c}</button>' for i, c in enumerate(S["f_chat_chips"]))
+    extra = "".join(f'<sc-if value="{{{{x{i}}}}}" hint-placeholder-val="{{{{false}}}}"><div class="bub u">{{{{xu{i}}}}}</div><div class="bub a">{{{{xa{i}}}}}</div></sc-if>' for i in range(3))
+    ctx = f'''<div class="{"mcard" if mobile else "card"}" style="padding:{"12px 14px" if mobile else "16px 20px"};gap:8px;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span class="cap">{S["f_chat_ctx"]}</span><span class="chip neutral" style="height:24px;font-size:12px">{ic("sparkle",12)}{S["f_chat_lvl"]}</span></div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="badge {kind}"><i class="n">2</i>{S["labels"][kind]}</span><span class="ctag">{crit}</span></div>
+      <blockquote class="quote {kind}" style="margin:0">“{quote}”</blockquote>
+      <span class="cap">{S["f_chat_note"]}</span></div>'''
+    thread = f'''<div style="display:flex;flex-direction:column;gap:10px">
+      <div class="bub u">{S["f_chat_u1"]}</div>
+      <div class="bub a">{S["f_chat_a1"]}<span class="src">{S["f_chat_src"]}</span></div>
+      <div class="bub n">{S["f_chat_a1b"]}</div>
+      {extra}
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">{chips}</div>
+    </div>'''
+    inp = f'''<div class="chatin"><input placeholder="{S["f_chat_ph"]}" defaultValue="{{{{draft}}}}" onInput="{{{{onType}}}}"><button class="btn primary" style="height:38px;padding:0 16px" onClick="{{{{send}}}}">{ic("right", 18, "#fff", 2.4)}</button></div>'''
+    logic = Q_CHAT_LOGIC % (json.dumps(S["f_chat_a2"], ensure_ascii=False), json.dumps(S["f_chat_generic"], ensure_ascii=False), json.dumps(S["f_chat_chips"], ensure_ascii=False))
+    return ctx, thread, inp, logic
+
+def f_chat(S, L):
+    ctx, thread, inp, logic = f_chat_body(S, L)
+    body = header(S, "F-Chat", S["f_chat_title"], crumb=f'{S["a_crumb"]} › {S["lo_fb7"]}', back_href=fn("04-Feedback", L)) + f'''
+<div class="body"><div class="col" style="width:760px">
+  {ctx}
+  <div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;background:#f7f8fc">
+    {thread}
+    {inp}
+  </div>
+  <div style="height:8px"></div>
+</div></div>'''
+    return page(S, S["f_chat_titles"]["pc"], body, logic=logic)
+
+def mf_chat(S, L):
+    ctx, thread, inp, logic = f_chat_body(S, L, mobile=True)
+    body = mheader(S, "MF-Chat", S["f_chat_title"], back_href=fn("M-Sheet", L)) + f'''
+<div class="mbody" style="padding-bottom:96px;background:#f7f8fc">
+  {ctx}
+  {thread}
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:10px 12px 22px;z-index:20">{inp}</div>'''
+    return mpage(S, "MF-Chat", S["f_chat_titles"]["m"], body, logic=logic)
+
+SCREENS.append("F-Chat"); BUILDERS["F-Chat"] = f_chat
+MSCREENS.append("MF-Chat"); MBUILDERS["MF-Chat"] = mf_chat
+TO_MOBILE["F-Chat"] = "MF-Chat"; TO_PC["MF-Chat"] = "F-Chat"
+
 QSCREENS_W.append("Q-Chat"); QSCREENS_M.append("MQ-Chat"); QSCREENS_ALL = QSCREENS_W + QSCREENS_M
 QBUILDERS["Q-Chat"] = q_chat; QBUILDERS["MQ-Chat"] = mq_chat
 TO_MOBILE["Q-Chat"] = "MQ-Chat"; TO_PC["MQ-Chat"] = "Q-Chat"
@@ -7769,7 +7839,7 @@ for _a in ("A-Idea", "A-Dialogue", "A-Revise"):
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
           "4 · Returned — approved feedback (draft 1)", "5 · Second submission — upload the revised work",
-          "6 · Second submission — teacher reviewing", "7 · Returned (draft 2) — what changed", "8 · To-do — awaiting resubmission"]
+          "6 · Second submission — teacher reviewing", "7 · Returned (draft 2) — what changed", "8 · To-do — awaiting resubmission", "9 · Ask AI from a comment — ask-back only (3 Nov)"]
 ROW_Y = {"ja": 0, "en": 1400}
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(SCREENS):
@@ -7786,7 +7856,7 @@ MW, MH, MGAP = 375, 812, 80
 MROW_Y = {"ja": 2900, "en": 4100}
 mtitles = ["M1 · LO list under the topic", "M2 · Assignment — how to submit", "M3 · Snap — camera", "M4 · Crop the page",
            "M5 · Pages — check & submit", "M5b · Read-check — unconfirmed spans, tap to correct (3 Nov)", "M6 · File or photos — check & submit", "M7 · Typed answer — confirm & submit",
-           "M8 · Submitted — teacher reviewing", "M9 · Returned — tap an underline", "M10 · Returned — comment sheet open"]
+           "M8 · Submitted — teacher reviewing", "M9 · Returned — tap an underline", "M10 · Returned — comment sheet open", "M11 · Ask AI from a comment — ask-back only (3 Nov)"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(MSCREENS):
         CUR = screen
@@ -7893,7 +7963,7 @@ notes = {
     "n3": {"x": 2 * (W + GAP), "y": H + 60, "w": NW, "maxH": 280, "text":
         "The waiting state. Still no AI content (PRD C3), and the copy no longer mentions AI at all (PM, 18 Sep): to the student, the teacher gives the feedback — no review step, no teacher name (PM, 18 Sep). A generic line says the student will be notified when the review is done — no date, no SLA countdown (PM decision 18 Sep: a teacher-set expected-return line was tried and removed). The file can be viewed or replaced until the due date (PM decision 18 Sep); the teacher reviews only after the due date, so the copy says so. The black DEMO pill simulates approval →"},
     "n4": {"x": 3 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
-        "Draft-1 return. Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD. The ★ line in the teacher's note card (PM, 20 Sep) appears only when the teacher chose this submission as an example to show the class — set from the Back Office review screen — so the student is told before it comes up in class."},
+        "Draft-1 return. UPDATED 3 Nov: every card carries an 'Ask AI (asks you back)' link that opens board 9 — the ask-back-only chat on that comment (Okayama's requirement). Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD. The ★ line in the teacher's note card (PM, 20 Sep) appears only when the teacher chose this submission as an example to show the class — set from the Back Office review screen — so the student is told before it comes up in class."},
     "n5": {"x": 4 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
         "The second submission. A left pane with last time's comments as a tickable checklist (and the teacher's note) was THE BIG ADDITION here and was REMOVED (PM, 3 Nov: 'can remove the section' — no client asked for it; the previous feedback is one tap away in the 'Feedback you have received so far' list under the pre-submission card, and the returned screen 04 keeps the comments). What is left is the upload and the submit, as on 02. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission → UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the basic-requirements list on the right is gone; the pre-submission AI feedback card stands in its place."},
     "n6": {"x": 5 * (W + GAP), "y": H + 60, "w": NW, "maxH": 220, "text":
@@ -7902,6 +7972,7 @@ notes = {
         "Draft-2 return opens with 前回からの変化: which earlier points were fixed (③ test, ② causation) and that one new comment exists — this is the exercise-view revision trail from C10.3, in the student's own hands. The 'rewritten in your own words' line appears only in the positive case; there is no accusatory counterpart. New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."},
     "n8": {"x": 7 * (W + GAP), "y": H + 60, "w": NW, "maxH": 240, "text":
         "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date."},
+    "n9": {"x": 8 * (W + GAP), "y": H + 60, "w": NW, "maxH": 420, "text": "ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."},
     "n_lang": {"x": 0, "y": ROW_Y["en"] + H + 60, "w": 700, "maxH": 220, "text":
         "Language toggle: a segmented 日本語 / English control in the header, left of the bell. In the prototype it is a link to the twin screen, so the language holds as you click through (each artboard keeps its own state). In the product this would be the account's language setting."},
     "n_dev": {"x": 760, "y": ROW_Y["en"] + H + 60, "w": 700, "maxH": 220, "text":
@@ -7915,7 +7986,8 @@ notes = {
 }
 for _k, _a in {"m9": " ADDED 3 Nov — VERDICT PER CRITERION (PRD C3 feedback shape; Kyushu Sangyo #6, DLSC F3): a card under the Summary lists every rubric criterion with ✓ Needs work or ― No issue — all six, not only the commented ones — and each comment sheet carries the same verdict beside its criterion."}.items():
     MNOTES[_k] += _a
-for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m5b", "m6", "m7", "m8", "m9", "m10"]):
+MNOTES["m11"] = "Mobile twin of board 9. ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."
+for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m5b", "m6", "m7", "m8", "m9", "m10", "m11"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
 for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12", "t13", "t14"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
