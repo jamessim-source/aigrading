@@ -380,14 +380,14 @@ body{background:#f2f2f4}</style>
 <header class="mhdr"><a class="mib" href="M-Feedback.html" aria-label="もどる"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m15 6-6 6 6 6"/></svg></a><h1 class="mt">AIに質問</h1><div class="mseg" role="group" aria-label="言語"><span class="seg-i on">日本語</span><a class="seg-i" href="MF-Chat-en.html" lang="en">EN</a></div></header>
 <div class="mbody" style="padding-bottom:96px;background:#f7f8fc">
   <div class="mcard" style="padding:12px 14px;gap:8px;display:flex;flex-direction:column">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span class="cap">質問しているコメント</span><span class="chip neutral" style="height:24px;font-size:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg>問い返しのみ</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span class="cap">質問しているコメント</span><span class="chip neutral" style="height:24px;font-size:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7L19 17z"/></svg>レベル1 ・ ヒントと参照先</span></div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="badge ask"><i class="n">2</i>問いかけ</span><span class="ctag">解釈</span></div>
       <blockquote class="quote ask" style="margin:0">“この結果から、人口密度が高い地域ほど所得が高くなるといえる。”</blockquote>
-      <span class="cap">AIは答えを言わず、考えるための問いを返します。この対話は先生も見ることができます。</span></div>
+      <span class="cap">このLOの「AIが示す範囲」はレベル1です。AIは答えを言わず、どこを見直すか・教材のどこを読むかを示します。この対話は先生も見ることができます。</span></div>
   <div style="display:flex;flex-direction:column;gap:10px">
       <div class="bub u">「相関がある＝因果がある」じゃないなら、正しい解釈は何て書けばいい？</div>
-      <div class="bub a">まず確かめたいことがあります。r = 0.42 という値は、2つの変数の「向き」と「強さ」について何を言っていますか。そして「Aが増えるとBが増える」と「AがBを引き起こす」の違いは、あなたのデータのどこで区別できますか。<span class="src">教科書 第7回 §3 擬似相関</span></div>
-      <div class="bub n">その2点を一文ずつ書いてみてください。書けたら、次に考える問いを返します。</div>
+      <div class="bub a">ヒント：r = 0.42 が言えるのは「向き」と「強さ」までです。「人口密度が高いから所得が高い」という一文は、相関から因果へ飛んでいます。教科書 第7回 §3 の「相関と因果」の段落を読み直して、逆向きの説明（所得の高い地域に人が集まる）が同じデータで成り立つかを確かめてみてください。<span class="src">教科書 第7回 §3 擬似相関</span></div>
+      <div class="bub n">書き直したら、もう一度ここで聞いてください。答えそのものは出しません。</div>
       <sc-if value="{{x0}}" hint-placeholder-val="{{false}}"><div class="bub u">{{xu0}}</div><div class="bub a">{{xa0}}</div></sc-if><sc-if value="{{x1}}" hint-placeholder-val="{{false}}"><div class="bub u">{{xu1}}</div><div class="bub a">{{xa1}}</div></sc-if><sc-if value="{{x2}}" hint-placeholder-val="{{false}}"><div class="bub u">{{xu2}}</div><div class="bub a">{{xa2}}</div></sc-if>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px"><button class="chipq" onClick="{{chip0}}">答えを教えて</button><button class="chipq" onClick="{{chip1}}">第三の変数って何？</button><button class="chipq" onClick="{{chip2}}">例を一つ出して</button></div>
     </div>
@@ -401,7 +401,7 @@ body{background:#f2f2f4}</style>
 class Component extends DCLogic {
   state = { extra: [], draft: "" };
   renderVals() {
-    const st = this.state, canned = "ここでは答えは言いません。代わりに：この2つの変数の両方に影響しそうな「別の要因」を、あなたの都道府県データの中から一つ挙げるとしたら何ですか。", generic = "教科書 第7回 §3 に手がかりがあります。該当箇所を読んで、自分の言葉で一文にすると、どうなりますか。", chips = ["答えを教えて", "第三の変数って何？", "例を一つ出して"];
+    const st = this.state, canned = "答えそのものは出せません（このLOはヒントまでです）。見る場所：第7回 §3「第三の変数」。あなたの都道府県データで、人口密度と所得の両方に効きそうな要因を一つ探してみてください。", generic = "教科書 第7回 §3 に手がかりがあります。該当箇所を読んで、自分の言葉で一文にすると、どうなりますか。", chips = ["答えを教えて", "第三の変数って何？", "例を一つ出して"];
     const ask = (q) => { const i = chips.indexOf(q); this.setState({ extra: st.extra.concat([[q, i === 0 ? canned : generic]]), draft: "" }); };
     const o = { draft: st.draft, onType: (e) => this.setState({ draft: e.target.value || "" }), send: () => { if (st.draft.trim()) ask(st.draft.trim()); }, hasDraft: st.draft.trim() !== "" };
     chips.forEach((c, i) => { o["chip" + i] = () => ask(c); });

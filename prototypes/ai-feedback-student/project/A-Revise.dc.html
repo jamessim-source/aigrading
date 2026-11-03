@@ -371,15 +371,25 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
   </div>
   <div class="card" style="padding:16px 20px;display:flex;flex-direction:column;gap:8px"><p class="sub1">ふり返り：最初の考えから何が変わったか、まだ言えないことは何か</p><textarea class="ta" style="min-height:90px">合計の数字だけで決めつけていた。1,000人あたりで見ると差は小さく、原因かどうかはまだ言えない。</textarea>
     <p class="cap">最初の考え・対話・書き直し・ふり返りは、この課題のIDに紐づいて保存されます（プロンプト版 v5 ・ モデル版を記録）</p>
-    <div style="display:flex;justify-content:flex-end;gap:12px;align-items:center"><span class="chip done" style="height:28px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1f7a4d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg>提出済み ・ ふり返り済み</span><a class="btn primary" href="A-Rate.dc.html">提出する<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></a></div>
+    <sc-if value="{{open}}" hint-placeholder-val="{{true}}"><div style="display:flex;justify-content:flex-end;gap:12px;align-items:center"><button class="btn primary" onClick="{{submit}}">提出する<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></button></div></sc-if>
   </div>
+  <sc-if value="{{done}}" hint-placeholder-val="{{false}}"><div class="card" style="padding:20px 24px;display:flex;flex-direction:column;gap:10px;border:1px solid #c9d3f5">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><p class="sub1">提出後の記録</p><span class="chip done" style="height:28px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1f7a4d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m5 12 5 5L20 7"/></svg>提出済み ・ ふり返り済み</span></div>
+    <div class="chk" style="cursor:default"><span class="tt"><b>最初の考え</b><span class="cap">バスが多いほど図書館の利用が多いので、バスを増やせば来館者も増えると思う。</span></span></div>
+    <div class="chk" style="cursor:default"><span class="tt"><b>書き直した説明</b><span class="cap">来館者数だけではバスの本数が原因とは言えない。人口をそろえて比べる必要があり、交通以外の地区の違いも確かめていない。</span></span></div>
+    <div class="chk" style="cursor:default"><span class="tt"><b>ふり返り：最初の考えから何が変わったか、まだ言えないことは何か</b><span class="cap">合計の数字だけで決めつけていた。1,000人あたりで見ると差は小さく、原因かどうかはまだ言えない。</span></span></div>
+    <div class="fb-card" style="background:#eef1ff;border-color:#dfe4ff"><p class="sub1" style="font-size:14px">先生の評価（共有されたもの）</p><p class="b2">根拠を示す ・ レベル2 — 「T4で条件をそろえる必要に自分で気づいている」</p></div>
+    <p class="cap">最初の考え・対話・書き直し・ふり返りは課題ごとに残り、いつでも読み返せます。先生の評価は、先生が共有を選んだときだけ表示されます。他の生徒の記録は見えません。</p>
+    <div style="display:flex;justify-content:flex-end"><a class="btn neutral" href="A-Rate.dc.html">DEMO → 評価（先生）</a></div>
+  </div></sc-if>
 </div></div>
 <div class="dev" role="group" aria-label="表示デバイス"><span class="dev-i on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span class="dl">PC</span></span><a class="dev-i" href="A-Revise.dc.html" aria-label="モバイル"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><span class="dl">モバイル</span></a><a class="dev-i" href="T-Book.dc.html" aria-label="先生（BO）"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span class="dl">先生（BO）</span></a></div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
 class Component extends DCLogic {
-  renderVals(){ return {}; }
+  state = { done: false };
+  renderVals() { return { open: !this.state.done, done: this.state.done, submit: () => this.setState({ done: true }) }; }
 }
 </script>
 </body>

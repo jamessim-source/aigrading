@@ -417,3 +417,17 @@ PRD C11.14 has the requirement mapping and the dev-effort notes.
   - Dropped: 07-Pending2, M-Sheet, M-Camera, T-Created (duplicates).
 - Simplifications proposed in `PRDs/trace/2026-11-03-prototype-simplification-audit.md`
   are not applied (each changes a PM-reviewed board).
+
+## 3 Nov — decisions applied (PRD v1.20)
+
+- Merges applied (PM: apply all): T-Detail into T-List (counters above the
+  table, reconciled); T-DashTopic into T-DashGroup (live Topic / LO toggle);
+  A-Idea into A-Dialogue (idea locked in place, teacher viewpoints for a
+  no-hypothesis start); board 5 into board 2 (`02-Assignment.html#second`);
+  M-File and M-Type into M-Assignment (modes expand in place). 46 → 38 boards.
+- T-Review: "Copy comments as plain text" — the DLSC hand-back draft.
+- F-Chat / MF-Chat run at the LO's level (level 1 here), not a fixed ask-back.
+- Verdict strip back to flag / ok for every criterion (the AI judges all six).
+- X1 analysis cards show the usage share (118 / 150 · 79%).
+- A-Revise: Submit → the student's record with the teacher's shared rating;
+  A-Rate shows the reviewer and date stamp.
