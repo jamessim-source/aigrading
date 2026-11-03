@@ -1203,30 +1203,11 @@ def feedback(S, L):
     return page(S, S["titles"]["fb"], body, HIT_LOGIC)
 
 def resubmit(S, L):
-    prev = ""
-    for i, (kind, crit, quote, body, ref) in enumerate(S["cards"]):
-        n = i + 1
-        if kind == "good":
-            prev += f'''<div class="chk" style="cursor:default"><span class="st" style="width:22px;height:22px;border-radius:50%;background:#e6f5ee;color:#1f7a4d;display:flex;align-items:center;justify-content:center;flex:0 0 22px;margin-top:1px">{ic("check",13,"currentColor",3)}</span>
-        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#1f7a4d;color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">{n}</i>{S["labels"][kind]} {S["sep"]} {crit}</b><span class="cap">{S["r_keep"]}</span></div></div>'''
-        else:
-            prev += f'''<button class="chk {{{{k{n}}}}}" onClick="{{{{tk{n}}}}}"><span class="box">{ic("check",13,"#fff",3)}</span>
-        <div class="tt"><b><i class="n" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:{"#395ad2" if kind=="ask" else "#d13842"};color:#fff;font-size:11px;font-style:normal;align-items:center;justify-content:center;vertical-align:middle;margin:-2px 6px 0 0">{n}</i>{S["labels"][kind]} {S["sep"]} {crit}</b><span class="cap">{quote}</span></div></button>'''
     selfchips = "".join(f'<button class="chip pick {{{{s{i}}}}}" onClick="{{{{ts{i}}}}}">{lbl}</button>' for i, lbl in enumerate(S["r_self"]))
     body = header(S, "06-Resubmit", S["r_title"], crumb=S["a_crumb"], back_href=fn("04-Feedback",L),
                   right_extra=f'<span class="chip wait" style="height:28px">{ic("refresh",14)}{S["r_h"]} {S["sep"]} {S["r_due"]}</span>') + f'''
-<div class="body" style="display:flex;gap:16px;overflow:hidden">
-  <section class="pane" style="flex:0.95 1 0">
-    <div class="pane-h"><p class="sub1">{S["r_prev_h"]}</p><span class="cap">{S["r_prev_sub"]}</span></div>
-    <div class="pane-b" style="display:flex;flex-direction:column;gap:12px">
-      <div>{prev}</div>
-      <div class="fb-card" style="background:#eef1ff;border-color:#dfe4ff;flex-direction:row;gap:14px;align-items:flex-start">
-        <span class="tav" style="background:#fff">{ic("person",20)}</span>
-        <p class="b2" style="line-height:22px">{S["f_tnote"]}</p>
-      </div>
-    </div>
-  </section>
-  <section style="flex:1.05 1 0;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:16px">
+<!-- the left pane — last time's comments as a tickable checklist with the teacher's note — was removed (PM, 3 Nov: can remove the section); the feedback already received is listed under the pre-submission card instead -->
+<div class="body"><div class="col">
     <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px">
       <div style="display:flex;align-items:center;justify-content:space-between">
         <p class="sub1">{S["a_upload_h"]}</p>
@@ -1239,9 +1220,7 @@ def resubmit(S, L):
     <div class="card" style="padding:16px 24px">
       {submit_row(S, S["r_submit"], S["r_note"], fn("07-Pending2",L))}
     </div>
-    <div style="height:4px"></div>
-  </section>
-</div>'''
+</div></div>'''
     logic = """state = { picked: "", k2: false, k3: false, s0: true, s1: false, d0: false, d1: false, d2: false, d3: false };
   renderVals() {
     return {
@@ -7789,7 +7768,7 @@ for _a in ("A-Idea", "A-Dialogue", "A-Revise"):
 # ---------- write ----------
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
-          "4 · Returned — approved feedback (draft 1)", "5 · Second submission — previous comments as checklist",
+          "4 · Returned — approved feedback (draft 1)", "5 · Second submission — upload the revised work",
           "6 · Second submission — teacher reviewing", "7 · Returned (draft 2) — what changed", "8 · To-do — awaiting resubmission"]
 ROW_Y = {"ja": 0, "en": 1400}
 for lang, S in (("ja", JA), ("en", EN)):
@@ -7916,7 +7895,7 @@ notes = {
     "n4": {"x": 3 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
         "Draft-1 return. Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD. The ★ line in the teacher's note card (PM, 20 Sep) appears only when the teacher chose this submission as an example to show the class — set from the Back Office review screen — so the student is told before it comes up in class."},
     "n5": {"x": 4 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
-        "THE BIG ADDITION. Left: last time's comments as a checklist — the student ticks what they addressed; strengths are shown as 'check it still holds'. The teacher's note travels with it. Right: upload and the basic-requirements list. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission → UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the basic-requirements list on the right is gone; the pre-submission AI feedback card stands in its place."},
+        "The second submission. A left pane with last time's comments as a tickable checklist (and the teacher's note) was THE BIG ADDITION here and was REMOVED (PM, 3 Nov: 'can remove the section' — no client asked for it; the previous feedback is one tap away in the 'Feedback you have received so far' list under the pre-submission card, and the returned screen 04 keeps the comments). What is left is the upload and the submit, as on 02. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission → UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the basic-requirements list on the right is gone; the pre-submission AI feedback card stands in its place."},
     "n6": {"x": 5 * (W + GAP), "y": H + 60, "w": NW, "maxH": 220, "text":
         "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →"},
     "n7": {"x": 6 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":

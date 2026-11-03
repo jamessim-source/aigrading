@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-11-03T14:59:22Z"
+    "at": "2026-11-03T15:03:51Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -47,7 +47,7 @@
       "y": 0,
       "w": 1280,
       "h": 800,
-      "title": "5 · Second submission — previous comments as checklist (JA)",
+      "title": "5 · Second submission — upload the revised work (JA)",
       "is_interactive": true
     },
     "07-Pending2.dc.html": {
@@ -111,7 +111,7 @@
       "y": 1400,
       "w": 1280,
       "h": 800,
-      "title": "5 · Second submission — previous comments as checklist (EN)",
+      "title": "5 · Second submission — upload the revised work (EN)",
       "is_interactive": true
     },
     "07-Pending2-en.dc.html": {
@@ -1663,7 +1663,7 @@
       "y": 860,
       "w": 560,
       "maxH": 300,
-      "text": "THE BIG ADDITION. Left: last time's comments as a checklist — the student ticks what they addressed; strengths are shown as 'check it still holds'. The teacher's note travels with it. Right: upload and the basic-requirements list. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission → UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the basic-requirements list on the right is gone; the pre-submission AI feedback card stands in its place."
+      "text": "The second submission. A left pane with last time's comments as a tickable checklist (and the teacher's note) was THE BIG ADDITION here and was REMOVED (PM, 3 Nov: 'can remove the section' — no client asked for it; the previous feedback is one tap away in the 'Feedback you have received so far' list under the pre-submission card, and the returned screen 04 keeps the comments). What is left is the upload and the submit, as on 02. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission → UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the basic-requirements list on the right is gone; the pre-submission AI feedback card stands in its place."
     },
     "n6": {
       "x": 6800,
