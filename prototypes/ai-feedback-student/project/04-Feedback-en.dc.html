@@ -108,7 +108,7 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .alock{border:1px dashed rgba(28,30,44,.3);border-radius:8px;padding:12px 14px;background:#fafafa;font-size:14px;line-height:22px}
 .fmt{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:12px;border:1px solid rgba(28,30,44,.16);font-size:12px;color:rgba(28,30,44,.7);background:#fff}
 .vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
-.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
+.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}.vd.na{background:#ececef;color:rgba(28,30,44,.6)}
 .cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
 .unc{border-bottom:2px dashed #d13842;background:#fff3f4;padding:0 2px;border-radius:2px;cursor:pointer}
 .ctag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:#f2f2f4;color:rgba(28,30,44,.6);font-size:12px;font-weight:700;white-space:nowrap}
@@ -372,11 +372,8 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
       
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-      <div style="display:flex;gap:12px">
-        <button class="btn neutral"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 4v12m0 0-4-4m4 4 4-4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>Save comments as PDF</button>
-        <a class="btn primary" href="06-Resubmit-en.dc.html">Revise and resubmit<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></a>
-      </div>
-      <span class="cap">Resubmit by Nov 20, 23:59</span>
+      <div style="display:flex;gap:12px"><button class="btn neutral"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 4v12m0 0-4-4m4 4 4-4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>Save comments as PDF</button><a class="btn primary" href="06-Resubmit-en.dc.html">Revise and resubmit<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="m9 6 6 6-6 6"/></svg></a></div>
+      <span class="cap" style="max-width:520px;text-align:right">Resubmit by Nov 20, 23:59</span>
     </div>
   </div>
   <div style="display:flex;gap:16px;flex:1 1 auto;min-height:0">
@@ -404,7 +401,7 @@ a.dev-i:hover{color:#fff;background:rgba(255,255,255,.12)}
           <span class="badge sum">Summary</span>
           <p class="fbody">You cover the full sequence of the analysis: computing the coefficient, checking for outliers, and testing significance. Recalculating without Tokyo was an excellent decision — it shows you don't take the data at face value. Two things to revisit: one place where you jump from correlation straight to causation, and how T.TEST is used. For the resubmission, keep a clear line between what this data can say and what it cannot.</p>
         </div>
-        <div class="fb-card" style="gap:8px"><span class="badge sum" style="background:#f2f2f4;color:#1c1e2c">Verdict per criterion</span><div class="cov"><span class="r"><span>Excel skills</span><span class="vd ok">― No issue</span></span><span class="r"><span>Clarity of charts</span><span class="vd ok">― No issue</span></span><span class="r"><span>Statistical processing</span><span class="vd flag">✓ Needs work</span></span><span class="r"><span>Interpretation</span><span class="vd flag">✓ Needs work</span></span><span class="r"><span>Logical structure</span><span class="vd ok">― No issue</span></span><span class="r"><span>Generative-AI literacy</span><span class="vd ok">― No issue</span></span></div><span class="cap">Every one of the 6 criteria has a comment</span></div>
+        <div class="fb-card" style="gap:8px"><span class="badge sum" style="background:#f2f2f4;color:#1c1e2c">Verdict per criterion</span><div class="cov"><span class="r"><span>Excel skills</span><span class="vd ok">― No issue</span></span><span class="r"><span>Clarity of charts</span><span class="vd ok">― No issue</span></span><span class="r"><span>Statistical processing</span><span class="vd flag">✓ Needs work</span></span><span class="r"><span>Interpretation</span><span class="vd flag">✓ Needs work</span></span><span class="r"><span>Logical structure</span><span class="vd ok">― No issue</span></span><span class="r"><span>Generative-AI literacy</span><span class="vd na">― Not judged</span></span></div><span class="cap">5 of the 6 criteria judged · Generative-AI literacy is not judged from the file (your teacher assesses it from the chat log)</span></div>
         <div id="card-1" class="fb-card {{h1}}">
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge good"><i class="n">1</i>Strength</span><span class="ctag">Statistical processing</span><span class="vd ok">― No issue</span></div>
       <blockquote class="quote good">“Recalculating without Tokyo lowered the coefficient to r = 0.41, confirming that Tokyo's values were pulling the correlation up.”</blockquote>

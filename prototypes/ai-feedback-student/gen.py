@@ -162,7 +162,7 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .alock{border:1px dashed rgba(28,30,44,.3);border-radius:8px;padding:12px 14px;background:#fafafa;font-size:14px;line-height:22px}
 .fmt{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:12px;border:1px solid rgba(28,30,44,.16);font-size:12px;color:rgba(28,30,44,.7);background:#fff}
 .vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
-.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
+.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}.vd.na{background:#ececef;color:rgba(28,30,44,.6)}
 .cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
 .unc{border-bottom:2px dashed #d13842;background:#fff3f4;padding:0 2px;border-radius:2px;cursor:pointer}
 .ctag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:#f2f2f4;color:rgba(28,30,44,.6);font-size:12px;font-weight:700;white-space:nowrap}
@@ -451,7 +451,7 @@ JA = dict(
     a_ta_confirm="回答を確定する", a_ta_confirm_note="確定した内容がそのまま提出されます", a_ta_confirmed="回答を確定しました", a_ta_edit="編集する",
     a_pick="ファイルを選ぶ", a_note="提出すると先生に届きます。フィードバックは期限のあとに返却されます。",
     a_submit="この答案を提出する", a_file="第7回_演習_山田花子.pdf", a_file_meta="3ページ ・ 1.2 MB ・ いま選択", a_remove="ファイルを外す",
-    pf_h="提出前のAIフィードバック", pf_note="提出する前に、下書きへのAIフィードバックを何度でも受けられます（締切まで）。先生の確認はなく、提出回数には数えません。", pf_btn="下書きにフィードバックをもらう", pf_count="下書きチェック 2回", pf_hist_h="これまでに受けたフィードバック", pf_hist=[("下書き 2", "11/10 21:14", "改善点 3件 ・ 有意性の検定が未記載"), ("下書き 1", "11/9 18:02", "改善点 5件 ・ 散布図の軸ラベルなし")], pf_open="開く", pf_hist_note="下書きへのフィードバックは先生には届きません。提出後に返却されるフィードバックもここに並びます。",
+    pf_h="提出前のAIフィードバック", pf_note="提出する前に、下書きへのAIフィードバックを何度でも受けられます（締切まで）。先生の確認はなく、提出回数には数えません。", pf_btn="下書きにフィードバックをもらう", pf_count="下書きチェック 2回", pf_hist_h="これまでに受けたフィードバック", pf_hist=[("下書き 2", "11/10 21:14", "改善点 3件 ・ 有意性の検定が未記載"), ("下書き 1", "11/9 18:02", "改善点 5件 ・ 散布図の軸ラベルなし")], pf_open="開く", pf_hist_ret=[("返却されたフィードバック", "11/13 18:42", "コメント 3件 ・ 先生からのひとこと", "04-Feedback")], pf_hist_note="下書きへのフィードバックは先生には届きません。提出後に返却されるフィードバックもここに並びます。",
     decl_h="AI 利用の申告", decl_sub="任意",
     decl_note="申告は、安本先生が「生成AIリテラシー」の観点を見るときに参照します。AI がこれを使って不正を判定することはありません。",
     decl=["使っていない","数式・関数の確認","文章の校正","構成の相談"], decl_kept="AI の文をそのまま残した箇所があれば書いてください（任意）",
@@ -465,6 +465,7 @@ JA = dict(
     p_demo="先生が確認して返却する", tav="安",
     p2_chip="2回目 ・ フィードバック待ち", p2_received="11月19日 16:05 に受け付けました", p2_step1="11月19日 16:05",
     p2_file_meta="3ページ ・ 1.3 MB ・ 11月19日 16:05",
+    f_draft_chip="下書き 2 ・ 提出ではありません", f_draft_meta="下書きチェック 11月10日 21:14 ・ 先生には届きません ・ 締切まで何度でも", f_draft_back="課題に戻って提出する", f_draft_note="このフィードバックは下書きに対するものです。直したら課題画面から提出してください。先生の確認はなく、提出回数には数えません。",
     f_chip="返却済み ・ 11月13日", f_meta="提出 11月11日 14:32 ・ 返却 11月13日 18:42",
     f_decl_echo="AI 利用の申告: 数式・関数の確認 ・ 残した文: なし",
     f_ask_ai="AIに質問（問い返しのみ）", f_chat_title="AIに質問", f_chat_titles={"pc": "返却画面 — AIに質問（問い返しのみ）", "m": "モバイル — AIに質問（問い返しのみ）"},
@@ -591,7 +592,7 @@ EN = dict(
     a_ta_confirm="Confirm answer", a_ta_confirm_note="The confirmed text is what is submitted", a_ta_confirmed="Answer confirmed", a_ta_edit="Edit answer",
     a_pick="Choose a file", a_note="Your submission goes to your teacher. Feedback is returned after the due date.",
     a_submit="Submit this work", a_file="Session7_Exercise_HanakoYamada.pdf", a_file_meta="3 pages · 1.2 MB · just selected", a_remove="Remove file",
-    pf_h="AI feedback before you submit", pf_note="Get AI feedback on your draft as many times as you like until the due date. Your teacher does not review it and it does not count as a submission.", pf_btn="Get feedback on this draft", pf_count="Draft checks: 2", pf_hist_h="Feedback you have received so far", pf_hist=[("Draft 2", "Nov 10, 21:14", "3 points to work on · significance test not stated"), ("Draft 1", "Nov 9, 18:02", "5 points to work on · scatter plot has no axis labels")], pf_open="Open", pf_hist_note="Feedback on drafts does not go to your teacher. Feedback returned after you submit will be listed here too.",
+    pf_h="AI feedback before you submit", pf_note="Get AI feedback on your draft as many times as you like until the due date. Your teacher does not review it and it does not count as a submission.", pf_btn="Get feedback on this draft", pf_count="Draft checks: 2", pf_hist_h="Feedback you have received so far", pf_hist=[("Draft 2", "Nov 10, 21:14", "3 points to work on · significance test not stated"), ("Draft 1", "Nov 9, 18:02", "5 points to work on · scatter plot has no axis labels")], pf_open="Open", pf_hist_ret=[("Returned feedback", "Nov 13, 18:42", "3 comments · a note from your teacher", "04-Feedback")], pf_hist_note="Feedback on drafts does not go to your teacher. Feedback returned after you submit will be listed here too.",
     decl_h="AI-use declaration", decl_sub="optional",
     decl_note="Your teacher refers to this when looking at the \"generative-AI literacy\" criterion. The AI never uses it to judge misconduct.",
     decl=["Did not use","Checking formulas","Proofreading","Planning the structure"], decl_kept="Passages kept from AI output, if any (optional)",
@@ -605,6 +606,7 @@ EN = dict(
     p_demo="Teacher approves and returns", tav="Y",
     p2_chip="2nd submission · Awaiting feedback", p2_received="Received Nov 19, 16:05", p2_step1="Nov 19, 16:05",
     p2_file_meta="3 pages · 1.3 MB · Nov 19, 16:05",
+    f_draft_chip="Draft 2 · not a submission", f_draft_meta="Draft check Nov 10, 21:14 · not sent to your teacher · as many times as you like until the due date", f_draft_back="Back to the assignment to submit", f_draft_note="This feedback is on your draft. Fix what you want to, then submit from the assignment screen. Your teacher does not review it and it does not count as a submission.",
     f_chip="Returned · Nov 13", f_meta="Submitted Nov 11, 14:32 · Returned Nov 13, 18:42",
     f_decl_echo="AI-use declaration: checking formulas · kept passages: none",
     f_ask_ai="Ask AI (asks you back)", f_chat_title="Ask AI", f_chat_titles={"pc": "Returned — Ask AI (ask-back only)", "m": "Mobile — Ask AI (ask-back only)"},
@@ -741,14 +743,14 @@ MEN = dict(
 JA.update(MJA); EN.update(MEN)
 
 DECL = False  # AI-use declaration removed on PM decision (18 Sep): student self-report is not evidence
-SCREENS = ["Main", "02-Assignment", "03-Pending", "04-Feedback", "06-Resubmit", "07-Pending2", "08-Feedback2", "05-Todo"]
-MSCREENS = ["M-Main", "M-Assignment", "M-Camera", "M-Crop", "M-Pages", "M-Read", "M-File", "M-Type", "M-Pending", "M-Feedback", "M-Sheet"]
+SCREENS = ["Main", "02-Assignment", "03-Pending", "04-Feedback", "06-Resubmit", "08-Feedback2", "05-Todo", "F-Chat", "04-Draft"]  # 07-Pending2 dropped 3 Nov (same screen as 03 with a chip swap)
+MSCREENS = ["M-Main", "M-Assignment", "M-Crop", "M-Pages", "M-Read", "M-File", "M-Type", "M-Pending", "M-Feedback", "MF-Chat", "M-Draft"]  # M-Camera and M-Sheet dropped 3 Nov (no rule on either; the sheet opens on tap)
 # PC <-> mobile counterparts for the bottom-left device switch
 TO_MOBILE = {"Main": "M-Main", "02-Assignment": "M-Assignment", "03-Pending": "M-Pending", "04-Feedback": "M-Feedback",
-             "06-Resubmit": "M-Assignment", "07-Pending2": "M-Pending", "08-Feedback2": "M-Feedback", "05-Todo": "M-Main"}
-TO_PC = {"M-Main": "Main", "M-Assignment": "02-Assignment", "M-Camera": "02-Assignment", "M-Crop": "02-Assignment", "M-Pages": "02-Assignment", "M-Read": "02-Assignment",
+             "06-Resubmit": "M-Assignment", "08-Feedback2": "M-Feedback", "05-Todo": "M-Main", "04-Draft": "M-Draft"}
+TO_PC = {"M-Main": "Main", "M-Assignment": "02-Assignment", "M-Crop": "02-Assignment", "M-Pages": "02-Assignment", "M-Read": "02-Assignment",
          "M-File": "02-Assignment", "M-Type": "02-Assignment",
-         "M-Pending": "03-Pending", "M-Feedback": "04-Feedback", "M-Sheet": "04-Feedback"}
+         "M-Pending": "03-Pending", "M-Feedback": "04-Feedback", "M-Draft": "04-Draft"}
 CUR = "Main"  # screen being built (set by the write loop) so page() can place the device switch
 def fn(screen, lang):
     return f"{screen}.dc.html" if lang == "ja" else f"{screen}-en.dc.html"
@@ -829,7 +831,7 @@ def sect(title, right="", muted=False):
     <p class="sub1{" muted" if muted else ""}">{title}</p>{right}</div>'''
 
 # ---------- shared blocks ----------
-def prefb_block(S, L, mobile=False):
+def prefb_block(S, L, mobile=False, extra=None):
     """AI feedback before submission (PRD v1.18, 3 Nov): the basic-requirement checks are removed; the hint
     path is draft feedback from the same engine, on by default, unlimited until the due date, never a submission."""
     btn = "mbtn neutral" if mobile else "btn neutral"
@@ -838,15 +840,17 @@ def prefb_block(S, L, mobile=False):
     return f'''<div class="{cls}"{pad}>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><p class="sub1"{' style="font-size:14px"' if mobile else ''}>{S["pf_h"]}</p><span class="cap">{S["pf_count"]}</span></div>
     <p class="cap">{S["pf_note"]}</p>
-    <sc-if value="{{{{picked}}}}" hint-placeholder-val="{{{{false}}}}"><a class="{btn}" style="align-self:flex-start" href="{fn("X-Feedback" if mobile else "X-FeedbackPC", L)}">{ic("sparkle",18)}{S["pf_btn"]}</a></sc-if>
-    {pf_history(S, L, mobile)}
+    <sc-if value="{{{{picked}}}}" hint-placeholder-val="{{{{false}}}}"><a class="{btn}" style="align-self:flex-start" href="{fn("M-Draft" if mobile else "04-Draft", L)}">{ic("sparkle",18)}{S["pf_btn"]}</a></sc-if>
+    {pf_history(S, L, mobile, extra)}
   </div>'''
 
-def pf_history(S, L, mobile=False):
+def pf_history(S, L, mobile=False, extra=None):
     """The list of feedback already received on earlier drafts (PM, 3 Nov: 'show the list of previous feedback
-    received from previous submitted answers'); returned feedback joins the same list once the work is submitted."""
-    href = fn("X-Feedback" if mobile else "X-FeedbackPC", L)
-    rows = "".join(f'<a class="chk" style="text-decoration:none;align-items:center" href="{href}"><span class="st" style="width:28px;height:28px;border-radius:50%;background:#eef1ff;color:#395ad2;display:flex;align-items:center;justify-content:center;flex:0 0 28px">{ic("sparkle",14)}</span><span class="tt"><b>{lbl} <span class="cap" style="font-weight:400">{when}</span></b><span class="cap">{summ}</span></span><span class="cap" style="color:#395ad2;font-weight:700;white-space:nowrap">{S["pf_open"]} {ic("right",14,"#395ad2",2.4)}</span></a>' for lbl, when, summ in S["pf_hist"])
+    received from previous submitted answers'); returned feedback joins the same list once the work is submitted
+    (extra = rows for returned feedback, each (label, when, summary, screen))."""
+    href = fn("M-Draft" if mobile else "04-Draft", L)
+    rows = "".join(f'<a class="chk" style="text-decoration:none;align-items:center" href="{fn(scr, L)}"><span class="st" style="width:28px;height:28px;border-radius:50%;background:#e6f5ee;color:#1f7a4d;display:flex;align-items:center;justify-content:center;flex:0 0 28px">{ic("check",14)}</span><span class="tt"><b>{lbl} <span class="cap" style="font-weight:400">{when}</span></b><span class="cap">{summ}</span></span><span class="cap" style="color:#395ad2;font-weight:700;white-space:nowrap">{S["pf_open"]} {ic("right",14,"#395ad2",2.4)}</span></a>' for lbl, when, summ, scr in (extra or []))
+    rows += "".join(f'<a class="chk" style="text-decoration:none;align-items:center" href="{href}"><span class="st" style="width:28px;height:28px;border-radius:50%;background:#eef1ff;color:#395ad2;display:flex;align-items:center;justify-content:center;flex:0 0 28px">{ic("sparkle",14)}</span><span class="tt"><b>{lbl} <span class="cap" style="font-weight:400">{when}</span></b><span class="cap">{summ}</span></span><span class="cap" style="color:#395ad2;font-weight:700;white-space:nowrap">{S["pf_open"]} {ic("right",14,"#395ad2",2.4)}</span></a>' for lbl, when, summ in S["pf_hist"])
     return f'''<div style="border-top:1px solid rgba(28,30,44,.08);margin-top:4px;padding-top:10px">
       <p class="sub1" style="font-size:14px;margin-bottom:2px">{S["pf_hist_h"]}</p>
       <div style="display:flex;flex-direction:column">{rows}</div>
@@ -1138,7 +1142,9 @@ def coverage_strip(S, cards):
     flagged = {crit for kind, crit, *_ in cards if kind != "good"}
     rows = ""
     for name, _ in S["t_rubric"]:
-        vd = "flag" if any(f in name or name in f for f in flagged) else "ok"
+        # "not judged" (3 Nov trace): a criterion the pipeline must not judge from the file — Kindai's criterion 6,
+        # generative-AI skill, is the professor's from the chat log (Slack 21 Oct); Kyushu's handwriting neatness is the same case
+        vd = "na" if name in S.get("t_na_crits", []) else ("flag" if any(f in name or name in f for f in flagged) else "ok")
         rows += f'<span class="r"><span>{name}</span><span class="vd {vd}">{S["t_vd"][vd]}</span></span>'
     return f'<div class="fb-card" style="gap:8px"><span class="badge sum" style="background:#f2f2f4;color:#1c1e2c">{S["f_cov_h"]}</span><div class="cov">{rows}</div><span class="cap">{S["f_cov"]}</span></div>'
 
@@ -1171,24 +1177,37 @@ HIT_LOGIC = """state = { hit: 0, from: "" };
     };
   }"""
 
-def feedback(S, L):
+def feedback(S, L, draft=False):
+    """draft=True → 04-Draft: the AI feedback on a pre-submission draft (PRD v1.18 C3 pre-submission row; trace 3 Nov:
+    the LO's draft feedback used to link into the Kindai Excel trial board X3, a different assignment and rubric).
+    Same engine, same rubric, same cards; no teacher note, no ★, no resubmit — a draft is not a submission."""
+    screen = "04-Draft" if draft else "04-Feedback"
     raw_html = marks_html(S["raw"], {1: (1, "good"), 2: (2, "ask"), 3: (3, "todo")})
     footer = f'<p class="cap" style="padding:0 4px 8px">{S["f_footer"]}</p>' if S["f_footer"] else ""
-    body = header(S, "04-Feedback", S["lo_fb7"], crumb=S["a_crumb"], back_href=fn("Main",L),
-                  right_extra=f'<span class="chip done" style="height:28px">{ic("check",14,"#1f7a4d",2.6)}{S["f_chip"]}</span>') + f'''
+    chip = (f'<span class="chip wait" style="height:28px">{ic("sparkle",14)}{S["f_draft_chip"]}</span>' if draft
+            else f'<span class="chip done" style="height:28px">{ic("check",14,"#1f7a4d",2.6)}{S["f_chip"]}</span>')
+    acts = (f'<a class="btn primary" href="{fn("02-Assignment",L)}">{S["f_draft_back"]}{ic("right",18,"#fff",2.4)}</a>' if draft else
+            f'<button class="btn neutral">{ic("download",18)}{S["f_save"]}</button><a class="btn primary" href="{fn("06-Resubmit",L)}">{S["f_resubmit"]}{ic("right",18,"#fff",2.4)}</a>')
+    under = S["f_draft_note"] if draft else S["f_resub_due"]
+    tnote = "" if draft else f'''<div class="fb-card" style="background:#eef1ff;border-color:#dfe4ff;flex-direction:row;gap:14px;align-items:flex-start">
+          <span class="tav" style="background:#fff">{ic("person",20)}</span>
+          <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 auto">
+            <p class="sub1" style="font-size:14px;line-height:18px">{S["f_tnote_h"]}</p>
+            <p class="b2" style="line-height:22px">{S["f_tnote"]}</p>
+            <span class="chip hl" style="align-self:flex-start">{mi("star", 14, "#b7791f")}{S["f_hl"]}</span>
+          </div>
+        </div>'''
+    body = header(S, screen, S["lo_fb7"], crumb=S["a_crumb"], back_href=fn("02-Assignment" if draft else "Main",L), right_extra=chip) + f'''
 <div class="body" style="display:flex;flex-direction:column;gap:16px;overflow:hidden">
   <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex:0 0 auto">
     <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
       <h2 class="h4" style="font-size:20px;line-height:28px;font-weight:700">{S["a_h"]}</h2>
-      <p class="b2 muted">{S["f_meta"]}</p>
+      <p class="b2 muted">{S["f_draft_meta"] if draft else S["f_meta"]}</p>
       {("<p class=cap>" + S["f_decl_echo"] + "</p>") if DECL else ""}
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-      <div style="display:flex;gap:12px">
-        <button class="btn neutral">{ic("download",18)}{S["f_save"]}</button>
-        <a class="btn primary" href="{fn("06-Resubmit",L)}">{S["f_resubmit"]}{ic("right",18,"#fff",2.4)}</a>
-      </div>
-      <span class="cap">{S["f_resub_due"]}</span>
+      <div style="display:flex;gap:12px">{acts}</div>
+      <span class="cap" style="max-width:520px;text-align:right">{under}</span>
     </div>
   </div>
   <div style="display:flex;gap:16px;flex:1 1 auto;min-height:0">
@@ -1204,14 +1223,7 @@ def feedback(S, L):
     </section>
     <section class="pane" style="flex:0.9 1 0;background:transparent;box-shadow:none;overflow:visible">
       <div class="pane-b" style="padding:0;display:flex;flex-direction:column;gap:12px">
-        <div class="fb-card" style="background:#eef1ff;border-color:#dfe4ff;flex-direction:row;gap:14px;align-items:flex-start">
-          <span class="tav" style="background:#fff">{ic("person",20)}</span>
-          <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 auto">
-            <p class="sub1" style="font-size:14px;line-height:18px">{S["f_tnote_h"]}</p>
-            <p class="b2" style="line-height:22px">{S["f_tnote"]}</p>
-            <span class="chip hl" style="align-self:flex-start">{mi("star", 14, "#b7791f")}{S["f_hl"]}</span>
-          </div>
-        </div>
+        {tnote}
         <div class="fb-card">
           <span class="badge sum">{S["f_sum"]}</span>
           <p class="fbody">{S["f_sum_body"]}</p>
@@ -1223,7 +1235,7 @@ def feedback(S, L):
     </section>
   </div>
 </div>'''
-    return page(S, S["titles"]["fb"], body, HIT_LOGIC)
+    return page(S, S["titles"]["fb"] + (" (draft)" if draft else ""), body, HIT_LOGIC)
 
 def resubmit(S, L):
     selfchips = "".join(f'<button class="chip pick {{{{s{i}}}}}" onClick="{{{{ts{i}}}}}">{lbl}</button>' for i, lbl in enumerate(S["r_self"]))
@@ -1236,12 +1248,12 @@ def resubmit(S, L):
         <p class="sub1">{S["a_upload_h"]}</p>
         <span class="cap">{S["a_upload_meta"]}</span>
       </div>
-      {upload_block(S, S["r_submit"], S["r_file"], S["r_file_meta"], S["r_note"], fn("07-Pending2",L))}
+      {upload_block(S, S["r_submit"], S["r_file"], S["r_file_meta"], S["r_note"], fn("03-Pending",L))}
     </div>
-    {prefb_block(S, L)}
+    {prefb_block(S, L, extra=S["pf_hist_ret"])}
     {decl_block(S)}
     <div class="card" style="padding:16px 24px">
-      {submit_row(S, S["r_submit"], S["r_note"], fn("07-Pending2",L))}
+      {submit_row(S, S["r_submit"], S["r_note"], fn("03-Pending",L))}
     </div>
 </div></div>'''
     logic = """state = { picked: "", k2: false, k3: false, s0: true, s1: false, d0: false, d1: false, d2: false, d3: false };
@@ -1337,7 +1349,7 @@ def todo(S, L):
     return page(S, S["titles"]["todo"], body)
 
 BUILDERS = {"Main": course, "02-Assignment": assignment, "03-Pending": lambda S, L: pending(S, L, 1), "04-Feedback": feedback,
-            "06-Resubmit": resubmit, "07-Pending2": lambda S, L: pending(S, L, 2), "08-Feedback2": feedback2, "05-Todo": todo}
+            "06-Resubmit": resubmit, "08-Feedback2": feedback2, "05-Todo": todo, "04-Draft": lambda S, L: feedback(S, L, draft=True)}
 
 # ======================= MOBILE (375 x 812) =======================
 import random
@@ -1465,7 +1477,7 @@ def m_assignment(S, L):
   </div>
   <div class="mcard">
     <p class="sub1" style="font-size:14px">{S["a_upload_h"]}</p>
-    <a class="opt pri" href="{fn("M-Camera",L)}"><span class="oi">{ic("camera",24)}</span><span class="ot"><b>{S["m_opt_cam"]}</b><span>{S["m_opt_cam_s"]}</span></span>{ic("right",20,"#395ad2",2.4)}</a>
+    <a class="opt pri" href="{fn("M-Crop",L)}"><span class="oi">{ic("camera",24)}</span><span class="ot"><b>{S["m_opt_cam"]}</b><span>{S["m_opt_cam_s"]}</span></span>{ic("right",20,"#395ad2",2.4)}</a>
     <a class="opt" href="{fn("M-File",L)}"><span class="oi">{ic("upload",24)}</span><span class="ot"><b>{S["m_opt_file"]}</b><span>{S["m_opt_file_s"]}</span></span>{ic("right",20,"#c7c7cc",2.4)}</a>
     <a class="opt" href="{fn("M-Type",L)}"><span class="oi">{ic("filetext",24)}</span><span class="ot"><b>{S["m_opt_text"]}</b><span>{S["m_opt_text_s"]}</span></span>{ic("right",20,"#c7c7cc",2.4)}</a>
     <p class="cap">{S["a_note"]}</p>
@@ -1510,7 +1522,7 @@ CROP_LOGIC = """state = { fit: false };
 
 def m_crop(S, L):
     body = f'''
-<div class="ctop flow"><a class="cbtn" href="{fn("M-Camera",L)}" aria-label="{S["m_close"]}">{ic("x",22)}</a><span class="t">{S["m_crop_title"]}</span><span class="cpill">{S["m_cam_page"]}</span></div>
+<div class="ctop flow"><a class="cbtn" href="{fn("M-Assignment",L)}" aria-label="{S["m_close"]}">{ic("x",22)}</a><span class="t">{S["m_crop_title"]}</span><span class="cpill">{S["m_cam_page"]}</span></div>
 <div class="photo">
   <div class="desk"></div>
   {paper(230, 315, 56, 68, -3, box=(343, 452))}
@@ -1525,12 +1537,12 @@ def m_crop(S, L):
   <div class="ctools">
     <button class="tool {{{{fitOn}}}}" onClick="{{{{toggle}}}}">{ic("scan",15)}{S["m_crop_auto"]}</button>
     <button class="tool">{ic("rotate",15)}{S["m_crop_rotate"]}</button>
-    <a class="tool" href="{fn("M-Camera",L)}">{ic("camera",15)}{S["m_crop_retake"]}</a>
+    <span class="tool">{ic("camera",15)}{S["m_crop_retake"]}</span>
   </div>
   <p class="cnote">{S["m_crop_note"]}</p>
   <div class="thumbs">
     <span class="thumb-w"><span class="thumb on"><span class="no">1</span>{paper_inline(40, 52, False)}</span>{S["m_cam_page"]}</span>
-    <span class="thumb-w"><a class="thumb add" href="{fn("M-Camera",L)}" aria-label="{S["m_add_page"]}">{ic("plus",24)}</a>{S["m_add_page"]}</span>
+    <span class="thumb-w"><span class="thumb add" aria-label="{S["m_add_page"]}">{ic("plus",24)}</span>{S["m_add_page"]}</span>
   </div>
   <a class="crop-next" href="{fn("M-Pages",L)}">{S["m_next"]}{ic("right",18,"#fff",2.4)}</a>
 </div>'''
@@ -1628,7 +1640,7 @@ def m_pages(S, L):
     <div class="pstrip">
       <button class="pth on"><span class="no">1</span>{paper_inline(56, 74, False)}</button>
       <button class="pth"><span class="no">2</span>{paper_inline(56, 74, False)}</button>
-      <a class="pth add" href="{fn("M-Camera",L)}" aria-label="{S["m_add_page"]}">{ic("plus",24)}</a>
+      <a class="pth add" href="{fn("M-Crop",L)}" aria-label="{S["m_add_page"]}">{ic("plus",24)}</a>
     </div>
     <p class="cap" style="display:flex;align-items:center;gap:6px">{ic("grip",14)}{S["m_pages_hint"]}</p>
     <div class="preview">{paper_inline(200, 275)}<span class="pg">{S["m_pages_count"]}</span></div>
@@ -1721,25 +1733,30 @@ def m_sheet_block(S, n, kind, crit, quote, body, ref):
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap"><span class="ref">{ic("book",14)}{ref}</span><a class="cap" style="color:#395ad2;font-weight:700;display:inline-flex;align-items:center;gap:4px;text-decoration:none" href="{fn("MF-Chat", S["lang"])}">{ic("message",14)}{S["f_ask_ai"]}</a></div>
     </sc-if>'''
 
-def m_feedback(S, L, init=0):
-    screen = "M-Feedback" if init == 0 else "M-Sheet"
+def m_feedback(S, L, init=0, draft=False):
+    screen = "M-Draft" if draft else "M-Feedback"
     raw_html = marks_html(S["raw"], {1: (1, "good"), 2: (2, "ask"), 3: (3, "todo")}).replace('class="raw"', 'class="mraw"')
     sheets = "".join(m_sheet_block(S, i + 1, *c) for i, c in enumerate(S["cards"]))
     pts = "".join(
         f'<button class="pt {{{{h{i+1}}}}}" onClick="{{{{jm{i+1}}}}}"><span class="badge {k}" style="height:20px;padding:0 6px;font-size:11px"><i class="n" style="width:14px;height:14px;font-size:9px">{i+1}</i>{S["labels"][k]}</span>{crit}</button>'
         for i, (k, crit, *_rest) in enumerate(S["cards"]))
-    body = mheader(S, screen, S["lo_fb7_name"], back_href=fn("M-Main",L)) + f'''
-<div class="mbody">
-  <div class="mcard" style="gap:6px">
-    <h2 class="mh" style="font-size:16px;line-height:24px">{S["a_h"]}</h2>
-    <p class="cap">{S["f_meta"]}</p>
-    <span class="chip done" style="align-self:flex-start">{ic("check",14,"#1f7a4d",2.6)}{S["f_chip"]}</span>
-  </div>
-  <div class="mcard" style="flex-direction:row;gap:12px;align-items:flex-start">
+    m_chip = (f'<span class="chip wait" style="align-self:flex-start">{ic("sparkle",14)}{S["f_draft_chip"]}</span>' if draft
+              else f'<span class="chip done" style="align-self:flex-start">{ic("check",14,"#1f7a4d",2.6)}{S["f_chip"]}</span>')
+    m_tnote = "" if draft else f'''<div class="mcard" style="flex-direction:row;gap:12px;align-items:flex-start">
     <span class="tav">{ic("person",20)}</span>
     <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 auto;min-width:0"><p class="sub1" style="font-size:14px">{S["f_tnote_h"]}</p><p class="b2" style="line-height:22px">{S["f_tnote"]}</p>
       <span class="chip hl" style="align-self:flex-start;height:auto;min-height:24px;padding:3px 10px;white-space:normal;line-height:16px">{mi("star", 14, "#b7791f")}{S["f_hl"]}</span></div>
+  </div>'''
+    m_acts = (f'<a class="mbtn primary" href="{fn("M-Assignment",L)}">{S["f_draft_back"]}{ic("right",18,"#fff",2.4)}</a><p class="cap" style="text-align:center;margin-top:-8px">{S["f_draft_note"]}</p>' if draft
+              else f'<a class="mbtn primary" href="{fn("M-Assignment",L)}">{S["f_resubmit"]}{ic("right",18,"#fff",2.4)}</a><p class="cap" style="text-align:center;margin-top:-8px">{S["f_resub_due"]}</p><button class="mbtn neutral">{ic("download",18)}{S["f_save"]}</button>')
+    body = mheader(S, screen, S["lo_fb7_name"], back_href=fn("M-Assignment" if draft else "M-Main",L)) + f'''
+<div class="mbody">
+  <div class="mcard" style="gap:6px">
+    <h2 class="mh" style="font-size:16px;line-height:24px">{S["a_h"]}</h2>
+    <p class="cap">{S["f_draft_meta"] if draft else S["f_meta"]}</p>
+    {m_chip}
   </div>
+  {m_tnote}
   <div class="mcard" style="gap:8px">
     <span class="badge sum">{S["f_sum"]}</span>
     <p class="fbody" style="font-size:14px;line-height:1.8">{S["f_sum_body"]}</p>
@@ -1754,9 +1771,7 @@ def m_feedback(S, L, init=0):
     <p class="cap" style="text-align:center;margin-bottom:8px">{S["f_raw_meta"]}</p>
     {raw_html}
   </div>
-  <a class="mbtn primary" href="{fn("M-Assignment",L)}">{S["f_resubmit"]}{ic("right",18,"#fff",2.4)}</a>
-  <p class="cap" style="text-align:center;margin-top:-8px">{S["f_resub_due"]}</p>
-  <button class="mbtn neutral">{ic("download",18)}{S["f_save"]}</button>
+  {m_acts}
   <div style="height:32px"></div>
 </div>
 <sc-if value="{{{{open}}}}" hint-placeholder-val="{{{{false}}}}">
@@ -1789,11 +1804,11 @@ def m_feedback(S, L, init=0):
       close: go(0), prev: go(s > 1 ? s - 1 : 3), next: go(s < 3 ? s + 1 : 1),
     }};
   }}"""
-    return mpage(S, screen, S["m_titles"]["fb" if init == 0 else "sheet"], body, logic=logic)
+    return mpage(S, screen, S["m_titles"]["fb"] + (" (draft)" if draft else ""), body, logic=logic)
 
-MBUILDERS = {"M-Main": m_main, "M-Assignment": m_assignment, "M-Camera": m_camera, "M-Crop": m_crop, "M-Pages": m_pages, "M-Read": m_read,
+MBUILDERS = {"M-Main": m_main, "M-Assignment": m_assignment, "M-Crop": m_crop, "M-Pages": m_pages, "M-Read": m_read,
              "M-File": m_file, "M-Type": m_type,
-             "M-Pending": m_pending, "M-Feedback": lambda S, L: m_feedback(S, L, 0), "M-Sheet": lambda S, L: m_feedback(S, L, 2)}
+             "M-Pending": m_pending, "M-Feedback": lambda S, L: m_feedback(S, L, 0), "M-Draft": lambda S, L: m_feedback(S, L, 0, draft=True)}
 
 # ======================= TEACHER / BACK OFFICE (1440 x 900) =======================
 # Layout, labels and components follow the production Back Office (school-portal-admin,
@@ -2435,7 +2450,7 @@ TJA = dict(
     t_s_level="AIが示す範囲", t_level_help="フィードバックと「AIに質問」の両方に適用されます。テナントの上限は 2 です。",
     t_levels=[("0", "問い返しのみ", "答え・結果・完成した文章は示さず、質問で考えさせる"), ("1", "ヒントと参照先", "どこを見直すか、教材のどこを読むかを示す"), ("2", "別の題材で型を示す", "同じ型の例を別の題材で示す"), ("3", "解説まで", "解き方まで説明する（上限により選べません）")],
     t_set_level=("AIが示す範囲", "1 ・ ヒントと参照先（テナント上限 2）"),
-    t_vd={"flag": "✓ 要改善", "ok": "― 問題なし"}, f_cov_h="観点ごとの判定", f_cov="6観点すべてにコメントがあります",
+    t_vd={"flag": "✓ 要改善", "ok": "― 問題なし", "na": "― 判定対象外"}, t_na_crits=["生成AIリテラシー"], f_cov_h="観点ごとの判定", f_cov="6観点のうち5観点を判定 ・ 生成AIリテラシーは提出物からは判定しません（先生がチャット記録から評価します）",
     t_stu_ver={"第7回 演習レポート": "v2 ・ 11/16 14:02 ・ 質問 4件 ・ 下書きチェック 2回"}, t_stu_ver_lbl="版",
     t_due_seg=["すべて", "今週が期限", "期限超過"], t_due_col="締切",
     ad_x_shape_h="形式", ad_x_shapes=[("チャットとフィードバック", ["ユーザーID", "生徒名", "クラス", "タイトル", "科目", "質問", "チャット"]), ("観点別の結果", ["ユーザーID", "生徒名", "LO", "版", "観点", "判定", "コメント", "ルーブリック版"]), ("利用状況", ["ユーザーID", "生徒名", "LO", "下書きチェック回数", "版数", "質問数", "初回", "最新"])],
@@ -2702,7 +2717,7 @@ TEN = dict(
     t_s_level="AI answer level", t_level_help="Applies to the feedback and to Ask AI. The tenant cap is 2.",
     t_levels=[("0", "Ask back only", "No answers, results or finished text; questions that make the student think"), ("1", "Hints and where to look", "What to re-check and where in the materials to read"), ("2", "A pattern on another topic", "A worked example of the same shape on a different topic"), ("3", "Full explanation", "Explains the method (not selectable under the cap)")],
     t_set_level=("AI answer level", "1 · Hints and where to look (tenant cap 2)"),
-    t_vd={"flag": "✓ Needs work", "ok": "― No issue"}, f_cov_h="Verdict per criterion", f_cov="Every one of the 6 criteria has a comment",
+    t_vd={"flag": "✓ Needs work", "ok": "― No issue", "na": "― Not judged"}, t_na_crits=["Generative-AI literacy"], f_cov_h="Verdict per criterion", f_cov="5 of the 6 criteria judged · Generative-AI literacy is not judged from the file (your teacher assesses it from the chat log)",
     t_stu_ver={"Session 7 exercise report": "v2 · 16 Nov 14:02 · 4 questions · 2 draft checks"}, t_stu_ver_lbl="Versions",
     t_due_seg=["All", "Due this week", "Overdue"], t_due_col="Due",
     ad_x_shape_h="Shape", ad_x_shapes=[("Chat and feedback", ["User ID", "Student Name", "Class", "Title", "Subject", "Question", "Chat"]), ("Results per criterion", ["User ID", "Student Name", "LO", "Version", "Criterion", "Verdict", "Comment", "Rubric version"]), ("Usage", ["User ID", "Student Name", "LO", "Draft checks", "Versions", "Questions", "First", "Latest"])],
@@ -2867,7 +2882,7 @@ TEN = dict(
 )
 JA.update(TJA); EN.update(TEN)
 
-TSCREENS = ["T-Book", "T-Dialog", "T-Material", "T-Settings", "T-Created", "T-Courses", "T-Course", "T-CourseBook", "T-Queue", "T-Detail", "T-List", "T-Review", "T-DashTopic", "T-DashGroup", "T-DashStudent"]
+TSCREENS = ["T-Book", "T-Dialog", "T-Material", "T-Settings", "T-Courses", "T-Course", "T-CourseBook", "T-Queue", "T-Detail", "T-List", "T-Review", "T-DashTopic", "T-DashGroup", "T-DashStudent"]
 
 def tfn(screen, lang):
     return f"{screen}.dc.html" if lang == "ja" else f"{screen}-en.dc.html"
@@ -3150,7 +3165,7 @@ def lo_head(S, L, screen, tab, pub, side="book", edit_action=False):
         status = (f'<sc-if value="{{{{pubOff}}}}" hint-placeholder-val="{{{{true}}}}"><span class="tchip unpublished">{S["t_unpub"]}</span></sc-if>'
                   f'<sc-if value="{{{{pubOn}}}}" hint-placeholder-val="{{{{false}}}}"><span class="tchip published">{S["t_pub"]}</span></sc-if>')
     if side == "book":
-        crumbs = [(S["t_bm"], tfn("T-Book", L)), (S["t_book"], tfn("T-Created" if not pub else "T-Book", L)), (S["t_new_lo"], None)]
+        crumbs = [(S["t_bm"], tfn("T-Book", L)), (S["t_book"], tfn("T-Book", L)), (S["t_new_lo"], None)]
         tabs_src = S["t_lo_tabs"]
         acts = (f'<a class="tbtn" href="{tfn("T-Detail", L)}">{mi("people", 18)}{S["t_view_subs"]}</a>' +
                 (f'<button class="tbtn outlined" onClick="{{{{openEdit}}}}">{mi("edit", 18)}{S["t_edit"]}</button>' if edit_action
@@ -3217,7 +3232,7 @@ def t_material(S, L):
 <sc-if value="{{{{pubOn}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack" role="status">{mi("checkCircle", 20)}{S["t_pub_snack"]}</div></sc-if>
 <div class="tbar">
   <a class="tbtn" href="{fn("02-Assignment", L)}">{mi("eye", 18)}{S["t_preview"]}</a>
-  <span style="display:flex;gap:8px"><a class="tbtn" href="{tfn("T-Created", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Created", L)}">{S["t_save"]}</a></span>
+  <span style="display:flex;gap:8px"><a class="tbtn" href="{tfn("T-Book", L)}">{S["t_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Book", L)}">{S["t_save"]}</a></span>
 </div>
 </div>'''
     return tpage(S, "T-Material", S["t_titles"]["mat"], body, logic=TMAT_LOGIC)
@@ -4261,7 +4276,7 @@ def t_coursebook(S, L):
 </div>'''
     return tpage(S, "T-CourseBook", S["t_titles"]["cbook"], body, logic=TAV_LOGIC)
 
-TBUILDERS = {"T-Book": t_book, "T-Dialog": t_dialog, "T-Created": t_created, "T-Material": t_material, "T-Settings": t_settings,
+TBUILDERS = {"T-Book": t_book, "T-Dialog": t_dialog, "T-Material": t_material, "T-Settings": t_settings,
              "T-Courses": t_courses, "T-Course": t_course, "T-CourseBook": t_coursebook,
              "T-Queue": t_queue, "T-Detail": t_detail, "T-List": t_list, "T-Review": t_review,
              "T-DashTopic": t_dash_topic, "T-DashGroup": t_dash_group, "T-DashStudent": t_dash_student}
@@ -6580,7 +6595,7 @@ def f_chat(S, L):
 
 def mf_chat(S, L):
     ctx, thread, inp, logic = f_chat_body(S, L, mobile=True)
-    body = mheader(S, "MF-Chat", S["f_chat_title"], back_href=fn("M-Sheet", L)) + f'''
+    body = mheader(S, "MF-Chat", S["f_chat_title"], back_href=fn("M-Feedback", L)) + f'''
 <div class="mbody" style="padding-bottom:96px;background:#f7f8fc">
   {ctx}
   {thread}
@@ -6588,8 +6603,8 @@ def mf_chat(S, L):
 <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid rgba(28,30,44,.12);padding:10px 12px 22px;z-index:20">{inp}</div>'''
     return mpage(S, "MF-Chat", S["f_chat_titles"]["m"], body, logic=logic)
 
-SCREENS.append("F-Chat"); BUILDERS["F-Chat"] = f_chat
-MSCREENS.append("MF-Chat"); MBUILDERS["MF-Chat"] = mf_chat
+BUILDERS["F-Chat"] = f_chat
+MBUILDERS["MF-Chat"] = mf_chat
 TO_MOBILE["F-Chat"] = "MF-Chat"; TO_PC["MF-Chat"] = "F-Chat"
 
 QSCREENS_W.append("Q-Chat"); QSCREENS_M.append("MQ-Chat"); QSCREENS_ALL = QSCREENS_W + QSCREENS_M
@@ -7353,14 +7368,14 @@ X_JA = dict(
     x_f_rub="ルーブリック内容", x_f_rub_v="アップロードした課題と模範回答・評価基準から生成。この回は ①②③④ を使う：\n① エクセルスキル — 関数（CORREL・SLOPE・INTERCEPT・RSQ）とセル参照が正しく使えている\n② 見やすさ — 表・ラベル・単位が読み取れる\n③ 処理 — 相関係数・回帰式・決定係数・偏相関が模範回答と一致する（差があれば指摘）\n④ 考察 — 数値の意味を一文で書けている（どの変数が家賃を最も説明するか）\n各観点 0〜3、優れたものは 5（目安として返す）",
     x_gen="AIによる生成", x_gen_hint="アップロードした課題から生成", x_due="期限を設定する", x_due_v="2026/11/20 23:59", x_cancel="キャンセル", x_create="作成",
     x_cls_name="地域・環境統計学 3年A組", x_cls_subj="地域・環境統計学", x_auto_close="自動終了", x_snack_created="作成しました", x_det_pub="公開", x_det_created="下書き ・ 作成 2026/10/08 14:02", x_view_less="表示を減らす", x_an_h="分析",
-    x_an=[("flag", "開始済み", "0 / 150", "受講生150人のうち0人が、この課題に紐づくスナップを1件以上送信しています"), ("snap", "スナップ", "0", "この課題に紐づくスナップの総数（全生徒、Snap-to-ask と AIフィードバックの両方）"), ("checkCircle", "完了", "0 / 150", "受講生150人のうち0人が、この課題で「完了にする」をタップしています")],
+    x_an=[("flag", "開始済み", "0 / 150", "受講生150人のうち0人が、この課題に紐づくスナップを1件以上送信しています"), ("snap", "スナップ", "0", "この課題に紐づくスナップの総数（全生徒、Snap-to-ask と AIフィードバックの両方）"), ("checkCircle", "事前チェック済み", "0 / 150", "受講生150人のうち0人が、この課題でAIチェックを1回以上受けています")],
     x_new_chip="NEW", x_detail_h="課題の詳細", x_det_edit="編集", x_det_open="開く", x_det_close="閉じる", x_det_files="添付ファイル", x_det_rub="ルーブリック内容", x_det_msg="メッセージ",
     x_det_sel=("第8回 相関分析(2)", "公開中 ・ 期限 2026/11/13 23:59", "演習_08_相関(2).xlsx ・ 演習_08_相関(2)_模範回答.xlsx ・ 課題の評価基準.pdf"),
-    x_s8_qov="都道府県別の統計データから、2つの変数の相関係数と散布図を Excel で求め、外れ値（東京都）の影響を層別して確かめる", x_det_rub_v="① エクセルスキル ② 見やすさ ③ 処理（層別・外れ値・相関行列が模範回答と一致） ④ 考察",
-    x_det_stats=("開始済み 118 / 150", "スナップ 203", "完了 64 / 150"),
+    x_s8_qov="都道府県別の統計データから、2つの変数の相関係数と散布図を Excel で求め、外れ値（東京都）の影響を層別して確かめる", x_det_rub_v="模範回答との照合：層別・外れ値の処理・相関行列の各値（丸め誤差は許容）。正解の値は示さず、どのセル・どの手順を見直すかを伝える。記述問題は、考え方を聞かれたときだけ助言する。点数・評価レベルは出さない。",
+    x_det_stats=("開始済み 118 / 150", "スナップ 203", "事前チェック済み 118 / 150"),
     # X2 — app upload
     x_pc_crumb="AIチューター ・ 課題", x_pc_up_title="AIフィードバック ・ 答案のアップロード", x_pc_fb_title="AIフィードバック ・ 結果", x_pc_drop="ここにファイルをドロップ、またはファイルを選ぶ", x_pc_drop_s="Excel のまま送れます。すべてのシートを読み込みます。写真はスマホのアプリから。", x_pc_remove="ファイルを外す", x_pc_web="学習者Web（PC）— アプリと同じ流れ",
-    x_up_title="AIフィードバック", x_up_asg_lbl="課題", x_up_asg="第9回 回帰分析", x_up_due="期限 11/20 23:59 ・ 提出前に必ずAIチェック",
+    x_up_title="AIフィードバック", x_up_asg_lbl="課題", x_up_asg="第9回 回帰分析", x_up_due="期限 11/20 23:59 ・ 提出前にAIチェック（何度でも）",
     x_up_h="答案をアップロード", x_up_sub="Excel のまま送れます。すべてのシートを読み込みます。", x_up_camera="写真を撮る", x_up_file="ファイルを選ぶ", x_up_types="Excel (.xlsx) ・ PowerPoint (.pptx) ・ PDF ・ 写真",
     x_up_picked="演習_09_回帰.xlsx", x_up_picked_meta="48 KB ・ 4シート ・ 11/13 20:38", x_up_sheets_h="読み込むシート",
     x_up_sheets=[("回帰直線・回帰式(1)", "B3:L22"), ("回帰直線・回帰式(2)", "A3:F50"), ("決定係数", "A1:I51"), ("偏相関", "A3:I22")], x_up_read="読み込み済み",
@@ -7369,11 +7384,10 @@ X_JA = dict(
     # X3 — app feedback
     x_fb_title="AIフィードバック", x_fb_seg=("読み取ったテキスト", "フィードバック"), x_fb_ver="版 1 ・ 11/13 20:40 ・ 模範回答と比較",
     x_fb_summary_lbl="まとめ",
-    x_fb_summary="4つのシートすべてで計算が最後まで進んでいて、特に「回帰直線・回帰式(1)」では偏差から共分散・相関係数・回帰式まで手順どおりに求められています。計算式で出した値と関数で出した値が一致しているのも、確認の習慣ができている証拠です。ひとつ考えてみてください。「偏相関」シートの偏相関係数は 1.01 になっていますが、相関係数が取りうる範囲はいくつからいくつまででしょうか。模範回答では 0.58 です。分母の √(1−r²) にどの r を入れたか、セルの参照先を一度たどってみましょう。次の一歩は三つです。① 偏相関の式のセル参照を見直して再計算する。② 「決定係数」シートで、三つの R² のうちどれが家賃をいちばん説明するかを一文で書く。③ 直したら、先生の指示どおりに最終版を提出する。参照：第9回 講義資料 p.12「偏相関係数」、p.8「決定係数の読み方」",
+    x_fb_summary="4つのシートすべてで計算が最後まで進んでいて、特に「回帰直線・回帰式(1)」では偏差から共分散・相関係数・回帰式まで手順どおりに求められています。計算式で出した値と関数で出した値が一致しているのも、確認の習慣ができている証拠です。ひとつ考えてみてください。「偏相関」シートの偏相関係数は 1.01 になっていますが、相関係数が取りうる範囲はいくつからいくつまででしょうか。分母の √(1−r²) にどの r を入れたか、セルの参照先を一度たどってみましょう。次の一歩は三つです。① 偏相関の式のセル参照を見直して再計算する。② 「決定係数」シートの三つの R² を見比べておく。③ 直したら、先生の指示どおりに最終版を提出する。参照：第9回 講義資料 p.12「偏相関係数」、p.8「決定係数の読み方」",
     x_fb_cards=[("t", "処理", "回帰直線・回帰式(1)", "相関係数 0.7618（計算式 K8）＝ 0.7618（関数 K13）", "計算式と関数の両方で求めて値を突き合わせています。模範回答と一致。偏差積の平均（共分散）39.52 から r を出す流れも正しいです。"),
-                ("t", "エクセルスキル", "回帰直線・回帰式(1)", "回帰式の傾き 0.00807 ・ 切片 −1.797", "模範回答と一致。ここまで書けたら、「入試の点数が1点上がるとGPAが約0.008上がる」という一文を添えると、数値が意味を持ちます。"),
-                ("r", "考察", "決定係数", "使用部分面積 vs 家賃 R² 0.508 ／ 交通 R² 0.076 ／ 築年数 R² 0.360 — 解釈は未記入", "数値は三つとも模範回答と一致していますが、模範回答にはこの下に「築年数と面積が家賃を説明し、駅からの徒歩分数はほとんど関係しない」の一文があります。どの変数が家賃を最も説明するか、一文だけ書いてみましょう。"),
-                ("r", "処理", "偏相関", "偏相関係数 (r_12.3) = 1.0105", "相関係数は −1 から 1 の間に収まります。1 を超えているので、式のどこかで参照がずれています。模範回答は 0.58 です。(r12 − r13·r23) ÷ √((1−r13²)(1−r23²)) の r13 と r23 に、相関行列のどのセルを入れたか確かめてみてください。")],
+                ("t", "エクセルスキル", "回帰直線・回帰式(1)", "回帰式の傾き 0.00807 ・ 切片 −1.797", "模範回答と一致。傾きと切片の両方が合っています。"),
+                ("r", "処理", "偏相関", "偏相関係数 (r_12.3) = 1.0105", "相関係数は −1 から 1 の間に収まります。1 を超えているので、式のどこかで参照がずれています。(r12 − r13·r23) ÷ √((1−r13²)(1−r23²)) の r13 と r23 に、相関行列のどのセルを入れたか確かめてみてください。")],
     x_fb_cols=("項目", "値"), x_fb_again="直してもう一度チェック（版2）", x_fb_final="完了にする", x_fb_refix="直した版をアップロード（版2）", x_fb_ask="AIに質問",
 )
 X_EN = dict(
@@ -7392,13 +7406,13 @@ X_EN = dict(
     x_f_rub="Rubric content", x_f_rub_v="Generated from the uploaded question, the model answer and the criteria. This session uses (1)–(4):\n(1) Excel skills — functions (CORREL, SLOPE, INTERCEPT, RSQ) and cell references used correctly\n(2) Readability — tables, labels and units can be read\n(3) Processing — correlation, regression line, R² and partial correlation match the model answer (flag any gap)\n(4) Analysis — one sentence on what the numbers mean (which variable explains rent most)\n0–3 per criterion, 5 for outstanding work (returned as an indication)",
     x_gen="Generate by AI", x_gen_hint="from the uploaded question", x_due="Set a due date", x_due_v="2026/11/20 23:59", x_cancel="Cancel", x_create="Create",
     x_cls_name="Regional & Environmental Statistics · Year 3 A", x_cls_subj="Regional & Environmental Statistics", x_auto_close="Auto closes", x_snack_created="Created successfully", x_det_pub="Publish", x_det_created="Draft · created 2026/10/08 14:02", x_view_less="View Less", x_an_h="Analysis",
-    x_an=[("flag", "Started", "0 / 150", "0 of 150 enrolled students have at least one snap tied to this assignment"), ("snap", "Snaps", "0", "Total count of snaps tied to this assignment across all students, counting all snap types (both Snap-to-ask and AI feedback)"), ("checkCircle", "Completed", "0 / 150", "0 of 150 enrolled students have tapped Mark as Complete on this assignment.")],
+    x_an=[("flag", "Started", "0 / 150", "0 of 150 enrolled students have at least one snap tied to this assignment"), ("snap", "Snaps", "0", "Total count of snaps tied to this assignment across all students, counting all snap types (both Snap-to-ask and AI feedback)"), ("checkCircle", "Pre-checked", "0 / 150", "0 of 150 enrolled students have run the AI check at least once on this assignment.")],
     x_new_chip="NEW", x_detail_h="Assignment detail", x_det_edit="Edit", x_det_open="Open", x_det_close="Close", x_det_files="Attached files", x_det_rub="Rubric content", x_det_msg="Your message",
     x_det_sel=("Session 8 Correlation (2)", "Open · due 2026/11/13 23:59", "Exercise_08_Correlation(2).xlsx · Exercise_08_Correlation(2)_model_answer.xlsx · Assignment_evaluation_criteria.pdf"),
-    x_s8_qov="From the prefecture statistics, compute the correlation coefficient and scatter plot of two variables in Excel, then check the effect of the outlier (Tokyo) by stratifying", x_det_rub_v="(1) Excel skills (2) Readability (3) Processing (stratified analysis, outliers and the correlation matrix match the model answer) (4) Analysis",
-    x_det_stats=("Started 118 / 150", "Snaps 203", "Completed 64 / 150"),
+    x_s8_qov="From the prefecture statistics, compute the correlation coefficient and scatter plot of two variables in Excel, then check the effect of the outlier (Tokyo) by stratifying", x_det_rub_v="Checked against the model answer: stratification, outlier handling and every value of the correlation matrix (small rounding tolerance). Never shows the correct value; says which cell and step to re-check. Written questions: advice only when the student asks. No score, grade or level.",
+    x_det_stats=("Started 118 / 150", "Snaps 203", "Pre-checked 118 / 150"),
     x_pc_crumb="AI Tutor · Assignments", x_pc_up_title="AI Feedback · Upload your work", x_pc_fb_title="AI Feedback · Result", x_pc_drop="Drop a file here, or choose one", x_pc_drop_s="Send the Excel file as it is. Every sheet is read. Photos go through the phone app.", x_pc_remove="Remove file", x_pc_web="Learner web (PC) — the same flow as the app",
-    x_up_title="AI Feedback", x_up_asg_lbl="Assignment", x_up_asg="Session 9 Regression", x_up_due="due 11/20 23:59 · AI check required before submitting",
+    x_up_title="AI Feedback", x_up_asg_lbl="Assignment", x_up_asg="Session 9 Regression", x_up_due="due 11/20 23:59 · AI check before you submit (as many times as you like)",
     x_up_h="Upload your work", x_up_sub="Send the Excel file as it is. Every sheet is read.", x_up_camera="Take a photo", x_up_file="Choose a file", x_up_types="Excel (.xlsx) · PowerPoint (.pptx) · PDF · photos",
     x_up_picked="Exercise_09_Regression.xlsx", x_up_picked_meta="48 KB · 4 sheets · 11/13 20:38", x_up_sheets_h="Sheets to read",
     x_up_sheets=[("Regression line (1)", "B3:L22"), ("Regression line (2)", "A3:F50"), ("R²", "A1:I51"), ("Partial correlation", "A3:I22")], x_up_read="read",
@@ -7406,11 +7420,10 @@ X_EN = dict(
     x_up_prev="Previous version: none · first check",
     x_fb_title="AI Feedback", x_fb_seg=("Extracted text", "Feedback"), x_fb_ver="Version 1 · 11/13 20:40 · compared with the model answer",
     x_fb_summary_lbl="Summary",
-    x_fb_summary="All four sheets are worked through to the end, and on “Regression line (1)” you went from the deviations to the covariance, the correlation coefficient and the regression line in the right order. The value from the formula and the value from the function agree, which shows you are in the habit of checking. One thing to think about: on the “Partial correlation” sheet the coefficient comes out as 1.01 — what range can a correlation coefficient take? The model answer gives 0.58. Trace which r went into the √(1−r²) in the denominator. Three next steps: (1) re-check the cell references in the partial-correlation formula and recompute; (2) on the “R²” sheet, write one sentence on which of the three R² explains rent best; (3) once fixed, submit the final version the way your teacher asks. Referred to: Session 9 slides p.12 “Partial correlation”, p.8 “Reading R²”",
+    x_fb_summary="All four sheets are worked through to the end, and on “Regression line (1)” you went from the deviations to the covariance, the correlation coefficient and the regression line in the right order. The value from the formula and the value from the function agree, which shows you are in the habit of checking. One thing to think about: on the “Partial correlation” sheet the coefficient comes out as 1.01 — what range can a correlation coefficient take? Trace which r went into the √(1−r²) in the denominator. Three next steps: (1) re-check the cell references in the partial-correlation formula and recompute; (2) look again at the three R² on the “R²” sheet; (3) once fixed, submit the final version the way your teacher asks. Referred to: Session 9 slides p.12 “Partial correlation”, p.8 “Reading R²”",
     x_fb_cards=[("t", "Processing", "Regression line (1)", "Correlation 0.7618 (formula, K8) = 0.7618 (function, K13)", "Computed both by formula and by function, and they agree. Matches the model answer. Going from the mean deviation product (covariance 39.52) to r is also right."),
-                ("t", "Excel skills", "Regression line (1)", "Slope 0.00807 · intercept −1.797", "Matches the model answer. Add one sentence — “one more exam point raises GPA by about 0.008” — and the numbers mean something."),
-                ("r", "Analysis", "R²", "Floor area vs rent R² 0.508 / walk time R² 0.076 / building age R² 0.360 — no interpretation written", "All three numbers match the model answer, but the model answer has one sentence under them: “age and floor area explain rent; walking time from the station hardly matters.” Write one sentence on which variable explains rent most."),
-                ("r", "Processing", "Partial correlation", "Partial correlation (r_12.3) = 1.0105", "A correlation coefficient lies between −1 and 1. Above 1 means a reference in the formula is off. The model answer gives 0.58. Check which cells of the correlation matrix went into r13 and r23 in (r12 − r13·r23) ÷ √((1−r13²)(1−r23²)).")],
+                ("t", "Excel skills", "Regression line (1)", "Slope 0.00807 · intercept −1.797", "Matches the model answer: both the slope and the intercept."),
+                ("r", "Processing", "Partial correlation", "Partial correlation (r_12.3) = 1.0105", "A correlation coefficient lies between −1 and 1. Above 1 means a reference in the formula is off. Check which cells of the correlation matrix went into r13 and r23 in (r12 − r13·r23) ÷ √((1−r13²)(1−r23²)).")],
     x_fb_cols=("Item", "Value"), x_fb_again="Fix it and check again (version 2)", x_fb_final="Mark as Complete", x_fb_refix="Upload a fixed version (version 2)", x_fb_ask="Ask AI",
 )
 JA.update(X_JA); EN.update(X_EN)
@@ -7833,9 +7846,9 @@ for _a in ("A-Idea", "A-Dialogue", "A-Revise"):
 
 # ---------- write ----------
 boards, order = {}, []
-titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
+titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing (the second submission waits the same way)",
           "4 · Returned — approved feedback (draft 1)", "5 · Second submission — upload the revised work",
-          "6 · Second submission — teacher reviewing", "7 · Returned (draft 2) — fixed-since-last-time chips on the cards", "8 · To-do — awaiting resubmission", "9 · Ask AI from a comment — ask-back only (3 Nov)"]
+          "7 · Returned (draft 2) — fixed-since-last-time chips on the cards", "8 · To-do — awaiting resubmission", "9 · Ask AI from a comment — ask-back only (3 Nov)", "4b · Feedback on a draft before submission — not a submission (3 Nov)"]
 ROW_Y = {"ja": 0, "en": 1400}
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(SCREENS):
@@ -7850,9 +7863,9 @@ for lang, S in (("ja", JA), ("en", EN)):
 # mobile rows
 MW, MH, MGAP = 375, 812, 80
 MROW_Y = {"ja": 2900, "en": 4100}
-mtitles = ["M1 · LO list under the topic", "M2 · Assignment — how to submit", "M3 · Snap — camera", "M4 · Crop the page",
+mtitles = ["M1 · LO list under the topic", "M2 · Assignment — how to submit", "M4 · Snap and crop, page by page",
            "M5 · Pages — check & submit", "M5b · Read-check — unconfirmed spans, tap to correct (3 Nov)", "M6 · File or photos — check & submit", "M7 · Typed answer — confirm & submit",
-           "M8 · Submitted — teacher reviewing", "M9 · Returned — tap an underline", "M10 · Returned — comment sheet open", "M11 · Ask AI from a comment — ask-back only (3 Nov)"]
+           "M8 · Submitted — teacher reviewing", "M9 · Returned — tap an underline (the comment sheet opens on tap)", "M11 · Ask AI from a comment — ask-back only (3 Nov)", "M12 · Feedback on a draft before submission (3 Nov)"]
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(MSCREENS):
         CUR = screen
@@ -7867,7 +7880,7 @@ for lang, S in (("ja", JA), ("en", EN)):
 TW, TH, TGAP = 1440, 900, 80
 TROW_Y = {"ja": 5400, "en": 7000}
 ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objective — AI Feedback type, its settings",
-           "T3 · Created → LO content — material, evaluation items, rubric", "T4 · LO settings tab — what the dialog collected, read-only", "T5 · Back in the tree — Unpublished until published",
+           "T3 · Created → LO content — material, evaluation items, rubric", "T4 · LO settings tab — what the dialog collected, read-only",
            "T6 · Course Management — the course list, two courses on one book, Add course, Share Access (join by QR)", "T7 · Course detail — Books tab, the book that carries the dates; ⋮ with Share Access; Student tab, Extend due date (V2)", "T8 · Learning Objectives Availability — start, end and resubmission per LO, per course; an LO with no window yet",
            "T9 · Submission Grading — the queue, filtered to AI Feedback", "T10 · Overview — who has submitted", "T11 · The LO's submissions — same table, one LO", "T12 · Review and return — the grading layout",
            "T13 · Group Dashboard — Topic Dashboard, the AI Feedback LO per topic, what the class missed", "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback",
@@ -7962,13 +7975,12 @@ notes = {
         "Draft-1 return. UPDATED 3 Nov: every card carries an 'Ask AI (asks you back)' link that opens board 9 — the ask-back-only chat on that comment (Okayama's requirement). Every card now carries its Kindai criterion as a grey tag (統計処理, 解釈…) — no level, no number — which is the data the professor's 'what did the class miss' view needs. A 次の一歩 card was tried and removed (PM, 18 Sep): an AI-written next step prescribes the class flow, which is the teacher's — the guidance now lives inside each 改善点 card and in the teacher's own note. 修正して再提出 now leads to a real second-submission screen with its due date. コメントを PDF で保存 is the portable-structure proof for Correspondence/KULeD. The ★ line in the teacher's note card (PM, 20 Sep) appears only when the teacher chose this submission as an example to show the class — set from the Back Office review screen — so the student is told before it comes up in class."},
     "n5": {"x": 4 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
         "The second submission. A left pane with last time's comments as a tickable checklist (and the teacher's note) was THE BIG ADDITION here and was REMOVED (PM, 3 Nov: 'can remove the section' — no client asked for it; the previous feedback is one tap away in the 'Feedback you have received so far' list under the pre-submission card, and the returned screen 04 keeps the comments). What is left is the upload and the submit, as on 02. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission → UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the basic-requirements list on the right is gone; the pre-submission AI feedback card stands in its place."},
-    "n6": {"x": 5 * (W + GAP), "y": H + 60, "w": NW, "maxH": 220, "text":
-        "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →"},
-    "n7": {"x": 6 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
+    "n7": {"x": 5 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
         "Draft-2 return. The 前回からの変化 / Since last time block (fixed ③, fixed ②, one new comment, the own-words line) was here and was FOLDED INTO THE CARDS (PM, 3 Nov: 'can't this just be in the feedback card itself as content?'): each card now carries a chip — 前回の② ― 直りました / Last time's ② — fixed on the two strengths, 新しいコメント / New comment on the new 改善点 — and the comment text itself says the passage was rewritten as a direct answer to last time's question. The own-words line is gone with the block (it was the positive case only; there was never an accusatory counterpart). New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."},
-    "n8": {"x": 7 * (W + GAP), "y": H + 60, "w": NW, "maxH": 240, "text":
+    "n8": {"x": 6 * (W + GAP), "y": H + 60, "w": NW, "maxH": 240, "text":
         "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date."},
-    "n9": {"x": 8 * (W + GAP), "y": H + 60, "w": NW, "maxH": 420, "text": "ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."},
+    "n4b": {"x": 8 * (W + GAP), "y": H + 60, "w": NW, "maxH": 360, "text": "FEEDBACK ON A DRAFT (PRD v1.18 C3 pre-submission row; requirement trace 3 Nov). This is what 'Get feedback on this draft' on boards 2 and 5 opens: the same engine, the same rubric, the same summary, verdict strip and cards as the returned screen (4), with a 'Draft 2 · not a submission' chip, no teacher note, no ★ line and no Revise-and-resubmit; the one action goes back to the assignment to submit. Unlimited until the due date (a tenant may cap it); never teacher-reviewed; never a submission; the teacher sees only the count. Until 3 Nov that button opened the Kindai Excel trial board X3 — a different assignment (Session 9 Regression), a different rubric and the AI Tutor surface — which the trace flagged as the one structural error in the flow."},
+    "n9": {"x": 7 * (W + GAP), "y": H + 60, "w": NW, "maxH": 420, "text": "ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."},
     "n_lang": {"x": 0, "y": ROW_Y["en"] + H + 60, "w": 700, "maxH": 220, "text":
         "Language toggle: a segmented 日本語 / English control in the header, left of the bell. In the prototype it is a link to the twin screen, so the language holds as you click through (each artboard keeps its own state). In the product this would be the account's language setting."},
     "n_dev": {"x": 760, "y": ROW_Y["en"] + H + 60, "w": 700, "maxH": 220, "text":
@@ -7983,9 +7995,10 @@ notes = {
 for _k, _a in {"m9": " ADDED 3 Nov — VERDICT PER CRITERION (PRD C3 feedback shape; Kyushu Sangyo #6, DLSC F3): a card under the Summary lists every rubric criterion with ✓ Needs work or ― No issue — all six, not only the commented ones — and each comment sheet carries the same verdict beside its criterion."}.items():
     MNOTES[_k] += _a
 MNOTES["m11"] = "Mobile twin of board 9. ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."
-for i, key in enumerate(["m1", "m2", "m3", "m4", "m5", "m5b", "m6", "m7", "m8", "m9", "m10", "m11"]):
+MNOTES["m12"] = "Mobile twin of board 4b: the AI feedback on a DRAFT, before submission (PRD v1.18 C3; trace 3 Nov). Same engine, same rubric and cards as the returned screen, with a 'Draft 2 · not a submission' chip, no teacher note, no ★ and no resubmit; the one action goes back to the assignment to submit. Until 3 Nov the LO's 'Get feedback on this draft' opened the Kindai Excel trial board (X3) — a different assignment, rubric and surface; that link is gone."
+for i, key in enumerate(["m1", "m2", "m4", "m5", "m5b", "m6", "m7", "m8", "m9", "m11", "m12"]):
     notes[key] = {"x": i * (MW + MGAP), "y": MROW_Y["ja"] + MH + 60, "w": MNW, "maxH": 420, "text": MNOTES[key]}
-for i, key in enumerate(["t1", "t2", "t3", "t4", "t5", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12", "t13", "t14"]):
+for i, key in enumerate(["t1", "t2", "t3", "t4", "tc1", "tc2", "tc3", "t6", "t7", "t8", "t9", "t10", "t11", "t12", "t13", "t14"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
 PNOTES = {
     "P-Dialog": "AI PRACTICE — the Similar Questions Practice LO (jamessim-source/AIpractice: docs/prototype-plan.md, docs/c10-finalized-logic.md = PRD C10 as decided by the PM on 24 Sep; the clickable prototype on branch `prototype`). Redrawn here on this canvas's production components and fitted into the Kindai course: the practice LO sits in Topic 7-1 beside the AI Feedback LO, linked to the Session 7 lecture slides PDF, so Book Management, Course Management, the dashboards and the student app all show it as one more LO. THIS BOARD: DialogCreateLearningMaterial with the new frontend sub-type chosen (a plain LEARNING_OBJECTIVE with ai_practice=true, like Random Activity or Paper Submission — not a new proto type). Type name decided: Similar Questions Practice LO (JA 類題演習 LO is a placeholder; Random Activity already uses AI演習). General Info as for any LO; Settings = the required リンク元の LO picker, fed by the book's LOs whose 演習の元として利用可 switch is on — one here — with the empty-state copy (turn the switch on a PDF LO first); the note of the fields hidden for this type; the flag + tenant-setting gate. Creation and linking are one save. One eligible LO may be linked by several practice LOs. Confirm → P3. T2's type menu also lists this type (click it).",
@@ -8131,11 +8144,11 @@ for lang, S in (("ja", JA), ("en", EN)):
         XX[screen] = x
         x += w + 80
 XNOTES = {
-    "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is. LAYOUT (PM, 8 Oct: follow the production screenshot exactly): the admin view of ClassAssignmentPage — the class name and its subject chip as the page header, no class-card row, the + New button at the top of the assignment column on the left, the assignments listed as name + status dot (green = published, grey = draft, red = past due), a vertical divider, and the detail beside it with the edit pencil and Open / Close, the auto-close line when published, Question overview, Attached files, Rubric Content with View Less, and the Analysis cards. CREATE (PM, 8 Oct: enable the Create button so it lists the assignment): the button does what the page's create handler does in the code — the 'Created successfully' snackbar, the dialog closes, the list is refetched with the new assignment selected, and the detail panel shows it in production's layout (title and subject, the edit pencil and the Publish action for a draft, Question overview, Attached files, Rubric Content with View Less, then the Analysis cards Started 0 / 150, Snaps 0, Completed 0 / 150 with production's captions). The page opens with the list, as production does; + New opens the dialog, Cancel or the X closes it without creating. No new screen — the teacher stays on Assignments; Publish is the separate action that makes it visible in the app.",
+    "X-Assign": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps (UPDATED 3 Nov, requirement trace: the Rubric content on this board now reads as the 21 Oct decision — model-answer gaps only, the correct value never shown, written questions advised only on request, no score or level; the withdrawn 0–3 / 5 levels and the readability / analysis criteria are gone; the Completed card became Pre-checked, since Mark as Complete is gone and the pre-check is the signal); slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's check into Rubric content (no score — 21 Oct); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is. LAYOUT (PM, 8 Oct: follow the production screenshot exactly): the admin view of ClassAssignmentPage — the class name and its subject chip as the page header, no class-card row, the + New button at the top of the assignment column on the left, the assignments listed as name + status dot (green = published, grey = draft, red = past due), a vertical divider, and the detail beside it with the edit pencil and Open / Close, the auto-close line when published, Question overview, Attached files, Rubric Content with View Less, and the Analysis cards. CREATE (PM, 8 Oct: enable the Create button so it lists the assignment): the button does what the page's create handler does in the code — the 'Created successfully' snackbar, the dialog closes, the list is refetched with the new assignment selected, and the detail panel shows it in production's layout (title and subject, the edit pencil and the Publish action for a draft, Question overview, Attached files, Rubric Content with View Less, then the Analysis cards Started 0 / 150, Snaps 0, Completed 0 / 150 with production's captions). The page opens with the list, as production does; + New opens the dialog, Cancel or the X closes it without creating. No new screen — the teacher stays on Assignments; Publish is the separate action that makes it visible in the app.",
     "X-Upload": "THE STUDENT'S SIDE, least effort: the feedback snap keeps its flow, with a file where the photo was. Assignment (the open one), Take a photo / CHOOSE A FILE (NEW: .xlsx, .pptx, PDF, photos), the chosen workbook with every sheet listed and read (F1: all sheets, no PDF conversion — the 10/8 worry that a 4-sheet book prints as 4 pages or shrinks), the previous-version line (versions are the iterations the dashboard counts), Get AI feedback, and a note that the final is submitted the way the teacher asks — the product never names Google Classroom (PM, 8 Oct: a competitor), though the trial's agreed two-step flow is that the final goes there. Backend: the workbook is read sheet by sheet into text (cell ranges, values and formulas) and handed to the existing feedback graph together with the model-answer workbook; pptx likewise slide by slide.",
     "X-UploadPC": "LEARNER WEB (PC) TWIN OF X2 — asked for on the X3 board (3 Nov: 'create the desktop web version as well'); PRD C9.1 / C2 make PC web submission a Must for universities (Kindai 10/22 'in development', Okayama browser-only, DLSC / universities memo Word). Same flow and the same data as the phone: the assignment with its due line, Upload your work with Choose a file (no camera on PC — photos go through the app), the picked workbook with every sheet read, the previous-version line, the note on the final submission, Get AI feedback. The phone / PC toggle at the bottom switches between the two. Remove the file to see the empty drop zone.",
     "X-FeedbackPC": "LEARNER WEB (PC) TWIN OF X3. The phone's two segments become two panes: Extracted text (the workbook and its SHEET NAMES only, the X2 list — the same trial simplification as the phone, no cell contents) on the left, and the Feedback on the right — the Summary in the Gem's three-part tone and one card per point with the criterion, the sheet and cell in words, teal = matches the model answer, red = a gap. The one action, top-right, is 'Upload a fixed version (version 2)' (PM, 3 Nov: 'how can the student resubmit after reading the feedback?' — a plain link back to X4; the next upload is the next version, compared with the same model answer, every version kept for the teacher). Mark as Complete was here and was removed (PM, 3 Nov: the actual submission is the real signal). Nothing new to build on the backend: the same payload, laid out for a 1280-px window.",
-    "X-Feedback": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: 'Upload a fixed version (version 2)' — a plain link back to X2 (PM, 3 Nov: make the resubmission path visible from the result; the next upload is the next version). Mark as Complete (the AI Tutor Assignment's own action in the code) was the footer and was removed (PM, 3 Nov: the actual submission is the real signal; the feedback, versions and chat are logged on every AI check, so Completed adds nothing); no 'check again' button (PM 8 Oct; another upload from the assignment is the next version); no Google Classroom button, it is a competitor — the final goes wherever the teacher says. Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
+    "X-Feedback": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gap is real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1 — a cell reference in the formula); the feedback says where to look and never the model value (PM, 21 Oct). UPDATED 3 Nov (requirement trace): the red 考察 / Analysis card on the R² sheet was removed — written questions get advice only when the student asks (10/22) and the six criteria do not apply to the weekly Excel check (21 Oct); the Excel-skills card no longer adds an unprompted interpretation sentence; the model value 0.58 is gone from the summary and the cards; X2 / X4 say the check is optional and unlimited, not required. Footer: 'Upload a fixed version (version 2)' — a plain link back to X2 (PM, 3 Nov: make the resubmission path visible from the result; the next upload is the next version). Mark as Complete (the AI Tutor Assignment's own action in the code) was the footer and was removed (PM, 3 Nov: the actual submission is the real signal; the feedback, versions and chat are logged on every AI check, so Completed adds nothing); no 'check again' button (PM 8 Oct; another upload from the assignment is the next version); no Google Classroom button, it is a competitor — the final goes wherever the teacher says. Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI.",
 }
 for screen in XSCREENS:
     w = TNW if screen == "X-Assign" else (NW if screen.endswith("PC") else MNW)

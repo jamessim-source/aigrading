@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-11-03T15:10:56Z"
+    "at": "2026-11-03T15:27:50Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -31,7 +31,7 @@
       "y": 0,
       "w": 1280,
       "h": 800,
-      "title": "3 · Submitted — teacher reviewing (JA)",
+      "title": "3 · Submitted — teacher reviewing (the second submission waits the same way) (JA)",
       "is_interactive": true
     },
     "04-Feedback.dc.html": {
@@ -50,16 +50,8 @@
       "title": "5 · Second submission — upload the revised work (JA)",
       "is_interactive": true
     },
-    "07-Pending2.dc.html": {
-      "x": 6800,
-      "y": 0,
-      "w": 1280,
-      "h": 800,
-      "title": "6 · Second submission — teacher reviewing (JA)",
-      "is_interactive": true
-    },
     "08-Feedback2.dc.html": {
-      "x": 8160,
+      "x": 6800,
       "y": 0,
       "w": 1280,
       "h": 800,
@@ -67,7 +59,7 @@
       "is_interactive": true
     },
     "05-Todo.dc.html": {
-      "x": 9520,
+      "x": 8160,
       "y": 0,
       "w": 1280,
       "h": 800,
@@ -75,11 +67,19 @@
       "is_interactive": true
     },
     "F-Chat.dc.html": {
-      "x": 10880,
+      "x": 9520,
       "y": 0,
       "w": 1280,
       "h": 800,
       "title": "9 · Ask AI from a comment — ask-back only (3 Nov) (JA)",
+      "is_interactive": true
+    },
+    "04-Draft.dc.html": {
+      "x": 10880,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "4b · Feedback on a draft before submission — not a submission (3 Nov) (JA)",
       "is_interactive": true
     },
     "Main-en.dc.html": {
@@ -103,7 +103,7 @@
       "y": 1400,
       "w": 1280,
       "h": 800,
-      "title": "3 · Submitted — teacher reviewing (EN)",
+      "title": "3 · Submitted — teacher reviewing (the second submission waits the same way) (EN)",
       "is_interactive": true
     },
     "04-Feedback-en.dc.html": {
@@ -122,16 +122,8 @@
       "title": "5 · Second submission — upload the revised work (EN)",
       "is_interactive": true
     },
-    "07-Pending2-en.dc.html": {
-      "x": 6800,
-      "y": 1400,
-      "w": 1280,
-      "h": 800,
-      "title": "6 · Second submission — teacher reviewing (EN)",
-      "is_interactive": true
-    },
     "08-Feedback2-en.dc.html": {
-      "x": 8160,
+      "x": 6800,
       "y": 1400,
       "w": 1280,
       "h": 800,
@@ -139,7 +131,7 @@
       "is_interactive": true
     },
     "05-Todo-en.dc.html": {
-      "x": 9520,
+      "x": 8160,
       "y": 1400,
       "w": 1280,
       "h": 800,
@@ -147,11 +139,19 @@
       "is_interactive": true
     },
     "F-Chat-en.dc.html": {
-      "x": 10880,
+      "x": 9520,
       "y": 1400,
       "w": 1280,
       "h": 800,
       "title": "9 · Ask AI from a comment — ask-back only (3 Nov) (EN)",
+      "is_interactive": true
+    },
+    "04-Draft-en.dc.html": {
+      "x": 10880,
+      "y": 1400,
+      "w": 1280,
+      "h": 800,
+      "title": "4b · Feedback on a draft before submission — not a submission (3 Nov) (EN)",
       "is_interactive": true
     },
     "M-Main.dc.html": {
@@ -170,24 +170,16 @@
       "title": "M2 · Assignment — how to submit (JA)",
       "is_interactive": true
     },
-    "M-Camera.dc.html": {
+    "M-Crop.dc.html": {
       "x": 910,
       "y": 2900,
       "w": 375,
       "h": 812,
-      "title": "M3 · Snap — camera (JA)",
-      "is_interactive": true
-    },
-    "M-Crop.dc.html": {
-      "x": 1365,
-      "y": 2900,
-      "w": 375,
-      "h": 812,
-      "title": "M4 · Crop the page (JA)",
+      "title": "M4 · Snap and crop, page by page (JA)",
       "is_interactive": true
     },
     "M-Pages.dc.html": {
-      "x": 1820,
+      "x": 1365,
       "y": 2900,
       "w": 375,
       "h": 812,
@@ -195,7 +187,7 @@
       "is_interactive": true
     },
     "M-Read.dc.html": {
-      "x": 2275,
+      "x": 1820,
       "y": 2900,
       "w": 375,
       "h": 812,
@@ -203,7 +195,7 @@
       "is_interactive": true
     },
     "M-File.dc.html": {
-      "x": 2730,
+      "x": 2275,
       "y": 2900,
       "w": 375,
       "h": 812,
@@ -211,7 +203,7 @@
       "is_interactive": true
     },
     "M-Type.dc.html": {
-      "x": 3185,
+      "x": 2730,
       "y": 2900,
       "w": 375,
       "h": 812,
@@ -219,7 +211,7 @@
       "is_interactive": true
     },
     "M-Pending.dc.html": {
-      "x": 3640,
+      "x": 3185,
       "y": 2900,
       "w": 375,
       "h": 812,
@@ -227,27 +219,27 @@
       "is_interactive": true
     },
     "M-Feedback.dc.html": {
+      "x": 3640,
+      "y": 2900,
+      "w": 375,
+      "h": 812,
+      "title": "M9 · Returned — tap an underline (the comment sheet opens on tap) (JA)",
+      "is_interactive": true
+    },
+    "MF-Chat.dc.html": {
       "x": 4095,
       "y": 2900,
       "w": 375,
       "h": 812,
-      "title": "M9 · Returned — tap an underline (JA)",
+      "title": "M11 · Ask AI from a comment — ask-back only (3 Nov) (JA)",
       "is_interactive": true
     },
-    "M-Sheet.dc.html": {
+    "M-Draft.dc.html": {
       "x": 4550,
       "y": 2900,
       "w": 375,
       "h": 812,
-      "title": "M10 · Returned — comment sheet open (JA)",
-      "is_interactive": true
-    },
-    "MF-Chat.dc.html": {
-      "x": 5005,
-      "y": 2900,
-      "w": 375,
-      "h": 812,
-      "title": "M11 · Ask AI from a comment — ask-back only (3 Nov) (JA)",
+      "title": "M12 · Feedback on a draft before submission (3 Nov) (JA)",
       "is_interactive": true
     },
     "M-Main-en.dc.html": {
@@ -266,24 +258,16 @@
       "title": "M2 · Assignment — how to submit (EN)",
       "is_interactive": true
     },
-    "M-Camera-en.dc.html": {
+    "M-Crop-en.dc.html": {
       "x": 910,
       "y": 4100,
       "w": 375,
       "h": 812,
-      "title": "M3 · Snap — camera (EN)",
-      "is_interactive": true
-    },
-    "M-Crop-en.dc.html": {
-      "x": 1365,
-      "y": 4100,
-      "w": 375,
-      "h": 812,
-      "title": "M4 · Crop the page (EN)",
+      "title": "M4 · Snap and crop, page by page (EN)",
       "is_interactive": true
     },
     "M-Pages-en.dc.html": {
-      "x": 1820,
+      "x": 1365,
       "y": 4100,
       "w": 375,
       "h": 812,
@@ -291,7 +275,7 @@
       "is_interactive": true
     },
     "M-Read-en.dc.html": {
-      "x": 2275,
+      "x": 1820,
       "y": 4100,
       "w": 375,
       "h": 812,
@@ -299,7 +283,7 @@
       "is_interactive": true
     },
     "M-File-en.dc.html": {
-      "x": 2730,
+      "x": 2275,
       "y": 4100,
       "w": 375,
       "h": 812,
@@ -307,7 +291,7 @@
       "is_interactive": true
     },
     "M-Type-en.dc.html": {
-      "x": 3185,
+      "x": 2730,
       "y": 4100,
       "w": 375,
       "h": 812,
@@ -315,7 +299,7 @@
       "is_interactive": true
     },
     "M-Pending-en.dc.html": {
-      "x": 3640,
+      "x": 3185,
       "y": 4100,
       "w": 375,
       "h": 812,
@@ -323,27 +307,27 @@
       "is_interactive": true
     },
     "M-Feedback-en.dc.html": {
+      "x": 3640,
+      "y": 4100,
+      "w": 375,
+      "h": 812,
+      "title": "M9 · Returned — tap an underline (the comment sheet opens on tap) (EN)",
+      "is_interactive": true
+    },
+    "MF-Chat-en.dc.html": {
       "x": 4095,
       "y": 4100,
       "w": 375,
       "h": 812,
-      "title": "M9 · Returned — tap an underline (EN)",
+      "title": "M11 · Ask AI from a comment — ask-back only (3 Nov) (EN)",
       "is_interactive": true
     },
-    "M-Sheet-en.dc.html": {
+    "M-Draft-en.dc.html": {
       "x": 4550,
       "y": 4100,
       "w": 375,
       "h": 812,
-      "title": "M10 · Returned — comment sheet open (EN)",
-      "is_interactive": true
-    },
-    "MF-Chat-en.dc.html": {
-      "x": 5005,
-      "y": 4100,
-      "w": 375,
-      "h": 812,
-      "title": "M11 · Ask AI from a comment — ask-back only (3 Nov) (EN)",
+      "title": "M12 · Feedback on a draft before submission (3 Nov) (EN)",
       "is_interactive": true
     },
     "T-Book.dc.html": {
@@ -378,16 +362,8 @@
       "title": "T4 · LO settings tab — what the dialog collected, read-only (JA)",
       "is_interactive": true
     },
-    "T-Created.dc.html": {
-      "x": 6080,
-      "y": 5400,
-      "w": 1440,
-      "h": 900,
-      "title": "T5 · Back in the tree — Unpublished until published (JA)",
-      "is_interactive": true
-    },
     "T-Courses.dc.html": {
-      "x": 7600,
+      "x": 6080,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -395,7 +371,7 @@
       "is_interactive": true
     },
     "T-Course.dc.html": {
-      "x": 9120,
+      "x": 7600,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -403,7 +379,7 @@
       "is_interactive": true
     },
     "T-CourseBook.dc.html": {
-      "x": 10640,
+      "x": 9120,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -411,7 +387,7 @@
       "is_interactive": true
     },
     "T-Queue.dc.html": {
-      "x": 12160,
+      "x": 10640,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -419,7 +395,7 @@
       "is_interactive": true
     },
     "T-Detail.dc.html": {
-      "x": 13680,
+      "x": 12160,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -427,7 +403,7 @@
       "is_interactive": true
     },
     "T-List.dc.html": {
-      "x": 15200,
+      "x": 13680,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -435,7 +411,7 @@
       "is_interactive": true
     },
     "T-Review.dc.html": {
-      "x": 16720,
+      "x": 15200,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -443,7 +419,7 @@
       "is_interactive": true
     },
     "T-DashTopic.dc.html": {
-      "x": 18240,
+      "x": 16720,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -451,7 +427,7 @@
       "is_interactive": true
     },
     "T-DashGroup.dc.html": {
-      "x": 19760,
+      "x": 18240,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -459,7 +435,7 @@
       "is_interactive": true
     },
     "T-DashStudent.dc.html": {
-      "x": 21280,
+      "x": 19760,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -467,7 +443,7 @@
       "is_interactive": true
     },
     "T-DashAI.dc.html": {
-      "x": 22800,
+      "x": 21280,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -475,7 +451,7 @@
       "is_interactive": true
     },
     "T-Import.dc.html": {
-      "x": 24320,
+      "x": 22800,
       "y": 5400,
       "w": 1440,
       "h": 900,
@@ -514,16 +490,8 @@
       "title": "T4 · LO settings tab — what the dialog collected, read-only (EN)",
       "is_interactive": true
     },
-    "T-Created-en.dc.html": {
-      "x": 6080,
-      "y": 7000,
-      "w": 1440,
-      "h": 900,
-      "title": "T5 · Back in the tree — Unpublished until published (EN)",
-      "is_interactive": true
-    },
     "T-Courses-en.dc.html": {
-      "x": 7600,
+      "x": 6080,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -531,7 +499,7 @@
       "is_interactive": true
     },
     "T-Course-en.dc.html": {
-      "x": 9120,
+      "x": 7600,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -539,7 +507,7 @@
       "is_interactive": true
     },
     "T-CourseBook-en.dc.html": {
-      "x": 10640,
+      "x": 9120,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -547,7 +515,7 @@
       "is_interactive": true
     },
     "T-Queue-en.dc.html": {
-      "x": 12160,
+      "x": 10640,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -555,7 +523,7 @@
       "is_interactive": true
     },
     "T-Detail-en.dc.html": {
-      "x": 13680,
+      "x": 12160,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -563,7 +531,7 @@
       "is_interactive": true
     },
     "T-List-en.dc.html": {
-      "x": 15200,
+      "x": 13680,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -571,7 +539,7 @@
       "is_interactive": true
     },
     "T-Review-en.dc.html": {
-      "x": 16720,
+      "x": 15200,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -579,7 +547,7 @@
       "is_interactive": true
     },
     "T-DashTopic-en.dc.html": {
-      "x": 18240,
+      "x": 16720,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -587,7 +555,7 @@
       "is_interactive": true
     },
     "T-DashGroup-en.dc.html": {
-      "x": 19760,
+      "x": 18240,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -595,7 +563,7 @@
       "is_interactive": true
     },
     "T-DashStudent-en.dc.html": {
-      "x": 21280,
+      "x": 19760,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -603,7 +571,7 @@
       "is_interactive": true
     },
     "T-DashAI-en.dc.html": {
-      "x": 22800,
+      "x": 21280,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -611,7 +579,7 @@
       "is_interactive": true
     },
     "T-Import-en.dc.html": {
-      "x": 24320,
+      "x": 22800,
       "y": 7000,
       "w": 1440,
       "h": 900,
@@ -1473,22 +1441,21 @@
     "03-Pending.dc.html",
     "04-Feedback.dc.html",
     "06-Resubmit.dc.html",
-    "07-Pending2.dc.html",
     "08-Feedback2.dc.html",
     "05-Todo.dc.html",
     "F-Chat.dc.html",
+    "04-Draft.dc.html",
     "Main-en.dc.html",
     "02-Assignment-en.dc.html",
     "03-Pending-en.dc.html",
     "04-Feedback-en.dc.html",
     "06-Resubmit-en.dc.html",
-    "07-Pending2-en.dc.html",
     "08-Feedback2-en.dc.html",
     "05-Todo-en.dc.html",
     "F-Chat-en.dc.html",
+    "04-Draft-en.dc.html",
     "M-Main.dc.html",
     "M-Assignment.dc.html",
-    "M-Camera.dc.html",
     "M-Crop.dc.html",
     "M-Pages.dc.html",
     "M-Read.dc.html",
@@ -1496,11 +1463,10 @@
     "M-Type.dc.html",
     "M-Pending.dc.html",
     "M-Feedback.dc.html",
-    "M-Sheet.dc.html",
     "MF-Chat.dc.html",
+    "M-Draft.dc.html",
     "M-Main-en.dc.html",
     "M-Assignment-en.dc.html",
-    "M-Camera-en.dc.html",
     "M-Crop-en.dc.html",
     "M-Pages-en.dc.html",
     "M-Read-en.dc.html",
@@ -1508,13 +1474,12 @@
     "M-Type-en.dc.html",
     "M-Pending-en.dc.html",
     "M-Feedback-en.dc.html",
-    "M-Sheet-en.dc.html",
     "MF-Chat-en.dc.html",
+    "M-Draft-en.dc.html",
     "T-Book.dc.html",
     "T-Dialog.dc.html",
     "T-Material.dc.html",
     "T-Settings.dc.html",
-    "T-Created.dc.html",
     "T-Courses.dc.html",
     "T-Course.dc.html",
     "T-CourseBook.dc.html",
@@ -1531,7 +1496,6 @@
     "T-Dialog-en.dc.html",
     "T-Material-en.dc.html",
     "T-Settings-en.dc.html",
-    "T-Created-en.dc.html",
     "T-Courses-en.dc.html",
     "T-Course-en.dc.html",
     "T-CourseBook-en.dc.html",
@@ -1701,29 +1665,29 @@
       "maxH": 300,
       "text": "The second submission. A left pane with last time's comments as a tickable checklist (and the teacher's note) was THE BIG ADDITION here and was REMOVED (PM, 3 Nov: 'can remove the section' — no client asked for it; the previous feedback is one tap away in the 'Feedback you have received so far' list under the pre-submission card, and the returned screen 04 keeps the comments). What is left is the upload and the submit, as on 02. A 自己チェック (rewrote in my own words / used AI sentences as-is) was here and was removed on 18 Sep for the same reason as the AI-use declaration: self-report is not evidence. Submitting goes through the teacher like any submission → UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the basic-requirements list on the right is gone; the pre-submission AI feedback card stands in its place."
     },
-    "n6": {
-      "x": 6800,
-      "y": 860,
-      "w": 560,
-      "maxH": 220,
-      "text": "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →"
-    },
     "n7": {
-      "x": 8160,
+      "x": 6800,
       "y": 860,
       "w": 560,
       "maxH": 300,
       "text": "Draft-2 return. The 前回からの変化 / Since last time block (fixed ③, fixed ②, one new comment, the own-words line) was here and was FOLDED INTO THE CARDS (PM, 3 Nov: 'can't this just be in the feedback card itself as content?'): each card now carries a chip — 前回の② ― 直りました / Last time's ② — fixed on the two strengths, 新しいコメント / New comment on the new 改善点 — and the comment text itself says the passage was rewritten as a direct answer to last time's question. The own-words line is gone with the block (it was the positive case only; there was never an accusatory counterpart). New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."
     },
     "n8": {
-      "x": 9520,
+      "x": 8160,
       "y": 860,
       "w": 560,
       "maxH": 240,
       "text": "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date."
     },
-    "n9": {
+    "n4b": {
       "x": 10880,
+      "y": 860,
+      "w": 560,
+      "maxH": 360,
+      "text": "FEEDBACK ON A DRAFT (PRD v1.18 C3 pre-submission row; requirement trace 3 Nov). This is what 'Get feedback on this draft' on boards 2 and 5 opens: the same engine, the same rubric, the same summary, verdict strip and cards as the returned screen (4), with a 'Draft 2 · not a submission' chip, no teacher note, no ★ line and no Revise-and-resubmit; the one action goes back to the assignment to submit. Unlimited until the due date (a tenant may cap it); never teacher-reviewed; never a submission; the teacher sees only the count. Until 3 Nov that button opened the Kindai Excel trial board X3 — a different assignment (Session 9 Regression), a different rubric and the AI Tutor surface — which the trace flagged as the one structural error in the flow."
+    },
+    "n9": {
+      "x": 9520,
       "y": 860,
       "w": 560,
       "maxH": 420,
@@ -1792,75 +1756,68 @@
       "maxH": 420,
       "text": "Assignment on the phone: same criteria chips, same 提出条件 list, and three ways to submit. 撮影して提出 is the primary option — the snap flow from unifiedapp (Snap → Crop → Review), adapted from 'ask about a question' to 'submit a handwritten answer'. File / photos and typed input are the other two (per the PC decisions of 18 Sep). Tap 撮影して提出 →"
     },
-    "m3": {
-      "x": 910,
-      "y": 3772,
-      "w": 375,
-      "maxH": 420,
-      "text": "Camera, as in the unifiedapp Snap tab: full-bleed dark viewfinder, scrim, blue 68-px shutter with gallery (left) and flash (right), close top-left. New here: a corner-bracket page guide and a page counter (1ページ目), because a handwritten answer is photographed one page at a time. Tap the shutter →"
-    },
     "m4": {
-      "x": 1365,
+      "x": 910,
       "y": 3772,
       "w": 375,
       "maxH": 420,
       "text": "Crop, the unifiedapp CropScreen adapted: dark stage, the photo with veils outside the frame, a blue band with four corner handles. For a paper answer the band is a rectangle that should hug the page edges, so 自動で合わせる snaps it to the paper (tap it — works in the prototype; handles are static here, draggable in the product). Thumbs strip below with ページを追加 → back to the camera for page 2. 次へ →"
     },
     "m5": {
-      "x": 1820,
+      "x": 1365,
       "y": 3772,
       "w": 375,
       "maxH": 420,
       "text": "Pages review (unifiedapp ReviewScreen shape, light theme): thumbnails in page order, hold to reorder, add a page, big preview. The basic-requirements check that ran here was REMOVED (PM, 3 Nov; PRD v1.18); the card now explains the pre-submission AI feedback instead. Continue → the read-check (M-Read), then feedback."
     },
     "m5b": {
-      "x": 2275,
+      "x": 1820,
       "y": 3772,
       "w": 375,
       "maxH": 420,
       "text": "READ-CHECK (3 Nov; Kyushu Sangyo demo requirements #5, Okayama brief's confirm-and-correct step, PRD C3 'OCR / image uncertainty is never the student's error'). After the pages are set, the app shows what it read: low-confidence spans are dashed and marked unconfirmed; tapping one opens the reading candidates and a free correction; spans left unconfirmed are excluded from typo, format and character-count findings, and a figure the pipeline cannot read is reported as unread, not judged. 'Looks right · get feedback' continues to the waiting screen. Handwritten and photographed input only — a file upload skips this step."
     },
     "m6": {
-      "x": 2730,
+      "x": 2275,
       "y": 3772,
       "w": 375,
       "maxH": 420,
       "text": "The file / photos path, reached from ファイル・写真を選ぶ on M2. Same upload block as PC: choose a file, or choose several photos at once — the picked state shows them as numbered thumbnails in page order (tap 答案の写真を選ぶ to see it). The submit button goes live once something is picked. UPDATED 3 Nov (PRD v1.18, PM's answers to C2 / C3): the 提出の基本条件 list is gone; the pre-submission AI feedback card (unlimited drafts until the due date, 'Get feedback on this draft' once a file is picked) stands in its place."
     },
     "m7": {
-      "x": 3185,
+      "x": 2730,
       "y": 3772,
       "w": 375,
       "maxH": 420,
       "text": "The typed-answer path, reached from 直接入力する on M2, for short pieces like the weekly reflection. Type into the box (it counts up to the 500-character limit), then 回答を確定する — the checks run on the confirmed text, not while typing (PM, 18 Sep), and 編集する reopens the box. Which of the three paths an assignment offers is a Back Office setting on the Feedback LO."
     },
     "m8": {
-      "x": 3640,
+      "x": 3185,
       "y": 3772,
       "w": 375,
       "maxH": 420,
       "text": "Waiting state on the phone: identical rules to PC — no AI mentioned, teacher gives the feedback after the due date, notification when returned, pages viewable / replaceable until the due date. Steps are vertical for the narrow screen. DEMO pill →"
     },
     "m9": {
-      "x": 4095,
+      "x": 3640,
       "y": 3772,
       "w": 375,
       "maxH": 420,
       "text": "Returned, on the phone: teacher's note (with the ★ line when the teacher chose this work as an example for the class, PM 20 Sep), summary, then the recognised text of the answer with the same underlines. One layout for every submission type (PM, 18 Sep). Tapping an underline — or one of the three comment chips — opens the bottom sheet for that point (PM, 18 Sep) and highlights the passage. Resubmit and PDF export at the end. ADDED 3 Nov — VERDICT PER CRITERION (PRD C3 feedback shape; Kyushu Sangyo #6, DLSC F3): a card under the Summary lists every rubric criterion with ✓ Needs work or ― No issue — all six, not only the commented ones — and each comment sheet carries the same verdict beside its criterion."
     },
-    "m10": {
-      "x": 4550,
-      "y": 3772,
-      "w": 375,
-      "maxH": 420,
-      "text": "The same screen with comment ② open: the bottom sheet carries exactly what the PC card carries (badge + criterion tag, quoted passage, comment, lecture reference) plus 前へ / 次へ to step through the three points; the underline behind it is highlighted and scrolled to centre. Tap the scrim or × to close."
-    },
     "m11": {
-      "x": 5005,
+      "x": 4095,
       "y": 3772,
       "w": 375,
       "maxH": 420,
       "text": "Mobile twin of board 9. ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."
+    },
+    "m12": {
+      "x": 4550,
+      "y": 3772,
+      "w": 375,
+      "maxH": 420,
+      "text": "Mobile twin of board 4b: the AI feedback on a DRAFT, before submission (PRD v1.18 C3; trace 3 Nov). Same engine, same rubric and cards as the returned screen, with a 'Draft 2 · not a submission' chip, no teacher note, no ★ and no resubmit; the one action goes back to the assignment to submit. Until 3 Nov the LO's 'Get feedback on this draft' opened the Kindai Excel trial board (X3) — a different assignment, rubric and surface; that link is gone."
     },
     "t1": {
       "x": 0,
@@ -1890,92 +1847,85 @@
       "maxH": 460,
       "text": "The LO's SETTINGS tab (PM, 20 Sep: 'add the settings page'). Production shows an LO's settings as what its Add LO dialog collected, read-only, and Edit settings reopens that dialog (DialogCreateLearningMaterial in edit mode) prefilled — so this tab holds exactly T2's fields and nothing new: 基本情報 General Info (type, LO name, External LO ID, the description the student sees), 設定 Settings (公開期間と締切 — no longer a pair of dates but the per-course windows read from Course Management, one line per course this book is assigned to, with コース管理で日程を編集 opening T8 — PM 22 Sep; 再提出 as the switch alone; 提出方法 with the 500-character limit on typed; 先生の確認), and 公開状態 — the Published / Unpublished chip with created and updated stamps. 設定を編集 on each card and top-right opens the same dialog in EDIT mode over this page (click it — it works): prefilled, titled 学習目標を編集, with the LO type shown as a locked read-only field because the type cannot be changed after creation (PM, 20 Sep); everything else is editable, and 保存 closes it. Not here, deliberately: the material, the 提出の基本条件 and the rubric — those are content and stay on the 内容 tab (T3). The two tabs link to each other; 公開する works on this tab too. The course side (T7) shows the same values read-only with ブック管理で編集, which lands back here. 提出前のAIフィードバック (PM, 29 Sep) is listed with the other settings — 許可しない / Off for this LO — and is edited in the same dialog. UPDATED 3 Nov (PRD v1.18): 提出前のAIフィードバック reads 許可する ・ 回数制限なし / On · unlimited drafts, and 直接入力 carries the 2,000-character limit. ADDED 3 Nov — the Settings tab lists the AI answer level ('1 · Hints and where to look (tenant cap 2)') with the other per-LO settings."
     },
-    "t5": {
-      "x": 6080,
-      "y": 6360,
-      "w": 640,
-      "maxH": 460,
-      "text": "The tree afterwards, reached from the breadcrumb: the new LO sits under 7-1 with its own type tile (a review-comment icon, distinct from the sparkle, which on this tree means AI Tutor), highlighted as just-created and marked Unpublished. It stays that way until the teacher publishes it, from the row's ⋮ menu or from the LO page. Clicking the row reopens T3."
-    },
     "tc1": {
-      "x": 7600,
+      "x": 6080,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "COURSE MANAGEMENT (PM, 22 Sep: the submission start and due date are managed on the Course Management page; the book is linked to the course; the course's window gates student submissions). This is CourseList as the syllabus squad renders it (CourseList.tsx / CourseTable.tsx): the page title, the keyword search, コースの追加 Add course, and the table — Course Name with its avatar (a link into the course), Teaching Method (個別 Individual / 集団 Group), Course Type, Subject. Two courses carry the statistics book: the Thursday class and a Friday class. Both link the same book (T1), both list the same LOs, and each sets its own dates on T8 — that is the 'multiple schedule management' the move to the course buys, and why the LO dialog (T2) and the LO settings tab (T4) no longer carry dates. Nothing on this board is new for AI Feedback; the AI Feedback LO is just one more learning objective whose window the course sets. JOIN BY QR CODE (comment, 23 Sep: add a way for students to join the class by QR code, the function the AI Tutor page already has): the share icon at the end of each course row is the AI Tutor class list's (ClassListTable.tsx: MIconButtonBase + ShareIcon → AIClassShare), and it opens production's アクセスを共有 Share Access dialog as it is — the QR code the student scans to join (QRCode.toCanvas of the class code, error correction H; here a real QR of the code 7QK4M2) with ダウンロード Download, then コード Code, the same code typed instead, with コピー Copy and its snackbar. Scanning it enrols the student in the course, so the course's LOs — the AI Feedback LO among them — appear on their course tab from each LO's start date (T8). Click the share icon — it works; T7 has the same dialog behind its Share Access button. ADD COURSE (comment, 23 Sep: the add-course UX flow, from production): コースの追加 Add course opens DialogUpsertCourse — a full-screen dialog (MDialogCustom fullScreen) with the form on one paper (CourseForm), the fields in production's order: the course icon (AvatarInputHF, 112px, the camera button), a dashed divider, コース名 Course Name (required), 拠点 Location (SelectLocationInputHF — chips; a location tree dialog behind it), コース指導法種別 Teaching Method (required; 個別 Individual / 集団 Group; changing it later asks for confirmation), コースタイプ Course Type, 科目 Subject, 教材 Book (multiple; production also shows an AI学習 Adaptive switch when that feature setting is on — left out here, PM 23 Sep). It is drawn filled in: a third class of the statistics course, linking the same book — 保存 Save adds it to the list (highlighted, 1-5 / 5) with production's 正常に作成されました snackbar (commonMessage.createdSuccess); キャンセル Cancel closes. The book is linked at creation, or later from ⋮ › Assign Books on T7; the course's dates then follow on T8. Nothing here is new for AI Feedback. Click the first course →"
     },
     "tc2": {
-      "x": 9120,
+      "x": 7600,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "CourseDetail (CourseDetail.tsx), landing on its Books tab as production does when the course-book setting is on: breadcrumb コース管理 / course, the course name with its ⋮ (Edit, Assign Books), the tabs 教材 Books · 学習計画 Study Plan · レッスン Lesson · 生徒 Student · クラス Class · 設定 Settings, then the Books tab's own head and the book table (production also shows an info alert here, courseBook.infoMessage, about setting availability dates per book — removed, PM 23 Sep) (CourseBookListTable: one column, Book Name, a link). This is where the book gets linked to the course (Assign Books under ⋮, AssignBooksDialog) — the link the PM's decision rests on. the ⋮ opens production's menu — 編集する Edit, 教材を割り当てる Assign Books — with アクセスを共有 Share Access added as its third item (PM, 23 Sep: in the 3-dot menu, not a button); it opens the AI Tutor class page's QR dialog (AIClassShare.tsx) for this course: the student scans the QR or types the code to join, and sees the course's LOs from their start dates. THE STUDENT TAB (comment, 23 Sep: add the student list here — who joined by code or was added manually). Click 生徒 Student — it works: production's StudentTab.tsx as it is — 生徒情報 Student Info with its 変更 Action menu (assign to class, assign study plans, …), the student-name search with the 学年度 / クラス / 学校 / 拠点 filter chips, and StudentsListTable's columns: Student Name (a link to the student's dashboard, T15), Academic Year, Location, Enrollment Date (yyyy/LL/dd - yyyy/LL/dd, the student's course period), Class, School, Study Plan — production's columns, nothing added. A 参加方法 Joined via column (QR code / code entered / added manually) was drawn and dropped: for AI Feedback nothing downstream depends on how a student got in (PM, 23 Sep: no separate column required). Seven students, five of whom joined by QR or code on the first two Thursdays; the last one has no class yet. NO STUDY PLAN COLUMN (24 Sep: the dates on T8 auto-create the course's study plan in the back end and every enrolled student — QR-joined ones included — is on it, so there is nothing to assign and nothing to show a university tenant; production's Study Plan column is hidden here). EXTEND DUE DATE, A V2 PROPOSAL (24 Sep: per-student extension is common in higher education — Canvas, Moodle — and lives at the study plan's student level, never in the course's dates): the calendar icon at the end of each row opens 期限の延長 for that student — the course's AI Feedback LOs with their window, and one editable end date for this student, the first drawn a week later; the course's dates on T8 do not move. 保存 Save closes it with a snackbar and marks the row 締切延長あり. Click the icon on any row — it works. Click the book → ADDED 3 Nov — REFERENCE LIBRARY tab (change list P2; Kindai T2 / Q4, DLSC F7, Okayama): the course's textbook (page / line index), lecture PDFs and the faculty's report-writing guide, each with two switches — Grounding (the feedback cites page and line from it) and Quote check (a deterministic, character-level match of quoted passages). One entity, two uses; an LO picks from it. The textbook text needs the publisher's permission first (open)."
     },
     "tc3": {
-      "x": 10640,
+      "x": 9120,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "LEARNING OBJECTIVES AVAILABILITY (CourseBookDetail.tsx → CourseBookDetailContent → LOAvailabilityTable), production's page for exactly this: per course, per book, the start and end date of every LO in the book, in one table — Chapter Name, Topic Name, LO Name (with its type icon), Start Date, End Date — with chapter and topic cells merged over their rows, 編集 Edit Date switching every date cell to an input (yyyy/mm/dd, hh:mm) and the actions to キャンセル / 保存, and インポート/エクスポート for CSV (useImportCSVLOAvailability / useExportCSVLOAvailability). Save posts BulkUpdateLOAvailability and shows the success snackbar (click 編集, then 保存 — both work). WHAT THE AI FEEDBACK LOs GET HERE: nothing new in kind — their window is a Start Date and an End Date like any LO's, and the End Date is the due date: the LO shows on the student's course tab from the start date and is not clickable before it; it enters the To-do on the start date; submission and replacement run until the end date; the teacher reviews after it; a late submission is refused unless this end date is extended here (PM, 22 Sep). ONE ADDED COLUMN, A PROPOSAL: 再提出締切 Resubmission Due, shown only for LOs whose 再提出を許可する switch is on (T2/T4) — the PM left 'where the resubmission date lives' open when dates moved to the course, and this is the one place all the LO's dates can sit together; it is drawn to be decided, not decided. DATA SOURCE (PM, 24 Sep: start and end dates should be based on the study plan backend): the Start Date and End Date here are the course's study plan items' available_from / available_to — the same rows Study Plan Management edits — not a separate availability table. Save writes them to the study plan; a change made in 学習計画管理 Study Plan Management shows here, and the student's course tab, To-do and the dashboards all read the same dates. The proposed Resubmission Due would be one more study-plan-item field. AN LO WITH NO WINDOW YET: the last row, 第9回 演習レポート（追加）, was added to the book after the dates were set — its Start and End are empty and a warning line says it is shown to students from publish until dates are entered; in edit mode its inputs are empty. The alert at the top says this book is assigned to two courses, that availability is set per course, and that the dates are the study plan's; the Friday class has its own copy of this page with later dates (T4 lists both). Production's Chapter/Topic/LO values here match T1's tree and T13's dashboard rows; the dates match the student's course tab (screen 1: 第7回 11月6日 公開, 第8回 11月20日から) and the Topic Dashboard's 開始 / 締切 line."
     },
     "t6": {
-      "x": 12160,
+      "x": 10640,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "THE SPLIT (PM, 19 Sep): Book Management sets the LO up; it does not process student submissions. Those live under Course › 提出物の採点 (Submission Grading, ToReviewListPage), production's existing home for submissions waiting on the teacher, reused rather than given a new menu item (PM, 19 Sep) and aligned to its format (PM, 19 Sep): Submissions / Learning Objectives tabs (production's Invalid Markers export, which sits top-right on the real page, is left off this board — PM, 20 Sep: nothing to do with AI Feedback), search + Filters + Bulk Action, the status segments with counts, and the wide table (select, #, Submission ID, LO, student, username, ext. ID, course, book, reviewer, status, comments, submitted / reviewed / returned dates) — here with LO Type: AI Feedback applied. STATUSES, in the marking tones: 未確認 Not Reviewed (default) · 確認中 In Review (warning) · 返却済み Returned (success) · 差し戻し Sent Back (error), plus a secondary chip like production's Need Approval: 自動返却 Auto-returned for LOs with teacher review off, 再提出 Resubmitted for a second attempt. Submission ID → review; LO name → its overview. HIGHLIGHTED (PM, 20 Sep): a submission the teacher picked as an example for the class carries an orange ★ before its ID. The ★ 注目のみ / Highlighted only filter is an option inside フィルター / Filters (PM, 20 Sep: under Filters, not a chip in the bar) — open Filters, tick it, and the table narrows to those rows with a 注目: あり chip among the applied filters; it works in the prototype. The panel's other fields (LO Type, Status, Reviewer) are production's, static here. ADDED 3 Nov — DUE-DATE VIEW (DLSC F2, Kindai): a second segment beside the status counts — All · Due this week · Overdue — and a Due column at the end of the table, so a teacher who grades in batches against the return date can work the queue in due order without leaving the page."
     },
     "t7": {
-      "x": 13680,
+      "x": 12160,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "The LO's submission page under Course › To Review, Overview tab. The three cards are the analysis cards from the AI Tutor assignment detail (Started / Snaps / Completed in production), re-cut for this flow: 提出済み, 確認待ち — the queue the teacher-review switch creates — and 返却済み. Below, the settings as a read-only list, the Back Office's key-value pattern, so the dates and the review setting can be checked without reopening the dialog; the window row names the course it belongs to (PM, 22 Sep: dates are the course's), コース管理で日程を編集 opens the course's LO Availability page (T8) and ブック管理で編集 opens the LO's Settings tab (T4). Two count rows — 提出条件 5件, コメントの観点 6件 — were removed (PM, 20 Sep: not useful here; the conditions and the rubric are read on the LO's Content tab). The header's own ブック管理で編集 and ⋮ were removed too (PM, 20 Sep): the card's button is the one way back, and the ⋮ had nothing behind it."
     },
     "t8": {
-      "x": 15200,
+      "x": 13680,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "The LO's Submissions tab: the same Submission Grading table scoped to one LO (no LO, course or book columns), with its own status counts, and the same ★ marker and the 注目のみ / Highlighted only option inside Filters (PM, 20 Sep) so the teacher can pull up the few examples chosen for the class. Submission ID opens the review. Bulk Action is production's: contained, disabled until rows are selected — the teacher, not the model, returns the feedback, and a bulk return is a deliberate act on chosen rows."
     },
     "t9": {
-      "x": 16720,
+      "x": 15200,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "The teacher in the loop, on GradingScorePage's layout: title = LO with the status chip (確認中 In Review once opened), actions top-right (クラスで紹介する — a text button that stars this submission as an example to show the class and asks for a few-word reason, PM 20 Sep, which the dashboards then count, mark ★ and list with that reason —, 差し戻す outlined, 承認して返却する contained, and production's ⋮ kebab — asked about by the PM (20 Sep) and given its items: this student's submission history, download the original file, regenerate the draft, preview what the student sees; click it). Left, the info panel: a PREVIOUS / NEXT pager around the submission ID — 3 / 12, stepping through the LO's submissions in the list's order, Not Reviewed first, so a teacher clearing the queue never goes back to the table (PM, 20 Sep; in the prototype both arrows reload this submission) — (a 生徒には未公開 / Not visible to the student chip sat beside the ID and was removed, PM 20 Sep: the 確認中 status and the report's 下書き header already say it), Reviewer Info (reviewer, auto-return off), Submission Info (student, course, submitted, file), and the teacher's own ひとこと — which the student sees at the top of the returned screen. A Comments count section (drafts 3, edited 1, criteria 6) closed the panel and was removed (PM, 20 Sep: not useful when the comments themselves are in the report beside it; the edited mark sits on the comment). Right, the report: the recognised submission first, then each draft comment as an item with its criterion, the passage it points at, the comment, and Edit / Delete; an edited one is marked. 承認して返却する is the only thing that makes the feedback exist for the student; 差し戻す sends it back for another submission. With the switch off this screen is skipped and the row shows 自動返却. The drawer's AIグレーディング / AI Grading item under Course was removed (PM, 30 Sep: remove this menu) — the paper LO's grading lives under 提出物の採点 Submission Grading, the same menu as AI Feedback. ADDED 3 Nov — VERDICT PER COMMENT (PRD C3 feedback shape): each draft comment carries ✓ Needs work or ― No issue beside its criterion, the same verdict the student sees. CORRECT THE AI (PRD C2 phase 1, 3 Nov; DLSC F5, Okayama, universities memo): Dismiss ▾ on every comment with a reason (not an issue · too strict · wrong criterion · wrong location) greys it and tags it; Add a missed issue at the report head opens passage / criterion / note and appends it as a teacher-added comment; the info panel counts them as pending criteria changes, and Approve changes (v2) is the phase-2 action that makes the rubric version 2 for every generation from then on. Past comments keep their version."
     },
     "t10": {
-      "x": 18240,
+      "x": 16720,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "DASHBOARD (PM, 20 Sep: fit the AI Feedback overview into the group and student dashboards). This is GroupDashboard in TOPIC DASHBOARD mode, production's default view and where the Dashboard menu lands — Course / Book / Filters / Apply, the Enrollment and Duration chips (FILTERS opens production's panel — 在籍状況 Enrollment status, 期間 Duration — with an AI Feedback section added, PM 20 Sep: 開始日 start-date and 締切日 due-date ranges that keep only the feedback LOs falling inside them; the applied ranges show as chips beside Enrollment and Duration — AIフィードバック 開始日: 11/01 – 11/30, 締切日: 11/06 – 11/30 (PM, 20 Sep: show the selected ranges here); click Filters, it opens; same panel on the LO and Student dashboards), the paper with search and the Topic / LO Dashboard toggle, then production's topic table: Chapter Name, Topic Name (a link that opens the LO Dashboard for that topic, T11 →), Average Score as the progress bar over the topic's scored LOs (quizzes; -- where there is none) and Completion as the number of students who completed the topic. ADDED FOR AI FEEDBACK (PM, 20 Sep: the topic dashboard, per production, but for AI Feedback data): one column, AIフィードバック, with the topic's feedback LO (a link to its overview), its 開始 start and 締切 due dates under the name (PM, 20 Sep; since 22 Sep these are the course's dates from T8, not the LO's own) and its counts — 提出 12/30, 確認待ち 8 (a link into the LO's submissions when there are any), 返却済み 3 — and the ★ number of submissions the teacher picked to show the class. Topics without a feedback LO (6-1, 8-1) were shown with “no AI Feedback LO” and are left off the board for a clearer demo (PM, 20 Sep); in the product every topic of the book is listed, as production does. Counts, never rates (PRD §1.6.4); no score is invented for a feedback LO, so Average Score stays what production computes from the quizzes. 6-2, 7-1 and 7-2 carry the three feedback LOs the LO Dashboard shows. INSIGHTS (PM, 20 Sep: merged here from the LO Dashboard's overview paper, which is gone; the 詳しく Details expansion that opened the full insight with quotes and counts was then removed too — PM, 20 Sep: the teacher checks the submissions themself, the line only has to alert them; then broadened, PM 20 Sep, from strictly 'what the class missed' to insights of several kinds — 見落とし what was missed, 良い傾向 what is going well, 紹介候補 what is worth showing the class, 提出状況 how submissions stand — with the LLM ranking them and the top one shown per LO): under each feedback LO's counts, one line with its kind as a tag, read by an LLM pass over that LO's submissions and their generated draft feedback along the rubric — 6-2 良い傾向: 21/30 compare before and after the outlier; 7-1 見落とし: 有意性の検定に進まない下書きが 8/12件, 次回冒頭の候補; 7-2 紹介候補: 4 asked a question of their own — nothing more: no expansion, no quotes, no counts on this board (the LO's overview and submissions are one click away). It is generated from the submissions and their draft feedback, so it is there before anything is returned (PM, 20 Sep), refreshes itself whenever a submission or a draft changes (a Regenerate button was tried and removed, PM 20 Sep: no reason a teacher should have to ask), and is teacher-facing only. The rubric is the prompt's structure; every claim must trace to a count in the data. PRACTICE BLOCK (PM, 27 Sep: add similar question LO stats here as well): under 7-1's feedback LO, the topic's practice LO in the same shape — name (a link to P3), NO DATE LINE (PM, 27 Sep: remove the date — it is unconfirmed whether a similar-questions practice LO will have a start and due date concept at all; T8 shows its row with empty date cells for the same reason; and remove the no-due-date — in general, when there is not going to be something, do not state it; the same rule then took the \"no completion status\" caption, the \"no re-practice\" aside, the hidden-fields alert on P1, the \"not printed\" footer on P9 and the \"no set is created\" line on P6 off the boards), TWO chips (PM, 27 Sep: keep just students with sets, remove the others, add students who completed their sets): セットのある生徒 5人/30人 = students who created at least one set; セットを完了した生徒 3人/30人 = students who finished every set they themselves generated (on T14: 佐藤 4/4 and 田中 6/6 are complete, 山田 8/10 and 伊藤 2/6 are not, one student below the fold is complete). The sets-created / answered / correct chips drawn earlier that day are gone from this board; T14 keeps the per-student done ・ correct, one 見落とし insight naming the source question with the lowest accuracy (Q3 相関と因果 45%; a link to LO mode), (the ad hoc widget line was drawn and removed — PM, 28 Sep: not required). Practice sets only; no completion, no max score, no rate invented beyond correct/done."
     },
     "t11": {
-      "x": 19760,
+      "x": 18240,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "GroupDashboard in LO DASHBOARD mode, reached from a topic name on T10 or from the toggle. This is GroupDashboard as production renders it — the same filter row and chips, the paper with search, the Topic / LO Dashboard toggle and, in LO mode, the student × LO matrix for the topic (a Topic select above the matrix was tried and removed, PM 20 Sep: not in production; the Latest Score / Highest Score toggle keeps production's labels — a rename to Latest / Best Submission was tried and reverted (PM, 20 Sep) because a feedback LO has nothing to rank by, so its cells ignore the toggle and always show the latest submission's status; and the whole toggle — Latest Score and Highest Score — is greyed out when nothing in the matrix carries a score (PM, 20 Sep) — as here; it comes back live when a quiz or other scored LO is in view. For a clearer demo the matrix shows only AI Feedback LOs (PM, 20 Sep): the Session 6 report (all returned, one 差し戻し, two 再提出), the Session 7 report and the weekly reflection, so all four statuses and both secondary chips are on screen; instead a ★ marks a submission the teacher picked as an example to show the class (PM, 20 Sep: a requirement, so the teacher can find a few quickly) — set from the review screen's クラスで紹介する / Highlight for class action, counted in the LO's header, and the ★ 注目のみ / Highlighted only chip beside the score toggle narrows the matrix to students with a highlighted submission (PM, 20 Sep; it works — click it); sticky student column; regular LOs show 完了 Completed or a score with the AI Tutor sparkle and the history icon; a red tint means not done or failed). A tile row (production's Questions Solved via AI, then AI Feedback count tiles) was tried and removed (PM, 20 Sep: not required). In its place, on the PM's 'try it' (20 Sep), an OVERVIEW PAPER was built from the PRD — the three C10.3a jobs, B2's revision outcome and the §1.6.4 rules — and then taken apart block by block, so that this board is the matrix alone: (1) 未提出 Not submitted was here as counts and names per LO and was removed (PM, 20 Sep): the matrix header's 提出 12/30 and the tinted -- cells already carry it; (2) 先生の確認待ち Waiting on you — drafts awaiting approval per LO with the oldest one's age — was tried and removed as well (PM, 20 Sep: not required; the matrix header's 確認待ち count and Submission Grading carry it); (3) 今週クラスが見落とした点 What the class missed: first a templated sentence over the criteria counts; then, on the PM's 'try it' (20 Sep), an INSIGHT written by an LLM pass over the week's SUBMISSIONS AND THEIR DRAFT FEEDBACK grouped by rubric criterion (PM, 20 Sep: not the returned comments — the teacher opens this dashboard after the due date, before anything is returned, so the basis is every draft the checks produced; a returned comment counts the same, and the teacher's edits flow in once made) — what the recurring mistake actually is (8 of 12 drafts stop before the significance test, 3 read r ≈ 0.4 as causation) and one recap point — grounded two ways: the criterion counts stay beneath it as the anchor, and two quoted passages link into the submissions they come from. Teacher-facing only, one call per LO per week, the rubric as the prompt's structure; it refreshes itself when the drafts change (a Regenerate button was tried and removed, PM 20 Sep). It is also a review aid: it tells the teacher what the drafts are about to say to the class before they approve them. The PM's question that led here: is the criterion just a count (yes: drafts with an improvement comment per criterion) and could a generic agent read the feedback against the rubric instead (this is that); (4) フィードバックを活かした Acted on the feedback — resubmitted, points resolved, rewrote in their own words — was tried and removed (PM, 20 Sep: not required); (5) ★ Highlighted for class — the teacher's picks with the few-word reason typed when highlighting, each a link into the submission — was a block here and was MERGED INTO THE MATRIX (PM, 20 Sep): a highlighted cell now shows that reason under the status with a small ★ before it (★ 外れ値の扱いが的確, ★ 相関と因果を区別している…; the separate ★ icon beside the status was dropped as redundant, PM 20 Sep) and opens the submission's review screen, the LO header keeps the ★ count, and the ★ 注目のみ chip narrows the matrix to those students — and block 3 itself, What the class missed, was merged into the Topic Dashboard (T10, PM 20 Sep), one line per feedback LO with the full insight in an expanded row; so the overview paper is gone. Not shown, deliberately: score or completion-rate tiles, per-student comparisons, average time to return. Block 3 depends on criterion keys being fixed per assignment (PRD §1.6.5, U22); block 5 is collectable today. THE MATRIX below is the drill-down: in it, an AI Feedback LO carries the review-comment tile, its header reads 提出 / 確認待ち / 返却済み instead of Avg. Score / Comp. Rate / AI-answered (確認待ち links to the LO's submissions), and each cell is the submission status in the marking tones with a 再提出 secondary chip where the submission is a resubmission (the 自動返却 Auto-returned chip was shown too and removed, PM 20 Sep: not needed in the matrix — it stays in Submission Grading and on the student dashboard rows; a per-cell comment count was tried and removed, PM 20 Sep: use case unclear — it stays in Submission Grading); the cell opens the LO's submissions. Two insight panels below the matrix — comments by rubric criterion and the requirements that stopped a submission at the pre-check — were tried and removed (PM, 20 Sep: not required). Student name → the student dashboard."
     },
     "t12": {
-      "x": 21280,
+      "x": 19760,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "StudentDashboard as production renders it: the Student List (add-student icon, name and year, the selected one marked with the blue bar), the student's name, Course / Book / Filters / Apply, and the chapter / topic table with Study Date, Average Score and Completion, expandable to the LO rows (Learning Objective / Latest Submission / Latest Score / Highest Score). AI Feedback LOs sit in those rows with -- under Latest Score and Highest Score (a feedback LO has none; 再提出 1回 sat there first and was moved under the submission date, PM 21 Sep: it describes the submission, not a score). WHAT IS NEW is in the LO table itself (PM, 20 Sep: merged into the existing matrix rather than a table of its own; then, PM 20 Sep, fitted as columns rather than a detail row — the submission date was already a column): three feedback columns after production's four — 状態 Status (for every LO, PM 21 Sep: production writes 完了 Completed into the score columns of a video or slide deck, which read as statuses in score columns once a Status column existed, so 完了 moved here and the score columns show -- for anything unscored; for a feedback LO the status chip with its 再提出 / 自動返却 secondary chip and the date it was reached beneath, PM 21 Sep: a column of its own rather than sitting where a score would be), 指摘された観点 Flagged criteria — the rubric criteria that drew an improvement comment, with 再提出で修正済み where the resubmission fixed them (a コメント count column — 3, 良い点 1 ・ 改善点 2 — sat between and was dropped, PM 21 Sep: not useful; where the student stumbles is, and it is here), and 確認する / 見る into the review — the feedback LO's name a link to its overview (T7, PM 20 Sep), with the ★ reason under it where the teacher highlighted it; other LO rows show -- there. A separate paper below the table — count tiles, a submissions table and a by-criterion profile — was built first and removed in the merge. 7-2 is expanded so the weekly reflection shows too. PRACTICE ROW (24 Sep; PM, 28 Sep): the 類題演習 LO row reads 最新スコア 6/8 = questions correct / answered across the student's sets so far, no label (PM: remove \"correct\", it is understood), and 最高スコア 5/6 = the student's best single set (PM: add highest score) — Set 1 5/6, Set 2 1/2 so far; Status 途中 with the sets line; no flagged criteria; セット一覧 opens LO mode. ADDED 3 Nov — VERSIONS LINE: under a feedback LO's status the student's latest version, its time, the chat questions and the draft-check count ('v2 · 16 Nov 14:02 · 4 questions · 2 draft checks' — PRD v1.18: the teacher sees how many pre-submission checks each student used), so the teacher sees iterations without the student pressing Complete (Kindai 2-2 A, Kyushu #8, DLSC F3)."
     },
     "t13": {
-      "x": 22800,
+      "x": 21280,
       "y": 6360,
       "w": 640,
       "maxH": 460,
       "text": "AI DASHBOARD (PM, 6 Oct: implement the AI Dashboard in the prototype from the Back Office code and the production screenshot; v1 of AI Feedback reports inside it. Then, on this board: the AI feedback code on the aigrading repo is not linked to the LO — replace with what is actually available in the AI feedback code; and there is no user-generated feedback in the AI feedback feature). PRODUCTION FIRST: AIDashboardContainer as the syllabus squad renders it — the Dashboard tabs with AI Dashboard active, the AI Tutor Dashboard title with 生徒の追加 Add Student (SearchStudentDialog: the students on this board are the ones added, 10 here), AIDashboardForm (Lens = the subjects, start and end date, a divider, Apply), one paper: AIDashboardOverview (the 期間 Period line; Number of Students / Total Questions Asked / Total Likes / Total Dislikes) and the Student Usages table (count in the title, Last Updated from the sync time, search by student name, index column, expand chevron, Student Name → the student, User Name, Total Questions, Likes in green, Dislikes in red), the expanded row showing AIInteractionHistoryTable (Created At → the thread, Lens, Item Overview, No. of Questions, Feedback Type, Comments). WHAT AI FEEDBACK IS IN THAT CODE (backoffice branch): not an LO. It is the AI Tutor's FEEDBACK SNAP — AITutorgraphType FEEDBACK beside TUTOR (Snap-to-ask): the student photographs their own work and the AI responds to it — optionally tied to an AI TUTOR ASSIGNMENT (AITutorAssignment: title, subject, overall question, acceptance criteria / rubric content generated by AI, publish with a due date; the student taps Mark as Complete; analysis Started / Snaps / Completed from AssignmentReportProgress), counted on this dashboard by GetStudentUsageAnalytics.total_feedback_generated (production's Feedbacks generated card, shown under the syllabus.ai_tutor.ai_feedback flag), every snap a tutoring-session thread whose detail page (AIDashboardDetailGeneralInfo + QuestionTabPanel) shows the item overview and the AI response. SO ON THIS BOARD: (1) the overview = production's five cards in one row — Number of Students, Total Questions Asked, Total Likes, Total Dislikes and Feedbacks generated (the card production shows under the AI Feedback flag; here the feedback snaps in the period). The AI Feedback caption with the assignment and its due date, the assignment's Started / Snaps / Completed cards and the similar-questions practice row were all removed on the PM's comments (7 Oct); (2) two per-student columns — feedback snaps in the period, and the student's status on the assignment (Completed / Started / Not started); (3) the expanded row keeps the Snap-to-ask chat history and lists the student's FEEDBACK SNAPS beneath it: created at, lens, the assignment it was tied to (or 課題なし free snap), item overview, 見る View — no like / dislike or comments column: the PM confirmed (6 Oct) the feedback flow has no user-generated feedback, the thumbs and comments (UpsertQuestionFeedback) belong to Snap-to-ask only; (4) View opens a DRAWER with the thread IN THE LEARNER APP'S AI FEEDBACK FORMAT (PM screenshots, 6 Oct: use these as the format): Extracted text and Feedback SIDE BY SIDE (PM, 6 Oct: side by side instead of a toggle); Extracted text, left = the work as read, with numbered markers and dashed underlines — teal for a strength, red for a point to improve — on the passages the feedback points at; Feedback, right = a Summary card, then one numbered card per point with the criterion chip, the quoted passage and the comment (the app's Ask AI link is not shown here — PM, 6 Oct: it is the student's action), the numbers matching the markers in the text; the link to the thread page that sat in the drawer header was removed (PM, 6 Oct). SUBJECT, not Lens, is the label on the feedback-snap rows and in the drawer, and QUESTION OVERVIEW (the AI Tutor Assignment's own i18n key) rather than Item Overview on the feedback-snap rows (PM, 6 Oct); production's form and chat history keep Lens and Item Overview. EXPORT CHAT (PM, 7 Oct: an export chat function per AI feedback class): the button beside the search opens a dialog with one read-only line naming the exported columns (the class, assignment and period fields were removed — PM, 8 Oct; the export follows the dashboard's own filters, which the dialog does not repeat) (PM, 7 Oct: the chips-and-explanation block and the preview table were removed, then the columns asked for back as one line), the file name and row count in the footer — one row per feedback snap with the columns User ID / Student Name / Class / Title / Subject / Question / Chat (PM, 8 Oct; Title = the AI Tutor Assignment's title, empty for a free snap; Question = the question overview; Chat = the thread's AI / student messages in order, the AI's feedback being the first message, so there is no separate Feedback column; sample file and format rules for the developers in PRDs/samples/ai_feedback_chat_export.md) and confirms with a snackbar naming the file and the row count. ITEM OVERVIEW (PM question, 6 Oct) is the thread's question_overview, written by the AI when the snap is processed and only rendered by the Back Office; what it says for a feedback snap is a prompt decision — drawn as a one-line summary of the work in the photo (task or topic, what the student produced), without the verdict and without repeating the assignment name. What was here before (the AI Feedback LO's submissions per student, the returned feedback and the Review-and-return viewer) is removed from this board: the LO's data stays on T13–T15 and in Submission Grading. Try: expand 山田 花子, View the three snaps — the Session 7 assignment, the free snap on the hypothesis test, the Session 6 assignment. Counts only, no rates. ADDED 3 Nov — EXPORT SHAPES (PRD C7): the export dialog gains a Shape switch — Chat and feedback · Results per criterion · Usage — the columns line follows the shape, and every file ships with a data dictionary and the period, filters and rubric version stamped (Kindai D, DLSC F8–F9, Okayama, universities memo)."
     },
     "t14": {
-      "x": 24320,
+      "x": 22800,
       "y": 6360,
       "w": 640,
       "maxH": 460,
@@ -2336,7 +2286,7 @@
       "y": 20160,
       "w": 640,
       "maxH": 600,
-      "text": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps; slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's criteria into Rubric content (0–3 per criterion, 5 for outstanding, returned as an indication = F5); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is. LAYOUT (PM, 8 Oct: follow the production screenshot exactly): the admin view of ClassAssignmentPage — the class name and its subject chip as the page header, no class-card row, the + New button at the top of the assignment column on the left, the assignments listed as name + status dot (green = published, grey = draft, red = past due), a vertical divider, and the detail beside it with the edit pencil and Open / Close, the auto-close line when published, Question overview, Attached files, Rubric Content with View Less, and the Analysis cards. CREATE (PM, 8 Oct: enable the Create button so it lists the assignment): the button does what the page's create handler does in the code — the 'Created successfully' snackbar, the dialog closes, the list is refetched with the new assignment selected, and the detail panel shows it in production's layout (title and subject, the edit pencil and the Publish action for a draft, Question overview, Attached files, Rubric Content with View Less, then the Analysis cards Started 0 / 150, Snaps 0, Completed 0 / 150 with production's captions). The page opens with the list, as production does; + New opens the dialog, Cancel or the X closes it without creating. No new screen — the teacher stays on Assignments; Publish is the separate action that makes it visible in the app."
+      "text": "KINDAI SOCIOLOGY TRIAL — EXCEL (PM, 8 Oct: the trial wants Excel for the teacher's rubrics and for the student's submission; least dev effort for app and BO). What the 10/8 meeting settled: every assignment is an Excel workbook the student fills in (4 sheets; the one the PM attached is Exercise 09 Regression — regression line, R², partial correlation); the Excel 'rubric' is NOT a criteria list but the teacher's MODEL-ANSWER workbook, the AI returns the gaps (UPDATED 3 Nov, requirement trace: the Rubric content on this board now reads as the 21 Oct decision — model-answer gaps only, the correct value never shown, written questions advised only on request, no score or level; the withdrawn 0–3 / 5 levels and the readability / analysis criteria are gone; the Completed card became Pre-checked, since Mark as Complete is gone and the pre-check is the signal); slides (Session 16) use the 6-criterion rubric already received; the student pre-checks in Manabie and submits the final in Google Classroom, so logs must show without Mark as Complete. THIS BOARD is ClassAssignmentPage + CreateAssignmentDialog as the Back Office code renders them (AI Tutor › Assignments: class cards, the assignment list, the detail; the dialog's Title, Subject, Your message, the optional rubric section with Question overview, Upload files, Rubric content, Generate by AI, Set a due date). The least-effort additions, marked NEW: (1) the upload accepts .xlsx and .pptx beside PDF / PNG / JPG; (2) NO role per file (PM, 8 Oct: no need to define a role) — the files are plain attachments as the code has them; (3) Generate by AI makes the rubric out of the uploaded question — it reads the attachments (the exercise workbook, and the model answer and criteria when attached) and writes the session's check into Rubric content (no score — 21 Oct); (4) Your message carries the Gem instructions (friendly TA, 400–600 characters, praise → question → steps, never the finished work, cite the materials) — the existing field, so the teacher can edit the tone (C6). Everything else is the code as it is. LAYOUT (PM, 8 Oct: follow the production screenshot exactly): the admin view of ClassAssignmentPage — the class name and its subject chip as the page header, no class-card row, the + New button at the top of the assignment column on the left, the assignments listed as name + status dot (green = published, grey = draft, red = past due), a vertical divider, and the detail beside it with the edit pencil and Open / Close, the auto-close line when published, Question overview, Attached files, Rubric Content with View Less, and the Analysis cards. CREATE (PM, 8 Oct: enable the Create button so it lists the assignment): the button does what the page's create handler does in the code — the 'Created successfully' snackbar, the dialog closes, the list is refetched with the new assignment selected, and the detail panel shows it in production's layout (title and subject, the edit pencil and the Publish action for a draft, Question overview, Attached files, Rubric Content with View Less, then the Analysis cards Started 0 / 150, Snaps 0, Completed 0 / 150 with production's captions). The page opens with the list, as production does; + New opens the dialog, Cancel or the X closes it without creating. No new screen — the teacher stays on Assignments; Publish is the separate action that makes it visible in the app."
     },
     "x_X-Upload": {
       "x": 1520,
@@ -2350,7 +2300,7 @@
       "y": 20072,
       "w": 375,
       "maxH": 600,
-      "text": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gaps are real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1; the model answer gives 0.58 — a cell reference in the formula), and the R² sheet has the numbers but no interpretation sentence. Footer: 'Upload a fixed version (version 2)' — a plain link back to X2 (PM, 3 Nov: make the resubmission path visible from the result; the next upload is the next version). Mark as Complete (the AI Tutor Assignment's own action in the code) was the footer and was removed (PM, 3 Nov: the actual submission is the real signal; the feedback, versions and chat are logged on every AI check, so Completed adds nothing); no 'check again' button (PM 8 Oct; another upload from the assignment is the next version); no Google Classroom button, it is a competitor — the final goes wherever the teacher says. Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
+      "text": "THE FEEDBACK, simplified for the trial (PM, 8 Oct: showing the sheets accurately would take dev and evaluation effort, and the trial starts in a week). Extracted text = the workbook and its SHEET NAMES only (PM, 8 Oct: show the sheet tab names instead of hiding the tab) — the same list X2 draws, with each sheet's used range and 'read'; no cell contents, so no table renderer in the app and no cell markers for the AI to place and for us to evaluate. Feedback = the view the app already has, unchanged: the Summary in the Gem's three-part tone (specific praise → a question that prompts reflection → concrete next steps, 400–600 characters, the materials cited at the end) and one card per point with the criterion from the rubric content, the sheet and cell it refers to written in words, and the comment (teal = matches the model answer, red = a gap). The sheet / cell reference is plain text the prompt returns; nothing in the app maps it onto the workbook — the student checks it in their own Excel. On this sample the gap is real: the partial correlation comes out at 1.01 (a coefficient cannot exceed 1 — a cell reference in the formula); the feedback says where to look and never the model value (PM, 21 Oct). UPDATED 3 Nov (requirement trace): the red 考察 / Analysis card on the R² sheet was removed — written questions get advice only when the student asks (10/22) and the six criteria do not apply to the weekly Excel check (21 Oct); the Excel-skills card no longer adds an unprompted interpretation sentence; the model value 0.58 is gone from the summary and the cards; X2 / X4 say the check is optional and unlimited, not required. Footer: 'Upload a fixed version (version 2)' — a plain link back to X2 (PM, 3 Nov: make the resubmission path visible from the result; the next upload is the next version). Mark as Complete (the AI Tutor Assignment's own action in the code) was the footer and was removed (PM, 3 Nov: the actual submission is the real signal; the feedback, versions and chat are logged on every AI check, so Completed adds nothing); no 'check again' button (PM 8 Oct; another upload from the assignment is the next version); no Google Classroom button, it is a competitor — the final goes wherever the teacher says. Dev effort left on this board: the Extracted text tab lists the sheet names the backend already reads (the X2 list component again); the rest is prompt work (gaps against the model answer, name the sheet and cell, Gem tone). Not drawn: an indicative score per criterion (F5, Want) and memory of earlier sessions' feedback (F6, Want) — both prompt work, no UI."
     },
     "x_X-UploadPC": {
       "x": 2430,

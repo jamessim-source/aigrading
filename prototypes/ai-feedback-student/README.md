@@ -402,3 +402,18 @@ PRD C11.14 has the requirement mapping and the dev-effort notes.
   same data laid out for 1280 px; the device toggle switches between them.
 - Mark as Complete removed from X3 and X5 (PM: actual submission is the real
   signal; feedback, versions and chat are logged on every AI check).
+
+## 3 Nov — requirement trace (PRD v1.19, C11.18)
+
+- Every client source traced row by row (`PRDs/trace/`). Boards changed:
+  - 4b / M12 `04-Draft`, `M-Draft`: the AI feedback on a draft before
+    submission; the pre-submission card now opens these, not X3.
+  - X1 rubric content, X2 / X4 due line, X3 / X5 summary and cards follow the
+    21 Oct decisions: no score or level, model value never shown, no unprompted
+    interpretation comment, the check optional and unlimited; X1's Completed
+    card is Pre-checked.
+  - Verdict strip: a third value, *Not judged* (grey), for criterion 6.
+  - Board 5's feedback list includes the returned feedback.
+  - Dropped: 07-Pending2, M-Sheet, M-Camera, T-Created (duplicates).
+- Simplifications proposed in `PRDs/trace/2026-11-03-prototype-simplification-audit.md`
+  are not applied (each changes a PM-reviewed board).
