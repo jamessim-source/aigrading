@@ -395,3 +395,10 @@ PRD C11.14 has the requirement mapping and the dev-effort notes.
   answer saved on the device (02-Assignment, M-Type, dialog and settings copy).
 - T-DashStudent versions line and the Usage export column show the draft-check
   count instead of done / not done.
+
+## 3 Nov — X4 / X5 and Mark as Complete
+
+- X-UploadPC and X-FeedbackPC (X4, X5): learner-web (PC) twins of X2 and X3,
+  same data laid out for 1280 px; the device toggle switches between them.
+- Mark as Complete removed from X3 and X5 (PM: actual submission is the real
+  signal; feedback, versions and chat are logged on every AI check).
