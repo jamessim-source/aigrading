@@ -102,6 +102,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .badge.next{background:#ffc20a;color:#1c1e2c}
 .badge .n{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-style:normal}
 .badge.good .n{background:#1f7a4d}.badge.ask .n{background:#395ad2}.badge.todo .n{background:#d13842}
+.vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
+.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
+.cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
+.unc{border-bottom:2px dashed #d13842;background:#fff3f4;padding:0 2px;border-radius:2px;cursor:pointer}
 .ctag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:#f2f2f4;color:rgba(28,30,44,.6);font-size:12px;font-weight:700;white-space:nowrap}
 .quote{margin:0;padding:2px 0 2px 12px;border-left:3px solid #d5d7dd;font-size:14px;line-height:22px;color:rgba(28,30,44,.6)}
 .quote.good{border-left-color:#9ddcbb}.quote.ask{border-left-color:#aeb9ea}.quote.todo{border-left-color:#f3b4b8}
@@ -540,6 +544,11 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tfile .fi{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 28px}
 .titem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #E0E0E0;font-size:14px}
 .titem:last-child{border-bottom:0}
+.titem .no{width:24px;height:24px;border-radius:50%;background:#E3F2FD;color:#0B79D0;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 24px}
+.titem .key{font-size:11px;color:#ED6C02;background:#FFF4E5;border-radius:4px;padding:1px 6px;display:inline-flex;align-items:center;gap:3px;font-weight:600}
+.lvl{display:flex;flex-direction:column;gap:6px;margin-top:4px}.lvl button{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1px solid #E0E0E0;border-radius:4px;background:#fff;padding:8px 12px;font:inherit;cursor:pointer;color:#212121}
+.lvl button.on{border-color:#2196F3;background:#F5FAFF}.lvl button.dis{color:#9E9E9E;cursor:default}.lvl .ln{width:22px;height:22px;border-radius:50%;background:#EEEEEE;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 22px}
+.lvl button.on .ln{background:#2196F3;color:#fff}.lvl small{display:block;color:#757575;font-size:12px;margin-top:2px}
 .titem .src{margin-left:auto;font-size:12px;color:#616161;background:#F5F5F5;border-radius:4px;padding:2px 8px;white-space:nowrap}
 .trubric{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;border:1px solid #E0E0E0;border-radius:4px;padding:16px 22px 14px;background:#FAFAFA;font-size:14px;line-height:1.6;color:#212121}
 .trubric h5{margin:0 0 8px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -572,7 +581,8 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tseg{display:inline-flex;border:1px solid #BDBDBD;border-radius:4px;overflow:hidden;align-self:flex-start}
 .tseg span{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
 .tseg span+span{border-left:1px solid #BDBDBD}
-.tseg span.on{background:#1976D21F;color:#0B79D0}
+.tseg span.on,.tseg button.on{background:#1976D21F;color:#0B79D0}
+.tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}.tseg button+button{border-left:1px solid #BDBDBD}
 .tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap;border:0;background:none;cursor:pointer;font-family:inherit}
 .tseg button+button{border-left:1px solid #BDBDBD}
 .tseg button.on{background:#1976D21F;color:#0B79D0}
@@ -927,7 +937,9 @@ table.m .ad-sub table.inner td.ov{white-space:normal;max-width:360px;line-height
 <sc-if value="{{exOpen}}" hint-placeholder-val="{{false}}"><div class="tscrim"><div class="dlg" style="max-width:860px">
     <div class="dlg-head"><h2>AIフィードバックのチャットをエクスポート</h2><button class="ticon" onClick="{{closeEx}}" aria-label="キャンセル"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button></div>
     <div class="dlg-body">
-      <label class="field"><span class="lbl">列</span><span class="in" style="background:#FAFAFA">ユーザーID ・ 生徒名 ・ クラス ・ タイトル ・ 科目 ・ 質問 ・ チャット</span></label>
+      <div><span class="helper" style="margin:0 0 6px">形式</span><div class="tseg" role="group"><button class="{{sh0}}" style="border:0;background:none;font:inherit;cursor:pointer" onClick="{{setSh0}}">チャットとフィードバック</button><button class="{{sh1}}" style="border:0;background:none;font:inherit;cursor:pointer" onClick="{{setSh1}}">観点別の結果</button><button class="{{sh2}}" style="border:0;background:none;font:inherit;cursor:pointer" onClick="{{setSh2}}">利用状況</button></div></div>
+      <label class="field"><span class="lbl">列</span><span class="in" style="background:#FAFAFA">{{xcols}}</span></label>
+      <span class="helper" style="margin:-6px 0 0">データ辞書（列の定義）を同梱 ・ 期間・絞り込み・ルーブリック版をファイルに記録</span>
     </div>
     <div class="dlg-foot"><span class="helper num" style="margin:0 auto 0 0;align-self:center;display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ai_feedback_3A_2026-11.csv ・ 22行</span><button class="tbtn" onClick="{{closeEx}}">キャンセル</button><button class="tbtn contained" onClick="{{doEx}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>CSVをエクスポート</button></div>
   </div></div></sc-if>
@@ -938,10 +950,12 @@ table.m .ad-sub table.inner td.ov{white-space:normal;max-width:360px;line-height
 <script>
 
 class Component extends DCLogic {
-  state = { o: -1, v: false, vi: 0, vj: 0, ex: false, exd: false };
+  state = { o: -1, v: false, vi: 0, vj: 0, ex: false, exd: false, sh: 0 };
   renderVals() {
-    const FB = [[["2026/11/12 19:40", 1, "a7", "相関係数の計算と散布図 — 手書きノート2ページ", "up"], ["2026/11/09 21:15", 1, "", "仮説検定の答案 — p値の解釈", "down"], ["2026/11/05 20:14", 1, "a6", "度数分布表とヒストグラム — 階級幅 100万人", "up"]], [["2026/11/11 18:05", 1, "a7", "散布図と相関係数の下書き", ""], ["2026/11/04 17:20", 1, "a6", "度数分布表（1回目）", "down"]], [["2026/11/12 08:12", 1, "a7", "相関係数 r = 0.62 の計算過程", "up"], ["2026/11/10 22:30", 1, "", "検定統計量の計算", "up"], ["2026/11/06 19:50", 1, "a6", "ヒストグラムの作図", "up"]], [["2026/11/12 21:40", 1, "a7", "外れ値を除いた再計算のメモ", "up"], ["2026/11/08 20:05", 1, "", "相関と因果の整理ノート", "up"], ["2026/11/05 18:30", 1, "a6", "代表値と散布度の計算", "up"]], [["2026/11/13 23:10", 1, "a7", "散布図の作図（途中）", ""], ["2026/11/06 21:00", 1, "a6", "度数分布表", "up"]], [["2026/11/13 22:58", 1, "a7", "相関係数の計算", "down"], ["2026/11/07 19:15", 1, "a6", "ヒストグラムの階級幅", "up"]], [["2026/11/04 22:40", 1, "a6", "度数分布表 — 階級幅 50万人", "down"]], [["2026/11/15 10:40", 1, "a7", "回帰直線を含む散布図", "up"], ["2026/11/11 20:20", 1, "", "分散の計算練習", "up"], ["2026/11/06 18:00", 1, "a6", "ヒストグラムと度数分布表", "up"]], [["2026/11/14 17:05", 1, "a7", "相関係数の計算メモ", "up"], ["2026/11/07 20:30", 1, "a6", "度数分布表", ""]], [["2026/11/12 09:30", 1, "a7", "散布図の下書き", ""]]], STU = ["山田 花子", "佐藤 太郎", "鈴木 一郎", "田中 美咲", "高橋 健", "伊藤 さくら", "渡辺 大輝", "中村 葵", "小林 蓮", "加藤 結衣"], LENS = ["何でも", "数学", "理科", "英語"], ASG = {"a7": "第7回 相関分析レポート", "a6": "第6回 度数分布とヒストグラム", "": "課題なし（自由スナップ）"}, VAR = {"a7": 0, "": 1, "a6": 2};
+    const FB = [[["2026/11/12 19:40", 1, "a7", "相関係数の計算と散布図 — 手書きノート2ページ", "up"], ["2026/11/09 21:15", 1, "", "仮説検定の答案 — p値の解釈", "down"], ["2026/11/05 20:14", 1, "a6", "度数分布表とヒストグラム — 階級幅 100万人", "up"]], [["2026/11/11 18:05", 1, "a7", "散布図と相関係数の下書き", ""], ["2026/11/04 17:20", 1, "a6", "度数分布表（1回目）", "down"]], [["2026/11/12 08:12", 1, "a7", "相関係数 r = 0.62 の計算過程", "up"], ["2026/11/10 22:30", 1, "", "検定統計量の計算", "up"], ["2026/11/06 19:50", 1, "a6", "ヒストグラムの作図", "up"]], [["2026/11/12 21:40", 1, "a7", "外れ値を除いた再計算のメモ", "up"], ["2026/11/08 20:05", 1, "", "相関と因果の整理ノート", "up"], ["2026/11/05 18:30", 1, "a6", "代表値と散布度の計算", "up"]], [["2026/11/13 23:10", 1, "a7", "散布図の作図（途中）", ""], ["2026/11/06 21:00", 1, "a6", "度数分布表", "up"]], [["2026/11/13 22:58", 1, "a7", "相関係数の計算", "down"], ["2026/11/07 19:15", 1, "a6", "ヒストグラムの階級幅", "up"]], [["2026/11/04 22:40", 1, "a6", "度数分布表 — 階級幅 50万人", "down"]], [["2026/11/15 10:40", 1, "a7", "回帰直線を含む散布図", "up"], ["2026/11/11 20:20", 1, "", "分散の計算練習", "up"], ["2026/11/06 18:00", 1, "a6", "ヒストグラムと度数分布表", "up"]], [["2026/11/14 17:05", 1, "a7", "相関係数の計算メモ", "up"], ["2026/11/07 20:30", 1, "a6", "度数分布表", ""]], [["2026/11/12 09:30", 1, "a7", "散布図の下書き", ""]]], STU = ["山田 花子", "佐藤 太郎", "鈴木 一郎", "田中 美咲", "高橋 健", "伊藤 さくら", "渡辺 大輝", "中村 葵", "小林 蓮", "加藤 結衣"], LENS = ["何でも", "数学", "理科", "英語"], ASG = {"a7": "第7回 相関分析レポート", "a6": "第6回 度数分布とヒストグラム", "": "課題なし（自由スナップ）"}, VAR = {"a7": 0, "": 1, "a6": 2}, SH = [["ユーザーID", "生徒名", "クラス", "タイトル", "科目", "質問", "チャット"], ["ユーザーID", "生徒名", "LO", "版", "観点", "判定", "コメント", "ルーブリック版"], ["ユーザーID", "生徒名", "LO", "事前チェック", "版数", "質問数", "初回", "最新"]];
     const v = { vOpen: this.state.v, closeV: () => this.setState({ v: false }),
+      xcols: SH[this.state.sh].join(" ・ "), sh0: this.state.sh === 0 ? "on" : "", sh1: this.state.sh === 1 ? "on" : "", sh2: this.state.sh === 2 ? "on" : "",
+      setSh0: () => this.setState({ sh: 0 }), setSh1: () => this.setState({ sh: 1 }), setSh2: () => this.setState({ sh: 2 }),
       exOpen: this.state.ex, openEx: () => this.setState({ ex: true, exd: false }), closeEx: () => this.setState({ ex: false }), doEx: () => this.setState({ ex: false, exd: true }), exDone: this.state.exd, hideDone: () => this.setState({ exd: false }),
       };
     for (let i = 0; i < FB.length; i++) {

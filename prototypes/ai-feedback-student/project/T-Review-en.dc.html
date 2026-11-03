@@ -103,6 +103,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .badge.next{background:#ffc20a;color:#1c1e2c}
 .badge .n{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-style:normal}
 .badge.good .n{background:#1f7a4d}.badge.ask .n{background:#395ad2}.badge.todo .n{background:#d13842}
+.vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
+.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
+.cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
+.unc{border-bottom:2px dashed #d13842;background:#fff3f4;padding:0 2px;border-radius:2px;cursor:pointer}
 .ctag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:#f2f2f4;color:rgba(28,30,44,.6);font-size:12px;font-weight:700;white-space:nowrap}
 .quote{margin:0;padding:2px 0 2px 12px;border-left:3px solid #d5d7dd;font-size:14px;line-height:22px;color:rgba(28,30,44,.6)}
 .quote.good{border-left-color:#9ddcbb}.quote.ask{border-left-color:#aeb9ea}.quote.todo{border-left-color:#f3b4b8}
@@ -541,6 +545,11 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tfile .fi{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 28px}
 .titem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #E0E0E0;font-size:14px}
 .titem:last-child{border-bottom:0}
+.titem .no{width:24px;height:24px;border-radius:50%;background:#E3F2FD;color:#0B79D0;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 24px}
+.titem .key{font-size:11px;color:#ED6C02;background:#FFF4E5;border-radius:4px;padding:1px 6px;display:inline-flex;align-items:center;gap:3px;font-weight:600}
+.lvl{display:flex;flex-direction:column;gap:6px;margin-top:4px}.lvl button{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1px solid #E0E0E0;border-radius:4px;background:#fff;padding:8px 12px;font:inherit;cursor:pointer;color:#212121}
+.lvl button.on{border-color:#2196F3;background:#F5FAFF}.lvl button.dis{color:#9E9E9E;cursor:default}.lvl .ln{width:22px;height:22px;border-radius:50%;background:#EEEEEE;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 22px}
+.lvl button.on .ln{background:#2196F3;color:#fff}.lvl small{display:block;color:#757575;font-size:12px;margin-top:2px}
 .titem .src{margin-left:auto;font-size:12px;color:#616161;background:#F5F5F5;border-radius:4px;padding:2px 8px;white-space:nowrap}
 .trubric{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;border:1px solid #E0E0E0;border-radius:4px;padding:16px 22px 14px;background:#FAFAFA;font-size:14px;line-height:1.6;color:#212121}
 .trubric h5{margin:0 0 8px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -573,7 +582,8 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tseg{display:inline-flex;border:1px solid #BDBDBD;border-radius:4px;overflow:hidden;align-self:flex-start}
 .tseg span{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
 .tseg span+span{border-left:1px solid #BDBDBD}
-.tseg span.on{background:#1976D21F;color:#0B79D0}
+.tseg span.on,.tseg button.on{background:#1976D21F;color:#0B79D0}
+.tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}.tseg button+button{border-left:1px solid #BDBDBD}
 .tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap;border:0;background:none;cursor:pointer;font-family:inherit}
 .tseg button+button{border-left:1px solid #BDBDBD}
 .tseg button.on{background:#1976D21F;color:#0B79D0}
@@ -854,19 +864,19 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
         <div class="q-answer" style="margin-bottom:0"><p style="margin:0 0 10px">In this exercise I took population density and per-capita prefectural income for the 47 prefectures from the Statistics Bureau's social indicators and analysed the relationship between them. Using Excel's CORREL function, the correlation coefficient came to r = 0.62, confirming a positive correlation.</p><p style="margin:0 0 10px">The scatter plot showed Tokyo sitting far away from the other prefectures. Recalculating without Tokyo lowered the coefficient to r = 0.41, confirming that Tokyo's values were pulling the correlation up.</p><p style="margin:0 0 10px">From this result it can be said that the denser a region's population, the higher its income. This is likely because companies concentrate in urban areas, creating more employment.</p><p style="margin:0 0 10px">To check significance I ran the T.TEST function, which gave a p-value of 0.03. The null hypothesis is therefore rejected, and there is a statistically significant relationship between the two variables.</p><p style="margin:0 0 10px">Next I would like to add the ageing rate as a third variable, to capture the background of regional differences from more angles.</p></div>
       </div>
       <div class="q-item">
-      <div class="q-top"><span class="q-no">Comment 1</span><span class="badge good"><i class="n">1</i>Strength</span><span class="tchip">Statistical processing</span>
+      <div class="q-top"><span class="q-no">Comment 1</span><span class="badge good"><i class="n">1</i>Strength</span><span class="tchip">Statistical processing</span><span class="vd ok">― No issue</span>
         </div>
       <div class="q-answer"><span class="who">The passage it refers to (from the submission)</span>Recalculating without Tokyo lowered the coefficient to r = 0.41, confirming that Tokyo's values were pulling the correlation up.</div>
       <p class="q-prompt">Suspecting an outlier and showing the coefficient before and after removing it is very good practice. Because you state exactly how the number changed, a reader can follow the basis of your judgement. This applies what we covered in Session 6 on handling outliers.</p>
       <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Edit</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>Delete</span></div>
     </div><div class="q-item">
-      <div class="q-top"><span class="q-no">Comment 2</span><span class="badge ask"><i class="n">2</i>Question</span><span class="tchip">Interpretation</span>
+      <div class="q-top"><span class="q-no">Comment 2</span><span class="badge ask"><i class="n">2</i>Question</span><span class="tchip">Interpretation</span><span class="vd flag">✓ Needs work</span>
         </div>
       <div class="q-answer"><span class="who">The passage it refers to (from the submission)</span>From this result it can be said that the denser a region's population, the higher its income.</div>
       <p class="q-prompt">Because the coefficient was positive, you conclude that higher density leads to higher income — but that is a causal claim. Could the reverse explanation, that people move to regions where income is already high, be supported by the same data? Take a moment to separate correlation from causation around this sentence.</p>
       <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Edit</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>Delete</span></div>
     </div><div class="q-item edited">
-      <div class="q-top"><span class="q-no">Comment 3</span><span class="badge todo"><i class="n">3</i>To improve</span><span class="tchip">Statistical processing</span>
+      <div class="q-top"><span class="q-no">Comment 3</span><span class="badge todo"><i class="n">3</i>To improve</span><span class="tchip">Statistical processing</span><span class="vd flag">✓ Needs work</span>
         <span class="tchip type">Edited</span></div>
       <div class="q-answer"><span class="who">The passage it refers to (from the submission)</span>To check significance I ran the T.TEST function, which gave a p-value of 0.03.</div>
       <p class="q-prompt">T.TEST tests the difference between the means of two groups. To test whether a correlation between two variables is significant, use the test for the correlation coefficient (t = r√(n−2) / √(1−r²)). Check which test answers which question in the table in the slides, then rewrite the calculation.</p>

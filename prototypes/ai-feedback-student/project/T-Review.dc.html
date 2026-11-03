@@ -103,6 +103,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .badge.next{background:#ffc20a;color:#1c1e2c}
 .badge .n{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-style:normal}
 .badge.good .n{background:#1f7a4d}.badge.ask .n{background:#395ad2}.badge.todo .n{background:#d13842}
+.vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
+.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
+.cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
+.unc{border-bottom:2px dashed #d13842;background:#fff3f4;padding:0 2px;border-radius:2px;cursor:pointer}
 .ctag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:#f2f2f4;color:rgba(28,30,44,.6);font-size:12px;font-weight:700;white-space:nowrap}
 .quote{margin:0;padding:2px 0 2px 12px;border-left:3px solid #d5d7dd;font-size:14px;line-height:22px;color:rgba(28,30,44,.6)}
 .quote.good{border-left-color:#9ddcbb}.quote.ask{border-left-color:#aeb9ea}.quote.todo{border-left-color:#f3b4b8}
@@ -541,6 +545,11 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tfile .fi{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 28px}
 .titem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #E0E0E0;font-size:14px}
 .titem:last-child{border-bottom:0}
+.titem .no{width:24px;height:24px;border-radius:50%;background:#E3F2FD;color:#0B79D0;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 24px}
+.titem .key{font-size:11px;color:#ED6C02;background:#FFF4E5;border-radius:4px;padding:1px 6px;display:inline-flex;align-items:center;gap:3px;font-weight:600}
+.lvl{display:flex;flex-direction:column;gap:6px;margin-top:4px}.lvl button{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1px solid #E0E0E0;border-radius:4px;background:#fff;padding:8px 12px;font:inherit;cursor:pointer;color:#212121}
+.lvl button.on{border-color:#2196F3;background:#F5FAFF}.lvl button.dis{color:#9E9E9E;cursor:default}.lvl .ln{width:22px;height:22px;border-radius:50%;background:#EEEEEE;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 22px}
+.lvl button.on .ln{background:#2196F3;color:#fff}.lvl small{display:block;color:#757575;font-size:12px;margin-top:2px}
 .titem .src{margin-left:auto;font-size:12px;color:#616161;background:#F5F5F5;border-radius:4px;padding:2px 8px;white-space:nowrap}
 .trubric{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;border:1px solid #E0E0E0;border-radius:4px;padding:16px 22px 14px;background:#FAFAFA;font-size:14px;line-height:1.6;color:#212121}
 .trubric h5{margin:0 0 8px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -573,7 +582,8 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tseg{display:inline-flex;border:1px solid #BDBDBD;border-radius:4px;overflow:hidden;align-self:flex-start}
 .tseg span{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
 .tseg span+span{border-left:1px solid #BDBDBD}
-.tseg span.on{background:#1976D21F;color:#0B79D0}
+.tseg span.on,.tseg button.on{background:#1976D21F;color:#0B79D0}
+.tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}.tseg button+button{border-left:1px solid #BDBDBD}
 .tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap;border:0;background:none;cursor:pointer;font-family:inherit}
 .tseg button+button{border-left:1px solid #BDBDBD}
 .tseg button.on{background:#1976D21F;color:#0B79D0}
@@ -854,19 +864,19 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
         <div class="q-answer" style="margin-bottom:0"><p style="margin:0 0 10px">本演習では、総務省「社会生活統計指標」から47都道府県の人口密度と一人当たり県民所得のデータを取得し、両者の関係を分析した。Excel の CORREL 関数を用いて相関係数を算出したところ、r = 0.62 となり、正の相関が確認された。</p><p style="margin:0 0 10px">散布図を作成した結果、東京都が他の道府県から大きく離れた位置にあることが分かった。そこで東京都を除いて再計算すると r = 0.41 に低下し、東京都の値が相関係数を押し上げていることが確認できた。</p><p style="margin:0 0 10px">この結果から、人口密度が高い地域ほど所得が高くなるといえる。都市部に企業が集中し、雇用機会が多いためだと考えられる。</p><p style="margin:0 0 10px">有意性を確認するため T.TEST 関数を実行したところ、p 値は 0.03 であった。したがって帰無仮説は棄却され、2つの変数の間には統計的に有意な関係があるといえる。</p><p style="margin:0 0 10px">今後は、第三の変数として高齢化率を加えた分析を行い、地域差の背景をより多角的に捉えたい。</p></div>
       </div>
       <div class="q-item">
-      <div class="q-top"><span class="q-no">コメント 1</span><span class="badge good"><i class="n">1</i>優れた点</span><span class="tchip">統計処理</span>
+      <div class="q-top"><span class="q-no">コメント 1</span><span class="badge good"><i class="n">1</i>優れた点</span><span class="tchip">統計処理</span><span class="vd ok">― 問題なし</span>
         </div>
       <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>そこで東京都を除いて再計算すると r = 0.41 に低下し、東京都の値が相関係数を押し上げていることが確認できた。</div>
       <p class="q-prompt">外れ値の影響を疑い、除外前後の相関係数を並べて示した点がとても良いです。数値がどう変わったかを具体的に書いているので、読む側も判断の根拠を追うことができます。第6回で扱った「外れ値の扱い」がしっかり生かされています。</p>
       <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>削除</span></div>
     </div><div class="q-item">
-      <div class="q-top"><span class="q-no">コメント 2</span><span class="badge ask"><i class="n">2</i>問いかけ</span><span class="tchip">解釈</span>
+      <div class="q-top"><span class="q-no">コメント 2</span><span class="badge ask"><i class="n">2</i>問いかけ</span><span class="tchip">解釈</span><span class="vd flag">✓ 要改善</span>
         </div>
       <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>この結果から、人口密度が高い地域ほど所得が高くなるといえる。</div>
       <p class="q-prompt">相関係数が正だったことから「人口密度が高いほど所得が高くなる」と述べていますが、これは因果関係の主張になっています。逆に「所得が高い地域に人が集まる」という説明も、同じデータから成り立ちませんか。相関と因果のちがいを、この文の前後で一度整理してみてください。</p>
       <div class="tdacts"><span class="tbtn sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>編集</span><span class="tbtn sm danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>削除</span></div>
     </div><div class="q-item edited">
-      <div class="q-top"><span class="q-no">コメント 3</span><span class="badge todo"><i class="n">3</i>改善点</span><span class="tchip">統計処理</span>
+      <div class="q-top"><span class="q-no">コメント 3</span><span class="badge todo"><i class="n">3</i>改善点</span><span class="tchip">統計処理</span><span class="vd flag">✓ 要改善</span>
         <span class="tchip type">編集済み</span></div>
       <div class="q-answer"><span class="who">該当箇所（生徒の提出物より）</span>有意性を確認するため T.TEST 関数を実行したところ、p 値は 0.03 であった。</div>
       <p class="q-prompt">T.TEST は2つのグループの平均の差を検定する関数です。2つの変数の相関が有意かどうかを調べたい場合は、相関係数の検定（t = r√(n−2) ／ √(1−r²)）を用います。どの検定が何を調べているのかを講義資料の表で確認してから、計算式を書き直してみましょう。</p>

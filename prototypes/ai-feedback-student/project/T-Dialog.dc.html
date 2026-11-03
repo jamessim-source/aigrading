@@ -103,6 +103,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .badge.next{background:#ffc20a;color:#1c1e2c}
 .badge .n{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-style:normal}
 .badge.good .n{background:#1f7a4d}.badge.ask .n{background:#395ad2}.badge.todo .n{background:#d13842}
+.vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
+.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
+.cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
+.unc{border-bottom:2px dashed #d13842;background:#fff3f4;padding:0 2px;border-radius:2px;cursor:pointer}
 .ctag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:#f2f2f4;color:rgba(28,30,44,.6);font-size:12px;font-weight:700;white-space:nowrap}
 .quote{margin:0;padding:2px 0 2px 12px;border-left:3px solid #d5d7dd;font-size:14px;line-height:22px;color:rgba(28,30,44,.6)}
 .quote.good{border-left-color:#9ddcbb}.quote.ask{border-left-color:#aeb9ea}.quote.todo{border-left-color:#f3b4b8}
@@ -541,6 +545,11 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tfile .fi{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 28px}
 .titem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #E0E0E0;font-size:14px}
 .titem:last-child{border-bottom:0}
+.titem .no{width:24px;height:24px;border-radius:50%;background:#E3F2FD;color:#0B79D0;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 24px}
+.titem .key{font-size:11px;color:#ED6C02;background:#FFF4E5;border-radius:4px;padding:1px 6px;display:inline-flex;align-items:center;gap:3px;font-weight:600}
+.lvl{display:flex;flex-direction:column;gap:6px;margin-top:4px}.lvl button{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1px solid #E0E0E0;border-radius:4px;background:#fff;padding:8px 12px;font:inherit;cursor:pointer;color:#212121}
+.lvl button.on{border-color:#2196F3;background:#F5FAFF}.lvl button.dis{color:#9E9E9E;cursor:default}.lvl .ln{width:22px;height:22px;border-radius:50%;background:#EEEEEE;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 22px}
+.lvl button.on .ln{background:#2196F3;color:#fff}.lvl small{display:block;color:#757575;font-size:12px;margin-top:2px}
 .titem .src{margin-left:auto;font-size:12px;color:#616161;background:#F5F5F5;border-radius:4px;padding:2px 8px;white-space:nowrap}
 .trubric{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;border:1px solid #E0E0E0;border-radius:4px;padding:16px 22px 14px;background:#FAFAFA;font-size:14px;line-height:1.6;color:#212121}
 .trubric h5{margin:0 0 8px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -573,7 +582,8 @@ table.m tbody tr:last-child td{border-bottom:0}
 .tseg{display:inline-flex;border:1px solid #BDBDBD;border-radius:4px;overflow:hidden;align-self:flex-start}
 .tseg span{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}
 .tseg span+span{border-left:1px solid #BDBDBD}
-.tseg span.on{background:#1976D21F;color:#0B79D0}
+.tseg span.on,.tseg button.on{background:#1976D21F;color:#0B79D0}
+.tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap}.tseg button+button{border-left:1px solid #BDBDBD}
 .tseg button{color:#757575;padding:0 16px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap;border:0;background:none;cursor:pointer;font-family:inherit}
 .tseg button+button{border-left:1px solid #BDBDBD}
 .tseg button.on{background:#1976D21F;color:#0B79D0}
@@ -879,6 +889,12 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
             <sc-if value="{{rvOff}}" hint-placeholder-val="{{false}}"><div class="alert info"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2196F3" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span>締切のあと、先生の確認なしに自動で返却されます。</span></div></sc-if>
           </div>
           <div class="setting">
+            <!-- AI answer level (3 Nov; [S34] dial 0-3, [S33], [S28] 10/22): per LO, default 1, the tenant caps it -->
+            <span class="setting-label" style="font-weight:500">AIが示す範囲</span>
+            <div class="lvl"><button class="{{l0}}" onClick="{{sl0}}"><span class="ln">0</span><span>問い返しのみ<small>答え・結果・完成した文章は示さず、質問で考えさせる</small></span></button><button class="{{l1}}" onClick="{{sl1}}"><span class="ln">1</span><span>ヒントと参照先<small>どこを見直すか、教材のどこを読むかを示す</small></span></button><button class="{{l2}}" onClick="{{sl2}}"><span class="ln">2</span><span>別の題材で型を示す<small>同じ型の例を別の題材で示す</small></span></button><button class="{{l3}} dis" onClick="{{sl3}}"><span class="ln">3</span><span>解説まで<small>解き方まで説明する（上限により選べません）</small></span></button></div>
+            <span class="helper" style="margin:0">フィードバックと「AIに質問」の両方に適用されます。テナントの上限は 2 です。</span>
+          </div>
+          <div class="setting">
             <!-- AI feedback before submission (PM, 29 Sep): a per-LO switch, default off -->
             <span class="setting-label" style="font-weight:500">提出前のAIフィードバック</span>
             <button class="switch {{pr}}" onClick="{{togglePr}}"><span class="track"></span><span>提出前にAIフィードバックを受けられるようにする</span></button>
@@ -895,7 +911,7 @@ table.m table.inner tbody tr.det .tp-ins>svg{margin-top:2px}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
-  state = { menu: false, review: true, resub: true, pre: false, m0: true, m1: true, m2: true };
+  state = { menu: false, review: true, resub: true, pre: false, lvl: 1, m0: true, m1: true, m2: true };
   renderVals() {
     const t = (k) => () => { const p = {}; p[k] = !this.state[k]; this.setState(p); };
     return {
@@ -904,6 +920,8 @@ class Component extends DCLogic {
       rs: this.state.resub ? "on" : "", rsOn: this.state.resub, toggleRs: t("resub"),
       pr: this.state.pre ? "on" : "", prOn: this.state.pre, togglePr: t("pre"),
       c0: this.state.m0 ? "on" : "", c1: this.state.m1 ? "on" : "", c2: this.state.m2 ? "on" : "",
+      l0: this.state.lvl === 0 ? "on" : "", l1: this.state.lvl === 1 ? "on" : "", l2: this.state.lvl === 2 ? "on" : "", l3: "",
+      sl0: () => this.setState({ lvl: 0 }), sl1: () => this.setState({ lvl: 1 }), sl2: () => this.setState({ lvl: 2 }), sl3: () => {},
       t0: t("m0"), t1: t("m1"), t2: t("m2"),
     };
   }

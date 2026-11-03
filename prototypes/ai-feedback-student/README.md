@@ -18,7 +18,7 @@ sticky notes on the canvas are the per-screen record.
 |---|---|---|
 | PC · 日本語 | `Main` → `02-Assignment` → `03-Pending` → `04-Feedback` → `06-Resubmit` → `07-Pending2` → `08-Feedback2` → `05-Todo` | 1280 × 800 |
 | PC · English | same, `-en` suffix | 1280 × 800 |
-| Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
+| Mobile · 日本語 | `M-Main` → `M-Assignment` → `M-Camera` → `M-Crop` → `M-Pages` → `M-Read` → `M-Pending` → `M-Feedback` → `M-Sheet` | 375 × 812 |
 | Mobile · English | same, `-en` suffix | 375 × 812 |
 | Back Office · 日本語 | `T-Book` → `T-Dialog` → `T-Material` ↔ `T-Settings` → `T-Created` · `T-Courses` → `T-Course` → `T-CourseBook` · `T-Queue` → `T-Detail` → `T-List` → `T-Review` · `T-DashTopic` → `T-DashGroup` ↔ `T-DashStudent` · `T-DashAI` | 1440 × 900 |
 | Back Office · English | same, `-en` suffix | 1440 × 900 |
@@ -340,6 +340,20 @@ The canvas is a Claude Design artifact. To republish after editing `gen.py`,
 regenerate, then publish `project/canvas.json` and the changed `project/*.dc.html`
 to the artifact URL above (the index must be merged onto the live copy first,
 because viewers can move notes and boards on the page).
+
+## General requirements from five client conversations (3 Nov, PM)
+
+Seven P1 changes from `PRDs/ai-feedback-change-list-2026-11-03.md`, each a rule in PRD v1.17:
+**Evaluation items** on the LO content tab (`T-Material`) — the teacher's numbered list with ★ key
+items, and Generate rubric from items keeps them 1:1 (criteria fidelity). **AI answer level** 0–3 in
+the Add LO dialog and on the Settings tab (`T-Dialog`, `T-Settings`), default 1, tenant cap greys
+the rest. **Verdict per criterion** — ✓ Needs work / ― No issue on every feedback card, a verdict
+strip for all six criteria under the Summary (`04-Feedback`, `M-Feedback`, `M-Sheet`) and on the
+review items (`T-Review`). **Read-check** (`M-Read`, new, between Pages and the waiting screen) —
+unconfirmed spans dashed, tap for candidates; unconfirmed spans are never counted as typos.
+**Versions line** under a feedback LO's status on the Student Dashboard (`T-DashStudent`).
+**Due-date segment and Due column** on Submission Grading (`T-Queue`). **Export shapes** — chat and
+feedback · results per criterion · usage — on the AI Dashboard's export dialog (`T-DashAI`).
 
 ## Kindai sociology trial — Excel assignments (X1–X3, 8 Oct)
 

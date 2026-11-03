@@ -102,6 +102,10 @@ button.seg-i.on{background:#eef1ff;color:#395ad2}
 .badge.next{background:#ffc20a;color:#1c1e2c}
 .badge .n{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-style:normal}
 .badge.good .n{background:#1f7a4d}.badge.ask .n{background:#395ad2}.badge.todo .n{background:#d13842}
+.vd{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
+.vd.flag{background:#fbe7e9;color:#d13842}.vd.ok{background:#e6f5ee;color:#1f7a4d}
+.cov{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.cov .r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(28,30,44,.08)}
+.unc{border-bottom:2px dashed #d13842;background:#fff3f4;padding:0 2px;border-radius:2px;cursor:pointer}
 .ctag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:#f2f2f4;color:rgba(28,30,44,.6);font-size:12px;font-weight:700;white-space:nowrap}
 .quote{margin:0;padding:2px 0 2px 12px;border-left:3px solid #d5d7dd;font-size:14px;line-height:22px;color:rgba(28,30,44,.6)}
 .quote.good{border-left-color:#9ddcbb}.quote.ask{border-left-color:#aeb9ea}.quote.todo{border-left-color:#f3b4b8}
@@ -411,19 +415,19 @@ body{background:#f2f2f4}</style>
           <p class="fbody">前回の2つの改善点が、どちらも自分の言葉で直されています。検定は相関係数の検定に置き換わり、計算過程も示されました。解釈も「相関がある」までにとどめ、逆の説明があり得ることまで書けています。残るのは構成です。冒頭に「何を明らかにしたいのか」が書かれていないため、結論で答えている問いが読者に見えません。</p>
         </div>
         <div id="card-1" class="fb-card {{h1}}">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge good"><i class="n">1</i>優れた点</span><span class="ctag">解釈</span></div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge good"><i class="n">1</i>優れた点</span><span class="ctag">解釈</span><span class="vd ok">― 問題なし</span></div>
       <blockquote class="quote good">“ただし、これは「人口密度が高いから所得が高い」ことを示すものではなく、所得の高い地域に人が集まるという逆の説明も同じデータから成り立つ。”</blockquote>
       <p class="fbody">前回の問いかけに、そのまま答える形で書き直せています。相関を述べたうえで因果の方向は判断できないと明記し、逆の説明を自分で挙げている点が、統計を扱う姿勢として大切です。</p>
       <span class="ref"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>第5回 講義資料 p.8「相関と因果」</span>
       <button class="jump" onClick="{{jc1}}" aria-label="本文の該当箇所を見る"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/></svg></button>
     </div><div id="card-2" class="fb-card {{h2}}">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge good"><i class="n">2</i>優れた点</span><span class="ctag">統計処理</span></div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge good"><i class="n">2</i>優れた点</span><span class="ctag">統計処理</span><span class="vd ok">― 問題なし</span></div>
       <blockquote class="quote good">“t = r√(n−2) ／ √(1−r²) により t 値を求めたところ t = 5.30（自由度 45）となり、p < 0.01 で有意であった。”</blockquote>
       <p class="fbody">検定を相関係数の検定に置き換え、式・t 値・自由度・p 値の順に示せています。r = 0.62、n = 47 からの計算も合っています。何を検定したのかが一読で分かる書き方です。</p>
       <span class="ref"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>第7回 講義資料 p.11「検定の使い分け」</span>
       <button class="jump" onClick="{{jc2}}" aria-label="本文の該当箇所を見る"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/></svg></button>
     </div><div id="card-3" class="fb-card {{h3}}">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge todo"><i class="n">3</i>改善点</span><span class="ctag">論理構成</span></div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge todo"><i class="n">3</i>改善点</span><span class="ctag">論理構成</span><span class="vd flag">✓ 要改善</span></div>
       <blockquote class="quote todo">“本演習では、総務省「社会生活統計指標」から47都道府県の人口密度と一人当たり県民所得のデータを取得し、両者の関係を分析した。”</blockquote>
       <p class="fbody">結論では「正の相関はあるが因果の方向は判断できない」と、はっきりした問いに答えています。ところが冒頭には「関係を分析した」とあるだけで、その問いが書かれていません。「人口密度の高い地域ほど所得が高いといえるか」のように、明らかにしたいことを一文で置くと、結論までの筋が通ります。</p>
       <span class="ref"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>第7回 講義資料 p.3「分析の問いを立てる」</span>
