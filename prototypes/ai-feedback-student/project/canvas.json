@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-11-03T15:07:46Z"
+    "at": "2026-11-03T15:10:56Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -63,7 +63,7 @@
       "y": 0,
       "w": 1280,
       "h": 800,
-      "title": "7 · Returned (draft 2) — what changed (JA)",
+      "title": "7 · Returned (draft 2) — fixed-since-last-time chips on the cards (JA)",
       "is_interactive": true
     },
     "05-Todo.dc.html": {
@@ -135,7 +135,7 @@
       "y": 1400,
       "w": 1280,
       "h": 800,
-      "title": "7 · Returned (draft 2) — what changed (EN)",
+      "title": "7 · Returned (draft 2) — fixed-since-last-time chips on the cards (EN)",
       "is_interactive": true
     },
     "05-Todo-en.dc.html": {
@@ -1713,7 +1713,7 @@
       "y": 860,
       "w": 560,
       "maxH": 300,
-      "text": "Draft-2 return opens with 前回からの変化: which earlier points were fixed (③ test, ② causation) and that one new comment exists — this is the exercise-view revision trail from C10.3, in the student's own hands. The 'rewritten in your own words' line appears only in the positive case; there is no accusatory counterpart. New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."
+      "text": "Draft-2 return. The 前回からの変化 / Since last time block (fixed ③, fixed ②, one new comment, the own-words line) was here and was FOLDED INTO THE CARDS (PM, 3 Nov: 'can't this just be in the feedback card itself as content?'): each card now carries a chip — 前回の② ― 直りました / Last time's ② — fixed on the two strengths, 新しいコメント / New comment on the new 改善点 — and the comment text itself says the passage was rewritten as a direct answer to last time's question. The own-words line is gone with the block (it was the positive case only; there was never an accusatory counterpart). New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."
     },
     "n8": {
       "x": 9520,

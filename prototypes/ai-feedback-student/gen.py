@@ -518,7 +518,7 @@ JA = dict(
     # feedback 2
     f2_chip="返却済み ・ 11月21日", f2_meta="2回目 ・ 提出 11月19日 16:05 ・ 返却 11月21日 17:10",
     f2_raw_meta="応用社会学部 2年　山田 花子　　2回目の提出: 2026年11月19日",
-    f2_chg_h="前回からの変化",
+    f2_since={0: "前回の② ― 直りました", 1: "前回の③ ― 直りました", 2: "新しいコメント"},
     f2_chg=[("done","③ 検定の使い分け（統計処理）― 直りました"),("done","② 相関と因果（解釈）― 直りました"),("new","新しいコメント 1件（論理構成）")],
     f2_own="前回の指摘箇所は、自分の言葉で書き直されています。", f2_self_echo="自己チェック: 自分の言葉で書き直した",
     f2_tnote="検定をきちんと直せています。②も「相関がある」までにとどめた書き方になり、ぐっと良くなりました。冒頭に問いを一文置けば、レポートとして完成です。",
@@ -656,7 +656,7 @@ EN = dict(
     r_note="Your submission goes to your teacher, who will also see whether last time's comments were addressed.",
     f2_chip="Returned · Nov 21", f2_meta="2nd submission · Submitted Nov 19, 16:05 · Returned Nov 21, 17:10",
     f2_raw_meta="Faculty of Applied Sociology, Year 2 · Hanako Yamada · 2nd submission: Nov 19, 2026",
-    f2_chg_h="Since last time",
+    f2_since={0: "Last time's ② — fixed", 1: "Last time's ③ — fixed", 2: "New comment"},
     f2_chg=[("done","③ Choosing the right test (statistical processing) — fixed"),("done","② Correlation vs. causation (interpretation) — fixed"),("new","1 new comment (logical structure)")],
     f2_own="The passages flagged last time have been rewritten in your own words.", f2_self_echo="Self-check: rewrote in my own words",
     f2_tnote="You've fixed the test properly, and ② now stops at \"there is a correlation\" — a big improvement. One sentence stating your question at the start and this is a complete report.",
@@ -1115,13 +1115,16 @@ def pending(S, L, draft=1):
 <a class="demo" href="{demo_to}"><span class="tag">DEMO</span>{S["p_demo"]}{ic("right",16,"#fff",2.4)}</a>'''
     return page(S, S["titles"]["pending" if draft == 1 else "pending2"], body)
 
-def feedback_cards(S, cards, jump_prefix="j"):
+def feedback_cards(S, cards, jump_prefix="j", since=None):
+    """since: {card index: label} — on a second return, what changed is said inside the card (PM, 3 Nov:
+    'can't this just be in the feedback card itself as content?'), not in a block of its own."""
     out = ""
     for i, (kind, crit, quote, body, ref) in enumerate(cards):
         n = i + 1
         vd = "ok" if kind == "good" else "flag"
+        sc = f'<span class="chip {"done" if kind == "good" else "wait"}" style="height:22px;font-size:11px">{ic("check" if kind == "good" else "plus", 12, "currentColor", 2.6)}{since[i]}</span>' if since and i in since else ""
         out += f'''<div id="card-{n}" class="fb-card {{{{h{n}}}}}">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="ctag">{crit}</span><span class="vd {vd}">{S["t_vd"][vd]}</span></div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:36px"><span class="badge {kind}"><i class="n">{n}</i>{S["labels"][kind]}</span><span class="ctag">{crit}</span><span class="vd {vd}">{S["t_vd"][vd]}</span>{sc}</div>
       <blockquote class="quote {kind}">“{quote}”</blockquote>
       <p class="fbody">{body}</p>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap"><span class="ref">{ic("book",14)}{ref}</span><a class="cap" style="color:#395ad2;font-weight:700;display:inline-flex;align-items:center;gap:4px;text-decoration:none" href="{fn("F-Chat", S["lang"])}">{ic("message",14)}{S["f_ask_ai"]}</a></div>
@@ -1264,10 +1267,8 @@ def resubmit(S, L):
 def feedback2(S, L):
     raw_html = marks_html(S["raw2"], {2: (1, "good"), 3: (2, "good"), 0: (3, "todo")})
     footer = f'<p class="cap" style="padding:0 4px 8px">{S["f2_footer"]}</p>' if S["f2_footer"] else ""
-    chg = ""
-    for st, txt in S["f2_chg"]:
-        icon = ic("check",13,"currentColor",3) if st == "done" else ic("alert",13,"currentColor",2.4)
-        chg += f'<div class="chg {st}"><span class="st">{icon}</span><span>{txt}</span></div>'
+    # the 前回からの変化 block (fixed ②, fixed ③, one new comment, own-words line) was here and was folded into
+    # the cards as chips (PM, 3 Nov: it is content, not a block)
     body = header(S, "08-Feedback2", S["lo_fb7"], crumb=S["a_crumb"], back_href=fn("Main",L),
                   right_extra=f'<span class="chip done" style="height:28px">{ic("check",14,"#1f7a4d",2.6)}{S["f2_chip"]}</span>') + f'''
 <div class="body" style="display:flex;flex-direction:column;gap:16px;overflow:hidden">
@@ -1293,11 +1294,6 @@ def feedback2(S, L):
     </section>
     <section class="pane" style="flex:0.9 1 0;background:transparent;box-shadow:none;overflow:visible">
       <div class="pane-b" style="padding:0;display:flex;flex-direction:column;gap:12px">
-        <div class="fb-card">
-          <div style="display:flex;align-items:center;justify-content:space-between"><p class="sub1" style="font-size:14px;line-height:18px">{S["f2_chg_h"]}</p></div>
-          {chg}
-          <p class="cap" style="display:flex;align-items:center;gap:6px">{ic("check",12,"#1f7a4d",3)}{S["f2_own"]}</p>
-        </div>
         <div class="fb-card" style="background:#eef1ff;border-color:#dfe4ff;flex-direction:row;gap:14px;align-items:flex-start">
           <span class="tav" style="background:#fff">{ic("person",20)}</span>
           <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 auto">
@@ -1309,7 +1305,7 @@ def feedback2(S, L):
           <span class="badge sum">{S["f_sum"]}</span>
           <p class="fbody">{S["f2_sum_body"]}</p>
         </div>
-        {feedback_cards(S, S["cards2"])}
+        {feedback_cards(S, S["cards2"], since=S["f2_since"])}
         {footer}
       </div>
     </section>
@@ -7839,7 +7835,7 @@ for _a in ("A-Idea", "A-Dialogue", "A-Revise"):
 boards, order = {}, []
 titles = ["1 · Course — Feedback LO in the LO list", "2 · Assignment — check & submit", "3 · Submitted — teacher reviewing",
           "4 · Returned — approved feedback (draft 1)", "5 · Second submission — upload the revised work",
-          "6 · Second submission — teacher reviewing", "7 · Returned (draft 2) — what changed", "8 · To-do — awaiting resubmission", "9 · Ask AI from a comment — ask-back only (3 Nov)"]
+          "6 · Second submission — teacher reviewing", "7 · Returned (draft 2) — fixed-since-last-time chips on the cards", "8 · To-do — awaiting resubmission", "9 · Ask AI from a comment — ask-back only (3 Nov)"]
 ROW_Y = {"ja": 0, "en": 1400}
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(SCREENS):
@@ -7969,7 +7965,7 @@ notes = {
     "n6": {"x": 5 * (W + GAP), "y": H + 60, "w": NW, "maxH": 220, "text":
         "Same waiting state for the second submission, so the loop never bypasses the teacher. DEMO pill →"},
     "n7": {"x": 6 * (W + GAP), "y": H + 60, "w": NW, "maxH": 300, "text":
-        "Draft-2 return opens with 前回からの変化: which earlier points were fixed (③ test, ② causation) and that one new comment exists — this is the exercise-view revision trail from C10.3, in the student's own hands. The 'rewritten in your own words' line appears only in the positive case; there is no accusatory counterpart. New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."},
+        "Draft-2 return. The 前回からの変化 / Since last time block (fixed ③, fixed ②, one new comment, the own-words line) was here and was FOLDED INTO THE CARDS (PM, 3 Nov: 'can't this just be in the feedback card itself as content?'): each card now carries a chip — 前回の② ― 直りました / Last time's ② — fixed on the two strengths, 新しいコメント / New comment on the new 改善点 — and the comment text itself says the passage was rewritten as a direct answer to last time's question. The own-words line is gone with the block (it was the positive case only; there was never an accusatory counterpart). New cards: two strengths on the fixed passages, one new 改善点 on structure. No resubmit CTA — the teacher's note says one sentence completes it. No AI next-step card (PM, 18 Sep)."},
     "n8": {"x": 7 * (W + GAP), "y": H + 60, "w": NW, "maxH": 240, "text":
         "To-do now carries the state between return and resubmission: 再提出待ち ・ 11月20日まで with the return date, linking to the feedback where the resubmit CTA lives. Overdue in red, upcoming items held until their start date."},
     "n9": {"x": 8 * (W + GAP), "y": H + 60, "w": NW, "maxH": 420, "text": "ASK AI FROM A COMMENT (PM, 3 Nov: 'the chat icon should be in the feedback cards as a way to allow students to interact with the AI on ask back only interaction' — Okayama's requirement; PRD C3 answer level, [S33] the four moves, [S34]). Every comment card on the returned screens (4, 7, M9 / M10) now carries an Ask AI link that opens this chat with that comment as the context — the badge, the criterion and the quoted passage pinned at the top. ASK-BACK ONLY: the AI never gives the answer; each turn is a question about direction and strength, about what in the student's own data would separate correlation from causation, about a third variable — and 'Just tell me the answer' gets a question about the missing condition (click the chips; type a question). A textbook source line rides with the first reply (the materials, not the answer). The dialogue is visible to the teacher (the thread view on the AI Dashboard, the questions count on the versions line) and is logged per turn with the prompt and model version. Same chat UI as the AI Grading Ask AI (Q6), different rule: that one explains, this one asks back."},
