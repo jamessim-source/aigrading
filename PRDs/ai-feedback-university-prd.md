@@ -2,8 +2,8 @@
 
 > **Authorship status.**
 > Section 1 (Background) is populated from client meetings, internal strategy documents, market decks and the 17 Sep AI direction discussion. Every line carries its source. It is non-binding.
-> **Parts A and B are not yet authored.** They hold candidates and the questions that close them. Nothing in Parts A–B may be treated as committed behaviour until the PM decides it.
-> **Part C is partly authored.** The PM's decisions from the prototype review (18–21 Sep) and the scope confirmations (22 Sep) are recorded in **C11** and **C12** and carried into C1–C10. Everything else in Part C is a candidate or an open question.
+> **Parts A and B were authored by the PM on 6 Nov 2026** (answers given in session, recorded in C11.19); the candidate lists that preceded each decision are kept under each section for the record.
+> **Part C is authored**: the PM's decisions from the prototype review (18–21 Sep), the scope confirmations (22 Sep), the 3 Nov rules and the 6 Nov answers are recorded in **C11** and **C12** and carried into C1–C10. What remains open is listed in the readiness gate (D).
 
 > **Canonical source.** This file (`PRDs/ai-feedback-university-prd.md`) is the source of truth. It is published to Confluence as a page tree under [PRD: AI Feedback v1](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2361622595):
 > - [PRD: AI Feedback — Universities & Juku](https://manabie.atlassian.net/wiki/spaces/PRDM/pages/2897018905) *(landing page)*
@@ -33,6 +33,7 @@
 ### Change log
 | Date | Version | Author | Change | Status | Approved by |
 |------|---------|--------|--------|--------|-------------|
+| 2026-11-06 | v1.21 | James Sim (drafted with Claude) | **Parts A, B and E authored; C1, C5, C6, C8 completed** from the PM's answers in session (PM: *ask me any further questions so that you have the data to write the unwritten parts of the PRD*). A1 outcome = win and retain university accounts, target 3 paid contracts by Mar 2027; A2 tenant-configurable, built general, Core feature; A3 the teacher owns every returned comment, no accuracy claim in sales, per-student flat pricing, Takuya signs off; B1 core job J3 (the student revises before grading); B2 one desired outcome (instructor time to sign); B4 the faculty budget buys seats; B5 promoted; C1 summary written; C5 names settled (AI Feedback = engine, Feedback LO = the LO type, V1.1 retired into it); C6.9 / C6.10 ask-back and teacher-only criteria; C8 targets (≤ 60 s p95, 150 concurrent, ≤ ¥50 per generation); E1–E5 filled (flag per LO type, preprod all, prod kindai-demo + aidemo2 first, v2.5 Dec, 新機能, dogfooding brief) | Draft → Review | — |
 | 2026-11-03 | v1.20 | James Sim (drafted with Claude) | **The eleven trace decisions answered by the PM (C11.18, T1–T11) written into Parts A–C**: the PM frames every one as product scope, not trial scope (*I'm not developing for the trial, I'm developing for the final product*). Theses: full scope. Grounding: product scope, model answer only for the trial. Methods outside the course: named, not taught. Usage share shown. One chat rule: the LO's level at every entry point. The AI judges every criterion (the *not judged* proposal withdrawn). Typed reflections stay a product type; C8 / C10.3 sized on Excel + slides. Past submissions: full input. DLSC: the plain-text comment draft with copy and log is in; Pass / Resubmit, returned-elsewhere, severity and review-time are out. Kyushu's three items are prompt / bug work, not design. Okayama: all four groups in scope. Prototype: the four merges applied (46 → 38 boards), the KULeD draft on T-Review, the chat at the LO's level, the ask-back idea locked in place with viewpoints, the post-submission record with the shared rating, reviewer stamp on the rating | Draft | — |
 | 2026-11-03 | v1.19 | James Sim (drafted with Claude) | **Requirement trace against the client sources** (PM: *review again the client requirements … run it through the prototype and PRD … simplify flows where possible*). Four traces under `PRDs/trace/` (Kindai Sociology + Slack, Okayama + universities memo, DLSC + Kyushu Sangyo, prototype simplification audit); findings and the open decisions consolidated in **C11.18**. Fixed in this version: stale 1.1 cohort / period / commercial lines; C2 and C11.16 text that still called the modes undecided; C7's KULeD sentence; the C3 rubric-edit row (versioning now phase 2, not KIV); a third verdict value *not judged* in the feedback-shape row (proposed, PM to ratify); voice no longer "Okayama-only". Prototype: the LO's draft feedback no longer opens the Kindai Excel board; the X boards follow the 21 Oct decisions (no score, no model value, no interpretation comments, check optional); four duplicate boards dropped | Draft | — |
 | 2026-11-03 | v1.18.1 | James Sim (drafted with Claude) | C11.14: learner-web (PC) twins of X2 / X3 added as X4 / X5 (PM: *create the desktop web version as well*); Mark as Complete removed from X3 / X5 (PM: *actual submission is the real signal*) | Draft | — |
@@ -526,7 +527,15 @@ The document carries the expected rubric (12 rows, "no issue" vs "flag when" per
 > **Not authored.** The material below is a set of candidates and the questions that close them. A single client asking once — however clearly — is not a business goal.
 > The field is bounded: this PRD is the LO integration for the Kindai Applied Sociology trial. The Correspondence Division's grading assistance, the engine contract and the oral viva belong to a later **AI Grading PRD**.
 
-## A1. Business goal & outcome metric — *PM decision required*
+## A1. Business goal & outcome metric — *decided 6 Nov (PM)*
+
+**Business outcome: win and retain university accounts.** AI Feedback for universities exists to turn trials and demo tenants into paid, renewing university contracts. The engine-consolidation and instructor-time outcomes are consequences we track, not the goal.
+
+**Primary metric: 3 paid university contracts by the end of FY2026 (31 Mar 2027).** The pipeline the target is judged on: Kindai Applied Sociology (full implementation on the 2/5 → 2/10 → 2/17–20 path, 1.8), one of Kyushu Sangyo or the Kindai Correspondence Division (DLSC), and one of Okayama (via Z会) or a universities-memo prospect. A pilot-to-paid conversion counts; a renewal of an existing paid account counts; a demo tenant does not.
+
+**Tracking metrics (decided 3 Nov; the events every client asked for, logged once and read by the dashboards and the exports):** per student × LO — pre-check done and the draft-check count, versions (with time of first and latest), chat questions, criterion verdicts per version; per teacher action — approve-unchanged, edited, dismissed with reason, added, copied-as-is vs edited-first (teacher-only mode), review seconds; per class × LO — usage share (students who used the check / enrolled), returned count, resubmitted count, ★ highlighted count. Agreement between the AI's draft and the teacher's returned text is a KPI, never an acceptance criterion (C6 preamble).
+
+<details><summary><i>Candidates and questions considered before the decision (kept for the record)</i></summary>
 
 **Questions that must be answered:**
 
@@ -545,9 +554,11 @@ The document carries the expected rubric (12 rows, "no issue" vs "flag when" per
    - how often a teacher highlights a submission for the class, and whether the Topic Dashboard's insight line is opened or ignored
    - Learning-log visualisation was not implemented as of 17 Aug 2026 [S1 §10, U11]. If tracking is a goal, this is a dependency, not a reporting afterthought.
 
-## A2. Scope of applicability — *PM decision required*
+</details>
 
-- This feature is: **General / Tenant-configurable / Partner-specific** — **not decided.**
+## A2. Scope of applicability — *decided 6 Nov (PM)*
+
+- This feature is **Tenant-configurable, built general** (decided 6 Nov; the 17 Sep direction, *a standardized, versatile workflow that can serve different use cases without rebuilding*). Project type: **Core feature**. Every value listed below is Env-level with a Tenant-level override (the Configurable values row in C3); nothing is hard-coded to Kindai.
 - **Decided 3 Nov — AI Feedback owns the engine's modes.** The engine runs in three modes, all this PRD's: **feedback** (the LO surface: submit → per-criterion feedback → review → return), **ask-back dialogue** (a typed first idea, then questions, then a revised explanation — [S33], [S34]) and **teacher-only import** (staff bulk-upload submissions, teacher reviews findings, nothing reaches students — [S31]). AI Grading keeps scoring and the paper pipeline. Consequences: E1's partner list gains the Kindai Correspondence track for the teacher-only mode; C11.16's opening question is closed; the mode is a **per-LO setting** and which modes a tenant may use is **Tenant-level**.
 - **Decided 3 Nov — AI answer level** (0 ask-back only · 1 hints and where to look · 2 a pattern on another topic · 3 full explanation) is a per-LO value, **default 1**, with a **Tenant-level cap** (Okayama would cap at 1; Kindai's Gem rule "never the finished work" = ≤2).
 - **Candidate (strongly evidenced, still the PM's call): Tenant-configurable, built general.** The direction stated on 17 Sep is a *"standardized, versatile workflow that can serve different use cases without rebuilding from scratch each time"* (Takuya, 17 Sep) and *"built purposefully for just that use case… everything else is just a front end layer of UI/UX"* (James, 17 Sep).
@@ -561,7 +572,16 @@ The document carries the expected rubric (12 rows, "no issue" vs "flag when" per
   - confidence threshold for routing [S3][S7]
 - **Question to answer.** Kindai Applied Sociology's rubric includes a **generative-AI literacy** dimension [S1 §3]. What has to be decided is whether one rubric model serves a university's criteria and a juku's. The correspondence division's 13 formatting rules [S6] are not part of this question — they belong to the AI Grading PRD.
 
-## A3. Business rules owned by Biz — *PM decision required*
+## A3. Business rules owned by Biz — *decided 6 Nov (PM; Biz sign-off: Takuya Homma)*
+
+1. **Responsibility for a returned comment sits with the teacher.** With teacher review on, the teacher who pressed Approve and return owns it. With teacher review off, the teacher who switched review off owns every auto-returned comment, and a tenant may lock review on. Manabie owns the draft's quality as a vendor obligation, never the comment the student reads.
+2. **No product accuracy claim in sales.** Sales may cite a client's own measured figures (the DLSC retrospective's 94.2% detection, 1.2) with their source; Manabie does not state an accuracy figure for the product. The evaluation set behind C8's quality gate is internal.
+3. **Pricing: per student per month, flat.** ¥900 AI Tutor + ¥700 AI Feedback (¥1,600) per student per month under 1,000 students (Kindai, 1.8); the Correspondence Division is negotiated separately on its own volume. Per-report pricing is not offered.
+4. **Score display policy** (carried from 3 Nov): the student never sees a preliminary AI assessment, a score, a grade or a level from the feedback engine; a teacher-recorded level in the ask-back mode is the teacher's, shown only if the teacher shares it.
+5. **Data, rights and retention:** past graded submissions and corrected examples are an input (C2, T11) under the tenant's consent terms; textbook text needs the publisher's permission before it is loaded (U31); lecture slides under Copyright Act Art. 35 remain a legal review item (owner: Takuya).
+6. **Who may turn teacher review off:** any teacher who can edit the LO; a tenant may lock it on (C2, 3 Nov).
+
+<details><summary><i>Candidates and questions considered before the decision (kept for the record)</i></summary>
 
 Rules the sources show Business, not Engineering, must decide. None are decided:
 
@@ -576,11 +596,22 @@ Rules the sources show Business, not Engineering, must decide. None are decided:
 
 ---
 
+</details>
+
 # PART B — PROBLEM
 
 > **Not authored.** A job-to-be-done drafted from a meeting note is how a stray remark becomes a committed behaviour. Below are the candidate jobs the sources point at, and the tests each must pass.
 
-## B1. Problem statement (job-to-be-done) — *PM decision required*
+## B1. Problem statement (job-to-be-done) — *decided 6 Nov (PM)*
+
+**Core job (J3): *Revise my own work before it is graded, knowing what specifically to change.*** As a student submitting written or computational work in a large course, I want specific, criterion-by-criterion feedback on a draft before it is graded, so that I fix what I can fix myself and submit work I understand. Stability test: the job holds without this product (students already ask friends, re-read slides and resubmit), and it will hold in ten years.
+
+**Secondary jobs**, served by the same engine and surfaces, demoted from core:
+- **J1** — the instructor returns usable feedback to every student in a cohort too large to hand-mark (the review queue, the teacher-only import, exports).
+- **J2** — one grading standard across many instructors (criteria fidelity, versions, corrections).
+- **J4** — confirm the work reflects the student's own understanding (versions, chat and the ask-back record as a process record, not AI detection).
+
+<details><summary><i>Candidates and questions considered before the decision (kept for the record)</i></summary>
 
 **Candidate core jobs.** They belong to different people and pull the build in different directions — the PM picks one core and demotes the rest to secondary:
 
@@ -598,7 +629,17 @@ Rules the sources show Business, not Engineering, must decide. None are decided:
 
 **Then frame it:** *As a [persona], I want [outcome] so that [value].* — to be written by the PM.
 
-## B2. Desired outcomes (the user's success metrics) — *PM decision required*
+</details>
+
+## B2. Desired outcomes (the user's success metrics) — *decided 6 Nov (PM)*
+
+One desired outcome is adopted; every element of Part C must move it:
+
+- **Minimise the instructor time required to return feedback that the instructor is willing to put their name to.** Measured as review minutes per approved submission (the review-seconds event, A1), against the client's own baseline (DLSC ≈ 10 minutes per report, Kindai ≈ 20 minutes). The pre-submission check moves it by taking fixable problems out before the teacher sees the work; criteria fidelity and the verdict per criterion move it by giving the teacher a draft they can approve unchanged; corrections move it by making the next draft better.
+
+The other five candidates (time to feedback, revision cycles, avoidable rejections, grading variance, concealed understanding) are **not** adopted as desired outcomes; where they are measurable they stay as tracking metrics in A1.
+
+<details><summary><i>Candidates and questions considered before the decision (kept for the record)</i></summary>
 
 Candidates, each to be restated by the PM as *direction + metric + object + context*, and each to be solution-free. Every element of Part C must move at least one of these:
 
@@ -613,7 +654,23 @@ Candidates, each to be restated by the PM as *direction + metric + object + cont
 
 **Watch for the collapse:** A1 (how the company wins) ≠ B2 (how the user judges the job done) ≠ C6 (how QA proves the build works). Do not let "QWK ≥ 0.7" appear in all three.
 
-## B3. Current situation & pain (trace the job) — *PM to complete*
+</details>
+
+## B3. Current situation & pain (trace the job) — *authored 6 Nov from the confirmed sources*
+
+Tracing J3 through the Kindai Sociology course as it runs today (1.1, 1.8, [S28], [S30]):
+
+| Step | Today | Where it breaks | Root cause |
+|---|---|---|---|
+| **Locate** the assignment and its criteria | The professor posts the exercise workbook and a six-criterion rubric in Google Classroom; criteria are a PDF | The student reads the rubric once and cannot tell which criterion a problem belongs to | Criteria are prose, not a per-item checklist tied to the work |
+| **Prepare** a draft | Excel work on the student's PC; the first version is the only version | Nobody looks at it before the deadline | No pre-submission check exists; the professor cannot read 150 drafts |
+| **Execute** — submit | Upload to Classroom | One shot; mistakes that are visible in a minute (a coefficient above 1, a missing test) go in unchanged | No feedback loop before grading |
+| **Confirm** — get feedback | The professor's comments after grading, weeks later, or none | Too late to act on; the next exercise repeats the mistake | Feedback is coupled to grading |
+| **Monitor** — did I improve | Nothing per criterion over time | The student and the professor both lack a record of what changed between versions | No versions, no criterion-level record |
+
+The Correspondence Division's trace is the instructor's (J1): staff export reports from KULeD, the teacher reads each against care points and the textbook, types one comment per report in KULeD, ≈ 10 minutes each at 30–50 reports a month, with past rubric-alignment meetings between part-time instructors judged ineffective ([S31], 1.2). Okayama's trace is the student's again, with the AI as the questioner rather than the commenter ([S33], 1.11).
+
+<details><summary><i>Candidates and questions considered before the decision (kept for the record)</i></summary>
 
 Raw material exists to trace the job, but the trace itself is the PM's work. What the sources give:
 
@@ -628,7 +685,23 @@ Raw material exists to trace the job, but the trace itself is the PM's work. Wha
 
 **Walk the whole job before writing C3** — this trace is what surfaces the edge cases.
 
-## B4. Who is affected (executor vs buyer) — *PM to complete*
+</details>
+
+## B4. Who is affected (executor vs buyer) — *decided 6 Nov (PM)*
+
+| Persona | Role | Market | What they judge success by |
+|---|---|---|---|
+| Student | **Executor** of the core job (revise before grading) | JP university | Specific, criterion-level feedback on a draft within minutes; a record of what changed |
+| Course instructor / professor | Executor of J1 **and** influencer on the buy | JP university | Review minutes per approved submission (B2); a draft they can sign unchanged; the usage share and versions per student |
+| TA / part-time instructor | Executor of J1 in the teacher-only mode | JP university (DLSC) | The plain-text draft they can paste; consistent wording per issue |
+| **Faculty or course budget** | **Buyer** — pays per student per month (¥1,600 at Kindai), approved through academic affairs and the faculty meeting | JP university | Adoption (usage share), the student survey, renewal; evidence for the faculty meeting on the 2/10 → 2/17 path |
+| Academic affairs / FD / IR | Budget influencer | JP university | Process records against the diploma policy; consistent standards across courses |
+| Board of education / Z会 | Buyer of the ask-back mode (Okayama) | JP high school via Z会 | Rating aggregates per criterion; usage by school; data handed over at contract end |
+| Juku HQ / owner | Buyer, secondary market | JP juku | Marking labour-hours; renewal |
+
+The student loves the draft check; the faculty pays for seats. A solution the student loves but that does not show the faculty adoption and a teacher's time saved does not renew — hence B2's single outcome and A1's usage share.
+
+<details><summary><i>Candidates and questions considered before the decision (kept for the record)</i></summary>
 
 | Persona | Role | Market | Key desired outcomes (from B2) |
 |---|---|---|---|
@@ -644,7 +717,18 @@ Raw material exists to trace the job, but the trace itself is the PM's work. Wha
 
 **Note on the executor split, from the 17 Sep direction discussion and 2 Jul:** Koki's position is that a student-initiated feature will not be used — *"students won't proactively use it"*. The current V1.1 product **is** student-initiated. This PRD resolves that: the teacher creates the assignment and the student answers it, so the executor is the instructor at set-up and the student at submission.
 
-## B5. Evidence — *PM to promote from Section 1 with judgement*
+</details>
+
+## B5. Evidence — *promoted 6 Nov (PM)*
+
+Promoted from Section 1 as the evidence the build is sized on:
+
+- **Strong — the problem is real and measured:** the DLSC retrospective (241 reports, 36% of resubmissions avoidable by a pre-submission check; 94.2% detection against the instructor's own 90%) [S6]; the Correspondence Division's volume (62,000 reports a year, 156 faculty) [S7]; Kindai Sociology's fixed trial (150 students, 9 Excel exercises, 6 Nov – 31 Jan, ordered by email) [S28, S30].
+- **Moderate — the market is real, the scope is theirs to set:** Kyushu Sangyo's demo requirements and 26 Oct test on real essays [S35]; the Okayama brief (1,284 users, FY2026, bid pending) [S33]; the universities memo's pipeline [S34]; the 10/22 Kindai meeting's thesis trial with three teachers [S28].
+- **Not used to size the build:** the model-case deltas in the sales decks [S4, S5]; the [S1 §9] thresholds (not university-approved, U7); the [S3] operating targets (internal proposals, U8).
+- **Counter-evidence that shaped scope:** Ohzora's credit-granting exam judged a poor fit even at 80% accuracy (every entry still manually reviewed) — hence no score, teacher review on by default, and agreement measured as a KPI rather than promised.
+
+<details><summary><i>Candidates and questions considered before the decision (kept for the record)</i></summary>
 
 Section 1 is what we were told. B5 is what the PM decides actually proves the problem is real and big enough to size the build. **This promotion is a decision, not a copy-paste.**
 
@@ -656,11 +740,15 @@ Section 1 is what we were told. B5 is what the PM decides actually proves the pr
 
 ---
 
+</details>
+
 # PART C — SOLUTION
 
 > Numbers floated in meetings and decks are **inputs the TL must validate**, not rules. Anything flagged *open* or *TBC* below is still an open question.
 
-## C1. Solution summary — *scope decided; the summary itself still to be written by the PM*
+## C1. Solution summary — *written 6 Nov (PM)*
+
+**In one paragraph.** AI Feedback is Manabie's feedback engine and the **Feedback LO** that carries it: a teacher adds a Feedback LO to a book in Back Office, types the evaluation items and lets the AI write the rubric from them, attaches the material, and sets the answer level, review, resubmission and submission methods; students submit a file, photos or a typed answer from the app or the web, get AI feedback on drafts as often as they like before the due date, and after the due date receive the teacher's feedback — one verdict and comment per criterion plus an overall comment, no score — which the teacher has reviewed, edited, dismissed or added to; the teacher's corrections feed the criteria; dashboards and three export shapes carry the record. The same engine runs an **ask-back dialogue mode** (first idea locked, questions only, teacher rating) and a **teacher-only import mode** (reports imported from an external LMS, reviewed, and handed back as a plain-text comment). Tenant-configurable, built general; the Kindai Sociology trial runs the feedback mode on the AI Tutor Assignment until the LO version ships in v2.5.
 
 > **What this PRD is, in one line.** **The LO integration**: AI Feedback as a learning-objective type in the LMS and the learner app, set up in Book Management, processed in Course › Submission Grading, and reported in the Group and Student Dashboards — serving the **Kindai Applied Sociology trial**. It is not the Q3 merge of AI Grading and AI Feedback. The engine contract behind that merge, the scoring products' own flows, and the Correspondence Division's grading assistance belong to a later **AI Grading PRD**.
 
@@ -796,11 +884,12 @@ The journeys below are the boards of the prototype, in the order they link. Each
 
 | Term | Definition | Replaces / aligns with |
 |---|---|---|
-| AI Feedback | *TBC* — today used for **both** the student-initiated V1.1 essay feature **and** the shared feedback engine behind grading/marking | Must be disambiguated; the two are conflated in [S1], [S4], [S5] and in the 2 Jul direction meeting |
+| **AI Feedback** | **The feedback engine** (decided 6 Nov): rubric in, submission in, criterion-linked feedback out, no score; also the name of the LO type chip in Back Office. The V1.1 student-initiated essay feature is **retired into the Feedback LO** and no longer named separately | Replaces the three-way use in [S1], [S4], [S5] |
 | AI Grading | *TBC* — internally, the scoring product for **paper and photo** submissions | The decks' client-facing naming does not follow this split — see the row below |
 | AI Marking / AI 添削 | *TBC* — internally, the scoring product for **LMS Assessment LO** submissions. But [S5] and [S4] both market **"AI Red-Pen Grading"** as the client-facing name, and 添削 (red-pen) is what a teacher does to *paper* | **Live naming conflict.** The client-facing name points at the paper flow while the internal name points at the LO flow. Align EN / JP / client-facing names before any string is cut or any deck is re-used |
 | **AI Feedback LO** / Feedback LO | The LO type, created in Book Management's Add Learning Objective dialog like any other type. **Internal and Back Office name: AI Feedback. Student-facing name: フィードバック / Feedback** — no "AI" anywhere the student reads, because the teacher may endorse the reviewed draft as their own | Aligns with Koki's "everything under the LO structure" (2 Jul) |
-| 提出の基本条件 / Basic requirements | Structural conditions a submission must include, generated from the teacher's material, editable, gating submission; per-LO on/off | Replaces "pre-submission self-check" and "提出前チェック"; never "checks form only" or any AI wording |
+| ~~提出の基本条件 / Basic requirements~~ | **Removed 3 Nov** — the structural pre-submission checks are not a feature; the hint path is the AI feedback on a draft (below) | — |
+| 提出前のAIフィードバック / Feedback on a draft | AI feedback on a draft before submission: same engine, same rubric, unlimited until the due date, never teacher-reviewed, never a submission; the teacher sees the count | Replaces "pre-check" in client copy; the student-facing title is "Feedback on your draft" |
 | コメントの観点 / Rubric criteria | The rubric, generated as one editable block; comments are tagged with the criterion they concern; no levels, no score | The student-facing chips on the assignment screen |
 | 先生の確認 / Teacher review | The per-LO switch, default on, that routes drafts through Submission Grading | "Teacher in the loop" in meeting notes |
 | Submission statuses | 未確認 Not Reviewed · 確認中 In Review · 返却済み Returned · 差し戻し Sent Back, in production's marking tones; secondary chips 自動返却 Auto-returned · 再提出 Resubmitted | Production's Submission Grading status vocabulary |
@@ -919,7 +1008,33 @@ QA builds the test plan from this section. Each criterion is one Given / When / 
 | AC-58 | 150 students submitting in one class period | all submit within 10 minutes | every submission is accepted and every generation completes or reaches Failed within the C8 target; none is lost [O1, O2] |
 | AC-59 | a workbook of ~670 filled cells (the Kindai sample) | it is submitted | feedback returns within the C8 latency target; a workbook over the limits is rejected per AC-18 [1.8 limits] |
 
-**Still owed to C6 before QA writes the plan:** the C8 latency and throughput targets (TL), the teacher-only import and ask-back mode criteria (their screens are drawn, their rules enter C3 when the DLSC contract and the Okayama bid are decided), and thesis format feedback (U34).
+### C6.9 Ask-back mode (written 6 Nov from the C3 rows of 3 Nov)
+
+| # | Given | When | Then |
+|---|---|---|---|
+| AC-60 | an ask-back LO | the student opens it | the task, its materials and "the part you think through" are shown with an empty first-idea field and the teacher-prepared viewpoints; the dialogue pane is closed [first idea] |
+| AC-61 | an empty first-idea field | the student picks a viewpoint | the field is filled with it and can be edited before locking [no-hypothesis start] |
+| AC-62 | a first idea | the student locks it | the idea becomes read-only, the dialogue opens, and the idea is stored as its own field with the prompt and model version [first idea; logging] |
+| AC-63 | a locked idea and an LO at level 0 | the student types "just tell me the answer" | the reply is a question about the missing condition; no answer, result or finished text appears in any turn [answer level 0] |
+| AC-64 | a dialogue | the student revises and reflects and presses Submit | the revised explanation and the reflection are stored as separate fields under the task; the task flips to *reflected*; the student can re-read all four fields [after submitting] |
+| AC-65 | a submitted task the teacher has rated without sharing | the student opens the record | no rating is shown; after the teacher shares it, the level and reason appear [shared rating] |
+| AC-66 | a submitted task | the teacher opens it | first idea and revised explanation side by side, the turns with checkboxes, a level per criterion with *Unrated* selected by default, the criteria version, reviewer and date stamped [teacher rating] |
+| AC-67 | a rating saved with two turns ticked | the record is exported | the rating carries the criteria version and the two turn IDs; *Unrated* is counted apart from zero [teacher rating; exports] |
+| AC-68 | the AI API is down | a student opens an ask-back task | an outage notice is shown naming the worksheet fallback; nothing is queued as Failed [outage] |
+| AC-69 | a student types a classmate's name and a phone number | before send | a personal-information warning is shown; the moderation check runs on the input and on the reply [PII and moderation] |
+
+### C6.10 Teacher-only import mode (written 6 Nov)
+
+| # | Given | When | Then |
+|---|---|---|---|
+| AC-70 | a ZIP of 50 reports and a CSV keyed by external ID | staff import them into a named batch | 50 reports are listed with their external ID, submission time and return due date; names and student numbers are absent; the AI check starts without a further action [import] |
+| AC-71 | a batch with one corrupt file | the import finishes | the unreadable file is listed by name; the other 49 reach the queue [unreadable] |
+| AC-72 | the queue | the teacher picks Due this week | only reports whose return due date falls this week are listed, in due order [due-date queue] |
+| AC-73 | a reviewed report with one comment dismissed | the teacher presses Copy comments as plain text | the clipboard holds the kept comments numbered by question, with no markup, no symbols and no mention of AI; the copy is logged as copied-as-is [comment draft] |
+| AC-74 | a copied draft the teacher edited before pasting | the next copy | the log records edited-first [comment draft; A1 event] |
+| AC-75 | a report with a past grade and comment imported | the teacher opens it | the past grade and comment are visible as context and the AI's draft is generated with them available [past submissions as input] |
+
+**Still owed to C6 before QA writes the plan:** the C8 latency and throughput targets (TL), thesis feedback (U34; full scope decided 3 Nov, its rubric template still to come from the client), and the teacher task set-up board for the ask-back mode.
 
 ## C7. Integration & technical specs — *still thin*
 
@@ -941,6 +1056,8 @@ What remains this PRD's own, and is still undefined:
 - **Feature flag:** see E2 — **flag naming and registry are Carlo's; ask, do not invent.**
 
 ## C8. Non-functional requirements & feasibility — *TL validation required, none obtained*
+
+**Product targets (decided 6 Nov, PM; the TL validates feasibility before commitment):** feedback on a submission or a draft returns within **60 seconds at p95** (a 50-page workbook included); **150 students submitting at once** are absorbed with no loss and no queueing beyond that latency; cost stays at or under **¥50 per generation** at the trial's model and thinking level. The items below are the TL's validation list against those targets.
 
 Flag every one of these to the Tech Lead **before** commitment:
 - **Latency — there IS a stated position, and it conflicts with the reflection use case.** [S19] excludes latency from v1's metrics outright: *"it can take 3-5min, it doesn't matter for this"* — reasonable for a student uploading one report on the web. **It is not reasonable for 140 reflections expecting feedback "immediately on submission"** [S16 §2] in a burst after a lecture. Either the reflection path needs its own latency budget or the professor's expectation needs resetting. Decide which before the showcase implies the former.
@@ -1444,6 +1561,10 @@ All seven P1 boards and the five P2 boards of the change list are drawn; what re
 | T10 | **Okayama, only if the bid proceeds:** no-hypothesis start with teacher-prepared viewpoints; the student's post-submission history and shared rating; teacher task set-up (expected questions, responses to avoid); outage banner and worksheet fallback; PII warning; moderation; voice; roles, SSO and the board-of-education tenant; turn caps and the cost model; a response-test re-run on every model or prompt change (contradicts the C3 model-replaced row); a carve-out from the no-score rule for teacher-recorded levels | Okayama R6–R8, R11–R18, R31, R40–R62, X1, X3 | A2 made ask-back this PRD's mode; its C3 rows and C6 criteria are still owed |
 | T11 | **Past submissions as input.** C2 says they are not; the DLSC past-graded mode and Kyushu's corrected examples use them | DLSC contradiction 1 | Narrow C2 to "not an anchor for generation" or strike the fields from T17 |
 
+### C11.19 The PM's answers of 6 Nov that authored Parts A, B and E
+
+Asked in session as the questions the readiness gate still carried; answered by the PM and written into A1, A2, A3, B1, B2, B4, B5, C1, C5, C8 and E. A1: win and retain university accounts; 3 paid contracts by Mar 2027. B1: J3. A3: the teacher owns every returned comment; no accuracy claim; per-student flat pricing; Takuya signs off. B2: instructor time to sign, the one outcome. B4: the faculty budget buys seats. C8: ≤ 60 s p95, 150 concurrent, ≤ ¥50 per generation. E2: one flag per LO type, preprod all, production kindai-demo and aidemo2 first, v2.5 December. C5: AI Feedback is the engine, the Feedback LO the type, V1.1 retired into it. E3: 新機能, contact James Sim. E4: PS, JP sales and PM on preprod, ready one week before v2.5. B3 and B5 were written from the confirmed sources on the same day.
+
 ### C11.9 Questions the review raised and did not close
 
 | # | Question | Raised where | Owner |
@@ -1488,11 +1609,11 @@ All seven P1 boards and the five P2 boards of the change list are drawn; what re
 
 ## D. Readiness gate (before sprint planning)
 
-**Verdict: not ready**, but the shape of "ready" is clear. What is left is mostly authorship: Parts A and B, the rest of C3, and acceptance criteria. Blockers, in the order they must be closed:
+**Verdict (6 Nov): ready for review, not yet for sprint planning.** Parts A, B, C and E are authored; what is left is validation by others (TL feasibility and size, Biz sign-off on A3, the Kindai U1 confirmation) and the wiring in E5. Blockers, in the order they must be closed:
 
 - [ ] **Section 1 unconfirmed list is still live.** U1 (is the Kindai trial even approved?) and U3 (which subject the 240 reports come from) gate everything downstream. **Nothing on the 1.7 list has been used in Parts A–C, and nothing may be until its named owner confirms it.**
-- [ ] **Part A not authored** — no business goal, no primary metric, no applicability decision, no named Business owner.
-- [ ] **Part B not authored** — five candidate jobs, no chosen core job, no desired outcomes.
+- [x] **Part A authored** (6 Nov): outcome, primary metric, applicability, Biz owner (Takuya Homma).
+- [x] **Part B authored** (6 Nov): core job J3, one desired outcome, the job traced, executor and buyer, evidence promoted.
 - [x] **C3's scenario table is complete.** What is left is the checklist, not the table.
 - [x] **Error and failure paths** — defined 3 Nov (OCR uncertainty, generation failure with two retries then Failed, unreadable upload rejected at upload).
 - [ ] **Manual override / admin bypass, and the Env-versus-Tenant label on every configurable value in A2.** Neither has been touched; the 500-character limit, the upload cap and the accepted file types are the concrete cases.
@@ -1501,11 +1622,11 @@ All seven P1 boards and the five P2 boards of the change list are drawn; what re
 - [ ] **Source contradiction.** [S1]'s §12 calls the trial "operationally well defined" while §10 records an unresolved file-upload defect — against a C2 scope that accepts Excel, PowerPoint, multi-photo and typed answers. Three earlier contradictions are closed: theses/seminar papers ([S4] slide 18 citation does not hold), DOCX (v1 already supports `.docx` and `.pdf`), and mobile-first vs PC-first (C9.1).
 - [ ] **Open defects that gate the October trial:** teacher rubrics destroyed by the rubric agent (U18), feedback number bubbles out of sequence on small PDFs, LangSmith validation errors with a possible one-month tail [S15].
 - [ ] **Dependencies owed by others before C3 and C7 can be completed:** Bunsuke's LO-type refactoring proposal and Koki's start/due-date demo, both actioned on 17 Sep.
-- [x] **Acceptance criteria written** (C6, 3 Nov: 59 criteria from C2 and C3); the C8 targets and the two new modes' criteria are the remainder.
+- [x] **Acceptance criteria written** (C6: 59 criteria 3 Nov, plus C6.9 ask-back and C6.10 teacher-only on 6 Nov); the C8 targets are set and await the TL.
 - [ ] **C7 is thin on what remains its own.** The learner-app integration points, the start/due-date data model, data flow, auth and state fields are undefined, and the prototype review added three more (C11.9): reading .xlsx / .pptx or converting them, the insight line's one LLM call per LO, and the rubric block yielding named criteria.
-- [ ] **No TL feasibility review**, no T-shirt size, no latency or cost budget.
+- [ ] **No TL feasibility review and no T-shirt size** — the latency, concurrency and cost targets are now stated in C8 (6 Nov) for the TL to validate.
 - [x] **Designs exist** — the clickable prototype [S20] covers the six journeys in C4 (no Figma). Translations exist for every string but are **unconfirmed**.
-- [ ] **No Business sign-off** on Part A — and Part A does not yet exist to sign off.
+- [ ] **Business sign-off on A3** — Takuya Homma, named 6 Nov; the rules are written and await his signature.
 - [x] **The relationship to AI Feedback V1.1 is declared in C1: superseded.** Resubmission is a per-LO setting; the dashboard is fitted into Group and Student Dashboards.
 - [ ] **Part C's decisions were taken on a prototype and are not yet reviewed by the TL or Biz.** In particular the per-LO **teacher review off** state (auto-return) needs Biz to say who may set it (A3), and the **student-facing copy when review is off** is open. C11.7 lists the prototype defaults still to ratify.
 - [ ] **The AI Grading PRD does not exist**, and six things depend on it: the engine contract, [S3]'s setup phasing, AI Red-Pen Grading, the Correspondence Division's grading assistance, the seven scoring-dependent C3 scenarios, and the concurrency row. Moving them out of this PRD only helps once that PRD is started.
@@ -1535,46 +1656,53 @@ All seven P1 boards and the five P2 boards of the change list are drawn; what re
 
 ---
 
-## E. Delivery record
+## E. Delivery record — *filled 6 Nov (PM)*
 
 ### E1 — Classification
 | Field | Value |
 |---|---|
 | **Product Area** | **AI Feedback** |
 | **Product Manager** | James Sim |
-| **Biz Owner** | *TBC — confirm; Takuya Homma leads university GTM* |
-| **Tech Owner** | *TBC — confirm* |
-| **Partner Name** | **Kindai University — Faculty of Applied Sociology** (feedback mode, trial 11/6–1/31) and, **since 3 Nov, Kindai University — Correspondence Education Division** for the teacher-only import mode (A2); AI Grading keeps the division's scoring. Prospective: Okayama Prefecture via Z会 (ask-back mode, not awarded), Kyushu Sangyo (demo). General / tenant-configurable: the modes and the answer level are Tenant-level per A2 |
-| **Project Type** | *TBC — Core feature vs Big Bets; depends on A2* |
-| **Affected Area (surface)** | **Learner App** — PC and mobile (Feedback LO in the course and To-do, submit by file / photos / snap / typed, waiting and returned screens, resubmission) · **Back Office** — Book Management (AI Feedback LO type, dialog, Content and Settings tabs, Publish), **Course Management (Course › Books › Learning Objectives Availability — the submission window; an existing page, one column added)**, Course › Submission Grading (queue, overview, submissions, review and return), Dashboard (Group Topic / LO modes, Student) · **API:** no external LMS integration in this scope (C7). Teacher Web / Widget: *TBC* |
+| **Biz Owner** | **Takuya Homma** (university GTM; signs off the A3 rules) |
+| **Tech Owner** | *TBC — the syllabus squad's TL; chase at the readiness gate* |
+| **Partner Name** | **Kindai University — Faculty of Applied Sociology** (feedback mode; trial 11/6–1/31 on the AI Tutor Assignment, LO version after) · **Kindai University — Correspondence Education Division** (teacher-only mode; contract pending) · **Kyushu Sangyo University** (demo tenant) · **Okayama Prefecture via Z会** (ask-back mode; bid pending) · built **general** |
+| **Project Type** | **Core feature** (A2) |
+| **Affected Area (surface)** | **Learner App** (PC web and mobile: the Feedback LO on the course and To-do, submit by file / photos / snap / typed, feedback on a draft, waiting and returned screens, resubmission, Ask AI, the ask-back dialogue) · **Back Office** (Book Management: Add LO, content, settings; Course Management: availability dates, library; Submission Grading: queue, review, plain-text copy, import; Group, Student and AI Dashboards; exports) · **API/CSV** (three export shapes, the import CSV) |
 | **T-Shirt size** | *Not obtained — chase at the readiness gate* |
 
 ### E2 — Rollout and availability
 | Field | Value |
 |---|---|
-| **Feature flag name** | *Not created — **flag naming and the registry are Carlo's; ask, do not invent*** |
-| **Preproduction tenants** | Known state at 4 Sep [S16]: `lmsv2` **ON** (full set incl. Class Assignment + ToC), `sankogakuen` testable (AI添削 since 21 Aug). The **AI Feedback trial runs in pre-release from 1 Oct 2026** [S15]. **Kindai trial: preprod tenant `kindai-demo`** (new, on ADK; Excel on it from 16 Oct, dashboard + CSV export the week of 20 Oct) [S30] |
-| **Production tenants** | Known state at 4 Sep [S16]: `aidemo2` **ON** (current sales demo tenant; ToC required for AI Feedback History to work), `lmspsai` / `aidemo` **OFF** (`aidemo` being retired), `demo-lms` not available. **Kindai trial tenant: `kindai-demo` on prod** (teacher BO account and 10 learner accounts since 22 Oct; 9 assignments imported 26 Oct; first opens 6 Nov); `aidemo2` carries the same set after its ADK switch on 27 Oct, for sales demos [S30] — U21 closed and needs AI Feedback + Class Assignment + ToC enabled before October; enablement is a config change by Cuong Hoang via `#ai-tutor-tech` |
-| **Target release train** | *TBC, but the vehicle is named: **the Kindai AI Feedback trial**. Binding dates: **trial starts 1 Oct in pre-release, release targeted 5 Oct** [S15], **Kindai Applied Sociology live 6 Nov** [S1 §1]; roadmap [S32] (18 Oct): Kindai AI Feedback trial Oct–Nov 2026, AI Feedback **LO-based in Q4 2026, v2.5 in Dec 2026, inside unified Assignments in Q1 2027, feedback set per course in Q2 2027**, unified release of app, LMS and ERP in April 2027; the DLSC teacher-only trial [S31] starts mid-November at the earliest, January–March acceptable. The January unified-app V1 (PDF practice) is RISO's, not this — do not plan against it. AI marking and AI 添削 dates belong to the AI Grading track* |
-| **Flag default at release** | *TBC — likely off pending client go-ahead, given U1.* **What the flag does mid-term is defined: disabling stops new generations; work already done is untouched** |
+| **Feature flag name** | **One flag enabling the AI Feedback LO type** (name to be registered by Carlo; proposed `ai_feedback_lo`); the ask-back and teacher-only modes ride the same flag and are chosen per LO. What the flag does mid-term is defined (C3): disabling stops new generations; drafts already generated stay reviewable |
+| **Preproduction tenants** | **All** |
+| **Production tenants** | **`kindai-demo` and `aidemo2` first**; everywhere else the flag is off until the tenant asks |
+| **Target release train** | **v2.5 (December 2026)** for the Feedback LO; the unified Assignments release (Q1 2027) carries the ask-back and teacher-only modes. The Kindai trial runs from 6 Nov on the AI Tutor Assignment, outside this train |
+| **Flag default at release** | **Off**, on for the two production tenants above |
 
 ### E3 — Release note copy
-*Cannot be written — the change itself is not yet defined. Category (新機能 / 機能追加 / 機能改善 / 不具合修正), title, EN/JP internal description, external JP description and named point of contact are all open.*
+| Field | Value |
+|---|---|
+| **Title** | AI Feedback learning objective — feedback on submitted work, reviewed by the teacher |
+| **Category** | **新機能 (new feature)** |
+| **Internal description (EN)** | • A new learning objective type, AI Feedback: the teacher types the evaluation items, the AI writes the rubric, students submit files, photos or a typed answer and get feedback per criterion with no score. • Students can get AI feedback on a draft as often as they like before the due date; the teacher sees the count. • The teacher reviews, edits, dismisses with a reason or adds to the draft before it is returned; corrections feed the criteria. • Submission Grading, the Group and Student Dashboards and three CSV export shapes carry the record. |
+| **Internal description (JP)** | • 新しい学習目標タイプ「AIフィードバック」：先生が評価項目を入力し、AIがルーブリックを作成。生徒はファイル・写真・直接入力で提出し、観点ごとの判定とコメント（点数なし）を受け取ります。• 締切まで、下書きへのAIフィードバックを何度でも受けられます（先生には回数が表示）。• 先生は返却前に下書きを確認・編集・却下（理由つき）・追加でき、修正は評価基準に反映されます。• 提出物の採点、グループ／生徒ダッシュボード、3種類のCSVエクスポートに記録が残ります。 |
+| **External description (JP)** | 提出した課題に対して、評価項目ごとのフィードバックが返ってきます。締切までは下書きへのフィードバックを何度でも受けられ、返却されるフィードバックは先生が確認したものです。 |
+| **Point of contact** | James Sim |
 
 ### E4 — Dogfooding brief
-- **Internally dogfoodable?** *Partially.* The engine can be exercised internally with synthetic assignments, but the parts that matter — rubric inference from *real* past graded submissions, instructor voice extraction from *real* past comments, and Japanese-language academic writing at cohort scale — need real client data and a Japanese-language cohort. Business teams should not wait for a full internal dogfood of the university flow.
-- **Things to actually try** (written from the prototyped journeys in C4; to be confirmed once the build exists): (1) In Book Management, add an **AI Feedback** LO under a topic, teacher review on, resubmission on; upload a brief and marking criteria, generate the requirements and the rubric, edit one requirement, publish — **then set the submission window on the course the book is linked to**. (2) As a student on a phone, open the LO from the To-do, type a 300-character answer, confirm it, watch the basic requirements check, submit, then replace it before the due date — **and confirm you can keep replacing, with no cap**. (3) After the due date, check that **a late submission is refused**, then extend the course due date and check that it is accepted. (4) In Course › Submission Grading, open the draft, edit one comment, highlight the submission for the class with a reason, approve and return; as the student, open the returned screen and check no AI wording, the teacher's note and the ★ line appear. (5) In Dashboard › Group, find the LO's counts, ★ and insight line in the Topic table, the reason in the matrix cell, and the Status / Flagged criteria columns on the Student Dashboard.
-- **Which internal team:** PS and JP sales (they will run the Kindai pilot), content (rubric/material ingestion), QA.
-- **What "wrong" looks like:** feedback that writes the student's answer for them (the explicit Kindai guardrail [S1 §2.2]); feedback with no quoted passage; a preliminary assessment visible to a student before instructor approval; a criterion score that cannot be traced to a rubric source; **the word "AI" on any student screen; a feedback LO showing a score, a rate or a ranking anywhere in the dashboards; a comment whose criterion tag is not in the LO's rubric block**.
-- **Ready-by date on preprod / who to tell:** *TBC*
+- **Internally dogfoodable?** Yes, on preprod with the synthetic Kindai course (the prototype's Session 7 exercise and rubric); Japanese handwritten essays and real Excel workbooks are tested by QA with the Kyushu and Kindai samples.
+- **Things to try:** (1) In Book Management, add an AI Feedback LO, type six evaluation items with two starred, attach the brief, press Generate rubric from items, and check the rubric has exactly six criteria in your order. (2) As a student on the web, upload an Excel file, press *Get feedback on this draft* twice, change the file in between, then submit; check the teacher's Student Dashboard shows 2 draft checks. (3) As the teacher, open the submission in Submission Grading, dismiss one comment with *Too strict*, add a missed issue, approve and return; check the student sees the returned feedback with the teacher's note and without the dismissed comment.
+- **Which internal team:** PS, JP sales and the PM.
+- **What "wrong" looks like:** a comment tagged with a criterion it is not about; a criterion with no verdict; a model value or a score anywhere the student reads; the word AI on a student screen; the draft check counted as a submission.
+- **Ready-by date on preprod / who to tell:** **one week before the v2.5 release**; tell PS and JP sales in #ai-feedback, and Hinano for the Kindai account.
 
 ### E5 — Wiring
 - [ ] PBT Epic created; key on this page and PRD URL on the Jira item — **not done**
 - [ ] Confluence page properties set (status, product area, partner, PBT key, design link, biz sign-off) — **not done**
-- [ ] Label applied: `prd-draft` → `prd-review` → `prd-approved` — **currently `prd-draft`**
-- [ ] Design child created (E1 implies Learner App + Back Office UI), Figma URL attached — **not done; check overlap with Qisheng's AI grading US1–US4 Figma first**
+- [ ] Label applied: `prd-draft` → `prd-review` → `prd-approved` — **move to `prd-review` with v1.21**
+- [ ] Design child created (Learner App + Back Office), Figma URL attached — **not done; the prototype (artifact FYtGUxxHgPhzWnENGtgLmE, Railway) stands in until then**
 - [ ] At least one LT link before Ready for Development — **not done**
-- [ ] **A companion AI Grading PRD exists and has picked up what moved to it** — the engine contract, [S3]'s setup phasing, AI Red-Pen Grading, the Correspondence Division's grading assistance, and the scoring-dependent C3 scenarios. **Not created**
+- [ ] A companion AI Grading PRD has picked up what moved to it (scoring, paper, the engine contract) — **not done**
 
 ---
 
