@@ -431,3 +431,8 @@ PRD C11.14 has the requirement mapping and the dev-effort notes.
 - X1 analysis cards show the usage share (118 / 150 · 79%).
 - A-Revise: Submit → the student's record with the teacher's shared rating;
   A-Rate shows the reviewer and date stamp.
+
+
+## 27 Nov: likes and dislikes removed from the AI Dashboard (T16)
+
+PM comment on T16: *remove all the likes and dislikes from the dashboard*. Removed the Total Likes and Total Dislikes overview cards, the two per-student columns in Student Usages, and the Feedback Type and Comments columns of the Snap-to-ask chat history. Production still stores the ratings; this board no longer shows them.
