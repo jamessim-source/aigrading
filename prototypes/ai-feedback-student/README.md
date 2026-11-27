@@ -441,3 +441,8 @@ PM comment on T16: *remove all the likes and dislikes from the dashboard*. Remov
 ## 27 Nov (2): assignment status moved into the expanded row (T16)
 
 PM comment on T16: *the assignment status is not relevant to AI snap to ask, perhaps move this one level lower?* The Assignment column left Student Usages. The status now sits per feedback snap in the expanded row, beside the assignment it belongs to; a free snap shows --.
+
+
+## 27 Nov (3): Total Questions renamed Snapped Questions (T16)
+
+PM comment on T16. The per-student column and the overview card now read Snapped Questions (JA: スナップした質問数): the Snap-to-ask count only.
