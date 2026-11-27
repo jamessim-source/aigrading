@@ -7204,6 +7204,19 @@ W_EN = dict(
                ("hanako.yamada", "Hanako Yamada", "Science", "Science experiment report — current and voltage", "A clear report with aim, method and results… / 1 Aim: … / 2 Method: … / 3 Presenting results: … / 4 Discussion: …", "Student: What can I say from a straight line? / AI: When you double the voltage, what happens to…"),
                ("taro.sato", "Taro Sato", "Math", "Congruence proof (draft)", "You chose the right congruence condition… / 1 Using the givens: … / 2 Congruence condition: …", "—")],
 )
+
+# The figure of the congruence proof (PM, 27 Nov: include diagrams in math questions): trapezoid ABCD with AB = DC and
+# equal base angles, both diagonals drawn, so △ABC and △DCB share BC. Ticks mark the equal sides, arcs the equal angles.
+AD_FIG_PROOF = (
+    '<svg viewBox="0 0 280 180" width="280" height="180" role="img" aria-label="ABCD">'
+    '<g fill="none" stroke="#212121" stroke-width="1.6" stroke-linejoin="round">'
+    '<polygon points="40,150 240,150 200,40 80,40"/><line x1="80" y1="40" x2="240" y2="150"/><line x1="200" y1="40" x2="40" y2="150"/></g>'
+    '<g stroke="#1976D2" stroke-width="2" fill="none"><line x1="54" y1="92" x2="66" y2="98"/><line x1="214" y1="98" x2="226" y2="92"/>'
+    '<path d="M62,150 A22,22 0 0 0 47.5,129.3"/><path d="M218,150 A22,22 0 0 1 232.5,129.3"/></g>'
+    '<g font-family="Roboto, sans-serif" font-size="14" fill="#212121"><text x="72" y="32">A</text><text x="200" y="32">D</text><text x="24" y="166">B</text><text x="244" y="166">C</text></g>'
+    '</svg>')
+W_JA["ad_vA"]["fig"] = AD_FIG_PROOF; W_EN["ad_vA"]["fig"] = AD_FIG_PROOF
+W_JA["ad_v_fig"] = "スナップ内の図"; W_EN["ad_v_fig"] = "Diagram in the snap"
 for _D in (AD_JA, JA):
     _D.update(W_JA)
 for _D in (AD_EN, EN):
@@ -7282,6 +7295,8 @@ table.m .ad-sub table.inner td.ov{white-space:normal;max-width:360px;line-height
 .ad-mk{display:inline-flex;width:20px;height:20px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center;margin:0 6px 0 2px;vertical-align:-4px}
 .ad-mk.t,.ad-chip.t .ad-mk{background:#14B4A6}.ad-mk.r,.ad-chip.r .ad-mk{background:#E0334C}
 .ad-ul{border-bottom:2px dashed #14B4A6;padding-bottom:1px}.ad-ul.r{border-bottom-color:#E0334C}
+.ad-fig{margin:0 0 14px;border:1px solid #E0E0E0;border-radius:8px;background:#FAFAFA;padding:12px 12px 8px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.ad-fig figcaption{font-size:12px;color:#757575}
 .ad-fcard{border:1px solid #E0E0E0;border-radius:12px;padding:16px 18px;background:#fff;display:flex;flex-direction:column;gap:10px}
 .ad-chip{display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 5px;border-radius:8px;font-size:13px;font-weight:500;align-self:flex-start}
 .ad-chip.t{background:#E3F6F4;color:#0E8F86}.ad-chip.r{background:#FDE7EA;color:#C62839}.ad-chip.g{background:#EEEEEE;color:#424242;padding-left:12px}
@@ -7333,8 +7348,9 @@ def ad_viewer(S, L):
             else:
                 n, tone, t = seg
                 text += f'<span class="ad-mk {tone}">{n}</span><span class="ad-ul {tone}">{t}</span> '
+        fig = f'<figure class="ad-fig">{V["fig"]}<figcaption>{S["ad_v_fig"]}</figcaption></figure>' if V.get("fig") else ""
         extracted = (f'<div class="ad-col"><div class="col-h"><span>{seg_t}</span><span class="helper" style="margin:0;display:inline-flex;align-items:center;gap:6px">{mi("camera", 14)}{S["ad_v_photo"]}</span></div>'
-                     f'<div class="ad-text">{text}</div></div>')
+                     f'{fig}<div class="ad-text">{text}</div></div>')
         ask = ""
         cards = (f'<div class="ad-fcard"><span class="ad-chip g">{S["ad_v_summary"]}</span><p>{V["summary"]}</p>{ask}</div>'
                  + "".join(f'<div class="ad-fcard"><span class="ad-chip {tone}"><span class="ad-mk">{i + 1}</span>{lbl}</span><blockquote class="ad-q">{q}</blockquote><p>{c}</p>{ask}</div>'
