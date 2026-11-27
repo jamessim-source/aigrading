@@ -7310,7 +7310,6 @@ def t_dash_ai(S, L):
         <div style="display:flex;align-items:center;gap:12px;flex:0 1 auto;min-width:0"><span class="tsearch" style="flex:0 1 320px">{mi("search", 20, "#757575")}<span>{S["ad_search"]}</span></span><button class="tbtn outlined" onClick="{{{{openEx}}}}">{mi("fileDownload", 18)}{S["ad_x_btn"]}</button></div>
       </div>
       <div class="table-scroll"><table class="m tight"><thead>{head}</thead><tbody>{rows}</tbody></table></div>
-      <p class="helper" style="margin:12px 0 0">{S["ad_help"]}</p>
     </div>'''
     body = f'<style>{AD_CSS}</style>' + tnav(S, "dash") + f'''<div class="tmain">
 <div class="tscroll">
@@ -7842,7 +7841,6 @@ def t_dash_ai_q(S, L):
       <div class="tabs" style="margin-bottom:20px">{tabs}</div>
       {panels}
     </div>
-    <p class="helper" style="margin:0">{S["aq_help"]}</p>
   </div>
 </div>
 </div>"""
