@@ -7082,6 +7082,40 @@ AD_EN = dict(
 JA.update(AD_JA); EN.update(AD_EN)
 JA["t_titles"]["dai"] = AD_JA["ad_title"]; EN["t_titles"]["dai"] = AD_EN["ad_title"]
 
+# More AI Tutor Hints / Solution examples (PM, 27 Nov: put more examples for the Waseda demo): junior-high and
+# entrance-exam level items across the Math, Science, English and Any lenses, added under every student.
+# (time, lens index, item overview JA, item overview EN, no. of snapped questions)
+AD_MORE = [
+    [("11/15", "20:14", 1, "因数分解による二次方程式の解き方と解の確かめ", "Solving a quadratic equation by factoring and checking the roots", 5),
+     ("11/14", "18:30", 1, "三角形の相似の証明と辺の長さの求め方", "Proving two triangles similar and finding a side length", 4),
+     ("11/12", "21:02", 2, "オームの法則：直列回路と並列回路の電流", "Ohm's law: current through resistors in series and in parallel", 6),
+     ("11/09", "17:48", 3, "関係代名詞 who / which / that の使い分け", "Choosing the relative pronoun: who, which or that", 8)],
+    [("11/14", "19:05", 1, "連立方程式の文章題：速さ・時間・道のり", "Simultaneous equations word problem: speed, time and distance", 4),
+     ("11/08", "20:22", 2, "マグネシウムの燃焼の化学反応式", "Balancing the chemical equation for burning magnesium", 3)],
+    [("11/12", "18:47", 1, "関数 y = ax² のグラフと変化の割合", "The graph of y = ax² and its rate of change", 5),
+     ("11/06", "21:30", 3, "現在完了形と過去形の違い", "Present perfect versus simple past", 10)],
+    [("11/10", "19:12", 1, "カードを2枚続けて引くときの確率", "Probability of drawing two cards without replacement", 4),
+     ("11/07", "17:55", 2, "こだまを使った音の速さの計算", "Finding the speed of sound from an echo", 3)],
+    [("11/13", "20:40", 1, "円周角の定理を使った角度の求め方", "Finding an angle with the inscribed angle theorem", 6),
+     ("11/05", "18:08", 0, "気温の変化を表す折れ線グラフの読み取り", "Reading a line graph of temperature change", 2)],
+    [("11/11", "21:15", 1, "2点を通る一次関数の式", "The linear function through two points", 4),
+     ("11/09", "19:33", 3, "語順整序：疑問文を作る", "Reordering words to form a question", 7)],
+    [("11/12", "17:20", 1, "円すいの表面積と体積", "Surface area and volume of a cone", 5),
+     ("11/10", "20:51", 2, "質量と体積から密度を求める", "Density from mass and volume", 4)],
+    [("11/13", "19:26", 1, "直方体の対角線と三平方の定理", "The Pythagorean theorem in a rectangular box", 5),
+     ("11/08", "18:44", 3, "長文読解：要旨を問う問題", "Long reading passage: main idea questions", 6)],
+    [("11/11", "20:03", 1, "平方根：分母の有理化", "Square roots: rationalising the denominator", 8),
+     ("11/09", "17:12", 2, "斜面上の物体にはたらく力と圧力", "Force and pressure on an inclined plane", 3)],
+    [("11/10", "21:37", 1, "多項式の展開と因数分解", "Expanding and factoring polynomials", 9),
+     ("11/06", "19:58", 0, "江戸時代のできごとの並べ替え", "Ordering events of the Edo period", 4)],
+]
+for _i, _rows in enumerate(AD_MORE):
+    for _d, _t, _lens, _ja, _en, _n in _rows:
+        AD_JA["ad_hist"][_i].append((f"2026/{_d} {_t}", _lens, _ja, str(_n), "", "--"))
+        AD_EN["ad_hist"][_i].append((f"2026/{_d}, {_t}", _lens, _en, str(_n), "", "--"))
+    AD_JA["ad_hist"][_i].sort(key=lambda r: r[0], reverse=True)
+    AD_EN["ad_hist"][_i].sort(key=lambda r: r[0], reverse=True)
+
 AD_CSS = """
 .ad-form{display:flex;align-items:center;gap:32px}
 .ad-form .fs{display:flex;gap:16px;flex:1 1 auto;min-width:0}
