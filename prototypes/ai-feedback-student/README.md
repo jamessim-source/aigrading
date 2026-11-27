@@ -461,3 +461,8 @@ PM comment on T18: *questions here should not refer to the in chat questions, it
 ## 27 Nov (6): T18 redrawn from production screenshots
 
 The PM sent two screenshots of the live question detail page. T18 now follows them: breadcrumb AI Dashboard / time, the time as the title with a previous / next pager, the info rows, Item Overview, one tab per snapped question, an Overview, and an AI Response panel with a Hint / Solution toggle (Hint 1 to 3; Step 1 to n and Final Answer). Left out on purpose: Total Likes, Total Dislikes and Total Comments, and emoji in hints. Kept beyond production: the chat on each question.
+
+
+## 27 Nov (7): AI Feedback examples on T16 for the Waseda demo
+
+PM comment on T16. The feedback snaps, the two assignments and the three threads in the drawer are now junior-high work: a congruence proof (Math assignment), a 40-word English opinion (English assignment) and a current-and-voltage experiment report (Science, free snap). Each thread has three strengths and one point to improve. Export preview rows and class names follow.

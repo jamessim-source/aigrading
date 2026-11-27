@@ -7082,6 +7082,133 @@ AD_EN = dict(
 JA.update(AD_JA); EN.update(AD_EN)
 JA["t_titles"]["dai"] = AD_JA["ad_title"]; EN["t_titles"]["dai"] = AD_EN["ad_title"]
 
+# AI Feedback examples for the Waseda demo (PM, 27 Nov: change the AI Feedback examples to demo for Waseda; make the
+# feedback more positive than negative). Junior-high work: a congruence proof (assignment), a 40-word English opinion
+# (assignment) and a science experiment write-up (free snap). Each thread has three strengths and one point to improve.
+_W_OV = {
+    "ja": {"a7": ["三角形の合同の証明 — 手書きノート1ページ", "合同の証明（下書き）", "合同条件を使った証明の清書"],
+           "a6": ["40語の意見文「学校に制服は必要か」", "意見文の下書き（1回目）", "意見文の書き直し"],
+           "": ["理科の実験レポート — 電流と電圧の関係", "実験レポートの考察", "グラフと表のまとめ"]},
+    "en": {"a7": ["Proof of congruent triangles — one handwritten page", "Congruence proof (draft)", "Fair copy of the congruence proof"],
+           "a6": ["40-word opinion: do schools need uniforms?", "Opinion writing, first draft", "Opinion writing, rewritten"],
+           "": ["Science experiment report — current and voltage", "Discussion section of the experiment report", "Graph and table write-up"]},
+}
+_W_LENS = {"a7": 1, "a6": 3, "": 2}
+for _lang, _D in (("ja", AD_JA), ("en", AD_EN)):
+    _cnt = {"a7": 0, "a6": 0, "": 0}
+    _new = []
+    for _rows in _D["ad_fb"]:
+        _r2 = []
+        for _at, _lens, _asg, _ov, _fbk, _cmt in _rows:
+            _ovs = _W_OV[_lang][_asg]
+            _r2.append((_at, _W_LENS[_asg], _asg, _ovs[_cnt[_asg] % len(_ovs)], _fbk, _cmt))
+            _cnt[_asg] += 1
+        _new.append(_r2)
+    _D["ad_fb"] = _new
+
+W_JA = dict(
+    ad_fb=AD_JA["ad_fb"],
+    ad_asg={"a7": "数学：三角形の合同の証明", "a6": "英語：40語の意見文"},
+    ad_assign="AIチューター課題: 数学：三角形の合同の証明",
+    ad_vA=dict(summary="仮定の整理から結論まで、筋道の通ったとてもよい証明です。使う辺と角を図に対応させて書き出し、合同条件も正しく選べています。あと一歩は結論の書き方だけです。対応する頂点の順をそろえると、満点の答案になります。",
+               text=["△ABC と △DCB において、",
+                     (1, "t", "仮定より AB = DC ……① ∠ABC = ∠DCB ……②"),
+                     (2, "t", "BC は共通 ……③"),
+                     (3, "t", "①、②、③より、2組の辺とその間の角がそれぞれ等しいから、"),
+                     (4, "r", "△ABC ≡ △DBC")],
+               cards=[("t", "仮定の整理", "仮定より AB = DC ……① ∠ABC = ∠DCB ……②",
+                       "問題文の条件をもれなく取り出し、番号をつけて整理できています。あとで根拠として使いやすい、よい書き方です。"),
+                      ("t", "根拠の示し方", "BC は共通 ……③",
+                       "共通な辺に自分で気づき、理由（共通）を添えて書けています。見落としやすいところなので、とてもよく見ています。"),
+                      ("t", "合同条件", "①、②、③より、2組の辺とその間の角がそれぞれ等しいから、",
+                       "3つの根拠から正しい合同条件を選び、省略せずに言葉で書けています。証明の中心がしっかりしています。"),
+                      ("r", "結論の書き方", "△ABC ≡ △DBC",
+                       "証明の内容は正しいです。最後に、対応する頂点の順をそろえてみましょう。A に対応するのは D、B に対応するのは C です。どう書き直せばよいでしょうか。")]),
+    ad_vB=dict(summary="目的・方法・結果がそろった、読みやすい実験レポートです。条件をそろえて測定し、表とグラフの両方で結果を示せています。考察にあと一文、グラフの形から言えることを足すと、さらによくなります。",
+               text=[(1, "t", "目的：電熱線に加える電圧を変えたとき、流れる電流がどう変わるかを調べる。"),
+                     (2, "t", "方法：同じ電熱線を使い、電圧を 1.0 V ずつ 5.0 V まで上げて、そのつど電流を測った。"),
+                     (3, "t", "結果：1.0 V で 0.20 A、2.0 V で 0.41 A、3.0 V で 0.60 A、4.0 V で 0.79 A、5.0 V で 1.00 A。グラフは原点を通る直線になった。"),
+                     (4, "r", "考察：電圧を上げると電流が大きくなった。")],
+               cards=[("t", "目的", "目的：電熱線に加える電圧を変えたとき、流れる電流がどう変わるかを調べる。",
+                       "何を変えて何を調べるのかが一文ではっきり書けています。読む人が実験のねらいをすぐにつかめます。"),
+                      ("t", "方法", "方法：同じ電熱線を使い、電圧を 1.0 V ずつ 5.0 V まで上げて、そのつど電流を測った。",
+                       "同じ電熱線を使い、電圧を一定の幅で変えています。条件をそろえた、信頼できる測り方です。"),
+                      ("t", "結果の示し方", "結果：1.0 V で 0.20 A、2.0 V で 0.41 A、3.0 V で 0.60 A、4.0 V で 0.79 A、5.0 V で 1.00 A。グラフは原点を通る直線になった。",
+                       "測定値を単位つきで並べ、グラフの形まで言葉で書けています。結果の読み取りがていねいです。"),
+                      ("r", "考察", "考察：電圧を上げると電流が大きくなった。",
+                       "書いてあることは正しいです。もう一歩進めましょう。グラフが原点を通る直線になったことから、電圧と電流の間にどんな関係があると言えますか。")]),
+    ad_vC=dict(summary="自分の意見と理由が2つ、はっきり伝わる意見文です。First, Second を使った組み立てもわかりやすく、語数も条件どおりです。直すところは動詞の形が1か所だけです。",
+               text=[(1, "t", "I think schools need uniforms."),
+                     (2, "t", "First, students do not have to choose clothes every morning. Second, uniforms make us feel like one team."),
+                     (3, "r", "My sister say she can save time."),
+                     (4, "t", "So I like wearing my uniform.")],
+               cards=[("t", "意見の示し方", "I think schools need uniforms.",
+                       "最初の文で自分の立場をはっきり書けています。読む人が、何について書くのかをすぐに理解できます。"),
+                      ("t", "理由と構成", "First, students do not have to choose clothes every morning. Second, uniforms make us feel like one team.",
+                       "理由を2つ、First と Second で順序よく示せています。feel like one team という表現も自然で、とてもよいです。"),
+                      ("r", "文法", "My sister say she can save time.",
+                       "身近な例を入れたのはよい工夫です。主語は My sister です。動詞の形はこのままでよいでしょうか。"),
+                      ("t", "まとめ", "So I like wearing my uniform.",
+                       "最後に自分の気持ちでまとめられています。like のあとの wearing の形も正しく使えています。")]),
+    ad_x_class_v="中3 数学 Aクラス（30）", ad_x_classes=["中3 数学 Aクラス（30）", "中3 数学 Bクラス（28）", "中2 英語（41）"],
+    ad_x_rows=[("hanako.yamada", "山田 花子", "数学", "三角形の合同の証明 — 手書きノート1ページ", "仮定の整理から結論まで、筋道の通った… / 1 仮定の整理：問題文の条件を… / 2 根拠の示し方：… / 3 合同条件：… / 4 結論の書き方：…", "生徒：頂点の順番はなぜそろえるんですか？ / AI：対応する辺や角がどれかを、読む人が…"),
+               ("hanako.yamada", "山田 花子", "理科", "理科の実験レポート — 電流と電圧の関係", "目的・方法・結果がそろった… / 1 目的：… / 2 方法：… / 3 結果の示し方：… / 4 考察：…", "生徒：直線になると何が言えるんですか？ / AI：電圧を2倍にしたとき、電流は…"),
+               ("taro.sato", "佐藤 太郎", "数学", "合同の証明（下書き）", "合同条件を正しく選べています… / 1 仮定の整理：… / 2 合同条件：…", "—")],
+)
+W_EN = dict(
+    ad_fb=AD_EN["ad_fb"],
+    ad_asg={"a7": "Math: proof of congruent triangles", "a6": "English: 40-word opinion writing"},
+    ad_assign="AI Tutor Assignment: Math: proof of congruent triangles",
+    ad_vA=dict(summary="A very good proof that runs cleanly from the givens to the conclusion. You wrote out the sides and angles you use, matched them to the figure, and chose the right congruence condition. One small step is left: the way the conclusion is written. Put the vertices in matching order and this is a full-mark answer.",
+               text=["In △ABC and △DCB,",
+                     (1, "t", "from the givens, AB = DC … ①  ∠ABC = ∠DCB … ②"),
+                     (2, "t", "BC is common … ③"),
+                     (3, "t", "From ①, ② and ③, two pairs of sides and the angle between them are equal, so"),
+                     (4, "r", "△ABC ≡ △DBC")],
+               cards=[("t", "Using the givens", "from the givens, AB = DC … ①  ∠ABC = ∠DCB … ②",
+                       "You picked out every condition in the question and numbered them. That makes them easy to cite later. A good habit."),
+                      ("t", "Giving reasons", "BC is common … ③",
+                       "You spotted the shared side yourself and gave the reason for it. This is the step most often missed, so well noticed."),
+                      ("t", "Congruence condition", "From ①, ② and ③, two pairs of sides and the angle between them are equal, so",
+                       "You chose the right condition from your three facts and wrote it out in words. The core of the proof is sound."),
+                      ("r", "Writing the conclusion", "△ABC ≡ △DBC",
+                       "The proof itself is correct. For the last line, check the order of the vertices: A matches D, and B matches C. How would you rewrite it?")]),
+    ad_vB=dict(summary="A clear report with aim, method and results all in place. You kept the conditions the same while measuring and showed the results in both a table and a graph. One more sentence in the discussion, on what the shape of the graph tells you, would make it even better.",
+               text=[(1, "t", "Aim: to find out how the current changes when the voltage across a heating wire is changed."),
+                     (2, "t", "Method: using the same wire, I raised the voltage by 1.0 V at a time up to 5.0 V and measured the current each time."),
+                     (3, "t", "Results: 0.20 A at 1.0 V, 0.41 A at 2.0 V, 0.60 A at 3.0 V, 0.79 A at 4.0 V and 1.00 A at 5.0 V. The graph was a straight line through the origin."),
+                     (4, "r", "Discussion: when the voltage went up, the current got bigger.")],
+               cards=[("t", "Aim", "Aim: to find out how the current changes when the voltage across a heating wire is changed.",
+                       "One sentence says what you change and what you measure. A reader knows the purpose of the experiment at once."),
+                      ("t", "Method", "Method: using the same wire, I raised the voltage by 1.0 V at a time up to 5.0 V and measured the current each time.",
+                       "You used the same wire and changed the voltage in equal steps. Keeping the conditions the same is what makes the measurements trustworthy."),
+                      ("t", "Presenting results", "Results: 0.20 A at 1.0 V, 0.41 A at 2.0 V, 0.60 A at 3.0 V, 0.79 A at 4.0 V and 1.00 A at 5.0 V. The graph was a straight line through the origin.",
+                       "Every value has its unit, and you described the shape of the graph in words. Careful reading of your own results."),
+                      ("r", "Discussion", "Discussion: when the voltage went up, the current got bigger.",
+                       "What you wrote is correct. Take it one step further: the graph is a straight line through the origin. What does that tell you about the relationship between voltage and current?")]),
+    ad_vC=dict(summary="Your opinion and two reasons come across clearly. Using First and Second makes the structure easy to follow, and the length fits the task. There is just one verb form to fix.",
+               text=[(1, "t", "I think schools need uniforms."),
+                     (2, "t", "First, students do not have to choose clothes every morning. Second, uniforms make us feel like one team."),
+                     (3, "r", "My sister say she can save time."),
+                     (4, "t", "So I like wearing my uniform.")],
+               cards=[("t", "Stating your opinion", "I think schools need uniforms.",
+                       "Your first sentence states your position plainly. The reader knows straight away what the piece is about."),
+                      ("t", "Reasons and structure", "First, students do not have to choose clothes every morning. Second, uniforms make us feel like one team.",
+                       "Two reasons, in order, with First and Second. \"Feel like one team\" is a natural expression. Very good."),
+                      ("r", "Grammar", "My sister say she can save time.",
+                       "Adding an example from your own life is a nice touch. The subject is \"My sister\". Is the verb in the right form?"),
+                      ("t", "Closing", "So I like wearing my uniform.",
+                       "You close with your own feeling, and \"wearing\" after \"like\" is used correctly.")]),
+    ad_x_class_v="Year 9 Math · Class A (30)", ad_x_classes=["Year 9 Math · Class A (30)", "Year 9 Math · Class B (28)", "Year 8 English (41)"],
+    ad_x_rows=[("hanako.yamada", "Hanako Yamada", "Math", "Proof of congruent triangles — one handwritten page", "A very good proof that runs cleanly… / 1 Using the givens: You picked out every condition… / 2 Giving reasons: … / 3 Congruence condition: … / 4 Writing the conclusion: …", "Student: Why does the order of the vertices matter? / AI: So the reader can tell which sides and angles…"),
+               ("hanako.yamada", "Hanako Yamada", "Science", "Science experiment report — current and voltage", "A clear report with aim, method and results… / 1 Aim: … / 2 Method: … / 3 Presenting results: … / 4 Discussion: …", "Student: What can I say from a straight line? / AI: When you double the voltage, what happens to…"),
+               ("taro.sato", "Taro Sato", "Math", "Congruence proof (draft)", "You chose the right congruence condition… / 1 Using the givens: … / 2 Congruence condition: …", "—")],
+)
+for _D in (AD_JA, JA):
+    _D.update(W_JA)
+for _D in (AD_EN, EN):
+    _D.update(W_EN)
+
 # More AI Tutor Hints / Solution examples (PM, 27 Nov: put more examples for the Waseda demo): junior-high and
 # entrance-exam level items across the Math, Science, English and Any lenses, added under every student.
 # (time, lens index, item overview JA, item overview EN, no. of snapped questions)
