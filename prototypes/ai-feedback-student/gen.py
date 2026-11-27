@@ -7735,7 +7735,7 @@ AQ_JA = dict(
     aq_title="BO — AIチューター 質問詳細", aq_h="質問の詳細", aq_back="AIダッシュボードに戻る",
     aq_gi="基本情報", aq_gi_rows=[("生徒名", "山田 花子"), ("ユーザー名", "hanako.yamada"), ("作成日時", "2026/11/13 21:08"), ("レンズ", "数学"), ("質問数", "6")],
     aq_ov_l="アイテムの概要", aq_ov="相関係数 r の意味と、外れ値があるときの解釈について",
-    aq_tab="質問", aq_snap_h="スナップした質問", aq_snap_cap="スナップ 1枚から切り出し ・ 2026/11/13 21:08",
+    aq_tab="質問", aq_snap_h="スナップした質問",
     aq_resp_h="AIチューターの解説", aq_chat_h="この質問でのチャット", aq_chat_none="この質問ではチャットはありません",
     aq_stu="生徒", aq_ai="AIチューター",
     # one snap, six snapped questions: (question text, cards [(heading, text, math lines)], chat [(student, AI)])
@@ -7762,7 +7762,7 @@ AQ_EN = dict(
     aq_title="BO — AI Tutor question detail", aq_h="Question Detail", aq_back="Back to AI Dashboard",
     aq_gi="General Info", aq_gi_rows=[("Student Name", "Hanako Yamada"), ("User Name", "hanako.yamada"), ("Created At", "2026/11/13, 21:08"), ("Lens", "Math"), ("No. of Questions", "6")],
     aq_ov_l="Item Overview", aq_ov="What the correlation coefficient r means, and how to read it when there is an outlier",
-    aq_tab="Question", aq_snap_h="Snapped question", aq_snap_cap="Cropped from 1 snap · 2026/11/13, 21:08",
+    aq_tab="Question", aq_snap_h="Snapped question",
     aq_resp_h="AI Tutor explanation", aq_chat_h="Chat on this question", aq_chat_none="No chat on this question",
     aq_stu="Student", aq_ai="AI Tutor",
     aq_qs=[
@@ -7823,7 +7823,7 @@ def t_dash_ai_q(S, L):
         else:
             chat = f'<p class="helper" style="margin:0">{S["aq_chat_none"]}</p>'
         panels += f"""<div class="{{{{p{i}}}}}"><div class="aq-two">
-        <div><h4 class="aq-h4">{mi("camera", 16)}{S["aq_snap_h"]}</h4><div class="aq-photo">{q}</div><p class="helper num" style="margin:8px 0 0">{S["aq_snap_cap"]}</p></div>
+        <div><h4 class="aq-h4">{mi("camera", 16)}{S["aq_snap_h"]}</h4><div class="aq-photo">{q}</div></div>
         <div style="display:flex;flex-direction:column;gap:20px">
           <div><h4 class="aq-h4">{mi("aiTutor", 16)}{S["aq_resp_h"]}</h4><div style="display:flex;flex-direction:column;gap:12px">{cards}</div></div>
           <div><h4 class="aq-h4">{mi("chat", 16)}{S["aq_chat_h"]}</h4>{chat}</div>
