@@ -446,3 +446,8 @@ PM comment on T16: *the assignment status is not relevant to AI snap to ask, per
 ## 27 Nov (3): Total Questions renamed Snapped Questions (T16)
 
 PM comment on T16. The per-student column and the overview card now read Snapped Questions (JA: スナップした質問数): the Snap-to-ask count only.
+
+
+## 27 Nov (4): T18, the AI Tutor question detail page
+
+PM comment on T16: *Draw production's separate detail page as its own board and link to it.* New board `T-DashAIQ` (JA and EN): general info, the item overview, and two tabs, Explanation (the snapped question beside the explanation cards) and Chat (the six follow-up questions with replies). Every Created At link in the chat history on T16 opens it. The production source for this page was not available; the layout is inferred from the component names recorded on 6 Oct and the 20 Nov bug report, and should be checked against the live screen.
