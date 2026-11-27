@@ -7266,13 +7266,14 @@ def t_dash_ai(S, L):
     </div>'''
     overview = f'''<div style="padding:20px 20px 4px">
       <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:12px"><h3 style="margin:0;font-size:16px;font-weight:500">{S["ad_ov_h"]}</h3><span class="helper num" style="margin:0">{S["ad_period"]}</span></div>
-      {ad_cards(S, L, S["ad_cards_tutor"] + S["ad_cards_fb"][:1])}
+      {ad_cards(S, L, [(ic_, tn_, lb_, (f"{sum(int(h[3]) for hs in S['ad_hist'] for h in hs):,}" if ic_ == "aiTutor" else vl_), un_, sb_) for ic_, tn_, lb_, vl_, un_, sb_ in S["ad_cards_tutor"]] + S["ad_cards_fb"][:1])}
     </div>'''
     names = [n for n, _ in S["t_mx_students"]] + S["ad_extra"]
     dd = '<span class="dd">--</span>'
     rows = ""
     for i, (name, r, fbs) in enumerate(zip(names, S["ad_rows"], S["ad_fb"])):
         user, q, lk, dl, asg_st = r
+        q = str(sum(int(h[3]) for h in S["ad_hist"][i]))
         lbl, tone = S["ad_asg_st"][asg_st]
         rows += (f'<tr><td class="idx num">{i + 1}</td><td style="width:44px;padding-right:0"><button class="ticon sm ad-x {{{{oc{i}}}}}" onClick="{{{{t{i}}}}}" aria-label="expand">{mi("expandMore", 20)}</button></td>'
                  f'<td><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a></td><td class="cell-muted">{user}</td>'
