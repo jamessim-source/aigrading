@@ -436,3 +436,8 @@ PRD C11.14 has the requirement mapping and the dev-effort notes.
 ## 27 Nov: likes and dislikes removed from the AI Dashboard (T16)
 
 PM comment on T16: *remove all the likes and dislikes from the dashboard*. Removed the Total Likes and Total Dislikes overview cards, the two per-student columns in Student Usages, and the Feedback Type and Comments columns of the Snap-to-ask chat history. Production still stores the ratings; this board no longer shows them.
+
+
+## 27 Nov (2): assignment status moved into the expanded row (T16)
+
+PM comment on T16: *the assignment status is not relevant to AI snap to ask, perhaps move this one level lower?* The Assignment column left Student Usages. The status now sits per feedback snap in the expanded row, beside the assignment it belongs to; a free snap shows --.
