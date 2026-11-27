@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-11-27T02:57:19Z"
+    "at": "2026-11-27T08:55:48Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -402,6 +402,38 @@
       "title": "T18 · AI Tutor question detail — production's page behind the chat history's Created At link: the info rows, one tab per snapped question, AI Response with the Hint / Solution toggle (27 Nov) (JA)",
       "is_interactive": true
     },
+    "C-Blank.dc.html": {
+      "x": 22800,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "N1 · New course flow — a new course: the Syllabus tab is empty, Add syllabus by hand (19 Nov direction) (JA)",
+      "is_interactive": true
+    },
+    "C-Syllabus.dc.html": {
+      "x": 24320,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "N2 · New course flow — Course › Syllabus: the tree inside the course, with start / due / end, completion and average score per row; Edit dates here; dates per class (JA)",
+      "is_interactive": true
+    },
+    "C-AddLO.dc.html": {
+      "x": 25840,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "N3 · New course flow — Add LO from the tree: type picker, the three dates in the dialog, settings (JA)",
+      "is_interactive": true
+    },
+    "C-LO.dc.html": {
+      "x": 27360,
+      "y": 5400,
+      "w": 1440,
+      "h": 900,
+      "title": "N4 · New course flow — an LO opened from the tree: its dates, counts, and the students with status, score and due date (JA)",
+      "is_interactive": true
+    },
     "T-Book-en.dc.html": {
       "x": 0,
       "y": 7000,
@@ -520,6 +552,38 @@
       "w": 1440,
       "h": 900,
       "title": "T18 · AI Tutor question detail — production's page behind the chat history's Created At link: the info rows, one tab per snapped question, AI Response with the Hint / Solution toggle (27 Nov) (EN)",
+      "is_interactive": true
+    },
+    "C-Blank-en.dc.html": {
+      "x": 22800,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "N1 · New course flow — a new course: the Syllabus tab is empty, Add syllabus by hand (19 Nov direction) (EN)",
+      "is_interactive": true
+    },
+    "C-Syllabus-en.dc.html": {
+      "x": 24320,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "N2 · New course flow — Course › Syllabus: the tree inside the course, with start / due / end, completion and average score per row; Edit dates here; dates per class (EN)",
+      "is_interactive": true
+    },
+    "C-AddLO-en.dc.html": {
+      "x": 25840,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "N3 · New course flow — Add LO from the tree: type picker, the three dates in the dialog, settings (EN)",
+      "is_interactive": true
+    },
+    "C-LO-en.dc.html": {
+      "x": 27360,
+      "y": 7000,
+      "w": 1440,
+      "h": 900,
+      "title": "N4 · New course flow — an LO opened from the tree: its dates, counts, and the students with status, score and due date (EN)",
       "is_interactive": true
     },
     "P-Dialog.dc.html": {
@@ -1405,6 +1469,10 @@
     "T-DashAI.dc.html",
     "T-Import.dc.html",
     "T-DashAIQ.dc.html",
+    "C-Blank.dc.html",
+    "C-Syllabus.dc.html",
+    "C-AddLO.dc.html",
+    "C-LO.dc.html",
     "T-Book-en.dc.html",
     "T-Dialog-en.dc.html",
     "T-Material-en.dc.html",
@@ -1420,6 +1488,10 @@
     "T-DashAI-en.dc.html",
     "T-Import-en.dc.html",
     "T-DashAIQ-en.dc.html",
+    "C-Blank-en.dc.html",
+    "C-Syllabus-en.dc.html",
+    "C-AddLO-en.dc.html",
+    "C-LO-en.dc.html",
     "P-Dialog.dc.html",
     "P-Source.dc.html",
     "P-Detail.dc.html",
@@ -1812,6 +1884,34 @@
       "w": 640,
       "maxH": 460,
       "text": "AI TUTOR QUESTION DETAIL — production's page behind the Created At link of T16's Snap-to-ask chat history (PM, 27 Nov: 'Draw production's separate detail page as its own board and link to it'). REDRAWN 27 Nov FROM THE PM'S PRODUCTION SCREENSHOTS ('for the ai tutor explanation please follow the production screens with the hint / solution toggle'): breadcrumb AI Dashboard / time; the time as the title with a previous / next pager; the info rows (Student Name, Lens, Created On); Item Overview; then a box with one tab per SNAPPED QUESTION (PM: questions are the snapped questions, not the chat messages). Each tab: Overview, and the AI Response panel with a Hint / Solution toggle — Hint 1 to 3; Step 1 to n and Final Answer. Click a tab or the toggle. DIFFERENCES FROM PRODUCTION, on purpose: Total Likes, Total Dislikes and Total Comments are left out (PM, 27 Nov: remove all likes and dislikes from the dashboard); no emoji in the hints (Kindai survey, 20 Nov); and the chat on a question, which production's page does not show, is kept under the AI Response."
+    },
+    "t16": {
+      "x": 22800,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "NEW COURSE FLOW, N1 to N4 (PM, 27 Nov: redraw the new course flow; Weekly AI Direction Discussion of 19 Nov — Koki, Bunsuke, Takuya, Trieu). These four boards REPLACE the flow on T1 (book tree in Book Management), T6 / T7 (course list and the Books tab) and T8 (Learning Objectives Availability); those boards are kept for reference until the new flow is reviewed. DECIDED ON 19 NOV AND DRAWN HERE: no shortcut flow, the standard tree; the tree replaces the Books tab inside the course, no new Assignment tab; 'Book' reads Syllabus (a tenant label); a blank course starts with a manual Add syllabus, nothing is auto-created; the UI is optimised for one syllabus per course; the button is Add LO and opens the LO type picker; three dates per LO — start, due (soft target, shown to students as the deadline) and end (hard close) — reusing the study plan's dates, edited on this screen, with no separate study plan tab and LO Availability deprecated; dates apply to everyone with overrides per class and per student; a class is a student group inside the course; assigning an LO to one class only is not in the first version; every tree row shows completion and average score; clicking an LO lists the students. N1: the empty Syllabus tab."
+    },
+    "t17": {
+      "x": 24320,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "N2: the Syllabus tab with the tree. Click Edit dates to turn the three date columns into inputs (Save shows the confirmation). Click Friday class to see the dates that class actually has: the Session 7 exercise report carries a class override, one day later. Add LO on a topic row opens N3; the name of an AI Feedback LO opens N4. STILL OPEN FROM 19 NOV, not decided here: the final label (Syllabus or Curriculum); whether completion and scores sit on this tab or a second tab (drawn on the same tab, Bunsuke's preference); how the date columns and the per-class and per-student overrides are laid out (drawn as a 'Show dates for' selector plus an override chip); whether a study plan is created automatically when an LO is created; where the dates appear in the learner app."
+    },
+    "t18": {
+      "x": 25840,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "N3: Add LO opened from a topic row. One dialog: LO type (click it for the picker; the flow is generic, AI Feedback is the first type enabled), name, description, where it is added, the three dates with what each one does, and the main switches. Confirm creates the LO unpublished and continues to the existing LO content board (T3: material, evaluation items, rubric). Moodle sets its dates on the assignment form in the same way ('Allow submissions from', 'Due date', 'Cut-off date'). The contents of the AI Feedback form itself were not discussed on 19 Nov; the mandatory uploads and instructions of 12 Nov stay on T3."
+    },
+    "t19": {
+      "x": 27360,
+      "y": 6360,
+      "w": 640,
+      "maxH": 460,
+      "text": "N4: an LO opened from the tree. Its start, due and end; submitted, returned and average score; and the students with class, status, submitted time, score and the due date each one actually has. Friday-class students show the class override; one student shows a personal extension (the ⋮ menu on a row offers 'Change dates for this student'). Use the class buttons to filter. Review / View go to the existing review board (T12). The score column follows the 18 Nov decision to score per criterion; whether students see the score is still open (PRD C11.20)."
     },
     "p_P-Dialog": {
       "x": 0,

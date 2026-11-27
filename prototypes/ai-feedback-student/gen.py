@@ -8075,6 +8075,296 @@ def t_dash_ai_q(S, L):
 
 TSCREENS.append("T-DashAIQ"); TBUILDERS["T-DashAIQ"] = t_dash_ai_q
 
+# ===== NEW COURSE FLOW (27 Nov, PM: redraw the new course flow; Weekly AI Direction Discussion, 19 Nov).
+# The syllabus tree lives INSIDE the course and replaces the Books tab; "Book" reads Syllabus (tenant label);
+# a blank course starts with a manual Add syllabus; LOs are added from the tree with "Add LO" and the type picker;
+# three dates per LO — start, due (soft target) and end (hard close) — stored as study plan dates and edited on this
+# screen, with overrides per class and per student; every tree row shows completion, average score and the dates;
+# clicking an LO lists the students with status, score and dates. Follows Moodle's conventions (dates on the
+# assignment, due vs cut-off, group and user overrides). Open points of 19 Nov are in the board notes, not on screen.
+NF_JA = dict(
+    nf_t1="BO — コース（シラバス未作成）", nf_t2="BO — コース › シラバス", nf_t3="BO — LOの追加（コース内）", nf_t4="BO — コース › LO の生徒一覧",
+    nf_tabs=["シラバス", "レッスン", "生徒", "クラス", "設定"],
+    nf_empty_h="このコースにはまだシラバスがありません", nf_empty_p="シラバスは、章・トピック・LO（学習項目）をまとめたものです。新しく作るか、既存のシラバスをこのコースにひも付けてください。",
+    nf_add_syl="シラバスを追加", nf_link_syl="既存のシラバスをひも付ける",
+    nf_syl="地域・環境統計学 シラバス（2026）", nf_add_ch="章を追加", nf_add_tp="トピックを追加", nf_add_lo="LOを追加", nf_edit_dates="日付を編集", nf_save="保存", nf_cancel="キャンセル",
+    nf_for="日付の表示対象", nf_groups=["全員", "木曜クラス", "金曜クラス"], nf_ovr="クラス別", nf_ovr_note="金曜クラスは、第7回 演習レポートの期限と終了日を1日後ろにしています。",
+    nf_cols=["章 / トピック / LO", "開始日", "期限", "終了日", "完了", "平均点"],
+    nf_dates_help="開始日：生徒に表示される日。期限：生徒に示す締切（これ以降の提出は「遅延」）。終了日：提出を締め切る日。",
+    nf_saved="日付を保存しました",
+    nf_dlg_h="LOの追加", nf_dlg_general="基本情報", nf_dlg_type="LOタイプ", nf_dlg_name="LO名", nf_dlg_name_v="第8回 演習レポート", nf_dlg_desc="説明（生徒に表示）", nf_dlg_desc_v="回帰分析の結果をまとめ、傾きと決定係数の意味を説明してください。",
+    nf_dlg_where="追加先", nf_dlg_where_v="第8回 回帰分析 › 8-1 単回帰分析",
+    nf_dlg_dates="日付", nf_d_start="開始日", nf_d_due="期限", nf_d_end="終了日",
+    nf_d_start_h="この日から生徒に表示されます", nf_d_due_h="生徒に示す締切です。これ以降の提出は「遅延」と表示されます", nf_d_end_h="この日時で提出を締め切ります。空欄の場合、期限後も提出を受け付けます",
+    nf_d_start_v="2026/11/13 09:00", nf_d_due_v="2026/11/20 23:59", nf_d_end_v="2026/11/22 23:59",
+    nf_dlg_settings="設定", nf_sw=["先生の確認（返却前に先生が確認する）", "提出前のAIフィードバック", "再提出を受け付ける", "採点（観点ごとの点数）"],
+    nf_dlg_next="確定すると、LOは非公開で作成され、教材・評価項目の設定に進みます。", nf_confirm="確定",
+    nf_types=["PDF", "動画", "クイズ", "AIフィードバック", "類題演習"],
+    nf_lo="第7回 演習レポート", nf_lo_crumb="シラバス", nf_edit_lo="LOを編集", nf_review="提出物を確認",
+    nf_cards=[("提出済み", "24", "/ 30"), ("返却済み", "18", ""), ("平均点", "14.2", "/ 20")],
+    nf_stu_cols=["生徒名", "クラス", "状態", "提出日時", "点数", "期限", ""],
+    nf_st={"ret": ("返却済み", "published"), "wait": ("確認待ち", "wait"), "late": ("遅延提出", "wait"), "none": ("未提出", "unpublished")},
+    nf_ext="延長", nf_change="この生徒の日付を変更", nf_view="見る", nf_rev="確認", nf_cls=["木曜", "金曜"],
+    nf_unpub="非公開", nf_pub="公開中", nf_late="遅延",
+)
+NF_EN = dict(
+    nf_t1="BO — Course (no syllabus yet)", nf_t2="BO — Course › Syllabus", nf_t3="BO — Add LO (inside the course)", nf_t4="BO — Course › LO students",
+    nf_tabs=["Syllabus", "Lesson", "Student", "Class", "Settings"],
+    nf_empty_h="This course has no syllabus yet", nf_empty_p="A syllabus holds the chapters, topics and learning objectives (LOs) of the course. Create a new one, or link an existing syllabus to this course.",
+    nf_add_syl="Add syllabus", nf_link_syl="Link an existing syllabus",
+    nf_syl="Regional & Environmental Statistics — Syllabus (2026)", nf_add_ch="Add chapter", nf_add_tp="Add topic", nf_add_lo="Add LO", nf_edit_dates="Edit dates", nf_save="Save", nf_cancel="Cancel",
+    nf_for="Show dates for", nf_groups=["Everyone", "Thursday class", "Friday class"], nf_ovr="Class override", nf_ovr_note="The Friday class has the due and end dates of the Session 7 exercise report set one day later.",
+    nf_cols=["Chapter / Topic / LO", "Start", "Due", "End", "Completed", "Avg. score"],
+    nf_dates_help="Start: when students see the LO. Due: the deadline shown to students; later submissions are marked late. End: when submissions close.",
+    nf_saved="Dates saved",
+    nf_dlg_h="Add LO", nf_dlg_general="General Info", nf_dlg_type="LO Type", nf_dlg_name="LO Name", nf_dlg_name_v="Session 8 exercise report", nf_dlg_desc="Description (shown to students)", nf_dlg_desc_v="Write up your regression analysis and explain what the slope and the coefficient of determination mean.",
+    nf_dlg_where="Add to", nf_dlg_where_v="Session 8 · Regression analysis › 8-1 · Simple regression",
+    nf_dlg_dates="Dates", nf_d_start="Start", nf_d_due="Due", nf_d_end="End",
+    nf_d_start_h="Students see the LO from this date", nf_d_due_h="The deadline shown to students. Later submissions are marked late", nf_d_end_h="Submissions close at this time. Leave blank to keep accepting late work",
+    nf_d_start_v="2026/11/13, 09:00", nf_d_due_v="2026/11/20, 23:59", nf_d_end_v="2026/11/22, 23:59",
+    nf_dlg_settings="Settings", nf_sw=["Teacher review (the teacher checks before it is returned)", "AI feedback before submission", "Accept resubmission", "Scoring (a score per criterion)"],
+    nf_dlg_next="On Confirm the LO is created unpublished and you continue to its material and evaluation items.", nf_confirm="Confirm",
+    nf_types=["PDF", "Video", "Quiz", "AI Feedback", "Similar questions practice"],
+    nf_lo="Session 7 exercise report", nf_lo_crumb="Syllabus", nf_edit_lo="Edit LO", nf_review="Review submissions",
+    nf_cards=[("Submitted", "24", "/ 30"), ("Returned", "18", ""), ("Avg. score", "14.2", "/ 20")],
+    nf_stu_cols=["Student Name", "Class", "Status", "Submitted", "Score", "Due", ""],
+    nf_st={"ret": ("Returned", "published"), "wait": ("Waiting for review", "wait"), "late": ("Submitted late", "wait"), "none": ("Not submitted", "unpublished")},
+    nf_ext="Extended", nf_change="Change dates for this student", nf_view="View", nf_rev="Review", nf_cls=["Thu", "Fri"],
+    nf_unpub="Unpublished", nf_pub="Published", nf_late="Late",
+)
+JA.update(NF_JA); EN.update(NF_EN)
+for _k, _t in (("nf1", "nf_t1"), ("nf2", "nf_t2"), ("nf3", "nf_t3"), ("nf4", "nf_t4")):
+    JA["t_titles"][_k] = NF_JA[_t]; EN["t_titles"][_k] = NF_EN[_t]
+
+NF_CSS = """
+.nf-tree td,.nf-tree th{white-space:nowrap}
+.nf-tree td.nm{white-space:normal;min-width:260px}
+.nf-tree td,.nf-tree th{padding-left:12px;padding-right:12px;font-size:13px}
+.nf-tree .ovc{display:block;margin-top:4px}
+.nf-tree tr.nf-ch td{background:#F5F5F5;font-weight:500}
+.nf-tree tr.nf-tp td.nm{padding-left:36px;font-weight:500;color:#424242}
+.nf-tree tr.nf-lo td.nm{padding-left:60px}
+.nf-tree .rowacts{display:inline-flex;gap:6px;margin-left:12px;vertical-align:middle}
+.nf-hide{display:none}
+.nf-empty{display:flex;flex-direction:column;align-items:center;gap:12px;padding:72px 24px;text-align:center}
+.nf-empty h3{margin:0;font-size:18px;font-weight:500}.nf-empty p{margin:0;max-width:520px;color:#616161;line-height:1.7;font-size:14px}
+.nf-dates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.nf-kv{display:flex;gap:40px;padding:16px 20px}.nf-kv .k{font-size:12px;color:#757575;margin-bottom:4px}.nf-kv .v{font-size:15px}
+"""
+
+# start / due / end per AI Feedback LO in tree order, then (completed, of, average score) per LO in tree order
+NF_FB_DATES = [("10/30 09:00", "11/06 23:59", "11/08 23:59"), ("11/06 09:00", "11/13 23:59", "11/15 23:59"), ("11/13 09:00", "11/20 23:59", "11/22 23:59")]
+NF_FB_STATS = [("30", "15.8 / 20"), ("24", "14.2 / 20"), ("5", "")]
+NF_OTHER_DONE = ["29", "28", "27", "27", "26", "25", "22", "21", "9", "8", "6", "4"]
+NF_QUIZ_AVG = ["7.6 / 10", "7.1 / 10", "6.8 / 10"]
+
+def nf_date(v, L):
+    """'11/13 23:59' → the board's date format in each language."""
+    if not v:
+        return ""
+    d, t = v.split(" ")
+    return f"2026/{d} {t}" if L == "ja" else f"2026/{d}, {t}"
+
+def nf_tabs(S, on=0):
+    return '<div class="tabs">' + "".join(f'<span class="tab{" on" if i == on else ""}">{t}</span>' for i, t in enumerate(S["nf_tabs"])) + '</div>'
+
+def nf_head(S, L, screen, extra_crumbs=None):
+    crumbs = [(S["t_cm"], tfn("T-Courses", L)), (S["t_course_name"], tfn("C-Syllabus", L) if extra_crumbs else None)] + (extra_crumbs or [])
+    return course_head(S, L, screen, crumbs, S["t_course_name"], f'<span class="ticon">{mi("more", 24)}</span>')
+
+def nf_tree(S, L, edit=False):
+    """The syllabus as a tree table: chapter → topic → LO, with start / due / end, completion and average score on
+    every LO row. In edit mode the three dates are inputs. The Friday class override on one LO is shown through holes."""
+    icon = {"lo": "lo", "link": "link", "flash": "flash", "fb": "rateReview", "prac": "spark", "paper": "edit"}
+    dd = '<span class="dd">—</span>'
+    def cell(v):
+        if edit:
+            return f'<input class="tinput" style="width:150px;height:34px;padding:0 8px;font-size:13px" value="{v}" placeholder="{S["t_av_ph"]}">'
+        return f'<span class="num">{v}</span>' if v else dd
+    trs, fbi, oi, qi = "", 0, 0, 0
+    for ci, (ch, topics) in enumerate(S["t_av_rows"]):
+        acts = "" if edit else f'<span class="rowacts"><span class="tbtn sm">{mi("add", 16)}{S["nf_add_tp"]}</span></span>'
+        trs += f'<tr class="nf-ch"><td class="nm" colspan="7"><span style="display:inline-flex;align-items:center;gap:6px;vertical-align:middle">{mi("expandMore", 18)}{ch}</span>{acts}</td></tr>'
+        for tp, los in topics:
+            add = "" if edit else f'<span class="rowacts"><a class="tbtn sm" href="{tfn("C-AddLO", L)}">{mi("add", 16)}{S["nf_add_lo"]}</a></span>'
+            trs += f'<tr class="nf-tp"><td class="nm" colspan="7">{tp}{add}</td></tr>'
+            for name, kind, start, end, resub in los:
+                fb = kind == "fb"
+                if fb:
+                    st, du, en = (nf_date(x, L) for x in NF_FB_DATES[fbi % len(NF_FB_DATES)])
+                    done, avg = NF_FB_STATS[fbi % len(NF_FB_STATS)]
+                    over = fbi == 1 and not edit
+                    fbi += 1
+                else:
+                    st, du, en = start, "", ""
+                    done = NF_OTHER_DONE[oi % len(NF_OTHER_DONE)]; oi += 1
+                    avg = ""
+                    if kind == "paper":
+                        avg = NF_QUIZ_AVG[qi % len(NF_QUIZ_AVG)]; qi += 1
+                    over = False
+                chip = f'<span class="tchip type" style="margin-left:6px">{S["t_type_fb"]}</span>' if fb else ""
+                nm = (f'<a class="cell-link" style="font-weight:500" href="{tfn("C-LO", L)}">{name}</a>' if fb else name)
+                name_cell = f'<span class="name-cell"><span class="lm-type{" ppr" if kind == "paper" else ""}" style="width:22px;height:22px;flex:0 0 22px">{mi(icon[kind], 14)}</span>{nm}{chip}</span>'
+                if over:
+                    d2, e2 = nf_date("11/14 23:59", L), nf_date("11/16 23:59", L)
+                    ochip = f'<span class="ovc"><span class="tchip wait" style="height:20px;font-size:11px">{S["nf_ovr"]}</span></span>'
+                    due_td = f'<span class="{{{{gAll}}}}"><span class="num">{du}</span></span><span class="{{{{gFri}}}}"><span class="num">{d2}</span>{ochip}</span>'
+                    end_td = f'<span class="{{{{gAll}}}}"><span class="num">{en}</span></span><span class="{{{{gFri}}}}"><span class="num">{e2}</span>{ochip}</span>'
+                else:
+                    due_td, end_td = cell(du), cell(en)
+                trs += (f'<tr class="nf-lo"><td class="nm">{name_cell}</td><td>{cell(st)}</td><td>{due_td}</td><td>{end_td}</td>'
+                        f'<td class="num">{done} / 30</td><td class="num">{avg or dd}</td><td style="width:44px"><span class="ticon sm">{mi("more", 18)}</span></td></tr>')
+    head = "".join(f'<th>{c}</th>' for c in S["nf_cols"]) + "<th></th>"
+    return f'<div class="table-scroll"><table class="m nf-tree"><thead><tr>{head}</tr></thead><tbody>{trs}</tbody></table></div>'
+
+def c_blank(S, L):
+    """N1 — a new course: the Syllabus tab is empty, and the teacher adds a syllabus by hand (no auto-created one)."""
+    body = f'<style>{NF_CSS}</style>' + tnav(S, "cm") + f"""<div class="tmain">
+<div class="tscroll">
+  {nf_head(S, L, "C-Blank")}
+  {nf_tabs(S)}
+  <div class="tpaper"><div class="nf-empty">
+    <span class="lm-type" style="width:56px;height:56px">{mi("library", 28)}</span>
+    <h3>{S["nf_empty_h"]}</h3><p>{S["nf_empty_p"]}</p>
+    <div style="display:flex;gap:12px;margin-top:8px"><a class="tbtn contained" href="{tfn("C-Syllabus", L)}">{mi("add", 18)}{S["nf_add_syl"]}</a><span class="tbtn outlined">{mi("link", 18)}{S["nf_link_syl"]}</span></div>
+  </div></div>
+</div>
+</div>"""
+    return tpage(S, "C-Blank", S["t_titles"]["nf1"], body)
+
+NFS_LOGIC = """state = { edit: false, saved: false, g: 0 };
+  renderVals() { const g = this.state.g; return {
+    editing: this.state.edit, viewing: !this.state.edit, saved: this.state.saved,
+    openEdit: () => this.setState({ edit: true, saved: false }), cancelEdit: () => this.setState({ edit: false }), saveEdit: () => this.setState({ edit: false, saved: true }), hideSaved: () => this.setState({ saved: false }),
+    g0: g === 0 ? "on" : "", g1: g === 1 ? "on" : "", g2: g === 2 ? "on" : "",
+    setG0: () => this.setState({ g: 0 }), setG1: () => this.setState({ g: 1 }), setG2: () => this.setState({ g: 2 }),
+    gAll: g === 2 ? "nf-hide" : "", gFri: g === 2 ? "" : "nf-hide", friNote: g === 2 }; }"""
+
+def c_syllabus(S, L):
+    """N2 — the course's Syllabus tab: the tree with dates and stats on every row, Add chapter / topic / LO in place,
+    Edit dates on the same screen, and a selector that shows the dates a class actually has."""
+    seg = "".join(f'<button class="{{{{g{i}}}}}" onClick="{{{{setG{i}}}}}">{t}</button>' for i, t in enumerate(S["nf_groups"]))
+    body = f'<style>{NF_CSS}</style>' + tnav(S, "cm") + f"""<div class="tmain">
+<div class="tscroll">
+  {nf_head(S, L, "C-Syllabus")}
+  {nf_tabs(S)}
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <h3 style="margin:0;font-size:16px;font-weight:500;display:flex;align-items:center;gap:8px">{S["nf_syl"]}<span class="ticon sm">{mi("edit", 16)}</span></h3>
+      <sc-if value="{{{{viewing}}}}" hint-placeholder-val="{{{{true}}}}"><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="helper" style="margin:0">{S["nf_for"]}</span><div class="tseg" role="group">{seg}</div>
+        <button class="tbtn outlined" onClick="{{{{openEdit}}}}">{mi("calendar", 18)}{S["nf_edit_dates"]}</button>
+        <span class="tbtn contained">{mi("add", 18)}{S["nf_add_ch"]}</span>
+      </div></sc-if>
+      <sc-if value="{{{{editing}}}}" hint-placeholder-val="{{{{false}}}}"><div style="display:flex;align-items:center;gap:12px">
+        <button class="tbtn" onClick="{{{{cancelEdit}}}}">{S["nf_cancel"]}</button><button class="tbtn contained" onClick="{{{{saveEdit}}}}">{S["nf_save"]}</button>
+      </div></sc-if>
+    </div>
+    <sc-if value="{{{{friNote}}}}" hint-placeholder-val="{{{{false}}}}"><div class="alert info">{mi("info", 20, "#2196F3")}<span>{S["nf_ovr_note"]}</span></div></sc-if>
+    <sc-if value="{{{{editing}}}}" hint-placeholder-val="{{{{false}}}}"><p class="helper" style="margin:0">{S["nf_dates_help"]}</p></sc-if>
+    <div class="tpaper" style="overflow:hidden">
+      <sc-if value="{{{{viewing}}}}" hint-placeholder-val="{{{{true}}}}">{nf_tree(S, L)}</sc-if>
+      <sc-if value="{{{{editing}}}}" hint-placeholder-val="{{{{false}}}}">{nf_tree(S, L, edit=True)}</sc-if>
+    </div>
+  </div>
+</div>
+<sc-if value="{{{{saved}}}}" hint-placeholder-val="{{{{false}}}}"><div class="snack">{mi("checkCircle", 18, "#fff")}<span style="margin-left:8px">{S["nf_saved"]}</span><button class="ticon sm" style="color:#fff;margin-left:12px" onClick="{{{{hideSaved}}}}" aria-label="close">{mi("close", 16)}</button></div></sc-if>
+</div>"""
+    return tpage(S, "C-Syllabus", S["t_titles"]["nf2"], body, logic=NFS_LOGIC)
+
+NFD_LOGIC = """state = { s0: true, s1: true, s2: false, s3: true, menu: false };
+  renderVals() { const v = { menuOpen: this.state.menu, toggleMenu: () => this.setState({ menu: !this.state.menu }) };
+    for (let i = 0; i < 4; i++) { v["w" + i] = this.state["s" + i] ? "on" : ""; v["t" + i] = () => { const p = {}; p["s" + i] = !this.state["s" + i]; this.setState(p); }; }
+    return v; }"""
+
+def c_addlo(S, L):
+    """N3 — Add LO, opened from a topic row of the tree: the LO type picker, name and description, the three dates
+    in the same dialog, and the switches. Confirm creates the LO unpublished and goes on to its content."""
+    types = "".join(f'<div class="it{" sel" if t == S["nf_types"][3] else ""}">' + (f'<span class="lm-type" style="width:22px;height:22px">{mi("rateReview", 14)}</span><b>{t}</b>' if t == S["nf_types"][3] else t) + '</div>' for t in S["nf_types"])
+    select = f'''<div style="position:relative">
+      <button class="field" style="width:100%;text-align:left;background:none;border:0;padding:0;font:inherit;cursor:pointer" onClick="{{{{toggleMenu}}}}">
+        <span class="lbl">{S["nf_dlg_type"]} <span class="req">*</span></span>
+        <span class="in"><span class="lm-type" style="width:20px;height:20px;flex:0 0 20px">{mi("rateReview", 12)}</span>{S["nf_types"][3]}<span class="gr">{mi("expandMore", 22)}</span></span>
+      </button><sc-if value="{{{{menuOpen}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tpop" style="left:0;top:64px;width:100%">{types}</div></sc-if></div>'''
+    def dfield(lbl, v, h, req=False):
+        return f'<div>{field(lbl, f"<span class=num>{v}</span>", required=req, icon="calendar")}<span class="helper" style="margin:4px 0 0">{h}</span></div>'
+    sw = "".join(f'<button class="switch {{{{w{i}}}}}" onClick="{{{{t{i}}}}}"><span class="track"></span><span>{t}</span></button>' for i, t in enumerate(S["nf_sw"]))
+    dialog = f'''<div class="tscrim"><div class="dlg" style="max-width:820px">
+    <div class="dlg-head"><h2>{S["nf_dlg_h"]}</h2><a class="ticon" href="{tfn("C-Syllabus", L)}" aria-label="{S["nf_cancel"]}">{mi("close", 24)}</a></div>
+    <div class="dlg-body">
+      <div class="lm-section"><h3 class="sec-head">{S["nf_dlg_general"]}</h3>
+        <div class="lm-grid">{select}{field(S["nf_dlg_name"], S["nf_dlg_name_v"], required=True)}
+          <div class="span2">{field(S["nf_dlg_desc"], S["nf_dlg_desc_v"], area=True)}</div>
+          <div class="span2">{field(S["nf_dlg_where"], S["nf_dlg_where_v"], extra=' style="background:#FAFAFA"')}</div></div></div>
+      <div class="lm-section"><h3 class="sec-head">{S["nf_dlg_dates"]}</h3>
+        <div class="nf-dates">{dfield(S["nf_d_start"], S["nf_d_start_v"], S["nf_d_start_h"])}{dfield(S["nf_d_due"], S["nf_d_due_v"], S["nf_d_due_h"])}{dfield(S["nf_d_end"], S["nf_d_end_v"], S["nf_d_end_h"])}</div></div>
+      <div class="lm-section"><h3 class="sec-head">{S["nf_dlg_settings"]}</h3><div style="display:flex;flex-direction:column;gap:6px">{sw}</div></div>
+    </div>
+    <div class="dlg-foot"><span class="helper" style="margin:0 auto 0 0;align-self:center">{S["nf_dlg_next"]}</span><a class="tbtn" href="{tfn("C-Syllabus", L)}">{S["nf_cancel"]}</a><a class="tbtn contained" href="{tfn("T-Material", L)}">{S["nf_confirm"]}</a></div>
+  </div></div>'''
+    body = f'<style>{NF_CSS}</style>' + tnav(S, "cm") + f"""<div class="tmain">
+<div class="tscroll">
+  {nf_head(S, L, "C-AddLO")}
+  {nf_tabs(S)}
+  <div class="tpaper" style="overflow:hidden">{nf_tree(S, L)}</div>
+</div>
+{dialog}
+</div>"""
+    return tpage(S, "C-AddLO", S["t_titles"]["nf3"], body, logic=NFD_LOGIC)
+
+NFL_LOGIC = """state = { g: 0, m: -1 };
+  renderVals() { const g = this.state.g; const v = { g0: g === 0 ? "on" : "", g1: g === 1 ? "on" : "", g2: g === 2 ? "on" : "",
+      setG0: () => this.setState({ g: 0 }), setG1: () => this.setState({ g: 1 }), setG2: () => this.setState({ g: 2 }),
+      thu: g === 2 ? "nf-hide" : "", fri: g === 1 ? "nf-hide" : "" };
+    for (let i = 0; i < 10; i++) { v["mo" + i] = this.state.m === i; v["tm" + i] = () => this.setState({ m: this.state.m === i ? -1 : i }); }
+    return v; }"""
+
+def c_lo(S, L):
+    """N4 — clicking an LO in the tree: its three dates, the counts, and the students with status, submitted time,
+    score and the due date each one actually has (a per-student extension shows as Extended)."""
+    names = [n for n, _ in S["t_mx_students"]] + S["ad_extra"]
+    thu, fri = S["nf_cls"]
+    d_all, d_fri, d_ext = nf_date("11/13 23:59", L), nf_date("11/14 23:59", L), nf_date("11/17 23:59", L)
+    # (class, status, submitted, score, due kind)
+    rows_d = [(thu, "ret", "11/11 14:32", "16 / 20", ""), (thu, "wait", "11/13 21:05", "13 / 20", ""), (thu, "ret", "11/12 08:12", "15 / 20", ""),
+              (fri, "ret", "11/12 21:40", "17 / 20", "fri"), (thu, "none", "", "", "ext"), (fri, "wait", "11/14 22:58", "12 / 20", "fri"),
+              (thu, "late", "11/14 09:20", "11 / 20", ""), (fri, "ret", "11/13 10:40", "14 / 20", "fri"), (fri, "ret", "11/14 17:05", "15 / 20", "fri"), (thu, "none", "", "", "")]
+    dd = '<span class="dd">—</span>'
+    trs = ""
+    for i, (name, (cls, st, sub, score, dk)) in enumerate(zip(names, rows_d)):
+        lbl, tone = S["nf_st"][st]
+        due = d_fri if dk == "fri" else (d_ext if dk == "ext" else d_all)
+        chip = f' <span class="tchip wait" style="height:20px;font-size:11px">{S["nf_ext"]}</span>' if dk == "ext" else ""
+        act = (f'<a class="tbtn sm outlined" href="{tfn("T-Review", L)}">{S["nf_rev"] if st in ("wait", "late") else S["nf_view"]}</a>' if st != "none" else "")
+        menu = (f'<span style="position:relative"><button class="ticon sm" onClick="{{{{tm{i}}}}}" aria-label="More">{mi("more", 18)}</button>'
+                f'<sc-if value="{{{{mo{i}}}}}" hint-placeholder-val="{{{{false}}}}"><div class="tpop" style="right:0;top:32px;min-width:240px"><span class="it">{mi("calendar", 20, "#757575")}{S["nf_change"]}</span></div></sc-if></span>')
+        trs += (f'<tr class="{{{{{"thu" if cls == thu else "fri"}}}}}"><td class="idx num">{i + 1}</td><td><a class="cell-link" href="{tfn("T-DashStudent", L)}">{name}</a></td><td>{cls}</td>'
+                f'<td><span class="tchip {tone}">{lbl}</span></td><td class="num">{nf_date(sub, L) if sub else dd}</td><td class="num">{score or dd}</td>'
+                f'<td><span class="num">{due}</span>{chip}</td><td style="text-align:right;white-space:nowrap">{act}{menu}</td></tr>')
+    head = '<th class="idx">#</th>' + "".join(f'<th>{c}</th>' for c in S["nf_stu_cols"])
+    st_, du_, en_ = (nf_date(x, L) for x in NF_FB_DATES[1])
+    kv = "".join(f'<div><div class="k">{k}</div><div class="v num">{v}</div></div>' for k, v in ((S["nf_d_start"], st_), (S["nf_d_due"], du_), (S["nf_d_end"], en_)))
+    cards = "".join(ov_card(ic, tn, l, v, u, "", None, L) for (l, v, u), (ic, tn) in zip(S["nf_cards"], (("checks", "blue"), ("checkCircle", "green"), ("rateReview", ""))))
+    seg = "".join(f'<button class="{{{{g{i}}}}}" onClick="{{{{setG{i}}}}}">{t}</button>' for i, t in enumerate(S["nf_groups"]))
+    body = f'<style>{NF_CSS}</style>' + tnav(S, "cm") + f"""<div class="tmain">
+<div class="tscroll">
+  {tcrumbs(S, "C-LO", [(S["t_cm"], tfn("T-Courses", L)), (S["t_course_name"], tfn("C-Syllabus", L)), (S["nf_lo_crumb"], tfn("C-Syllabus", L)), (S["nf_lo"], None)])}
+  <div class="tphead"><h1 style="display:flex;align-items:center;gap:10px"><span class="lm-type" style="width:32px;height:32px">{mi("rateReview", 18)}</span>{S["nf_lo"]}<span class="tchip type">{S["t_type_fb"]}</span><span class="tchip published">{S["nf_pub"]}</span></h1>
+    <div class="acts"><a class="tbtn outlined" href="{tfn("T-Material", L)}">{mi("edit", 18)}{S["nf_edit_lo"]}</a><a class="tbtn contained" href="{tfn("T-List", L)}">{S["nf_review"]}</a></div></div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="tpaper" style="display:flex;align-items:center;justify-content:space-between;gap:16px"><div class="nf-kv">{kv}</div><span class="tbtn outlined" style="margin-right:20px">{mi("calendar", 18)}{S["nf_edit_dates"]}</span></div>
+    <div class="ov-row" style="margin-bottom:0">{cards}</div>
+    <div style="display:flex;align-items:center;gap:12px"><span class="helper" style="margin:0">{S["nf_tabs"][3]}</span><div class="tseg" role="group">{seg}</div></div>
+    <div class="tpaper" style="overflow:visible"><div class="table-scroll" style="overflow:visible"><table class="m"><thead><tr>{head}</tr></thead><tbody>{trs}</tbody></table></div>
+      <div class="pagination"><span>{S["t_rows_pp"]} 10</span><span>1-10 / 30</span><span style="display:flex">{tools("expandMore!", "expandMore!")}</span></div></div>
+  </div>
+</div>
+</div>"""
+    return tpage(S, "C-LO", S["t_titles"]["nf4"], body, logic=NFL_LOGIC)
+
+for _n, _b in (("C-Blank", c_blank), ("C-Syllabus", c_syllabus), ("C-AddLO", c_addlo), ("C-LO", c_lo)):
+    TSCREENS.append(_n); TBUILDERS[_n] = _b
+
 def a_task_card(S, compact=False):
     rows = "".join("<tr>" + "".join(f"<td class=num>{c}</td>" for c in r) + "</tr>" for r in S["a_t_rows"])
     chip = "" if compact else f'<span class="chip neutral" style="height:28px;flex:0 0 auto">{ic("sparkle",14)}{S["a_level_chip"]}</span>'
@@ -8242,6 +8532,10 @@ ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objecti
            "T16 · AI Dashboard — production's AI Tutor Dashboard with AI Feedback as the code has it: feedback snaps, the AI Tutor Assignment, and a thread viewer"]
 ttitles.append("T17 · Bulk import of submissions — the teacher-only mode: ZIP / CSV keyed by the external ID, names dropped, AI check auto-starts (3 Nov)")
 ttitles.append("T18 · AI Tutor question detail — production's page behind the chat history's Created At link: the info rows, one tab per snapped question, AI Response with the Hint / Solution toggle (27 Nov)")
+ttitles.append("N1 · New course flow — a new course: the Syllabus tab is empty, Add syllabus by hand (19 Nov direction)")
+ttitles.append("N2 · New course flow — Course › Syllabus: the tree inside the course, with start / due / end, completion and average score per row; Edit dates here; dates per class")
+ttitles.append("N3 · New course flow — Add LO from the tree: type picker, the three dates in the dialog, settings")
+ttitles.append("N4 · New course flow — an LO opened from the tree: its dates, counts, and the students with status, score and due date")
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -8361,6 +8655,12 @@ for i, key in enumerate(["t1", "t2", "t3", "t4", "tc1", "tc2", "tc3", "t6", "t8"
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
 TNOTES["t15"] = "AI TUTOR QUESTION DETAIL — production's page behind the Created At link of T16's Snap-to-ask chat history (PM, 27 Nov: 'Draw production's separate detail page as its own board and link to it'). REDRAWN 27 Nov FROM THE PM'S PRODUCTION SCREENSHOTS ('for the ai tutor explanation please follow the production screens with the hint / solution toggle'): breadcrumb AI Dashboard / time; the time as the title with a previous / next pager; the info rows (Student Name, Lens, Created On); Item Overview; then a box with one tab per SNAPPED QUESTION (PM: questions are the snapped questions, not the chat messages). Each tab: Overview, and the AI Response panel with a Hint / Solution toggle — Hint 1 to 3; Step 1 to n and Final Answer. Click a tab or the toggle. DIFFERENCES FROM PRODUCTION, on purpose: Total Likes, Total Dislikes and Total Comments are left out (PM, 27 Nov: remove all likes and dislikes from the dashboard); no emoji in the hints (Kindai survey, 20 Nov); and the chat on a question, which production's page does not show, is kept under the AI Response."
 notes["t15"] = {"x": 14 * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES["t15"]}
+TNOTES["t16"] = "NEW COURSE FLOW, N1 to N4 (PM, 27 Nov: redraw the new course flow; Weekly AI Direction Discussion of 19 Nov — Koki, Bunsuke, Takuya, Trieu). These four boards REPLACE the flow on T1 (book tree in Book Management), T6 / T7 (course list and the Books tab) and T8 (Learning Objectives Availability); those boards are kept for reference until the new flow is reviewed. DECIDED ON 19 NOV AND DRAWN HERE: no shortcut flow, the standard tree; the tree replaces the Books tab inside the course, no new Assignment tab; 'Book' reads Syllabus (a tenant label); a blank course starts with a manual Add syllabus, nothing is auto-created; the UI is optimised for one syllabus per course; the button is Add LO and opens the LO type picker; three dates per LO — start, due (soft target, shown to students as the deadline) and end (hard close) — reusing the study plan's dates, edited on this screen, with no separate study plan tab and LO Availability deprecated; dates apply to everyone with overrides per class and per student; a class is a student group inside the course; assigning an LO to one class only is not in the first version; every tree row shows completion and average score; clicking an LO lists the students. N1: the empty Syllabus tab."
+TNOTES["t17"] = "N2: the Syllabus tab with the tree. Click Edit dates to turn the three date columns into inputs (Save shows the confirmation). Click Friday class to see the dates that class actually has: the Session 7 exercise report carries a class override, one day later. Add LO on a topic row opens N3; the name of an AI Feedback LO opens N4. STILL OPEN FROM 19 NOV, not decided here: the final label (Syllabus or Curriculum); whether completion and scores sit on this tab or a second tab (drawn on the same tab, Bunsuke's preference); how the date columns and the per-class and per-student overrides are laid out (drawn as a 'Show dates for' selector plus an override chip); whether a study plan is created automatically when an LO is created; where the dates appear in the learner app."
+TNOTES["t18"] = "N3: Add LO opened from a topic row. One dialog: LO type (click it for the picker; the flow is generic, AI Feedback is the first type enabled), name, description, where it is added, the three dates with what each one does, and the main switches. Confirm creates the LO unpublished and continues to the existing LO content board (T3: material, evaluation items, rubric). Moodle sets its dates on the assignment form in the same way ('Allow submissions from', 'Due date', 'Cut-off date'). The contents of the AI Feedback form itself were not discussed on 19 Nov; the mandatory uploads and instructions of 12 Nov stay on T3."
+TNOTES["t19"] = "N4: an LO opened from the tree. Its start, due and end; submitted, returned and average score; and the students with class, status, submitted time, score and the due date each one actually has. Friday-class students show the class override; one student shows a personal extension (the ⋮ menu on a row offers 'Change dates for this student'). Use the class buttons to filter. Review / View go to the existing review board (T12). The score column follows the 18 Nov decision to score per criterion; whether students see the score is still open (PRD C11.20)."
+for _i, _k in enumerate(["t16", "t17", "t18", "t19"]):
+    notes[_k] = {"x": (15 + _i) * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[_k]}
 PNOTES = {
     "P-Dialog": "AI PRACTICE — the Similar Questions Practice LO (jamessim-source/AIpractice: docs/prototype-plan.md, docs/c10-finalized-logic.md = PRD C10 as decided by the PM on 24 Sep; the clickable prototype on branch `prototype`). Redrawn here on this canvas's production components and fitted into the Kindai course: the practice LO sits in Topic 7-1 beside the AI Feedback LO, linked to the Session 7 lecture slides PDF, so Book Management, Course Management, the dashboards and the student app all show it as one more LO. THIS BOARD: DialogCreateLearningMaterial with the new frontend sub-type chosen (a plain LEARNING_OBJECTIVE with ai_practice=true, like Random Activity or Paper Submission — not a new proto type). Type name decided: Similar Questions Practice LO (JA 類題演習 LO is a placeholder; Random Activity already uses AI演習). General Info as for any LO; Settings = the required リンク元の LO picker, fed by the book's LOs whose 演習の元として利用可 switch is on — one here — with the empty-state copy (turn the switch on a PDF LO first); the note of the fields hidden for this type; the flag + tenant-setting gate. Creation and linking are one save. One eligible LO may be linked by several practice LOs. Confirm → P3. T2's type menu also lists this type (click it).",
     "P-Source": "THE SOURCE LO (C10.3): the Session 7 lecture slides — a Learning Objective with a study-guide PDF, the only supported source type in v1 — on its Settings tab. Production's read-only settings, then the eligibility switch 演習の元として利用可 Available as practice source: shown only for supported types, default off; ON here, and LOCKED with the reason (students already have practice sets) — disabled with the reason, never an error on save. Below it, リンクされている類題演習 LO: the practice LOs pointing at this LO (one), with its set count. T1's tree marks this LO with a small 演習の元 chip.",

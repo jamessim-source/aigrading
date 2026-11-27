@@ -466,3 +466,8 @@ The PM sent two screenshots of the live question detail page. T18 now follows th
 ## 27 Nov (7): AI Feedback examples on T16 for the Waseda demo
 
 PM comment on T16. The feedback snaps, the two assignments and the three threads in the drawer are now junior-high work: a congruence proof (Math assignment), a 40-word English opinion (English assignment) and a current-and-voltage experiment report (Science, free snap). Each thread has three strengths and one point to improve. Export preview rows and class names follow.
+
+
+## 27 Nov (8): new course flow, boards N1 to N4
+
+PM: *redraw the new course flow* (Weekly AI Direction Discussion, 19 Nov). Four new boards at the end of the teacher row: `C-Blank` (empty Syllabus tab, manual Add syllabus), `C-Syllabus` (the tree inside the course with start / due / end, completion and average score per row; Edit dates in place; dates per class), `C-AddLO` (Add LO from the tree with the type picker and the three dates) and `C-LO` (an LO opened from the tree: dates, counts, students with status, score and due date, per-student extension). They replace the flow on T1, T6, T7 and T8, which are kept for reference until the review. Open points of 19 Nov are listed in the board notes.
