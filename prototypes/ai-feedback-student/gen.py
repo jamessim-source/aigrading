@@ -7736,78 +7736,100 @@ AQ_JA = dict(
     aq_title="BO — AIチューター 質問詳細", aq_h="質問の詳細", aq_back="AIダッシュボードに戻る",
     aq_gi="基本情報", aq_gi_rows=[("生徒名", "山田 花子"), ("ユーザー名", "hanako.yamada"), ("作成日時", "2026/11/13 21:08"), ("レンズ", "数学"), ("質問数", "6")],
     aq_ov_l="アイテムの概要", aq_ov="相関係数 r の意味と、外れ値があるときの解釈について",
-    aq_tabs=["解説", "チャット（6）"],
-    aq_snap_h="スナップした問題", aq_snap_cap="写真 1枚 ・ 2026/11/13 21:08",
-    aq_snap=["第7回 演習 問3", "47都道府県の人口密度 x と1人あたり県民所得 y について、相関係数は r = 0.62 であった。", "(1) この値は何を意味するか。", "(2) 東京都が他県から大きく離れている。東京都を除くと r = 0.41 になる。どちらの値を使って解釈すべきか、理由とともに述べよ。"],
-    aq_resp_h="AIチューターの解説",
-    aq_cards=[("考え方", "相関係数は、2つの量が直線的にどのくらい一緒に動くかを −1 から 1 の数で表します。まず値の向きと強さを読み、次にその値が一部のデータに引っぱられていないかを確かめます。", []),
-              ("ステップ1　r = 0.62 を読む", "符号が正なので、人口密度が高い県ほど県民所得も高い傾向があります。大きさ 0.62 は「中程度からやや強い」直線的な関係です。", []),
-              ("ステップ2　外れ値の影響を確かめる", "東京都を除いて計算し直すと、値が大きく下がります。", ["r（47都道府県） = 0.62", "r（東京都を除く46） = 0.41"]),
-              ("ステップ3　どちらで解釈するか", "0.62 のうちかなりの部分は東京都1点が作っています。両方の値を示したうえで、「東京都を除くと中程度の正の相関にとどまる」と書くのが、このデータから言える範囲です。", []),
-              ("答え", "(1) 正の、中程度からやや強い直線的な関係。(2) 両方を示し、解釈は r = 0.41 を基準にする。理由：0.62 は外れ値である東京都に大きく依存しているため。", [])],
-    aq_chat=[("r が 0.62 なら「強い相関」と書いていいですか？", "目安では 0.4〜0.7 は「中程度」、0.7 以上を「強い」とすることが多いです。この授業の資料の区分に合わせて書きましょう。"),
-             ("外れ値は消してしまっていいんですか？", "消すのではなく、含めた場合と除いた場合の両方を示します。除く理由（他県と構造が違うなど）も一文添えてください。"),
-             ("東京だけでなぜこんなに変わるんですか？", "東京都は x も y も平均から大きく離れているので、偏差の積が非常に大きくなり、r の分子をほぼ1点で押し上げます。"),
-             ("相関があるなら、人口密度が高いと所得が上がると言えますか？", "言えません。相関は一緒に動くことを示すだけです。何が原因になりうるか、あなたのデータで確かめられることは何でしょう？"),
-             ("第三の変数ってことですか？", "その通りです。たとえば産業構成や高齢化率が両方に影響している可能性があります。"),
-             ("まとめるとどう書けばいいですか？", "値（両方）→ 外れ値の影響 → 言える範囲と言えない範囲、の順に3文で書いてみてください。書いたら見せてください。")],
-    aq_stu="生徒", aq_ai="AIチューター", aq_qn="質問",
-    aq_help="本番の質問詳細ページ（AIダッシュボードの質問履歴で作成日時をクリックすると開くページ）。基本情報、スナップした問題、AIチューターの解説（カード）、その後のチャットを表示します。高評価・低評価は表示しません（PM, 11月27日）。レイアウトは本番のコンポーネント名と11月20日の不具合報告をもとに描いたもので、本番の画面と細部が異なる可能性があります。",
+    aq_tab="質問", aq_snap_h="スナップした質問", aq_snap_cap="スナップ 1枚から切り出し ・ 2026/11/13 21:08", aq_item="第7回 演習（人口密度 x と1人あたり県民所得 y、47都道府県）",
+    aq_resp_h="AIチューターの解説", aq_chat_h="この質問でのチャット", aq_chat_none="この質問ではチャットはありません",
+    aq_stu="生徒", aq_ai="AIチューター",
+    # one snap, six snapped questions: (question text, cards [(heading, text, math lines)], chat [(student, AI)])
+    aq_qs=[
+        ("問1　散布図から、x と y の関係の向きを読み取りなさい。",
+         [("考え方", "点の集まりが右上がりか右下がりかを見ます。", []), ("答え", "右上がりなので、正の関係（人口密度が高い県ほど県民所得が高い傾向）です。", [])], []),
+        ("問2　偏差の積和 1,842,300、Sx = 1,120、Sy = 2,641 から相関係数 r を求めなさい。",
+         [("考え方", "相関係数は、偏差の積和を2つの偏差平方和の平方根の積で割った値です。", []), ("ステップ1　代入して計算する", "与えられた値をそのまま代入します。", ["r = 1,842,300 ÷ (1,120 × 2,641)", "  = 1,842,300 ÷ 2,957,920", "  ≈ 0.62"]), ("答え", "r ≈ 0.62", [])], []),
+        ("問3　r = 0.62 は何を意味するか、説明しなさい。",
+         [("考え方", "符号で向きを、大きさで強さを読みます。", []), ("答え", "正の、中程度からやや強い直線的な関係です。", [])],
+         [("0.62 なら「強い相関」と書いていいですか？", "目安では 0.4〜0.7 は「中程度」、0.7 以上を「強い」とすることが多いです。この授業の資料の区分に合わせて書きましょう。")]),
+        ("問4　東京都を除くと r = 0.41 になる。どちらの値で解釈すべきか、理由とともに述べなさい。",
+         [("考え方", "1点が値を大きく動かしているときは、その点を含めた場合と除いた場合を並べて考えます。", []), ("ステップ1　2つの値を比べる", "東京都1点で値が大きく変わっています。", ["r（47都道府県） = 0.62", "r（東京都を除く46） = 0.41"]), ("答え", "両方を示し、解釈は r = 0.41 を基準にします。0.62 は外れ値である東京都に大きく依存しているためです。", [])],
+         [("外れ値は消してしまっていいんですか？", "消すのではなく、含めた場合と除いた場合の両方を示します。除く理由も一文添えてください。"), ("東京だけでなぜこんなに変わるんですか？", "東京都は x も y も平均から大きく離れているので、偏差の積が非常に大きくなり、r の分子をほぼ1点で押し上げます。")]),
+        ("問5　この結果から「人口密度が高いと所得が上がる」と言えるか。",
+         [("考え方", "相関は2つの量が一緒に動くことを示すだけで、原因と結果までは示しません。", []), ("答え", "言えません。このデータからは因果の向きを判断できません。", [])],
+         [("じゃあ何が言えるんですか？", "「正の相関がある」までです。何が原因になりうるか、あなたのデータで確かめられることは何でしょう？")]),
+        ("問6　x と y の両方に影響しそうな第三の変数を1つ挙げなさい。",
+         [("考え方", "人口密度と所得の両方を動かしそうな、県の特徴を考えます。", []), ("答え", "例：産業構成（第三次産業の割合）、高齢化率など。", [])], []),
+    ],
+    aq_help="本番の質問詳細ページ（AIダッシュボードの質問履歴で作成日時をクリックすると開くページ）。1回のスナップに含まれる質問ごとにタブがあり、スナップした質問、AIチューターの解説（カード）、その質問でのチャットを表示します。質問数はスナップした質問の数で、チャットの発言数ではありません（PM, 11月27日）。高評価・低評価は表示しません。レイアウトは本番のコンポーネント名と11月20日の不具合報告をもとに描いたもので、本番の画面と細部が異なる可能性があります。",
 )
 AQ_EN = dict(
     aq_title="BO — AI Tutor question detail", aq_h="Question Detail", aq_back="Back to AI Dashboard",
     aq_gi="General Info", aq_gi_rows=[("Student Name", "Hanako Yamada"), ("User Name", "hanako.yamada"), ("Created At", "2026/11/13, 21:08"), ("Lens", "Math"), ("No. of Questions", "6")],
     aq_ov_l="Item Overview", aq_ov="What the correlation coefficient r means, and how to read it when there is an outlier",
-    aq_tabs=["Explanation", "Chat (6)"],
-    aq_snap_h="Snapped question", aq_snap_cap="1 photo · 2026/11/13, 21:08",
-    aq_snap=["Session 7 exercise, Q3", "For the 47 prefectures, the correlation coefficient between population density x and per-capita prefectural income y was r = 0.62.", "(1) What does this value mean?", "(2) Tokyo sits far from the other prefectures. Without Tokyo, r = 0.41. Which value should the interpretation rest on? Give your reason."],
-    aq_resp_h="AI Tutor explanation",
-    aq_cards=[("Approach", "A correlation coefficient says how closely two quantities move together along a line, as a number from −1 to 1. Read its sign and size first, then check whether a few data points are pulling it.", []),
-              ("Step 1  Read r = 0.62", "The sign is positive, so prefectures with higher population density tend to have higher income. A size of 0.62 is a moderate to fairly strong linear relationship.", []),
-              ("Step 2  Check the outlier", "Recalculating without Tokyo lowers the value sharply.", ["r (47 prefectures) = 0.62", "r (46, without Tokyo) = 0.41"]),
-              ("Step 3  Which value to interpret", "A large part of 0.62 is produced by Tokyo alone. Show both values, then write that without Tokyo the positive correlation is only moderate. That is as far as this data goes.", []),
-              ("Answer", "(1) A positive, moderate to fairly strong linear relationship. (2) Show both and rest the interpretation on r = 0.41, because 0.62 depends heavily on the outlier, Tokyo.", [])],
-    aq_chat=[("If r is 0.62, can I write \"strong correlation\"?", "A common guide calls 0.4 to 0.7 moderate and 0.7 or more strong. Use the bands in this course's material."),
-             ("Is it OK to just delete the outlier?", "Do not delete it. Show the result with and without it, and add one sentence on why it is set aside, for example that its structure differs from the other prefectures."),
-             ("Why does Tokyo alone change it so much?", "Tokyo is far from the mean on both x and y, so its product of deviations is very large and lifts the numerator of r almost by itself."),
-             ("If there is a correlation, can I say higher density raises income?", "No. A correlation only shows that the two move together. What could be a cause, and what can your data check?"),
-             ("Do you mean a third variable?", "Yes. Industry mix or the ageing rate, for example, may influence both."),
-             ("So how should I write it up?", "Try three sentences in this order: the values (both), the effect of the outlier, and what can and cannot be said. Show me when you have written it.")],
-    aq_stu="Student", aq_ai="AI Tutor", aq_qn="Question",
-    aq_help="Production's question detail page, the one the Created At link in the AI Dashboard's chat history opens. It shows the general info, the snapped question, the AI Tutor's explanation as cards, and the chat that followed. Likes and dislikes are not shown (PM, 27 Nov). The layout is drawn from production's component names and the 20 Nov bug report on this page, so details may differ from the live screen.",
+    aq_tab="Question", aq_snap_h="Snapped question", aq_snap_cap="Cropped from 1 snap · 2026/11/13, 21:08", aq_item="Session 7 exercise (population density x and per-capita prefectural income y, 47 prefectures)",
+    aq_resp_h="AI Tutor explanation", aq_chat_h="Chat on this question", aq_chat_none="No chat on this question",
+    aq_stu="Student", aq_ai="AI Tutor",
+    aq_qs=[
+        ("Q1  From the scatter plot, read the direction of the relationship between x and y.",
+         [("Approach", "Look at whether the cloud of points rises or falls to the right.", []), ("Answer", "It rises to the right, so the relationship is positive: prefectures with higher density tend to have higher income.", [])], []),
+        ("Q2  From the sum of products of deviations 1,842,300, Sx = 1,120 and Sy = 2,641, find the correlation coefficient r.",
+         [("Approach", "The correlation coefficient is the sum of products of deviations divided by the product of the two root sums of squares.", []), ("Step 1  Substitute and calculate", "Put the given values in as they are.", ["r = 1,842,300 ÷ (1,120 × 2,641)", "  = 1,842,300 ÷ 2,957,920", "  ≈ 0.62"]), ("Answer", "r ≈ 0.62", [])], []),
+        ("Q3  Explain what r = 0.62 means.",
+         [("Approach", "Read the direction from the sign and the strength from the size.", []), ("Answer", "A positive, moderate to fairly strong linear relationship.", [])],
+         [("If it is 0.62, can I write \"strong correlation\"?", "A common guide calls 0.4 to 0.7 moderate and 0.7 or more strong. Use the bands in this course's material.")]),
+        ("Q4  Without Tokyo, r = 0.41. Which value should the interpretation rest on? Give your reason.",
+         [("Approach", "When one point moves the value a lot, set the result with it beside the result without it.", []), ("Step 1  Compare the two values", "Tokyo alone changes the value sharply.", ["r (47 prefectures) = 0.62", "r (46, without Tokyo) = 0.41"]), ("Answer", "Show both and rest the interpretation on r = 0.41, because 0.62 depends heavily on the outlier, Tokyo.", [])],
+         [("Is it OK to just delete the outlier?", "Do not delete it. Show the result with and without it, and add one sentence on why it is set aside."), ("Why does Tokyo alone change it so much?", "Tokyo is far from the mean on both x and y, so its product of deviations is very large and lifts the numerator of r almost by itself.")]),
+        ("Q5  Can you say from this result that higher population density raises income?",
+         [("Approach", "A correlation shows only that two quantities move together. It does not show cause and effect.", []), ("Answer", "No. The direction of causation cannot be judged from this data.", [])],
+         [("Then what can I say?", "Only that there is a positive correlation. What could be a cause, and what can your data check?")]),
+        ("Q6  Name one third variable that could influence both x and y.",
+         [("Approach", "Think of a feature of a prefecture that could move both density and income.", []), ("Answer", "For example, industry mix (share of the service sector) or the ageing rate.", [])], []),
+    ],
+    aq_help="Production's question detail page, the one the Created At link in the AI Dashboard's chat history opens. One tab per question in the snap; each shows the snapped question, the AI Tutor's explanation as cards, and the chat on that question. No. of Questions counts the snapped questions, not chat messages (PM, 27 Nov). Likes and dislikes are not shown. The layout is drawn from production's component names and the 20 Nov bug report on this page, so details may differ from the live screen.",
 )
 JA.update(AQ_JA); EN.update(AQ_EN)
 JA["t_titles"]["daq"] = AQ_JA["aq_title"]; EN["t_titles"]["daq"] = AQ_EN["aq_title"]
 
+MI["chat"] = "M4 4h16v12H5.17L4 17.17V4m0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4zm2 10h12v2H6v-2zm0-3h12v2H6V9zm0-3h12v2H6V6z"
 MI["arrowBack"] = "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
 AQ_CSS = """
 .aq-gi{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;padding:16px 20px}
 .aq-gi .k{font-size:12px;color:#757575;margin-bottom:4px}.aq-gi .v{font-size:14px}
 .aq-two{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:start}
 .aq-photo{border:1px solid #E0E0E0;border-radius:8px;background:#FAFAFA;padding:20px 22px;font-size:14px;line-height:1.8;font-family:"Noto Serif JP",Georgia,serif;color:#212121}
-.aq-photo b{display:block;margin-bottom:6px}
-.aq-math{font-family:"Roboto Mono",ui-monospace,monospace;font-size:13px;background:#F5F5F5;border-radius:6px;padding:8px 12px;line-height:1.8}
-.aq-chat{display:flex;flex-direction:column;gap:14px;max-width:860px}
-.aq-b{max-width:78%;padding:10px 14px;border-radius:12px;font-size:14px;line-height:1.7}
+.aq-photo b{display:block;margin-bottom:6px;font-size:12px;color:#757575;font-weight:500;font-family:Roboto,"Noto Sans JP",sans-serif}
+.aq-math{font-family:"Roboto Mono",ui-monospace,monospace;font-size:13px;background:#F5F5F5;border-radius:6px;padding:8px 12px;line-height:1.8;white-space:pre}
+.aq-chat{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.aq-b{max-width:86%;padding:10px 14px;border-radius:12px;font-size:14px;line-height:1.7}
 .aq-b .who{display:block;font-size:11px;color:#757575;margin-bottom:2px}
 .aq-hide{display:none}
 .aq-b.s{align-self:flex-end;background:#E8EEFB}.aq-b.a{align-self:flex-start;background:#F5F5F5}
+.aq-h4{margin:0 0 10px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:6px}
 """
 
 def t_dash_ai_q(S, L):
-    def gi_val(i, v):
-        if i == 4:
-            return f'<button class="cell-link num" style="background:none;border:0;padding:0;font:inherit;cursor:pointer" onClick="{{{{go1}}}}">{v}</button>'
-        return v
-    gi = "".join(f'<div><div class="k">{k}</div><div class="v{" num" if i in (2, 4) else ""}">{gi_val(i, v)}</div></div>' for i, (k, v) in enumerate(S["aq_gi_rows"]))
-    snap = "".join((f"<b>{t}</b>" if i == 0 else f"<p style=\"margin:0 0 6px\">{t}</p>") for i, t in enumerate(S["aq_snap"]))
-    cards = ""
-    for h, body_t, math in S["aq_cards"]:
-        m = f'<div class="aq-math">{"<br>".join(math)}</div>' if math else ""
-        cards += f'<div class="ad-fcard"><span class="ad-chip g">{h}</span><p>{body_t}</p>{m}</div>'
-    nq = len(S["aq_chat"])
-    chat = "".join(f'<div class="aq-b s"><span class="who">{S["aq_stu"]} ・ {S["aq_qn"]} {k + 1} / {nq}</span>{q}</div><div class="aq-b a"><span class="who">{S["aq_ai"]}</span>{a}</div>' for k, (q, a) in enumerate(S["aq_chat"]))
-    t0, t1 = S["aq_tabs"]
+    """Production's thread page (AIDashboardDetailGeneralInfo + QuestionTabPanel): General Info, then one tab per
+    SNAPPED QUESTION of the item (PM, 27 Nov: No. of Questions is the snapped questions, not the chat messages).
+    Each tab: the snapped question beside the explanation cards, and the chat on that question underneath."""
+    gi = "".join(f'<div><div class="k">{k}</div><div class="v{" num" if i in (2, 4) else ""}">{v}</div></div>' for i, (k, v) in enumerate(S["aq_gi_rows"]))
+    tab_style = "background:none;border-top:0;border-left:0;border-right:0;font:inherit;cursor:pointer"
+    tabs, panels = "", ""
+    for i, (q, cards_d, chat_d) in enumerate(S["aq_qs"]):
+        n_chat = f' <span class="helper" style="margin:0;display:inline-flex;align-items:center;gap:2px">{mi("chat", 14)}{len(chat_d)}</span>' if chat_d else ""
+        tabs += f'<button class="tab {{{{c{i}}}}}" style="{tab_style}" onClick="{{{{go{i}}}}}">{S["aq_tab"]} {i + 1}{n_chat}</button>'
+        cards = ""
+        for h, body_t, math in cards_d:
+            m = f'<div class="aq-math">{"<br>".join(math)}</div>' if math else ""
+            cards += f'<div class="ad-fcard"><span class="ad-chip g">{h}</span><p>{body_t}</p>{m}</div>'
+        if chat_d:
+            chat = '<div class="aq-chat">' + "".join(f'<div class="aq-b s"><span class="who">{S["aq_stu"]}</span>{cq}</div><div class="aq-b a"><span class="who">{S["aq_ai"]}</span>{ca}</div>' for cq, ca in chat_d) + '</div>'
+        else:
+            chat = f'<p class="helper" style="margin:0">{S["aq_chat_none"]}</p>'
+        panels += f"""<div class="{{{{p{i}}}}}"><div class="aq-two">
+        <div><h4 class="aq-h4">{mi("camera", 16)}{S["aq_snap_h"]}</h4><div class="aq-photo"><b>{S["aq_item"]}</b>{q}</div><p class="helper num" style="margin:8px 0 0">{S["aq_snap_cap"]}</p></div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div><h4 class="aq-h4">{mi("aiTutor", 16)}{S["aq_resp_h"]}</h4><div style="display:flex;flex-direction:column;gap:12px">{cards}</div></div>
+          <div><h4 class="aq-h4">{mi("chat", 16)}{S["aq_chat_h"]}</h4>{chat}</div>
+        </div>
+      </div></div>"""
     name = S["aq_gi_rows"][0][1]; at = S["aq_gi_rows"][2][1]
     body = f'<style>{AD_CSS}{AQ_CSS}</style>' + tnav(S, "dash") + f"""<div class="tmain">
 <div class="tscroll">
@@ -7817,19 +7839,15 @@ def t_dash_ai_q(S, L):
     <div class="tpaper"><div style="padding:16px 20px 0"><h3 style="margin:0;font-size:16px;font-weight:500">{S["aq_gi"]}</h3></div><div class="aq-gi">{gi}</div>
       <div style="padding:0 20px 18px"><div class="helper" style="margin:0 0 4px">{S["aq_ov_l"]}</div><div style="font-size:15px">{S["aq_ov"]}</div></div></div>
     <div class="tpaper" style="padding:0 20px 20px">
-      <div class="tabs" style="margin-bottom:20px"><button class="tab {{{{c0}}}}" style="background:none;border-top:0;border-left:0;border-right:0;font:inherit;cursor:pointer" onClick="{{{{go0}}}}">{t0}</button><button class="tab {{{{c1}}}}" style="background:none;border-top:0;border-left:0;border-right:0;font:inherit;cursor:pointer" onClick="{{{{go1}}}}">{t1}</button></div>
-      <div class="{{{{p0}}}}"><div class="aq-two">
-        <div><h4 style="margin:0 0 10px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:6px">{mi("camera", 16)}{S["aq_snap_h"]}</h4><div class="aq-photo">{snap}</div><p class="helper num" style="margin:8px 0 0">{S["aq_snap_cap"]}</p></div>
-        <div><h4 style="margin:0 0 10px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:6px">{mi("aiTutor", 16)}{S["aq_resp_h"]}</h4><div style="display:flex;flex-direction:column;gap:12px">{cards}</div></div>
-      </div></div>
-      <div class="{{{{p1}}}}"><div class="aq-chat">{chat}</div></div>
+      <div class="tabs" style="margin-bottom:20px">{tabs}</div>
+      {panels}
     </div>
     <p class="helper" style="margin:0">{S["aq_help"]}</p>
   </div>
 </div>
 </div>"""
     logic = """state = { t: 0 };
-  renderVals() { const t = this.state.t; return { c0: t === 0 ? "on" : "", c1: t === 1 ? "on" : "", p0: t === 0 ? "" : "aq-hide", p1: t === 1 ? "" : "aq-hide", go0: () => this.setState({ t: 0 }), go1: () => this.setState({ t: 1 }) }; }"""
+  renderVals() { const v = {}; for (let i = 0; i < %N%; i++) { v["c" + i] = this.state.t === i ? "on" : ""; v["p" + i] = this.state.t === i ? "" : "aq-hide"; v["go" + i] = () => this.setState({ t: i }); } return v; }""".replace("%N%", str(len(S["aq_qs"])))
     return tpage(S, "T-DashAIQ", S["t_titles"]["daq"], body, logic=logic)
 
 TSCREENS.append("T-DashAIQ"); TBUILDERS["T-DashAIQ"] = t_dash_ai_q
@@ -8000,7 +8018,7 @@ ttitles = ["T1 · Book detail — the tree, Add LO", "T2 · Add Learning Objecti
            "T14 · Group Dashboard — LO Dashboard, AI Feedback in the student × LO matrix", "T15 · Student Dashboard — one student's AI Feedback",
            "T16 · AI Dashboard — production's AI Tutor Dashboard with AI Feedback as the code has it: feedback snaps, the AI Tutor Assignment, and a thread viewer"]
 ttitles.append("T17 · Bulk import of submissions — the teacher-only mode: ZIP / CSV keyed by the external ID, names dropped, AI check auto-starts (3 Nov)")
-ttitles.append("T18 · AI Tutor question detail — production's page behind the chat history's Created At link: general info, the snapped question, the explanation cards, the chat (27 Nov)")
+ttitles.append("T18 · AI Tutor question detail — production's page behind the chat history's Created At link: general info, one tab per snapped question with its explanation cards and chat (27 Nov)")
 for lang, S in (("ja", JA), ("en", EN)):
     for i, screen in enumerate(TSCREENS):
         CUR = screen
@@ -8118,7 +8136,7 @@ TNOTES["t8"] = "OVERVIEW FOLDED IN (3 Nov, PM: apply the simplifications): the O
 TNOTES["t11"] = "TOPIC MODE FOLDED IN (3 Nov, PM: apply the simplifications): the Topic Dashboard board (T13 in the old numbering) is gone; its per-topic table with the feedback LO's counts and the one insight line is this board's Topic mode, behind the live Topic / LO toggle — click it. " + TNOTES["t10"] + " LO MODE: " + TNOTES["t11"]
 for i, key in enumerate(["t1", "t2", "t3", "t4", "tc1", "tc2", "tc3", "t6", "t8", "t9", "t11", "t12", "t13", "t14"]):
     notes[key] = {"x": i * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES[key]}
-TNOTES["t15"] = "AI TUTOR QUESTION DETAIL (PM, 27 Nov, on T16's chat history date: 'when clicked should it bring up the actual conversations?' then 'Draw production's separate detail page as its own board and link to it'). Every Created At link in T16's Snap-to-ask chat history now opens this board. It follows production's thread page (AIDashboardDetailGeneralInfo + QuestionTabPanel): General Info, the Item Overview, then two tabs — Explanation (the snapped question beside the AI Tutor's explanation as cards: approach, steps, answer, with multi-line calculations on their own lines) and Chat (the six questions the student asked afterwards, with the replies). No like / dislike or dislike comment, per the 27 Nov removal. DRAWN BY INFERENCE: the production source for this page was not available in this session; the structure comes from the component names recorded on 6 Oct and from the 20 Nov bug report on this page, so labels and spacing should be checked against the live screen."
+TNOTES["t15"] = "AI TUTOR QUESTION DETAIL (PM, 27 Nov, on T16's chat history date: 'when clicked should it bring up the actual conversations?' then 'Draw production's separate detail page as its own board and link to it'). Every Created At link in T16's Snap-to-ask chat history now opens this board. It follows production's thread page (AIDashboardDetailGeneralInfo + QuestionTabPanel): General Info, the Item Overview, then one tab per SNAPPED QUESTION of the item (PM, 27 Nov: 'questions here shouldn't refer to the in chat questions, it should refer to the snapped questions') — Question 1 to 6, each showing the snapped question beside the AI Tutor's explanation as cards (approach, steps, answer, multi-line calculations on their own lines) and the chat on that question underneath, or 'No chat on this question'. A chat icon with a count on the tab marks the questions that have chat. No like / dislike or dislike comment, per the 27 Nov removal. DRAWN BY INFERENCE: the production source for this page was not available in this session; the structure comes from the component names recorded on 6 Oct and from the 20 Nov bug report on this page, so labels and spacing should be checked against the live screen."
 notes["t15"] = {"x": 14 * (TW + TGAP), "y": TROW_Y["ja"] + TH + 60, "w": TNW, "maxH": 460, "text": TNOTES["t15"]}
 PNOTES = {
     "P-Dialog": "AI PRACTICE — the Similar Questions Practice LO (jamessim-source/AIpractice: docs/prototype-plan.md, docs/c10-finalized-logic.md = PRD C10 as decided by the PM on 24 Sep; the clickable prototype on branch `prototype`). Redrawn here on this canvas's production components and fitted into the Kindai course: the practice LO sits in Topic 7-1 beside the AI Feedback LO, linked to the Session 7 lecture slides PDF, so Book Management, Course Management, the dashboards and the student app all show it as one more LO. THIS BOARD: DialogCreateLearningMaterial with the new frontend sub-type chosen (a plain LEARNING_OBJECTIVE with ai_practice=true, like Random Activity or Paper Submission — not a new proto type). Type name decided: Similar Questions Practice LO (JA 類題演習 LO is a placeholder; Random Activity already uses AI演習). General Info as for any LO; Settings = the required リンク元の LO picker, fed by the book's LOs whose 演習の元として利用可 switch is on — one here — with the empty-state copy (turn the switch on a PDF LO first); the note of the fields hidden for this type; the flag + tenant-setting gate. Creation and linking are one save. One eligible LO may be linked by several practice LOs. Confirm → P3. T2's type menu also lists this type (click it).",

@@ -2,7 +2,7 @@
   "v": 3,
   "createdOnFiles": {
     "v": 1,
-    "at": "2026-11-27T02:22:28Z"
+    "at": "2026-11-27T02:25:27Z"
   },
   "title": "AI Feedback — Back Office + Student Prototype",
   "launch": {
@@ -399,7 +399,7 @@
       "y": 5400,
       "w": 1440,
       "h": 900,
-      "title": "T18 · AI Tutor question detail — production's page behind the chat history's Created At link: general info, the snapped question, the explanation cards, the chat (27 Nov) (JA)",
+      "title": "T18 · AI Tutor question detail — production's page behind the chat history's Created At link: general info, one tab per snapped question with its explanation cards and chat (27 Nov) (JA)",
       "is_interactive": true
     },
     "T-Book-en.dc.html": {
@@ -519,7 +519,7 @@
       "y": 7000,
       "w": 1440,
       "h": 900,
-      "title": "T18 · AI Tutor question detail — production's page behind the chat history's Created At link: general info, the snapped question, the explanation cards, the chat (27 Nov) (EN)",
+      "title": "T18 · AI Tutor question detail — production's page behind the chat history's Created At link: general info, one tab per snapped question with its explanation cards and chat (27 Nov) (EN)",
       "is_interactive": true
     },
     "P-Dialog.dc.html": {
@@ -1811,7 +1811,7 @@
       "y": 6360,
       "w": 640,
       "maxH": 460,
-      "text": "AI TUTOR QUESTION DETAIL (PM, 27 Nov, on T16's chat history date: 'when clicked should it bring up the actual conversations?' then 'Draw production's separate detail page as its own board and link to it'). Every Created At link in T16's Snap-to-ask chat history now opens this board. It follows production's thread page (AIDashboardDetailGeneralInfo + QuestionTabPanel): General Info, the Item Overview, then two tabs — Explanation (the snapped question beside the AI Tutor's explanation as cards: approach, steps, answer, with multi-line calculations on their own lines) and Chat (the six questions the student asked afterwards, with the replies). No like / dislike or dislike comment, per the 27 Nov removal. DRAWN BY INFERENCE: the production source for this page was not available in this session; the structure comes from the component names recorded on 6 Oct and from the 20 Nov bug report on this page, so labels and spacing should be checked against the live screen."
+      "text": "AI TUTOR QUESTION DETAIL (PM, 27 Nov, on T16's chat history date: 'when clicked should it bring up the actual conversations?' then 'Draw production's separate detail page as its own board and link to it'). Every Created At link in T16's Snap-to-ask chat history now opens this board. It follows production's thread page (AIDashboardDetailGeneralInfo + QuestionTabPanel): General Info, the Item Overview, then one tab per SNAPPED QUESTION of the item (PM, 27 Nov: 'questions here shouldn't refer to the in chat questions, it should refer to the snapped questions') — Question 1 to 6, each showing the snapped question beside the AI Tutor's explanation as cards (approach, steps, answer, multi-line calculations on their own lines) and the chat on that question underneath, or 'No chat on this question'. A chat icon with a count on the tab marks the questions that have chat. No like / dislike or dislike comment, per the 27 Nov removal. DRAWN BY INFERENCE: the production source for this page was not available in this session; the structure comes from the component names recorded on 6 Oct and from the 20 Nov bug report on this page, so labels and spacing should be checked against the live screen."
     },
     "p_P-Dialog": {
       "x": 0,
