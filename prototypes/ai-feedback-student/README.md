@@ -456,3 +456,8 @@ PM comment on T16: *Draw production's separate detail page as its own board and 
 ## 27 Nov (5): T18 tabs are the snapped questions
 
 PM comment on T18: *questions here should not refer to the in chat questions, it should refer to the snapped questions.* The board now has one tab per snapped question of the item (Question 1 to 6); each shows the snapped question, the explanation cards and the chat on that question. The Explanation / Chat tabs and the numbered chat bubbles are gone.
+
+
+## 27 Nov (6): T18 redrawn from production screenshots
+
+The PM sent two screenshots of the live question detail page. T18 now follows them: breadcrumb AI Dashboard / time, the time as the title with a previous / next pager, the info rows, Item Overview, one tab per snapped question, an Overview, and an AI Response panel with a Hint / Solution toggle (Hint 1 to 3; Step 1 to n and Final Answer). Left out on purpose: Total Likes, Total Dislikes and Total Comments, and emoji in hints. Kept beyond production: the chat on each question.
