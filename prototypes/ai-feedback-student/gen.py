@@ -7751,7 +7751,7 @@ AQ_JA = dict(
              ("相関があるなら、人口密度が高いと所得が上がると言えますか？", "言えません。相関は一緒に動くことを示すだけです。何が原因になりうるか、あなたのデータで確かめられることは何でしょう？"),
              ("第三の変数ってことですか？", "その通りです。たとえば産業構成や高齢化率が両方に影響している可能性があります。"),
              ("まとめるとどう書けばいいですか？", "値（両方）→ 外れ値の影響 → 言える範囲と言えない範囲、の順に3文で書いてみてください。書いたら見せてください。")],
-    aq_stu="生徒", aq_ai="AIチューター",
+    aq_stu="生徒", aq_ai="AIチューター", aq_qn="質問",
     aq_help="本番の質問詳細ページ（AIダッシュボードの質問履歴で作成日時をクリックすると開くページ）。基本情報、スナップした問題、AIチューターの解説（カード）、その後のチャットを表示します。高評価・低評価は表示しません（PM, 11月27日）。レイアウトは本番のコンポーネント名と11月20日の不具合報告をもとに描いたもので、本番の画面と細部が異なる可能性があります。",
 )
 AQ_EN = dict(
@@ -7773,7 +7773,7 @@ AQ_EN = dict(
              ("If there is a correlation, can I say higher density raises income?", "No. A correlation only shows that the two move together. What could be a cause, and what can your data check?"),
              ("Do you mean a third variable?", "Yes. Industry mix or the ageing rate, for example, may influence both."),
              ("So how should I write it up?", "Try three sentences in this order: the values (both), the effect of the outlier, and what can and cannot be said. Show me when you have written it.")],
-    aq_stu="Student", aq_ai="AI Tutor",
+    aq_stu="Student", aq_ai="AI Tutor", aq_qn="Question",
     aq_help="Production's question detail page, the one the Created At link in the AI Dashboard's chat history opens. It shows the general info, the snapped question, the AI Tutor's explanation as cards, and the chat that followed. Likes and dislikes are not shown (PM, 27 Nov). The layout is drawn from production's component names and the 20 Nov bug report on this page, so details may differ from the live screen.",
 )
 JA.update(AQ_JA); EN.update(AQ_EN)
@@ -7795,13 +7795,18 @@ AQ_CSS = """
 """
 
 def t_dash_ai_q(S, L):
-    gi = "".join(f'<div><div class="k">{k}</div><div class="v{" num" if i in (2, 4) else ""}">{v}</div></div>' for i, (k, v) in enumerate(S["aq_gi_rows"]))
+    def gi_val(i, v):
+        if i == 4:
+            return f'<button class="cell-link num" style="background:none;border:0;padding:0;font:inherit;cursor:pointer" onClick="{{{{go1}}}}">{v}</button>'
+        return v
+    gi = "".join(f'<div><div class="k">{k}</div><div class="v{" num" if i in (2, 4) else ""}">{gi_val(i, v)}</div></div>' for i, (k, v) in enumerate(S["aq_gi_rows"]))
     snap = "".join((f"<b>{t}</b>" if i == 0 else f"<p style=\"margin:0 0 6px\">{t}</p>") for i, t in enumerate(S["aq_snap"]))
     cards = ""
     for h, body_t, math in S["aq_cards"]:
         m = f'<div class="aq-math">{"<br>".join(math)}</div>' if math else ""
         cards += f'<div class="ad-fcard"><span class="ad-chip g">{h}</span><p>{body_t}</p>{m}</div>'
-    chat = "".join(f'<div class="aq-b s"><span class="who">{S["aq_stu"]}</span>{q}</div><div class="aq-b a"><span class="who">{S["aq_ai"]}</span>{a}</div>' for q, a in S["aq_chat"])
+    nq = len(S["aq_chat"])
+    chat = "".join(f'<div class="aq-b s"><span class="who">{S["aq_stu"]} ・ {S["aq_qn"]} {k + 1} / {nq}</span>{q}</div><div class="aq-b a"><span class="who">{S["aq_ai"]}</span>{a}</div>' for k, (q, a) in enumerate(S["aq_chat"]))
     t0, t1 = S["aq_tabs"]
     name = S["aq_gi_rows"][0][1]; at = S["aq_gi_rows"][2][1]
     body = f'<style>{AD_CSS}{AQ_CSS}</style>' + tnav(S, "dash") + f"""<div class="tmain">
